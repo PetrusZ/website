@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-22 Fri 19:11 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elisp Tutorial</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="index.html"> UP </a>
+ |
+ <a accesskey="H" href="index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Elisp Tutorial</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdfb7f2c">1. 基础</a></li>
+<li><a href="#orga53e000">2. 操作符前置</a></li>
+<li><a href="#org04e0858">3. 数据结构</a></li>
+<li><a href="#orge266f2e">4. 返回机制</a></li>
+<li><a href="#orgc31dd2f">5. 常见关键字</a>
+<ul>
+<li><a href="#org0e7022e">5.1. <code>nil</code> 和 <code>t</code></a></li>
+<li><a href="#org1a54a4e">5.2. <code>require</code></a></li>
+<li><a href="#orgb24121d">5.3. <code>setq</code></a></li>
+<li><a href="#orgced75d2">5.4. <code>add-to-list</code></a></li>
+<li><a href="#orgfe45825">5.5. <code>add-hook</code></a></li>
+<li><a href="#org285e434">5.6. <code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></a></li>
+</ul>
+</li>
+<li><a href="#orgd266a1b">6. setq/setq-default</a></li>
+<li><a href="#org18380ae">7. require</a></li>
+<li><a href="#orge54af2c">8. quote</a></li>
+<li><a href="#org0c7689e">9. auto-mode-alist(major mode)</a></li>
+<li><a href="#org75d0cd1">10. 命名规则</a></li>
+<li><a href="#orgf9cfe6b">11. Major 与 Minor Mode</a></li>
+<li><a href="#orgf80d9ea">12. 模块化</a></li>
+<li><a href="#orgcabb95b">13. Dired Mode</a></li>
+<li><a href="#org33c1472">14. 宏</a>
+<ul>
+<li><a href="#org0896a3a">14.1. backquote</a></li>
+</ul>
+</li>
+<li><a href="#org7f0d400">15. use-package</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org73cba21">15.0.1. 更安全的 require</a></li>
+<li><a href="#org6846cc7">15.0.2. 将配置集中</a></li>
+<li><a href="#org763c1ad">15.0.3. autoload</a></li>
+<li><a href="#org825d0d5">15.0.4. 键绑定</a></li>
+<li><a href="#orgb8eb700">15.0.5. 为什么使用 Use-package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4639506">16. org-babel-load-file</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdfb7f2c" class="outline-2">
+<h2 id="orgdfb7f2c"><span class="section-number-2">1</span> 基础</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>分号是注释开始的标志。</li>
+
+<li>Elisp 是由符号表达式构成的（即“S-表达式”或"S 式"）。s 式周围有括号，而且也可以嵌套：</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>一个 s 式可以包含原子符号或者其他 s 式。在上面的例子中，1 和 2 是原子符号，(+ 2 (+ 1 1)) 和 (+ 1 1) 是 s 式。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">`</span><span style="color: #a9a1e1;">setq</span><span style="color: #5B6268;">' &#21487;&#20197;&#23558;&#19968;&#20010;&#20540;&#36171;&#32473;&#19968;&#20010;&#21464;&#37327;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> my-name <span style="color: #98be65;">"Bastien"</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">`</span><span style="color: #a9a1e1;">insert</span><span style="color: #5B6268;">' &#20250;&#22312;&#20809;&#26631;&#22788;&#25554;&#20837;&#23383;&#31526;&#20018;:</span>
+<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">insert</span> <span style="color: #98be65;">"Hello!"</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#21487;&#20197;&#25226;s&#24335;&#23884;&#20837;&#20989;&#25968;&#20013;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">defun</span> <span style="color: #c678dd;">hello</span> <span style="color: #c678dd;">()</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">insert</span> <span style="color: #98be65;">"Hello, I am "</span> my-name<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#21487;&#20197;&#29992; `</span><span style="color: #a9a1e1;">progn</span><span style="color: #5B6268;">'&#21629;&#20196;&#23558;s&#24335;&#32467;&#21512;&#36215;&#26469;:</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">progn</span>
+  <span style="color: #c678dd;">(</span><span style="color: #c678dd;">switch-to-buffer-other-window</span> <span style="color: #98be65;">"*test*"</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span>hello <span style="color: #98be65;">"you"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#26684;&#24335;&#21270;&#23383;&#31526;&#20018;&#30340;&#26041;&#27861;&#65306;</span>
+<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">format</span> <span style="color: #98be65;">"Hello %s!\n"</span> <span style="color: #98be65;">"visitor"</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#21487;&#20197;&#29992; `</span><span style="color: #a9a1e1;">let</span><span style="color: #5B6268;">' &#23558;&#19968;&#20010;&#20540;&#21644;&#19968;&#20010;&#23616;&#37096;&#21464;&#37327;&#32465;&#23450;:</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">let</span> <span style="color: #c678dd;">(</span><span style="color: #98be65;">(</span>local-name <span style="color: #98be65;">"you"</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #c678dd;">switch-to-buffer-other-window</span> <span style="color: #98be65;">"*test*"</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">erase-buffer</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span>hello local-name<span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #c678dd;">other-window</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#36825;&#37324;&#25105;&#20204;&#23601;&#19981;&#38656;&#35201;&#20351;&#29992; `</span><span style="color: #a9a1e1;">progn</span><span style="color: #5B6268;">' &#20102;&#65292; &#22240;&#20026; `</span><span style="color: #a9a1e1;">let</span><span style="color: #5B6268;">' &#20063;&#21487;&#20197;&#23558;&#24456;&#22810;s&#24335;&#32452;&#21512;&#36215;&#26469;&#12290;</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#23450;&#20041;&#21464;&#37327;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> name <span style="color: #98be65;">"username"</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span>Message:q
+ name<span style="color: #51afef;">)</span> <span style="color: #5B6268;">; </span><span style="color: #5B6268;">-&gt; "username"</span>
+:
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#23450;&#20041;&#20989;&#25968;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">defun</span> <span style="color: #c678dd;">func</span> <span style="color: #c678dd;">()</span>
+  <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">message</span> <span style="color: #98be65;">"Hello, %s"</span> name<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#25191;&#34892;&#20989;&#25968;</span>
+<span style="color: #51afef;">(</span>func<span style="color: #51afef;">)</span> <span style="color: #5B6268;">; </span><span style="color: #5B6268;">-&gt; Hello, username</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#35774;&#32622;&#24555;&#25463;&#38190;</span>
+<span style="color: #51afef;">(</span><span style="color: #c678dd;">global-set-key</span> <span style="color: #c678dd;">(</span><span style="color: #c678dd;">kbd</span> <span style="color: #98be65;">"&lt;f1&gt;"</span><span style="color: #c678dd;">)</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">func</span><span style="color: #51afef;">)</span>
+
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#20351;&#20989;&#25968;&#21487;&#30452;&#25509;&#34987;&#35843;&#29992;&#21487;&#28155;&#21152; (interactive)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">defun</span> <span style="color: #c678dd;">func</span> <span style="color: #c678dd;">()</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">interactive</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">message</span> <span style="color: #98be65;">"Hello, %s"</span> name<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga53e000" class="outline-2">
+<h2 id="orga53e000"><span class="section-number-2">2</span> 操作符前置</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+程序的本质是什么，无非是数据本身和操作数据过程。lisp 把操作数据的“操作符”前置了，比如平常计算多个数加法的时候用 <code>1+2+3+4+5</code> ，lisp 这样做： <code>(+ 1 2 3 4 5)</code> ，括号是 lisp 的特性，左括号的往右的第一个字符就是所谓的“操作符”，用空格来区别不同的参数。这样做有什么好处？现代语言因为更偏向自然语言，操作符的位置更加灵活，比如调用一个方法的时候： <code>object.method(args)</code> ，方法需要一个对象支撑，自己变成了附庸品，后置了；几乎所有连接字符串都可以这么操作： <code>"HE"+"LLO"+"WORLD"</code> ，操作符+位于中间；还有最后一种情况，常见的 <code>Assert statement</code> 或者内置函数调用 <code>ABS(num)</code> 又把操作符前置了，在操作符使用过程中混乱不协调，容易迷惑然后出错，所以灵活也有它的弊端。括号和操作符前置两个特性让 lisp 独特而优雅，组成了为人称道的 S-expression(S 表达式)，以后还会提及它的好处。
+</p>
+</div>
+</div>
+<div id="outline-container-org04e0858" class="outline-2">
+<h2 id="org04e0858"><span class="section-number-2">3</span> 数据结构</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+将操作符前置是高度统一又美好理想的理念，因为纯数据的存在导致不可能所有括号里面的最左边都是操作符。lisp 其实叫做列表处理语言，这里就引出了 lisp 里面最基础的数据结构——list，还有它的组成元素 atom(原子)。其实我们已经见过了 list 就是 <code>(+ 1 2 3 4 5)</code> ，只有在括号括起来的表达式就叫做一个 list，里面的元素只要不是另外一个 list 就叫做原子(atom)，意为不能再分解的意思。那么纯数据该怎么表示？像这样 <code>(1 2 3 4 5 )</code> ，显然不符合操作符前置的原则，会报错说找不到名为 1 的函数，于是考虑再三就把操作符扩充到了括号之外，变成 <code>'(1 2 3 4 5)</code> 表示整个括号里面不执行，直接返回整个 list。像 <code>(+ 1 2 3 4 5)</code> 这样的 list 会执行，返回值为 15；而 <code>'(+ 1 2 3 4 5)</code> 会直接返回 <code>(+ 1 2 3 4 5)</code> 本身。
+</p>
+</div>
+</div>
+<div id="outline-container-orge266f2e" class="outline-2">
+<h2 id="orge266f2e"><span class="section-number-2">4</span> 返回机制</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+上面提到了返回，在其他大部分的语言里需要一个关键字 return 来实现，而 lisp 只要遇到括号就代表自动返回值，可以执行括号内容后返回，也可以根据括号前面的'单引号只返回括号本身。这时候就有人想在返回的时候部分内容能够执行就好了，比如 <code>(5 (* 2 5) 15 20)</code> ，如果返回的时候里面的表达式 <code>(* 2 5)</code> 能直接执行的话整个表达式就能返回 <code>(5 10 15 20)</code> 这样的数列。于是就有人想出了用外层的括号来控制内层的括号，变成 <code>`(5 ,(* 2 5) 15 20)，</code> 外层加个反引号内层加个逗号就能返回以 5 为倍数的数列了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc31dd2f" class="outline-2">
+<h2 id="orgc31dd2f"><span class="section-number-2">5</span> 常见关键字</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org0e7022e" class="outline-3">
+<h3 id="org0e7022e"><span class="section-number-3">5.1</span> <code>nil</code> 和 <code>t</code></h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code>t</code> 来代表 true 让人措手不及。和其他语言一样，正整数也表示 true，负整数表示 false。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a54a4e" class="outline-3">
+<h3 id="org1a54a4e"><span class="section-number-3">5.2</span> <code>require</code></h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+顾名思义它的作用就是引用包，后面一般加着包名，至于具体的设置和用法会在下一篇文章详细分析，只要知道它和其他语言中的 import，require 一样把其他模块或者包的上下文空间引入当前文件下。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb24121d" class="outline-3">
+<h3 id="orgb24121d"><span class="section-number-3">5.3</span> <code>setq</code></h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<code>setq</code> 作用是赋值，一般这么用 <code>(setq variable value)</code> ，比如 <code>(setq kill-ring-max 200)</code> 让 emacs 剪切板存放的条目数上限为 200。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgced75d2" class="outline-3">
+<h3 id="orgced75d2"><span class="section-number-3">5.4</span> <code>add-to-list</code></h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+添加一个元素到某个 list 里面，这样用 <code>(add-to-list LIST ELEMENT)</code> 。也可以看出除了用单个变量来控制某种配置外，emacs 里面还存在各种 list 这种容器式数据结构，用来映射或者存放一组变量。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfe45825" class="outline-3">
+<h3 id="orgfe45825"><span class="section-number-3">5.5</span> <code>add-hook</code></h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+添加钩子，比如 <code>(add-hook ‘window-setup-hook ‘toggle-frame-maximized)</code> ，作用是当 window 启动的时候 frame 最大化。在添加钩子的时候要查看是否有以-hook 结尾的函数。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org285e434" class="outline-3">
+<h3 id="org285e434"><span class="section-number-3">5.6</span> <code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+<code>kbd</code> 是一个宏，至于什么是宏，我们先暂按不说，它的存在就是为简化定义一系列按键输入（键序列），比如 <code>(kbd “C-x C-f”)</code> 会返回 control+c 然后 control+f 的输入操作。 <code>global-set-key</code> 用来定义按键绑定的函数，之前提到过 emacs 里面的任何操作都是由一个或者多个函数组成，结合上面的 <code>kbd</code> 宏，emacs 这样定义的一个按键的功能—— <code>(global-set-key (kbd "C-x C-f") 'find-file)</code> 。那么 <code>define-key</code> 又是什么？ <code>global-set-key</code> 显而易见是用来定义全局的，针对于整个 emacs 而言的，污染性太大， <code>define-key</code> 则用来定义针对某个 mode 才有的按键，也就是说当我们进入到某个 mode 的时候这个按键才生效。常见用法 <code>(define-key keymap function)</code> ，keymap 保管了 key 和 function 的映射表，一般每个 mode 都会提供了一个 keymap 用于用户自定义。 如果不知道自己输入的键序列在 <code>kbd</code> 里面是怎么写的，可以使用 <code>C-h k</code> 来查看有没有此键序列的绑定，如果没有绑定任何的函数会返回这个键序列本身，就是写入 <code>kbd</code> 里面的内容。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd266a1b" class="outline-2">
+<h2 id="orgd266a1b"><span class="section-number-2">6</span> setq/setq-default</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+我们需要区分 <code>setq</code> 与 <code>setq-default</code> ： <code>setq</code> 设置当前缓冲区（Buffer）中的变量值 ， <code>setq-default</code> 设 置的为全局的变量的值（具体内容可以在<a href="http://stackoverflow.com/questions/18172728/the-difference-between-setq-and-setq-default-in-emacs-lisp">StackOverflow 找到</a>）
+</p>
+</div>
+</div>
+<div id="outline-container-org18380ae" class="outline-2">
+<h2 id="org18380ae"><span class="section-number-2">7</span> require</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<code>require</code> 的意思为从文件中加载特性，你可以在杀哥的网站读到关于 Emacs Lisp 库系统 的更多内容，文章在<a href="http://ergoemacs.org/emacs/elisp_library_system.html">这里</a>。
+</p>
+
+<p>
+在进行美化之前我们需要配置插件的源（默认的源非常有限），最常使用的是 MELPA （Milkypostman's Emacs Lisp Package Archive）。它有非常多的插件（3000 多个插件）。 一个插件下载的次数多并不能说明它非常有用，也许这个插件是其他的插件的依赖。在 <a href="https://melpa.org/#/getting-started">这里</a> 你可以找到其安装使用方法。添加源后，我们就可以使用 M-x package-list-packages 来查看所有 MELPA 上的插件了。在表单中可以使用 I 来标记安装 D 来标记删除， U 来更新，并用 X 来确认。
+</p>
+</div>
+</div>
+<div id="outline-container-orge54af2c" class="outline-2">
+<h2 id="orge54af2c"><span class="section-number-2">8</span> quote</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#19979;&#38754;&#20004;&#34892;&#30340;&#25928;&#26524;&#23436;&#20840;&#30456;&#21516;&#30340;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">quote</span> foo<span style="color: #51afef;">)</span>
+<span style="color: #51afef;">'</span><span style="color: #ECBE7B;">foo</span>
+</pre>
+</div>
+
+<p>
+<code>quote</code> 的意思是不要执行后面的内容，返回它原本的内容（具体请参考下面的例子）
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">print</span> <span style="color: #51afef;">'</span><span style="color: #c678dd;">(</span>+ <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span> <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">-&gt; (+ 1 1)</span>
+<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">print</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>  <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">-&gt; 2</span>
+</pre>
+</div>
+
+<p>
+更多关于 <code>quote</code> 的内容可以在 <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Quoting.html">这里</a> 找到，或者在 <a href="http://stackoverflow.com/questions/134887/when-to-use-quote-in-lisp">这里</a>这里找到 StackOverflow 上对于它的讨论。
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#31532;&#19968;&#31181;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">package-selected-packages</span> my/packages<span style="color: #51afef;">)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#31532;&#20108;&#31181;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">package-selected-packages</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">my/packages</span><span style="color: #51afef;">)</span>
+<span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#31532;&#19977;&#31181;</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">package-selected-packages</span> <span style="color: #c678dd;">(</span><span style="color: #51afef;">quote</span> my/packages<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+第一种设置是在缓冲区中设置一个名为 package-selected-packages 的变量，将其的值 设定为 my/packages 变量的值。第二种和第三种其实是完全相同的，将一个名为 package-selected-packages 的变量设置为 my/packages 。
+</p>
+</div>
+</div>
+<div id="outline-container-org0c7689e" class="outline-2">
+<h2 id="org0c7689e"><span class="section-number-2">9</span> auto-mode-alist(major mode)</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+你可以在<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Auto-Major-Mode.html">这里</a>（How Emacs Chooses a Major Mode）找到 Emacs 是如何选择何时该选用何 种 Major Mode 的方法。
+</p>
+
+<p>
+在这里我们需要知道 auto-mode-alist 的作用，这个变量是一个<a href="https://www.emacswiki.org/emacs/AssociationList">AssociationList</a>，它 使用正则表达式（REGEXP）的规则来匹配不同类型文件应使用的 Major Mode。 下面是几个 正则表达式匹配的例子，
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\`/tmp/fol/"</span> . text-mode<span style="color: #c678dd;">)</span>
+ <span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\.texinfo\\'"</span> . texinfo-mode<span style="color: #c678dd;">)</span>
+ <span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\.texi\\'"</span> . texinfo-mode<span style="color: #c678dd;">)</span>
+ <span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\.el\\'"</span> . emacs-lisp-mode<span style="color: #c678dd;">)</span>
+ <span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\.c\\'"</span> . c-mode<span style="color: #c678dd;">)</span>
+ <span style="color: #c678dd;">(</span><span style="color: #98be65;">"\\.h\\'"</span> . c-mode<span style="color: #c678dd;">)</span>
+ &#8230;<span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+下面是如何添加新的模式与对应文件类型的例子（与我们配置 js2-mode 时相似的例子），
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">auto-mode-alist</span>
+  <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">append</span>
+   <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name (within directory) starts with a dot.</span>
+   <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span><span style="color: #51afef;">(</span><span style="color: #98be65;">"/\\.[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">/]*\\'"</span> . fundamental-mode<span style="color: #51afef;">)</span>
+     <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name has no dot.</span>
+     <span style="color: #51afef;">(</span><span style="color: #98be65;">"/[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">\\./]*\\'"</span> . fundamental-mode<span style="color: #51afef;">)</span>
+     <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name ends in &#8216;</span><span style="color: #a9a1e1;">.C</span><span style="color: #5B6268;">&#8217;.</span>
+     <span style="color: #51afef;">(</span><span style="color: #98be65;">"\\.C\\'"</span> . c++-mode<span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+   <span style="color: #dcaeea;">auto-mode-alist</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org75d0cd1" class="outline-2">
+<h2 id="org75d0cd1"><span class="section-number-2">10</span> 命名规则</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+Elisp 中并没有命名空间（Namespace），换句话说就是所有的变量均为全局变量，所以其 命名方法就变的非常重要。下面是一个简单的命名规则，
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">#&#33258;&#23450;&#20041;&#21464;&#37327;&#21487;&#20197;&#20351;&#29992;&#33258;&#24049;&#30340;&#21517;&#23383;&#20316;&#20026;&#21629;&#21517;&#26041;&#24335;<span style="color: #51afef;">&#65288;</span>&#21487;&#20197;&#26159;&#21464;&#37327;&#21517;&#25110;&#32773;&#20989;&#25968;&#21517;<span style="color: #51afef;">&#65289;</span>
+my/XXXX
+
+#&#27169;&#24335;&#21629;&#21517;&#35268;&#21017;
+ModeName-mode
+
+#&#27169;&#24335;&#20869;&#30340;&#21464;&#37327;&#21017;&#21487;&#20197;&#20351;&#29992;
+ModeName-VariableName
+&#36981;&#23432;&#19978;&#38754;&#30340;&#21629;&#21517;&#35268;&#21017;&#21487;&#20197;&#26368;&#22823;&#31243;&#24230;&#30340;&#20943;&#23569;&#21629;&#21517;&#20914;&#31361;&#21457;&#29983;&#30340;&#21487;&#33021;&#24615;&#12290;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf9cfe6b" class="outline-2">
+<h2 id="orgf9cfe6b"><span class="section-number-2">11</span> Major 与 Minor Mode</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+每一个文件类型都对应一个 Major Mode，它提供语法高亮以及缩进等基本的编辑支持功能，然后而 Minor Mode 则提供 其余的增强性的功能（例如 linum-mode ）。
+</p>
+
+<p>
+在 Emacs 中，Major Mode 又分为三种，
+</p>
+
+<ul class="org-ul">
+<li>text-mode ，用于编辑文本文件</li>
+<li>special-mode ，特殊模式（很少见）</li>
+<li>prog-mode ，所有的编程语言的父模式</li>
+</ul>
+
+<p>
+在每一个模式（mode）中它的名称与各个变量还有函数都是有特定的命名规则，比如所有的 模式都被命名为 ModeName-mode ，里面所设置的快捷键则为 ModeName-mode-key-map ，而所有的钩子则会被命名为 ModeName-mode-hook 。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf80d9ea" class="outline-2">
+<h2 id="orgf80d9ea"><span class="section-number-2">12</span> 模块化</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+在这一部分我们首先需要知道的是什么是 <code>features</code> 。在 Emacs 中每一个 <code>feature</code> 都 是一个 Elisp 符号，用于代表一个 Lisp 插件（Package）。
+</p>
+
+<p>
+当一个插件调用 <code>(provide 'symbol_name)</code> 函数时，Emacs 就会将这个符号加入到 <code>features</code> 的列表中去。你可以在<a href="http://ergoemacs.org/emacs/elisp_feature_name.html">这里</a>读到更多关于 feature 的内容。
+</p>
+
+<p>
+接着我们需要弄明白的是 <code>load-file</code> , <code>load</code> , <code>require</code> , <code>autoload</code> 之间的区别。（他们之间区别的链接已经再前面贴过了，你也可以在<a href="http://ergoemacs.org/emacs/elisp_library_system.html">这里</a>找到之前同样的链接）
+</p>
+
+<p>
+简单来说， <code>load-file</code> 用于打开某一个指定的文件，用于当你不想让 Emacs 来去决定加 载某个配置文件时（ .el 或者 .elc 文件）。
+</p>
+
+<p>
+<code>load</code> 搜索 <code>load-path</code> 中的路径并打开第一个所找到的匹配文件名的文件。此方法用于 你预先不知道文件路径的时候。
+</p>
+
+<p>
+<code>require</code> 加载还未被加载的插件。首先它会查看变量 <code>features</code> 中是否存在所要加载的 符号如果不存在则使用上面提到的 <code>load</code> 将其载入。（有点类似于其他编程语言中的 <code>import</code> ）
+</p>
+
+<p>
+<code>autoload</code> 用于仅在函数调用时加载文件，使用此方法可以大大节省编辑器的启动时间。
+</p>
+</div>
+</div>
+<div id="outline-container-orgcabb95b" class="outline-2">
+<h2 id="orgcabb95b"><span class="section-number-2">13</span> Dired Mode</h2>
+<div class="outline-text-2" id="text-13">
+<p>
+使用 C-x d 就可以进入 Dired Mode
+</p>
+
+<ul class="org-ul">
+<li>+ 创建目录</li>
+<li>g 刷新目录</li>
+<li>C 拷贝</li>
+<li>D 删除</li>
+<li>R 重命名</li>
+<li>d 标记删除</li>
+<li>u 取消标记</li>
+<li>x 执行所有的标记</li>
+</ul>
+
+<p>
+启用 dired-x 可以让每一次进入 Dired 模式时，使用新的快捷键 C-x C-j 就可以进 入当前文件夹的所在的路径。
+</p>
+</div>
+</div>
+<div id="outline-container-org33c1472" class="outline-2">
+<h2 id="org33c1472"><span class="section-number-2">14</span> 宏</h2>
+<div class="outline-text-2" id="text-14">
+<p>
+Lisp 的宏（Macro）类似于 C++ 中的模板，并可以生产新的代码（你可以在<a href="http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">这里</a>找到更多 关于宏的讨论）。使用它，我们可以增强某个函数的功能而不去更改这个函数的代码。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">defmacro</span> <span style="color: #c678dd;">inc</span> <span style="color: #c678dd;">(</span>var<span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">list</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">setq</span> var <span style="color: #98be65;">(</span><span style="color: #a9a1e1;">list</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">1+</span> var<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> my-var <span style="color: #da8548; font-weight: bold;">1</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> my-var <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">1</span> my-var<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #a9a1e1;">macroexpand</span> <span style="color: #51afef;">'</span><span style="color: #c678dd;">(</span>inc my-var<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+以上这个宏的作用是将变量的值+1. 执行以上代码之后, my-var 的结果为 2.
+</p>
+
+
+<p>
+可以使用 macroexpand 获得宏展开的结果, 如以上代码结果为:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> my-var <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">1+</span> my-var<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+函数与宏的区别：
+</p>
+
+<ol class="org-ol">
+<li>宏的参数并不会被马上求值, 解释器会先展开宏, 宏展开之后解释器才会执行宏展开的 结果; 而函数的参数会马上求值</li>
+<li>宏的执行结果是一个表达式, 该表达式会立即被解释器执行; 而函数的结果是一个值</li>
+</ol>
+</div>
+<div id="outline-container-org0896a3a" class="outline-3">
+<h3 id="org0896a3a"><span class="section-number-3">14.1</span> backquote</h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+backquote 的作用与 quote 相似, 同样不对后面的表达式求值, 但是当 backquote 在宏中 与逗号(,)一起使用时, 用逗号修饰的变量将进行求值.
+</p>
+
+<p>
+例如以下代码:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">defmacro</span> <span style="color: #c678dd;">my-print-2</span> <span style="color: #c678dd;">(</span>number<span style="color: #c678dd;">)</span>
+  <span style="color: #51afef;">`</span><span style="color: #c678dd;">(</span>message <span style="color: #98be65;">"This is a number: %d"</span> ,number<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+
+<span style="color: #51afef;">(</span><span style="color: #c678dd;">pp</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">macroexpand</span> <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span>my-print-2 <span style="color: #51afef;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span>my-print-2 <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+当输出 message 且 number 不带逗号时, my-print-2 的执行将提示错误. 因为宏不对参 数进行求值, 所以以上宏展开相当于:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">message</span> <span style="color: #98be65;">"This is a number:"</span> number<span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+因为我们没有定义 number 变量, 所以执行出错.
+</p>
+
+<p>
+而如果加入逗号, 则在宏展开时会对变量 number 进行求值, 展开结果为:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #a9a1e1;">message</span> <span style="color: #98be65;">"This is a number: %d"</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+在调试宏的过程中, 可以使用 macroexpand 和 macroexpand-all 获取宏展开的结果.
+</p>
+
+<p>
+关于 backquote 的更多讨论, 可以见以下地址: <a href="https://emacs-china.org/t/lisp/357">lisp 中的`与，是怎么用的？</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f0d400" class="outline-2">
+<h2 id="org7f0d400"><span class="section-number-2">15</span> use-package</h2>
+<div class="outline-text-2" id="text-15">
+<p>
+use-package 是一个宏, 它能让你将一个包的 require 和它的相关的初始化等配置组织 在一起, 避免对同一个包的配置代码散落在不同的文件中.
+</p>
+
+<p>
+use-package 的更多信息参见以下地址: <a href="https://github.com/jwiegley/use-package">use-package</a>
+</p>
+</div>
+
+<div id="outline-container-org73cba21" class="outline-4">
+<h4 id="org73cba21"><span class="section-number-4">15.0.1</span> 更安全的 require</h4>
+<div class="outline-text-4" id="text-15-0-1">
+<p>
+在 Emacs 中, 当我们要引入一个包时, 通常会使用以下代码:
+</p>
+
+<p>
+<code>(require 'package-name)</code>
+</p>
+
+<p>
+但是当 package-name 不在 load-path 中时, 以上代码会抛出错误. 使用 Use-package 可以避免:
+</p>
+
+<p>
+<code>(use-package package-name)</code>
+</p>
+
+<p>
+以上代码展开的结果如下:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">if</span>
+    <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">not</span>
+     <span style="color: #98be65;">(</span><span style="color: #a9a1e1;">require</span> <span style="color: #51afef;">'</span><span style="color: #a9a1e1;">package-name</span> nil <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">t</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+    <span style="color: #c678dd;">(</span><span style="color: #c678dd;">ignore</span>
+     <span style="color: #98be65;">(</span><span style="color: #a9a1e1;">message</span>
+      <span style="color: #51afef;">(</span><span style="color: #a9a1e1;">format</span> <span style="color: #98be65;">"Cannot load %s"</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">package-name</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+可以看到, Use-package 使用 ignore 来避免抛出错误, 这样当某个包不存在时, eamcs 也能够正常启动.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6846cc7" class="outline-4">
+<h4 id="org6846cc7"><span class="section-number-4">15.0.2</span> 将配置集中</h4>
+<div class="outline-text-4" id="text-15-0-2">
+<p>
+当我们引入某个包时, 有可能需要定义一些与这个包相关的变量, 使用 Use-package 实 现这个需求如下:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">use-package</span> package-name
+  <span style="color: #c678dd;">:init</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> my-var1 <span style="color: #98be65;">"xxx"</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">:config</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">progn</span>
+    <span style="color: #98be65;">(</span><span style="color: #51afef;">setq</span> my-var2 <span style="color: #98be65;">"xxx"</span><span style="color: #98be65;">)</span>
+    <span style="color: #98be65;">(</span><span style="color: #51afef;">setq</span> my-var3 <span style="color: #98be65;">"xxx"</span><span style="color: #98be65;">)</span>
+    <span style="color: #c678dd;">)</span>
+  <span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+在上例中, init 后的代码在包的 require 之前执行, 如果这段代码出错则跳过包的 require.
+</p>
+
+<p>
+config 后的代码在包的 require 之后执行.
+</p>
+
+<p>
+init 与 config 之后只能接单个表达式语句, 如果需要执行多个语句, 可以用 progn .
+</p>
+</div>
+</div>
+
+<div id="outline-container-org763c1ad" class="outline-4">
+<h4 id="org763c1ad"><span class="section-number-4">15.0.3</span> autoload</h4>
+<div class="outline-text-4" id="text-15-0-3">
+<p>
+使用 require 时会引入这个包, 但是当你的包很多时会影响启动速度. 而使用 autoload 则可以在真正需要这个包时再 require, 提高启动速度, 避免无谓的 require.
+</p>
+
+<p>
+使用 Use-package 可以轻松的实现这个功能:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">use-package</span> package-name
+  <span style="color: #c678dd;">:commands</span>
+  <span style="color: #c678dd;">(</span><span style="color: #dcaeea;">global-company-mode</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">:defer</span> t
+  <span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+使用 commands 可以让 package 延迟加载, 如以上代码会首先判断 package 的符号是否 存在, 如果存在则在 package-name 的路径下加载. defer 也可以让 package-name 进行延迟加载.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org825d0d5" class="outline-4">
+<h4 id="org825d0d5"><span class="section-number-4">15.0.4</span> 键绑定</h4>
+<div class="outline-text-4" id="text-15-0-4">
+<p>
+在之前的代码中, 如果我们需要绑定一个键, 需要使用 global-key-bind 或 define-key 实现, 而使用*Use-package* 实现更简单:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">use-package</span> color-moccur
+  <span style="color: #c678dd;">:commands</span> <span style="color: #c678dd;">(</span>isearch-moccur isearch-all<span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">:bind</span> <span style="color: #c678dd;">(</span><span style="color: #98be65;">(</span><span style="color: #98be65;">"M-s O"</span> . moccur<span style="color: #98be65;">)</span>
+   <span style="color: #c678dd;">:map</span> <span style="color: #dcaeea;">isearch-mode-map</span>
+   <span style="color: #98be65;">(</span><span style="color: #98be65;">"M-o"</span> . isearch-moccur<span style="color: #98be65;">)</span>
+   <span style="color: #98be65;">(</span><span style="color: #98be65;">"M-O"</span> . isearch-moccur-all<span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">:init</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">isearch-lazy-highlight</span> t<span style="color: #c678dd;">)</span>
+  <span style="color: #c678dd;">:config</span>
+  <span style="color: #c678dd;">(</span><span style="color: #51afef;">use-package</span> moccur-edit<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb8eb700" class="outline-4">
+<h4 id="orgb8eb700"><span class="section-number-4">15.0.5</span> 为什么使用 Use-package</h4>
+<div class="outline-text-4" id="text-15-0-5">
+<ol class="org-ol">
+<li>Use-package 能让相关的配置更为集中, 避免配置分散带来的维护困难</li>
+<li>Use-package 有完善的错误处理, 使配置代码更为健壮</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org4639506" class="outline-2">
+<h2 id="org4639506"><span class="section-number-2">16</span> org-babel-load-file</h2>
+<div class="outline-text-2" id="text-16">
+<p>
+org 是和 markdown 一样是一种格式标记文本形式，可以用来编写文档的，但它比 markdown 厉害得多，提供功能更齐全，其中一种功能是将 org 里面编写的程序放到 org-babel（org 文件的某个块区域）里面，和 markdown 仅仅用来展示程序不同，org-babel 里面的程序可以用 <code>org-babel-load-file</code> 来执行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #c678dd;">org-babel-load-file</span>  <span style="color: #98be65;">"~/.emacs.d/config.org"</span><span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+意味着你可以在一个 org 文件里面写出 emacs 的配置和相应的说明，是一种高效管理 emacs 配置的方式，初次听说还蛮刷三观的。不过因为加载速度的原因没能完全流行起来，不过还是有一些 emacser 坚持使用这种方式。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus</p>
+<p class="date">Created: 2020-05-22 Fri 19:11</p>
+</div>
+</body>
+</html>
