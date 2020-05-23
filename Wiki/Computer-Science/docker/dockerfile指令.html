@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 22:56 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dockerfile指令</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">dockerfile指令</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2ce9f43">1. 常用指令</a>
+<ul>
+<li><a href="#orgca5d897">1.1. ADD 和 COPY</a></li>
+<li><a href="#org35e682d">1.2. ARG</a></li>
+<li><a href="#orgbba745f">1.3. CMD</a></li>
+<li><a href="#org0feac20">1.4. ENTRYPOINT</a></li>
+<li><a href="#org017b0f7">1.5. ENV</a></li>
+<li><a href="#orgb3ca97b">1.6. EXPOSE</a></li>
+<li><a href="#org34f6bc5">1.7. FROM</a></li>
+<li><a href="#org6cd75e3">1.8. MAINTAINER</a></li>
+<li><a href="#org81a6045">1.9. ONBUILD</a></li>
+<li><a href="#orgaea1dda">1.10. RUN</a></li>
+<li><a href="#orgf228f02">1.11. USER</a></li>
+<li><a href="#orgec50a1e">1.12. VOLUME</a></li>
+<li><a href="#org6265a56">1.13. WORKDIR</a></li>
+<li><a href="#orgdfcf1a6">1.14. HEALTHCHECK</a></li>
+</ul>
+</li>
+<li><a href="#org3d09986">2. 容易混淆的地方</a>
+<ul>
+<li><a href="#orgcd512db">2.1. EXPOSE 和 docker run -p -P 之间的关系</a></li>
+<li><a href="#org279bf46">2.2. CMD 和 ENTRYPOINT</a></li>
+<li><a href="#org1e350b0">2.3. 镜像构建上下文（Context）</a></li>
+</ul>
+</li>
+<li><a href="#orgfa64d84">3. 其他</a>
+<ul>
+<li><a href="#orgfe516a3">3.1. 多段式构建</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)， <b>每一条指令构建一层</b> ，因此每一条指令的内容，就是描述该层应当如何构建。
+</p>
+
+<div id="outline-container-org2ce9f43" class="outline-2">
+<h2 id="org2ce9f43"><span class="section-number-2">1</span> 常用指令</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgca5d897" class="outline-3">
+<h3 id="orgca5d897"><span class="section-number-3">1.1</span> ADD 和 COPY</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+COPY:
+</p>
+
+<p>
+<code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;源路径&gt;... &lt;目标路径&gt;</code>
+</p>
+
+<p>
+<源路径> 可以是多个，甚至可以是通配符，其通配符规则要满足 Go 的 filepath.Match 规则 <目标路径> 可以是容器内的绝对路径，也可以是相对于工作目录的相对路径（工作目录可以用 WORKDIR 指令来指定）。目标路径不需要事先创建，如果目录不存在会在复制文件前先行创建缺失目录。
+</p>
+
+<p>
+ADD：将 host 上的文件拷贝到或者将网络上的文件下载到容器中的指定目录
+</p>
+
+<p>
+<code>ADD [source directory or URL] [destination directory]</code>
+</p>
+
+<p>
+ADD 指令和 COPY 的格式和性质基本一致。但是在 COPY 基础上增加了一些功能。
+</p>
+
+<p>
+ADD 和 COPY 的区别
+</p>
+
+<ul class="org-ul">
+<li>ADD 多了 2 个功能, 下载 URL 和对支持的压缩格式的包进行解压. 其他都一样。比如 ADD <a href="http://foo.com/bar.go">http://foo.com/bar.go</a> <code>/tmp/main.go</code> 会将文件从因特网上方下载下来，ADD /foo.tar.gz <code>/tmp/</code> 会将压缩文件解压再 COPY 过去</li>
+<li>如果你不希望压缩文件拷贝到 container 后会被解压的话, 那么使用 COPY。</li>
+<li>如果需要自动下载 URL 并拷贝到 container 的话, 请使用 ADD</li>
+</ul>
+
+<p>
+在 Docker 官方的 Dockerfile 最佳实践文档 中要求，尽可能的使用 COPY，因为 COPY 的语义很明确，就是复制文件而已，而 ADD 则包含了更复杂的功能，其行为也不一定很清晰。最适合使用 ADD 的场合，就是所提及的需要自动解压缩的场合。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org35e682d" class="outline-3">
+<h3 id="org35e682d"><span class="section-number-3">1.2</span> ARG</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+ARG 构建参数
+</p>
+
+<p>
+<code>ARG &lt;参数名&gt;[=&lt;默认值&gt;]</code>
+</p>
+
+<p>
+构建参数和 ENV 的效果一样，都是设置环境变量。 所不同的是，ARG 所设置的构建环境的环境变量，在将来容器运行时是不会存在这些环境变量的。 但是不要因此就使用 ARG 保存密码之类的信息，因为 docker history 还是可以看到所有值的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbba745f" class="outline-3">
+<h3 id="orgbba745f"><span class="section-number-3">1.3</span> CMD</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+CMD：在容器被创建后执行的命令，和 RUN 不同，它是在构造容器时候所执行的命令
+</p>
+
+<p>
+CMD 有三种格式: * <code>CMD ["executable","param1","param2"]</code> (like an exec, preferred form) * <code>CMD ["param1","param2"]</code> (作为 ENTRYPOINT 的参数) * <code>CMD command param1 param2</code> (作为 shell 运行)
+</p>
+
+<p>
+一个 Dockerfile 里只能有一个 CMD，如果有多个，只有最后一个生效。
+</p>
+
+<p>
+对于容器而言，其启动程序就是容器应用进程，容器就是为了主进程而存在的，主进程退出，容器就失去了存在的意义，从而退出，其它辅助进程不是它需要关心的东西。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0feac20" class="outline-3">
+<h3 id="org0feac20"><span class="section-number-3">1.4</span> ENTRYPOINT</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+ENTRYPOINT ：设置默认应用(入口点)，会保证每次容器被创建后该应用都会被执行。
+</p>
+
+<p>
+ENTRYPOINT 格式与 CMD 类似。当指定了 ENTRYPOINT 后，CMD 的含义就发生了改变，不再是直接的运行其命令，而是将 CMD 的内容作为参数传给 ENTRYPOINT 指令。
+</p>
+
+<p>
+CMD 和 ENTRYPOINT 的关系会在下面详细解释。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org017b0f7" class="outline-3">
+<h3 id="org017b0f7"><span class="section-number-3">1.5</span> ENV</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+ENV 有连各种格式：
+</p>
+
+<ul class="org-ul">
+<li><code>ENV &lt;key&gt; &lt;value&gt;</code></li>
+<li><code>ENV &lt;key1&gt;=&lt;value1&gt; &lt;key2&gt;=&lt;value2&gt;...</code></li>
+</ul>
+
+<p>
+设置环境变量，可以使用多次。 设置了后，后续的 RUN 命令都可以使用，并且会作为容器的环境变量。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb3ca97b" class="outline-3">
+<h3 id="orgb3ca97b"><span class="section-number-3">1.6</span> EXPOSE</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+声明端口
+</p>
+
+<p>
+格式为 <code>EXPOSE &lt;端口1&gt; [&lt;端口2&gt;...]</code>
+</p>
+
+<p>
+EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务。 在 Dockerfile 中写入这样的声明有两个好处，一个是帮助镜像使用者理解这个镜像服务的守护端口，以方便配置映射； 另一个用处则是在运行时使用随机端口映射时，也就是 docker run -P 时，会自动随机映射 EXPOSE 的端口。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org34f6bc5" class="outline-3">
+<h3 id="org34f6bc5"><span class="section-number-3">1.7</span> FROM</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+指定进行的基础镜像，必须是第一条指令
+</p>
+
+<p>
+<code>Usage: FROM [image name]</code>
+</p>
+
+<p>
+如果以 <code>scratch</code> 为基础镜像的话，意味着不以任何镜像为基础，接下来所写的指令将作为镜像第一层开始存在。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6cd75e3" class="outline-3">
+<h3 id="org6cd75e3"><span class="section-number-3">1.8</span> MAINTAINER</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+可以在任意地方使用，设置镜像的作者
+</p>
+
+<p>
+<code>Usage: MAINTAINER [name]</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org81a6045" class="outline-3">
+<h3 id="org81a6045"><span class="section-number-3">1.9</span> ONBUILD</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+格式： <code>ONBUILD &lt;其它指令&gt;</code>
+</p>
+
+<p>
+ONBUILD 是一个特殊的指令，它后面跟的是其它指令，比如 RUN, COPY 等，而这些指令，在当前镜像构建时并不会被执行。只有当以当前镜像为基础镜像，去构建下一级镜像的时候才会被执行。
+</p>
+
+<p>
+Dockerfile 中的其它指令都是为了定制当前镜像而准备的，唯有 ONBUILD 是为了帮助别人定制自己而准备的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaea1dda" class="outline-3">
+<h3 id="orgaea1dda"><span class="section-number-3">1.10</span> RUN</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+运行命令，结果会生成镜像中的一个新层
+</p>
+
+<p>
+格式：
+</p>
+
+<ul class="org-ul">
+<li>shell 格式：=RUN &lt;命令&gt;=，就像直接在命令行中输入的命令一样。</li>
+<li>exec 格式：=RUN ["可执行文件", "参数 1", "参数 2"]=，这更像是函数调用中的格式。</li>
+</ul>
+
+<p>
+为了减少镜像大小起见，所有文件相关的操作，比如删除，释放和移动等，都需要尽可能地放在一个 RUN 指令中进行。 而且在镜像构建时，一定要确保每一层只添加真正需要添加的东西，任何无关的东西都应该清理掉，包括缓存、临时文件等。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf228f02" class="outline-3">
+<h3 id="orgf228f02"><span class="section-number-3">1.11</span> USER</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+设置该镜像的容器的主进程所使用的用户，以及后续 RUN, CMD 和 ENTRYPOINT 指令运行所使用的用户
+</p>
+
+<p>
+格式： <code>USER &lt;用户名&gt;[:&lt;用户组&gt;]</code>
+</p>
+
+<p>
+USER 只是帮助你切换到指定用户而已，这个用户必须是事先建立好的，否则无法切换。
+</p>
+
+<p>
+Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，你的镜像是从一个使用非 root 用户 sammy 的镜像继承而来的，那么你的 Dockerfile 中 RUN 指定运行的命令的用户就会使用 sammy 用户。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgec50a1e" class="outline-3">
+<h3 id="orgec50a1e"><span class="section-number-3">1.12</span> VOLUME</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+定义匿名卷，允许容器访问 host 上某个目录
+</p>
+
+<p>
+格式为： * <code>VOLUME ["&lt;路径1&gt;", "&lt;路径2&gt;"...]</code> * <code>VOLUME &lt;路径&gt;</code>
+</p>
+
+<p>
+为了防止运行时用户忘记将动态文件所保存目录挂载为卷，在 Dockerfile 中，我们可以事先指定某些目录挂载为匿名卷。 这样在运行时如果用户不指定挂载，其应用也可以正常运行，不会向容器存储层写入大量数据。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6265a56" class="outline-3">
+<h3 id="org6265a56"><span class="section-number-3">1.13</span> WORKDIR</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+指定工作目录
+</p>
+
+<p>
+格式为 <code>WORKDIR &lt;工作目录路径&gt;</code>
+</p>
+
+<p>
+使用 WORKDIR 指令可以来指定工作目录（或者称为当前目录），以后各层的当前目录就被改为指定的目录，如该目录不存在，WORKDIR 会帮你建立目录。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdfcf1a6" class="outline-3">
+<h3 id="orgdfcf1a6"><span class="section-number-3">1.14</span> HEALTHCHECK</h3>
+<div class="outline-text-3" id="text-1-14">
+<p>
+容器健康检查
+</p>
+
+<p>
+格式：
+</p>
+
+<ul class="org-ul">
+<li><code>HEALTHCHECK [选项] CMD &lt;命令&gt;：设置检查容器健康状况的命令</code></li>
+<li><code>HEALTHCHECK NONE：如果基础镜像有健康检查指令，使用这行可以屏蔽掉其健康检查指令</code></li>
+</ul>
+
+<p>
+和 CMD, ENTRYPOINT 一样，HEALTHCHECK 只可以出现一次，如果写了多个，只有最后一个生效。
+</p>
+
+<p>
+在 HEALTHCHECK [选项] CMD 后面的命令，格式和 ENTRYPOINT 一样，分为 shell 格式，和 exec 格式。 命令的返回值决定了该次健康检查的成功与否：0：成功；1：失败；2：保留，不要使用这个值。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d09986" class="outline-2">
+<h2 id="org3d09986"><span class="section-number-2">2</span> 容易混淆的地方</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgcd512db" class="outline-3">
+<h3 id="orgcd512db"><span class="section-number-3">2.1</span> EXPOSE 和 docker run -p -P 之间的关系</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+容器的端口必须被发出（publish）出来后才能被外界使用。Dockerfile 中的 EXPOSE 只是“标记”某个端口会被暴露出来，只有在使用了 docker run -p 或者 -P 后，端口才会被“发出”出来，此时端口才能被使用。
+</p>
+
+<p>
+-p，是映射宿主端口和容器端口，换句话说，就是将容器的对应端口服务公开给外界访问，而 EXPOSE 仅仅是声明容器打算使用什么端口而已，并不会自动在宿主进行端口映射。
+</p>
+
+<ul class="org-ul">
+<li>EXPOSE 或者&#x2013;expose 只是为其他命令提供所需信息的元数据，或者只是告诉容器操作人员有哪些已知选择。它只是作为记录机制，也就是告诉用户哪些端口会提供服务。它保存在容器的元数据中。</li>
+<li>使用 -p 发布特定端口。如果该端口已经被 exposed，则发布它；如果它还没有被 exposed，则它会被 exposed 和 published。Docker 不会检查容器端口的正确性。</li>
+<li>使用 -P 时 Docker 会自动将所有已经被 exposed 的端口发出出来。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org279bf46" class="outline-3">
+<h3 id="org279bf46"><span class="section-number-3">2.2</span> CMD 和 ENTRYPOINT</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+这两个指令都指定了运行容器时所运行的命令。以下是它们共存的一些规则：
+</p>
+
+<ul class="org-ul">
+<li>Dockerfile 至少需要指定一个 CMD 或者 ENTRYPOINT 指令</li>
+<li>CMD 可以用来指定 ENTRYPOINT 指令的参数</li>
+</ul>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">没有 ENTRYPOINT</th>
+<th scope="col" class="org-left">ENTRYPOINT exec\_entry p1\_entry</th>
+<th scope="col" class="org-left">ENTRYPOINT [“exec\_entry”, “p1\_entry”]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">没有 CMD</td>
+<td class="org-left">错误，不允许</td>
+<td class="org-left">/bin/sh -c exec\_entry p1\_entry</td>
+<td class="org-left">exec\_entry p1\_entry</td>
+</tr>
+
+<tr>
+<td class="org-left">CMD [“exec\_cmd”, “p1\_cmd”]</td>
+<td class="org-left">exec\_cmd p1\_cmd</td>
+<td class="org-left">/bin/sh -c exec\_entry p1\_entry exec\_cmd p1\_cmd</td>
+<td class="org-left">exec\_entry p1\_entry exec\_cmd p1\_cmd</td>
+</tr>
+
+<tr>
+<td class="org-left">CMD [“p1\_cmd”, “p2\_cmd”]</td>
+<td class="org-left">p1\_cmd p2\_cmd</td>
+<td class="org-left">/bin/sh -c exec\_entry p1\_entry p1\_cmd p2\_cmd</td>
+<td class="org-left">exec\_entry p1\_entry p1\_cmd p2\_cmd</td>
+</tr>
+
+<tr>
+<td class="org-left">CMD exec\_cmd p1\_cmd</td>
+<td class="org-left">/bin/sh -c exec\_cmd p1\_cmd</td>
+<td class="org-left">/bin/sh -c exec\_entry p1\_entry /bin/sh -c exec\_cmd p1\_cmd</td>
+<td class="org-left">exec\_entry p1\_entry /bin/sh -c exec\_cmd p1\_cmd</td>
+</tr>
+
+<tr>
+<td class="org-left">备注</td>
+<td class="org-left">只有 CMD 时，执行 CMD 定义的指令</td>
+<td class="org-left">CMD 和 ENTRYPOINT 都存在时，CMD 的指令作为 ENTRYPOINT 的参数</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1e350b0" class="outline-3">
+<h3 id="org1e350b0"><span class="section-number-3">2.3</span> 镜像构建上下文（Context）</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>docker build [选项] &lt;上下文路径/URL/-&gt;</code>
+</p>
+
+<p>
+<code>docker build</code> 命令构建镜像，其实并非在本地构建，而是在服务端，也就是 Docker 引擎中构建的。 当构建的时候，用户会指定构建镜像上下文的路径，docker build 命令得知这个路径后，会将路径下的所有内容打包，然后上传给 Docker 引擎。 这样 Docker 引擎收到这个上下文包后，展开就会获得构建镜像所需的一切文件。
+</p>
+
+<p>
+=ADD=和=COPY=等指令的源文件根目录也是上下文路径的目录。因此，=COPY=这类指令中的源文件的路径都是相对路径。
+</p>
+
+<p>
+.dockerignore 文件可以用于剔除不需要的文件作为上下文传递给 Docker 引擎
+</p>
+
+<p>
+在默认情况下，如果不额外指定 Dockerfile 的话，会将上下文目录下的名为 Dockerfile 的文件作为 Dockerfile。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa64d84" class="outline-2">
+<h2 id="orgfa64d84"><span class="section-number-2">3</span> 其他</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgfe516a3" class="outline-3">
+<h3 id="orgfe516a3"><span class="section-number-3">3.1</span> 多段式构建</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+我们可以使用 as 来为某一阶段命名，例如
+</p>
+
+<p>
+<code>FROM golang:1.9-alpine as builder</code>
+</p>
+
+<p>
+当我们只想构建 builder 阶段的镜像时，增加 &#x2013;target=builder 参数即可
+</p>
+
+<p>
+<code>$ docker build --target builder -t username/imagename:tag .</code>
+</p>
+
+<p>
+从上一阶段的镜像中复制文件
+</p>
+
+<p>
+<code>COPY --from=0 /go/src/github.com/go/helloworld/app .</code>
+</p>
+
+<p>
+我们也可以复制任意镜像中的文件
+</p>
+
+<p>
+<code>$ COPY --from=nginx:latest /etc/nginx/nginx.conf /nginx.conf</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 22:56</p>
+</div>
+</body>
+</html>

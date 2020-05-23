@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 19:27 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>策略路由及ip route,ip rule,iptables</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">策略路由及ip route,ip rule,iptables</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#介绍">1. 介绍</a></li>
+<li><a href="#案例">2. 案例</a></li>
+<li><a href="#高级路由基础 ip-route2">3. 高级路由基础 IP ROUTE2</a>
+<ul>
+<li><a href="#传统网络配置命令">3.1. 传统网络配置命令</a></li>
+<li><a href="#ip 命令的基本语法">3.2. ip 命令的基本语法</a></li>
+<li><a href="#ip 命令的语法">3.3. ip 命令的语法</a></li>
+<li><a href="#linux 系统路由表">3.4. linux 系统路由表</a></li>
+<li><a href="#路由表-ip-route">3.5. 路由表 ip route</a></li>
+<li><a href="#路由规则-ip-rule">3.6. 路由规则 ip rule</a></li>
+<li><a href="#示例">3.7. 示例</a></li>
+<li><a href="#多播-ip-maddress">3.8. 多播 ip maddress</a></li>
+<li><a href="#通道-ip-tunnel">3.9. 通道 ip tunnel</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-介绍" class="outline-2">
+<h2 id="介绍"><span class="section-number-2">1</span> 介绍</h2>
+<div class="outline-text-2" id="text-介绍">
+<p>
+linux 高级路由即基于策略的路由，比传统路由在功能上更强大，使用也更灵活，它不仅能够像传统路由一样，根据目的地址来转发数据，而且也能够根据报文大小、应用，协议或 ip 源地址来选择路由转发路径从而让系统管理员能轻松做到：
+</p>
+
+<ol class="org-ol">
+<li>管制某台计算机的带宽。</li>
+<li>管制通向某台计算机的带宽</li>
+<li>帮助你公平地共享带宽</li>
+<li>保护你的网络不受 DOS 的攻击</li>
+<li>保护你的 Internet 不受到你的客户的攻击</li>
+<li>把多台服务器虚拟成一台，并进行负载均衡或者提高可用性</li>
+<li>限制你的用户访问某些计算机</li>
+<li>限制对你的计算机的访问</li>
+<li>基于用户帐号、MAC 地址、源 IP 地址、端口、QOS(TOS)、时间或者 content 等进行路由</li>
+</ol>
+
+<blockquote>
+<p>
+策略路由和路由策略是两个不同的概念，策略路由是根据 IP 包中的源地址，端口号等来实现的；而路由策略可以理解为路由表中的一系列路由动作。
+</p>
+</blockquote>
+
+<p>
+路由表和策略区别：
+</p>
+
+<p>
+规则指向路由表，多个规则可以引用一个路由表，而且某些路由表可以没有策略指向它。如果系统管理员删除了指向某个路由表的所有规则，这个表就没有用了，但是仍然存在，直到里面的所有路由都被删除，它才会消失。
+</p>
+</div>
+</div>
+
+<div id="outline-container-案例" class="outline-2">
+<h2 id="案例"><span class="section-number-2">2</span> 案例</h2>
+<div class="outline-text-2" id="text-案例">
+<p>
+公司内网要求 192.168.0.100 以内的使用 10.0.0.1
+网关上网（电信），其他 IP 使用 20.0.0.1 （网通）上网。
+</p>
+
+<p>
+首先要在网关服务器上添加一个默认路由，当然这个指向是绝大多数的 IP 的出口网关：
+</p>
+
+<p>
+<code>ip route add default gw 20.0.0.1</code>
+</p>
+
+<p>
+之后通过 <code>ip route</code> 添加一个路由表：
+</p>
+
+<p>
+<code>ip route add table 3 via 10.0.0.1 dev ethX</code>
+</p>
+
+<blockquote>
+<p>
+(ethX 是 10.0.0.1 所在的网卡，3 是路由表的编号)
+</p>
+</blockquote>
+
+<p>
+之后添加 ip rule 规则：
+</p>
+
+<p>
+<code>ip rule add fwmark 3  table 3</code>
+</p>
+
+<blockquote>
+<p>
+（fwmark 3 是标记，table 3 是路由表 3 上边。 意思就是凡是标记了 3
+的数据使用 table3 路由表）
+</p>
+</blockquote>
+
+<p>
+之后使用 iptables 给相应的数据打上标记：
+</p>
+
+<p>
+<code>iptables -A PREROUTING -t mangle -i eth0 -s 192.168.0.1 -192.168.0.100 -j MARK --set-mark 3</code>
+</p>
+
+<p>
+因为 mangle 的处理是优先于 nat 和 fiter 表的，所以相应数据包到达之后先打上标记，之后再通过 ip rule 规则。对应的数据包使用相应的路由表进行路由，最后读取路由表信息，将数据包送出网关。
+</p>
+</div>
+</div>
+
+<div id="outline-container-高级路由基础 ip-route2" class="outline-2">
+<h2 id="高级路由基础 ip-route2"><span class="section-number-2">3</span> 高级路由基础 IP ROUTE2</h2>
+<div class="outline-text-2" id="text-高级路由基础 ip-route2">
+<p>
+ip 是 iproute2 软件包里面的一个强大的网络配置工具，它能够替代一些传统的网络管理工具。例如：ifconfig、route 等。
+</p>
+</div>
+
+<div id="outline-container-传统网络配置命令" class="outline-3">
+<h3 id="传统网络配置命令"><span class="section-number-3">3.1</span> 传统网络配置命令</h3>
+<div class="outline-text-3" id="text-传统网络配置命令">
+<ol class="org-ol">
+<li>使用 ifconfig 命令配置并查看网络接口情况</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#37197;&#32622;eth0&#30340;IP&#65292;&#21516;&#26102;&#28608;&#27963;&#35774;&#22791;:</span>
+    ifconfig eth0 192.168.4.1 netmask 255.255.255.0 up
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#37197;&#32622;eth0&#21035;&#21517;&#35774;&#22791; eth0:1 &#30340;IP&#65292;&#24182;&#28155;&#21152;&#36335;&#30001;</span>
+    ifconfig eth0:1 192.168.4.2
+    route add &#8211;host 192.168.4.2 dev eth0:1
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3:&#28608;&#27963;&#65288;&#31105;&#29992;&#65289;&#35774;&#22791;</span>
+    ifconfig eth0:1 up<span style="color: #51afef;">(</span>down<span style="color: #51afef;">)</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;4:&#26597;&#30475;&#25152;&#26377;&#65288;&#25351;&#23450;&#65289;&#32593;&#32476;&#25509;&#21475;&#37197;&#32622;</span>
+    ifconfig <span style="color: #51afef;">(</span>eth0<span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>使用 route 命令配置路由表</li>
+</ol>
+
+<p>
+使用 Route 命令行工具查看并编辑计算机的 IP 路由表。Route
+命令和语法如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    route <span style="color: #51afef;">[</span>-f<span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span>-p<span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span>Command <span style="color: #c678dd;">[</span>Destination<span style="color: #c678dd;">]</span> <span style="color: #c678dd;">[</span>mask Netmask<span style="color: #c678dd;">]</span> <span style="color: #c678dd;">[</span>Gateway<span style="color: #c678dd;">]</span> <span style="color: #c678dd;">[</span>metric Metric<span style="color: #c678dd;">]</span><span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span>if Interface<span style="color: #51afef;">]</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">-f &#28165;&#38500;&#25152;&#26377;&#32593;&#20851;&#20837;&#21475;&#30340;&#36335;&#30001;&#34920;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">-p &#19982; add &#21629;&#20196;&#19968;&#36215;&#20351;&#29992;&#26102;&#20351;&#36335;&#30001;&#20855;&#26377;&#27704;&#20037;&#24615;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Command &#25351;&#23450;&#24744;&#24819;&#36816;&#34892;&#30340;&#21629;&#20196; (Add/Change/Delete/Print)&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Destination &#25351;&#23450;&#35813;&#36335;&#30001;&#30340;&#32593;&#32476;&#30446;&#26631;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">mask Netmask &#25351;&#23450;&#19982;&#32593;&#32476;&#30446;&#26631;&#30456;&#20851;&#30340;&#32593;&#32476;&#25513;&#30721;&#65288;&#20063;&#34987;&#31216;&#20316;&#23376;&#32593;&#25513;&#30721;&#65289;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Gateway &#25351;&#23450;&#32593;&#32476;&#30446;&#26631;&#23450;&#20041;&#30340;&#22320;&#22336;&#38598;&#21644;&#23376;&#32593;&#25513;&#30721;&#21487;&#20197;&#21040;&#36798;&#30340;&#21069;&#36827;&#25110;&#19979;&#19968;&#36291;&#28857; IP &#22320;&#22336;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">metric Metric &#20026;&#36335;&#30001;&#25351;&#23450;&#19968;&#20010;&#25972;&#25968;&#25104;&#26412;&#20540;&#26631;&#65288;&#20174; 1 &#33267; ArrayArrayArrayArray&#65289;&#65292;&#24403;&#22312;&#36335;&#30001;&#34920;(&#19982;&#36716;&#21457;&#30340;&#25968;&#25454;&#21253;&#30446;&#26631;&#22320;&#22336;&#26368;&#21305;&#37197;)&#30340;&#22810;&#20010;&#36335;&#30001;&#20013;&#36827;&#34892;&#36873;&#25321;&#26102;&#21487;&#20197;&#20351;&#29992;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">if Interface &#20026;&#21487;&#20197;&#35775;&#38382;&#30446;&#26631;&#30340;&#25509;&#21475;&#25351;&#23450;&#25509;&#21475;&#32034;&#24341;&#12290;&#33509;&#35201;&#33719;&#24471;&#19968;&#20010;&#25509;&#21475;&#21015;&#34920;&#21644;&#23427;&#20204;&#30456;&#24212;&#30340;&#25509;&#21475;&#32034;&#24341;&#65292;&#20351;&#29992; route print &#21629;&#20196;&#30340;&#26174;&#31034;&#21151;&#33021;&#12290;&#21487;&#20197;&#20351;&#29992;&#21313;&#36827;&#21046;&#25110;&#21313;&#20845;&#36827;&#21046;&#20540;&#36827;&#34892;&#25509;&#21475;&#32034;&#24341;&#12290;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">/?  &#22312;&#21629;&#20196;&#25552;&#31034;&#31526;&#22788;&#26174;&#31034;&#24110;&#21161;&#12290;</span>
+</pre>
+</div>
+
+<p>
+使用 route 命令添加的路由，机器重启或者网卡重启后路由就失效了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#28155;&#21152;&#21040;&#20027;&#26426;&#36335;&#30001;</span>
+    route add &#8211;host 192.168.4.2 dev eth0:1
+    route add &#8211;host 192.168.4.1 gw 192.168.4.250
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2:&#28155;&#21152;&#21040;&#32593;&#32476;&#30340;&#36335;&#30001;</span>
+    route add &#8211;net IP netmask MASK eth0
+    route add &#8211;net IP netmask MASK gw IP
+    route add &#8211;net IP/24 eth1
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3:&#28155;&#21152;&#40664;&#35748;&#32593;&#20851;</span>
+    route add default gw IP
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;4:&#21024;&#38500;&#36335;&#30001;&#65292;&#21024;&#38500;&#30340;&#26102;&#20505;&#19981;&#29992;&#20889;&#32593;&#20851;</span>
+    route del &#8211;host 192.168.4.1 dev eth0:1
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;5:&#26597;&#30475;&#36335;&#30001;&#20449;&#24687;</span>
+    route &#25110; route -n <span style="color: #51afef;">(</span>-n &#34920;&#31034;&#19981;&#35299;&#26512;&#21517;&#23383;,&#21015;&#20986;&#36895;&#24230;&#20250;&#27604;route &#24555;<span style="color: #51afef;">)</span>
+</pre>
+</div>
+
+<p>
+单纯的 route 命令会显示 IP 路由表的全部内容，其结果是自上而下，就是说，哪条在前面，哪条就有优先，前面都没有，就用最后一条 default。
+</p>
+
+<ol class="org-ol">
+<li>ARP 管理命令</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#26597;&#30475;ARP&#32531;&#23384;</span>
+    arp
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#28155;&#21152;</span>
+    arp &#8211;s IP MAC
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3: &#21024;&#38500;</span>
+    arp &#8211;d IP
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-ip 命令的基本语法" class="outline-3">
+<h3 id="ip 命令的基本语法"><span class="section-number-3">3.2</span> ip 命令的基本语法</h3>
+<div class="outline-text-3" id="text-ip 命令的基本语法">
+<ul class="org-ul">
+<li>ip link list 显示 ip 链路状态信息</li>
+<li>ip address show 显示所有网络地址</li>
+<li>ip route show 显示主路由表信息</li>
+<li>ip neigh show 显示邻居表</li>
+</ul>
+
+<p>
+上面的示例完全可以用下面的 ip 命令实现，而且 ip 命令可以实现更多的功能。下面介绍一些示例：
+</p>
+</div>
+</div>
+
+<div id="outline-container-ip 命令的语法" class="outline-3">
+<h3 id="ip 命令的语法"><span class="section-number-3">3.3</span> ip 命令的语法</h3>
+<div class="outline-text-3" id="text-ip 命令的语法">
+<p>
+ip 命令的用法如下：
+</p>
+
+<p>
+<code>ip [OPTIONS] OBJECT [COMMAND [ARGUMENTS]]</code>
+</p>
+
+<ol class="org-ol">
+<li><p>
+ip link set &#x2013; 改变设备的属性. 缩写：set、s
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1&#65306;up/down &#36215;&#21160;&#65295;&#20851;&#38381;&#35774;&#22791;&#12290;</span>
+        ip link set dev eth0 up <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#36825;&#20010;&#31561;&#20110;&#20256;&#32479;&#30340; ifconfig eth0 up(down)</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2&#65306;&#25913;&#21464;&#35774;&#22791;&#20256;&#36755;&#38431;&#21015;&#30340;&#38271;&#24230;&#12290;</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21442;&#25968;:txqueuelen NUMBER&#25110;&#32773;txqlen NUMBER</span>
+        ip link set dev eth0 txqueuelen <span style="color: #da8548; font-weight: bold;">100</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3&#65306;&#25913;&#21464;&#32593;&#32476;&#35774;&#22791;MTU(&#26368;&#22823;&#20256;&#36755;&#21333;&#20803;)&#30340;&#20540;&#12290;</span>
+        ip link set dev eth0 mtu <span style="color: #da8548; font-weight: bold;">1500</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;4&#65306; &#20462;&#25913;&#32593;&#32476;&#35774;&#22791;&#30340;MAC&#22320;&#22336;&#12290;</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21442;&#25968;: address LLADDRESS</span>
+        ip link set dev eth0 address 00:01:4f:00:15:f1
+</pre>
+</div></li>
+
+<li><p>
+ip link show &#x2013; 显示设备属性. 缩写：show、list、lst、sh、ls、l
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">-s&#36873;&#39033;&#20986;&#29616;&#20004;&#27425;&#25110;&#32773;&#26356;&#22810;&#27425;&#65292;ip&#20250;&#36755;&#20986;&#26356;&#20026;&#35814;&#32454;&#30340;&#38169;&#35823;&#20449;&#24687;&#32479;&#35745;&#12290;</span>
+        $ ip -s -s link <span style="color: #ECBE7B;">ls</span> eth0
+        eth0: mtu <span style="color: #da8548; font-weight: bold;">1500</span> qdisc cbq qlen <span style="color: #da8548; font-weight: bold;">100</span>
+        link/ether 00:a0:cc:66:18:78 brd ff:ff:ff:ff:ff:ff
+        RX: bytes packets errors dropped overrun mcast
+        <span style="color: #da8548; font-weight: bold;">2449949362</span> <span style="color: #da8548; font-weight: bold;">2786187</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span>
+        RX errors: length crc fifo missed
+        <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span>
+        TX: bytes packets errors dropped carrier collsns
+        <span style="color: #da8548; font-weight: bold;">178558497</span> <span style="color: #da8548; font-weight: bold;">1783946</span> <span style="color: #da8548; font-weight: bold;">332</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">332</span> <span style="color: #da8548; font-weight: bold;">35172</span>
+        TX errors: aborted fifo window heartbeat
+        <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">332</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36825;&#20010;&#21629;&#20196;&#31561;&#20110;&#20256;&#32479;&#30340; ifconfig eth0</span>
+</pre>
+</div></li>
+
+<li><p>
+ip address add &#x2013; 添加一个新的协议地址. 缩写：add、a
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1&#65306;&#20026;&#27599;&#20010;&#22320;&#22336;&#35774;&#32622;&#19968;&#20010;&#23383;&#31526;&#20018;&#20316;&#20026;&#26631;&#31614;&#12290;&#20026;&#20102;&#21644;Linux-2.0&#30340;&#32593;&#32476;&#21035;&#21517;&#20860;&#23481;&#65292;&#36825;&#20010;&#23383;&#31526;&#20018;&#24517;&#39035;&#20197;&#35774;&#22791;&#21517;&#24320;&#22836;&#65292;&#25509;&#30528;&#19968;&#20010;&#20882;&#21495;&#65292;</span>
+        ip addr add local 192.168.4.1/28 brd + label eth0:1 dev eth0
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#22312;&#20197;&#22826;&#32593;&#25509;&#21475;eth0&#19978;&#22686;&#21152;&#19968;&#20010;&#22320;&#22336;192.168.20.0&#65292;&#25513;&#30721;&#38271;&#24230;&#20026;24&#20301;(155.155.155.0)&#65292;&#26631;&#20934;&#24191;&#25773;&#22320;&#22336;&#65292;&#26631;&#31614;&#20026;eth0:Alias&#65306;</span>
+        ip addr add 192.168.4.2/24 brd + dev eth1 label eth1:1
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36825;&#20010;&#21629;&#20196;&#31561;&#20110;&#20256;&#32479;&#30340;: ifconfig eth1:1 192.168.4.2</span>
+</pre>
+</div></li>
+
+<li><p>
+ip address delete &#x2013; 删除一个协议地址. 缩写：delete、del、d
+</p>
+
+<p>
+<code>ip addr del 192.168.4.1/24 brd + dev eth0 label eth0:Alias1</code>
+</p></li>
+
+<li><p>
+ip address show &#x2013; 显示协议地址. 缩写：show、list、lst、sh、ls、l
+</p>
+
+<p>
+<code>ip addr ls eth0</code>
+</p></li>
+
+<li><p>
+ip address flush&#x2013;清除协议地址. 缩写：flush、f
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1 : &#21024;&#38500;&#23646;&#20110;&#31169;&#32593;10.0.0.0/8&#30340;&#25152;&#26377;&#22320;&#22336;&#65306;</span>
+        ip -s -s a f to 10/8
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2 : &#21462;&#28040;&#25152;&#26377;&#20197;&#22826;&#32593;&#21345;&#30340;IP&#22320;&#22336;</span>
+        ip -4 addr flush label <span style="color: #98be65;">"eth0"</span>
+</pre>
+</div></li>
+
+<li><p>
+ip neighbour &#x2013; neighbour/arp 表管理命令
+</p>
+
+<p>
+缩写 neighbour、neighbor、neigh、n
+</p>
+
+<p>
+命令 add、change、replace、delete、fulsh、show(或者 list)
+</p></li>
+
+<li><p>
+ip neighbour add &#x2013; 添加一个新的邻接条目
+</p>
+
+<p>
+ip neighbour change &#x2013; 修改一个现有的条目
+</p>
+
+<p>
+ip neighbour replace &#x2013; 替换一个已有的条目
+</p>
+
+<p>
+缩写：add、a；change、chg；replace、repl
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#22312;&#35774;&#22791;eth0&#19978;&#65292;&#20026;&#22320;&#22336;10.0.0.3&#28155;&#21152;&#19968;&#20010;permanent ARP&#26465;&#30446;&#65306;</span>
+        ip neigh add 10.0.0.3 lladdr 0:0:0:0:0:1 dev eth0 nud perm
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2:&#25226;&#29366;&#24577;&#25913;&#20026;reachable</span>
+        ip neigh chg 10.0.0.3 dev eth0 nud reachable
+</pre>
+</div></li>
+
+<li><p>
+ip neighbour delete &#x2013; 删除一个邻接条目
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#21024;&#38500;&#35774;&#22791;eth0&#19978;&#30340;&#19968;&#20010;ARP&#26465;&#30446;10.0.0.3</span>
+        ip neigh del 10.0.0.3 dev eth0
+</pre>
+</div></li>
+
+<li><p>
+ip neighbour show &#x2013; 显示网络邻居的信息. 缩写：show、list、sh、ls
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:</span>
+        $ ip -s n <span style="color: #ECBE7B;">ls</span> 193.233.7.254
+        193.233.7.254. dev eth0 lladdr 00:00:0c:76:3f:85 ref <span style="color: #da8548; font-weight: bold;">5</span> used 12/13/20 nud reachable
+</pre>
+</div></li>
+
+<li><p>
+ip neighbour flush &#x2013; 清除邻接条目. 缩写：flush、f
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: (-s &#21487;&#20197;&#26174;&#31034;&#35814;&#32454;&#20449;&#24687;)</span>
+        ip -s -s n f 193.233.7.254
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-linux 系统路由表" class="outline-3">
+<h3 id="linux 系统路由表"><span class="section-number-3">3.4</span> linux 系统路由表</h3>
+<div class="outline-text-3" id="text-linux 系统路由表">
+<p>
+linux 可以自定义从 1－252 个路由表，linux 系统维护了 4 个路由表：
+</p>
+
+<ul class="org-ul">
+<li>0 表 系统保留表</li>
+
+<li><p>
+255 local 本地路由表，存有本地接口地址，广播地址，以及 NAT 地址。
+</p>
+
+<p>
+local 表由系统自动维护，管理员不能操作此表。
+</p></li>
+
+<li><p>
+254 main 主路由表，传统路由表，ip route 若没指定表即操作表 254。
+</p>
+
+<p>
+平时用 route 查看的亦是此表设置的路由。
+</p></li>
+
+<li>253 default，默认路由表一般存放默认路由。</li>
+</ul>
+
+<blockquote>
+<p>
+注：rt\<sub>tables</sub> 文件中表以数字来区分表，保留最多支持 255 张表。
+</p>
+</blockquote>
+
+<p>
+路由表的查看可有以下二种方法：
+</p>
+
+<ul class="org-ul">
+<li>ip route list table table\<sub>number</sub></li>
+<li>ip route list table table\<sub>name</sub></li>
+</ul>
+
+<p>
+路由表序号和表名的对应关系在/etc/iproute2/rt\<sub>tables</sub> 中，可手动编辑。
+</p>
+
+<p>
+默认情况下，所有的路由都会被插入到表 main(编号 254)中。在进行路由查询时，内核只使用路由表 main。
+</p>
+</div>
+</div>
+
+<div id="outline-container-路由表-ip-route" class="outline-3">
+<h3 id="路由表-ip-route"><span class="section-number-3">3.5</span> 路由表 ip route</h3>
+<div class="outline-text-3" id="text-路由表-ip-route">
+<ol class="org-ol">
+<li><p>
+ip route add &#x2013; 添加新路由
+</p>
+
+<p>
+ip route change &#x2013; 修改路由
+</p>
+
+<p>
+ip route replace &#x2013; 替换已有的路由
+</p>
+
+<p>
+缩写：add、a；change、chg；replace、repl
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#35774;&#32622;&#21040;&#32593;&#32476;10.0.0/24&#30340;&#36335;&#30001;&#32463;&#36807;&#32593;&#20851;193.233.7.65</span>
+       ip route add 10.0.0/24 via 193.233.7.65
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#20462;&#25913;&#21040;&#32593;&#32476;10.0.0/24&#30340;&#30452;&#25509;&#36335;&#30001;&#65292;&#20351;&#20854;&#32463;&#36807;&#35774;&#22791;dummy</span>
+       ip route chg 10.0.0/24 dev dummy
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3: &#23454;&#29616;&#38142;&#36335;&#36127;&#36733;&#24179;&#34913;.&#21152;&#20837;&#32570;&#30465;&#22810;&#36335;&#24452;&#36335;&#30001;&#65292;&#35753;ppp0&#21644;ppp1&#20998;&#25285;&#36127;&#36733;(&#27880;&#24847;&#65306;scope&#20540;&#24182;&#38750;&#24517;&#38656;&#65292;&#23427;&#21482;&#19981;&#36807;&#26159;&#21578;&#35785;&#20869;&#26680;&#65292;&#36825;&#20010;&#36335;&#30001;&#35201;&#32463;&#36807;&#32593;&#20851;&#32780;&#19981;&#26159;&#30452;&#36830;&#30340;&#12290;&#23454;&#38469;&#19978;&#65292;&#22914;&#26524;&#20320;&#30693;&#36947;&#36828;&#31243;&#31471;&#28857;&#30340;&#22320;&#22336;&#65292;&#20351;&#29992;via&#21442;&#25968;&#26469;&#35774;&#32622;&#23601;&#26356;&#22909;&#20102;)&#12290;</span>
+       ip route add default scope global nexthop dev ppp0 nexthop dev ppp1
+       ip route replace default scope global nexthop dev ppp0 nexthop dev ppp1
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;4: &#35774;&#32622;NAT&#36335;&#30001;&#12290;&#22312;&#36716;&#21457;&#26469;&#33258;192.203.80.144&#30340;&#25968;&#25454;&#21253;&#20043;&#21069;&#65292;&#20808;&#36827;&#34892;&#32593;&#32476;&#22320;&#22336;&#36716;&#25442;&#65292;&#25226;&#36825;&#20010;&#22320;&#22336;&#36716;&#25442;&#20026;193.233.7.83</span>
+       ip route add nat 192.203.80.142 via 193.233.7.83
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;5: &#23454;&#29616;&#25968;&#25454;&#21253;&#32423;&#36127;&#36733;&#24179;&#34913;,&#20801;&#35768;&#25226;&#25968;&#25454;&#21253;&#38543;&#26426;&#20174;&#22810;&#20010;&#36335;&#30001;&#21457;&#20986;&#12290;weight &#21487;&#20197;&#35774;&#32622;&#26435;&#37325;.</span>
+       ip route replace default equalize nexthop via 211.139.218.145 dev eth0 weight <span style="color: #da8548; font-weight: bold;">1</span> nexthop via 211.139.218.145 dev eth1 weight <span style="color: #da8548; font-weight: bold;">1</span>
+</pre>
+</div></li>
+
+<li><p>
+ip route delete &#x2013; 删除路由
+</p>
+
+<p>
+缩写：delete、del、d
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#21024;&#38500;&#19978;&#19968;&#33410;&#21629;&#20196;&#21152;&#20837;&#30340;&#22810;&#36335;&#24452;&#36335;&#30001;</span>
+       ip route del default scope global nexthop dev ppp0 nexthop dev ppp1
+</pre>
+</div></li>
+
+<li><p>
+ip route show &#x2013; 列出路由
+</p>
+
+<p>
+缩写：show、list、sh、ls、l
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#35745;&#31639;&#20351;&#29992;gated/bgp&#21327;&#35758;&#30340;&#36335;&#30001;&#20010;&#25968;</span>
+       $ ip route <span style="color: #ECBE7B;">ls</span> proto gated/bgp | wc
+       <span style="color: #da8548; font-weight: bold;">1413</span> <span style="color: #da8548; font-weight: bold;">9891</span> <span style="color: #da8548; font-weight: bold;">79010</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#35745;&#31639;&#36335;&#30001;&#32531;&#23384;&#37324;&#38754;&#30340;&#26465;&#25968;&#65292;&#30001;&#20110;&#34987;&#32531;&#23384;&#36335;&#30001;&#30340;&#23646;&#24615;&#21487;&#33021;&#22823;&#20110;&#19968;&#34892;&#65292;&#20197;&#27492;&#38656;&#35201;&#20351;&#29992;-o&#36873;&#39033;</span>
+       $ ip -o route <span style="color: #ECBE7B;">ls</span> cloned | wc
+       <span style="color: #da8548; font-weight: bold;">159</span> <span style="color: #da8548; font-weight: bold;">2543</span> <span style="color: #da8548; font-weight: bold;">18707</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3: &#21015;&#20986;&#36335;&#30001;&#34920;TABLEID&#37324;&#38754;&#30340;&#36335;&#30001;&#12290;&#32570;&#30465;&#35774;&#32622;&#26159;table main&#12290;TABLEID&#25110;&#32773;&#26159;&#19968;&#20010;&#30495;&#27491;&#30340;&#36335;&#30001;&#34920;ID&#25110;&#32773;&#26159;/etc/iproute2/rt_tables&#25991;&#20214;&#23450;&#20041;&#30340;&#23383;&#31526;&#20018;&#65292;&#25110;&#32773;&#26159;&#20197;&#19979;&#30340;&#29305;&#27530;&#20540;&#65306;</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">all -- &#21015;&#20986;&#25152;&#26377;&#34920;&#30340;&#36335;&#30001;&#65307;</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">cache -- &#21015;&#20986;&#36335;&#30001;&#32531;&#23384;&#30340;&#20869;&#23481;&#12290;</span>
+       ip route <span style="color: #ECBE7B;">ls</span> 193.233.7.82 tab cache
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;4: &#21015;&#20986;&#26576;&#20010;&#36335;&#30001;&#34920;&#30340;&#20869;&#23481;</span>
+       ip route <span style="color: #ECBE7B;">ls</span> table fddi153
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;5: &#21015;&#20986;&#40664;&#35748;&#36335;&#30001;&#34920;&#30340;&#20869;&#23481;</span>
+       ip route <span style="color: #ECBE7B;">ls</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36825;&#20010;&#21629;&#20196;&#31561;&#20110;&#20256;&#32479;&#30340;: route</span>
+</pre>
+</div></li>
+
+<li><p>
+ip route flush &#x2013; 擦除路由表
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       &#31034;&#20363;1: &#21024;&#38500;&#36335;&#30001;&#34920;main&#20013;&#30340;&#25152;&#26377;&#32593;&#20851;&#36335;&#30001;<span style="color: #51afef;">&#65288;</span>&#31034;&#20363;&#65306;&#22312;&#36335;&#30001;&#30417;&#25511;&#31243;&#24207;&#25346;&#25481;&#20043;&#21518;<span style="color: #51afef;">&#65289;</span>&#65306;
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip -4 route flush scope global type unicast</span>
+       &#31034;&#20363;2:&#28165;&#38500;&#25152;&#26377;&#34987;&#20811;&#38534;&#20986;&#26469;&#30340;IPv6&#36335;&#30001;&#65306;
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip -6 -s -s route flush cache</span>
+       &#31034;&#20363;3: &#22312;gated&#31243;&#24207;&#25346;&#25481;&#20043;&#21518;&#65292;&#28165;&#38500;&#25152;&#26377;&#30340;BGP&#36335;&#30001;&#65306;
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip -s route f proto gated/bgp</span>
+       &#31034;&#20363;4: &#28165;&#38500;&#25152;&#26377;ipv4&#36335;&#30001;cache
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ip route flush cache</span>
+       *** IPv4 routing cache is flushed.
+</pre>
+</div></li>
+
+<li><p>
+ip route get &#x2013; 获得单个路由 .缩写：get、g
+</p>
+
+<p>
+使用这个命令可以获得到达目的地址的一个路由以及它的确切内容。
+</p>
+
+<p>
+ip route get 命令和 ip route show 命令执行的操作是不同的。ip route
+show 命令只是显示现有的路由，而 ip route
+get 命令在必要时会派生出新的路由。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#25628;&#32034;&#21040;193.233.7.82&#30340;&#36335;&#30001;</span>
+       $ ip route get 193.233.7.82
+       193.233.7.82 dev eth0 src 193.233.7.65 realms inr.ac cache mtu <span style="color: #da8548; font-weight: bold;">1500</span> rtt <span style="color: #da8548; font-weight: bold;">300</span>
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#25628;&#32034;&#30446;&#30340;&#22320;&#22336;&#26159;193.233.7.82&#65292;&#26469;&#33258;193.233.7.82&#65292;&#20174;eth0&#35774;&#22791;&#21040;&#36798;&#30340;&#36335;&#30001;&#65288;&#36825;&#26465;&#21629;&#20196;&#20250;&#20135;&#29983;&#19968;&#26465;&#38750;&#24120;&#26377;&#24847;&#24605;&#30340;&#36335;&#30001;&#65292;&#36825;&#26159;&#19968;&#26465;&#21040;193.233.7.82&#30340;&#22238;&#29615;&#36335;&#30001;&#65289;</span>
+       $ ip r g 193.233.7.82 from 193.233.7.82 iif eth0
+       193.233.7.82 from 193.233.7.82 dev eth0 src 193.233.7.65 realms inr.ac/inr.ac cache mtu <span style="color: #da8548; font-weight: bold;">1500</span> rtt <span style="color: #da8548; font-weight: bold;">300</span> iif eth0
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-路由规则-ip-rule" class="outline-3">
+<h3 id="路由规则-ip-rule"><span class="section-number-3">3.6</span> 路由规则 ip rule</h3>
+<div class="outline-text-3" id="text-路由规则-ip-rule">
+<p>
+进行路由时，根据路由规则来进行匹配，按优先级（pref）从低到高匹配，直到找到合适的规则，所以在应用中配置默认路由是必要的。
+</p>
+
+<p>
+策略路由一般手工添加路由表，路由表的添加只需编辑 rt\<sub>tables</sub> 文件，规定表序号，表名即可。路由表添加完毕，即可在策略路由表内添加路由。
+</p>
+
+<p>
+<code>ip rule show</code> 显示路由规则。
+</p>
+
+<p>
+路由规则的添加：
+</p>
+
+<p>
+<code>ip rule add from 192.168.1.10/32 table 1 pref 100</code>
+</p>
+
+<p>
+如果 pref 值不指定，则将在已有规则最小序号前插入
+</p>
+
+<p>
+创建完路由规则若需立即生效须执行：
+</p>
+
+<p>
+<code>ip route flush cache</code>
+</p>
+
+<p>
+刷新路由缓冲。
+</p>
+
+<p>
+命令格式如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    Usage: ip rule <span style="color: #51afef;">{</span> add | del <span style="color: #51afef;">}</span> SELECTOR ACTION
+           ip rule <span style="color: #51afef;">{</span> flush | save | restore <span style="color: #51afef;">}</span>
+           ip rule <span style="color: #51afef;">[</span> list <span style="color: #c678dd;">[</span> SELECTOR <span style="color: #c678dd;">]</span><span style="color: #51afef;">]</span>
+    SELECTOR := <span style="color: #51afef;">[</span> not <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> from PREFIX <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> to PREFIX <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> tos TOS <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> fwmark FWMARK<span style="color: #c678dd;">[</span>/MASK<span style="color: #c678dd;">]</span> <span style="color: #51afef;">]</span>
+                <span style="color: #51afef;">[</span> iif STRING <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> oif STRING <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> pref NUMBER <span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span> l3mdev <span style="color: #51afef;">]</span>
+                <span style="color: #51afef;">[</span> uidrange NUMBER-NUMBER <span style="color: #51afef;">]</span>
+                <span style="color: #51afef;">[</span> ipproto PROTOCOL <span style="color: #51afef;">]</span>
+                <span style="color: #51afef;">[</span> sport <span style="color: #c678dd;">[</span> NUMBER | NUMBER-NUMBER <span style="color: #c678dd;">]</span>
+                <span style="color: #c678dd;">[</span> dport <span style="color: #98be65;">[</span> NUMBER | NUMBER-NUMBER <span style="color: #98be65;">]</span> <span style="color: #c678dd;">]</span>
+    ACTION := <span style="color: #c678dd;">[</span> table TABLE_ID <span style="color: #c678dd;">]</span>
+              <span style="color: #c678dd;">[</span> protocol PROTO <span style="color: #c678dd;">]</span>
+              <span style="color: #c678dd;">[</span> nat ADDRESS <span style="color: #c678dd;">]</span>
+              <span style="color: #c678dd;">[</span> realms <span style="color: #98be65;">[</span>SRCREALM/<span style="color: #98be65;">]</span>DSTREALM <span style="color: #c678dd;">]</span>
+              <span style="color: #c678dd;">[</span> goto NUMBER <span style="color: #c678dd;">]</span>
+              SUPPRESSOR
+    SUPPRESSOR := <span style="color: #c678dd;">[</span> suppress_prefixlength NUMBER <span style="color: #c678dd;">]</span>
+                  <span style="color: #c678dd;">[</span> suppress_ifgroup DEVGROUP <span style="color: #c678dd;">]</span>
+    TABLE_ID := <span style="color: #c678dd;">[</span> local | main | default | NUMBER <span style="color: #c678dd;">]</span>
+</pre>
+</div>
+
+<p>
+参数解析如下：
+</p>
+
+<pre class="example">
+    From -- 源地址
+    To -- 目的地址（这里是选择规则时使用，查找路由表时也使用）
+    Tos -- IP包头的TOS（type of sevice）域Linux高级路由-
+    Dev -- 物理接口
+    Fwmark -- iptables标签
+
+    采取的动作除了指定路由表外，还可以指定下面的动作：
+    Table 指明所使用的表
+    Nat 透明网关
+    Prohibit 丢弃该包，并发送 COMM.ADM.PROHIITED的ICMP信息
+    Reject 单纯丢弃该包
+    Unreachable丢弃该包， 并发送 NET UNREACHABLE的ICMP信息
+</pre>
+</div>
+</div>
+
+<div id="outline-container-示例" class="outline-3">
+<h3 id="示例"><span class="section-number-3">3.7</span> 示例</h3>
+<div class="outline-text-3" id="text-示例">
+<p>
+Source IP
+</p>
+
+<p>
+根据来源端 IP 来决定数据包参考哪个路由表发送出去。以下两个示例分别指出，如果数据包的来源端 IP 是 192.168.1.10，就参考路由表 10；如果来源端 IP 为 192.168.2.0/24 网段的 IP，就参考路由表 20
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    ip rule add from 192.168.1.10 table <span style="color: #da8548; font-weight: bold;">10</span>
+    ip rule add from 192.168.2.0/24 table <span style="color: #da8548; font-weight: bold;">20</span>
+</pre>
+</div>
+
+<p>
+Destination IP
+</p>
+
+<p>
+根据目的端 IP 来决定数据包参考哪个路由表发送出去。以下两个示例分别指出，如果数据包的目的端 IP 是 168.95.1.1，就参考路由表 10；如果目的端 IP 是 168.95.0.0/24 网段的 IP，就参考路由表 20
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    ip rule add to 168.95.1.1 table <span style="color: #da8548; font-weight: bold;">10</span>
+    ip rule add to 168.96.0.0/24 table <span style="color: #da8548; font-weight: bold;">20</span>
+</pre>
+</div>
+
+<p>
+ip rule
+show 命令所显示内容的第一个字段就是优先级别，数字越小，代表优先级别越高，也代表这条规则可以排得越靠前
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    $ ip rule show
+    0: from all lookup local
+    32766: from all lookup main
+    32767: from all lookup default
+
+    $ ip rule add from 192.168.1.0/24 table <span style="color: #da8548; font-weight: bold;">1</span> prio <span style="color: #da8548; font-weight: bold;">10</span>
+    $ ip rule add from 192.168.2.0/24 table <span style="color: #da8548; font-weight: bold;">2</span> prio <span style="color: #da8548; font-weight: bold;">20</span>
+
+    $ ip rule show
+    0: from all lookup local
+    10: from 192.168.1.0/24 lookup <span style="color: #da8548; font-weight: bold;">1</span>
+    20: from 192.168.2.0/24 lookup <span style="color: #da8548; font-weight: bold;">2</span>
+    32766: from all lookup main
+    32767: from all lookup default
+</pre>
+</div>
+
+<p>
+删除规则
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    ip rule del prio <span style="color: #da8548; font-weight: bold;">10</span>
+    ip rule del from 192.168.1.0/24
+    ip rule del table <span style="color: #da8548; font-weight: bold;">1</span>
+    ip rule del from 192.168.1.0/24 table <span style="color: #da8548; font-weight: bold;">1</span> prio <span style="color: #da8548; font-weight: bold;">10</span>
+</pre>
+</div>
+
+<p>
+添加路由
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    $ ip route add 192.168.1.0/24 dev eth1 table <span style="color: #da8548; font-weight: bold;">10</span>
+    $ ip route add default via 192.168.1.254 table <span style="color: #da8548; font-weight: bold;">10</span>
+
+    $ ip route show table <span style="color: #da8548; font-weight: bold;">10</span>
+    192.168.1.0/24 dev eth1 scope link
+    default via 192.168.1.254 dev eth1
+</pre>
+</div>
+
+<p>
+删除路由表
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    $ ip route show table <span style="color: #da8548; font-weight: bold;">10</span>
+    192.168.1.0/24 dev virbr0 scope link
+    default via 192.168.1.254 dev eth1
+
+    $ ip route del default table <span style="color: #da8548; font-weight: bold;">10</span>
+
+    $ ip route show table <span style="color: #da8548; font-weight: bold;">10</span>
+    192.168.1.0/24 dev virbr0 scope link
+
+    $ ip route del 192.168.1.0/24 table <span style="color: #da8548; font-weight: bold;">10</span>
+
+    $ ip route show table <span style="color: #da8548; font-weight: bold;">10</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-多播-ip-maddress" class="outline-3">
+<h3 id="多播-ip-maddress"><span class="section-number-3">3.8</span> 多播 ip maddress</h3>
+<div class="outline-text-3" id="text-多播-ip-maddress">
+<ol class="org-ol">
+<li><p>
+ip maddress &#x2013; 多播地址管理
+</p>
+
+<p>
+缩写：show、list、sh、ls、l
+</p></li>
+
+<li>ip maddress show &#x2013; 列出多播地址</li>
+</ol>
+
+<p>
+<code>ip maddr ls dummy</code>
+</p>
+
+<ol class="org-ol">
+<li><p>
+ip maddress add &#x2013; 加入多播地址
+</p>
+
+<p>
+ip maddress delete &#x2013; 删除多播地址
+</p>
+
+<p>
+缩写：add、a；delete、del、d
+</p>
+
+<p>
+使用这两个命令，我们可以添加／删除在网络接口上监听的链路层多播地址。这个命令只能管理链路层地址。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1: &#22686;&#21152;</span>
+       ip maddr add 33:33:00:00:00:01 dev dummy
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2: &#26597;&#30475;</span>
+       $ ip -O maddr <span style="color: #ECBE7B;">ls</span> dummy
+       2: dummy
+       link 33:33:00:00:00:01 users <span style="color: #da8548; font-weight: bold;">2</span> static
+       link 01:00:5e:00:00:01
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;3: &#21024;&#38500;</span>
+       ip maddr del 33:33:00:00:00:01 dev dummy
+</pre>
+</div></li>
+
+<li>ip mroute &#x2013; 多播路由缓存管理</li>
+
+<li><p>
+ip mroute show &#x2013; 列出多播路由缓存条目
+</p>
+
+<p>
+缩写：show、list、sh、ls、l
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#26597;&#30475;</span>
+       $ ip mroute <span style="color: #ECBE7B;">ls</span>
+       <span style="color: #51afef;">(</span>193.232.127.6, 224.0.1.39<span style="color: #51afef;">)</span> Iif: unresolved
+       <span style="color: #51afef;">(</span>193.232.244.34, 224.0.1.40<span style="color: #51afef;">)</span> Iif: unresolved
+       <span style="color: #51afef;">(</span>193.233.7.65, 224.66.66.66<span style="color: #51afef;">)</span> Iif: eth0 Oifs: pimreg
+       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;2:&#26597;&#30475;</span>
+       $ ip -s mr <span style="color: #ECBE7B;">ls</span> 224.66/16
+       <span style="color: #51afef;">(</span>193.233.7.65, 224.66.66.66<span style="color: #51afef;">)</span> Iif: eth0 Oifs: pimreg
+       <span style="color: #da8548; font-weight: bold;">9383</span> packets, <span style="color: #da8548; font-weight: bold;">300256</span> bytes
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-通道-ip-tunnel" class="outline-3">
+<h3 id="通道-ip-tunnel"><span class="section-number-3">3.9</span> 通道 ip tunnel</h3>
+<div class="outline-text-3" id="text-通道-ip-tunnel">
+<ol class="org-ol">
+<li><p>
+ip tunnel &#x2013; 通道配置
+</p>
+
+<p>
+缩写 tunnel、tunl
+</p></li>
+
+<li><p>
+ip tunnel add &#x2013; 添加新的通道
+</p>
+
+<p>
+ip tunnel change &#x2013; 修改现有的通道
+</p>
+
+<p>
+ip tunnel delete &#x2013; 删除一个通道
+</p>
+
+<p>
+缩写：add、a；change、chg；delete、del、d
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31034;&#20363;1:&#24314;&#31435;&#19968;&#20010;&#28857;&#23545;&#28857;&#36890;&#36947;&#65292;&#26368;&#22823;TTL&#26159;32</span>
+       ip tunnel add Cisco mode sit remote 192.31.7.104 local 192.203.80.1 ttl <span style="color: #da8548; font-weight: bold;">32</span>
+</pre>
+</div></li>
+
+<li><p>
+ip tunnel show &#x2013; 列出现有的通道
+</p>
+
+<p>
+缩写：show、list、sh、ls、l
+</p>
+
+<p>
+<code>ip -s tunl ls Cisco</code>
+</p></li>
+
+<li><p>
+ip monitor 和 rtmon &#x2013; 状态监视
+</p>
+
+<p>
+ip 命令可以用于连续地监视设备、地址和路由的状态。这个命令选项的格式有点不同，命令选项的名字叫做 monitor，接着是操作对象：
+</p>
+
+<p>
+ip monitor [ file FILE ] [ all | OBJECT-LIST ]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">       rtmon file /var/log/rtmon.log
+       ip monitor file /var/log/rtmon.log r
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 19:27</p>
+</div>
+</body>
+</html>

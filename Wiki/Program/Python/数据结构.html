@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 23:48 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据结构</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">数据结构</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2d2af05">1. 列表的更多特性</a></li>
+<li><a href="#org0fd05f4">2. 列表作为栈使用</a></li>
+<li><a href="#org6a1c417">3. 列表作为队列使用</a></li>
+<li><a href="#org79b1139">4. 列表推导式</a></li>
+<li><a href="#org1399636">5. 嵌套的列表推导式</a></li>
+<li><a href="#org64a3153">6. del 语句</a></li>
+<li><a href="#orgeb4aebf">7. 元组和序列</a></li>
+<li><a href="#org255eb85">8. 集合</a></li>
+<li><a href="#orgfd591ed">9. 字典</a></li>
+<li><a href="#orgf144d34">10. 循环的技巧</a></li>
+<li><a href="#org3706448">11. 深入条件控制</a></li>
+<li><a href="#org26e70db">12. 序列和其它类型的比较</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2d2af05" class="outline-2">
+<h2 id="org2d2af05"><span class="section-number-2">1</span> 列表的更多特性</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+列表数据类型还有很多的方法。这里是列表对象方法的清单：
+</p>
+
+<ul class="org-ul">
+<li><p>
+list.append(x)
+</p>
+
+<p>
+在列表的末尾添加一个元素。相当于 a[len(a):] = [x] 。
+</p></li>
+
+<li><p>
+list.extend(iterable)
+</p>
+
+<p>
+使用可迭代对象中的所有元素来扩展列表。相当于 a[len(a):] = iterable 。
+</p></li>
+
+<li>list.insert(i, x) 在给定的位置插入一个元素。第一个参数是要插入的元素的索引，所以 a.insert(0, x) 插入列表头部， a.insert(len(a), x) 等同于 a.append(x) 。</li>
+
+<li>list.remove(x) 移除列表中第一个值为 x 的元素。如果没有这样的元素，则抛出 ValueError 异常。</li>
+
+<li><p>
+list.pop([i])
+</p>
+
+<p>
+删除列表中给定位置的元素并返回它。如果没有给定位置，a.pop() 将会删除并返回列表中的最后一个元素。（ 方法签名中 i 两边的方括号表示这个参数是可选的，而不是要你输入方括号。你会在 Python 参考库中经常看到这种表示方法)。
+</p></li>
+
+<li><p>
+list.clear()
+</p>
+
+<p>
+删除列表中所有的元素。相当于 del a[:] 。
+</p></li>
+
+<li><p>
+list.index(x[, start[, end]])
+</p>
+
+<p>
+返回列表中第一个值为 x 的元素的从零开始的索引。如果没有这样的元素将会抛出 ValueError 异常。
+</p>
+
+<p>
+可选参数 start 和 end 是切片符号，用于将搜索限制为列表的特定子序列。返回的索引是相对于整个序列的开始计算的，而不是 start 参数。
+</p></li>
+
+<li><p>
+list.count(x)
+</p>
+
+<p>
+返回元素 x 在列表中出现的次数。
+</p></li>
+
+<li><p>
+list.sort(key=None, reverse=False)
+</p>
+
+<p>
+对列表中的元素进行排序（参数可用于自定义排序，解释请参见 sorted()）。
+</p></li>
+
+<li><p>
+list.reverse()
+</p>
+
+<p>
+反转列表中的元素。
+</p></li>
+
+<li><p>
+list.copy()
+</p>
+
+<p>
+返回列表的一个浅拷贝。相当于 a[:] 。
+</p></li>
+</ul>
+
+<p>
+列表方法示例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">fruits</span> = [<span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'pear'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'kiwi'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'banana'</span>]
+    &gt;&gt;&gt; fruits.count(<span style="color: #98be65;">'apple'</span>)
+    <span style="color: #da8548; font-weight: bold;">2</span>
+    &gt;&gt;&gt; fruits.count(<span style="color: #98be65;">'tangerine'</span>)
+    <span style="color: #da8548; font-weight: bold;">0</span>
+    &gt;&gt;&gt; fruits.index(<span style="color: #98be65;">'banana'</span>)
+    <span style="color: #da8548; font-weight: bold;">3</span>
+    &gt;&gt;&gt; fruits.index(<span style="color: #98be65;">'banana'</span>, <span style="color: #da8548; font-weight: bold;">4</span>)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Find next banana starting a position 4</span>
+    <span style="color: #da8548; font-weight: bold;">6</span>
+    &gt;&gt;&gt; fruits.reverse()
+    &gt;&gt;&gt; fruits
+    [<span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'kiwi'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'pear'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'orange'</span>]
+    &gt;&gt;&gt; fruits.append(<span style="color: #98be65;">'grape'</span>)
+    &gt;&gt;&gt; fruits
+    [<span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'kiwi'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'pear'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'grape'</span>]
+    &gt;&gt;&gt; fruits.sort()
+    &gt;&gt;&gt; fruits
+    [<span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'grape'</span>, <span style="color: #98be65;">'kiwi'</span>, <span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'pear'</span>]
+    &gt;&gt;&gt; fruits.pop()
+    <span style="color: #98be65;">'pear'</span>
+</pre>
+</div>
+
+<p>
+你可能已经注意到，像 insert ，remove 或者 sort 方法，只修改列表，没有打印出返回值-&#x2013;&#x2014;它们返回默认值 None 。1 这是 Python 中所有可变数据结构的设计原则。
+</p>
+
+<p>
+你可能会注意到的另一件事是并非所有数据或可以排序或比较。 例如，[None, 'hello', 10] 就不可排序，因为整数不能与字符串比较，而 None 不能与其他类型比较。 并且还存在一些没有定义顺序关系的类型。 例如，=3+4j &lt; 5+7j= 就不是一个合法的比较。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fd05f4" class="outline-2">
+<h2 id="org0fd05f4"><span class="section-number-2">2</span> 列表作为栈使用</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+列表方法使得列表作为堆栈非常容易，最后一个插入，最先取出（“后进先出”）。要添加一个元素到堆栈的顶端，使用 append() 。要从堆栈顶部取出一个元素，使用 pop() ，不用指定索引。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6a1c417" class="outline-2">
+<h2 id="org6a1c417"><span class="section-number-2">3</span> 列表作为队列使用</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+列表也可以用作队列，其中先添加的元素被最先取出 (“先进先出”)；然而列表用作这个目的相当低效。因为在列表的末尾添加和弹出元素非常快，但是在列表的开头插入或弹出元素却很慢 (因为所有的其他元素都必须移动一位)。
+</p>
+
+<p>
+若要实现一个队列， collections.deque 被设计用于快速地从两端操作。例如
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #51afef;">from</span> collections <span style="color: #51afef;">import</span> deque
+    &gt;&gt;&gt; <span style="color: #dcaeea;">queue</span> = deque([<span style="color: #98be65;">"Eric"</span>, <span style="color: #98be65;">"John"</span>, <span style="color: #98be65;">"Michael"</span>])
+    &gt;&gt;&gt; queue.append(<span style="color: #98be65;">"Terry"</span>)           <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Terry arrives</span>
+    &gt;&gt;&gt; queue.append(<span style="color: #98be65;">"Graham"</span>)          <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Graham arrives</span>
+    &gt;&gt;&gt; queue.popleft()                 <span style="color: #5B6268;"># </span><span style="color: #5B6268;">The first to arrive now leaves</span>
+    <span style="color: #98be65;">'Eric'</span>
+    &gt;&gt;&gt; queue.popleft()                 <span style="color: #5B6268;"># </span><span style="color: #5B6268;">The second to arrive now leaves</span>
+    <span style="color: #98be65;">'John'</span>
+    &gt;&gt;&gt; queue                           <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Remaining queue in order of arrival</span>
+    deque([<span style="color: #98be65;">'Michael'</span>, <span style="color: #98be65;">'Terry'</span>, <span style="color: #98be65;">'Graham'</span>])
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79b1139" class="outline-2">
+<h2 id="org79b1139"><span class="section-number-2">4</span> 列表推导式</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+列表推导式提供了一个更简单的创建列表的方法。常见的用法是把某种操作应用于序列或可迭代对象的每个元素上，然后使用其结果来创建列表，或者通过满足某些特定条件元素来创建子序列。
+</p>
+
+<p>
+列表推导式的结构是由一对方括号所包含的以下内容：一个表达式，后面跟一个 for 子句，然后是零个或多个 for 或 if 子句。 其结果将是一个新列表，由对表达式依据后面的 for 和 if 子句的内容进行求值计算而得出。 举例来说，以下列表推导式会将两个列表中不相等的元素组合起来:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; [(x, y) <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> [<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>] <span style="color: #51afef;">for</span> y <span style="color: #51afef;">in</span> [<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">4</span>] <span style="color: #51afef;">if</span> x != y]
+    [(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">3</span>), (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">4</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>), (<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">1</span>), (<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)]
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32780;&#23427;&#31561;&#20215;&#20110;</span>
+
+    &gt;&gt;&gt; <span style="color: #dcaeea;">combs</span> = []
+    &gt;&gt;&gt; <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> [<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>]:
+    ...     <span style="color: #51afef;">for</span> y <span style="color: #51afef;">in</span> [<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">4</span>]:
+    ...         <span style="color: #51afef;">if</span> x != y:
+    ...             combs.append((x, y))
+    ...
+    &gt;&gt;&gt; combs
+    [(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">3</span>), (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">4</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>), (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>), (<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">1</span>), (<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)]
+</pre>
+</div>
+
+<p>
+注意在上面两个代码片段中， for 和 if 的顺序是相同的。
+</p>
+
+<p>
+如果表达式是一个元组（例如上面的 (x, y)），那么就必须加上括号
+</p>
+
+<p>
+列表推导式可以使用复杂的表达式和嵌套函数
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #51afef;">from</span> math <span style="color: #51afef;">import</span> pi
+    &gt;&gt;&gt; [<span style="color: #c678dd;">str</span>(<span style="color: #c678dd;">round</span>(pi, i)) <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">6</span>)]
+    [<span style="color: #98be65;">'3.1'</span>, <span style="color: #98be65;">'3.14'</span>, <span style="color: #98be65;">'3.142'</span>, <span style="color: #98be65;">'3.1416'</span>, <span style="color: #98be65;">'3.14159'</span>]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1399636" class="outline-2">
+<h2 id="org1399636"><span class="section-number-2">5</span> 嵌套的列表推导式</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+列表推导式中的初始表达式可以是任何表达式，包括另一个列表推导式。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org64a3153" class="outline-2">
+<h2 id="org64a3153"><span class="section-number-2">6</span> del 语句</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+有一种方式可以从列表按照给定的索引而不是值来移除一个元素: 那就是 del 语句。 它不同于会返回一个值的 pop() 方法。 del 语句也可以用来从列表中移除切片或者清空整个列表（我们之前用过的方式是将一个空列表赋值给指定的切片）。 例如:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">a</span> = [-<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">66.25</span>, <span style="color: #da8548; font-weight: bold;">333</span>, <span style="color: #da8548; font-weight: bold;">333</span>, <span style="color: #da8548; font-weight: bold;">1234.5</span>]
+    &gt;&gt;&gt; <span style="color: #51afef;">del</span> a[<span style="color: #da8548; font-weight: bold;">0</span>]
+    &gt;&gt;&gt; a
+    [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">66.25</span>, <span style="color: #da8548; font-weight: bold;">333</span>, <span style="color: #da8548; font-weight: bold;">333</span>, <span style="color: #da8548; font-weight: bold;">1234.5</span>]
+    &gt;&gt;&gt; <span style="color: #51afef;">del</span> a[<span style="color: #da8548; font-weight: bold;">2</span>:<span style="color: #da8548; font-weight: bold;">4</span>]
+    &gt;&gt;&gt; a
+    [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">66.25</span>, <span style="color: #da8548; font-weight: bold;">1234.5</span>]
+    &gt;&gt;&gt; <span style="color: #51afef;">del</span> a[:]
+    &gt;&gt;&gt; a
+    []
+
+    <span style="color: #51afef;">del</span> &#20063;&#21487;&#20197;&#34987;&#29992;&#26469;&#21024;&#38500;&#25972;&#20010;&#21464;&#37327;
+
+    &gt;&gt;&gt; <span style="color: #51afef;">del</span> a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeb4aebf" class="outline-2">
+<h2 id="orgeb4aebf"><span class="section-number-2">7</span> 元组和序列</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+我们看到列表和字符串有很多共同特性，例如索引和切片操作。他们是 序列 数据类型（参见 序列类型 &#x2014; list, tuple, range）中的两种。随着 Python 语言的发展，其他的序列类型也会被加入其中。这里介绍另一种标准序列类型: 元组。
+</p>
+
+<p>
+一个元组由几个被逗号隔开的值组成，例如
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">t</span> = <span style="color: #da8548; font-weight: bold;">12345</span>, <span style="color: #da8548; font-weight: bold;">54321</span>, <span style="color: #98be65;">'hello!'</span>
+    &gt;&gt;&gt; t[<span style="color: #da8548; font-weight: bold;">0</span>]
+    <span style="color: #da8548; font-weight: bold;">12345</span>
+    &gt;&gt;&gt; t
+    (<span style="color: #da8548; font-weight: bold;">12345</span>, <span style="color: #da8548; font-weight: bold;">54321</span>, <span style="color: #98be65;">'hello!'</span>)
+    &gt;&gt;&gt; <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Tuples may be nested:</span>
+    ... <span style="color: #dcaeea;">u</span> = t, (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>)
+    &gt;&gt;&gt; u
+    ((<span style="color: #da8548; font-weight: bold;">12345</span>, <span style="color: #da8548; font-weight: bold;">54321</span>, <span style="color: #98be65;">'hello!'</span>), (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>))
+    &gt;&gt;&gt; <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Tuples are immutable:</span>
+    ... <span style="color: #dcaeea;">t</span>[<span style="color: #da8548; font-weight: bold;">0</span>] = <span style="color: #da8548; font-weight: bold;">88888</span>
+    Traceback (most recent call last):
+      File <span style="color: #98be65;">"&lt;stdin&gt;"</span>, line <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #51afef;">in</span> &lt;module&gt;
+    <span style="color: #ECBE7B;">TypeError</span>: <span style="color: #98be65;">'tuple'</span> <span style="color: #c678dd;">object</span> does <span style="color: #51afef;">not</span> support item assignment
+    &gt;&gt;&gt; <span style="color: #5B6268;"># </span><span style="color: #5B6268;">but they can contain mutable objects:</span>
+    ... <span style="color: #dcaeea;">v</span> = ([<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>], [<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>])
+    &gt;&gt;&gt; v
+    ([<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>], [<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>])
+</pre>
+</div>
+
+<p>
+如你所见，元组在输出时总是被圆括号包围的，以便正确表示嵌套元组。输入时圆括号可有可无，不过经常会是必须的（如果这个元组是一个更大的表达式的一部分）。给元组中的一个单独的元素赋值是不允许的，当然你可以创建包含可变对象的元组，例如列表。
+</p>
+
+<p>
+虽然元组可能看起来与列表很像，但它们通常是在不同的场景被使用，并且有着不同的用途。元组是 immutable （不可变的），其序列通常包含不同种类的元素，并且通过解包（这一节下面会解释）或者索引来访问（如果是 namedtuples 的话甚至还可以通过属性访问）。列表是 mutable （可变的），并且列表中的元素一般是同种类型的，并且通过迭代访问。
+</p>
+
+<p>
+一个特殊的问题是构造包含 0 个或 1 个元素的元组：为了适应这种情况，语法有一些额外的改变。空元组可以直接被一对空圆括号创建，含有一个元素的元组可以通过在这个元素后添加一个逗号来构建（圆括号里只有一个值的话不够明确）。丑陋，但是有效。
+</p>
+
+<p>
+语句 `t = 12345, 54321, 'hello!'`` 是 元组打包 的一个例子：值 12345, 54321 和 'hello!' 被打包进元组。其逆操作也是允许的
+</p>
+
+<p>
+<code>&gt;&gt;&gt; x, y, z = t</code>
+</p>
+
+<p>
+这被称为 序列解包也是很恰当的，因为解包操作的等号右侧可以是任何序列。序列解包要求等号左侧的变量数与右侧序列里所含的元素数相同。注意多重赋值其实也只是元组打包和序列解包的组合。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org255eb85" class="outline-2">
+<h2 id="org255eb85"><span class="section-number-2">8</span> 集合</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Python 也包含有 集合 类型。集合是由不重复元素组成的无序的集。它的基本用法包括成员检测和消除重复元素。集合对象也支持像 联合，交集，差集，对称差分等数学运算。
+</p>
+
+<p>
+花括号或 set() 函数可以用来创建集合。注意：要创建一个空集合你只能用 set() 而不能用 {}，因为后者是创建一个空字典，这种数据结构我们会在下一节进行讨论。
+</p>
+
+<p>
+以下是一些简单的示例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">basket</span> = {<span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'apple'</span>, <span style="color: #98be65;">'pear'</span>, <span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'banana'</span>}
+    &gt;&gt;&gt; <span style="color: #51afef;">print</span>(basket)                      <span style="color: #5B6268;"># </span><span style="color: #5B6268;">show that duplicates have been removed</span>
+    {<span style="color: #98be65;">'orange'</span>, <span style="color: #98be65;">'banana'</span>, <span style="color: #98be65;">'pear'</span>, <span style="color: #98be65;">'apple'</span>}
+    &gt;&gt;&gt; <span style="color: #98be65;">'orange'</span> <span style="color: #51afef;">in</span> basket                 <span style="color: #5B6268;"># </span><span style="color: #5B6268;">fast membership testing</span>
+    <span style="color: #a9a1e1;">True</span>
+    &gt;&gt;&gt; <span style="color: #98be65;">'crabgrass'</span> <span style="color: #51afef;">in</span> basket
+    <span style="color: #a9a1e1;">False</span>
+
+    &gt;&gt;&gt; <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Demonstrate set operations on unique letters from two words</span>
+    ...
+    &gt;&gt;&gt; <span style="color: #dcaeea;">a</span> = <span style="color: #c678dd;">set</span>(<span style="color: #98be65;">'abracadabra'</span>)
+    &gt;&gt;&gt; <span style="color: #dcaeea;">b</span> = <span style="color: #c678dd;">set</span>(<span style="color: #98be65;">'alacazam'</span>)
+    &gt;&gt;&gt; a                                  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">unique letters in a</span>
+    {<span style="color: #98be65;">'a'</span>, <span style="color: #98be65;">'r'</span>, <span style="color: #98be65;">'b'</span>, <span style="color: #98be65;">'c'</span>, <span style="color: #98be65;">'d'</span>}
+    &gt;&gt;&gt; a - b                              <span style="color: #5B6268;"># </span><span style="color: #5B6268;">letters in a but not in b</span>
+    {<span style="color: #98be65;">'r'</span>, <span style="color: #98be65;">'d'</span>, <span style="color: #98be65;">'b'</span>}
+    &gt;&gt;&gt; a | b                              <span style="color: #5B6268;"># </span><span style="color: #5B6268;">letters in a or b or both</span>
+    {<span style="color: #98be65;">'a'</span>, <span style="color: #98be65;">'c'</span>, <span style="color: #98be65;">'r'</span>, <span style="color: #98be65;">'d'</span>, <span style="color: #98be65;">'b'</span>, <span style="color: #98be65;">'m'</span>, <span style="color: #98be65;">'z'</span>, <span style="color: #98be65;">'l'</span>}
+    &gt;&gt;&gt; a &amp; b                              <span style="color: #5B6268;"># </span><span style="color: #5B6268;">letters in both a and b</span>
+    {<span style="color: #98be65;">'a'</span>, <span style="color: #98be65;">'c'</span>}
+    &gt;&gt;&gt; a ^ b                              <span style="color: #5B6268;"># </span><span style="color: #5B6268;">letters in a or b but not both</span>
+    {<span style="color: #98be65;">'r'</span>, <span style="color: #98be65;">'d'</span>, <span style="color: #98be65;">'b'</span>, <span style="color: #98be65;">'m'</span>, <span style="color: #98be65;">'z'</span>, <span style="color: #98be65;">'l'</span>}
+</pre>
+</div>
+
+<p>
+类似于 列表推导式，集合也支持推导式形式
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">a</span> = {x <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> <span style="color: #98be65;">'abracadabra'</span> <span style="color: #51afef;">if</span> x <span style="color: #51afef;">not</span> <span style="color: #51afef;">in</span> <span style="color: #98be65;">'abc'</span>}
+    &gt;&gt;&gt; a
+    {<span style="color: #98be65;">'r'</span>, <span style="color: #98be65;">'d'</span>}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfd591ed" class="outline-2">
+<h2 id="orgfd591ed"><span class="section-number-2">9</span> 字典</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+另一个非常有用的 Python 內置数据类型是 字典 (参见 映射类型 &#x2014; dict)。字典在其他语言里可能会被叫做 联合内存 或 联合数组。与以连续整数为索引的序列不同，字典是以 关键字 为索引的，关键字可以是任意不可变类型，通常是字符串或数字。如果一个元组只包含字符串、数字或元组，那么这个元组也可以用作关键字。但如果元组直接或间接地包含了可变对象，那么它就不能用作关键字。列表不能用作关键字，因为列表可以通过索引、切片或 append() 和 extend() 之类的方法来改变。
+</p>
+
+<p>
+理解字典的最好方式，就是将它看做是一个 键: 值 对的集合，键必须是唯一的（在一个字典中）。一对花括号可以创建一个空字典：{} 。另一种初始化字典的方式是在一对花括号里放置一些以逗号分隔的键值对，而这也是字典输出的方式。
+</p>
+
+<p>
+字典主要的操作是使用关键字存储和解析值。也可以用 <code>del</code> 来删除一个键值对。如果你使用了一个已经存在的关键字来存储值，那么之前与这个关键字关联的值就会被遗忘。用一个不存在的键来取值则会报错。
+</p>
+
+<p>
+对一个字典执行 list(d) 将返回包含该字典中所有键的列表，按插入次序排列 (如需其他排序，则要使用 sorted(d))。要检查字典中是否存在一个特定键，可使用 in 关键字。
+</p>
+
+<p>
+以下是使用字典的一些简单示例
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #dcaeea;">tel</span> = {<span style="color: #98be65;">'jack'</span>: <span style="color: #da8548; font-weight: bold;">4098</span>, <span style="color: #98be65;">'sape'</span>: <span style="color: #da8548; font-weight: bold;">4139</span>}
+&gt;&gt;&gt; <span style="color: #dcaeea;">tel</span>[<span style="color: #98be65;">'guido'</span>] = <span style="color: #da8548; font-weight: bold;">4127</span>
+&gt;&gt;&gt; tel
+{<span style="color: #98be65;">'jack'</span>: <span style="color: #da8548; font-weight: bold;">4098</span>, <span style="color: #98be65;">'sape'</span>: <span style="color: #da8548; font-weight: bold;">4139</span>, <span style="color: #98be65;">'guido'</span>: <span style="color: #da8548; font-weight: bold;">4127</span>}
+&gt;&gt;&gt; tel[<span style="color: #98be65;">'jack'</span>]
+<span style="color: #da8548; font-weight: bold;">4098</span>
+&gt;&gt;&gt; <span style="color: #51afef;">del</span> tel[<span style="color: #98be65;">'sape'</span>]
+&gt;&gt;&gt; <span style="color: #dcaeea;">tel</span>[<span style="color: #98be65;">'irv'</span>] = <span style="color: #da8548; font-weight: bold;">4127</span>
+&gt;&gt;&gt; tel
+{<span style="color: #98be65;">'jack'</span>: <span style="color: #da8548; font-weight: bold;">4098</span>, <span style="color: #98be65;">'guido'</span>: <span style="color: #da8548; font-weight: bold;">4127</span>, <span style="color: #98be65;">'irv'</span>: <span style="color: #da8548; font-weight: bold;">4127</span>}
+&gt;&gt;&gt; <span style="color: #c678dd;">list</span>(tel)
+[<span style="color: #98be65;">'jack'</span>, <span style="color: #98be65;">'guido'</span>, <span style="color: #98be65;">'irv'</span>]
+&gt;&gt;&gt; <span style="color: #c678dd;">sorted</span>(tel)
+[<span style="color: #98be65;">'guido'</span>, <span style="color: #98be65;">'irv'</span>, <span style="color: #98be65;">'jack'</span>]
+&gt;&gt;&gt; <span style="color: #98be65;">'guido'</span> <span style="color: #51afef;">in</span> tel
+<span style="color: #a9a1e1;">True</span>
+&gt;&gt;&gt; <span style="color: #98be65;">'jack'</span> <span style="color: #51afef;">not</span> <span style="color: #51afef;">in</span> tel
+<span style="color: #a9a1e1;">False</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">dict() &#26500;&#36896;&#20989;&#25968;&#21487;&#20197;&#30452;&#25509;&#20174;&#38190;&#20540;&#23545;&#24207;&#21015;&#37324;&#21019;&#24314;&#23383;&#20856;&#12290;</span>
+
+&gt;&gt;&gt; <span style="color: #c678dd;">dict</span>([(<span style="color: #98be65;">'sape'</span>, <span style="color: #da8548; font-weight: bold;">4139</span>), (<span style="color: #98be65;">'guido'</span>, <span style="color: #da8548; font-weight: bold;">4127</span>), (<span style="color: #98be65;">'jack'</span>, <span style="color: #da8548; font-weight: bold;">4098</span>)])
+{<span style="color: #98be65;">'sape'</span>: <span style="color: #da8548; font-weight: bold;">4139</span>, <span style="color: #98be65;">'guido'</span>: <span style="color: #da8548; font-weight: bold;">4127</span>, <span style="color: #98be65;">'jack'</span>: <span style="color: #da8548; font-weight: bold;">4098</span>}
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27492;&#22806;&#65292;&#23383;&#20856;&#25512;&#23548;&#24335;&#21487;&#20197;&#20174;&#20219;&#24847;&#30340;&#38190;&#20540;&#34920;&#36798;&#24335;&#20013;&#21019;&#24314;&#23383;&#20856;</span>
+
+&gt;&gt;&gt; {x: x**<span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> (<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">6</span>)}
+{<span style="color: #da8548; font-weight: bold;">2</span>: <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">4</span>: <span style="color: #da8548; font-weight: bold;">16</span>, <span style="color: #da8548; font-weight: bold;">6</span>: <span style="color: #da8548; font-weight: bold;">36</span>}
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24403;&#20851;&#38190;&#23383;&#26159;&#31616;&#21333;&#23383;&#31526;&#20018;&#26102;&#65292;&#26377;&#26102;&#30452;&#25509;&#36890;&#36807;&#20851;&#38190;&#23383;&#21442;&#25968;&#26469;&#25351;&#23450;&#38190;&#20540;&#23545;&#26356;&#26041;&#20415;</span>
+
+&gt;&gt;&gt; <span style="color: #c678dd;">dict</span>(sape=<span style="color: #da8548; font-weight: bold;">4139</span>, guido=<span style="color: #da8548; font-weight: bold;">4127</span>, jack=<span style="color: #da8548; font-weight: bold;">4098</span>)
+{<span style="color: #98be65;">'sape'</span>: <span style="color: #da8548; font-weight: bold;">4139</span>, <span style="color: #98be65;">'guido'</span>: <span style="color: #da8548; font-weight: bold;">4127</span>, <span style="color: #98be65;">'jack'</span>: <span style="color: #da8548; font-weight: bold;">4098</span>}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf144d34" class="outline-2">
+<h2 id="orgf144d34"><span class="section-number-2">10</span> 循环的技巧</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+当在字典中循环时，用 items() 方法可将关键字和对应的值同时取出
+</p>
+
+<p>
+当在序列中循环时，用 enumerate() 函数可以将索引位置和其对应的值同时取出
+</p>
+
+<p>
+当同时在两个或更多序列中循环时，可以用 zip() 函数将其内元素一一匹配。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">questions</span> = [<span style="color: #98be65;">'name'</span>, <span style="color: #98be65;">'quest'</span>, <span style="color: #98be65;">'favorite color'</span>]
+    &gt;&gt;&gt; <span style="color: #dcaeea;">answers</span> = [<span style="color: #98be65;">'lancelot'</span>, <span style="color: #98be65;">'the holy grail'</span>, <span style="color: #98be65;">'blue'</span>]
+    &gt;&gt;&gt; <span style="color: #51afef;">for</span> q, a <span style="color: #51afef;">in</span> <span style="color: #c678dd;">zip</span>(questions, answers):
+    ...     <span style="color: #51afef;">print</span>(<span style="color: #98be65;">'What is your {0}?  It is {1}.'</span>.<span style="color: #c678dd;">format</span>(q, a))
+    ...
+    What <span style="color: #51afef;">is</span> your name?  It <span style="color: #51afef;">is</span> lancelot.
+    What <span style="color: #51afef;">is</span> your quest?  It <span style="color: #51afef;">is</span> the holy grail.
+    What <span style="color: #51afef;">is</span> your favorite color?  It <span style="color: #51afef;">is</span> blue.
+</pre>
+</div>
+
+<p>
+当逆向循环一个序列时，先正向定位序列，然后调用 reversed() 函数
+</p>
+
+<p>
+如果要按某个指定顺序循环一个序列，可以用 sorted() 函数，它可以在不改动原序列的基础上返回一个新的排好序的序列
+</p>
+
+<p>
+有时可能会想在循环时修改列表内容，一般来说改为创建一个新列表是比较简单且安全的
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #51afef;">import</span> math
+    &gt;&gt;&gt; <span style="color: #dcaeea;">raw_data</span> = [<span style="color: #da8548; font-weight: bold;">56.2</span>, <span style="color: #c678dd;">float</span>(<span style="color: #98be65;">'NaN'</span>), <span style="color: #da8548; font-weight: bold;">51.7</span>, <span style="color: #da8548; font-weight: bold;">55.3</span>, <span style="color: #da8548; font-weight: bold;">52.5</span>, <span style="color: #c678dd;">float</span>(<span style="color: #98be65;">'NaN'</span>), <span style="color: #da8548; font-weight: bold;">47.8</span>]
+    &gt;&gt;&gt; <span style="color: #dcaeea;">filtered_data</span> = []
+    &gt;&gt;&gt; <span style="color: #51afef;">for</span> value <span style="color: #51afef;">in</span> raw_data:
+    ...     <span style="color: #51afef;">if</span> <span style="color: #51afef;">not</span> math.isnan(value):
+    ...         filtered_data.append(value)
+    ...
+    &gt;&gt;&gt; filtered_data
+    [<span style="color: #da8548; font-weight: bold;">56.2</span>, <span style="color: #da8548; font-weight: bold;">51.7</span>, <span style="color: #da8548; font-weight: bold;">55.3</span>, <span style="color: #da8548; font-weight: bold;">52.5</span>, <span style="color: #da8548; font-weight: bold;">47.8</span>]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3706448" class="outline-2">
+<h2 id="org3706448"><span class="section-number-2">11</span> 深入条件控制</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+<code>while</code> 和 <code>if</code> 条件句中可以使用任意操作，而不仅仅是比较操作。
+</p>
+
+<p>
+比较操作符 <code>in</code> 和 <code>not in</code> 校验一个值是否在（或不在）一个序列里。操作符 <code>is</code> 和 <code>is not</code> 比较两个对象是不是同一个对象，这只对像列表这样的可变对象比较重要。所有的比较操作符都有相同的优先级，且这个优先级比数值运算符低。
+</p>
+
+<p>
+比较操作可以传递。例如 <code>a &lt; b =</code> c= 会校验是否 a 小于 b 并且 b 等于 c。
+</p>
+
+<p>
+比较操作可以通过布尔运算符 <code>and</code> 和 <code>or</code> 来组合，并且比较操作（或其他任何布尔运算）的结果都可以用 <code>not</code> 来取反。这些操作符的优先级低于比较操作符；在它们之中，=not= 优先级最高， <code>or</code> 优先级最低，因此 <code>A and not B or C</code> 等价于 <code>(A and (not B)) or C</code> 。和之前一样，你也可以在这种式子里使用圆括号。
+</p>
+
+<p>
+布尔运算符 <code>and</code> 和 <code>or</code> 也被称为 短路 运算符：它们的参数从左至右解析，一旦可以确定结果解析就会停止。例如，如果 A 和 C 为真而 B 为假，那么 <code>A and B and C</code> 不会解析 C。当用作普通值而非布尔值时，短路操作符的返回值通常是最后一个变量。
+</p>
+
+<p>
+也可以把比较操作或者逻辑表达式的结果赋值给一个变量，例如
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    &gt;&gt;&gt; <span style="color: #dcaeea;">string1</span>, <span style="color: #dcaeea;">string2</span>, <span style="color: #dcaeea;">string3</span> = <span style="color: #98be65;">''</span>, <span style="color: #98be65;">'Trondheim'</span>, <span style="color: #98be65;">'Hammer Dance'</span>
+    &gt;&gt;&gt; <span style="color: #dcaeea;">non_null</span> = string1 <span style="color: #51afef;">or</span> string2 <span style="color: #51afef;">or</span> string3
+    &gt;&gt;&gt; non_null
+    <span style="color: #98be65;">'Trondheim'</span>
+</pre>
+</div>
+
+<p>
+请注意 Python 与 C 不同，在表达式内部赋值必须显式地使用 海象运算符 := 来完成。 这避免了 C 程序中常见的一种问题：想要在表达式中写 == 时却写成了 =。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org26e70db" class="outline-2">
+<h2 id="org26e70db"><span class="section-number-2">12</span> 序列和其它类型的比较</h2>
+<div class="outline-text-2" id="text-12">
+<p>
+序列对象通常可以与相同序列类型的其他对象比较。 这种比较使用 字典式 顺序：首先比较开头的两个对应元素，如果两者不相等则比较结果就由此确定；如果两者相等则比较之后的两个元素，以此类推，直到有一个序列被耗尽。 如果要比较的两个元素本身又是相同类型的序列，则会递归地执行字典式顺序比较。 如果两个序列中所有的对应元素都相等，则两个序列也将被视为相等。 如果一个序列是另一个的初始子序列，则较短的序列就被视为较小（较少）。 对于字符串来说，字典式顺序是使用 Unicode 码位序号对单个字符排序。 下面是一些相同类型序列之间比较的例子:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">    (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>)              &lt; (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
+    [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>]              &lt; [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>]
+    <span style="color: #98be65;">'ABC'</span> &lt; <span style="color: #98be65;">'C'</span> &lt; <span style="color: #98be65;">'Pascal'</span> &lt; <span style="color: #98be65;">'Python'</span>
+    (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)           &lt; (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
+    (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>)                 &lt; (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, -<span style="color: #da8548; font-weight: bold;">1</span>)
+    (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>)             == (<span style="color: #da8548; font-weight: bold;">1.0</span>, <span style="color: #da8548; font-weight: bold;">2.0</span>, <span style="color: #da8548; font-weight: bold;">3.0</span>)
+    (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, (<span style="color: #98be65;">'aa'</span>, <span style="color: #98be65;">'ab'</span>))   &lt; (<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, (<span style="color: #98be65;">'abc'</span>, <span style="color: #98be65;">'a'</span>), <span style="color: #da8548; font-weight: bold;">4</span>)
+</pre>
+</div>
+
+<p>
+注意对不同类型对象来说，只要待比较对象提供了合适的比较方法，就可以使用 &lt;和 &gt; 来比较。例如，混合数值类型是通过他们的数值进行比较的，所以 0 等于 0.0，等等。否则，解释器将抛出一个 TypeError 异常，而不是随便给出一个结果。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 23:48</p>
+</div>
+</body>
+</html>

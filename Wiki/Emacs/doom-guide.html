@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 15:03 -->
+<!-- 2020-05-23 Sat 19:27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Doom Guide</title>
@@ -841,11 +841,11 @@ Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package �
 
 <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Take a major-mode, a quoted hook function or a list of either</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">add-hook!</span> python-mode
-    <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> python-shell-interpreter <span style="color: #98be65;">"bpython"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">python-shell-interpreter</span> <span style="color: #98be65;">"bpython"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 
 <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#36825;&#20123;&#26159;&#30456;&#31561;&#30340;</span>
-<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">python-mode-hook</span><span style="color: #51afef;">'</span> <span style="color: #ECBE7B;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
-<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> python-mode python-indent-offset <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> <span style="color: #51afef;">'</span><span style="color: #dcaeea;">python-mode-hook</span><span style="color: #51afef;">'</span> <span style="color: #dcaeea;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> python-mode <span style="color: #dcaeea;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
 
 <span style="color: #51afef;">(</span><span style="color: #51afef;">use-package!</span> hl-todo
   <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#22914;&#26524;&#20320;&#30465;&#30053; :defer&#65292;:hook&#65292;:commands&#25110;:after&#65292;&#37027;&#20040;package&#34987;&#31435;&#21051;&#36733;&#20837;&#12290;</span>
@@ -1323,7 +1323,7 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 15:03</p>
+<p class="date">Created: 2020-05-23 Sat 19:27</p>
 </div>
 </body>
 </html>

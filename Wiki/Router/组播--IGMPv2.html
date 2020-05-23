@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 19:27 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>组播&#x2013;IGMPv2</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">组播&#x2013;IGMPv2</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#igmp 工作原理">1. IGMP 工作原理</a></li>
+<li><a href="#特性">2. 特性</a>
+<ul>
+<li><a href="#igmp-snooping-和-igmp-proxy">2.1. IGMP snooping 和 IGMP proxy</a>
+<ul>
+<li><a href="#igmp-snooping">2.1.1. IGMP snooping</a></li>
+<li><a href="#igmp-proxy">2.1.2. IGMP proxy</a></li>
+</ul>
+</li>
+<li><a href="#igmpv1">2.2. IGMPv1</a></li>
+<li><a href="#igmpv2">2.3. IGMPv2</a>
+<ul>
+<li><a href="#查询器选举机制">2.3.1. 查询器选举机制</a></li>
+<li><a href="#离开组机制">2.3.2. 离开组机制</a></li>
+<li><a href="#igmpv2 报文格式">2.3.3. IGMPv2 报文格式</a></li>
+<li><a href="#设置 max_resp_time">2.3.4. 设置 max\<sub>resp</sub>\<sub>time</sub></a></li>
+</ul>
+</li>
+<li><a href="#igmpv3">2.4. IGMPv3</a></li>
+<li><a href="#igmp-snooping 查询器">2.5. IGMP snooping 查询器</a></li>
+</ul>
+</li>
+<li><a href="#参考">3. 参考</a></li>
+<li><a href="#link">4. Link</a></li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>
+IGMP 是 Internet Group Management Protocol（互联网组管理协议）的简称。它是 TCP/IP 协议族中负责 IP 组播成员管理的协议，用来在 IP 主机和与其直接相邻的组播路由器之间建立、维护组播组成员关系。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>IGMPv1（由 RFC 1112 定义）</li>
+<li>IGMPv2（由 RFC 2236 定义）</li>
+<li>IGMPv3（由 RFC 3376 定义）</li>
+</ul>
+
+<p>
+所有版本的 IGMP 都支持 ASM（Any-Source Multicast，任意信源组播）模型；IGMPv3 可以直接应用于 SSM（Source-Specific Multicast，指定信源组播）模型，而 IGMPv1 和 IGMPv2 则需要在 IGMP SSM Mapping 技术的支持下才能应用于 SSM 模型。
+</p>
+
+<div id="outline-container-igmp 工作原理" class="outline-2">
+<h2 id="igmp 工作原理"><span class="section-number-2">1</span> IGMP 工作原理</h2>
+<div class="outline-text-2" id="text-igmp 工作原理">
+<ul class="org-ul">
+<li>第一阶段：当某个主机加入新的组播时，该主机应向多播租的多播地址发送一个 IGMP 报文，声明自己要成为该租的成员。本地的多播路由器收到 IGMP 报文后，还要利用多播路由选择协议把这种组成员关系转发给因特网上的其他多播路由器。</li>
+
+<li>第二阶段：组成员关系是动态的。本地多播路由器要周期性地探询本地局域网上的主机，以便知道这些主机是否还继续是组成员。只要有一个主机对某个组响应，那么多播路由器就认为这个组是活跃的。但一个组在经过几次的探询后仍然没有一个主机响应，多播路由器就认为本网络上的主机已经都离开了这个组，因此也就不再把这个组的成员关系转发给其他的多播路由器。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-特性" class="outline-2">
+<h2 id="特性"><span class="section-number-2">2</span> 特性</h2>
+<div class="outline-text-2" id="text-特性">
+</div>
+
+<div id="outline-container-igmp-snooping-和-igmp-proxy" class="outline-3">
+<h3 id="igmp-snooping-和-igmp-proxy"><span class="section-number-3">2.1</span> IGMP snooping 和 IGMP proxy</h3>
+<div class="outline-text-3" id="text-igmp-snooping-和-igmp-proxy">
+</div>
+
+<div id="outline-container-igmp-snooping" class="outline-4">
+<h4 id="igmp-snooping"><span class="section-number-4">2.1.1</span> IGMP snooping</h4>
+<div class="outline-text-4" id="text-igmp-snooping">
+<blockquote>
+<p>
+是运行在二层设备上的组播约束的机制，用于管理和控制组播组。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-igmp-proxy" class="outline-4">
+<h4 id="igmp-proxy"><span class="section-number-4">2.1.2</span> IGMP proxy</h4>
+<div class="outline-text-4" id="text-igmp-proxy">
+<blockquote>
+<p>
+是靠拦截用户和路由器之间的 IGMP 报文建立组播表，Proxy 设备的上联端口执行主机的角色，下联端口执行路由器的角色。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-igmpv1" class="outline-3">
+<h3 id="igmpv1"><span class="section-number-3">2.2</span> IGMPv1</h3>
+<div class="outline-text-3" id="text-igmpv1">
+<p>
+IGMPv1 主要基于查询和响应机制来完成对组播组成员的管理。
+</p>
+
+<p>
+当一个网段内有多台组播路由器时，由于它们都能从主机那里收到 IGMP 成员关系报告报文（Membership Report Message），因此只需要其中一台路由器发送 IGMP 查询报文（Query Message）就足够了。这就需要有一个查询器（Querier）的选举机制来确定由哪台路由器作为 IGMP 查询器。
+</p>
+
+<p>
+对于 IGMPv1 来说，由组播路由协议（如 PIM）选举出唯一的组播信息转发者 DR（Designated Router，指定路由器）作为 IGMP 查询器
+</p>
+
+
+<div class="figure">
+<p><img src="../../pics/Router/igmpv1.jpg" alt="igmpv1.jpg">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>igmpv1</p>
+</div>
+
+<p>
+IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机离开某组播组时，将不会向其要离开的组播组发送报告报文。当网段中不再存在该组播组的成员后，IGMP 路由器将收不到任何发往该组播组的报告报文，于是 IGMP 路由器在一段时间之后便删&gt;除该组播组所对应的组播转发项。
+</p>
+</div>
+</div>
+
+<div id="outline-container-igmpv2" class="outline-3">
+<h3 id="igmpv2"><span class="section-number-3">2.3</span> IGMPv2</h3>
+<div class="outline-text-3" id="text-igmpv2">
+<p>
+与 IGMPv1 相比，IGMPv2 增加了 <code>查询器选举机制</code> 和 <code>离开组机制</code> 。
+</p>
+</div>
+
+<div id="outline-container-查询器选举机制" class="outline-4">
+<h4 id="查询器选举机制"><span class="section-number-4">2.3.1</span> 查询器选举机制</h4>
+<div class="outline-text-4" id="text-查询器选举机制">
+<p>
+在 IGMPv1 中，当某共享网段上存在多个组播路由器时，由组播路由协议（如 PIM）选举的指定路由器充当查询器。
+</p>
+
+<p>
+在 IGMPv2 中，增加了独立的查询器选举机制，其选举过程如下：
+</p>
+
+<ul class="org-ul">
+<li>所有 IGMPv2 路由器在初始时都认为自己是查询器，并向本地网段内的所有主机和路由器发送 IGMP 普遍组查询（General Query）报文（目的地址为 224.0.0.1）；</li>
+<li>本地网段中的其它 IGMPv2 路由器在收到该报文后，将报文的源 IP 地址与自己的接口地址作比较。通过比较， IP 地址最小的路由器将成为查询器，其它路由器成为非查询器（Non-Querier）；</li>
+<li>所有非查询器上都会启动一个定时器（即其它查询器存在时间定时器 Other Querier Present Timer）。在该定时器超时前，如果收到了来自查询器的 IGMP 查询报文，则重置该定时器；否则，就认为原查询器失效，并发起新的查询器选举过程。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-离开组机制" class="outline-4">
+<h4 id="离开组机制"><span class="section-number-4">2.3.2</span> 离开组机制</h4>
+<div class="outline-text-4" id="text-离开组机制">
+<p>
+在 IGMPv1 中，主机离开组播组时不会向组播路由器发出任何通知，导致组播路由器只能依靠组播组成员查询的响应超时来获知组播组成员的离开。
+</p>
+
+<p>
+而在 IGMPv2 中，当一个主机离开某组播组时：
+</p>
+
+<ul class="org-ul">
+<li>该主机向本地网段内的所有组播路由器（目的地址为 224.0.0.2）发送离开组（Leave Group）报文；</li>
+<li>当查询器收到该报文后， 向该主机所声明要离开的那个组播组发送特定组查询（Group-Specific Query）报文（目的地址字段和组地址字段均填充为所要查询的组播组地址）；</li>
+<li>如果该网段内还有该组播组的其它成员，则这些成员在收到特定组查询报文后，会在该报文中所设定的最大响应时间（Max Response Time）内发送成员关系报告报文；</li>
+<li>如果在最大响应时间内收到了该组播组其它成员发送的成员关系报告报文，查询器就会继续维护该组播组的成员关系；否则，查询器将认为该网段内已无该组播组的成员，于是不再维护这个组播组的成员关系。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-igmpv2 报文格式" class="outline-4">
+<h4 id="igmpv2 报文格式"><span class="section-number-4">2.3.3</span> IGMPv2 报文格式</h4>
+<div class="outline-text-4" id="text-igmpv2 报文格式">
+<pre class="example">
+    0             7 8             1516                             31
+    +--------------+---------------+-------------------------------+-++
+    |    Type      | max_resp_time |           CheckSum            | |
+    +--------------+---------------+-------------------------------+ 8Byte
+    |                    Group Address                             | |
+    +--------------------------------------------------------------+-++
+</pre>
+
+<ul class="org-ul">
+<li><code>Type</code> ：</li>
+</ul>
+
+<table>
+
+
+<colgroup>
+<col  class="org-right">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Type</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0x11</td>
+<td class="org-left">Membership Query(成员查询)</td>
+</tr>
+
+<tr>
+<td class="org-right">0x12</td>
+<td class="org-left">Version 1 Membership Report(版本 1 成员报告)</td>
+</tr>
+
+<tr>
+<td class="org-right">0x16</td>
+<td class="org-left">Version 2 Membership Report(版本 2 成员报告)</td>
+</tr>
+
+<tr>
+<td class="org-right">0x17</td>
+<td class="org-left">Leave Group(离开组)</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li><code>max_resp_time</code> ：在发出响应报告前的以 1/10 秒为单位的最长时间， <code>缺省值为10秒</code> 。新的最大响应时间（以 1/10 秒为单位）字段允许查询用路由器为它的查询报文指定准确的查询间隔响应时间。IGMP 版本 2 主机在随机选择它们的应时间值时以此作为上限。</li>
+</ul>
+
+<blockquote>
+<p>
+从路由器接收到一条查询消息后，主机会为其所属的每个组播组都配置一个计时器。计时器的值在
+0 到最大响应时间之间随机选定。当其中任何一个计时器的值减为
+0 时，主机就会发送该组播组的成员报告消息。合理配置最大响应时间，可以使主机快速响应查询信息，路由器也就能快速地掌握组播组成员的存在状况。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><code>Group Address</code>: 组地址</li>
+</ul>
+
+<pre class="example">
+    Internet Group Management Protocol
+        [IGMP Version: 2]
+        Type: Membership Report (0x16)
+        Max Resp Time: 0.0 sec (0x00)
+        Checksum: 0xfaf3 [correct]
+        [Checksum Status: Good]
+        Multicast Address: 239.0.0.11
+</pre>
+</div>
+</div>
+
+<div id="outline-container-设置 max_resp_time" class="outline-4">
+<h4 id="设置 max_resp_time"><span class="section-number-4">2.3.4</span> 设置 max\<sub>resp</sub>\<sub>time</sub></h4>
+<div class="outline-text-4" id="text-设置 max_resp_time">
+<p>
+<code>ip igmp snooping query-max-response-time seconds</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-igmpv3" class="outline-3">
+<h3 id="igmpv3"><span class="section-number-3">2.4</span> IGMPv3</h3>
+<div class="outline-text-3" id="text-igmpv3">
+<p>
+IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主机的控制能力，并增强了查询和报告报文的功能。
+</p>
+</div>
+</div>
+
+<div id="outline-container-igmp-snooping 查询器" class="outline-3">
+<h3 id="igmp-snooping 查询器"><span class="section-number-3">2.5</span> IGMP snooping 查询器</h3>
+<div class="outline-text-3" id="text-igmp-snooping 查询器">
+<p>
+在运行了 IGMP 的组播网络中，会有一台三层组播设备充当 IGMP 查询器，负责发送=IGMP 查询报文=，使三层组播设备能够在网络层=建立并维护组播转发表项，从而在网络层正常转发组播数据=。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-参考" class="outline-2">
+<h2 id="参考"><span class="section-number-2">3</span> 参考</h2>
+<div class="outline-text-2" id="text-参考">
+<ul class="org-ul">
+<li><a href="https://blog.csdn.net/livelylittlefish/article/details/4286142">IGMP技术总结</a></li>
+<li><a href="https://blog.csdn.net/shanzhizi/article/details/7645330">IGMPv3协议报文格式参考</a></li>
+<li><a href="https://blog.csdn.net/mingzznet/article/details/9253607">IGMP Snooping概念和配置方法&#x2014;交换</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_c079d59e0102whjg.html">IGMPV2基本原理</a></li>
+<li><a href="https://blog.csdn.net/achejq/article/details/7347214">IGMP Snooping技术学习笔记</a></li>
+<li><a href="http://blog.51cto.com/rongshu/1900182">H3C F1000-S防火墙基础配置及telnet登录！</a></li>
+<li><a href="http://www.h3c.com/cn/d_200805/605838_30003_0.htm">IGMP Snooping技术介绍</a></li>
+<li><a href="https://blog.csdn.net/todd911/article/details/38689681">《TCP/IP详解卷2：实现》笔记&#x2013;IGMP:Internet组管理协议</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-link" class="outline-2">
+<h2 id="link"><span class="section-number-2">4</span> Link</h2>
+<div class="outline-text-2" id="text-link">
+<p>
+<a href="https://winddoing.github.io/post/39626.html">https://winddoing.github.io/post/39626.html</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 19:27</p>
+</div>
+</body>
+</html>

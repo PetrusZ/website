@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 22:56 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docker-compose</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">docker-compose</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdaabe46">1. Compose 简介</a></li>
+<li><a href="#orga5a9d70">2. 命令说明</a>
+<ul>
+<li><a href="#orgcfc86ba">2.1. 命令对象与格式</a></li>
+<li><a href="#org5716c54">2.2. 命令使用说明</a>
+<ul>
+<li><a href="#orgad5f3bb">2.2.1. build</a></li>
+<li><a href="#orgc1d30a6">2.2.2. config</a></li>
+<li><a href="#org8f231fd">2.2.3. exec</a></li>
+<li><a href="#orgf8020b3">2.2.4. images</a></li>
+<li><a href="#org0fa9ae7">2.2.5. kill</a></li>
+<li><a href="#orgc6dca3d">2.2.6. logs</a></li>
+<li><a href="#org41feca1">2.2.7. pause</a></li>
+<li><a href="#org3868f51">2.2.8. unpause</a></li>
+<li><a href="#org22d5537">2.2.9. port</a></li>
+<li><a href="#org977ea3f">2.2.10. ps</a></li>
+<li><a href="#orga0f3181">2.2.11. pull</a></li>
+<li><a href="#orgecdaa5f">2.2.12. push</a></li>
+<li><a href="#orga8eb22f">2.2.13. restart</a></li>
+<li><a href="#orgab38db3">2.2.14. rm</a></li>
+<li><a href="#orga8f9e3d">2.2.15. run</a></li>
+<li><a href="#org701d6dd">2.2.16. scale</a></li>
+<li><a href="#org2a32ce7">2.2.17. start</a></li>
+<li><a href="#org535a2c9">2.2.18. stop</a></li>
+<li><a href="#org274725f">2.2.19. top</a></li>
+<li><a href="#orgd8d5a0f">2.2.20. up</a></li>
+<li><a href="#org7da7f60">2.2.21. down</a></li>
+<li><a href="#orgcf6bd39">2.2.22. version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdaabe46" class="outline-2">
+<h2 id="orgdaabe46"><span class="section-number-2">1</span> Compose 简介</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。 从功能上看，跟 OpenStack 中的 Heat 十分类似。
+</p>
+
+<p>
+其代码目前在 <a href="https://github.com/docker/compose">https://github.com/docker/compose</a> 上开源。
+</p>
+
+<p>
+Compose 定位是 「定义和运行多个 Docker 容器的应用（Defining and running multi-container Docker applications）」，其前身是开源项目 Fig。
+</p>
+
+<p>
+Compose 允许用户通过一个单独的 docker-compose.yml 模板文件（YAML 格式）来定义一组相关联的应用容器为一个项目（project）。
+</p>
+
+<p>
+Compose 中有两个重要的概念：
+</p>
+
+<ul class="org-ul">
+<li>服务 (service)：一个应用的容器，实际上可以包括若干运行相同镜像的容器实例。</li>
+<li>项目 (project)：由一组关联的应用容器组成的一个完整业务单元，在 docker-compose.yml 文件中定义。</li>
+</ul>
+
+<p>
+Compose 的默认管理对象是项目，通过子命令对项目中的一组容器进行便捷地生命周期管理。
+</p>
+
+<p>
+Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 来对容器进行管理。 因此，只要所操作的平台支持 Docker API，就可以在其上利用 Compose 来进行编排管理。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5a9d70" class="outline-2">
+<h2 id="orga5a9d70"><span class="section-number-2">2</span> 命令说明</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgcfc86ba" class="outline-3">
+<h3 id="orgcfc86ba"><span class="section-number-3">2.1</span> 命令对象与格式</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+对于 Compose 来说，大部分命令的对象既可以是项目本身，也可以指定为项目中的服务或者容器。 如果没有特别的说明，命令对象将是项目，这意味着项目中所有的服务都会受到命令影响。
+</p>
+
+<p>
+执行 <code>docker-compose [COMMAND] --help</code> 或者 <code>docker-compose help [COMMAND]</code> 可以查看具体某个命令的使用格式。
+</p>
+
+<p>
+<code>docker-compose</code> 命令的基本的使用格式是
+</p>
+
+<p>
+<code>docker-compose [-f=&lt;arg&gt;...] [options] [COMMAND] [ARGS...]</code>
+</p>
+
+<p>
+命令选项
+</p>
+
+<ul class="org-ul">
+<li><code>-f,</code> <code>--file FILE</code> 指定使用的 Compose 模板文件，默认为 <code>docker-compose.yml</code> ，可以多次指定。</li>
+<li><code>-p</code>, <code>--project-name NAME</code> 指定项目名称，默认将使用所在目录名称作为项目名。</li>
+<li><code>--x-networking</code> 使用 Docker 的可拔插网络后端特性</li>
+<li><code>--x-network-driver DRIVER</code> 指定网络后端的驱动，默认为 <code>bridge</code></li>
+<li><code>--verbose</code> 输出更多调试信息。</li>
+<li><code>-v</code>, <code>--version</code> 打印版本并退出。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5716c54" class="outline-3">
+<h3 id="org5716c54"><span class="section-number-3">2.2</span> 命令使用说明</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-orgad5f3bb" class="outline-4">
+<h4 id="orgad5f3bb"><span class="section-number-4">2.2.1</span> build</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+格式为 <code>docker-compose build [options] [SERVICE...]</code>
+</p>
+
+<p>
+构建（重新构建）项目中的服务容器。
+</p>
+
+<p>
+服务容器一旦构建后，将会带上一个标记名，例如对于 web 项目中的一个 db 容器，可能是 web_db。
+</p>
+
+<p>
+可以随时在项目目录下运行 docker-compose build 来重新构建服务。
+</p>
+
+<p>
+选项包括：
+</p>
+
+<ul class="org-ul">
+<li><code>--force-rm</code> 删除构建过程中的临时容器。</li>
+<li><code>--no-cache</code> 构建镜像过程中不使用 cache（这将加长构建过程）。</li>
+<li><code>--pull</code> 始终尝试通过 pull 来获取更新版本的镜像。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc1d30a6" class="outline-4">
+<h4 id="orgc1d30a6"><span class="section-number-4">2.2.2</span> config</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+验证 Compose 文件格式是否正确，若正确则显示配置，若格式错误显示错误原因。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f231fd" class="outline-4">
+<h4 id="org8f231fd"><span class="section-number-4">2.2.3</span> exec</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+进入指定的容器
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf8020b3" class="outline-4">
+<h4 id="orgf8020b3"><span class="section-number-4">2.2.4</span> images</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+列出 Compose 文件中包含的镜像。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0fa9ae7" class="outline-4">
+<h4 id="org0fa9ae7"><span class="section-number-4">2.2.5</span> kill</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<p>
+格式为 <code>docker-compose kill [options] [SERVICE...]</code>
+</p>
+
+<p>
+通过发送 SIGKILL 信号来强制停止服务容器。 支持通过 -s 参数来指定发送的信号。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc6dca3d" class="outline-4">
+<h4 id="orgc6dca3d"><span class="section-number-4">2.2.6</span> logs</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<p>
+格式为 <code>docker-compose logs [options] [SERVICE...]</code>
+</p>
+
+<p>
+查看服务容器的输出。默认情况下，docker-compose 将对不同的服务输出使用不同的颜色来区分。 可以通过 &#x2013;no-color 来关闭颜色。
+</p>
+
+<p>
+该命令在调试问题的时候十分有用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org41feca1" class="outline-4">
+<h4 id="org41feca1"><span class="section-number-4">2.2.7</span> pause</h4>
+<div class="outline-text-4" id="text-2-2-7">
+<p>
+格式为 <code>docker-compose pause [SERVICE...]</code>
+</p>
+
+<p>
+暂停一个服务容器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3868f51" class="outline-4">
+<h4 id="org3868f51"><span class="section-number-4">2.2.8</span> unpause</h4>
+<div class="outline-text-4" id="text-2-2-8">
+<p>
+格式为 <code>docker-compose unpause [SERVICE...]</code>
+</p>
+
+<p>
+恢复处于暂停状态中的服务。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org22d5537" class="outline-4">
+<h4 id="org22d5537"><span class="section-number-4">2.2.9</span> port</h4>
+<div class="outline-text-4" id="text-2-2-9">
+<p>
+格式为 <code>docker-compose port [options] SERVICE PRIVATE_PORT</code>
+</p>
+
+<p>
+打印某个容器端口所映射的公共端口。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>--protocol=proto</code> 指定端口协议，tcp（默认值）或者 udp。</li>
+<li><code>--index=index</code> 如果同一服务存在多个容器，指定命令对象容器的序号（默认为 1）。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org977ea3f" class="outline-4">
+<h4 id="org977ea3f"><span class="section-number-4">2.2.10</span> ps</h4>
+<div class="outline-text-4" id="text-2-2-10">
+<p>
+格式为 <code>docker-compose ps [options] [SERVICE...]</code>
+</p>
+
+<p>
+列出项目中目前的所有容器。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>-q</code> 只打印容器的 ID 信息。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga0f3181" class="outline-4">
+<h4 id="orga0f3181"><span class="section-number-4">2.2.11</span> pull</h4>
+<div class="outline-text-4" id="text-2-2-11">
+<p>
+格式为 <code>docker-compose pull [options] [SERVICE...]</code>
+</p>
+
+<p>
+拉取服务依赖的镜像。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>--ignore-pull-failures</code> 忽略拉取镜像过程中的错误。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgecdaa5f" class="outline-4">
+<h4 id="orgecdaa5f"><span class="section-number-4">2.2.12</span> push</h4>
+<div class="outline-text-4" id="text-2-2-12">
+<p>
+推送服务依赖的镜像到 Docker 镜像仓库。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga8eb22f" class="outline-4">
+<h4 id="orga8eb22f"><span class="section-number-4">2.2.13</span> restart</h4>
+<div class="outline-text-4" id="text-2-2-13">
+<p>
+格式为 <code>docker-compose restart [options] [SERVICE...]</code>
+</p>
+
+<p>
+重启项目中的服务。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>-t</code>, <code>--timeout TIMEOUT</code> 指定重启前停止容器的超时（默认为 10 秒）。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgab38db3" class="outline-4">
+<h4 id="orgab38db3"><span class="section-number-4">2.2.14</span> rm</h4>
+<div class="outline-text-4" id="text-2-2-14">
+<p>
+格式为 <code>docker-compose rm [options] [SERVICE...]</code>
+</p>
+
+<p>
+删除所有（停止状态的）服务容器。推荐先执行 <code>docker-compose stop</code> 命令来停止容器。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>-f</code>, <code>--force</code>
+强制直接删除，包括非停止状态的容器。一般尽量不要使用该选项。</li>
+<li><code>-v</code> 删除容器所挂载的数据卷。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga8f9e3d" class="outline-4">
+<h4 id="orga8f9e3d"><span class="section-number-4">2.2.15</span> run</h4>
+<div class="outline-text-4" id="text-2-2-15">
+<p>
+格式为 <code>docker-compose run [options] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]</code>
+</p>
+
+<p>
+在指定服务上执行一个命令。
+</p>
+
+<p>
+默认情况下，如果存在关联，则所有关联的服务将会自动被启动，除非这些服务已经在运行中。
+</p>
+
+<p>
+该命令类似启动容器后运行指定的命令，相关卷、链接等等都将会按照配置自动创建。
+</p>
+
+<p>
+两个不同点：
+</p>
+
+<ul class="org-ul">
+<li>给定命令将会覆盖原有的自动运行命令；</li>
+<li>不会自动创建端口，以避免冲突。</li>
+</ul>
+
+<p>
+如果不希望自动启动关联的容器，可以使用 &#x2013;no-deps 选项
+</p>
+
+<p>
+选项：
+</p>
+
+<p>
+-d 后台运行容器。
+</p>
+
+<ul class="org-ul">
+<li><code>--name NAME</code> 为容器指定一个名字。</li>
+<li><code>--entrypoint CMD</code> 覆盖默认的容器启动指令。</li>
+<li><code>-e KEY=VAL</code> 设置环境变量值，可多次使用选项来设置多个环境变量。</li>
+<li><code>-u, --user</code>""= 指定运行容器的用户名或者 uid。</li>
+<li><code>--no-deps</code> 不自动启动关联的服务容器。</li>
+<li><code>--rm</code> 运行命令后自动删除容器，d 模式下将忽略。</li>
+<li><code>-p, --publish</code>[]= 映射容器端口到本地主机。</li>
+<li><code>--service-ports</code> 配置服务端口并映射到本地主机。</li>
+<li><code>-T</code> 不分配伪 tty，意味着依赖 tty 的指令将无法运行。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org701d6dd" class="outline-4">
+<h4 id="org701d6dd"><span class="section-number-4">2.2.16</span> scale</h4>
+<div class="outline-text-4" id="text-2-2-16">
+<p>
+格式为 <code>docker-compose scale [options] [SERVICE=NUM...]</code>
+</p>
+
+<p>
+设置指定服务运行的容器个数。通过 <code>service=num</code> 的参数来设置数量。
+</p>
+
+<p>
+一般的，当指定数目多于该服务当前实际运行容器，将新创建并启动容器；反之，将停止容器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a32ce7" class="outline-4">
+<h4 id="org2a32ce7"><span class="section-number-4">2.2.17</span> start</h4>
+<div class="outline-text-4" id="text-2-2-17">
+<p>
+格式为 <code>docker-compose start [SERVICE...]</code>
+</p>
+
+<p>
+启动已经存在的服务容器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org535a2c9" class="outline-4">
+<h4 id="org535a2c9"><span class="section-number-4">2.2.18</span> stop</h4>
+<div class="outline-text-4" id="text-2-2-18">
+<p>
+格式为 <code>docker-compose stop [options] [SERVICE...]</code>
+</p>
+
+<p>
+停止已经处于运行状态的容器，但不删除它。通过 <code>docker-compose start</code>
+可以再次启动这些容器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org274725f" class="outline-4">
+<h4 id="org274725f"><span class="section-number-4">2.2.19</span> top</h4>
+<div class="outline-text-4" id="text-2-2-19">
+<p>
+查看各个服务容器内运行的进程。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd8d5a0f" class="outline-4">
+<h4 id="orgd8d5a0f"><span class="section-number-4">2.2.20</span> up</h4>
+<div class="outline-text-4" id="text-2-2-20">
+<p>
+格式为 <code>docker-compose up [options] [SERVICE...]</code>
+</p>
+
+<p>
+该命令十分强大，它将尝试自动完成包括构建镜像，（重新）创建服务，启动服务，并关联服务相关容器的一系列操作。
+</p>
+
+<p>
+链接的服务都将会被自动启动，除非已经处于运行状态。
+</p>
+
+<p>
+可以说，大部分时候都可以直接通过该命令来启动一个项目。
+</p>
+
+<p>
+默认情况， <code>docker-compose up</code> 启动的容器都在前台，控制台将会同时打印所有容器的输出信息，可以很方便进行调试。
+</p>
+
+<p>
+当通过 <code>Ctrl-C</code> 停止命令时，所有容器将会停止。
+</p>
+
+<p>
+如果使用 <code>docker-compose up -d</code> ，将会在后台启动并运行所有的容器。一般推荐生产环境下使用该选项。
+</p>
+
+<p>
+默认情况，如果服务容器已经存在， <code>docker-compose up</code> 将会尝试停止容器，然后重新创建（保持使用 volumes-from 挂载的卷），以保证新启动的服务匹配 docker-compose.yml 文件的最新内容。 如果用户不希望容器被停止并重新创建，可以使用 <code>docker-compose up --no-recreate</code> 。 这样将只会启动处于停止状态的容器，而忽略已经运行的服务。 如果用户只想重新部署某个服务，可以使用 <code>docker-compose up --no-deps -d &lt;SERVICE_NAME&gt;</code> 来重新创建服务并后台停止旧服务，启动新服务，并不会影响到其所依赖的服务。
+</p>
+
+<p>
+选项：
+</p>
+
+<ul class="org-ul">
+<li><code>-d</code> 在后台运行服务容器。</li>
+<li><code>--no-color</code> 不使用颜色来区分不同的服务的控制台输出。</li>
+<li><code>--no-deps</code> 不启动服务所链接的容器。</li>
+<li><code>--force-recreate</code> 强制重新创建容器，不能与 <code>--no-recreate</code> 同时使用。</li>
+<li><code>--no-recreate</code> 如果容器已经存在了，则不重新创建，不能与 <code>--force-recreate</code> 同时使用。</li>
+<li><code>--no-build</code> 不自动构建缺失的服务镜像。</li>
+<li><code>-t</code>, <code>--timeout TIMEOUT</code> 停止容器时候的超时（默认为 10 秒）。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7da7f60" class="outline-4">
+<h4 id="org7da7f60"><span class="section-number-4">2.2.21</span> down</h4>
+<div class="outline-text-4" id="text-2-2-21">
+<p>
+此命令将会停止 <code>up</code> 命令所启动的容器，并移除网络
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf6bd39" class="outline-4">
+<h4 id="orgcf6bd39"><span class="section-number-4">2.2.22</span> version</h4>
+<div class="outline-text-4" id="text-2-2-22">
+<p>
+打印版本信息。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 22:56</p>
+</div>
+</body>
+</html>

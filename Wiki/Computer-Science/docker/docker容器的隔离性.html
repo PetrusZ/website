@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-23 Sat 22:56 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>docker容器的隔离性</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">docker容器的隔离性</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org755f761">1. Linux namespace</a></li>
+<li><a href="#org58f9f56">2. Docker 容器使用 linux namespace 做运行环境隔离</a>
+<ul>
+<li><a href="#org8eeed89">2.1. containerd，containerd-shim 和 container 的关系</a></li>
+<li><a href="#orga361089">2.2. PID namespace</a></li>
+<li><a href="#org04c89a1">2.3. user namespace</a></li>
+<li><a href="#org43f6e3e">2.4. 其他</a></li>
+</ul>
+</li>
+<li><a href="#org442f66d">3. Linux control groups</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org755f761" class="outline-2">
+<h2 id="org755f761"><span class="section-number-2">1</span> Linux namespace</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Linux 内核从版本 2.4.19 开始陆续引入了 namespace 的概念。 其目的是将某个特定的全局系统资源（global system resource）通过抽象方法使得 namespace 中的进程看起来拥有它们自己的隔离的全局系统资源实例 （The purpose of each namespace is to wrap a particular global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource. ）。 Linux 内核中实现了六种 namespace。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">namespace</th>
+<th scope="col" class="org-left">引入的相关内核版本</th>
+<th scope="col" class="org-left">被隔离的全局系统资源</th>
+<th scope="col" class="org-left">在容器语境下的隔离效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Mount namespaces</td>
+<td class="org-left">Linux 2.4.19</td>
+<td class="org-left">文件系统挂接点</td>
+<td class="org-left">每个容器能看到不同的文件系统层次结构</td>
+</tr>
+
+<tr>
+<td class="org-left">UTS namespaces</td>
+<td class="org-left">Linux 2.6.19</td>
+<td class="org-left">nodename 和 domainname</td>
+<td class="org-left">每个容器可以有自己的 hostname 和 domainame</td>
+</tr>
+
+<tr>
+<td class="org-left">IPC namespaces</td>
+<td class="org-left">Linux 2.6.19</td>
+<td class="org-left">特定的进程间通信资源，包括 System V IPC 和 POSIX message queues</td>
+<td class="org-left">每个容器有其自己的 System V IPC 和 POSIX 消息队列文件系统，因此，只有在同一个 IPC namespace 的进程之间才能互相通信</td>
+</tr>
+
+<tr>
+<td class="org-left">PID namespaces</td>
+<td class="org-left">Linux 2.6.24</td>
+<td class="org-left">进程 ID 数字空间 （process ID number space）</td>
+<td class="org-left">每个 PID namespace 中的进程可以有其独立的 PID； 每个容器可以有其 PID 为 1 的 root 进程；也使得容器可以在不同的 host 之间迁移，因为 namespace 中的进程 ID 和 host 无关了。这也使得容器中的每个进程有两个 PID：容器中的 PID 和 host 上的 PID。</td>
+</tr>
+
+<tr>
+<td class="org-left">Network namespaces</td>
+<td class="org-left">始于 Linux 2.6.24 完成于 Linux 2.6.29</td>
+<td class="org-left">网络相关的系统资源</td>
+<td class="org-left">每个容器用有其独立的网络设备，IP 地址，IP 路由表，/proc/net 目录，端口号等等。这也使得一个 host 上多个容器内的同一个应用都绑定到各自容器的 80 端口上。</td>
+</tr>
+
+<tr>
+<td class="org-left">User namespaces</td>
+<td class="org-left">始于 Linux 2.6.23 完成于 Linux 3.8</td>
+<td class="org-left">用户和组 ID 空间</td>
+<td class="org-left">在 user namespace 中的进程的用户和组 ID 可以和在 host 上不同； 每个 container 可以有不同的 user 和 group id；一个 host 上的非特权用户可以成为 user namespace 中的特权用户；</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org58f9f56" class="outline-2">
+<h2 id="org58f9f56"><span class="section-number-2">2</span> Docker 容器使用 linux namespace 做运行环境隔离</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+当 Docker 创建一个容器时，它会创建新的以上六种 namespace 的实例，然后把容器中的所有进程放到这些 namespace 之中，使得 Docker 容器中的进程只能看到隔离的系统资源。
+</p>
+</div>
+
+<div id="outline-container-org8eeed89" class="outline-3">
+<h3 id="org8eeed89"><span class="section-number-3">2.1</span> containerd，containerd-shim 和 container 的关系</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div class="figure">
+<p><img src="../../../pics/Docker/containerd.jpg" alt="containerd.jpg">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>containerd</p>
+</div>
+
+<ul class="org-ul">
+<li>Docker 引擎管理着镜像，然后移交给 containerd 运行，containerd 再使用
+runC 运行容器。</li>
+<li>Containerd 是一个简单的守护进程，它可以使用 runC 管理容器，使用 gRPC 暴露容器的其他功能。它管理容器的开始，停止，暂停和销毁。由于容器运行时是孤立的引擎，引擎最终能够启动和升级而无需重新启动容器。</li>
+<li>runC 是一个轻量级的工具，它是用来运行容器的，只用来做这一件事，并且这一件事要做好。runC 基本上是一个小命令行工具且它可以不用通过 Docker 引擎，直接就可以使用容器。</li>
+</ul>
+
+<p>
+因此，容器中的主应用在 host 上的父进程是 containerd-shim，是它通过工具 runC 来启动这些进程的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga361089" class="outline-3">
+<h3 id="orga361089"><span class="section-number-3">2.2</span> PID namespace</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+根据以上关系也能看出来，pid namespace 通过将 host 上 PID 映射为容器内的 PID， 使得容器内的进程看起来有个独立的 PID 空间。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org04c89a1" class="outline-3">
+<h3 id="org04c89a1"><span class="section-number-3">2.3</span> user namespace</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+老版本中，Linux 内核里面只有一个数据结构负责处理用户和组。内核从 3.8 版本开始实现了 user namespace。 通过在 clone() 系统调用中使用 CLONE_NEWUSER 标志，一个单独的 user namespace 就会被创建出来。 在新的 user namespace 中，有一个虚拟的用户和用户组的集合。这些用户和用户组，从 uid/gid 0 开始，被映射到该 namespace 之外的 非 root 用户。
+</p>
+
+<p>
+在现在的 linux 内核中，管理员可以创建成千上万的用户。这些用户可以被映射到每个 user namespace 中。 通过使用 user namespace 功能，不同的容器可以有完全不同的 uid 和 gid 数字。 容器 A 中的 User 500 可能被映射到容器外的 User 1500，而容器 B 中的 user 500 可能被映射到容器外的用户 2500。
+</p>
+
+<p>
+为什么需要这么做呢？因为在容器中，提供 root 访问权限有其特殊用途。 想象一下，容器 A 中的 root 用户 （uid 0） 被映射到宿主机上的 uid 10000，容器 B 中的 root 被映射到 uid 20000。 类似网络端口映射，这允许管理员在容器中创建 root 用户，而不需要在宿主机上创建。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org43f6e3e" class="outline-3">
+<h3 id="org43f6e3e"><span class="section-number-3">2.4</span> 其他</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+其他的几个 namespace，比较简单。总之，Docker 守护进程为每个容器都创建了六种 namespace 的实例，使得容器中的进程都处于一种隔离的运行环境之中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    root@devstack:/proc/1726/ns# <span style="color: #ECBE7B;">ls</span> -l
+    total <span style="color: #da8548; font-weight: bold;">0</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:45 ipc -&gt; ipc:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532210</span><span style="color: #51afef;">]</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:45 mnt -&gt; mnt:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532208</span><span style="color: #51afef;">]</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:44 net -&gt; net:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532213</span><span style="color: #51afef;">]</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:45 pid -&gt; pid:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532211</span><span style="color: #51afef;">]</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:45 user -&gt; user:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532207</span><span style="color: #51afef;">]</span>
+    lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">231072</span> <span style="color: #da8548; font-weight: bold;">0</span> Sep <span style="color: #da8548; font-weight: bold;">18</span> 01:45 uts -&gt; uts:<span style="color: #51afef;">[</span><span style="color: #da8548; font-weight: bold;">4026532209</span><span style="color: #51afef;">]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org442f66d" class="outline-2">
+<h2 id="org442f66d"><span class="section-number-2">3</span> Linux control groups</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Linux Cgroup 可让为系统中所运行任务（进程）的用户定义组群分配资源 -&#x2013;&#x2014; 比如 CPU 时间、系统内存、网络带宽或者这些资源的组合。 您可以监控您配置的 cgroup，拒绝 cgroup 访问某些资源，甚至在运行的系统中动态配置您的 cgroup。 所以，可以将 controll groups 理解为 controller (system resource) (for) (process) groups，也就是是说它以一组进程为目标进行系统资源分配和控制。
+</p>
+
+<p>
+它主要提供了如下功能：
+</p>
+
+<ul class="org-ul">
+<li>Resource limitation: 限制资源使用，比如内存使用上限以及文件系统的缓存限制。</li>
+<li>Prioritization: 优先级控制，比如：CPU 利用和磁盘 IO 吞吐。</li>
+<li>Accounting: 一些审计或一些统计，主要目的是为了计费。</li>
+<li>Control: 挂起进程，恢复执行进程。</li>
+</ul>
+
+<p>
+使用 cgroup，系统管理员可更具体地控制对系统资源的分配、优先顺序、拒绝、管理和监控。 可更好地根据任务和用户分配硬件资源，提高总体效率。
+</p>
+
+<p>
+在实践中，系统管理员一般会利用 CGroup 做下面这些事（有点像为某个虚拟机分配资源似的）：
+</p>
+
+<ul class="org-ul">
+<li>隔离一个进程集合（比如：nginx 的所有进程），并限制他们所消费的资源，比如绑定 CPU 的核。</li>
+<li>为这组进程分配其足够使用的内存</li>
+<li>为这组进程分配相应的网络带宽和磁盘存储限制</li>
+<li>限制访问某些设备（通过设置设备的白名单）</li>
+</ul>
+
+<p>
+Linux 系统中，一切皆文件。Linux 也将 cgroups 实现成了文件系统，方便用户使用。
+</p>
+
+<p>
+/sys/fs/cgroup 目录中有若干个子目录，我们可以认为这些都是受 cgroups
+控制的资源以及这些资源的信息。
+</p>
+
+<ul class="org-ul">
+<li>blkio &#x2014; 这个子系统为块设备设定输入/输出限制，比如物理设备（磁盘，固态硬盘，USB
+等等）。</li>
+<li>cpu &#x2014; 这个子系统使用调度程序提供对 CPU 的 cgroup 任务访问。</li>
+<li>cpuacct &#x2014; 这个子系统自动生成 cgroup 中任务所使用的 CPU 报告。</li>
+<li>cpuset &#x2014; 这个子系统为 cgroup 中的任务分配独立
+CPU（在多核系统）和内存节点。</li>
+<li>devices &#x2014; 这个子系统可允许或者拒绝 cgroup 中的任务访问设备。</li>
+<li>freezer &#x2014; 这个子系统挂起或者恢复 cgroup 中的任务。</li>
+<li>memory &#x2014; 这个子系统设定 cgroup
+中任务使用的内存限制，并自动生成内存资源使用报告。</li>
+<li>net_cls &#x2014; 这个子系统使用等级识别符（classid）标记网络数据包，可允许 Linux 流量控制程序（tc）识别从具体 cgroup 中生成的数据包。</li>
+<li>net_prio &#x2014; 这个子系统用来设计网络流量的优先级</li>
+<li>hugetlb &#x2014; 这个子系统主要针对于 HugeTLB 系统进行限制，这是一个大页文件系统。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-23 Sat 22:56</p>
+</div>
+</body>
+</html>
