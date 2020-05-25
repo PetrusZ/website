@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 21:43 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>备份</title>
@@ -234,14 +234,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#使用 tar 备份完整 linux 操作系统">1. 使用 tar 备份完整 Linux 操作系统</a></li>
-<li><a href="#使用 rsync 备份完整 linux 操作系统">2. 使用 rsync 备份完整 Linux 操作系统</a></li>
+<li><a href="#使用 tar 备份完整 linux 操作系统">使用 tar 备份完整 Linux 操作系统</a></li>
+<li><a href="#使用 rsync 备份完整 linux 操作系统">使用 rsync 备份完整 Linux 操作系统</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-使用 tar 备份完整 linux 操作系统" class="outline-2">
-<h2 id="使用 tar 备份完整 linux 操作系统"><span class="section-number-2">1</span> 使用 tar 备份完整 Linux 操作系统</h2>
+<h2 id="使用 tar 备份完整 linux 操作系统">使用 tar 备份完整 Linux 操作系统</h2>
 <div class="outline-text-2" id="text-使用 tar 备份完整 linux 操作系统">
 <p>
 可以使用 tar 命令备份整个 Linux 操作系统
@@ -254,7 +254,7 @@
 </div>
 
 <div id="outline-container-使用 rsync 备份完整 linux 操作系统" class="outline-2">
-<h2 id="使用 rsync 备份完整 linux 操作系统"><span class="section-number-2">2</span> 使用 rsync 备份完整 Linux 操作系统</h2>
+<h2 id="使用 rsync 备份完整 linux 操作系统">使用 rsync 备份完整 Linux 操作系统</h2>
 <div class="outline-text-2" id="text-使用 rsync 备份完整 linux 操作系统">
 <p>
 <code>rsync -a --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} 192.168.1.1:/ /backup/192.168.1.1/ | tee /var/log/10.195.186.137_backup.log</code>
@@ -281,7 +281,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 21:43</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

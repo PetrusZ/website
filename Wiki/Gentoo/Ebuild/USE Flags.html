@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USE Flags</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">USE Flags</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbb0fc99">When not to use USE flags?</a></li>
+<li><a href="#org0a473ab"><code>noblah</code> USE Flags</a></li>
+<li><a href="#org2aa28d7">IUSE defaults</a></li>
+<li><a href="#org098658b">Local and Global USE Flags</a></li>
+<li><a href="#orgb4ea6bd">USE Flag Descriptions</a></li>
+<li><a href="#org9894bdf">Conflicting USE Flags</a></li>
+<li><a href="#org5cda16b">USE_EXPAND and ARCH USE Flags</a></li>
+</ul>
+</div>
+</div>
+<p>
+<code>USE</code> flag 用于控制可选的依赖和用户可能会希望选择的设置。例如， <code>app-editors/vim</code> 可以可选的构建支持 ruby 解释器，并且它需要安装 <code>dev-lang/ruby</code> 来达成此目的 —— 我们使用 ruby <code>USE</code> flag 来提供这个选项。在另一方面， <code>app-test/glark</code> 无论什么都要求 <code>ruby</code> ，所以在这里没有使用 <code>USE</code> flag。
+</p>
+
+<p>
+<code>USE</code> flag 的任何组合都不应导致软件包构建失败，因为用户可以设置任何组合的 flag。
+</p>
+
+<p>
+软件包不应基于编译时可用的内容进行配置和链接 —— 任何自动检测都必须被覆盖。这通常指依赖项"automagic"。这很不好，因为包管理器无法间的到该依赖，并且很容易破坏依赖和一些其他的问题。
+</p>
+
+<p>
+automagic 依赖最好通过准备构建系统 patch 来修复，其 patch 添加适当的选项来控制有疑问的依赖，并且提交该 patch 到上游让所有用户收益。为避免在下游携带附加的补丁，通常可以使用特殊的构建系统选项来解决（例如在 autotools 中缓存变量）或无条件的依赖相关软件包来解决 automagic 依赖（即强制检查总是成功）。
+</p>
+
+<blockquote>
+<p>
+Note: USE flag 的状态保存在 VDB 中，并且它们在 <code>pkg_prerm</code> 和 <code>pkg_postrm</code> 中的值从这里获取。这意味着在 merge 和 unmerge 之间设置或取消设置 USE flag 是无效的。
+</p>
+</blockquote>
+
+<div id="outline-container-orgbb0fc99" class="outline-2">
+<h2 id="orgbb0fc99">When not to use USE flags?</h2>
+<div class="outline-text-2" id="text-orgbb0fc99">
+<p>
+尽管通常认为 <code>USE</code> flag 对用户有利，但也有一些避免使用它们的有效用例。当写 ebuild 时的，考虑是否为一个特定功能添加 flag，或探索以下描述的替代方案之一。
+</p>
+
+<p>
+当软件包未链接时， <code>USE</code> flag 的使用不应该控制运行时依赖。这样做会未软件包创建额外的配置，并重新编译磁盘上没有更改的底层文件。这应该避免这种情况，改为如果有需要则通过安装后的消息传达给用户。
+</p>
+
+<p>
+<code>USE</code> flag 不得用于控制小型、非侵入式、不会引入其他构建时依赖或导致构建时间显著增加的文件。例如此类文件包括 bash 补全文件，init.d 脚本，logrotate 配置文件，systemd 服务文件。基本原理与上述相同。这些文件必须无条件的安装。
+</p>
+
+<p>
+对于具有多个条件程序或模块的包，可以进行类似的处理。每当这会导致大量的 <code>USE</code> flag，迫使用户花费大量的时间选择兼容的 flag，并可能在不完整的选择后重新构建，考虑减少将 flag 用于那些具有外部依赖和/或构建时间较长的程序或模块。剩余的部分应该改为无条件构建，或由像 <code>minimal</code> 的 flag 控制。
+</p>
+
+<p>
+你不应该引入仅用于操作 <code>CFLAGS</code> 、 <code>FEATRUES</code> 等类似由用户直接配置的变量的 USE flag。反而，软件包应避免操作它们，并让用户直接设置它们。常见的错误包括：
+</p>
+
+<ol class="org-ol">
+<li>使用 <code>debug</code> USE flag 来强制 <code>-O0 -g</code> 并禁用 stripping。 <code>debug</code> flag 的正确目的应该是控制附加的调试代码路径。用户应该负责使用正确的 flags 和特性来保留调试信息。</li>
+<li>引入 <code>lto</code> flag 并强制 <code>-flto</code> 。这是用户应该直接在 flag 变量设置的。</li>
+<li>使用 <code>CPU_FLAGS_*</code> 来控制 <code>-m*</code> 选项。这些 flag 旨在显式控制要求特定 CPU 扩展的代码路径，例如 separate assembly。编译器生成的程序集应尊重用户的 <code>-march</code> 选择。</li>
+</ol>
+
+<p>
+在某些极端情况下，这些规则可能不适用。例如，一些上游要求用户使用特定的 <code>CFLAGS</code> 并且拒绝使用其他值构建的错误报告。在这种情况，默认情况下会 strip flag 并提供 <code>custom-cflags</code> flag，以允许用户强制使用其首选 flag。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0a473ab" class="outline-2">
+<h2 id="org0a473ab"><code>noblah</code> USE Flags</h2>
+<div class="outline-text-2" id="text-org0a473ab">
+<p>
+避免 <code>noblah</code> 风格的 <code>use</code> flag。它们会破坏 <code>use.mask</code> 并且对架构开发者造成各种复杂问题。原因如下：
+</p>
+
+<p>
+考虑一个名为'vplayer'的假想包，其功能为播放视频。该软件包通过 <code>USE</code> flag 对各种声音和视频输出方法、各种视频解码等提供可选支持。
+</p>
+
+<p>
+vplayer 的可选功能之一是提供对'fakemdia'的解码支持，不幸的是它仅以狡猾的 x86 二进制形式提供。我们通过执行嗯以下操作来解决此问题：
+</p>
+
+<p>
+<code>RDEPEND="x86? ( fakemdia? ( &gt;=media-libs/fakemdia-1.1 ) )"</code>
+</p>
+
+<p>
+除了这种方法非常肮脏 —— 当 AMD64 二进制文件也这样做会发生什么？还有，在其他架构的用户会在 <code>emerge -pv</code> 输出中看到列出的 fakemdia，即使它实际上不可用。
+</p>
+
+<p>
+类似的，假如 vplayer 将支持通过 ALSA 解码器输出作为一个选项。然而 ALSA 在 SPARC 或 Alpha 上不可用（或在编写此示例时）。所以我们可以这样做：
+</p>
+
+<p>
+<code>DEPEND="!sparc? ( !alpha? ( alsa? ( media-libs/alsa-lib ) ) )"</code>
+</p>
+
+<p>
+同样，这很混乱，并且 ALSA 同样会出现在 <code>emerge -p</code> 的输出中。而且，一旦 ALSA 开始在 SPARC 上工作时，每一个这么做的 ebuild 都必须手动编辑。
+</p>
+
+<p>
+解决办法是 <code>use.mask</code> ，该文件记录在<a href="https://devmanual.gentoo.org/profiles/use.mask/index.html">Profile use.make</a>文件中。每个 profile 都可以有一个 <code>use.mask</code> 文件，该文件用于强制禁用给定架构（或子架构，或 subprofile）上的特定 USE flag。所以，如果 <code>fakemdia</code> USE flag 在每一个非 x86 pofile 的 use.mask 中，以下内容完全合法并且不会破坏任何内容：
+</p>
+
+<p>
+<code>RDEPEND="fakemedia? ( &gt;=media-libs/fakemedia-1-1 )"</code>
+</p>
+
+<p>
+非 x86 的用户在执行 <code>emerge -pv vplayer</code> 时会看到以下内容：
+</p>
+
+<p>
+<code>[ebuild   R   ] media-video/vplayer-1.2 alsa -blah (-fakemedia) xyz</code>
+</p>
+
+<p>
+要向 <code>use.mask</code> 添加一个 flag，请询问相关的架构团队。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2aa28d7" class="outline-2">
+<h2 id="org2aa28d7">IUSE defaults</h2>
+<div class="outline-text-2" id="text-org2aa28d7">
+<p>
+在 <code>IUSE</code> 中 use flag 的名称前添加 <code>+</code> 或 <code>-</code> 以默认将其打开或关闭。
+</p>
+
+<blockquote>
+<p>
+Important：在 <code>IUSE</code> 中添加 <code>-</code> 到 flag 之前时非常没有用的，因为它既不会覆盖用户的配置(<code>make.conf</code>)，也不会覆盖 profile 默认(<code>make.defualts=和=package.use</code>)。有关 Portage 中 USE 顺序的详细信息，请参见 amke.conf(5)。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org098658b" class="outline-2">
+<h2 id="org098658b">Local and Global USE Flags</h2>
+<div class="outline-text-2" id="text-org098658b">
+<p>
+USE flag 可分为本地或全局。一个全局 USE flag 必须满足几个标准：
+</p>
+
+<ul class="org-ul">
+<li>它被许多不同的软件包使用，至少 5 个似乎满足以上条件。</li>
+<li>它具有一般的非特定用途。</li>
+</ul>
+
+<p>
+第二点非常重要。如果 USE flag 对 <code>pkg-one</code> 于对 <code>pkg-two</code> 的影响大不相同，那么该表示不是成为全局 flag 的合适候选者。尤其要注意，如果曾经引入 <code>client</code> 和 <code>server</code> USE flag，则由于这个原因它们不能成为全局 USE flag。
+</p>
+
+<p>
+在引入一个新的全局 USE flag 之前， 它必须在 gentoo-dev 邮件列表中进行讨论。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb4ea6bd" class="outline-2">
+<h2 id="orgb4ea6bd">USE Flag Descriptions</h2>
+<div class="outline-text-2" id="text-orgb4ea6bd">
+<p>
+必须在 <code>profile/</code> 目录的 <code>use.desc</code> 或软件包目录的 <code>metadata.xml</code> 中描述所有 USE flag。见 <code>man portage</code> 或这些文件中的注释以获取格式说明。 记得保持这些文件的排序。 <code>use.local.desc</code> 文件自动从软件包的 <code>metadata.xml</code> 生成的，并且可以由解析树的工具使用。因为 <code>use.local.desc</code> 是自动生成的，因此绝对不能在树中进行手动编辑。更多信息见<a href="https://www.gentoo.org/glep/glep-0056.html">GLEP 56</a>。
+</p>
+
+<p>
+<code>USE_EXPAND</code> flag 是一个例外，其必须记录在 <code>profile/desc/</code> 目录中。每个 <code>USE_EXPAND</code> 变量需要一个文件，该文件必须包含该变量可以采用的可能的值的说明。格式见这些文件中的注释，并且记住保持这些文件的排序。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9894bdf" class="outline-2">
+<h2 id="org9894bdf">Conflicting USE Flags</h2>
+<div class="outline-text-2" id="text-org9894bdf">
+<p>
+偶尔 ebuild 的 USE 会因为功能性产生冲突。检查它们并返回一个错误不是一个可行的方法。相反，你必须在冲突中选择一个青睐的 USE flag，并应警告用户使用了特定的 flag。
+</p>
+
+<p>
+一个示例来自 <code>mail-mta/mstmp</code> ebuild。软件包可以使用代 GnuTLS 的 SSL，代 OpenSSL 的 SSL 或者完全不使用 SSL。因为 GnuTLS 比 OpenSSL 具有更多功能，因此受到青睐：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    src_compile<span style="color: #51afef;">()</span> <span style="color: #51afef;">{</span>
+        <span style="color: #c678dd;">local</span> myconf
+
+        <span style="color: #51afef;">if</span> use ssl &amp;&amp; use gnutls ; <span style="color: #51afef;">then</span>
+        <span style="color: #dcaeea;">myconf</span>=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{myconf}</span><span style="color: #98be65;"> --enable-ssl --with-ssl=gnutls"</span>
+        <span style="color: #51afef;">elif</span> use ssl &amp;&amp; <span style="color: #51afef; font-weight: bold;">!</span> use gnutls ; <span style="color: #51afef;">then</span>
+        <span style="color: #dcaeea;">myconf</span>=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{myconf}</span><span style="color: #98be65;"> --enable-ssl --with-ssl=openssl"</span>
+        <span style="color: #51afef;">else</span>
+            <span style="color: #dcaeea;">myconf</span>=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{myconf}</span><span style="color: #98be65;"> --disable-ssl"</span>
+        <span style="color: #51afef;">fi</span>
+
+        econf <span style="color: #98be65;">\</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Other stuff</span>
+        $<span style="color: #c678dd;">{</span><span style="color: #dcaeea;">myconf</span><span style="color: #c678dd;">}</span>
+
+        emake
+    <span style="color: #51afef;">}</span>
+</pre>
+</div>
+
+<p>
+在某些特殊情况下，上述策略会破坏反向 USE 依赖。为了避免如此，ebuild 可以使用 <code>REQUIRED_USE</code> 指定允许的 USE flag 组合。关于其语法的描述请见<a href="https://devmanual.gentoo.org/ebuild-writing/variables/index.html#required_use">REQUIRED_USE</a>章节。
+</p>
+
+<p>
+例如，如果一个软件包 <code>dev-libs/foo</code> 可以使用 <code>USE="a"</code> 或 <code>USE="b"</code> 之一构建，但不是同时使用，那么首选其中一个 flag 将破坏依赖于 <code>dev-libs/foo[a]</code> 或 <code>dev-libs/foo[b]</code> 的软件包。因此在这种情况中，ebuild 应该指定 <code>REQUIRED_USE="a ? ( !b )"</code> 。
+</p>
+
+<blockquote>
+<p>
+NOTE: 为了避免迫使用户过多的 micro-manage falg，应谨慎的使用 <code>REQUIRED_USE</code> 。只要有可能进行满足用户需求的构建，就应遵循常规策略。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org5cda16b" class="outline-2">
+<h2 id="org5cda16b">USE_EXPAND and ARCH USE Flags</h2>
+<div class="outline-text-2" id="text-org5cda16b">
+<p>
+<code>VIDEO_CARDS</code> 、 <code>INPUT_DEVICES</code> 和 <code>L10N</code> 变量会自动扩展为 USE flag。这些称为 <code>USE_EXPAND</code> 变量。例如，如果用户在 <code>make.conf</code> 中有 <code>L10N="en fr"</code> ，那么 <code>USE="l10n_en l10n_fr"</code> 会自动被 portage 设置。会自动被 portage 设置。会自动被 portage 设置。会自动被 portage 设置。
+</p>
+
+<p>
+自 Prtage 2.0.51.20 其， <code>USE_EXPAND</code> 列表被设置在 <code>profile/bas/make.defaults</code> 中。未经过 gentoo-dev 列表的讨论，不能对其进行修改，并且在任何 subprofile 中也不能对其修改。
+</p>
+
+<p>
+当前架构（例如， <code>x86</code> 、 <code>sparc</code> 、 <code>ppc-macos</code> ）会被自动设置为 USE flag。有关有效的有关架构关键词的完整列表，请见 <code>profile/arch.list</code> ，<a href="https://www.gentoo.org/glep/glep-0022.html">GLEP 22</a>对其格式进行了说明。
+</p>
+
+<blockquote>
+<p>
+Warning：架构变量与 <code>ACCEPT_KEYWORDS</code> 有某种联系是一个常见的误解。它们没有联系。例如，在 <code>sparc</code> 上接受 <code>x86</code> 关键字，并不会设置 <code>USE\"x86"</code> 。类似的，也没有 <code>~arch</code> USE flag，所以不要尝试 <code>if use ~x86</code> 。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

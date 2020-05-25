@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ebuild_Manpage_2</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Ebuild_Manpage_2</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org01f5289">PORTAGE DECLARATIONS</a></li>
+<li><a href="#org04bb038">PHASE FUNCTIONS</a></li>
+<li><a href="#orgea6dd7e">HELPER FUNCTIONS</a>
+<ul>
+<li><a href="#orge9cf4ad">Phase:</a></li>
+<li><a href="#org5c54f50">General:</a></li>
+<li><a href="#orga66bb64">Output:</a></li>
+<li><a href="#org9a14da0">Unpack</a></li>
+<li><a href="#org7610bb6">Compile:</a></li>
+<li><a href="#orgb22caa8">Install:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org01f5289" class="outline-2">
+<h2 id="org01f5289">PORTAGE DECLARATIONS</h2>
+<div class="outline-text-2" id="text-org01f5289">
+<ul class="org-ul">
+<li><p>
+inherit
+</p>
+
+<p>
+inherit 是 portage 对 ebuild 外部的额外 class 的维护的函数并且作为继承能力和数据提供。它们定义函数并设置数据类型作为插件替代、扩展和简化程序，用于极为常见的任务以简化构建过程。调用 inherit 不能依赖于给定 ebuild 中可能有所不同的条件。eclass 的规范仅包含其名称，而不包含.eclass 扩展名。还要注意，inherit 语句必须位于其他 全变量声明之前，除非这些变量在 eclass 的全局范围内使用。
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org04bb038" class="outline-2">
+<h2 id="org04bb038">PHASE FUNCTIONS</h2>
+<div class="outline-text-2" id="text-org04bb038">
+<ul class="org-ul">
+<li><p>
+pkg_pretend
+</p>
+
+<p>
+从 EAPI 4 开始，为了检查是否满足杂项要求，该函数必须被定义。该函数应该尽可能的早被调用，在任何尝试满足依赖之前。如果函数检测到问题，则它应该调用 eerror 并且 die。用来执行 pkg_pretend 的环境（变量、函数、临时目录等）不会被保存，所以在之后的执行阶段中不可用。
+</p></li>
+
+<li><p>
+pkg_nofecth
+</p>
+
+<p>
+该函数将会在无论任何原因都无法获取 SRC\_URI 中的文件时执行。如果你在 RESTRICT 中开启 fetch，这对于向用户显示如何获取所述文件的信息很有用。你所要做仅是输出信息，然后让函数返回。不要在函数结尾调用 die。
+</p></li>
+
+<li><p>
+pkg_setup
+</p>
+
+<p>
+如果软件包需要指定 setup 操作或要首先执行检查，则可以使用该函数。
+</p>
+
+<p>
+初始工作目录：$PORTAGE_TEMPDIR
+</p></li>
+
+<li><p>
+src_unpack
+</p>
+
+<p>
+该函数用于 unpack 在 A 中的所有源文件到 WORKDIR。如果未在 ebuild 脚本是定义该函数，则它调用 unpack ${A}。任何 patch 或其他预配置/编译的修改都不应该在这里。
+</p>
+
+<p>
+初始工作目录：$WORKDIR
+</p></li>
+
+<li><p>
+src_prepare
+</p>
+
+<p>
+所有源代码的准备工作，例如不定的应用，都应该在此处完成。这个函数从 EAPI 2 开始支持
+</p>
+
+<p>
+初始工作目录：$S
+</p></li>
+
+<li><p>
+src_configure
+</p>
+
+<p>
+配置的所有必要步骤都应该此处完成。该函数从 EAPI 2 开始支持。
+</p>
+
+<p>
+初始工作目录：$S
+</p></li>
+
+<li><p>
+src_compile
+</p>
+
+<p>
+小于 EPAI 2 时，配置和编译的所有必要步骤都应该在此处完成。从 EAPI 2 开始，仅编译步骤应该在此处完成。
+</p>
+
+<p>
+初始工作目录：$S
+</p></li>
+
+<li><p>
+src_test
+</p>
+
+<p>
+运行所有软件包特定的测试用例。默认运行 <code>emake check</code> 后跟着运行 <code>emake test</code> 。在 EAPI 5 之前，src_test 的默认实现自动传递-j1 选项作为 emake 的最后一个参数，并且从 EAPI 5 开始将允许并行运行测试。
+</p>
+
+<p>
+初始工作目录：$S
+</p></li>
+
+<li><p>
+src_install
+</p>
+
+<p>
+应该在临时安装目录中包含安装软件包所要求的所有内容。
+</p>
+
+<p>
+初始工作目录：$S
+</p>
+
+<p>
+从 EAPI 4 开始，如果 src_install 未定义，则下列默认实现将会被使用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">      src_install<span style="color: #51afef;">()</span> <span style="color: #51afef;">{</span>
+          <span style="color: #51afef;">if</span> <span style="color: #c678dd;">[</span><span style="color: #98be65;">[</span> -f Makefile || -f GNUmakefile || -f makefile <span style="color: #98be65;">]</span><span style="color: #c678dd;">]</span> ; <span style="color: #51afef;">then</span>
+              emake <span style="color: #dcaeea;">DESTDIR</span>=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{D}</span><span style="color: #98be65;">"</span> install
+          <span style="color: #51afef;">fi</span>
+
+          <span style="color: #51afef;">if ! </span><span style="color: #c678dd;">declare</span> -p DOCS &amp;&gt;/dev/null ; <span style="color: #51afef;">then</span>
+              <span style="color: #c678dd;">local</span> d
+              <span style="color: #51afef;">for</span> d<span style="color: #51afef;"> in</span> README* ChangeLog AUTHORS NEWS TODO CHANGES <span style="color: #98be65;">\</span>
+                      THANKS BUGS FAQ CREDITS CHANGELOG ; <span style="color: #51afef;">do</span>
+                  <span style="color: #c678dd;">[</span><span style="color: #98be65;">[</span> -s <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{d}</span><span style="color: #98be65;">"</span> <span style="color: #98be65;">]</span><span style="color: #c678dd;">]</span> &amp;&amp; dodoc <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{d}</span><span style="color: #98be65;">"</span>
+              <span style="color: #51afef;">done</span>
+          <span style="color: #51afef;">elif</span> <span style="color: #c678dd;">[</span><span style="color: #98be65;">[</span> $<span style="color: #51afef;">(</span><span style="color: #c678dd;">declare</span> -p DOCS<span style="color: #51afef;">)</span> == <span style="color: #98be65;">"declare -a "</span>* <span style="color: #98be65;">]</span><span style="color: #c678dd;">]</span> ; <span style="color: #51afef;">then</span>
+              dodoc <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{DOCS[@]}</span><span style="color: #98be65;">"</span>
+          <span style="color: #51afef;">else</span>
+              dodoc $<span style="color: #c678dd;">{</span><span style="color: #dcaeea;">DOCS</span><span style="color: #c678dd;">}</span>
+          <span style="color: #51afef;">fi</span>
+      <span style="color: #51afef;">}</span>
+</pre>
+</div></li>
+
+<li><p>
+pkg_preinst pkg_postinst
+</p>
+
+<p>
+上软件包被 merge 之前和之后，所有需要在实时文件系统上的修改都应该放在这里。而且对用户的注释也应该放在此处并在最后显示。
+</p>
+
+<p>
+初始工作目录：$PWD
+</p></li>
+
+<li><p>
+pkg_prerm pkg_postrm
+</p>
+
+<p>
+类似与 pkg_*inst 函数，但是在 unmerge 时使用。
+</p>
+
+<p>
+初始工作目录：$PWD
+</p></li>
+
+<li><p>
+pkg_config
+</p>
+
+<p>
+该函数应包含可选的基本配置步骤。
+</p>
+
+<p>
+初始工作目录：$PWD
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgea6dd7e" class="outline-2">
+<h2 id="orgea6dd7e">HELPER FUNCTIONS</h2>
+<div class="outline-text-2" id="text-orgea6dd7e">
+</div>
+<div id="outline-container-orge9cf4ad" class="outline-3">
+<h3 id="orge9cf4ad">Phase:</h3>
+<div class="outline-text-3" id="text-orge9cf4ad">
+<ul class="org-ul">
+<li><p>
+defualt
+</p>
+
+<p>
+为当前正在执行的阶段调用默认阶段函数实现。该方程从 EAPI 2 开始支持。
+</p></li>
+
+<li><p>
+defualt_*
+</p>
+
+<p>
+从 EAPI 2 开始，默认 pkg_nofetch 和 src_*阶段函数可以通过方程以 defualt_开头并以相应的阶段函数名结尾的函数访问。例如，调用名为 defualt_src_compile 的函数等同于调用 src_compile 函数的默认实现。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Defualt Phase Functions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">defualt_src_unpack</td>
+</tr>
+
+<tr>
+<td class="org-left">defualt_src_prepare</td>
+</tr>
+
+<tr>
+<td class="org-left">defualt_src_comfigure</td>
+</tr>
+
+<tr>
+<td class="org-left">defualt_src_compile</td>
+</tr>
+
+<tr>
+<td class="org-left">defualt_src_test</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5c54f50" class="outline-3">
+<h3 id="org5c54f50">General:</h3>
+<div class="outline-text-3" id="text-org5c54f50">
+<ul class="org-ul">
+<li><p>
+assert [reason]
+</p>
+
+<p>
+检查 shell 的 PIPESTATUS 数组变量的值，如果有任何非 0 值（表示失败），调用 die 并且 reason 作为失败消息。
+</p></li>
+
+<li><p>
+die [reason]
+</p>
+
+<p>
+使当前 emerge 程序中止。最后显示的信息将包括 reason。
+</p>
+
+<p>
+从 EAPI 4 开始，所有 helper 每当发生某种错误就自动调用 die。helper 调用可以以 nofatal 为前缀，以防止错误变成 fatal。
+</p></li>
+
+<li><p>
+nofatal [helper]
+</p>
+
+<p>
+执行 helper 并且如果失败也不调用 die。nofatal helper 从 EAPI 4 开始可用。
+</p></li>
+
+<li><p>
+<code>use &lt;USE item&gt;</code>
+</p>
+
+<p>
+如果 USE item 在 USE 变量中，函数会默默返回 0（aka shell true）。如果 USE item 不在 USE 变量中，函数会默默返回 1（aka shell false）。usev 时 use 的详细版本。
+</p></li>
+
+<li><p>
+<code>usev &lt;USE item&gt;</code>
+</p>
+
+<p>
+就像 use，但在 use 返回 true 的时候同时 echo USE item。
+</p></li>
+
+<li><p>
+<code>usex &lt;USE flag&gt; [true output] [false output] [true suffix] [false suffix]</code>
+</p>
+
+<p>
+如果 USE flags 设置了，echo <code>[true output][true suffix]</code> （默认为"yes"），否则 echo <code>[false output][false suffix]</code> （默认为"no"）。usex heper 从 EAPI 5 开始可用。
+</p></li>
+
+<li><p>
+<code>use_with &lt;USE item&gt; [configure name] [configure opt]</code>
+</p>
+
+<p>
+对于创建自定义选项以传递到配置脚本很有用。如果 USE item 在 USE 变量中并且 configure opt 指定了，那么字符串&#x2013;with-[configure-name]=[configure opt]将会被 echo。如果 configure opt 没有被指定，那么仅&#x2013;with-[configure name]会被 echo。如果 USE item 不在 USE 变量中，那么字符串&#x2013;without-[configure name]将会被 echo。如果 configure name 没有被指定，那么 USE item 将会在其位置上使用。从 EAPI 4 开始，空的 configure opt 参数可以被识别。在 EAPI 3 和更早中，空的 configure opt 参数被视为未被提供。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #dcaeea;">USE</span>=<span style="color: #98be65;">"opengl"</span>
+      <span style="color: #dcaeea;">myconf</span>=$<span style="color: #51afef;">(</span>use_with opengl<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>myconf now has the value <span style="color: #98be65;">"--with-opengl"</span><span style="color: #51afef;">)</span>
+
+      <span style="color: #dcaeea;">USE</span>=<span style="color: #98be65;">"jpeg"</span>
+      <span style="color: #dcaeea;">myconf</span>=$<span style="color: #51afef;">(</span>use_with jpeg libjpeg<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>myconf now has the value <span style="color: #98be65;">"--with-libjpeg"</span><span style="color: #51afef;">)</span>
+
+      <span style="color: #dcaeea;">USE</span>=<span style="color: #98be65;">""</span>
+      <span style="color: #dcaeea;">myconf</span>=$<span style="color: #51afef;">(</span>use_with jpeg libjpeg<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>myconf now has the value <span style="color: #98be65;">"--without-libjpeg"</span><span style="color: #51afef;">)</span>
+
+      <span style="color: #dcaeea;">USE</span>=<span style="color: #98be65;">"sdl"</span>
+      <span style="color: #dcaeea;">myconf</span>=$<span style="color: #51afef;">(</span>use_with sdl SDL all-plugins<span style="color: #51afef;">)</span>
+      <span style="color: #51afef;">(</span>myconf now has the value <span style="color: #98be65;">"--with-SDL=all-plugins"</span><span style="color: #51afef;">)</span>
+</pre>
+</div></li>
+
+<li><p>
+<code>use_enable &lt;USE item&gt; [configure name] [configure opt]</code>
+</p>
+
+<p>
+和上面的 use_with 一样，除了配置选项是 <code>--enable-</code> 替代 <code>--with-</code> 、 <code>--disable-</code> 替代 <code>--without-</code> 。从 EAPI 4 开始，空的 configure opt 参数可以被识别。在 EAPI 3 和更早中，空的 configure opt 参数被视为未被提供。
+</p></li>
+
+<li><p>
+<code>has &lt;item&gt; &lt;item list&gt;</code>
+</p>
+
+<p>
+如果 item 在 item list 中，则 has 返回 0，否则返回 1。还有另外一个版本，hasv，会有条件的 echo item。
+</p>
+
+<p>
+item list 由 IFS 变量分隔。该变量的默认值为' '或空格。这是一个 bash 设置。
+</p></li>
+
+<li><p>
+<code>hasv &lt;item&gt; &lt;item list&gt;</code>
+</p>
+
+<p>
+就像 has，但在 has 返回 true 的时候同时 echo item。
+</p></li>
+
+<li><p>
+<code>has_version [-b] [-d] [-r] [--host-root] &lt;category/package-version&gt;</code>
+</p>
+
+<p>
+检查 category/package-version 是否已安装。该参数接受在 DEPEND 变量中可接受的所有值。如果 category/package-version i 已安装，该函数返回 0，否则返回 1。该软件包默认在 ROOT 中搜索。
+</p>
+
+<p>
+在 EAPI 5 和 EAPI 6 中，如果提供了&#x2013;host-root 选项，则软件包在 build host 中搜索。
+</p>
+
+<p>
+在 EAPI 7 和之后，令人困惑的&#x2013;host-root 选项被替换为-b，和 build host 中 BDEPEND 满足的依赖关系对应。类似的，-d 选项对应 SYSROOT 中的 DEPEND 并且-r 选项对应 ROOT 中的 RDEPEND。
+</p></li>
+
+<li><p>
+<code>best_version [-b] [-d] [-r] [--host-root] &lt;package name&gt;</code>
+</p>
+
+<p>
+该函数将会在当前已安装软件包的数据库中查找 package name 并且 echo 找到的软件包的“best version”，或者如果没有安装则为空。软件包默认在 ROOT 中搜索。它接受于 has_version 一样的选项。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #dcaeea;">VERINS</span>=<span style="color: #98be65;">"</span><span style="color: #51afef; font-weight: bold;">$(best_version net-ftp/glftpd)</span><span style="color: #98be65;">"</span>
+      <span style="color: #51afef;">(</span>VERINS now has the value <span style="color: #98be65;">"net-ftp/glftpd-1.27"</span> if glftpd-1.27 is       installed<span style="color: #51afef;">)</span>
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga66bb64" class="outline-3">
+<h3 id="orga66bb64">Output:</h3>
+<div class="outline-text-3" id="text-orga66bb64">
+<ul class="org-ul">
+<li><p>
+einfo disposable message
+</p>
+
+<p>
+和 elog 一样，当应该在消息对用户不重要时使用（像构建过程中的进度或状态信息）。
+</p></li>
+
+<li><p>
+elog informative message
+</p>
+
+<p>
+如果你需要显示信息并且你希望用户阅读并提起注意，那么使用 elog。它就像 echo 一样，但是添加一点输出，以引起用户的注意。信息还会被 portage 记录以供之后查看。
+</p></li>
+
+<li><p>
+ewarn warning message
+</p>
+
+<p>
+和 einfo 一样，但是应该对用户显示警告时使用。
+</p></li>
+
+<li><p>
+eqawarn QA warning message
+</p>
+
+<p>
+和 einfo 一样，但应该在对用户显示 QA 警告时使用
+</p></li>
+
+<li><p>
+eerror error message
+</p>
+
+<p>
+和 einfoi 一样，但应该在对用户显示错误时使用。
+</p></li>
+
+<li><p>
+ebegin helpful message
+</p>
+
+<p>
+就像 einfo，我们输出 helpful message，然后提示以下操作可能需要一些时间才能完成。一旦任务完成，你需要调用 eend。
+</p></li>
+
+<li><p>
+<code>eend &lt;status&gt; [error message]</code>
+</p>
+
+<p>
+跟随在 ebegin 消息之后，并使用适当"OK"或"!!"（错误）标记。如果 status 是非 0 的，那么附加的 error message 会被显示。
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9a14da0" class="outline-3">
+<h3 id="org9a14da0">Unpack</h3>
+<div class="outline-text-3" id="text-org9a14da0">
+<ul class="org-ul">
+<li><p>
+<code>unpack &lt;source&gt; [list of more sources]</code>
+</p>
+
+<p>
+该函数解压所源文件列表到当前目录中。该函数会将 source 附加到 DISTDIR 变量中。
+</p></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7610bb6" class="outline-3">
+<h3 id="org7610bb6">Compile:</h3>
+<div class="outline-text-3" id="text-org7610bb6">
+<ul class="org-ul">
+<li><p>
+econf [configure options]
+</p>
+
+<p>
+用于替代 configure。执行：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">      $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ECONF_SOURCE</span>:-.<span style="color: #51afef;">}</span>/configure <span style="color: #98be65;">\</span>
+          $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">CBUILD</span>:+--build=$<span style="color: #c678dd;">{</span><span style="color: #dcaeea;">CBUILD</span><span style="color: #c678dd;">}</span><span style="color: #51afef;">}</span> <span style="color: #98be65;">\</span>
+          --datadir=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/usr/share <span style="color: #98be65;">\</span>
+          --host=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">CHOST</span><span style="color: #51afef;">}</span> <span style="color: #98be65;">\</span>
+          --infodir=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/usr/share/info <span style="color: #98be65;">\</span>
+          --localstatedir=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/var/lib <span style="color: #98be65;">\</span>
+          --prefix=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/usr <span style="color: #98be65;">\</span>
+          --mandir=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/usr/share/man <span style="color: #98be65;">\</span>
+          --sysconfdir=<span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{EPREFIX}</span><span style="color: #98be65;">"</span>/etc <span style="color: #98be65;">\</span>
+          $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">CTARGET</span>:+--target=$<span style="color: #c678dd;">{</span><span style="color: #dcaeea;">CTARGET</span><span style="color: #c678dd;">}</span><span style="color: #51afef;">}</span> <span style="color: #98be65;">\</span>
+          --disable-dependency-tracking <span style="color: #98be65;">\</span>
+          $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">EXTRA_ECONF</span><span style="color: #51afef;">}</span> <span style="color: #98be65;">\</span>
+          configure options || die <span style="color: #98be65;">"econf failed"</span>
+</pre>
+</div>
+
+<p>
+注意 EXTRA_ECONF 仅适用于用户，不适用于 ebuild writer。如果你希望传递更多的参数到 configure，只需将额外的参数传递给 econf。另外注意如果 configure 脚本失败，econf 自动调用 die。从 EAPI 3 开始，econf 使用被之前的 EAPI 值忽略的${EPREFIX}变量。从 EAPI 4 开始，如果字符串 disable-dependency-tarcking 出现在 configure &#x2013;help 的输出中，econf 会在参数中添加&#x2013;disable-dependency-tracking。从 EAPI 5 开始，如果字符串 disable-silent-rules 出现在 configure &#x2013;help 中，econf 会在参数中添加 disable-silent-rules。
+</p></li>
+
+<li><p>
+emake [make options]
+</p>
+
+<p>
+在 ebuild 中必须使用它来代替 make。执行 <code>${MAKE:-make} ${MAKEOPTS} make options ${EXTRA_EMAKE}</code> ，并且从 EAPI 4 开始会自动调用 <code>die</code> 。
+</p>
+
+<p>
+MAKEOPTS 变量由用户设置，所以能够开启一些像并行构建的特性。更多细节请见 make.conf(5)。
+</p>
+
+<p>
+EXTRA_EMAKE knob 是 portage 的特性，所以开发者可以在调试 ebuild 时覆盖一些东西。这不是任何 EAPI 规范的一部分。
+</p>
+
+<p>
+<b>警告</b> ：你必须确定你的构建在并行编译上没有任何问题(make -j2)。应该对它进行彻底的测试，因为众所周知并行编译有时会失败，但又不总是如此。如果你确定你的软件包在并行构建中失败，并且无法解决这个问题，那么你应该显式的运行 <code>emake -j1</code> 。这是不得已的办法，因为它会显著的降低具有很多处理器的在系统的构建速度。
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb22caa8" class="outline-3">
+<h3 id="orgb22caa8">Install:</h3>
+<div class="outline-text-3" id="text-orgb22caa8">
+<ul class="org-ul">
+<li><p>
+einstall [make options] 这用来代替 make install。执行：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">      <span style="color: #ECBE7B;">make</span> <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">prefix</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/usr <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">datadir</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/usr/share <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">infodir</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/usr/share/info <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">localstatedir</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/var/lib <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">mandir</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/usr/share/man <span style="color: #98be65;">\</span>
+          <span style="color: #dcaeea;">sysconfdir</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">ED</span><span style="color: #51afef;">}</span>/etc <span style="color: #98be65;">\</span>
+          $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">EXTRA_EINSTALL</span><span style="color: #51afef;">}</span> <span style="color: #98be65;">\</span>
+          <span style="color: #ECBE7B;">make</span> options <span style="color: #98be65;">\</span>
+          install
+</pre>
+</div>
+
+<p>
+请 <b>不</b> 要用它代替 <code>emake install DESTDIR=${D}</code> 。那是安装 make-based 软件包的首选方法。还有，不要使用 EXTRA_EINSTALL 变量，因为它仅适用于用户。
+</p></li>
+
+<li><p>
+<code>docompress [-x] &lt;path&gt; [list of more paths]</code>
+</p>
+
+<p>
+从 EAPI 4 开始，docompress helper 用来管理用以从可选的压缩中包括或排除的文件的列表。如果首个参数是-x，其后每个后续参数都添加到排除列表中。否则，将每个参数添加到包含列表。包含列表最初包含 <code>/usr/share/doc</code> 、 <code>/usr/share/info</code> 和 <code>/usr/share/man</code> 。排除列表最初包含 <code>/usr/share/doc/${PF}/html</code> 。
+</p>
+
+<p>
+可选压缩应在 src_install 完成后执行，并且在执行任何后续阶段函数之前。对于包含列表中的每一项，假设它有 D 变量前置的值，那么：
+</p>
+
+<ul class="org-ul">
+<li>如果它是一个目录，则应将其时为该目录下的每个文件或目录都在包含列表中。</li>
+<li>如果项目是文件，则可以将其压缩除非如下所述已将其排除在外。</li>
+<li>如果项目不存在，则将其忽略。</li>
+</ul>
+
+<hr>
+
+<p>
+一个项目是否被排除根据如下决定：对于每个在排除列表中的项目，假设它具有 D 变量前置的值，那么：
+</p>
+
+<ul class="org-ul">
+<li>如果它是一个目录，则应将其时为该目录下的每个文件或目录都在排除列表中。</li>
+<li>如果项目是一个文件，则它将不会被压缩。</li>
+<li>如果项目不存在，则将其忽略。</li>
+</ul></li>
+
+<li><p>
+<code>dosed s:orig:change:g &lt;filename&gt;</code>
+</p>
+
+<p>
+从 EAPI 4 开始，dosed helper 不在存在。ebuild 应该直接调用 sed（并且假设为 GNU sed）
+</p>
+
+<p>
+在\({ED}中的文件名上执行 sed。如果未给出表达式，则将`s:\){D}::g`作为默认表达式。注意该表达式没有使用便宜前缀。
+</p>
+
+<p>
+<code>dosed s:/usr/local:/usr:g /usr/bin/some-script</code> 在 <code>${ED}/usr/bin/some-script</code> 上运行 sed。
+</p></li>
+
+<li><p>
+<code>dodir &lt;path&gt; [more paths]</code>
+</p>
+
+<p>
+在${ED}中创建目录。
+</p>
+
+<p>
+<code>dodir /usr/lib/apache</code> 创建 <code>${ED}/usr/lib/apache</code> 。请注意，do*函数将会为你运行 dodir。
+</p>
+
+<p>
+如果该目录在 merge 的时候为空，那么请改用 keepdir。
+</p></li>
+
+<li><p>
+diropts [options for install(1)]
+</p>
+
+<p>
+可用于为在 dodir 中使用的安装函数定义选项。默认为-m0755
+</p></li>
+
+<li><p>
+<code>into &lt;path&gt;</code>
+</p>
+
+<p>
+为其他函数像 dobin、dosbin、doman、doinfo、dolib 设置 root(DESTTREE)
+</p>
+
+<p>
+默认 root 是/usr
+</p></li>
+
+<li><p>
+<code>keepdir &lt;path&gt; [more paths]</code>
+</p>
+
+<p>
+类似于 dodir，但是用户创建原本为空的目录。PMS 未定义对完全空目录的处理，使用 keepdir 可以保证它们被追踪。
+</p></li>
+
+<li><p>
+<code>dobin &lt;binary&gt; [list of more binaries]</code>
+</p>
+
+<p>
+安装二进制或一列表的二进制到 DESTTREE/bin 中。创建所有必要的目录。
+</p></li>
+
+<li><p>
+<code>dosbin &lt;binary&gt; [list of more binaries]</code>
+</p>
+
+<p>
+安装二进制或一列表的二进制到 DESTTREE/sbin 中。创建所有必要的目录。
+</p></li>
+
+<li><p>
+<code>doinitd &lt;init.d script&gt; [list of more init.d scripts]</code>
+</p>
+
+<p>
+安装 Gentoo init.d 脚本。它们将会被安装到 Gentoo init.d 脚本的正确位置(etc/init.d)。创建所有必要的目录。
+</p></li>
+
+<li><p>
+<code>doconfd &lt;conf.d file&gt; [list of more conf.d files]</code>
+</p>
+
+<p>
+安装 Gentoo conf.d 文件。它们将会被安装到 Gentoo conf.d 文件的正确位置(etc/conf.d)。创建所有必要的目录。
+</p></li>
+
+<li><p>
+<code>doenvd &lt;env.d entry&gt; [list of more conf.d entries]</code>
+</p>
+
+<p>
+安装 Gentoo env.d 条目。它们将会被安装到 Gentoo env.d 条目的正确位置(etc/env.d)。创建所有必要的目录。
+</p></li>
+
+<li><code>dolib &lt;libraray&gt; [list of more libraries]</code></li>
+<li><code>dolib.a &lt;libraray&gt; [list of more libraries]</code></li>
+<li><p>
+<code>dolib.so &lt;libraray&gt; [list of more libraries]</code>
+</p>
+
+<p>
+安装库或一个列表的库到 DESTTREE/lib。创建所有必要的目录。
+</p></li>
+
+<li><p>
+libopts [options for install(1)]
+</p>
+
+<p>
+可用于为在 dolib 函数中使用的安装函数的定义选项。默认值为-m0644
+</p></li>
+
+<li><p>
+<code>doman [-i18n=&lt;locale&gt;] &lt;man-page&gt; [list of more man-pages]</code>
+</p>
+
+<p>
+根据手册文件结尾将 manual-pages 安装到 <code>/usr/share/man/man[0-9n]</code> 中。如果文件尚未压缩，则将其压缩。你可以用-i18n 选项指定特定语言环境的 manpages。那么 man-page 将会被安装到 <code>/usr/share/man/&lt;locale&gt;/man[0-9n]</code> 中。从 EAPI 2 开始，一个在文件名中包含语言环境的特定语言环境 manpage 将会被安装到 <code>/usr/share/man/&lt;locale&gt;/man[0-9n]</code> ，如果删除了文件名的语言环境部分，-i18n 选项将会没有效果。例如，在 EAPI2 中，命名为 <code>foo.&lt;locale&gt;.1</code> 的 manpage 将会安装为 <code>/usr/share/man/&lt;locale&gt;/man1/foo.1</code> 。从 EAPI 4 开始，-i18n 选项将会优先于语言环境后缀。
+</p></li>
+
+<li><p>
+<code>dohard &lt;filename&gt; &lt;linkname&gt;</code>
+</p>
+
+<p>
+从 EAPI 4 开始，dohard helper 不再继续存在。ebuild 应该直接调用 ln(1)。
+</p></li>
+
+<li><p>
+<code>dosym &lt;filename&gt; &lt;linkname&gt;</code>
+</p>
+
+<p>
+执行 ln 命令以创建符号链接。
+</p></li>
+
+<li><p>
+<code>doheader [-r] &lt;file&gt; [list of more files]</code>
+</p>
+
+<p>
+将给定的头文件安装到/usr/include 中，默认文件模式为 0644（可以通过 insopts 函数修改）。设置-r 设置递归。doheader helper 从 EAPI 5 开始可用。
+</p></li>
+
+<li><p>
+dohtml [-a filetypes] [-r] [-x list-of-dirs-to-ignore] [list-of-files-and-dirs]
+</p>
+
+<p>
+将文件列表（以空格分隔）中的文件安装到/usr/share/doc/${PF}/html 中，提供的文件以.htm、.html、.css、.js 结尾，设置-a 限制将会包含什么类型的文件，-A 追加到默认列表，设置-x 设置要排除的目录（默认不包括 CVS），-p 设置文档前缀，-r 设置为递归。
+</p></li>
+
+<li><p>
+<code>doinfo &lt;info-file&gt; [list of more info-files]</code>
+</p>
+
+<p>
+安装 info-page 到 DESTDIR/info 中。文件将会自动被 gzip 压缩。创建所有必要的目录。
+</p></li>
+
+<li><p>
+<code>domo &lt;locale-file&gt; [list of more locale-files]</code>
+</p>
+
+<p>
+根据 local-file 的结尾将 locale-file 安装到 DESTDIR/usr/share/locale/[LANG]中。创建所有必要的目录。
+</p></li>
+
+<li><code>fowners [-h|-H|-L|-P|-R] [user][:group] &lt;file&gt; [files]</code></li>
+<li><p>
+<code>fperms [-R] &lt;permissions&gt; &lt;file&gt; [files]</code>
+</p>
+
+<p>
+执行 chown(foweners)或 chmod(fperms)更改文件权限。
+</p></li>
+
+<li><p>
+insinto [path] 设置 doins 函数的目的路径。
+</p>
+
+<p>
+默认路径为/。
+</p></li>
+
+<li><p>
+insopts [options for install(1)]
+</p>
+
+<p>
+可用于定义 doins 中使用的安装函数的选项。默认值为-m0644。
+</p></li>
+
+<li><p>
+<code>doins [-r] &lt;file&gt; [list of more files]</code>
+</p>
+
+<p>
+安装文件到被 insinto 控制的路径。该函数使用 install(1)。创建所有必须的目录。设置-r 设置递归。从 EAPI 4 开始，doins 和 newins 都保留符号链接。在 EAPI 3 或更早，符号链接被取消引用而不是保留。
+</p></li>
+
+<li><p>
+exeinto [path]
+</p>
+
+<p>
+设置 doexe 函数的目的路径。
+</p>
+
+<p>
+默认路径为/。
+</p></li>
+
+<li><p>
+exeopts [options for install(1)]
+</p>
+
+<p>
+可用于为 doexe 中使用的安装函数定义选项。默认值为-m0755。
+</p></li>
+
+<li><p>
+<code>doexe &lt;executable&gt; [list of more executables]</code>
+</p>
+
+<p>
+安装可执行文件到被 exeinto 控制的路径中。该函数使用 install(1)。创建所有必要的目录。
+</p></li>
+
+<li><p>
+docinto [path]
+</p>
+
+<p>
+设置安装到文档树中时 dodoc 和 dohtml 所使用的子目录（基于/usr/share/doc/${PF}/）。默认没有子目录，或仅""。
+</p></li>
+
+<li><p>
+<code>dodoc [-r] &lt;document&gt; [list of more documents]</code>
+</p>
+
+<p>
+安装文档或一列表的文档到 <code>/usr/share/doc/${PF}/&lt;docinfo path&gt;</code> 。文档被标记为压缩。创建所有必要的目录。从 EAPI 4 开始，通过开启新的-r 选项启用对递归的支持。
+</p></li>
+
+<li><code>newbin &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newsbin &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newinitd &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newconfd &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newenvd &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newlib.so &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newlib.a &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newman &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newins &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><code>newexe &lt;old file&gt; &lt;new filename&gt;</code></li>
+<li><p>
+<code>newdoc &lt;old file&gt; &lt;new filename&gt;</code>
+</p>
+
+<p>
+所有这些函数就像 do*函数一样，但是它们仅处理一个文件，并且文件被安装为[new filename]。从 EAPI 5 开始，当第一个参数为 <code>-</code> （连字符）时，将读取标准输入。
+</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

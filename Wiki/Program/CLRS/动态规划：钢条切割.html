@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>动态规划：钢铁切割</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">动态规划：钢铁切割</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8aff5a6">钢铁切割</a></li>
+<li><a href="#orgd5d0ba3">自顶向下的递归实现</a>
+<ul>
+<li><a href="#org1ae07b4">动态规划方法求解问题</a></li>
+</ul>
+</li>
+<li><a href="#org798fc7f">子问题图</a></li>
+<li><a href="#orgfa8960f">重构解</a></li>
+</ul>
+</div>
+</div>
+<p>
+动态规划与分治法相似，都是通过组合子问题的解来求解原问题。分治方法将问题划分为互不相交的子问题，递归地求解子问题，即不同的子问题具有公共的子子问题。在这种情况下，分治算法会反复地求解那些公共子子问题。而动态规划算法对每个子子问题只求解一次，将其解保存在一个表格中，从而无需每次求解一个子子问题时都重新计算，避免了不必要的计算工作。
+</p>
+
+<p>
+动态规划方法通常用来求解*最优化问题*。这类问题有很多个可行解，每个解都有一个值，我们需要寻找具有最优值的解。
+</p>
+
+<p>
+通常按如下 4 个步骤来设计一个动态规划算法： 1. 刻画一个最优解的结构特征。 2. 递归地定义最优解的值。 3. 计算最优解的值，通常采用自底向上的方法。 4. 利用计算出的信息构造一个最优解
+</p>
+
+<p>
+步骤 1～3 是动态规划求解问题的基础，如果仅仅需要一个最优解的值，而非解本身，可以忽略步骤 4。
+</p>
+
+<hr>
+
+<div id="outline-container-org8aff5a6" class="outline-2">
+<h2 id="org8aff5a6">钢铁切割</h2>
+<div class="outline-text-2" id="text-org8aff5a6">
+<p>
+先通过一个例子来直观的学习一下动态规划。
+</p>
+
+<p>
+*切割钢铁问题*是这样的，给定一段长度为 n 的钢铁和一个价格表 p，求切割钢铁方案，使得收益 r 最大。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-161307%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-161307%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+长度为 n 的钢铁有 2\^(n-1)种不同的切割方案。一般而言，对于最大收益 rn，我们可以如下公式来描述：
+</p>
+
+<p>
+<code>rn = max(pn, r1+rn-1, r2+rn-2, …, rn-1+r1)</code>
+</p>
+
+<p>
+pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数对应 n-1 个方案：对于每个 i，首先将钢条切割为长度 i 和 n-i 两段，接着球这两段的最优切割收益 ri 和 rn-1。我们不知道哪种方案会获得最优收益，所以必须考察所有可能的 i，选出其中最大值。
+</p>
+
+<p>
+注意到，为了求解规模为 n 的原问题，我们先求解形式完全一样，但规模更小的子问题。即首次切割之后，将切割后的两段钢条看作两个独立的钢条切割问题。通过组合两个相关子问题的最优解，并在所有可能的两端切割方案中选取组合收益最大的，构成原问题的最优解。我们称钢条切割问题满足*最优子结构*性质：问题的最优解由相关子问题的最优解组合而成，而这些子问题可以独立求解。
+</p>
+
+<p>
+除了上述求解方法外，还存在一种更为简单的递归求解方法：将钢条从左边切割下长度为 i 的一段，然后只对右边剩下的长度为 n-i 的一段继续进行切割（递归求解）。即将长度为 n 的钢条分解为左边开始一段，以及剩余部分继续分解的结果。于是我们可以得到上面公式的简化版本：
+</p>
+
+<p>
+<code>rn = max(pi + rn-i)</code>
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgd5d0ba3" class="outline-2">
+<h2 id="orgd5d0ba3">自顶向下的递归实现</h2>
+<div class="outline-text-2" id="text-orgd5d0ba3">
+<p>
+有了上面的公式，我们就可以使用 C 语言递归求解钢条切割问题了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #c678dd;">MAX</span>(<span style="color: #dcaeea;">a</span>, <span style="color: #dcaeea;">b</span>)   ((a) &amp;gt; (b) ? (a) : (b))
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">cut_rod</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">q</span>;
+
+        <span style="color: #51afef;">if</span> (n == <span style="color: #da8548; font-weight: bold;">1</span>)
+            <span style="color: #51afef;">return</span>(<span style="color: #da8548; font-weight: bold;">0</span>);
+        q = -<span style="color: #da8548; font-weight: bold;">65535</span>;
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &amp;lt; n; i++) {
+            q = MAX(q, p[i] + cut_rod(p, n - i));
+        }
+
+        <span style="color: #51afef;">return</span>(q);
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">p</span>[<span style="color: #da8548; font-weight: bold;">11</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">17</span>, <span style="color: #da8548; font-weight: bold;">17</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">24</span>, <span style="color: #da8548; font-weight: bold;">30</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">max</span>;
+
+        max = cut_rod(p, <span style="color: #da8548; font-weight: bold;">11</span>);
+
+        printf(<span style="color: #98be65;">"%d\n"</span>, max);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+
+<p>
+在价格数组最前加个 0，是为了够能使函数 cut\_rod 正确运行，令 i 从 1 开始，不会造成无限循环的问题。在实际求解问题的过程中，一旦输入的规模稍微变大，运行时间就成倍的增长。n每增大 1，运行时间就会增加一倍。实际上，cut\_rod 的运行时间是 n 的指数函数，会爆炸性的增长。 当 n=10 时，运行时间都不会觉察到，当 n=20 时，大概会运行 20 秒，当 n=30 时，运行了 1 个小时都还没有结果&#x2026;&#x2026;
+</p>
+
+<p>
+递归算法效率这么查的原因在于它反复地用相同的参数对自身进行调用。下图显示了 n 为 4 时的调用过程。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-164151%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-164151%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<hr>
+</div>
+
+<div id="outline-container-org1ae07b4" class="outline-3">
+<h3 id="org1ae07b4">动态规划方法求解问题</h3>
+<div class="outline-text-3" id="text-org1ae07b4">
+<p>
+与一开始说的一样，动态规划方法仔细安排求解的顺序，对每个子问题只求解一次，并将结果保存下来。如果之后再次遇到此子问题，只需查找保存的结构，而不必重新计算。所以，动态规划是付出额外的内存空间来节省计算时间，典型的时空权衡的例子，而且时间上的节省可能是非常巨大的。
+</p>
+
+<p>
+动态规划有两种等价的实现方法：
+</p>
+
+<p>
+第一种方法称为 <b>带备忘的自顶向下法</b> 。此方法仍然是按递归形式编写，但过程会保存每个子问题的解（保存在数组或散列表中）。当需要一个子问题的解时，会首先检查是否已经保存了这个解。
+</p>
+
+<p>
+第二种方法成为 <b>自底向上法</b> 。这种方案一般需要恰当的定义子问题“规模”的概念，使得任何子问题的求解都只依赖于“更小的”子问题求解。因此可以将子问题排序，按由大到小的顺序进行求解。当求解某个子问题时，它所依赖的那些更小的子问题都已求解完毕，结果已经保存。
+</p>
+
+<p>
+这两种方法的渐进运行时间相同，仅有的差异在某些特殊情况下，自顶向下方法并未真正的考察所有可能的子问题。另外，由于没有频繁的递归函数调用，自底向上的方法时间复杂度通常有更小的系数。
+</p>
+
+<p>
+以下分别是自顶向下和自底向上解钢条切割问题的 C 语言实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #c678dd;">MAX</span>(<span style="color: #dcaeea;">a</span>, <span style="color: #dcaeea;">b</span>)   ((a) &amp;gt; (b) ? (a) : (b))
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">memized_cut_rod_aux</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">r</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         *&#33258;&#39030;&#21521;&#19979;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">q</span>;
+
+        <span style="color: #51afef;">if</span> (r[n - <span style="color: #da8548; font-weight: bold;">1</span>] &amp;gt;= <span style="color: #da8548; font-weight: bold;">0</span>)
+            <span style="color: #51afef;">return</span>(r[n - <span style="color: #da8548; font-weight: bold;">1</span>]);
+        <span style="color: #51afef;">if</span> (n == <span style="color: #da8548; font-weight: bold;">1</span>)
+            q = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">else</span> {
+            q = -<span style="color: #da8548; font-weight: bold;">65535</span>;
+            <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &amp;lt; n; i++) {
+                q = MAX(q, p[i] + memized_cut_rod_aux(p, n - i, r));
+            }
+        }
+
+        r[n - <span style="color: #da8548; font-weight: bold;">1</span>] = q;
+
+        <span style="color: #51afef;">return</span>(q);      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#36820;&#22238;&#26368;&#20248;&#35299;</span>
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">memized_cut_rod</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, *<span style="color: #dcaeea;">r</span>, <span style="color: #dcaeea;">max</span>;
+
+        r = (<span style="color: #ECBE7B;">int</span> *)malloc(n * <span style="color: #51afef;">sizeof</span>(<span style="color: #ECBE7B;">int</span>));
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &amp;lt; n; i++) {
+            r[i] = -<span style="color: #da8548; font-weight: bold;">65535</span>;
+        }
+
+        max = memized_cut_rod_aux(p, n, r);
+
+        free(r);
+
+        <span style="color: #51afef;">return</span>(max);
+    }
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">bottom_up_cut_rod</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         *&#33258;&#24213;&#21521;&#19978;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>, <span style="color: #dcaeea;">q</span>;
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">r</span>[n];
+        r[<span style="color: #da8548; font-weight: bold;">0</span>] = <span style="color: #da8548; font-weight: bold;">0</span>;           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#38271;&#24230;&#20026;0&#30340;&#38050;&#26465;&#27809;&#26377;&#25910;&#30410;</span>
+
+        <span style="color: #51afef;">for</span> (j = <span style="color: #da8548; font-weight: bold;">1</span>; j &amp;lt; n; j++) {
+            q = -<span style="color: #da8548; font-weight: bold;">65535</span>;
+
+            <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &amp;lt;= j; i++)
+                q = MAX(q, p[i] + r[j - i]);
+
+            r[j] = q;       <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#20445;&#23384;&#23376;&#38382;&#39064;&#30340;&#26368;&#20248;&#35299;</span>
+        }
+
+        <span style="color: #51afef;">return</span>(r[n - <span style="color: #da8548; font-weight: bold;">1</span>]);   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#36820;&#22238;&#26368;&#20248;&#35299;</span>
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">p</span>[<span style="color: #da8548; font-weight: bold;">11</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">17</span>, <span style="color: #da8548; font-weight: bold;">17</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">24</span>, <span style="color: #da8548; font-weight: bold;">30</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">max</span>;
+
+        <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">max = memized_cut_rod(p, 11);</span><span style="color: #5B6268;"> */</span>
+        max = bottom_up_cut_rod(p, <span style="color: #da8548; font-weight: bold;">11</span>);
+
+        printf(<span style="color: #98be65;">"%d\n"</span>, max);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+
+<p>
+自顶向下法中，主过程 memized\_cut\_rod 将辅助数组 r 初始化为一个负值，表示尚未保存任何子问题的解。然后调用辅助过成 memized\_cut\_rod\_aux，它与递归法类似，只是保存子问题的解，并在一开始 i 检查所需的解是否已知(r[n]&gt;= 0)。
+</p>
+
+<p>
+自底向上法，bottom\_up\_cut\_rod 采取子问题的自然顺序依次对其进行求解。求解时采用的公式相同，只是直接访问数组元素 r[j - i]来获得子问题规模为 j &#x2013; i 的解，而不进行递归调用。
+</p>
+
+<p>
+两种方法的渐进运行时间都是Θ(n\^2)。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org798fc7f" class="outline-2">
+<h2 id="org798fc7f">子问题图</h2>
+<div class="outline-text-2" id="text-org798fc7f">
+<p>
+当思考一个动态规划问题时，我们应该弄清所涉及的子问题及子问题之间的依赖关系。
+</p>
+
+<p>
+问题的 <b>子问题图</b> 准备地表达了这些信息。下图显示了 n=4 时钢条切割问题的子问题图。它是一个有向图，每个顶点唯一地对应一个子问题。若求子问题 x 的最优解时需要直接用到子问题 y 的最优解，那么在子问题图中就会有一条从 x 到 y 的有向边。我们可以把子问题图看作自顶向下递归树的简化版，因为树中所有相同的子问题结点都合并为了图中的单一顶点。<br>
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-210904%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-210904%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+子问题图的规模还可以帮助我们确定动态规划算法的运行时间。由于每个子问题只求解一次，因此算法的运行时间等于每个子问题求解时间之和。通常，一个子问题的求解时间与子问题图中对应顶点的度成正比。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgfa8960f" class="outline-2">
+<h2 id="orgfa8960f">重构解</h2>
+<div class="outline-text-2" id="text-orgfa8960f">
+<p>
+前面给出的算法的 C 语言实现只给出了问题的最优解的收益值，但是并没有返回最优解本身。我们可以扩展动态规划算法，使之对每个子问题不仅保存收益值，还保存对应的切割方案。利用这些信息，就可以输出最优解。下面的 C 语言代码将最优解对应的第一段钢条切割长度保存在数组 s 中，然后重构并输出最优解：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">extended_bottom_up_cut_rod</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">r</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">s</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span> ,<span style="color: #dcaeea;">q</span>;
+
+        r[<span style="color: #da8548; font-weight: bold;">0</span>] = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">for</span> (j = <span style="color: #da8548; font-weight: bold;">1</span>; j &amp;lt; n; j++) {
+            q = -<span style="color: #da8548; font-weight: bold;">65535</span>;
+
+            <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &amp;lt;= j; i++) {
+                <span style="color: #51afef;">if</span> (<span style="color: #ECBE7B;">q</span> &amp;<span style="color: #dcaeea;">lt</span>; p[i] + r[j - i]) {
+                    q = p[i] + r[j - i];
+                    s[j] = i;
+                }
+            }
+            r[j] = q;
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">print_cut_rod_solution</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">r</span>[n], <span style="color: #dcaeea;">s</span>[n];
+
+        extended_bottom_up_cut_rod(p, n, r, s);
+
+        <span style="color: #51afef;">while</span> (n - <span style="color: #da8548; font-weight: bold;">1</span> &amp;gt; <span style="color: #da8548; font-weight: bold;">0</span>) {
+            printf(<span style="color: #98be65;">"%d "</span>, s[n - <span style="color: #da8548; font-weight: bold;">1</span>]);
+            n = n - s[n - <span style="color: #da8548; font-weight: bold;">1</span>];
+        }
+        printf(<span style="color: #98be65;">"\n"</span>);
+    }
+</pre>
+</div>
+
+<p>
+对于前面给出的钢条切割实例，extended_bottom_up_cut_rod 会返回下面的数组：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-211951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-211951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

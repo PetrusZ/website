@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>贪心算法：活动选择</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">贪心算法：活动选择</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5436625">活动选择问题</a></li>
+<li><a href="#orgea43153">活动选择问题的最优子结构</a></li>
+<li><a href="#orgafb897d">贪心选择</a></li>
+<li><a href="#org58ddb01">递归贪心算法</a></li>
+<li><a href="#org4d30393">迭代贪心算法</a></li>
+<li><a href="#org0e376f8">C 语言实现代码</a></li>
+</ul>
+</div>
+</div>
+<p>
+采用<a href="动态规划原理.html">动态规划</a>求解最优化问题时，需要经过一系列的步骤，并且在每个步骤都面临多种选择，这对许多最优化问题来说有杀鸡用牛刀了，可以使用更加简单、高效的算法。*贪心算法*就是这样的算法，在每一步都选择当时看起来的最优解，总是作出局部最优的选择，从而希望能够得到一个全局最优解。贪心算法不保证能够得到最优解，但是对许多问题的确可以得到最优解。贪心算法是一种强有力的算法，可以很好地解决很多问题。下面通过一个活动选择例子来直观了解一下贪心算法。
+</p>
+
+<hr>
+
+<div id="outline-container-org5436625" class="outline-2">
+<h2 id="org5436625">活动选择问题</h2>
+<div class="outline-text-2" id="text-org5436625">
+<p>
+假设有一个包含 n 个活动的集合 S = {a1, a2, &#x2026;, an}，这些活动使用同一个资源（如同一个教室），而这个资源在同一时刻只能由一个活动使用。每个活动 ai 都有一个开始时间 s1 和结束时间 f1，也就是说一个活动的半开时间为[si, fi)。如果两个活动 ai 和 aj 的半开时间区间是不重叠的，则称它们是兼容的。*活动选择问题*就是希望选出一个最大兼容活动集。假设活动已按结束时间单调递增顺序排序。则一个活动集合 S 如下：<br>
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-200132%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-200132%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgea43153" class="outline-2">
+<h2 id="orgea43153">活动选择问题的最优子结构</h2>
+<div class="outline-text-2" id="text-orgea43153">
+<p>
+令 S(ij)表示在 ai 结束之后开始，且在 aj 开始之前结束的活动集合。我们需要求 S(ij)的一个最大互相兼容的活动子集，假设 A(ij)就是这样的子集，包含活动 ak。由于最优解包含活动 ak，我们得到两个子问题：寻找 S(ik)中的兼容活动和寻找 S(kj)中的兼容活动。因此，有 A(ij) = A(ik) ∪ {ak} ∪ A(kj)，S(ij)中最大兼容活动子集 A(ij)包含|A(ik)|+|A(kj)|+1 个活动。
+</p>
+
+<p>
+令 C[i, j]表示合计 S(ij)的最优解大小，遍历考察 ak 的最优选择，则可以得到递归式：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-202140%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-202140%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgafb897d" class="outline-2">
+<h2 id="orgafb897d">贪心选择</h2>
+<div class="outline-text-2" id="text-orgafb897d">
+<p>
+其实，对于活动选择问题，我们不必考察所有可能的选择就可解决问题，即只考虑一个选择：贪心选择。
+</p>
+
+<p>
+直观上，贪心选择就是选择这样一个任务，选出它后剩下的资源能够被尽量多的其他任务所用。对于活动选择问题来说，贪心选择其实就是选择 S 中最早结束的活动，即 a1。不过选择最早结束的活动并不是活动选择问题唯一的贪心选择方法。令 Sk 为在 ak 结束后开始的活动集合，当做出了贪心选择 a1 后，剩下的 S1 就成了唯一需要求解的子问题。相比动态规划需要求解两个子问题来说，贪心选择更加简单、高效。另外，贪心算法通常都是自顶向下的设计：做出一个选择，然后求解剩下的那个子问题，而不是自底向上地求解出很多子问题，然后再做出选择。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org58ddb01" class="outline-2">
+<h2 id="org58ddb01">递归贪心算法</h2>
+<div class="outline-text-2" id="text-org58ddb01">
+<p>
+过程 recursive_activity_selector 的输入为两个数组 s 和 f，分别是活动的开始和结束时间，k指出要求解的子问题 Sk，n 为问题规模，它返回 Sk 的一个最大兼容活动子集并保存在 a 中。为了方便求解，假设输入的 n 个活动都已经按结束时间的单调递增顺序排列好，如果没有排好序，我们也可以在Ο(nlgn)时间内对其进行排序。另外为了方便算法初始化，还添加了一个虚拟活动 a0，其结束时间为 f0 =
+</p>
+
+<p>
+0。这样子问题 S0 就是完整的活动集 S。具体算法见下文 C 语言代码，也加了几行简单的注释。如下图所示，其核心思想只是简单的选择第一个在活动 ak 结束之后开始的活动。<br>
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-205031%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-205031%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org4d30393" class="outline-2">
+<h2 id="org4d30393">迭代贪心算法</h2>
+<div class="outline-text-2" id="text-org4d30393">
+<p>
+很好理解，没有什么好说的，详细信息见下文代码。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org0e376f8" class="outline-2">
+<h2 id="org0e376f8">C 语言实现代码</h2>
+<div class="outline-text-2" id="text-org0e376f8">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;string.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">N</span>       <span style="color: #da8548; font-weight: bold;">11</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">MAXBUF</span>  <span style="color: #da8548; font-weight: bold;">20</span>
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">recursive_activity_selector</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">f</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span> , <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">a</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">m</span>;
+        <span style="color: #ECBE7B;">char</span>    <span style="color: #dcaeea;">buf</span>[<span style="color: #da8548; font-weight: bold;">4</span>];
+
+        m = k + <span style="color: #da8548; font-weight: bold;">1</span>;
+        <span style="color: #51afef;">while</span> (m &lt;= n &amp;&amp; s[m] &lt; f[k])
+            <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">             * &#36339;&#36807;&#24320;&#22987;&#26102;&#38388;&#22312;f[k]&#20043;&#21069;&#30340;&#27963;&#21160;</span>
+<span style="color: #5B6268;">             */</span>
+            m = m + <span style="color: #da8548; font-weight: bold;">1</span>;
+        <span style="color: #51afef;">if</span> (m &lt;= n) {
+            <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">             * &#36138;&#24515;&#36873;&#25321;&#65292;&#25214;&#21040;&#24320;&#22987;&#26102;&#38388;&#22312;f[k]&#20043;&#21518;&#30340;&#31532;&#19968;&#20010;&#27963;&#21160;&#21518;&#65292;</span>
+<span style="color: #5B6268;">             * &#30452;&#25509;&#25226;&#23427;&#21152;&#20837;&#21040;&#27963;&#21160;&#21015;&#34920;&#20013;</span>
+<span style="color: #5B6268;">             */</span>
+            sprintf(buf, <span style="color: #98be65;">"a%d "</span>, m);
+            strcat(a, buf);
+            recursive_activity_selector(s, f, m, n, a);
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">greedy_activity_selector</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">f</span>, <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">a</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">k</span>, <span style="color: #dcaeea;">n</span>, <span style="color: #dcaeea;">m</span>;
+        <span style="color: #ECBE7B;">char</span>    <span style="color: #dcaeea;">buf</span>[<span style="color: #da8548; font-weight: bold;">4</span>];
+
+        strcat(a, <span style="color: #98be65;">"a1 "</span>);
+        n = N;
+        k = <span style="color: #da8548; font-weight: bold;">1</span>;
+
+        <span style="color: #51afef;">for</span> (m = <span style="color: #da8548; font-weight: bold;">2</span>; m &lt;= n; m++) {
+            <span style="color: #51afef;">if</span> (s[m] &gt;= f[k]) {
+                sprintf(buf, <span style="color: #98be65;">"a%d "</span>, m);
+                strcat(a, buf);
+                k = m;
+            }
+        }
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">s</span>[N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">5</span>,  <span style="color: #da8548; font-weight: bold;">6</span>,  <span style="color: #da8548; font-weight: bold;">8</span>,  <span style="color: #da8548; font-weight: bold;">8</span>,  <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">12</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">f</span>[N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>, <span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">9</span>, <span style="color: #da8548; font-weight: bold;">9</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">11</span>, <span style="color: #da8548; font-weight: bold;">12</span>, <span style="color: #da8548; font-weight: bold;">14</span>, <span style="color: #da8548; font-weight: bold;">16</span>};
+        <span style="color: #ECBE7B;">char</span>    <span style="color: #dcaeea;">a</span>[MAXBUF] = <span style="color: #98be65;">""</span>;
+
+        <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">recursive_activity_selector(s, f, 0, N, a);</span><span style="color: #5B6268;"> */</span>
+        greedy_activity_selector(s, f, a);
+
+        printf(<span style="color: #98be65;">"%s"</span>, a);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

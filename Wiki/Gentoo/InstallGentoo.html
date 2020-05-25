@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>安装Gentoo</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">安装Gentoo</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgdea64ff">准备工作</a></li>
+<li><a href="#orgcdc2071">分区</a>
+<ul>
+<li><a href="#orgf9b838b">分区列表</a></li>
+<li><a href="#orgf62cbf9">分区操作</a></li>
+</ul>
+</li>
+<li><a href="#orga0e624b">安装</a></li>
+<li><a href="#org004b06b">配置 gentoo</a>
+<ul>
+<li><a href="#org9118f71">配置 make.conf</a></li>
+<li><a href="#org1ffda64">Choose profile</a></li>
+<li><a href="#orgea51b22">Sync ebuild repos</a></li>
+<li><a href="#org15a5dfa">安装/更新</a></li>
+<li><a href="#orgf7e4ea0">配置杂项</a></li>
+<li><a href="#配置安装内核">配置/安装内核</a></li>
+<li><a href="#orged919a2">配置系统</a></li>
+<li><a href="#orgb9337f8">配置 bootloader</a></li>
+<li><a href="#org599a9c1">User configura</a></li>
+<li><a href="#org31aaaa2">Reboot</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+Gentoo 官方安装手册：<a href="https://wiki.gentoo.org/wiki/Handbook:AMD64">amd64 handbook</a>
+</p>
+
+<p>
+备份/恢复配置脚本：<a href="https://github.com/PetrusZ/AutoBackup">AutoBackup</a>
+</p>
+
+<p>
+Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooConfig</a>
+</p>
+
+<div id="outline-container-orgdea64ff" class="outline-2">
+<h2 id="orgdea64ff">准备工作</h2>
+<div class="outline-text-2" id="text-orgdea64ff">
+<ol class="org-ol">
+<li>准备一个 U 盘</li>
+<li>下载 ubuntu 或其他发行版最新版本的 livcd/installmedia <a href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></li>
+<li><code>dd bs=4M if=/path/to/ubuntu.iso of=/dev/sdx status=progress oflag=sync</code> 将 ubuntu installmedia 安装到 U 盘中</li>
+<li>使用 ubuntu installmedia 启动，选择 try without install，联网并打开 gentoo amd64_handbook 参考</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgcdc2071" class="outline-2">
+<h2 id="orgcdc2071">分区</h2>
+<div class="outline-text-2" id="text-orgcdc2071">
+</div>
+<div id="outline-container-orgf9b838b" class="outline-3">
+<h3 id="orgf9b838b">分区列表</h3>
+<div class="outline-text-3" id="text-orgf9b838b">
+<div class="org-src-container">
+<pre class="src src-sh">    sda1    /boot      vfat                         &gt;=256M          <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#27880;&#24847;&#20998;&#21306;&#35774;&#32622;flags&#20026;esp</span>
+    sda2    /          ext4,btrfs,xfs,jfs.etc       remaining space
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf62cbf9" class="outline-3">
+<h3 id="orgf62cbf9">分区操作</h3>
+<div class="outline-text-3" id="text-orgf62cbf9">
+<div class="org-src-container">
+<pre class="src src-sh">    parted -a optimal /dev/sdx
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35774;&#32622;gpt label</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span>mklabel gpt
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35774;&#32622;&#21333;&#20301;&#20026;Mib</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span>unit mib
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35774;&#32622;boot&#20998;&#21306;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">esp is an alias for boot on GPT</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> mkpart primary fat32 <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #da8548; font-weight: bold;">257</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> <span style="color: #c678dd;">set</span> <span style="color: #da8548; font-weight: bold;">1</span> esp on
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> name <span style="color: #da8548; font-weight: bold;">1</span> boot
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35774;&#32622;root&#20998;&#21306;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">For one other partition using 100% of remaining space</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> mkpart primary ext4 <span style="color: #da8548; font-weight: bold;">257</span> 100%
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> name <span style="color: #da8548; font-weight: bold;">2</span> rootfs
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26816;&#26597;&#20998;&#21306;&#26159;&#21542;&#27491;&#30830;</span>
+    <span style="color: #51afef;">(</span>parted<span style="color: #51afef;">)</span> <span style="color: #c678dd;">print</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26684;&#24335;&#21270;&#20998;&#21306;</span>
+    mkfs.vfat /dev/sdx1
+    mkfs.ext4 /dev/sdx2
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga0e624b" class="outline-2">
+<h2 id="orga0e624b">安装</h2>
+<div class="outline-text-2" id="text-orga0e624b">
+<ol class="org-ol">
+<li>下载 stage3 并解压</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26816;&#26597;&#24182;&#21516;&#27493;&#26102;&#38388;</span>
+    <span style="color: #ECBE7B;">date</span>; ntpd -q -g
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25110;&#25163;&#21160;&#35774;&#32622;&#26102;&#38388; eg:&#35774;&#32622;&#20026;2020&#24180;2&#26376;23&#26085;22&#28857;15&#20998;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use the MMDDhhmmYYYY syntax (Month, Day, hour, minute and Year).</span>
+    <span style="color: #ECBE7B;">date</span> <span style="color: #da8548; font-weight: bold;">022322152020</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25346;&#36733;rootfs</span>
+    <span style="color: #ECBE7B;">mkdir</span> /mnt/gentoo
+    mount /dev/sdx2 /mnt/gentoo
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#19979;&#36733;stage3&#21040;/mnt/gentoo https://www.gentoo.org/downloads/</span>
+    <span style="color: #ECBE7B;">cd</span> /mnt/gentoo; wget &lt;PASTED_STAGE_URL&gt;
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39564;&#35777;&#20854;&#26377;&#25928;&#24615;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Media#Verifying_the_downloaded_files</span>
+    gpg --keyserver hkps://hkps.pool.sks-keyservers.net --recv-keys 0xBB572E0E2D182910
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">or</span>
+    wget -O- https://gentoo.org/.well-known/openpgpkey/hu/wtktzo4gyuhzu8a4z5fdj3fgmr1u6tob?<span style="color: #dcaeea;">l</span>=releng | gpg --import
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">https://wiki.gentoo.org/wiki/Handbook:AMD64/Installation/Stage#Verifying_and_validating</span>
+    openssl dgst -r -sha512 stage3-amd64-&lt;release&gt;.tar.?<span style="color: #51afef;">(</span>bz2|xz<span style="color: #51afef;">)</span>
+    openssl dgst -r -whirlpool stage3-amd64-&lt;release&gt;.tar.?<span style="color: #51afef;">(</span>bz2|xz<span style="color: #51afef;">)</span>
+    gpg --verify stage3-amd64-&lt;release&gt;.tar.?<span style="color: #51afef;">(</span>bz2|xz<span style="color: #51afef;">){</span>.DIGESTS.asc,<span style="color: #51afef;">}</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35299;&#21387;stage3&#21040;/mnt/gentoo</span>
+    tar xpvf stage3-*.tar.bz2 --xattrs-include=<span style="color: #98be65;">'*.*'</span> --numeric-owner
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>挂载分区</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">cp</span><span style="color: #5B6268;"> DNS info</span>
+    <span style="color: #ECBE7B;">cp</span> --dereference /etc/resolv.conf /mnt/gentoo/etc/
+
+    mount --types proc /proc /mnt/gentoo/proc
+    mount --rbind /sys /mnt/gentoo/sys
+    mount --make-rslave /mnt/gentoo/sys
+    mount --rbind /dev /mnt/gentoo/dev
+    mount --make-rslave /mnt/gentoo/dev
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">debian&#31995;&#31995;&#32479;&#38656;&#35201;</span>
+    test -L /dev/shm &amp;&amp; <span style="color: #ECBE7B;">rm</span> /dev/shm &amp;&amp; <span style="color: #ECBE7B;">mkdir</span> /dev/shm
+    mount --types tmpfs --options nosuid,nodev,noexec shm /dev/shm
+    <span style="color: #ECBE7B;">chmod</span> <span style="color: #da8548; font-weight: bold;">1777</span> /dev/shm
+
+    mount /dev/sdx1 /boot
+    mount ....
+    etc
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>进入 chroot 环境安装</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    chroot /mnt/gentoo /bin/bash
+    <span style="color: #c678dd;">source</span> /etc/profile
+    <span style="color: #c678dd;">export</span> <span style="color: #dcaeea;">PS1</span>=<span style="color: #98be65;">"(chroot) </span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">PS1</span><span style="color: #98be65;">"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org004b06b" class="outline-2">
+<h2 id="org004b06b">配置 gentoo</h2>
+<div class="outline-text-2" id="text-org004b06b">
+</div>
+<div id="outline-container-org9118f71" class="outline-3">
+<h3 id="org9118f71">配置 make.conf</h3>
+<div class="outline-text-3" id="text-org9118f71">
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #ECBE7B;">git</span> clone <span style="color: #ECBE7B;">git</span>@github.com:PetrusZ/Backup4Config.git
+
+    <span style="color: #ECBE7B;">cd</span> Backup4config
+    ./restore_config.sh portage
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1ffda64" class="outline-3">
+<h3 id="org1ffda64">Choose profile</h3>
+<div class="outline-text-3" id="text-org1ffda64">
+<p>
+Use custom profile which restored/installed by Backup4Config
+</p>
+
+<p>
+<a href="https://wiki.gentoo.org/wiki/Profile_(Portage)#Creating_custom_profiles">https://wiki.gentoo.org/wiki/Profile_(Portage)#Creating_custom_profiles</a>
+</p>
+
+<p>
+<a href="https://wiki.gentoo.org/wiki/Handbook:AMD64/Portage/CustomTree#Defining_a_custom_repository">https://wiki.gentoo.org/wiki/Handbook:AMD64/Portage/CustomTree#Defining_a_custom_repository</a>
+</p>
+
+<p>
+<code>eselect profile set &lt;local-profile&gt;</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea51b22" class="outline-3">
+<h3 id="orgea51b22">Sync ebuild repos</h3>
+<div class="outline-text-3" id="text-orgea51b22">
+<p>
+<code>emerge-websync</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org15a5dfa" class="outline-3">
+<h3 id="org15a5dfa">安装/更新</h3>
+<div class="outline-text-3" id="text-org15a5dfa">
+<div class="org-src-container">
+<pre class="src src-sh">    emerge -avt dev-vcs/git
+    emerge -avt vim
+    emerge --sync
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">update world&#21069;&#21487;&#33021;&#38656;&#35201;&#27880;&#37322;&#25481;make.conf&#20013;&#30340;VIDEO_CARDS</span>
+    emerge -avuDN --with-bdeps=y @world
+    dispatch-conf
+    emerge @preserved-rebuild
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23433;&#35013;&#26174;&#21345;&#39537;&#21160;</span>
+    emerge -avt nvidia-drivers
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf7e4ea0" class="outline-3">
+<h3 id="orgf7e4ea0">配置杂项</h3>
+<div class="outline-text-3" id="text-orgf7e4ea0">
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Timezone</span>
+    <span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"Asia/Shanghai"</span> &gt; /etc/timezone
+    emerge --config sys-libs/timezone-data
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">locales</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Add `zh_CN ISO-8859-1` &amp; `zh_CN.UTF-8 UTF-8` to /etc/locales.gen</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">And only enable `en_US.UTF-8 UTF-8` &amp; `zh_CN.UTF-8 UTF-8`</span>
+    vim /etc/locale.gen
+    locale-gen
+    eselect locale set en_US.utf8
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">reload environment</span>
+    env-update &amp;&amp; <span style="color: #c678dd;">source</span> /etc/profile &amp;&amp; <span style="color: #c678dd;">export</span> <span style="color: #dcaeea;">PS1</span>=<span style="color: #98be65;">"(chroot) </span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{PS1}</span><span style="color: #98be65;">"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-配置安装内核" class="outline-3">
+<h3 id="配置安装内核">配置/安装内核</h3>
+<div class="outline-text-3" id="text-配置安装内核">
+<p>
+<code>eselect kernel</code>, and use <code>genkernall all</code> for now.
+</p>
+
+<p>
+Or just install gentoo-kernel-bin
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged919a2" class="outline-3">
+<h3 id="orged919a2">配置系统</h3>
+<div class="outline-text-3" id="text-orged919a2">
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">/etc/fstab</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35814;&#32454;&#20449;&#24687;&#21487;&#26597;&#30475;fstab&#25991;&#20214;&#20013;&#30340;&#27880;&#37322;&#21644;wiki https://wiki.gentoo.org/wiki/Fstab</span>
+    /dev/sda1       /boot       vfat        defaults,noatime    <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">2</span>
+    /dev/sda2       /       ext4        noatime                 <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">1</span>
+    /swapfile       none        swap        defaults        <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #da8548; font-weight: bold;">0</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Network</span>
+    Use NetworkManager, it is out of box.
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config restore/install system configura files</span>
+    <span style="color: #ECBE7B;">cd</span> Backup4config
+    ./restore_config.sh system
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Add user and set passwd</span>
+    passwd root
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20808;&#21019;&#24314;&#29992;&#25143;&#65292;&#28982;&#21518;&#20877;&#24674;&#22797;&#29992;&#25143;&#37197;&#32622;</span>
+    useradd -m -G wheel,floppy,audio,cdrom,video,docker,libvirt,usb,users,portage,wireshark &lt;username&gt;
+    passwd &lt;username&gt;
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Edit /etc/sudoers</span>
+    <span style="color: #dcaeea;">EDITOR</span>=vim visudo
+    <span style="color: #5B6268;">## </span><span style="color: #5B6268;">Uncomment to allow members of group wheel to execute any command</span>
+    %wheel <span style="color: #dcaeea;">ALL</span>=<span style="color: #51afef;">(</span>ALL<span style="color: #51afef;">)</span> ALL
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Swapfile https://wiki.archlinux.org/index.php/swap#Swap_file</span>
+    fallocate -l 16G /swapfile
+    <span style="color: #ECBE7B;">chmod</span> <span style="color: #da8548; font-weight: bold;">600</span> /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">set hostname</span>
+    hostnamectl set-hostname &lt;hostname&gt;
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ssh root&#30331;&#38470;</span>
+    <span style="color: #ECBE7B;">sudo</span> vim /etc/ssh/sshd_config
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">comment `PermitRootLogin prohibit-password`</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">and add `PermitRootLogin yes` below</span>
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config restore/install system configura files</span>
+    <span style="color: #ECBE7B;">cd</span> Backup4config
+    ./install system
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb9337f8" class="outline-3">
+<h3 id="orgb9337f8">配置 bootloader</h3>
+<div class="outline-text-3" id="text-orgb9337f8">
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4config to edit /etc/default/grub</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">bootloader&#20351;&#29992;grub:# bootloader&#20351;&#29992;grub:2</span>
+    grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Gentoo
+    grub-mkconfig -o /boot/grub/grub.cfg
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org599a9c1" class="outline-3">
+<h3 id="org599a9c1">User configura</h3>
+<div class="outline-text-3" id="text-org599a9c1">
+<div class="org-src-container">
+<pre class="src src-sh">    su petrus
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">run below commands as user</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config restore/install user configura files</span>
+    <span style="color: #ECBE7B;">cd</span> Backup4config
+    ./restore_config.sh user
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config install vim, zsh and tmux plugin</span>
+    ./install user
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open vim and type `:PlugInstall`</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open tmux and press prefix + I (capital i, as in Install) to fetch the plugin.</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org31aaaa2" class="outline-3">
+<h3 id="org31aaaa2">Reboot</h3>
+<div class="outline-text-3" id="text-org31aaaa2">
+<p>
+Reboot 前先检查系统：
+</p>
+
+<ul class="org-ul">
+<li>boot 目录是否有相应文件</li>
+<li>GRUB 是否正确生成配置并显示内核等文件</li>
+<li>fstab 是否正确无误</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #ECBE7B;">rm</span> /stage3-*.tar.*
+
+    umount -l /mnt/gentoo/dev<span style="color: #51afef;">{</span>/shm,/pts,<span style="color: #51afef;">}</span>
+    umount -R /mnt/gentoo
+
+    reboot
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20877;&#27425;&#26816;&#26597;&#31995;&#32479;&#26159;&#21542;&#27491;&#24120;</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;wifi&#21015;&#34920;</span>
+    nmcli device wifi list
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36830;&#25509;wifi</span>
+    nmcli device wifi connect &lt;SSID&gt; passworld &lt;password&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

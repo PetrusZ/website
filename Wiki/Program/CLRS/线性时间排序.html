@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>线型时间排序</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">线型时间排序</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org72f3975">1.计数排序</a></li>
+<li><a href="#org56b8a38">2.基数排序</a></li>
+<li><a href="#org2d00cca">3.桶排序</a></li>
+</ul>
+</div>
+</div>
+<p>
+在排序的最终结果中，各元素的次序依赖于他们之间的比较。我们把这类排序算法成为 <b>比较排序</b> 。它的时间复杂度下界为Ω(nlgn)，归并排序、堆排序等都是比较排序，并且这两个排序算法是比较排序中渐进最优的。
+</p>
+
+<p>
+而下面介绍的线性时间排序都不是通过比较来确定排序顺序的，所以下界Ω(nlgn)对它们是不适用的。
+</p>
+
+<div id="outline-container-org72f3975" class="outline-2">
+<h2 id="org72f3975">1.计数排序</h2>
+<div class="outline-text-2" id="text-org72f3975">
+<p>
+<b>计数排序</b> 假设 n 个输入元素中的每一个都是在 0 打 k 区间内的一个整数，其中 k 为某个整数。当 k=Ο(n)时，排序的运行时间为Ω(n)。
+</p>
+
+<p>
+其基本思想是：对每一个输入元素 x，确定小于 x 的元素的个数。利用这一信息，就可以直接把 x 放到它在输出数组中的位置上了。当有几个元素相同时，这一方案要略做修。因为不能把他们都放在同一个位置上。
+</p>
+
+<p>
+在计数排序的代码中，假设输入是一个数组 A[1..n]，A.leng = n。我们还需要两个数组：B[n]存放排序的输出，C[0..k]提供临时存储空间。
+</p>
+
+<p>
+计数排序的 C 语言实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">counting_sort</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">B</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">size</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+        <span style="color: #ECBE7B;">int</span>     *<span style="color: #dcaeea;">C</span>;
+
+        C = (<span style="color: #ECBE7B;">int</span> *)malloc(k * <span style="color: #51afef;">sizeof</span>(<span style="color: #ECBE7B;">int</span>));
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; k; i++)
+            C[i] = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">for</span> (j = <span style="color: #da8548; font-weight: bold;">0</span>; j &lt; size; j++)
+            C[A[j]] = C[A[j]] + <span style="color: #da8548; font-weight: bold;">1</span>;
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">C[i] now contains the number of elements equal to i.</span>
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; k; i++)
+            C[i] = C[i] + C[i - <span style="color: #da8548; font-weight: bold;">1</span>];
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">C[i] now contains the number of elements less than or equal to i.</span>
+        <span style="color: #51afef;">for</span> (j = size - <span style="color: #da8548; font-weight: bold;">1</span>; j &gt;= <span style="color: #da8548; font-weight: bold;">0</span>; j--) {
+            B[C[A[j]] - <span style="color: #da8548; font-weight: bold;">1</span>] = A[j];
+            C[A[j]] = C[A[j]] - <span style="color: #da8548; font-weight: bold;">1</span>;
+        }
+
+        free(C);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">counting_sort_easy</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">max</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">size</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">count</span>[max + <span style="color: #da8548; font-weight: bold;">1</span>];
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; max + <span style="color: #da8548; font-weight: bold;">1</span>; i++) {
+            count[i] = <span style="color: #da8548; font-weight: bold;">0</span>;
+        }
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; size; i++) {
+            count[A[i]]++;
+        }
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; max + <span style="color: #da8548; font-weight: bold;">1</span>; i++) {
+            <span style="color: #51afef;">while</span>(count[i]--) {
+                A[j++] = i;
+            }
+        }
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">A</span>[<span style="color: #da8548; font-weight: bold;">8</span>] = {<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">3</span>};
+        <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">B</span>;
+
+        B = (<span style="color: #ECBE7B;">int</span> *)malloc(<span style="color: #51afef;">sizeof</span>(A));
+
+
+        <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">counting_sort(A, B, 6, 8);</span><span style="color: #5B6268;"> */</span>
+        counting_sort_easy(A, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">8</span>);
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; <span style="color: #da8548; font-weight: bold;">8</span>; i++)
+            printf(<span style="color: #98be65;">"%d "</span>, A[i]);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        free(B);
+
+        <span style="color: #51afef;">return</span>(<span style="color: #da8548; font-weight: bold;">0</span>);
+    }
+</pre>
+</div>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2014-02-19-195910%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2014-02-19-195910%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+11～12 行的 for 循环遍历每一个输入元素。如果一个输入元素的值为 i，就将 C[i]值加 1。所以 12 行执行完后 C[i]中保存的就是等于 i 的元素的个数。第 14～15 行通过加总计算确定有多少个元素小于等于 i 的。最后，17～20 行把每个元素 A[j]放到它在输出数组 B 中的正确位置上。
+</p>
+
+<p>
+计数排序的第一个 for 循环所花费的时间为Θ(k)，第二个 for 循环花费的时间为Θ(n)，第三个 for 循环所花费的时间为Θ(k)，第四个 for 循环花费的时间为Θ(n)。所以总时间代价为Θ(k+n)。当 k=Ο(n)时，一般会采用计数排序，运行时间为Θ(n)。
+</p>
+
+<p>
+另外技术排序还有一个重要的性质就是*稳定*的：具有相同值的元素在输出数组中的相对次序与它们在输入数组中的相对次序相同。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org56b8a38" class="outline-2">
+<h2 id="org56b8a38">2.基数排序</h2>
+<div class="outline-text-2" id="text-org56b8a38">
+<p>
+基数排序是一种用在卡片排序机上的算法，其主要思想是利用稳定的排序（如计数排序）按最低有效位到最高有效位的顺序一次进行排序。其时间复杂度为Θ(n)。
+</p>
+
+<p>
+<img src="http://my.csdn.net/uploads/201204/10/1334071254_2630.JPG" alt="1334071254_2630.JPG">
+（图片丢失）最左边一列是输入数据，从左向右显示基数排序了由低位到高位进行排序的情况。
+</p>
+
+<p>
+基数排序的 C 语言实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #5B6268;">/*</span><span style="color: #5B6268;">&#34987;&#25490;&#24207;&#20803;&#32032;&#30340;&#26368;&#22823;&#20301;&#25968;&#65292;4&#21017;&#24847;&#21619;&#30528;&#21482;&#33021;&#25490;&#24207;&lt; 10000 &#30340;&#25968;</span><span style="color: #5B6268;">*/</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">WIDTH</span> <span style="color: #da8548; font-weight: bold;">4</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">MAXK</span> <span style="color: #da8548; font-weight: bold;">10</span>  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#20301;&#25968;&#21010;&#20998;&#22522;&#20110;&#30340;&#22522;&#25968;&#65292;10&#34920;&#31034;&#20026;10&#36827;&#21046;&#21010;&#20998;</span>
+
+    <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">radixSort</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>[], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>) {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+        <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">innerCountingSort</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>[], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">d</span>);
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; WIDTH; i++) {
+            innerCountingSort(a, n, i);
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">innerCountingSort</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>[], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">d</span>) {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>, <span style="color: #dcaeea;">x</span>, <span style="color: #dcaeea;">k</span>[MAXK] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+        <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">ip</span> = (<span style="color: #ECBE7B;">int</span> *)malloc(n * <span style="color: #51afef;">sizeof</span>(<span style="color: #ECBE7B;">int</span>));
+        <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">bp</span> = (<span style="color: #ECBE7B;">int</span> *)malloc(n * <span style="color: #51afef;">sizeof</span>(<span style="color: #ECBE7B;">int</span>));
+        <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">getDValue</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">value</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">d</span>);
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; n; i++) {
+            ip[i] = getDValue(a[i], d);
+            k[ip[i]]++;
+        }
+
+        <span style="color: #51afef;">for</span> (j = <span style="color: #da8548; font-weight: bold;">1</span>; j &lt; MAXK; j++) {
+            k[j] = k[j] + k[j-<span style="color: #da8548; font-weight: bold;">1</span>];
+        }
+
+        <span style="color: #51afef;">for</span> (i = n - <span style="color: #da8548; font-weight: bold;">1</span>; i &gt;= <span style="color: #da8548; font-weight: bold;">0</span>; i--) {
+            bp[k[ip[i]] - <span style="color: #da8548; font-weight: bold;">1</span>] = a[i];
+            k[ip[i]]--;
+        }
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; n; i++) {
+            a[i] = bp[i];
+        }
+
+        free(ip);
+        free(bp);
+    }
+
+    <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">    *&#33719;&#21462;&#19968;&#20010;&#25968;&#31532;d&#20301;&#25968;&#30340;&#20540;&#65292;&#20301;&#25968;&#32034;&#24341;&#20174;0&#24320;&#22987;</span>
+<span style="color: #5B6268;">    */</span>
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">getDValue</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">value</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">d</span>) {
+        <span style="color: #51afef;">for</span> (;d &gt; <span style="color: #da8548; font-weight: bold;">0</span> &amp;&amp; value &gt; <span style="color: #da8548; font-weight: bold;">0</span>; d--) {
+            value = value / MAXK;
+        }
+        <span style="color: #51afef;">return</span> value % MAXK;
+    }
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">array</span>[<span style="color: #da8548; font-weight: bold;">30</span>] = {<span style="color: #da8548; font-weight: bold;">258</span>, <span style="color: #da8548; font-weight: bold;">976</span>, <span style="color: #da8548; font-weight: bold;">515</span>, <span style="color: #da8548; font-weight: bold;">337</span>, <span style="color: #da8548; font-weight: bold;">359</span>, <span style="color: #da8548; font-weight: bold;">701</span>, <span style="color: #da8548; font-weight: bold;">916</span>, <span style="color: #da8548; font-weight: bold;">494</span>, <span style="color: #da8548; font-weight: bold;">303</span>, <span style="color: #da8548; font-weight: bold;">175</span>,
+                            <span style="color: #da8548; font-weight: bold;">677</span>, <span style="color: #da8548; font-weight: bold;">825</span>, <span style="color: #da8548; font-weight: bold;">131</span>, <span style="color: #da8548; font-weight: bold;">560</span>, <span style="color: #da8548; font-weight: bold;">147</span>, <span style="color: #da8548; font-weight: bold;">254</span>, <span style="color: #da8548; font-weight: bold;">759</span>, <span style="color: #da8548; font-weight: bold;">814</span>, <span style="color: #da8548; font-weight: bold;">917</span>, <span style="color: #da8548; font-weight: bold;">382</span>,
+                            <span style="color: #da8548; font-weight: bold;">452</span>, <span style="color: #da8548; font-weight: bold;">114</span>, <span style="color: #da8548; font-weight: bold;">873</span>, <span style="color: #da8548; font-weight: bold;">585</span>, <span style="color: #da8548; font-weight: bold;">881</span>, <span style="color: #da8548; font-weight: bold;">127</span>, <span style="color: #da8548; font-weight: bold;">819</span>, <span style="color: #da8548; font-weight: bold;">658</span>, <span style="color: #da8548; font-weight: bold;">461</span>, <span style="color: #da8548; font-weight: bold;">435</span>};
+
+        printf(<span style="color: #98be65;">"before\n"</span>);
+        <span style="color: #51afef;">for</span> (i=<span style="color: #da8548; font-weight: bold;">0</span>; i&lt;<span style="color: #da8548; font-weight: bold;">30</span>; i++)
+            printf(<span style="color: #98be65;">"%d  "</span>, array[i]);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#25490;&#24207;&#20989;&#25968;&#65292;&#20174;&#20010;&#20301;&#24320;&#22987;</span><span style="color: #5B6268;"> */</span>
+        radixSort(array, <span style="color: #da8548; font-weight: bold;">30</span>);
+
+        printf(<span style="color: #98be65;">"final\n"</span>);
+        <span style="color: #51afef;">for</span> (i=<span style="color: #da8548; font-weight: bold;">0</span>; i&lt;<span style="color: #da8548; font-weight: bold;">30</span>; i++)
+            printf(<span style="color: #98be65;">"%d  "</span>, array[i]);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+
+<p>
+（以上代码转载）
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org2d00cca" class="outline-2">
+<h2 id="org2d00cca">3.桶排序</h2>
+<div class="outline-text-2" id="text-org2d00cca">
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/桶排序.png" alt="桶排序.png">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>桶排序</p>
+</div>
+
+<p>
+伪代码：
+</p>
+
+<pre class="example">
+    BUCKET-SORT（A）
+    n = A.length
+    let B[0..n-1] be a new array
+    for i = 0 to n-1
+            make B[i] an empty list
+    for i = 1 to n
+            insert A[i] into list B[nA[i]]
+    for i = 0 to n-1
+            sort list B[i] with insertion sort
+    concatenate hte lists B[0], B[1], ……, B[n-1] together in order
+</pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

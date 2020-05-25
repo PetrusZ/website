@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 19:27 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>IPTV与Plex配置</title>
@@ -236,44 +236,44 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20449a2">1. 最终效果</a></li>
-<li><a href="#org89c5046">2. 准备</a></li>
-<li><a href="#org6f6989c">3. 相关概念</a></li>
-<li><a href="#org746dbcc">4. 破解光猫</a>
+<li><a href="#org20449a2">最终效果</a></li>
+<li><a href="#org89c5046">准备</a></li>
+<li><a href="#org6f6989c">相关概念</a></li>
+<li><a href="#org746dbcc">破解光猫</a>
 <ul>
-<li><a href="#orga50a07a">4.1. 一般光猫的超级用户</a></li>
-<li><a href="#orgb812ccf">4.2. BCM 版 HG261 光猫的破解方法</a></li>
+<li><a href="#orga50a07a">一般光猫的超级用户</a></li>
+<li><a href="#orgb812ccf">BCM 版 HG261 光猫的破解方法</a></li>
 </ul>
 </li>
-<li><a href="#orgceaf958">5. IPTV</a>
+<li><a href="#orgceaf958">IPTV</a>
 <ul>
-<li><a href="#orgfed5121">5.1. 单线复用 IPTV 的两种方法</a>
+<li><a href="#orgfed5121">单线复用 IPTV 的两种方法</a>
 <ul>
-<li><a href="#org16a4d2b">5.1.1. 公网线路</a></li>
-<li><a href="#org98250ac">5.1.2. IPTV 内网线路</a></li>
+<li><a href="#org16a4d2b">公网线路</a></li>
+<li><a href="#org98250ac">IPTV 内网线路</a></li>
 </ul>
 </li>
-<li><a href="#org9ed6d5a">5.2. IPTV 抓包直播源</a></li>
-<li><a href="#org8ea7a20">5.3. 路由器设置</a></li>
-<li><a href="#org0a2d52e">5.4. 制作 m3u 文件</a></li>
+<li><a href="#org9ed6d5a">IPTV 抓包直播源</a></li>
+<li><a href="#org8ea7a20">路由器设置</a></li>
+<li><a href="#org0a2d52e">制作 m3u 文件</a></li>
 </ul>
 </li>
-<li><a href="#orga888ef6">6. Plex</a>
+<li><a href="#org25132ab">Plex</a>
 <ul>
-<li><a href="#orgaa32cf6">6.1. xTeVe</a></li>
-<li><a href="#org99b6b55">6.2. Plex</a></li>
+<li><a href="#orgaa32cf6">xTeVe</a></li>
+<li><a href="#orgeb65c0b">Plex</a></li>
 </ul>
 </li>
-<li><a href="#orgc8c6d53">7. TODO</a></li>
-<li><a href="#org0338f4f">8. IPTV 内网线路单线双拨介绍</a></li>
-<li><a href="#org10a5fac">9. 参考</a></li>
+<li><a href="#orgc8c6d53">TODO</a></li>
+<li><a href="#org0338f4f">IPTV 内网线路单线双拨介绍</a></li>
+<li><a href="#org10a5fac">参考</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-org20449a2" class="outline-2">
-<h2 id="org20449a2"><span class="section-number-2">1</span> 最终效果</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org20449a2">最终效果</h2>
+<div class="outline-text-2" id="text-org20449a2">
 <p>
 最终效果是在任何设备/终端上都可以观看 IPTV，不再仅仅局限于 IPTV 机顶盒。并且使 IPTV 与 Plex 集成，实现 IPTV 在显示预告、录像等功能。
 </p>
@@ -284,8 +284,8 @@
 </div>
 </div>
 <div id="outline-container-org89c5046" class="outline-2">
-<h2 id="org89c5046"><span class="section-number-2">2</span> 准备</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org89c5046">准备</h2>
+<div class="outline-text-2" id="text-org89c5046">
 <ul class="org-ul">
 <li>IPTV 的拨号账号</li>
 <li>一台笔记本电脑</li>
@@ -295,8 +295,8 @@
 </div>
 </div>
 <div id="outline-container-org6f6989c" class="outline-2">
-<h2 id="org6f6989c"><span class="section-number-2">3</span> 相关概念</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org6f6989c">相关概念</h2>
+<div class="outline-text-2" id="text-org6f6989c">
 <ul class="org-ul">
 <li>光猫破解破解光猫是为了设置 vlan、lan 口绑定、开启组播等设置。</li>
 <li>Plex PASS
@@ -313,16 +313,16 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 <div id="outline-container-org746dbcc" class="outline-2">
-<h2 id="org746dbcc"><span class="section-number-2">4</span> 破解光猫</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org746dbcc">破解光猫</h2>
+<div class="outline-text-2" id="text-org746dbcc">
 <p>
 后面的教程中可能会需要破解光猫的超级用户。
 </p>
 </div>
 
 <div id="outline-container-orga50a07a" class="outline-3">
-<h3 id="orga50a07a"><span class="section-number-3">4.1</span> 一般光猫的超级用户</h3>
-<div class="outline-text-3" id="text-4-1">
+<h3 id="orga50a07a">一般光猫的超级用户</h3>
+<div class="outline-text-3" id="text-orga50a07a">
 <p>
 通常光猫都有一些普遍的用户名和密码，但是实际上大多数都已经被改了，能用的都是撞运气。
 </p>
@@ -338,8 +338,8 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 
 <div id="outline-container-orgb812ccf" class="outline-3">
-<h3 id="orgb812ccf"><span class="section-number-3">4.2</span> BCM 版 HG261 光猫的破解方法</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="orgb812ccf">BCM 版 HG261 光猫的破解方法</h3>
+<div class="outline-text-3" id="text-orgb812ccf">
 <p>
 可参考：<a href="https://blog.starryvoid.com/archives/329.html">https://blog.starryvoid.com/archives/329.html</a> 的内容。
 </p>
@@ -347,27 +347,27 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 <div id="outline-container-orgceaf958" class="outline-2">
-<h2 id="orgceaf958"><span class="section-number-2">5</span> IPTV</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgceaf958">IPTV</h2>
+<div class="outline-text-2" id="text-orgceaf958">
 </div>
 <div id="outline-container-orgfed5121" class="outline-3">
-<h3 id="orgfed5121"><span class="section-number-3">5.1</span> 单线复用 IPTV 的两种方法</h3>
-<div class="outline-text-3" id="text-5-1">
+<h3 id="orgfed5121">单线复用 IPTV 的两种方法</h3>
+<div class="outline-text-3" id="text-orgfed5121">
 <p>
 双线双拨等的方法就不在此介绍了。
 </p>
 </div>
 <div id="outline-container-org16a4d2b" class="outline-4">
-<h4 id="org16a4d2b"><span class="section-number-4">5.1.1</span> 公网线路</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<h4 id="org16a4d2b">公网线路</h4>
+<div class="outline-text-4" id="text-org16a4d2b">
 <p>
 有的服务商可以让 IPTV 直接连到公网中，该方法的好处是配置简单，不用配置额外的 VLAN，有些路由器也不支持配置 VLAN。直接在路由器上使用 IPTV 的账号进行拨号即可。缺点是观看 IPTV 会占据一部分公网的带宽。本文章就是使用的该方法。
 </p>
 </div>
 </div>
 <div id="outline-container-org98250ac" class="outline-4">
-<h4 id="org98250ac"><span class="section-number-4">5.1.2</span> IPTV 内网线路</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<h4 id="org98250ac">IPTV 内网线路</h4>
+<div class="outline-text-4" id="text-org98250ac">
 <p>
 使用 IPTV 内网线路的优点是不占据公网的带宽，一般 IPTV 内网线路会专享 50M 左右的带宽，用来观看也仅仅能观看 IPTV。缺点是该方法配置略微有点麻烦，且需要一个支持 VLAN 的路由器，如 openwrt 系统的路由器。
 </p>
@@ -375,8 +375,8 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 <div id="outline-container-org9ed6d5a" class="outline-3">
-<h3 id="org9ed6d5a"><span class="section-number-3">5.2</span> IPTV 抓包直播源</h3>
-<div class="outline-text-3" id="text-5-2">
+<h3 id="org9ed6d5a">IPTV 抓包直播源</h3>
+<div class="outline-text-3" id="text-org9ed6d5a">
 <p>
 这里我们采用一个比较简单的办法，使用双网口笔记本桥接光猫与 IPTV 机顶盒进行抓包：
 </p>
@@ -406,7 +406,7 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 
 <p>
-然后在右侧的 Info 一列中寻找 <b>/iptvepg/function/framset<sub>builder.jsp</sub></b>
+然后在右侧的 Info 一列中寻找 <b>/iptvepg/function/framset_builder.jsp</b>
 </p>
 
 
@@ -443,8 +443,8 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 <div id="outline-container-org8ea7a20" class="outline-3">
-<h3 id="org8ea7a20"><span class="section-number-3">5.3</span> 路由器设置</h3>
-<div class="outline-text-3" id="text-5-3">
+<h3 id="org8ea7a20">路由器设置</h3>
+<div class="outline-text-3" id="text-org8ea7a20">
 <p>
 保持机顶盒关闭，在路由器中使用 IPTV 账号进行双拨。梅林系统的具体设置为：外部网络（WAN） -&gt; 双线路 -&gt; 开启双线路 -&gt; 设置首选 WAN 为 WAN，第二 WAN 为 Ethernet LAN/LAN Port X，开启 Multiple PPPd support，双线路模式选择负载均衡。再开启路由规则，添加 <code>192.168.2.0/24（本地 IP 地址范围） -- all -- 首选 WAN</code> 和 <code>all -- 234.XXX.XXX.XXX（组播地址范围） -- 第二WAN</code> 。 再到互联网连接页面中，WAN 类型选择 Ethernet LAN，输入 IPTV 拨号账号。至此完成单线双拨。
 </p>
@@ -455,8 +455,8 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 <div id="outline-container-org0a2d52e" class="outline-3">
-<h3 id="org0a2d52e"><span class="section-number-3">5.4</span> 制作 m3u 文件</h3>
-<div class="outline-text-3" id="text-5-4">
+<h3 id="org0a2d52e">制作 m3u 文件</h3>
+<div class="outline-text-3" id="text-org0a2d52e">
 <p>
 打开之前保存的.m3u 文件，在文件最前面加上 <code>#EXTM3U</code> 。然后使用将其中所有的 <code>igmp://</code> 替换为 <code>http://192.168.2.1:10888/udp/</code> 并保存。再将该文件上传到 <a href="http://epg.51zmt.top:8000/">http://epg.51zmt.top:8000/</a> 以生成带有台标以及 EPG 的 m3u 文件。再次打开带有 EPG 的 m3u 文件，删除其中的冗余信息，以免在后续的使用中无法正确识别。
 </p>
@@ -467,13 +467,13 @@ EPG 是一个节目指南在 2019 年 10 月前 Plex 一直提供者此项服务
 </div>
 </div>
 </div>
-<div id="outline-container-orga888ef6" class="outline-2">
-<h2 id="orga888ef6"><span class="section-number-2">6</span> Plex</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-org25132ab" class="outline-2">
+<h2 id="org25132ab">Plex</h2>
+<div class="outline-text-2" id="text-org25132ab">
 </div>
 <div id="outline-container-orgaa32cf6" class="outline-3">
-<h3 id="orgaa32cf6"><span class="section-number-3">6.1</span> xTeVe</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="orgaa32cf6">xTeVe</h3>
+<div class="outline-text-3" id="text-orgaa32cf6">
 <p>
 由于 Plex 不支持直接使用 m3u 文件播放，且 Plex 官方在 19 年 10 后停止了 EPG 服务，所以需要通过 xTeVe 实现在 Plex 中播放 IPTV。
 </p>
@@ -505,9 +505,9 @@ xTeVe 可以使用 docker 进行搭建：
 </div>
 </div>
 </div>
-<div id="outline-container-org99b6b55" class="outline-3">
-<h3 id="org99b6b55"><span class="section-number-3">6.2</span> Plex</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgeb65c0b" class="outline-3">
+<h3 id="orgeb65c0b">Plex</h3>
+<div class="outline-text-3" id="text-orgeb65c0b">
 <p>
 进入 Plex 的设置页面，选择最下方的 Live TV &amp; DVR -&gt; 添加设备，输入 xTeVe 的地址，如 <code>192.168.2.71:34400</code> ，之后一路选择继续，直到 XMLTV 指南页面，这里填入 xTeVe 的 XEPG 地址，该地址可在 xTeVe 网页中找到：
 </p>
@@ -525,8 +525,8 @@ xTeVe 可以使用 docker 进行搭建：
 </div>
 </div>
 <div id="outline-container-orgc8c6d53" class="outline-2">
-<h2 id="orgc8c6d53"><span class="section-number-2">7</span> TODO</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgc8c6d53">TODO</h2>
+<div class="outline-text-2" id="text-orgc8c6d53">
 <ul class="org-ul">
 <li>IPTV 机顶盒正常使用</li>
 <li>IPTV 内网线路单线双拨或 Internet/IPTV 双线双拨</li>
@@ -534,8 +534,8 @@ xTeVe 可以使用 docker 进行搭建：
 </div>
 </div>
 <div id="outline-container-org0338f4f" class="outline-2">
-<h2 id="org0338f4f"><span class="section-number-2">8</span> IPTV 内网线路单线双拨介绍</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org0338f4f">IPTV 内网线路单线双拨介绍</h2>
+<div class="outline-text-2" id="text-org0338f4f">
 <ul class="org-ul">
 <li><a href="https://blog.lishun.me/iptvhelper-guide">单线融合IPTV到家庭局域网最简单的方法：路由+桥接混合模式</a></li>
 <li><a href="https://mine260309.me/archives/1668">在同一根网线上支持电信宽带和4K IPTV</a></li>
@@ -544,8 +544,8 @@ xTeVe 可以使用 docker 进行搭建：
 </div>
 </div>
 <div id="outline-container-org10a5fac" class="outline-2">
-<h2 id="org10a5fac"><span class="section-number-2">9</span> 参考</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org10a5fac">参考</h2>
+<div class="outline-text-2" id="text-org10a5fac">
 <ol class="org-ol">
 <li><a href="https://post.smzdm.com/p/471548/">使用梅林路由，丢掉IPTV盒子，实现局域网内任意终端观看直播</a></li>
 <li><a href="https://blog.inas.wiki/index.php/archives/645/">Plex IPTV 单播详细教程</a></li>
@@ -556,7 +556,7 @@ xTeVe 可以使用 docker 进行搭建：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 19:27</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

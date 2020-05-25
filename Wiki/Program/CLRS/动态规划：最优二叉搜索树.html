@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>动态规划：最优二叉搜索树</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">动态规划：最优二叉搜索树</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbe88be9">步骤 1：最优二叉搜索树的结构</a></li>
+<li><a href="#orga5c7f70">步骤 2：一个递归算法</a></li>
+<li><a href="#org39603ee">步骤 3：计算最优二叉搜索树的期望搜索代价</a></li>
+<li><a href="#orgb7dd464">步骤 4：重构最优二叉搜索树</a></li>
+<li><a href="#org35c8589">C 语言实现代码</a></li>
+</ul>
+</div>
+</div>
+<p>
+*最优二叉搜索树*问题可以定义如下：给定一个 n 个不同关键字的已排序的序列 K = ，用这些关键字构造一棵二叉搜索树。每个关键字 ki，都有一个概率 pi 表示其搜索频率。有些要搜索的值可能不在 K 中，因此还有 n+1 个伪关键字 d0, d1, d2, &#x2026;, dn 表示不在 K 中的值。d0 表示小于 k1 的值，dn 表示大于 kn 的值，其他的 di 表示所有在 ki 和 ki+1 之间的值。对于每个伪关键字 di，也都有一个频率 qi 表示对应的搜索频率。
+</p>
+
+<p>
+下图显示了对一个 n=5 个关键字集合构造的两棵二叉搜索树，每个关键字的频率如下表所示。每个关键字 ki 是一个内部结点，而 di 是一个叶子结点。每次搜索要么成功，要么失败，所以有如下公式：<br>
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+二叉搜索树（左边的树期望搜索代价为 2.80，右边的为最优二叉搜索树 2.75）：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134542%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134542%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+关键字搜索概率：
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134555%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134555%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+</p>
+
+<p>
+（图片丢失）
+</p>
+
+<p>
+由于我们知道每个关键字搜索概率，所以可以确定在一棵给定的二叉搜索树 T 中进行一次搜索的期望代价。假定一次搜索的代价等于访问的结点数，即此次搜索找到的结点在 T 中的深度再加 1。那么一次搜索的期望代价如下，第二个等式时由上文的公式推导而来：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-140019%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-140019%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+对于一个给定的概率集合，构造一棵期望搜索代价最小的二叉搜索树，即为*最优二叉搜索树*。这个例子也显示了最优二叉搜索树不一定是高度最矮的，而且概率高的关键字也不一定为根节点。下面我们来求解最优二叉搜索树问题。
+</p>
+
+<hr>
+
+<div id="outline-container-orgbe88be9" class="outline-2">
+<h2 id="orgbe88be9">步骤 1：最优二叉搜索树的结构</h2>
+<div class="outline-text-2" id="text-orgbe88be9">
+<p>
+二叉搜索树的最优子结构为：如果一棵最优二叉搜索树 T 有一棵包含关键字 ki, &#x2026;, kj 的子树 T'，那么 T'必然是包含关键字 ki, &#x2026;, kj 和伪关键字 di-1, &#x2026;, dj 的子问题最优解。由最优解子结构，我们可以用子问题的最优解构造原问题的最优解。给定关键字序列 ki, &#x2026;, kj，其中某个关键字 kr 是这些关键字的最优子树的根节点，其左子树包含 ki, &#x2026;, kr-1 和伪关键字 di-1, &#x2026;dr-1，右子树包含 kr+1, &#x2026;, kj 和伪关键字 dr, &#x2026;, dj。只要我们检查 kr 的所有可能(i &lt;= r &lt;= j)，并对每种情况求解最优二叉搜索树，就能保证得到原问题的最优解。
+</p>
+
+<p>
+不过，还有一个需要注意的细节——空子树”。如果 ki 的左子树只有 ki, .., ki-1，则其不包含任何关键字，但是仍包含伪关键字 di-1，对称的右子树情况也一样。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orga5c7f70" class="outline-2">
+<h2 id="orga5c7f70">步骤 2：一个递归算法</h2>
+<div class="outline-text-2" id="text-orga5c7f70">
+<p>
+定义 e[i, j]为在包含 ki, &#x2026;, kj 的最优二叉搜索树中进行一次搜索的期望代价。当 j = i &#x2013; 1 时，只关键字 di-1，所以 e[i, i-1] = qi-1。当 j &gt;= i 时，我们就需要从中选择一个根结点还构造二叉搜索树。当一棵子树成为一个结点的子树时，期望搜索代价应如何变化呢？由于每个结点的深度都增加了 1,所以根据公式 15.11,这棵子树的期望搜索代价的增加值应为所有概率之和：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143304%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143304%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+而以 kr 为根的最优二叉搜索树的期望搜索代价就为：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143448%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143448%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+由上面两个公式，假定知道哪个结点 k 应该作为根结点，我们可以的到递归公式(15.14)：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143601%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143601%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org39603ee" class="outline-2">
+<h2 id="org39603ee">步骤 3：计算最优二叉搜索树的期望搜索代价</h2>
+<div class="outline-text-2" id="text-org39603ee">
+<p>
+使用自底向上的方法，用表 e 保存最优期望搜索代价，表 root 保存选择的根结点 kr 的下标 r，同时为了避免每次计算 e[i, j]时都要重新计算 w(i, j)，所以还用一个表 w 来保存这些值。对于基本情况 w[i, i-1] = qi-1，对于 j &gt;= i 的情况 w[i, j] = w[i, j-1] + pj, +qj（公式 15.15）。然后基于上面的递归公式来计算最优二叉搜索树的期望搜索代价，具体实现见下文的 C 语言代码。注意其算法与矩阵链相乘问题的算法非常相似，所以不在这里过多叙述了。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgb7dd464" class="outline-2">
+<h2 id="orgb7dd464">步骤 4：重构最优二叉搜索树</h2>
+<div class="outline-text-2" id="text-orgb7dd464">
+<p>
+这一步书上并没有，参考了<a href="http://www.cnblogs.com/Anker/archive/2013/03/13/2958488.html">这里</a>的代码。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org35c8589" class="outline-2">
+<h2 id="org35c8589">C 语言实现代码</h2>
+<div class="outline-text-2" id="text-org35c8589">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">N</span>           <span style="color: #da8548; font-weight: bold;">5</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">INFINITY</span>    <span style="color: #da8548; font-weight: bold;">65535</span>
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">optimal_bst</span>(<span style="color: #ECBE7B;">float</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">float</span> *<span style="color: #dcaeea;">q</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">float</span> (*<span style="color: #dcaeea;">e</span>)[N + <span style="color: #da8548; font-weight: bold;">1</span>], <span style="color: #ECBE7B;">int</span> (*<span style="color: #dcaeea;">root</span>)[N + <span style="color: #da8548; font-weight: bold;">1</span>])
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>, <span style="color: #dcaeea;">l</span>, <span style="color: #dcaeea;">r</span>;
+        <span style="color: #ECBE7B;">float</span>   <span style="color: #dcaeea;">t</span>;
+        <span style="color: #ECBE7B;">float</span>   <span style="color: #dcaeea;">w</span>[N + <span style="color: #da8548; font-weight: bold;">2</span>][N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &lt;= n + <span style="color: #da8548; font-weight: bold;">1</span>; i++) {  <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#26681;&#25454;&#20844;&#24335;15.14&#21644;15.15&#65292;&#20197;&#27010;&#29575;q[i-1]&#21021;&#22987;&#21270;&#34920;e&#21644;w&#20013;&#30340;&#31354;&#23376;&#26641;</span><span style="color: #5B6268;"> */</span>
+            e[i][i - <span style="color: #da8548; font-weight: bold;">1</span>] = q[i - <span style="color: #da8548; font-weight: bold;">1</span>];
+            w[i][i - <span style="color: #da8548; font-weight: bold;">1</span>] = q[i - <span style="color: #da8548; font-weight: bold;">1</span>];
+        }
+        <span style="color: #51afef;">for</span> (l = <span style="color: #da8548; font-weight: bold;">1</span>; l &lt;= n; l++) {      <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#19982;&#30697;&#38453;&#38142;&#30456;&#20056;&#38382;&#39064;&#31867;&#20284;&#65292;&#33258;&#24213;&#21521;&#19978;&#36941;&#21382;&#25152;&#26377;&#21487;&#33021;&#30340;&#26368;&#20248;BST</span><span style="color: #5B6268;"> */</span>
+            <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &lt;= n - l + <span style="color: #da8548; font-weight: bold;">1</span>; i++) {
+                j = i + l - <span style="color: #da8548; font-weight: bold;">1</span>;
+                e[i][j] = INFINITY;
+                w[i][j] = w[i][j - <span style="color: #da8548; font-weight: bold;">1</span>] + p[j] + q[j];    <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#20844;&#24335;15.15</span><span style="color: #5B6268;"> */</span>
+
+                <span style="color: #51afef;">for</span> (r = i; r &lt;= j; r++) {  <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#36941;&#21382;&#25152;&#26377;&#21487;&#33021;&#30830;&#23450;&#26368;&#20248;&#23376;&#26641;&#26681;</span><span style="color: #5B6268;"> */</span>
+                    t = e[i][r - <span style="color: #da8548; font-weight: bold;">1</span>] + e[r + <span style="color: #da8548; font-weight: bold;">1</span>][j] + w[i][j];    <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#20844;&#24335;15.14</span><span style="color: #5B6268;"> */</span>
+                    <span style="color: #51afef;">if</span> (t &lt; e[i][j]) {
+                        e[i][j] = t;
+                        root[i][j] = r;
+                    }
+                }
+            }
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">construct_optimal_bst</span>(<span style="color: #ECBE7B;">int</span> (*<span style="color: #dcaeea;">root</span>)[N + <span style="color: #da8548; font-weight: bold;">1</span>], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">j</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">r</span>;
+
+        <span style="color: #51afef;">if</span> (i == <span style="color: #da8548; font-weight: bold;">1</span> &amp;&amp; j == N) {
+            printf(<span style="color: #98be65;">"k%d&#20026;&#26681;\n"</span>, root[<span style="color: #da8548; font-weight: bold;">1</span>][N]);
+        }
+        <span style="color: #51afef;">if</span> (i &lt; j) {
+            r = root[i][j];
+
+            <span style="color: #51afef;">if</span> (r != i)
+                printf(<span style="color: #98be65;">"k%d&#20026;k%d&#30340;&#24038;&#23401;&#23376;\n"</span>, root[i][r - <span style="color: #da8548; font-weight: bold;">1</span>], r);
+            construct_optimal_bst(root, i, r - <span style="color: #da8548; font-weight: bold;">1</span>);
+            <span style="color: #51afef;">if</span> (r != j)
+                printf(<span style="color: #98be65;">"k%d&#20026;k%d&#30340;&#21491;&#23401;&#23376;\n"</span>, root[r + <span style="color: #da8548; font-weight: bold;">1</span>][j], r);
+            construct_optimal_bst(root, r + <span style="color: #da8548; font-weight: bold;">1</span>, j);
+        }
+
+        <span style="color: #51afef;">if</span> (i == j) {
+            printf(<span style="color: #98be65;">"d%d&#20026;k%d&#30340;&#24038;&#23401;&#23376;\n"</span>, i - <span style="color: #da8548; font-weight: bold;">1</span>, i);
+            printf(<span style="color: #98be65;">"d%d&#20026;k%d&#30340;&#21491;&#23401;&#23376;\n"</span>, i, i);
+        }
+
+        <span style="color: #51afef;">if</span> (i &gt; j) {
+            printf(<span style="color: #98be65;">"d%d&#20026;k%d&#30340;&#21491;&#23401;&#23376;\n"</span>, j, j);
+        }
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">float</span>   <span style="color: #dcaeea;">p</span>[N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">0.15</span>, <span style="color: #da8548; font-weight: bold;">0.10</span>, <span style="color: #da8548; font-weight: bold;">0.05</span>, <span style="color: #da8548; font-weight: bold;">0.10</span>, <span style="color: #da8548; font-weight: bold;">0.20</span>};
+        <span style="color: #ECBE7B;">float</span>   <span style="color: #dcaeea;">q</span>[N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0.05</span>, <span style="color: #da8548; font-weight: bold;">0.10</span>, <span style="color: #da8548; font-weight: bold;">0.05</span>, <span style="color: #da8548; font-weight: bold;">0.05</span>, <span style="color: #da8548; font-weight: bold;">0.05</span>, <span style="color: #da8548; font-weight: bold;">0.10</span>};
+        <span style="color: #ECBE7B;">float</span>   <span style="color: #dcaeea;">e</span>[N + <span style="color: #da8548; font-weight: bold;">2</span>][N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">root</span>[N + <span style="color: #da8548; font-weight: bold;">1</span>][N + <span style="color: #da8548; font-weight: bold;">1</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+
+        optimal_bst(p, q, N, e, root);
+
+        construct_optimal_bst(root, <span style="color: #da8548; font-weight: bold;">1</span>, N);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

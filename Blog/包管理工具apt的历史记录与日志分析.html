@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>包管理工具apt的历史记录与日志分析</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">包管理工具apt的历史记录与日志分析</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7644989">包管理工具 apt 的历史记录与日志分析</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7644989" class="outline-2">
+<h2 id="org7644989">包管理工具 apt 的历史记录与日志分析</h2>
+<div class="outline-text-2" id="text-org7644989">
+<p>
+相信每个用 Linux 的都会遇到这种情形，用 apt 或 yum 装软件的时候跟随一起装一大堆依赖，但是在卸载时这些依赖并没有一起跟着卸载(autoremove 命令也没用)，这时候我们也不知道安装的这些依赖的名字，无法手动卸载，该怎么办呢？我想大多数人的第一反应会是找日志或者历史记录，我也是这么想的，但是关于这方面的中文资料几乎没有，反正我是没有搜到。然而用英文搜索却很容易就找到了。学好英语真的很重要，中文资料实在太少了。。
+</p>
+
+<p>
+用中文搜索最多会找到 dpkg 的日志文件记录在/var/log/dpkg.log 中，但是在 dpkg.log 中不光记录了安装或删除了哪个软件包，实际上是记录了安装的每一个软件包的详细安装过程，有很多我们不需要的信息，分析起来比较麻烦。
+</p>
+
+<p>
+然而，其实 apt 也是有详细的日志的，日志文件位于/var/log/apt/history.log，其中详细的记录了每一条 apt 命令的开始时间、结束时间、输入的命令、安装和删除的软件包等等，尤其是输入的 apt 的命令和安装、删除的软件包这两条命令非常适合我们重现或者反操作之前输入的 apt 命令。其具体的日志格式是这样的：
+</p>
+
+<pre class="example">
+    Start-Date: 2013-12-20  20:34:55
+    Commandline: apt-get autoremove
+    Remove: gir1.2-json-1.0:amd64 (0.15.2-0ubuntu1), gir1.2-coglpango-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-gdesktopenums-3.0:amd64 (3.6.1-0ubuntu1), libtracker-miner-0.14-0:amd64 (0.14.5-1ubuntu1), libtracker-sparql-0.14-0:amd64 (0.14.5-1ubuntu1), gir1.2-cogl-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-clutter-1.0:amd64 (1.12.2-0ubuntu3.1)
+    End-Date: 2013-12-20  20:35:00
+</pre>
+
+<p>
+另外还有一种方法就是使用新立得软件包管理器，它自带历史记录，但是每次安装都得打开新立得太麻烦了，个人很少使用。
+</p>
+
+<p>
+除了上面这些外，还有一个简单的日记分析脚本，apt-history script，将以下脚本添加到/root/.bashrc 中(注意必须是 root，否则不能使用)：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #51afef;">function</span> <span style="color: #c678dd;">apt-history</span><span style="color: #51afef;">(){</span>
+          <span style="color: #51afef;">case</span> <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">1</span><span style="color: #98be65;">"</span><span style="color: #51afef;"> in</span>
+            install)
+                  <span style="color: #ECBE7B;">cat</span> /var/log/dpkg.log | <span style="color: #ECBE7B;">grep</span> <span style="color: #98be65;">'install '</span>
+                  ;;
+            upgrade|remove)
+                  <span style="color: #ECBE7B;">cat</span> /var/log/dpkg.log | <span style="color: #ECBE7B;">grep</span> $<span style="color: #da8548; font-weight: bold;">1</span>
+                  ;;
+            rollback)
+                  <span style="color: #ECBE7B;">cat</span> /var/log/dpkg.log | <span style="color: #ECBE7B;">grep</span> upgrade | <span style="color: #98be65;">\</span>
+                      <span style="color: #ECBE7B;">grep</span> <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">2</span><span style="color: #98be65;">"</span> -A10000000 | <span style="color: #98be65;">\</span>
+                      <span style="color: #ECBE7B;">grep</span> <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">3</span><span style="color: #98be65;">"</span> -B10000000 | <span style="color: #98be65;">\</span>
+                      awk <span style="color: #98be65;">'{print $4"="$5}'</span>
+                  ;;
+            *)
+                  <span style="color: #ECBE7B;">cat</span> /var/log/dpkg.log
+                  ;;
+          <span style="color: #51afef;">esac</span>
+    <span style="color: #51afef;">}</span>
+</pre>
+</div>
+
+<p>
+使用方法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    $ <span style="color: #ECBE7B;">sudo</span> -i
+    Password:
+
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">apt-history install</span>
+    2013-12-06 10:45:41 install wireshark-common:amd64 &lt;none&gt; 1.8.2-5wheezy7build0.13.04.1
+    2013-12-06 10:45:42 install wireshark:amd64 &lt;none&gt; 1.8.2-5wheezy7build0.13.04.1
+    2013-12-07 14:40:58 install liblinear1:amd64 &lt;none&gt; 1.8+dfsg-1ubuntu1
+    2013-12-07 14:40:59 install liblinear-tools:amd64 &lt;none&gt; 1.8+dfsg-1ubuntu1
+    2013-12-07 14:41:00 install nmap:amd64 &lt;none&gt; 6.00-0.3
+</pre>
+</div>
+
+<p>
+注意这个脚本必须以 root 的身份使用，使用命令 sudo apt-history 会提示找不到命令。apt-history 命令的参数可以是 install, upgrade, remove, rollback 其中之一。apt-history 分析的是 dpkg.log 中的日志，个人还是喜欢查看/var/log/apt/history.log，里面每一条命令对应的软件包都很清楚。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Common Mistakes</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Common Mistakes</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8a4c679">Common Ebuild Writing Mistakes</a>
+<ul>
+<li><a href="#org346ca7b">Invalid use of <code>static</code> use-flag</a></li>
+<li><a href="#org4c604f3">Invalid use of ROOT</a></li>
+<li><a href="#org7b7c239">引用可以压缩的文档的完整路径</a></li>
+<li><a href="#org77fe304">Build log not verbose</a></li>
+<li><a href="#org7191686">-Werror compiler flag not removed</a>
+<ul>
+<li><a href="#orgbad91c8">基本原理</a></li>
+<li><a href="#org5619340">如何修复</a></li>
+<li><a href="#orgbbe2126">Specific -Werror=&#x2026; flags</a></li>
+<li><a href="#org61843e1">例外情况</a></li>
+</ul>
+</li>
+<li><a href="#orgb8d6706">Missing/Invalid/Broken Header</a></li>
+<li><a href="#org12157d7">Redefined P, PV, PN, PF</a></li>
+<li><a href="#org235e04e">Including version numbers in SRC_URI and S</a></li>
+<li><a href="#org6525c77">DEPEND has syntactical errors</a></li>
+<li><a href="#org9c61405">DEPEND is incomplete</a></li>
+<li><a href="#orgcc5b2bf">LICENSE Invalid</a></li>
+<li><a href="#org7b1717c">Untested ARCHs in KEYWORDS</a></li>
+<li><a href="#org2fd1664">SLOT missing</a></li>
+<li><a href="#org3ba8555">DESCRIPTION and HOMEPAGE wrong</a></li>
+<li><a href="#org726698f">Wrongfully used spaces instead of TABS</a></li>
+<li><a href="#org05143e2">Trailing whitespace</a></li>
+<li><a href="#org31dbd3f">添加多余的 <code>S=${WORKDIR}/${P}</code></a></li>
+<li><a href="#org841272a">Documentation missing</a></li>
+<li><a href="#orge25073a">Masking unsupported/broken USE flags</a></li>
+</ul>
+</li>
+<li><a href="#org27e079c">Common Ebuild Submission Mistakes</a>
+<ul>
+<li><a href="#org5d7823f">Introduction</a></li>
+<li><a href="#org0949060">Tarball'ing an ebuild</a></li>
+<li><a href="#org0436e23">Inlining Ebuilds</a></li>
+<li><a href="#orgc9ddfac">No description on what the package is</a></li>
+<li><a href="#orgf217328">更新软件包但不说明更改的内容</a></li>
+<li><a href="#org532582e">因版本 bump 提交未更改的 ebuild</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+本章节包含有关开发人员在编写 ebuild 时犯的常见错误的资料。
+</p>
+
+<div id="outline-container-org8a4c679" class="outline-2">
+<h2 id="org8a4c679">Common Ebuild Writing Mistakes</h2>
+<div class="outline-text-2" id="text-org8a4c679">
+</div>
+<div id="outline-container-org346ca7b" class="outline-3">
+<h3 id="org346ca7b">Invalid use of <code>static</code> use-flag</h3>
+<div class="outline-text-3" id="text-org346ca7b">
+<p>
+<code>static</code> use-flag 应该仅用于使二进制文件静态链接而不是动态链接。它不应该用于使一个库安装静态库。相反， <code>static-libs</code> use-flag 应该用于此目的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c604f3" class="outline-3">
+<h3 id="org4c604f3">Invalid use of ROOT</h3>
+<div class="outline-text-3" id="text-org4c604f3">
+<p>
+<code>ROOT</code> 的使用仅旨在影响软件包的安装方式（即安装到 <code>ROOT</code> ） —— 构建和编译不应该依赖于 <code>ROOT</code> 。因此不允许在 <code>src_*</code> 函数中使用 <code>ROOT</code> 。
+</p>
+
+<p>
+也请见<a href="https://devmanual.gentoo.org/ebuild-writing/variables/index.html#root">ROOT</a>。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7b7c239" class="outline-3">
+<h3 id="org7b7c239">引用可以压缩的文档的完整路径</h3>
+<div class="outline-text-3" id="text-org7b7c239">
+<p>
+当向用户打印在那里可以找到诸如 INSTALL 值文件的文件时，不要指定完整路径因为=PORTAGE_COMPRELESS=会起作用。文件可能会会被用 gzip、bzip2 或其他压缩工具压缩。因此，不要这样做：
+</p>
+
+<p>
+<code>elog "They are listed in /usr/share/doc/${PF}/INSTALL.gz"</code>
+</p>
+
+<p>
+而要像这样做：
+</p>
+
+<p>
+<code>elog "They are listed in the INSTALL file in /usr/share/doc/${PF}"</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org77fe304" class="outline-3">
+<h3 id="org77fe304">Build log not verbose</h3>
+<div class="outline-text-3" id="text-org77fe304">
+<p>
+当编写 ebuild 时，你应该总是检查构建日志，因为构建系统可能会葫芦俄 CC/CXX/LD/CFLAGS/LDFAGS 都能或默认添加不需要的 flag。为了分析此问题并获得完整的信息，以防有人报告你的软件包存在漏洞， <b>构建日志必须总是详细的</b> 。
+</p>
+
+<p>
+根据构建系统，有几个方法来修复构建日志不详细的问题：
+</p>
+
+<p>
+对于基于 <code>cmake</code> 的构建系统，ebuild 只要调用 cmake-utils_src_compile 即可，默认情况下该函数会拾取 camke-utils.eclass 变量 <code>CMAKE_VERBOSE=1</code> 。如果你出于任何原因直接调用 emake，那可以执行 <code>emake VERBOSE=1</code> （注意，cmake-utils_src_compile 也接受传递给 make 的参数）。
+</p>
+
+<p>
+对于基于 <code>autotools</code> 的构建系统你可以传递 <code>--disable-silent-rules</code> 到 econf，或使用自动传递该参数的 EAPI 5。 <code>emake -V1</code> 也有同样的效果。
+</p>
+
+<p>
+对于自定义的 Makefile，你通常必须编写一个 patch。尝试向上游添加诸如=V=1=之类的选项以开启完整详细信息。
+</p>
+
+<blockquote>
+<p>
+Note：如果你遇到受影响的软件包或 eclass，其使用的构建系统无法被 portage 控制，你应该提交 bug（与 patch 一起更好）并且使它屏蔽 bug #429308。ebuild 级别之上的解决方案是首选。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org7191686" class="outline-3">
+<h3 id="org7191686">-Werror compiler flag not removed</h3>
+<div class="outline-text-3" id="text-org7191686">
+<p>
+<code>-Werror</code> flag 将所有的警告变成错误，所以如果遇到任何警告会停止编译。
+</p>
+</div>
+
+<div id="outline-container-orgbad91c8" class="outline-4">
+<h4 id="orgbad91c8">基本原理</h4>
+<div class="outline-text-4" id="text-orgbad91c8">
+<p>
+该 flag 对 release 并不推荐并且在构建日志中遇到时总是应该禁用的，因为在很多情况下这种破坏都是无目的的，例如：
+</p>
+
+<ul class="org-ul">
+<li>在 GCC/GLIBC 版本 bump 时出现新的警告，开发人员在编码时尚未意识到</li>
+<li>一些 autoconf 检查将会严重失败</li>
+<li>库添加已弃用 API 的警告，尽管该 API 仍在工作/受支持</li>
+<li>在鲜为人知的架构上，我们可能会比在普通架构上得道不同/更多的警告</li>
+<li>随机破坏取决于开发人员在哪个发行版/架构/库版本/内核/用户空间测试 <code>-Werror</code></li>
+</ul>
+
+<p>
+关闭 <code>-Werror</code> 我们仍可见到警告，但没有理由它们会造成编译失败。还请注意，portage 已经发出了有关可能会造成运行时损坏的 gcc 警告的 QA notices。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5619340" class="outline-4">
+<h4 id="org5619340">如何修复</h4>
+<div class="outline-text-4" id="text-org5619340">
+<p>
+你应该使用如下方法修复受影响的构建系统：
+</p>
+
+<ul class="org-ul">
+<li>从构建系统中移除编译 flag，例如 Makefile.am 或 configure.ac 或甚至提供开关（对于基于 autotools 的构建系统可能是 <code>--disable-werror</code> ，其非常适合向上游发送 patch）</li>
+<li>使用 append-flags -Wno-error（需要 flag-o-matic.eclass）；为此环境 flag 必须尊重并放在构建系统 flag 之后；该方法不是首选，因为它将同时禁用所有 <code>-Werror=specific-warning</code> flag，请见下一节</li>
+</ul>
+
+<p>
+始终检查构建日志中真的没有该 flag。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbbe2126" class="outline-4">
+<h4 id="orgbbe2126">Specific -Werror=&#x2026; flags</h4>
+<div class="outline-text-4" id="text-orgbbe2126">
+<p>
+GCC 可以使任何指定警告变成错误。例如一个指定的-Werror flag 可以是 <code>-Werror=implicit-function-declaration</code> ，并将仅影响关于隐式函数声明的警告。保留这些鸳鸯是最安全的，因为将它们固定在此问题上，并且不会造成随机的构建时间破坏。还有，我们可以期望上游这么做是为了避免已知的运行时错误，而不仅仅是测试其构建。然而你应该自己检查指定的警告，或在不确定时询问其他开发人员。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org61843e1" class="outline-4">
+<h4 id="org61843e1">例外情况</h4>
+<div class="outline-text-4" id="text-org61843e1">
+<p>
+从 configure.ac 中删除 <code>-Werror</code> 会在极少数的情况下（其中配置阶段依赖于退出代码）导致中断。见<a href="https://sourceforge.net/p/open-vm-tools/tracker/81/">app-emulation/open-vm-tools bug</a>。但是即使如此，我们仍将其从生成的 Makefile 中删除。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb8d6706" class="outline-3">
+<h3 id="orgb8d6706">Missing/Invalid/Broken Header</h3>
+<div class="outline-text-3" id="text-orgb8d6706">
+<p>
+当你提交 ebuild 时，header 必须和<a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/skel.ebuild">skel.ebuild</a>中的完全形同。
+</p>
+
+<p>
+前两行必须如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Copyright 1999-2020 Gentoo Authors</span>
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Distributed under the terms of the GNU General Public License v2</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$</code> 关键字的第三行。这一行在转为 git 后废除了，其由<a href="https://bugs.gentoo.org/611234">decision of the Gentoo Council on 28 February 2017</a>决定并不能再继续添加。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org12157d7" class="outline-3">
+<h3 id="org12157d7">Redefined P, PV, PN, PF</h3>
+<div class="outline-text-3" id="text-org12157d7">
+<p>
+你应该永远不重新定义这些变量。总是使用 MY_P、MY_PN、MY_PV、P0 等。有关更多信息，请见再 portage 其他这样做的 ebuild。大多数 ebuild 使用 bash 的"Parameter Expansion"。请阅读 bash 的 man page 以理解"Parameter Expansion"是怎么样工作的。
+</p>
+
+<p>
+顺便，如果你找到重新定义这些变量的软件包，请不要复制它。提交有关该 ebuild 的 bug。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org235e04e" class="outline-3">
+<h3 id="org235e04e">Including version numbers in SRC_URI and S</h3>
+<div class="outline-text-3" id="text-org235e04e">
+<p>
+你应该尽量不要再 SRC_URI 和 S 中包含版本号。总是尝试使用 <code>${PV}</code> 或 <code>${P}</code> 。这会使得维护 ebuild 更加容易。如果版本号与压缩包/源代码的名字不是一致，则使用 MY_P。一个例子是 dev-python/pyopenal 拉取一个名为 PyOpenAL 的压缩包，所以我们可以像这样重新定义：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #dcaeea;">MY_P</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">P</span>/pyopenal/PyOpenAL<span style="color: #51afef;">}</span>
+    <span style="color: #dcaeea;">SRC_URI</span>=<span style="color: #98be65;">"http://download.gna.org/pyopenal/</span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{MY_P}</span><span style="color: #98be65;">.tar.gz"</span>
+    <span style="color: #dcaeea;">S</span>=$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">WORKDIR</span><span style="color: #51afef;">}</span>/$<span style="color: #51afef;">{</span><span style="color: #dcaeea;">MY_P</span><span style="color: #51afef;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6525c77" class="outline-3">
+<h3 id="org6525c77">DEPEND has syntactical errors</h3>
+<div class="outline-text-3" id="text-org6525c77">
+<p>
+用户提交的 DEPEND 和 RDEPEND 字段可能会出现很多错误。在编写依赖的时候，需要注意以下几点。
+</p>
+
+<ul class="org-ul">
+<li>总是包括 CATEGORY。例如，使用 <code>&gt;=x11-libs/gtk+-2</code> ，而不是 <code>&gt;=gtk+2</code> 。</li>
+<li>不要在&gt;=依赖项添加星号(*)。例如，应该使用 <code>&gt;=x11-libs/gtk+-2</code> ，而不是 <code>&gt;=x11-libs/gtk+-2*</code> 。</li>
+<li>指定 GTK。对于 GTK+1 的应用，总是使用 <code>=x11-libs/gtk+-1.2*</code> 。</li>
+<li>永远不要依赖 meta 包。所以，不要依赖于 gnome-base/gnome，总是依赖于指定的库，像 libgnome。</li>
+<li>一行一个依赖项。不要把多个依赖项放到同一行。这会使阅读变得难看并且难以遵循。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9c61405" class="outline-3">
+<h3 id="org9c61405">DEPEND is incomplete</h3>
+<div class="outline-text-3" id="text-org9c61405">
+<p>
+这是另一个非常常见的错误。ebuild 提交者提交“可以正常工作”的 ebuild，而不检查依赖是否正确。这里有一些如何找到正确依赖的提示。
+</p>
+
+<ul class="org-ul">
+<li>查看 <code>configure.in</code> 或 <code>configure.ac</code> 。在此处查找软件包的检查。需要注意的是 pkg-config 的检查或检查特定版本的 AM_*函数。</li>
+<li>查看包含的.spec 文件。一个好的依赖关系指示是查看其中包含的.spec 文件以获取相关的依赖。然而，不要相信它们是绝对完整的依赖关系列表。</li>
+<li>查看应用程序/库的网站。检查应用程序的网站，以了解他们建议的可能的依赖关系。</li>
+<li>阅读软件包的 README 和 INSTALL。它们通常包含关于构建和安装软件包的有用信息。</li>
+<li>记住非二进制依赖，如 pkg-config、文档生成程序等。通常构建过程要求一些依赖，像 inittool、libtool、pkg-config、doxygen、scrollkeeper、gtk-doc 等。确保明确说明这些内容。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcc5b2bf" class="outline-3">
+<h3 id="orgcc5b2bf">LICENSE Invalid</h3>
+<div class="outline-text-3" id="text-orgcc5b2bf">
+<p>
+另一个用户犯的常见错误是当提交 ebuild 时提供了无效的 license。例如， <code>GPL</code> 不是一个有效的 license。你需要指定 <code>GPL-1</code> 或 <code>GPL-2</code> 。 <code>LGPL</code> 也是同样的情况。确保你在 <code>LICENSE</code> 字段中使用的 license 在 <code>licenses</code> 目录下存在。一个提示，检查源代码压缩文件中的 <code>COPYING</code> 文件以获取许可证。如果软件包没有指定使用 <code>GPL-1</code> 或 <code>GPL-2</code> ，软件包很有可能使用 <code>GPL-2</code> 。
+</p>
+
+<p>
+如果你提交的软件包 license 是独一无二的并且不在 <code>licenses/</code> 中，那么你必须在单独的文件中提交新的许可证。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7b1717c" class="outline-3">
+<h3 id="org7b1717c">Untested ARCHs in KEYWORDS</h3>
+<div class="outline-text-3" id="text-org7b1717c">
+<p>
+请不要添加其他的 ARCH 到 KEYWORDS 中，除非 ebuld 在该 ARCH 上经过了测试。还有所有新的 ebuild 应该使用 ~x86 或无论架构是什么。确保当你 bump 版本时，稳定(?)的 KEYWORDS 全部标记为~。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2fd1664" class="outline-3">
+<h3 id="org2fd1664">SLOT missing</h3>
+<div class="outline-text-3" id="text-org2fd1664">
+<p>
+确保在 ebuild 中又 SLOT 变量。如果你不打算使用它，也不要将其删除。设为：
+</p>
+
+<p>
+<code>SLOT="0"</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ba8555" class="outline-3">
+<h3 id="org3ba8555">DESCRIPTION and HOMEPAGE wrong</h3>
+<div class="outline-text-3" id="text-org3ba8555">
+<p>
+请检查 <code>HOMEPAGE</code> 变量是否正确，并且如果用户想了解有关软件包的更多信息，引导用户进入正确的页面。确保 <code>DESCRIPTION</code> 不会太长。好的描述将在一句话内描述软件包的主要功能。如果软件包没有 homepage 可用，则设置 <code>HOMEPAGE</code> 变量为 <code>https://wiki.gentoo.org/wiki/No_homepage</code> 。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org726698f" class="outline-3">
+<h3 id="org726698f">Wrongfully used spaces instead of TABS</h3>
+<div class="outline-text-3" id="text-org726698f">
+<p>
+因为提交者没有遵循使用 TABS 而不是空格的方针，而重新格式化 ebuild 的每一行并不有趣。所有请使用 tabs。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org05143e2" class="outline-3">
+<h3 id="org05143e2">Trailing whitespace</h3>
+<div class="outline-text-3" id="text-org05143e2">
+<p>
+我经常对此感到内疚。记住在你的 build 上运行 repoman，它可以告诉你在行尾是否有空白或者是否有空行。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org31dbd3f" class="outline-3">
+<h3 id="org31dbd3f">添加多余的 <code>S=${WORKDIR}/${P}</code></h3>
+<div class="outline-text-3" id="text-org31dbd3f">
+<p>
+如果 <code>S=${WORKDIR}/${P}</code> ，那么应该将其添加到你的 ebuild 中。这已经默认设置了，你应该仅在其值与 <code>${WORKDIR}/${P}</code> 不同时才添加它。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org841272a" class="outline-3">
+<h3 id="org841272a">Documentation missing</h3>
+<div class="outline-text-3" id="text-org841272a">
+<p>
+如果你的软件包有文档，确保使用 <code>dodoc</code> 安装或安装到 <code>/usr/share/doc/${PF}</code> 。到运行 <code>dodoc</code> / <code>doins</code> 时检查错误。
+</p>
+
+<p>
+如果软件包的文档非常大或需要额外的依赖来构建，你应该用 <code>doc</code> USE flag 使它成为可选的。如果文档很小并且不需要额外的依赖（例如 <code>README</code> 文件），那么应无条件的安装它。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge25073a" class="outline-3">
+<h3 id="orge25073a">Masking unsupported/broken USE flags</h3>
+<div class="outline-text-3" id="text-orge25073a">
+<p>
+异常情况下，软件包可能具有不支持/损坏的 USE flag（这可能发生在原生或 custom-cflags 上）。那么该 USE flag 必须在该 ebuild 中屏蔽（通常在 profile/base/package.use.mask），至少当 ebuild 到达稳定分支时。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27e079c" class="outline-2">
+<h2 id="org27e079c">Common Ebuild Submission Mistakes</h2>
+<div class="outline-text-2" id="text-org27e079c">
+</div>
+<div id="outline-container-org5d7823f" class="outline-3">
+<h3 id="org5d7823f">Introduction</h3>
+<div class="outline-text-3" id="text-org5d7823f">
+<p>
+请根据<a href="https://devmanual.gentoo.org/ebuild-maintenance/new-ebuild/index.html">Adding a New Ebuild</a>教程正确提交 ebuild。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0949060" class="outline-3">
+<h3 id="org0949060">Tarball'ing an ebuild</h3>
+<div class="outline-text-3" id="text-org0949060">
+<p>
+请不要把 ebuild 或 patch 作为 tarball 附加。以避免 review 时的额外操作。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0436e23" class="outline-3">
+<h3 id="org0436e23">Inlining Ebuilds</h3>
+<div class="outline-text-3" id="text-org0436e23">
+<p>
+不要将 ebuild 剪切并粘贴到 bugzilla 的注释字段中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9ddfac" class="outline-3">
+<h3 id="orgc9ddfac">No description on what the package is</h3>
+<div class="outline-text-3" id="text-orgc9ddfac">
+<p>
+请让我们知道这是什么软件包，并填写应用程序的主页（如果有）的 URL。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf217328" class="outline-3">
+<h3 id="orgf217328">更新软件包但不说明更改的内容</h3>
+<div class="outline-text-3" id="text-orgf217328">
+<p>
+如果你提交了软件包的更新，那么确保你解释了在 ebuild 中做了什么更改。例如，如果软件包引入了一个新的特性/功能并且你使用了 USE flag， 将它列在你的 bug 中。不要让我们因此受伤。
+</p>
+
+<p>
+提交 diff 而不是整个 ebuild 来更新软件包时明智的。生成它的最佳方法时：
+</p>
+
+<p>
+<code>$ diff -u some-package-0.1.0.ebuild some-package-0.2.0.ebuild &gt; ~/some-package-0.2.0.diff</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org532582e" class="outline-3">
+<h3 id="org532582e">因版本 bump 提交未更改的 ebuild</h3>
+<div class="outline-text-3" id="text-org532582e">
+<p>
+如果你提交一个新版本的软件包到 portage 中，确保存在的 ebuild 正常工作并且确保更改已合并到新的 build 中（例如添加文档）。如果对闲钱版本的 ebuild 不需要进行任何更改，那么请不要附加 ebuild。只要在 bug report 中说明你复制了 ebuild 并验证了该软件包可以正常安装和工作。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

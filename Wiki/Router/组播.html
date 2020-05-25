@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 19:47 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>组播</title>
@@ -234,30 +234,30 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#组播技术实现">1. 组播技术实现</a>
+<li><a href="#组播技术实现">组播技术实现</a>
 <ul>
-<li><a href="#组播地址机制">1.1. 组播地址机制</a>
+<li><a href="#组播地址机制">组播地址机制</a>
 <ul>
-<li><a href="#ip 组播地址">1.1.1. IP 组播地址</a>
+<li><a href="#ip 组播地址">IP 组播地址</a>
 <ul>
-<li><a href="#组播地址划分">1.1.1.1. 组播地址划分:</a></li>
+<li><a href="#组播地址划分">组播地址划分:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#组成员关系管理">1.2. 组成员关系管理</a>
+<li><a href="#组成员关系管理">组成员关系管理</a>
 <ul>
-<li><a href="#igmp">1.2.1. IGMP</a></li>
-<li><a href="#igmpv2 的工作原理">1.2.2. IGMPv2 的工作原理</a></li>
-<li><a href="#抓包信息">1.2.3. 抓包信息</a></li>
-<li><a href="#igmpv2-destination-address">1.2.4. IGMPv2 destination address</a></li>
+<li><a href="#igmp">IGMP</a></li>
+<li><a href="#igmpv2 的工作原理">IGMPv2 的工作原理</a></li>
+<li><a href="#抓包信息">抓包信息</a></li>
+<li><a href="#igmpv2-destination-address">IGMPv2 destination address</a></li>
 </ul>
 </li>
-<li><a href="#igmp-snooping">1.3. IGMP Snooping</a></li>
+<li><a href="#igmp-snooping">IGMP Snooping</a></li>
 </ul>
 </li>
-<li><a href="#参考">2. 参考</a></li>
-<li><a href="#org75816f9">3. Link</a></li>
+<li><a href="#参考">参考</a></li>
+<li><a href="#org75816f9">Link</a></li>
 </ul>
 </div>
 </div>
@@ -279,7 +279,7 @@
 </div>
 
 <div id="outline-container-组播技术实现" class="outline-2">
-<h2 id="组播技术实现"><span class="section-number-2">1</span> 组播技术实现</h2>
+<h2 id="组播技术实现">组播技术实现</h2>
 <div class="outline-text-2" id="text-组播技术实现">
 <p>
 组播技术的实现需要解决以下几方面问题：
@@ -294,12 +294,12 @@
 </div>
 
 <div id="outline-container-组播地址机制" class="outline-3">
-<h3 id="组播地址机制"><span class="section-number-3">1.1</span> 组播地址机制</h3>
+<h3 id="组播地址机制">组播地址机制</h3>
 <div class="outline-text-3" id="text-组播地址机制">
 </div>
 
 <div id="outline-container-ip 组播地址" class="outline-4">
-<h4 id="ip 组播地址"><span class="section-number-4">1.1.1</span> IP 组播地址</h4>
+<h4 id="ip 组播地址">IP 组播地址</h4>
 <div class="outline-text-4" id="text-ip 组播地址">
 
 <div class="figure">
@@ -325,7 +325,7 @@ IP 组播地址用于标识一个 IP 组播组。IANA 把 D 类地址空间分�
 </div>
 
 <div id="outline-container-组播地址划分" class="outline-5">
-<h5 id="组播地址划分"><span class="section-number-5">1.1.1.1</span> 组播地址划分:</h5>
+<h5 id="组播地址划分">组播地址划分:</h5>
 <div class="outline-text-5" id="text-组播地址划分">
 <ol class="org-ol">
 <li>224.0.0.0 到 224.0.0.255 被 IANA 预留，地址 224.0.0.0 保留不做分配，其它地址供路由协议及拓扑查找和维护协议使用。该范围内的地址属于局部范畴，不论 TTL 为多少，都不会被路由器转发；</li>
@@ -345,7 +345,7 @@ IP 组播地址用于标识一个 IP 组播组。IANA 把 D 类地址空间分�
 </div>
 
 <div id="outline-container-组成员关系管理" class="outline-3">
-<h3 id="组成员关系管理"><span class="section-number-3">1.2</span> 组成员关系管理</h3>
+<h3 id="组成员关系管理">组成员关系管理</h3>
 <div class="outline-text-3" id="text-组成员关系管理">
 <p>
 组成员关系管理是指在=路由器/交换机=上建立直联网段内的组成员关系信息，具体说，就是各接口/端口下有哪些组播组的成员。
@@ -353,7 +353,7 @@ IP 组播地址用于标识一个 IP 组播组。IANA 把 D 类地址空间分�
 </div>
 
 <div id="outline-container-igmp" class="outline-4">
-<h4 id="igmp"><span class="section-number-4">1.2.1</span> IGMP</h4>
+<h4 id="igmp">IGMP</h4>
 <div class="outline-text-4" id="text-igmp">
 <p>
 IGMP 运行于 <code>主机和与主机直连的路由器</code> 之间，其实现的功能是双向的：
@@ -381,7 +381,7 @@ IGMP 运行于 <code>主机和与主机直连的路由器</code> 之间，其实
 </div>
 
 <div id="outline-container-igmpv2 的工作原理" class="outline-4">
-<h4 id="igmpv2 的工作原理"><span class="section-number-4">1.2.2</span> IGMPv2 的工作原理</h4>
+<h4 id="igmpv2 的工作原理">IGMPv2 的工作原理</h4>
 <div class="outline-text-4" id="text-igmpv2 的工作原理">
 
 <div class="figure">
@@ -405,7 +405,7 @@ IGMP 运行于 <code>主机和与主机直连的路由器</code> 之间，其实
 </div>
 
 <div id="outline-container-抓包信息" class="outline-4">
-<h4 id="抓包信息"><span class="section-number-4">1.2.3</span> 抓包信息</h4>
+<h4 id="抓包信息">抓包信息</h4>
 <div class="outline-text-4" id="text-抓包信息">
 
 <div class="figure">
@@ -417,7 +417,7 @@ IGMP 运行于 <code>主机和与主机直连的路由器</code> 之间，其实
 </div>
 
 <div id="outline-container-igmpv2-destination-address" class="outline-4">
-<h4 id="igmpv2-destination-address"><span class="section-number-4">1.2.4</span> IGMPv2 destination address</h4>
+<h4 id="igmpv2-destination-address">IGMPv2 destination address</h4>
 <div class="outline-text-4" id="text-igmpv2-destination-address">
 <table>
 
@@ -486,7 +486,7 @@ IGMPv2: Membership Report group 239.0.0.11
 </div>
 
 <div id="outline-container-igmp-snooping" class="outline-3">
-<h3 id="igmp-snooping"><span class="section-number-3">1.3</span> IGMP Snooping</h3>
+<h3 id="igmp-snooping">IGMP Snooping</h3>
 <div class="outline-text-3" id="text-igmp-snooping">
 <p>
 IGMP 是针对 IP 层设计的，只能记录路由器上的三层接口与 IP 组播地址的对应关系。但在很多情况下，组播报文不可避免地要经过一些交换机，如果没有一种机制将二层端口与组播 MAC 地址对应起来，组播报文就会转发给交换机的所有端口，这显然会浪费大量的系统资源。
@@ -500,7 +500,7 @@ IGMP Snooping 的出现就可以解决这个问题，其工作原理为：主机
 </div>
 
 <div id="outline-container-参考" class="outline-2">
-<h2 id="参考"><span class="section-number-2">2</span> 参考</h2>
+<h2 id="参考">参考</h2>
 <div class="outline-text-2" id="text-参考">
 <ul class="org-ul">
 <li><a href="https://blog.csdn.net/jianchaolv/article/details/7909948">组播技术</a></li>
@@ -513,8 +513,8 @@ IGMP Snooping 的出现就可以解决这个问题，其工作原理为：主机
 </div>
 
 <div id="outline-container-org75816f9" class="outline-2">
-<h2 id="org75816f9"><span class="section-number-2">3</span> Link</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org75816f9">Link</h2>
+<div class="outline-text-2" id="text-org75816f9">
 <p>
 <a href="https://winddoing.github.io/post/18736.html">https://winddoing.github.io/post/18736.html</a>
 </p>
@@ -523,7 +523,7 @@ IGMP Snooping 的出现就可以解决这个问题，其工作原理为：主机
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 19:47</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

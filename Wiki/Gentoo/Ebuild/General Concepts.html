@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>General Concepts</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">General Concepts</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgaaebed0">Emerge and Ebuild Relationships</a></li>
+<li><a href="#org38d0068">FEATURES</a></li>
+<li><a href="#org455df64">Git to RSYNC</a></li>
+<li><a href="#org29f85f0">Mirrors</a>
+<ul>
+<li><a href="#orgeb4df79">Mirroring</a></li>
+<li><a href="#orgc3aa384">Restricting Automatic Mirroring</a></li>
+</ul>
+</li>
+<li><a href="#org3d51064">Sandbox</a></li>
+<li><a href="#orgcd7e6e9">Slotting</a>
+<ul>
+<li><a href="#org490e8ec">Sub-Slots</a></li>
+<li><a href="#orgd11ed46">SLot Names</a></li>
+</ul>
+</li>
+<li><a href="#org471fd07">User Environment</a>
+<ul>
+<li><a href="#orgf65c38f">Filtering Variables</a></li>
+<li><a href="#org9c10611">Not Filtering Variables</a></li>
+</ul>
+</li>
+<li><a href="#org7aae2df">Links</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaaebed0" class="outline-2">
+<h2 id="orgaaebed0">Emerge and Ebuild Relationships</h2>
+<div class="outline-text-2" id="text-orgaaebed0">
+
+<div class="figure">
+<p><img src="../../../pics/Gentoo/relationship-diagram.png" alt="relationship-diagram.png">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>relationship-diagram</p>
+</div>
+
+<p>
+<code>emerge</code> 程序是 <code>ebuild.sh</code> 的高级包装，它处理依赖追踪、安全安装和卸载等。 <code>emerge</code> 在构建过程中调用 <code>ebuild.sh</code> ，后者又处理 ebuild 文件和任何 eclass。从 <code>${D}</code> 到 <code>${ROOT}</code> 的安装由 <code>emerge</code> 处理。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38d0068" class="outline-2">
+<h2 id="org38d0068">FEATURES</h2>
+<div class="outline-text-2" id="text-org38d0068">
+<p>
+<code>FEATURES</code> 变量指定影响 portage 操作和软件包编译的选项。它不用于对生成的软件包产生实质性影响的设置。
+</p>
+
+<p>
+与开发者相关的 <code>FEATURES</code> 包括：
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>collision-protect</code></td>
+<td class="org-left">如果安装的软件包尝试覆盖其他软件包提供的文件，则引发一个错误</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>noauto</code></td>
+<td class="org-left">当使用 <code>ebuild</code> 时，仅运行指定的函数</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>sanbox</code></td>
+<td class="org-left">开启 sanbox</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>sign</code></td>
+<td class="org-left">使用 GPG 签名 <code>Manifest</code> 文件</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>strict</code></td>
+<td class="org-left">对潜在的危险情况做一些额外的检查（例如缺少 <code>Manifest</code> 文件）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>test</code></td>
+<td class="org-left">启用 <code>src_test</code> 阶段</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>userpriv</code></td>
+<td class="org-left">在特定的阶段，使用非 root 权限</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>usersandbox</code></td>
+<td class="org-left">启用 sanbox，即使运行在非 root 权限</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org455df64" class="outline-2">
+<h2 id="org455df64">Git to RSYNC</h2>
+<div class="outline-text-2" id="text-org455df64">
+<p>
+对 tree 所做的更改将分阶段传播给用户：
+</p>
+
+<ul class="org-ul">
+<li>开发者 commit 到本地 git cloen 并且 push 到中央远程 git 仓库。commit 和 push 使用 git 基于 GPG 的机制签名。</li>
+<li>staging box 从中央 git 仓库同步，生成元数据缓存，ChangLogs 并从 git 历史记录中签名 Manifests。</li>
+<li><code>rsync1</code> 从 staging box 同步</li>
+<li>公共 rsync 服务器从 <code>rysnc1</code> 同步</li>
+<li>用户从公共 rsync 服务器同步</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="../../../pics/Gentoo/git-to-rsync.png" alt="git-to-rsync.png">
+</p>
+<p><span class="figure-number">&#22270;2&nbsp; </span>git-to-rsync</p>
+</div>
+
+<p>
+<i>Diagram showing Git to RSYNC Propagation</i>
+</p>
+
+<p>
+<code>emerge-websync</code> 的快照是每日从 staging box 中生成的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org29f85f0" class="outline-2">
+<h2 id="org29f85f0">Mirrors</h2>
+<div class="outline-text-2" id="text-org29f85f0">
+</div>
+<div id="outline-container-orgeb4df79" class="outline-3">
+<h3 id="orgeb4df79">Mirroring</h3>
+<div class="outline-text-3" id="text-orgeb4df79">
+<p>
+软件包会自动将其在=SRC_URI=中的组件镜像到 Gentoo mirrors 上，包括托管在官方 Gentoo 基础设施上的那些（即 <code>dev.gentoo.org</code> 中的开发者空间）。当拉取的，包管理器会在尝试从原始上游位置之前先检查 Gentoo mirrors。
+</p>
+
+<p>
+这通常是期望的行为 -&#x2013;&#x2014; 上游镜像易于重新排列、整理或修改文件。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc3aa384" class="outline-3">
+<h3 id="orgc3aa384">Restricting Automatic Mirroring</h3>
+<div class="outline-text-3" id="text-orgc3aa384">
+<p>
+三个 <code>RESTRICT</code> 关键字可以用于控制镜像过程。
+</p>
+
+<p>
+<code>RESTRICT="mirror"</code> 设置应该用于如果我们无法合法的镜像特定文件；文件将仍从原始位置下载。
+</p>
+
+<p>
+<code>RESTRICT="primayuri"</code> 设置会导致 portage 首先尝试从原始位置下载，然后如果有必要则退回镜像。这不应该新的 ebuild 中使用。
+</p>
+
+<p>
+<code>RESTRICT="fetch"</code> 将会阻止 portage 尝试手动获取任何内容。如果找不到任何 <code>SRC_URI</code> 组件，则 pkg_nofetch 函数将会被调用。仅在 license 要求时才应使用此选项。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d51064" class="outline-2">
+<h2 id="org3d51064">Sandbox</h2>
+<div class="outline-text-2" id="text-org3d51064">
+<p>
+在 <code>src_unpack</code> 、 <code>src_compile</code> 、 <code>src_test</code> 和 <code>src_install</code> 阶段， <code>ebuild.sh</code> 运行在 sandbox 中。这是一个特殊的环境，它帮助防止错误编写的 ebuild（或与错误编写的构建系统一起工作的 ebuild）意外写在允许的位置之外。
+</p>
+
+<p>
+<b>当 sandbox 处于活动状态时所有的软件包都必须正确构建</b> 。软件包不得通过使用狡猾的技巧使 sandbox 警告不显示来达成此目的
+</p>
+<hr>
+<p>
+sandbox 可以保证二进制软件包正常工作，而且写得不好的 Makefile 不会造成问题。使用 <code>addwrite</code> 通常不是正确的解决方案。
+</p>
+
+<p>
+关于 sanbox 相关函数的详细信息请见<a href="https://devmanual.gentoo.org/function-reference/sandbox-functions/index.html">sandbox函数参考</a>。关键修复 sandbox 相关构建问题的建议请见<a href="https://devmanual.gentoo.org/appendices/common-problems/index.html#handling-access-violations">Handling Access Violations</a>。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd7e6e9" class="outline-2">
+<h2 id="orgcd7e6e9">Slotting</h2>
+<div class="outline-text-2" id="text-orgcd7e6e9">
+<p>
+软件包可以支同时安装多个版本。这对于在不同版本之间可能会改变接口的库很有用
+</p>
+<hr>
+<p>
+例如， <code>gtk+</code> 软件包可以同时安装 <code>2.24</code> 和 <code>3.6</code> 版本。这个特性叫做 slotting。
+</p>
+
+<p>
+大多数软件包不需要 slotting。这些软件包在 ebuild 中指定 <code>SLOT="0"</code> 。这纯属惯例；包管理器不会将 <code>0</code> 于其他任何 slot 值区别对待。
+</p>
+
+<blockquote>
+<p>
+Note: <code>SLOT</code> 时强制变量并且必须不能为空。
+</p>
+</blockquote>
+
+<p>
+portage 允许每个 SLOT 值最多一个软件包安装实例。例如，说我们有如下内容：
+</p>
+
+<ul class="org-ul">
+<li><code>foo-1.1</code> with <code>SLOT="1"</code></li>
+<li><code>foo-1.2</code> with <code>SLOT="1"</code></li>
+<li><code>foo-2.0</code> with <code>SLOT="2"</code></li>
+<li><code>foo-2.1</code> with <code>SLOT="2"</code></li>
+</ul>
+
+<p>
+那么用户可能同时安装 <code>foo-1.2</code> 和 <code>foo-2.0</code> ，但是不能同时安装 <code>foo-1.1</code> 和 <code>foo-1.2</code> 。注意完全有可能用户安装了 <code>foo-2.0</code> ，而根本没有安装 <code>foo-1.x</code> 。
+</p>
+
+<p>
+对于 <code>DEPEND</code> 中特定 slot 的软件包，参考<a href="https://devmanual.gentoo.org/general-concepts/dependencies/index.html#slot-dependencies">SLOT Dependencies</a>。
+</p>
+</div>
+
+<div id="outline-container-org490e8ec" class="outline-3">
+<h3 id="org490e8ec">Sub-Slots</h3>
+<div class="outline-text-3" id="text-org490e8ec">
+<p>
+有时候软件包安装在不同版本之间改变接口的库，但是又不希望或不方便允许同时安装其中一些版本。在 EAPI 5 或更高中，这种情况可以使用 sub-slot 处理，其通过 <code>/</code> 字符于常规 slot 分隔，像 <code>SLOT="slot/subslot"</code> 。当 subslot 的运行时依赖改变时，软件包可以<a href="https://devmanual.gentoo.org/general-concepts/dependencies/index.html#slot-operators">要求自动重新构建</a>。
+</p>
+
+<p>
+例如，假设软件包 <code>foo</code> 安装了一个库，其 soname 对于不同的版本时不同的。将 soname 版本用作 sub-slot 的名称时合理的：
+</p>
+
+<ul class="org-ul">
+<li><code>foo-1.1</code> installs <code>libfoo.so.5</code> - <code>SLOT="1/5"</code></li>
+<li><code>foo-1.5</code> installs <code>libfoo.so.6</code> - <code>SLOT="1/6"</code></li>
+<li><code>foo-2.0</code> installs <code>libfoo-2.so.0</code> - <code>SLOT="2/0"</code></li>
+<li><code>foo-2.1</code> installs <code>libfoo-2.so.1</code> - <code>SLOT="2/1"</code></li>
+</ul>
+
+<p>
+安装了链接到 <code>libfoo-2</code> （或 <code>libfoo</code> ）的二进制文件的其他 ebuild 可以在安装的 <code>foo:2</code> 或 <code>foo:1</code> 更改 sub-slot 时请求自动重建 —— 例如，当用户从 <code>foo-2.0</code> 升级到 <code>foo-2.1</code> 时。
+</p>
+
+<p>
+如果一个 ebuild 没有显式的声明 sub-slot，则将常规 slot 用作 sub-slot 的默认值。
+</p>
+
+<blockquote>
+<p>
+Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-slot 将会触发已使用 sub-slot 依赖的所有软件包重新构建（例如 <code>media-libs/libpng</code> 从 SLOT="0"切换到 SLOT="0/14"并且软件包 <code>foo</code> 依赖于 <code>libpng:0=</code> ）。因此，最好在现在库的接口更改时开始在库中使用 sub-slot。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgd11ed46" class="outline-3">
+<h3 id="orgd11ed46">SLot Names</h3>
+<div class="outline-text-3" id="text-orgd11ed46">
+<p>
+当前版本的 portage 接受以字母数字字符或 <code>-</code> 开始，并且包含字符数字和 <code>_</code> 、 <code>-</code> 、 <code>.</code> 和 <code>+</code> 字符。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org471fd07" class="outline-2">
+<h2 id="org471fd07">User Environment</h2>
+<div class="outline-text-2" id="text-org471fd07">
+<p>
+用户环境变量和 <code>make.conf</code> 的设置可以传递给 ebuild。这很有用 —— 例如 <code>CFLAGS</code> 和其朋友们的工作方式 —— 但是它也会导致肮脏的 build-breaking 变量（像 <code>LANG</code> 和 <code>LC_ALL</code> ）通过。当前没有对环境进行消毒。
+</p>
+</div>
+
+<div id="outline-container-orgf65c38f" class="outline-3">
+<h3 id="orgf65c38f">Filtering Variables</h3>
+<div class="outline-text-3" id="text-orgf65c38f">
+<p>
+某些变量会使某些构建系统非常非常受挫。一个好的例子是 locale 变量（ <code>LC_ALL</code> 等），如果将其设置为某些值，则会导致涉及 <code>[A-Z]</code> 之类的 sed 或 grep 表达式失败。此处最简单的方法是取消设置或在 <code>pkg_setup</code> 中清理有害变量。
+</p>
+
+<p>
+取消设置所有与 locale 相关的变量是最简单的方法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">    pkg_setup<span style="color: #51afef;">()</span> <span style="color: #51afef;">{</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Unset all locale related variables, they can </span><span style="color: #5B6268;">make</span><span style="color: #5B6268;"> the</span>
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">build fail.</span>
+
+        <span style="color: #c678dd;">eval</span> unset $<span style="color: #c678dd;">{</span><span style="color: #dcaeea;">!</span>LC_*<span style="color: #c678dd;">}</span> LANG
+    <span style="color: #51afef;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c10611" class="outline-3">
+<h3 id="org9c10611">Not Filtering Variables</h3>
+<div class="outline-text-3" id="text-org9c10611">
+<p>
+在另一方面，尽可能尊重某些用户的偏好是非常重要的。一个好的例子是 <code>CFLAGS</code> ，必须予以尊重（选择行过滤是可以的，但是不能完全忽略）。当编译时忽略 <code>CFLAGS</code> 会造成严重的问题：
+</p>
+
+<ul class="org-ul">
+<li>忽略 <code>march/mcpu</code> 可能会强制内核或软件模拟一些架构上的某些操作码。这可能很慢 —— 例如，为 SPARC v7 构建的 <code>oepnssl</code> 却运行在 v9 上大该会使 RSA 操作慢五倍。</li>
+<li>stripping 某些 ABI 相关的 flag 会破坏链接。</li>
+<li>stripping 某些 ABI 相关的 flag 会导致为某些设置产生无效的代码。在极端的例子中，最终可能会出现愚蠢的事情，例如为 little endian CPU 生成 big endian 代码。</li>
+<li>如果用户的 <code>march/mcpu/mtune</code> 被忽略，而是使用自动检测的设置，则 GRP 和 stages 会被破坏。例如， <code>i686</code> 平台不再可以在 <code>pentium-4</code> 上生产， <code>v8</code> 平台不再可以在 <code>UltraSparc</code> 上生产。</li>
+</ul>
+
+<p>
+一些软件包偶然的会这么做。例如，可能在 <code>Makefile.am</code> 中看到 <code>CFLAGS=-Wall</code> 。为了修复这个，在用户的 <code>CFLAGS</code> 中使用 <code>sed</code> ，或（更好的办法）将变量更改为 <code>AM_CLFAGS</code> ，该变量将自动与用户设置合并。LDFLAGS 也应该受到尊重。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7aae2df" class="outline-2">
+<h2 id="org7aae2df">Links</h2>
+<div class="outline-text-2" id="text-org7aae2df">
+<ol class="org-ol">
+<li><a href="https://devmanual.gentoo.org/general-concepts/filesystem/index.html">Filesystem</a></li>
+<li><a href="https://devmanual.gentoo.org/general-concepts/tree/index.html">The Gentoo Repository</a></li>
+<li><a href="https://devmanual.gentoo.org/general-concepts/virtuals/index.html">Virtuals</a> NEED TO READ AGAIN.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

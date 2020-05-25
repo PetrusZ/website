@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>数据结构的扩张</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">数据结构的扩张</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org991b1ca">1.动态顺序统计</a>
+<ul>
+<li><a href="#orgf8a5884">查找具有给定秩的元素</a></li>
+<li><a href="#orged9b147">确定一个元素的秩</a></li>
+<li><a href="#org157bbdd">对子树规模的维护</a></li>
+</ul>
+</li>
+<li><a href="#org334b44f">2.如果扩张数据结构</a></li>
+<li><a href="#org194542c">3.区间树</a>
+<ul>
+<li><a href="#org8529079">步骤 1：数据数据结构</a></li>
+<li><a href="#org9103903">步骤 2：附加信息</a></li>
+<li><a href="#orgd6f7800">步骤 3：对信息的维护</a></li>
+<li><a href="#org43d5f19">步骤 4：设计新的操作</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+一些工程应用需要的只是一些”教科书“中的标准数据结构，然而也有需要其他的应用需要对现有的数据结构进行少许的创新和改造，不过很少需要创造出一类全新的数据结构。更经常的是，通过存储额外信息的方法来扩张一种标准的数据结构，然后编写新的操作来支持所需要的应用。但是对数据结构的扩张并不是简单直接的，因为添加的信息必须要能被该数据结构上的常规操作更新和维护。
+</p>
+
+<p>
+下面介绍了两种红黑树扩张出的两种数据结构，和扩张数据结构的一般方法。
+</p>
+
+<hr>
+
+<div id="outline-container-org991b1ca" class="outline-2">
+<h2 id="org991b1ca">1.动态顺序统计</h2>
+<div class="outline-text-2" id="text-org991b1ca">
+<p>
+顺序统计树是一种支持快速顺序统计的数据结构，它只是简单地在每个结点上存储附加信息的一颗红黑树。在结点 x 中除了一般的结点属性之外还包括一个 x.size 属性，它包含了以 x 为根的子树还有 x 本书的结点数，即这颗子树的大小。（哨兵的 size 属性为 0）
+</p>
+
+<p>
+x.size = x.left.size + y.right.size + 1
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-105917%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-105917%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+</div>
+
+<div id="outline-container-orgf8a5884" class="outline-3">
+<h3 id="orgf8a5884">查找具有给定秩的元素</h3>
+<div class="outline-text-3" id="text-orgf8a5884">
+<p>
+在说明如何在插入和删除中维护 size 属性前，我们先来看看可以利用 size 属性实现的功能。第一是查找具有给定秩的元素。我们定义一个元素的秩为在中序遍历时其输出的位置。
+</p>
+
+<p>
+过程 os_select(x, i)，返回一个指向以 x 为根的子树包含第 i 小关键字的结点。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">os_select</span>(<span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">        * return ith small element in tree.</span>
+<span style="color: #5B6268;">        */</span>
+        <span style="color: #ECBE7B;">int</span>&#160;&#160;&#160;&#160; r;
+
+        r = x-&gt;left-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+        <span style="color: #51afef;">if</span> (i == r)
+            <span style="color: #51afef;">return</span>(x);
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (i &lt; r)
+            <span style="color: #51afef;">return</span>(os_select(x-&gt;left, i));
+        <span style="color: #51afef;">else</span>
+            <span style="color: #51afef;">return</span>(os_select(x-&gt;right, i - r));
+    }
+</pre>
+</div>
+
+<p>
+其核心思想很简单，x.left.size  + 1 就是以 x 为根的子树中结点 x 的秩。如果 i = r，那么 x 就是第 i 小元素，如果 i &lt; r，那么第 i 小元素就在 x 的左子树中，如果 i &gt; r，那么第 i 小元素在 x 的右子树中。因为以 x 为根的子树进行中序遍历时，有 r 个元素排在 x 的右子树之前，所以在以 x.right 为根进行递归 i 调用时，第 i 小元素就变成了第 i &#x2013; r 小元素。
+</p>
+
+<p>
+因为每次递归都在树中下降一层，所以 os_select 的运行时间与树的高度成正比，又因为它是一颗红黑树，所以 os\_select 运行时间为Ο(lgn)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orged9b147" class="outline-3">
+<h3 id="orged9b147">确定一个元素的秩</h3>
+<div class="outline-text-3" id="text-orged9b147">
+<p>
+给定一个元素，过程 os_rank 返回这个元素的秩。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">os_rank</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">        * return x's rank in inorder_tree_walk.</span>
+<span style="color: #5B6268;">        */</span>
+        <span style="color: #ECBE7B;">int</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; r;
+        RB_NODE&#160;&#160;&#160;&#160; *y;
+
+        r = x-&gt;left-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+        y = x;
+
+        <span style="color: #51afef;">while</span> (y != T-&gt;root) {
+            <span style="color: #51afef;">if</span> (y == y-&gt;parent-&gt;right)
+            r = r + y-&gt;parent-&gt;left-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+            y = y-&gt;parent;
+        }
+
+        <span style="color: #51afef;">return</span>(r);
+    }
+</pre>
+</div>
+
+<p>
+x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x 是其父结点的右孩子，说明 x.parent.left 是排在 x 之前的结点。while 循环中 y 在树中上升一层，直到根为止，依次遍历了排在 x 之前的结点，然后将在 while 循环中遇到的排在 x 之前的结点数累加起来，最后得到 x 的秩并返回。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org157bbdd" class="outline-3">
+<h3 id="org157bbdd">对子树规模的维护</h3>
+<div class="outline-text-3" id="text-org157bbdd">
+<p>
+下面我们来看看如何对修改后的红黑树进行维护。
+</p>
+
+<p>
+由<a href="红黑树.html">红黑树的理论</a>可知，红黑树上的插入操作包括两个阶段。第一阶段从根开始沿树下降，将新节点插入作为某个已存在结点的孩子。第二阶段沿树上升，做一些变色和旋转操作来保持红黑树性质。
+</p>
+
+<p>
+对第一阶段的维护没有采用算法导论中的方法，没想明白书中的“对由根至叶子的路径上遍历的每一个结点 x，都增加 x.size 属性。新增加结点的 size 为 1。”是怎么可能实现对红黑树的维护的&#x2026;&#x2026;
+</p>
+
+<p>
+我的方法是从插入的结点开始到根为止，遍历这条路径上的每一个结点，并使用一开始介绍的公式维护其 size 属性，正好删除的时候也要使用这个方法，一举两得。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">os_fixwalk</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">y</span>;
+
+        y = x;
+
+        <span style="color: #51afef;">while</span> (y != T-&gt;root) {
+            y-&gt;size = y-&gt;left-&gt;size + y-&gt;right-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+            y = y-&gt;parent;
+        }
+    }
+</pre>
+</div>
+
+<p>
+在第二阶段，对红黑树结构上的改变仅仅是由旋转所致，它会使两个结点的 size 属性失效，只要在 left\_rotate 和 right\_rotate 中简单的增加两行就可以对失效的 size 属性进行更新。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">
+    <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">left_rotate</span><span style="color: #5B6268;"> */</span>
+    y-&gt;size = x-&gt;size;
+    x-&gt;size = x-&gt;left-&gt;size + x-&gt;right-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+
+    <span style="color: #5B6268;">/*</span><span style="color: #5B6268;">right_rotate</span><span style="color: #5B6268;"> */</span>
+    x-&gt;size = y-&gt;size;
+    y-&gt;size = y-&gt;left-&gt;size + y-&gt;right-&gt;size + <span style="color: #da8548; font-weight: bold;">1</span>;
+</pre>
+</div>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-112334%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-112334%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+红黑树上的删除操作也包括两个阶段：第一阶段中，要么将结点 y 从树中删除，要么将它在树中上移。为了更新子树的规模，我们只需要遍历一条由结点 y（从它在书中的原始位置开始）到根的简单路径，并减少路径上每个结点的 size 属性值，使用的还是上面的 os\_fixwalk 过程。第二阶段最多做三次旋转，其他对结构没有影响。
+</p>
+
+<p>
+ 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org334b44f" class="outline-2">
+<h2 id="org334b44f">2.如果扩张数据结构</h2>
+<div class="outline-text-2" id="text-org334b44f">
+<p>
+对基本的数据结构进行扩张以支持一些附加功能，在算法设计过程中是相当常见的。
+</p>
+
+<p>
+扩张一种数据结构可以分为 4 个步骤：
+</p>
+
+<ol class="org-ol">
+<li>选择一种基础数据结构。</li>
+<li>确定基础数据结构中要维护的附加信息。</li>
+<li>检验基础数据结构上的基本修改操作能否维护附加信息。</li>
+<li>设计一些新操作</li>
+</ol>
+
+<p>
+以上仅作为一个一般模式，不应盲目地按照上面给定的次序来执行这些步骤。大多数的设计工作都包含试探和纠错的成分，过程中的所有步骤通常都可以并行执行。
+</p>
+
+<p>
+设计顺序统计树时，就依照了这 4 个步骤。
+</p>
+
+<p>
+步骤 1，选择了红黑树作为基础数据结构。
+</p>
+
+<p>
+步骤 2，添加了 size 属性，附加信息可使各种操作更加有效。有了 size 属性，我们可以在Ο(lgn)时间内完成 os\_select 和 os\_rank。
+</p>
+
+<p>
+步骤 3，保证了插入和删除操作仍能在Ο(lgn)时间内维护 size 属性。比较理想的是，只需要更新该数据结构中的几个元素就可以维护附加信息。
+</p>
+
+<p>
+步骤 4，设计了新操作 os\_select 和 os\_rank。归根结底，一开始考虑去扩张一个数据结构的原因就是为了满足新操作的需要。然后有时并不是为了设计一些新操作，而是利用附加信息来加速已有的操作。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org194542c" class="outline-2">
+<h2 id="org194542c">3.区间树</h2>
+<div class="outline-text-2" id="text-org194542c">
+<p>
+区间便于表示占用一连续时间段的一些事件。例如，查询一个由时间区间数据构成的数据库，去找出给定时间区间内发生了什么时间。
+</p>
+
+<p>
+这里所有的区间都是闭区间，我们可以把一个区间表示为一个对象 i，其中属性 i.low 为低端点，i.high 为高端点，任何两个区间 i 和 i'都满足区间三分律，即下面三条性质之一成立：
+</p>
+
+<ul class="org-ul">
+<li>i 和 i'重叠</li>
+<li>i 在 i'的左边</li>
+<li>i 在 i'的右边</li>
+</ul>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-142508%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-142508%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+(a)i 和 j 重叠的四种情况。(b)i 在 i'的左边。(c)i 在 i‘的右边。
+</p>
+
+<p>
+区间树是一种对动态集合维护的红黑树，其中每个元素 x 都包含一个区间 x.int。我们将按照第 2 节中的 4 个步骤，来分析区间树以及区间树上各种操作的设计。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-142801%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-142801%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+(a)10 个区间的集合，按低端点自底向上顺序。(b)表示它们的区间树。其中序遍历列出按低端点顺序排列的结点。
+</p>
+</div>
+
+<div id="outline-container-org8529079" class="outline-3">
+<h3 id="org8529079">步骤 1：数据数据结构</h3>
+<div class="outline-text-3" id="text-org8529079">
+<p>
+选择一颗红黑树，其每个结点 x 包含一个区间属性 x.int，且 x 的关键字为区间的低端见 x.int.low。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9103903" class="outline-3">
+<h3 id="org9103903">步骤 2：附加信息</h3>
+<div class="outline-text-3" id="text-org9103903">
+<p>
+每个结点除了区间属性外，还包含一个值 x.max，它是以 x 为根的子树中所有区间的端点的最大值。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd6f7800" class="outline-3">
+<h3 id="orgd6f7800">步骤 3：对信息的维护</h3>
+<div class="outline-text-3" id="text-orgd6f7800">
+<p>
+验证 n 个结点的区间树上的插入和删除操作能否在Ο(lgn)内完成。通过给定的区间和子结点的 max 值，可以确定该结点的 max 值。
+</p>
+
+<p>
+<code>x.max = max(x.int.high, x.left.max, x.right.max)</code>
+</p>
+
+<p>
+维护过程与顺序统计树类似，这里不再重复叙述。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org43d5f19" class="outline-3">
+<h3 id="org43d5f19">步骤 4：设计新的操作</h3>
+<div class="outline-text-3" id="text-org43d5f19">
+<p>
+interval_search 用来找出树 T 中与区间 i 重叠的那个结点。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">interval_search</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">INT</span> <span style="color: #dcaeea;">i</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>;
+        x = T-&gt;root;
+
+        <span style="color: #51afef;">while</span> (x != T-&gt;nil &amp;&amp; <span style="color: #51afef; font-weight: bold;">!</span>overlap(x-&gt;inv, i)) {
+            <span style="color: #51afef;">if</span> (x-&gt;left != T-&gt;nil &amp;&amp; x-&gt;left-&gt;max &gt;= i.low)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+            }
+        <span style="color: #51afef;">return</span>(x);
+        }
+
+        <span style="color: #ECBE7B;">int</span>
+        <span style="color: #c678dd;">overlap</span>(<span style="color: #ECBE7B;">INT</span> <span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">INT</span> <span style="color: #dcaeea;">y</span>)
+        {
+            <span style="color: #51afef;">if</span> (x.<span style="color: #ECBE7B;">high</span> &lt; y.low || x.low &gt; y.high)
+                <span style="color: #51afef;">return</span>(<span style="color: #da8548; font-weight: bold;">0</span>);
+            <span style="color: #51afef;">else</span>
+                <span style="color: #51afef;">return</span>(<span style="color: #da8548; font-weight: bold;">1</span>);
+        }
+    }
+</pre>
+</div>
+
+<p>
+该过程的基本思想是在任意结点x上，如果x.int不与i重叠，则查找总是沿着一个安全的方向进行。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

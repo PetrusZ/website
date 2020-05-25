@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>动态规划：矩阵链相乘</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">动态规划：矩阵链相乘</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org40c5ae0">动态规划：矩阵链相乘</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org40c5ae0" class="outline-2">
+<h2 id="org40c5ae0">动态规划：矩阵链相乘</h2>
+<div class="outline-text-2" id="text-org40c5ae0">
+<p>
+本文介绍用动态规划的方法求解矩阵链相乘问题。
+</p>
+
+<p>
+*矩阵链乘法问题*可以描述为：给定 n 个矩阵的链，矩阵 Ai 的规模为 P(i-1) * p(i)， 求完全括号化方案，使得计算乘积 A1, A2 &#x2026; An 所需表量乘法次数最少。 *完全括号化*可以描述为：是一个单一的矩阵，或者是两个完全括号化的矩阵乘积链的积，且已外加括号。如下，矩阵链，一共有 5 种完全括号化方案。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-27-172035%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-27-172035%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+对矩阵链加括号会对乘积运算的代价产生巨大的影响，加括号的顺序不同，造成结果可能会相差 10 倍。还要注意，只有两个矩阵相容的时候，即 A 的列数等于 B 的行数，才能够相乘。
+</p>
+
+<hr>
+
+<p>
+用穷举法解矩阵链相乘的的渐进运行时间会与 n 呈指数关系，所以我们用上一篇<a href="动态规划：钢条切割.md">动态规划上</a>中介绍的 4 个步骤来解决问题。
+</p>
+
+<p>
+<b>步骤 1：最优括号化方案的结构特征</b>
+</p>
+
+<p>
+动态规划的第一步就是寻找最优子结构，然后就可以使用这种子结构从子问题的最优解构造出原问题的最优解。假设 A(i)A(i+1)&#x2026;A(j)的最优括号化方案的分割点在 A(k)和 A(k+1)之间。那么，继续对其前缀子链 A(i)&#x2026;A(k)进行划分时，可以直接采用独立求解它时所得到的最优方案。换句话说，就是一个非平凡的矩阵链乘法问题实例的任何解都需要划分，而任何最优解都是由子问题的最优解构成的。所以，求解一个矩阵链乘法问题时，我们可以将问题划分为两个子问题，求出子问题的最优解，然后将子问题的最优解组合起来。我们必须保证在确定分割点时，考察了所有可能的划分点。
+</p>
+
+<p>
+<b>步骤 2：一个递归求解方案</b>
+</p>
+
+<p>
+令表 p 保存矩阵链的规模，m[i][j]表示计算矩阵 A(i, j)所需乘法次数的最少值，k为最优括号化方案的分割点，令 s[i][j]保存分割点位置 k。根据矩阵乘法公式，我们可以得到：
+</p>
+
+<p>
+m[i][j] = m[i][k] + m[k+1][j] + p(i-1)p(k)p(j)
+</p>
+
+<p>
+上面的公式假设 k 是已知的，虽然实际上我们并不知道，但是可以遍历 k 的 j-i 种可能，就一定能得到最优分割点 k。因此递归公式变为：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-27-174931%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-27-174931%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+<b>步骤 3：计算最优代价</b>
+</p>
+
+<p>
+采用自底向上的方法求解问题。首先，我们必须确定求解的顺序，在计算 m[i][j]时，需要访问哪些表项。上面的公式显示，最优代价 m[i][j]只依赖于那些少于 j-i+1 个矩阵相乘的最优代价。所以，算法应该按长度递增的顺序求解问题，并按对应顺序填写表 m。具体的计算见下文的完整代码。
+</p>
+
+<p>
+<b>步骤 4：构造最优解</b>
+</p>
+
+<p>
+利用表 s 保存的最优切割点，我们可以还原、构造出最优解。递归的将表 s 进行展开，就可以重构出最优解。具体实现见下文代码。
+</p>
+
+<p>
+作为例子的矩阵链为：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-27-181607%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-27-181607%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+完整的 C 语言代码为（为了计算方便，使矩阵的行列下表从 1 开始）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">matrix_chain_order</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">m</span>[<span style="color: #da8548; font-weight: bold;">7</span>][<span style="color: #da8548; font-weight: bold;">7</span>], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">s</span>[<span style="color: #da8548; font-weight: bold;">7</span>][<span style="color: #da8548; font-weight: bold;">7</span>])
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#35745;&#31639;&#26368;&#20248;&#20195;&#20215;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>, <span style="color: #dcaeea;">k</span>, <span style="color: #dcaeea;">l</span>, <span style="color: #dcaeea;">n</span>, <span style="color: #dcaeea;">q</span>;           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">l&#20026;&#30697;&#38453;&#38142;&#38271;&#24230;</span>
+
+        n = <span style="color: #51afef;">sizeof</span>(p) / <span style="color: #51afef;">sizeof</span>(<span style="color: #ECBE7B;">char</span>) - <span style="color: #da8548; font-weight: bold;">2</span>;   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">n&#20026;&#30697;&#38453;&#20010;&#25968;</span>
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &lt;= n; i++)            <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#35745;&#31639;&#30697;&#38453;&#38142;&#38271;&#24230;&#20026;1&#26102;&#30340;m</span>
+            m[i][i] = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">for</span> (l = <span style="color: #da8548; font-weight: bold;">2</span>; l &lt;= n; l++) {          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#24490;&#29615;&#35745;&#31639;&#30697;&#38453;&#38142;&#38271;&#24230;&#22823;&#20110;1&#26102;&#30340;m</span>
+            <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &lt;= n - l + <span style="color: #da8548; font-weight: bold;">1</span>; i++) {
+                j = i + l - <span style="color: #da8548; font-weight: bold;">1</span>;
+                m[i][j] = <span style="color: #da8548; font-weight: bold;">65535</span>;
+                <span style="color: #51afef;">for</span> (k = i; k &lt;= j - <span style="color: #da8548; font-weight: bold;">1</span>; k++) {      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#36941;&#21382;&#23547;&#25214;&#26368;&#20248;&#20999;&#21106;&#28857;</span>
+                    q = m[i][k] + m[k + <span style="color: #da8548; font-weight: bold;">1</span>][j] + p[i - <span style="color: #da8548; font-weight: bold;">1</span>] * p[k]* p[j];  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#30697;&#38453;&#20056;&#27861;&#20844;&#24335;</span>
+                    <span style="color: #51afef;">if</span> (q &lt; m[i][j]) {
+                        m[i][j] = q;
+                        s[i][j] = k;
+                    }
+                }
+            }
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">print_optimal_parens</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">s</span>[<span style="color: #da8548; font-weight: bold;">7</span>][<span style="color: #da8548; font-weight: bold;">7</span>], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">j</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#37325;&#26500;&#26368;&#20248;&#35299;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">if</span> (i == j)
+            printf(<span style="color: #98be65;">"A%d"</span>, i);
+        <span style="color: #51afef;">else</span> {
+            printf(<span style="color: #98be65;">"("</span>);
+            print_optimal_parens(s, i, s[i][j]);
+            print_optimal_parens(s, s[i][j] + <span style="color: #da8548; font-weight: bold;">1</span>, j);
+            printf(<span style="color: #98be65;">")"</span>);
+        }
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">argv</span>[])
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">p</span>[<span style="color: #da8548; font-weight: bold;">7</span>] = {<span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">35</span>, <span style="color: #da8548; font-weight: bold;">15</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">25</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">m</span>[<span style="color: #da8548; font-weight: bold;">7</span>][<span style="color: #da8548; font-weight: bold;">7</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">s</span>[<span style="color: #da8548; font-weight: bold;">7</span>][<span style="color: #da8548; font-weight: bold;">7</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>};
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+
+        matrix_chain_order(p, m, s);
+
+        printf(<span style="color: #98be65;">"table m:\n"</span>);
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">1</span>; i &lt; <span style="color: #da8548; font-weight: bold;">7</span>; i++) {
+            <span style="color: #51afef;">for</span> (j = <span style="color: #da8548; font-weight: bold;">1</span>; j &lt; <span style="color: #da8548; font-weight: bold;">7</span>; j++)
+                printf(<span style="color: #98be65;">"%5d "</span>, m[i][j]);
+            printf(<span style="color: #98be65;">"\n"</span>);
+        }
+
+        printf(<span style="color: #98be65;">"\n&#30697;&#38453;&#38142;A1...A6&#25152;&#38656;&#30340;&#26368;&#23569;&#20056;&#27861;&#27425;&#25968;&#20026;&#65306; %d\n"</span>, m[<span style="color: #da8548; font-weight: bold;">1</span>][<span style="color: #da8548; font-weight: bold;">6</span>]);
+
+        printf(<span style="color: #98be65;">"&#26368;&#20248;&#35299;&#20026;&#65306;"</span>);
+        print_optimal_parens(s, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">6</span>);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+</pre>
+</div>
+
+<hr>
+
+<p>
+动态规划的关键是分析其最优子结构和如果利用最优子结构求解问题，与前文的算法不同，没有一个固定的方法求解，不过动态规划也不限于一个固定的问题。另外在本例中如何处理数组下表来简化计算也很重要。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

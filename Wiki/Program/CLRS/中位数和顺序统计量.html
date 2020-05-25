@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中位数和顺序统计量</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">中位数和顺序统计量</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf2031c4">1.同时找到最大值和最小值</a></li>
+<li><a href="#orga79de0f">2.期望为线性时间的选择算法</a></li>
+<li><a href="#org106ae98">3.最坏情况为线性的选择算法</a></li>
+</ul>
+</div>
+</div>
+<p>
+在一个由 n 个元素组成的集合中，第 i 个顺序统计量是该合集中第 i 小的元素。而中位数，用非形式化的描述来说，一个中位数是它所属集合的“中点元素”。
+</p>
+
+<div id="outline-container-orgf2031c4" class="outline-2">
+<h2 id="orgf2031c4">1.同时找到最大值和最小值</h2>
+<div class="outline-text-2" id="text-orgf2031c4">
+<p>
+通过最多 3(n/2)次比较就可以同时找到最大值和最小值。其主要思想是：将输入元素成对的进行处理，首先将一对输入元素互相比较，然后再将较小的与最小值比较，较大的与最大值比较。这样，每对元素仅需要 3 次比较，而不是 4 次。
+</p>
+
+<p>
+其 C 语言实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">find_min_max</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">min</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">max</span>)
+    {
+
+        *min = <span style="color: #da8548; font-weight: bold;">65535</span>;
+        *max = <span style="color: #da8548; font-weight: bold;">0</span>;
+
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; <span style="color: #51afef;">sizeof</span>(A); i = i + <span style="color: #da8548; font-weight: bold;">2</span>) {
+            <span style="color: #51afef;">if</span> (i + <span style="color: #da8548; font-weight: bold;">1</span> &lt;= <span style="color: #51afef;">sizeof</span>(A)) {
+                <span style="color: #51afef;">if</span> (A[i] &lt; A[i + <span style="color: #da8548; font-weight: bold;">1</span>]) {
+                    <span style="color: #51afef;">if</span> (A[i] &lt; *min)
+                        *min = A[i];
+                    <span style="color: #51afef;">if</span> (A[i + <span style="color: #da8548; font-weight: bold;">1</span>] &gt; *max)
+                        *max = A[i + <span style="color: #da8548; font-weight: bold;">1</span>];
+                } <span style="color: #51afef;">else</span> {
+                    <span style="color: #51afef;">if</span> (A[i + <span style="color: #da8548; font-weight: bold;">1</span>] &lt; *min)
+                        *min = A[i + <span style="color: #da8548; font-weight: bold;">1</span>];
+                    <span style="color: #51afef;">if</span> (A[i] &gt; *max)
+                        *max = A[i];
+                }
+            }
+        }
+
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">min</span>, <span style="color: #dcaeea;">max</span>;
+
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">A</span>[] = {<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">98</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">12</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">54</span>};
+
+        find_min_max(A, &amp;min, &amp;max);
+
+        printf(<span style="color: #98be65;">"min = %d, max = %d\n"</span>, min, max);
+    }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga79de0f" class="outline-2">
+<h2 id="orga79de0f">2.期望为线性时间的选择算法</h2>
+<div class="outline-text-2" id="text-orga79de0f">
+<p>
+rand_select 算法以快速排序为模型，将输入数组进行递归划分。但不同的是，快速排序会递归处理划分的两边，而 rand_select 只处理一边。期望运行时间为Θ(n)。
+</p>
+
+<p>
+算法的 C 语言实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">rand_select</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">p</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">r</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#26399;&#26395;&#20026;&#32447;&#24615;&#30340;&#36873;&#25321;&#31639;&#27861;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">k</span>, <span style="color: #dcaeea;">q</span>;
+
+        <span style="color: #51afef;">if</span> (p == r)
+            <span style="color: #51afef;">return</span>(A[p]);
+        q = rand_partition(A, p, r);
+
+        k = q - p + <span style="color: #da8548; font-weight: bold;">1</span>;
+        <span style="color: #51afef;">if</span> (i == k)         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">the pivot value is the answer</span>
+            <span style="color: #51afef;">return</span>(A[q]);
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (i &lt; k)
+            <span style="color: #51afef;">return</span> rand_select(A, p, q - <span style="color: #da8548; font-weight: bold;">1</span>, i);
+        <span style="color: #51afef;">else</span>
+            <span style="color: #51afef;">return</span> rand_select(A, q + <span style="color: #da8548; font-weight: bold;">1</span>, r, i - k);
+    }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org106ae98" class="outline-2">
+<h2 id="org106ae98">3.最坏情况为线性的选择算法</h2>
+<div class="outline-text-2" id="text-org106ae98">
+<p>
+该算法也使用了快速排序中的划分算法 partition，但是做了修改，把划分的主元也作输入参数。
+</p>
+
+<p>
+通过以下步骤，算法 SELECT 可以确定一个有 n&gt;1 个不同元素的输入数组中第 i 小元素：
+</p>
+
+<ol class="org-ol">
+<li>将输入数组的 n 个元素划分为 n/5 组，每组 5 个元素，且至多有一组由剩下的 n mod 5 个元素组成。</li>
+<li>寻找这 n/5 组中每一组的中位数：首先对每组元素进行插入排序，然后确定每组有序元素的中位数。</li>
+<li>对第 2 步中找出的 n/5 个中位数，递归调用 SELECT 以找出其中位数 x（如果有偶数个中位数，约定 x 是较小的）。</li>
+<li>利用修改过的 PARTITION 版本，按中位数的中位数 x 对输入数组进行划分。让 k 比划分的低区中的元素数目多 1，因此 x 是第 k 小元素，并且有 n-k 个元素在划分的高区。</li>
+<li>如果 i=k，则返回 x。如果 i&lt;k，则在低区递归调用 SELECT 来找出第 i 小的元素。如果 i&gt;k，则在高区递归查找第 i-k 小的元素。</li>
+</ol>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/20130721155350687.png" alt="20130721155350687.png">
+</p>
+</div>
+
+<p>
+所有元素用小圈表示，每一组的 5 个元素在同一列上。每组中位数用白色标识，x为中位数的中位数。箭头从较大的元素指向较小的元素。大于 x 的元素的背景以阴影来表示。
+</p>
+
+<p>
+其伪代码为：
+</p>
+
+<pre class="example">
+    SELECT(A, p, r, i)
+    {
+        // 步骤１、２
+        count = ceiling(n/5);
+        for i = 1 to count-1
+            insertion sort A[(i-1)*5+1...i*5+1];
+        insertion sort A[(count-1)*5+1...n];
+        if count ==1
+            return A[floor(n/2)];
+        // 步骤３
+        create array B;
+        for i = 1 to count-1
+            B[i] = A[(i-1)*5+3];
+        B[count] = A[(count-1)*5 + floor((n - (count-1)*5)/2)];
+        x = SELECT(B, 1, count, floor(count/2));
+        // 步骤４
+        q = PARTITION_X(A, p, r, i);
+        k = q-p+1;
+        // 步骤５
+        if i == k
+            return x;
+        elseif i &lt; k
+            return SELECT(A, p, q-1, i);
+        else
+            return SELECT(A, q+1, r, i-k);
+    }
+</pre>
+
+<p>
+最坏情况为线性时间的选择算法 T(n) = cn 中的常数 c 相当大，它依赖于这些常数和运行时间，而它们都是由机器的性能来决定。所以这个算法实际上没有那么热门，随机算法会运行的非常快。
+</p>
+
+<p>
+（伪代码转自：<a href="http://blog.chinaunix.net/uid-26822401-id-3163058.html">http://blog.chinaunix.net/uid-26822401-id-3163058.html</a>）
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

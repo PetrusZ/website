@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLRS-index</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">CLRS-index</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5f163fa">1.红黑树的性质</a></li>
+<li><a href="#orgdd8e9c1">2.旋转</a></li>
+<li><a href="#org9b3d6f4">3.插入</a>
+<ul>
+<li><a href="#org30eb51b">情况 1：z 的叔结点 y 是红色的</a></li>
+<li><a href="#org0f44cb9">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</a></li>
+<li><a href="#orga10343a">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</a></li>
+</ul>
+</li>
+<li><a href="#org83e5d10">4.删除</a>
+<ul>
+<li><a href="#org0ed734f">情况 1：x 的兄弟结点 w 是红色的</a></li>
+<li><a href="#orgb994e7a">情况 2：x 的兄弟结点w为黑色，且w的两个子结点都是黑色</a></li>
+<li><a href="#org71b67a0">情况3：x的兄弟结点w为黑色，且w的左孩子为红色，右孩子为黑色</a></li>
+<li><a href="#org97651c3">情况4：x的兄弟结点w为黑色，且w的右孩子为红色</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+花了两天时间用 C 语言实现了红黑树，顺便做一下读书笔记，写完之后才发现居然写了 3000 字。略微有点长了&#x2026;&#x2026;不过红黑树的确不怎么好理解。完整的 C 语言红黑树实现在<a href="红黑树的C语言实现.md">另一篇红黑树博文</a>中，太长不方便放到同一篇中。
+</p>
+
+<hr>
+
+<p>
+红黑树是许多“平衡”搜索树中的一种，可以保证在最坏的情况下基本动态集合操作的时间复杂度为Ο(lgn)。
+</p>
+
+<div id="outline-container-org5f163fa" class="outline-2">
+<h2 id="org5f163fa">1.红黑树的性质</h2>
+<div class="outline-text-2" id="text-org5f163fa">
+<p>
+红黑树是一颗<a href="二叉搜索树.html">二叉搜索树</a>，它在每个结点上增加了一个存储位来表示结点的颜色，可以是 RED 或 BLACK。通过任何一条从根到叶子的简单路径上各个结点的颜色进行约束，红黑树确保没有一条路径会比其他路径长出 2 倍，因而是近似于平衡的。
+</p>
+
+<p>
+树中每个结点包含 5 个属性：color、key、left、right 和 parent。如果一个结点没有子节点或父节点，则该结点相应指针属性的值为 NIL。我们可以把这些 NIL 视为指向二叉搜索树的叶结点（外部节点）的指针，而把带关键字的结点视为树的内部节结点。
+</p>
+
+<p>
+一颗红黑树是满足下面红黑性质的<a href="二叉搜索树.html">二叉搜索树</a>：
+</p>
+
+<ol class="org-ol">
+<li>每个结点或是红色的，或是黑色的。</li>
+<li>根节点是黑色的。</li>
+<li>每个叶结点（NIL）是黑色的。</li>
+<li>如果一个结点是红色的，则它的两个子节点都是黑色的。</li>
+<li>对每个结点，从该结点到其所有后代叶结点的简单路径上，均包括相同数目的黑色结点。</li>
+</ol>
+
+<p>
+为了便于处理红黑树代码中的边界条件，使用一个哨兵来代表 NIL。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-171737%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-171737%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdd8e9c1" class="outline-2">
+<h2 id="orgdd8e9c1">2.旋转</h2>
+<div class="outline-text-2" id="text-orgdd8e9c1">
+<p>
+rbtree_insert 和 rbtree_delete 这两个操作对树做了修改，结果可能违反红黑性质。为了维护这些性质，必须要改变树中某些结点的颜色以及指针结构。
+</p>
+
+<p>
+指针结构的修改是通过旋转(ratation)来完成的，这是一种能够保持二叉搜索性质的搜索树局部操作。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-175439%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-175439%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+在 left_rotate 的伪代码中，假设 x.right != T.nil 且根节点的父节点为 T.nil。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">left_rotate</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">y</span>;
+
+        y = x-&gt;right;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">set y</span>
+        x-&gt;right = y-&gt;left;             <span style="color: #5B6268;">//</span><span style="color: #5B6268;">turn y's left subtree into x's right subtree</span>
+        <span style="color: #51afef;">if</span> (y-&gt;left != T-&gt;nil)
+            y-&gt;left-&gt;parent = x;
+        y-&gt;parent = x-&gt;parent;          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">link x's parent to y</span>
+        <span style="color: #51afef;">if</span> (x-&gt;parent == T-&gt;nil)
+            T-&gt;root = y;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (x == x-&gt;parent-&gt;left)
+            x-&gt;parent-&gt;left = y;
+        <span style="color: #51afef;">else</span>
+            x-&gt;parent-&gt;right = y;
+        y-&gt;left = x;                    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">put x on y's left</span>
+        x-&gt;parent = y;
+    }
+</pre>
+</div>
+
+<p>
+left\_rotate 和 right\_rotate 操作的代码是对称的。其运行时间为Ο(1)，旋转过程中只有指针改变，其他所有属性不变。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-175951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-175951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+修改前和修改后的树进行中序遍历，产生相同的关键字
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9b3d6f4" class="outline-2">
+<h2 id="org9b3d6f4">3.插入</h2>
+<div class="outline-text-2" id="text-org9b3d6f4">
+<p>
+我们可以在Ο(lgn)时间内完成向一颗树含 n 个结点的红黑树中插入一个新结点。将二叉搜索树的 tree\_insert 略做修改来把结点 z 插入到红黑树中，就像红黑树是一颗普通的二叉搜索树，然后将 z 着为红色，并且调用一个辅助函数 rbinsert\_fixup 来对结点重新着色并旋转，以保证不新插入的结点不会违反红黑性质。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_insert</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">x</span>, *<span style="color: #dcaeea;">y</span>;
+
+        y = T-&gt;nil;
+        x = T-&gt;root;
+        <span style="color: #51afef;">while</span> (x != T-&gt;nil) {
+            y = x;
+            <span style="color: #51afef;">if</span> (z-&gt;key &amp;lt; x-&gt;key)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+        }
+        z-&gt;parent = y;
+        <span style="color: #51afef;">if</span> (y == T-&gt;nil)
+            T-&gt;root = z;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z-&gt;key &amp;lt; y-&gt;key)
+            y-&gt;left = z;
+        <span style="color: #51afef;">else</span>
+            y-&gt;right = z;
+        z-&gt;left = T-&gt;nil;
+        z-&gt;right = T-&gt;nil;
+        z-&gt;color = RED;
+        rb_insert_fixup(T, z);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_insert_fixup</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">y</span>;
+
+        <span style="color: #51afef;">while</span> (z-&gt;parent-&gt;color == RED) {
+            <span style="color: #51afef;">if</span> (z-&gt;parent-&gt;parent != T-&gt;nil &amp;&amp; z-&gt;parent == z-&gt;parent-&gt;parent-&gt;left) {
+                y = z-&gt;parent-&gt;parent-&gt;right;
+                <span style="color: #51afef;">if</span> (y-&gt;color == RED) {
+                    z-&gt;parent-&gt;color = BLACK;           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    y-&gt;color = BLACK;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z-&gt;parent-&gt;parent-&gt;color = RED;     <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z = z-&gt;parent-&gt;parent;              <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    <span style="color: #51afef;">continue</span>;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                }
+                <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z == z-&gt;parent-&gt;right) {
+                    z = z-&gt;parent;                      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                    left_rotate(T, z);                  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                }
+                z-&gt;parent-&gt;color = BLACK;               <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                z-&gt;parent-&gt;parent-&gt;color = RED;         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                right_rotate(T, z-&gt;parent-&gt;parent);     <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+            } <span style="color: #51afef;">else</span> {
+                same <span style="color: #ECBE7B;">as</span> <span style="color: #dcaeea;">then</span>, <span style="color: #dcaeea;">but</span> exchanged &amp;quot;right&amp;quot; and &amp;quot;left&amp;quot;
+            }
+        T-&gt;root-&gt;color = BLACK;
+        }
+    }
+</pre>
+</div>
+
+<p>
+while 循环在每次迭代的开头都保持下列 3 个部分的不变：
+</p>
+
+<ul class="org-ul">
+<li>结点 z 是红色的。</li>
+<li>如果 z.parent 是根结点，则它是黑色的。</li>
+<li>如果有任何红黑性质被破坏，则最多只有一条被破坏，或是性质 2,或是性质 4。</li>
+</ul>
+
+<p>
+rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行分析：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-222536%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-222536%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+情况 1 和情况 2、3 的区别在于父亲的兄弟结点（叔结点）的颜色不同。使 y=z.parent.parent.right，然后测试 y 的颜色。如果 y 是红色的，那么执行情况 1。否则，进入情况 2、3。在所有三种情况中，z.parent.parent 的颜色都是黑色的，因为 z.parent 的颜色是红色的，所以性质 4 只在 z 和 z.parent 之间被破坏了。
+</p>
+</div>
+
+<div id="outline-container-org30eb51b" class="outline-3">
+<h3 id="org30eb51b">情况 1：z 的叔结点 y 是红色的</h3>
+<div class="outline-text-3" id="text-org30eb51b">
+<p>
+这种情况在 z.parent 和 y 都是红色时发生。因为 z.parent.parent 是黑色的，所以将 z.parent 和 y 都着为黑色，来解决 z 和 z.parent 都是红色的问题，将 z.parent.parent 着为红色以保持性质 5。然后，把 z.parent.parent 作为新结点 z 来重复 while 循环。指针 z 在树中上移两层。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-224345%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-224345%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f44cb9" class="outline-3">
+<h3 id="org0f44cb9">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</h3>
+</div>
+
+<div id="outline-container-orga10343a" class="outline-3">
+<h3 id="orga10343a">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</h3>
+<div class="outline-text-3" id="text-orga10343a">
+<p>
+在情况 2、3 中 z 的叔结点 y 是黑色的。通过 z 是 z.parent 的右孩子还是左孩子来区分这两种情况。在情况 2 中，可以使用一个左旋来将此情况变为情况 3，结点 z 变为左孩子。因为 z 和 z.parent 都是红色的，所以这次旋转对黑高和性质 5 都没有影响。在旋转前先将 z 上移一层，然后旋转又将 z 下移了一层，z.parent.parent 的身份保持不变。在情况 3 中，改变某些节点的颜色并做一次右旋，以保持性质 5。这样，由于在一行中不再有两个红色结点，所有的处理到此完毕。另外因为此时 z.parent 是黑色的，所以无需再执行一次 while 循环。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-230416%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-230416%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org83e5d10" class="outline-2">
+<h2 id="org83e5d10">4.删除</h2>
+<div class="outline-text-2" id="text-org83e5d10">
+<p>
+与红黑树的其他操作一样，删除一个结点要花费Ο(lgn)时间，但是与插入相比，删除要复杂一些。
+</p>
+
+<p>
+红黑树的删除操作是基于<a href="二叉搜索树.html">二叉搜索树</a>的 tree_delete 的，首先，我们需要设计一个特别的 rb_transplant 供 rb_delete 使用。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_transplant</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">u</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">v</span>)
+    {
+        <span style="color: #51afef;">if</span> (u-&gt;parent == T-&gt;nil)
+            T-&gt;root = v;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (u == u-&gt;parent-&gt;left)
+            u-&gt;parent-&gt;left = v;
+        <span style="color: #51afef;">else</span>
+            u-&gt;parent-&gt;right = v;
+        v-&gt;parent = u-&gt;parent;
+    }
+</pre>
+</div>
+
+<p>
+过程 rb_delete 和 tree_delete 类似，只是多了几行代码。多出的几行代码记录结点 y 的踪迹，y有可能导致红黑性质的破坏。当想要删除结点 z，且此时 z 的子节点少于 2 个时，直接将 z 删除，并让 y 成为 z。当 z 有两个子结点时，y应该是 z 的后继，并且 y 移到树中 z 的位置。在结点被删除或在树中移动前，必须记住 y 的颜色，并且记录结点 x 的踪迹，将 x 移到树中 y 的原来位置，因为结点 x 也可能引起红黑性质的破坏。删除结点 z 之后，rb_delete 调用一个辅助过程 rb_delete_fixup，通过改变颜色和旋转来保持红黑性质。
+</p>
+
+<p>
+总结一下，z是要删除的结点，y是结点 z 的后继，是要顶替 z 原来的位置的结点，而 x 是 y 的子结点，需要 x 顶替原来的位置。
+</p>
+
+<p>
+下面是 rb_delete 和 tree_delete 过程之间的其他区别：
+</p>
+
+<ul class="org-ul">
+<li>始终维持结点 y 为从树中删除或移到树内的结点。</li>
+<li>由于结点 y 的颜色可能改变，变量 y_original_color 存储了发生改变前的 y 的颜色。我们需要保存 y 的原始颜色，以在 rb_delete 结束时测试它，如果它是黑色的，那么删除或移动 y 会引起红黑性质的破坏。</li>
+<li>正如前面讨论过的，我们保存结点 x 的踪迹，使它移到结点 y 的原始位置上。令 x 或指向 y 的唯一子结点或指向哨兵 T.nil（如果 y 没有子结点）。</li>
+<li>当 y 的原父结点是 z 时，我们并不想让 x.parent 指向 y 的原父结点，因为要从树中删除该点。由于结点 y 将在树中向上移动占据 z 的位置，我们将 x.parent 设置为 y，使得 x.parent 指向 y 父结点的原始位置，甚至当 x=T.nil 时也是这样。</li>
+</ul>
+
+<p>
+最后，如果结点 y 是黑色的，那么就调用 rb_delete_fixup 来恢复红黑性质。如果 y 是红色的，当 y 被删除或移动时，红黑性质仍被保持，原因如下：
+</p>
+
+<ol class="org-ol">
+<li>树中的黑高没有变化。</li>
+<li>不存在两个相邻的红结点。因为 y 在树中占据了 z 的位置，再考虑 z 的颜色，树中 y 的新位置不可能有两个相邻的红结点。另外，如果 y 不是 z 的右孩子，则 y 的原右孩子 x 代替 y。如果 y 是红色，则 x 一定为黑色，所以用 x 代替 y 不可能使两个红结点相邻。</li>
+<li>如果 y 是红色的，就不可能是根结点，所以性质 2 保持。</li>
+</ol>
+
+<p>
+如果结点 y 是黑色的，则会产生 3 个问题，可以通过调用 rb_delete_fixup 弥补。
+</p>
+
+<ol class="org-ol">
+<li>如果 y 是原来的根结点，而 y 的一个红色的孩子成为新的根结点，就违反了性质 2。</li>
+<li>如果 x 和 x.parent 是红色的，则违反了性质 4。</li>
+<li>在树中移动 y 将导致先前包含 y 的简单路径上黑结点数目少 1。</li>
+</ol>
+
+<p>
+改正这一问题的办法是将现在占据 y 原来位置的结点 x 视为还有一重额外的黑色（只是看作还有一层额外的黑色不是真的有）。也就是说，任意包含 x 的简单路径上黑结点个数加 1。在这种假设下性质 5 成立。当将黑结点 y 删除或移动时，将其黑色“下推”给结点 x。现在的问题变成了 x 可能既不是红色也不是黑色，违反了性质 1。
+</p>
+
+<p>
+下面，我们将通过 rb_delete_fixup 保持红黑性质，并解决 x 既不是红色也不是黑色的问题。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_delete_fixup</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">w</span>;
+
+        <span style="color: #51afef;">while</span> (x != T-&gt;root &amp;&amp; x-&gt;color == BLACK) {
+            <span style="color: #51afef;">if</span> (x == x-&gt;parent-&gt;left) {
+                w = x-&gt;parent-&gt;right;
+                <span style="color: #51afef;">if</span> (w-&gt;color == RED) {
+                    w-&gt;color = BLACK;                               <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    x-&gt;parent-&gt;color = RED;                         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    left_rotate(T, x-&gt;parent);                      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    w = x-&gt;parent-&gt;right;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                }
+
+                <span style="color: #51afef;">if</span> (w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK) {
+                    w-&gt;color = RED;                                 <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                    x = x-&gt;parent;                                  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (w-&gt;right-&gt;color == BLACK) {
+                    w-&gt;left-&gt;color = BLACK;                         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    w-&gt;color = RED;                                 <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    right_rotate(T, w);                             <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    w = x-&gt;parent-&gt;right;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                }
+                w-&gt;color = x-&gt;parent-&gt;color;                        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                x-&gt;parent-&gt;color = BLACK;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                w-&gt;right-&gt;color = BLACK;                            <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                left_rotate(T, x-&gt;parent);                          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                x = T-&gt;root;                                        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+            } <span style="color: #51afef;">else</span> {
+                same <span style="color: #ECBE7B;">as</span> <span style="color: #dcaeea;">then</span>, <span style="color: #dcaeea;">but</span> exchanged <span style="color: #98be65;">"right"</span> and <span style="color: #98be65;">"left"</span>
+            }
+        }
+        x-&gt;color = BLACK;
+    }
+</pre>
+</div>
+
+<p>
+while 循环的目标是将额外的黑色沿树上移，直到：
+</p>
+
+<ol class="org-ol">
+<li>x 指向红黑结点，此时在最后，将 x 着为（单个）黑色。</li>
+<li>x 指向根结点，此时可以简单地“移除”额外的黑色。</li>
+<li>执行适当的旋转和重新着色，退出循环。</li>
+</ol>
+
+<p>
+在 while 循环中，x总是指向一个具有双重黑色的非根结点。并保持 w 指向 x 的兄弟。由于 x 是双重黑色的，所以 w 不可能是 T.nil，否则 x.parent 到 w 的简单路径上的黑结点数目就会少于 x.parent 到 x 的简单路径上的黑结点数目。
+</p>
+
+<p>
+rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵字数α，β，&#x2026;&#x2026;，ζ之间的黑结点个数（包括 x 的额外黑色）并不改变。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-18-141454%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-18-141454%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+加黑的结点颜色为 BLACK，深阴影的结点颜色为 RED，浅阴影的结点颜色用 c 和 c'表示，既可以为红色也可以为黑色。
+</p>
+</div>
+
+<div id="outline-container-org0ed734f" class="outline-3">
+<h3 id="org0ed734f">情况 1：x 的兄弟结点 w 是红色的</h3>
+<div class="outline-text-3" id="text-org0ed734f">
+<p>
+因为 w 必须有黑色子结点，所以可以改变 w 和 x.parent 的颜色，然后对 x.parent 做一次左旋而不违背红黑性质。现在，x的新兄弟结点是旋转前 w 的某个子结点，其颜色为黑色。这样就把情况 1 转换为了情况 2、3、4。
+</p>
+
+<p>
+当结点 w 为黑色时，属于情况 2、3 和 4 这些情况是由 w 的子结点的颜色来区分的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb994e7a" class="outline-3">
+<h3 id="orgb994e7a">情况 2：x 的兄弟结点w为黑色，且w的两个子结点都是黑色</h3>
+<div class="outline-text-3" id="text-orgb994e7a">
+<p>
+因为w也是黑色的，所以从x和w上去掉一重黑色，使得x只有一重黑色而w为红色。为了补偿从x和w中去掉的黑色，在原来的x.parent上新增一重额外额黑色。通过将x.parent作为新的x来重复while循环。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71b67a0" class="outline-3">
+<h3 id="org71b67a0">情况3：x的兄弟结点w为黑色，且w的左孩子为红色，右孩子为黑色</h3>
+<div class="outline-text-3" id="text-org71b67a0">
+<p>
+可以交换w和其左孩子w.left的颜色，然后对w进行右旋。现在x新的兄弟结点w是一个有红色右孩子的黑色结点，于是情况3就变成了情况4。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org97651c3" class="outline-3">
+<h3 id="org97651c3">情况4：x的兄弟结点w为黑色，且w的右孩子为红色</h3>
+<div class="outline-text-3" id="text-org97651c3">
+<p>
+通过进行某些颜色修改并对x.parent做一次左旋，可以去掉x的额外黑色，从而使它变为单重黑色，而不破坏红黑性质。之后再将x设置为根，退出while循环。
+</p>
+
+<p>
+通过以上4中情况的循环，我们可以将x的额外黑色消除，从而在不违背任何红黑性质的情况下删除一个结点。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

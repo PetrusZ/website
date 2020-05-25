@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>语法</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">语法</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbcfb2e6">英文的五个基本句型</a></li>
+<li><a href="#org817f884">句子的修饰成分</a>
+<ul>
+<li><a href="#orgf2f3848">什么成分在句子中是可以删除的？</a></li>
+<li><a href="#org48a74de">形容词和副词怎么分辨？</a></li>
+<li><a href="#orgfa735d6">介宾短语在句子中可以充当什么成分？</a></li>
+</ul>
+</li>
+<li><a href="#org9254e27">补语</a>
+<ul>
+<li><a href="#org36541ec">补语一般出现在句子哪里？</a></li>
+<li><a href="#org981ee9b">补语还可以在哪里出现？</a></li>
+</ul>
+</li>
+<li><a href="#org7652cef"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbcfb2e6" class="outline-2">
+<h2 id="orgbcfb2e6">英文的五个基本句型</h2>
+<div class="outline-text-2" id="text-orgbcfb2e6">
+<ul class="org-ul">
+<li>主语 + 及物动词 + 宾语</li>
+<li>主语 + 及物动词 + 宾语 + 宾语补足语</li>
+<li>主语 + 及物动词 + 间接宾语 + 直接宾语</li>
+<li>主语 + 不及物动词</li>
+<li>主语 + 系动词 + 表语</li>
+</ul>
+
+<p>
+我们将语法概念分成两类，一类是*句子的成分*，也就是一个英文句子的组成部分；另一类是*词性*，也就是一个单词的性质。英语句子是由不同单词组成的，这些单词在句子中充当不同的成分，我们需要搞清楚什么性质的单词（词性）可以放在句子的什么地方，充当什么成分（句子成分）。
+</p>
+
+<p>
+句子成分：
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">语法术语</th>
+<th scope="col" class="org-left">英文</th>
+<th scope="col" class="org-left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">主语</td>
+<td class="org-left">subject</td>
+<td class="org-left">一个句子动作的发出者，或者是描述的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">谓语</td>
+<td class="org-left">predicate</td>
+<td class="org-left">表示句子主语的状态或动作</td>
+</tr>
+
+<tr>
+<td class="org-left">宾语（动词宾语）</td>
+<td class="org-left">object</td>
+<td class="org-left">一个句子动作的接受者</td>
+</tr>
+
+<tr>
+<td class="org-left">宾语补足语</td>
+<td class="org-left">object complement</td>
+<td class="org-left">用来补充说明宾语</td>
+</tr>
+
+<tr>
+<td class="org-left">直接宾语</td>
+<td class="org-left">direct object</td>
+<td class="org-left">动作的直接承受者</td>
+</tr>
+
+<tr>
+<td class="org-left">间接宾语</td>
+<td class="org-left">indirect object</td>
+<td class="org-left">动作所针对的对象，一般是人</td>
+</tr>
+
+<tr>
+<td class="org-left">表语（主语补足语）</td>
+<td class="org-left">subject complement</td>
+<td class="org-left">用来说明句子主语的特点（如性质、特征和状态）</td>
+</tr>
+
+<tr>
+<td class="org-left">定语</td>
+<td class="org-left">attribute</td>
+<td class="org-left">修饰名词，起到描述和限制的作用</td>
+</tr>
+
+<tr>
+<td class="org-left">状语</td>
+<td class="org-left">adverbial</td>
+<td class="org-left">修饰动词、形容词等，增加句子的信息（包括地点、时间等）</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+词性：
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">语法术语</th>
+<th scope="col" class="org-left">英文</th>
+<th scope="col" class="org-left">定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">名词</td>
+<td class="org-left">noun</td>
+<td class="org-left">可以充当句子主语、宾语、表语的单词，代表人、事、物等描述对象</td>
+</tr>
+
+<tr>
+<td class="org-left">及物动词</td>
+<td class="org-left">transitive verb</td>
+<td class="org-left">可以充当谓语的动词，后面可以加宾语，代表动作</td>
+</tr>
+
+<tr>
+<td class="org-left">不及物动词</td>
+<td class="org-left">intransitive verb</td>
+<td class="org-left">可以充电谓语的动词，后面不可以直接加宾语，或者不用加宾语，也代表动作</td>
+</tr>
+
+<tr>
+<td class="org-left">系动词</td>
+<td class="org-left">linking verb</td>
+<td class="org-left">用来连接主语和表语的动词，帮助表语来说明主语</td>
+</tr>
+
+<tr>
+<td class="org-left">主动词</td>
+<td class="org-left">main verb</td>
+<td class="org-left">及物动词、不及物动词、系动词的合成，有具体的意义</td>
+</tr>
+
+<tr>
+<td class="org-left">助动词</td>
+<td class="org-left">auxiliary verb</td>
+<td class="org-left">辅助助动词的动词，表示时态和语态，但是没有具体的意义</td>
+</tr>
+
+<tr>
+<td class="org-left">情态动词</td>
+<td class="org-left">modal verb</td>
+<td class="org-left">也是辅助主动词的动词，表示语气，和助动词一样，不能独立存在去充当谓语</td>
+</tr>
+
+<tr>
+<td class="org-left">代词</td>
+<td class="org-left">pronoun</td>
+<td class="org-left">指代名词或句子的词。代词可以是名词性质，也是可以形容词活副词性质的</td>
+</tr>
+
+<tr>
+<td class="org-left">形容词</td>
+<td class="org-left">adjective</td>
+<td class="org-left">修饰名词的词。形容词可以充当补语、表语和定语</td>
+</tr>
+
+<tr>
+<td class="org-left">动名词</td>
+<td class="org-left">gerund</td>
+<td class="org-left">动词的 ing 形式。具有名词性质，可以充当名词充当的成分，包括主语和宾语等</td>
+</tr>
+
+<tr>
+<td class="org-left">不定式</td>
+<td class="org-left">infinitive</td>
+<td class="org-left">动词前加一个 to。具备名词性质，可以充当名词充当的成分，包括主语和宾语等；</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">也具备副词性质，可以充当状语或者形容词性质，可以充当定语</td>
+</tr>
+
+<tr>
+<td class="org-left">冠词</td>
+<td class="org-left">article</td>
+<td class="org-left">一般出现在名词前面，帮助说明名词的特点。冠词有不定冠词、定冠词和零冠词</td>
+</tr>
+
+<tr>
+<td class="org-left">副词</td>
+<td class="org-left">adverb</td>
+<td class="org-left">可以修饰形容词、动词和句子等</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org817f884" class="outline-2">
+<h2 id="org817f884">句子的修饰成分</h2>
+<div class="outline-text-2" id="text-org817f884">
+<blockquote>
+<p>
+形容词、副词、介宾短语、定语和状语
+</p>
+</blockquote>
+
+<p>
+修饰成分是一个句子中可以去掉的部分。这些成分去掉后对句子没有语法上的影响，只会影响句意。
+</p>
+</div>
+
+<div id="outline-container-orgf2f3848" class="outline-3">
+<h3 id="orgf2f3848">什么成分在句子中是可以删除的？</h3>
+<div class="outline-text-3" id="text-orgf2f3848">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">句子中不可删除的成分（一旦在句子中出现，就不可以删除）</th>
+<th scope="col" class="org-left">句子中可以删除的成分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">主语、谓语、宾语、补语、表语</td>
+<td class="org-left">定语、状语、同位语</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+定语一般由*形容词行的单词活短语*（如形容词、介宾短语和分词等）来充当，而状语一般是由*副词性的单词活短语*（如副词、介宾短语和分词等）来充当。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">定语</th>
+<th scope="col" class="org-left">状语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">功能</td>
+<td class="org-left">限制和修饰名词</td>
+<td class="org-left">修饰谓语、定语和句子</td>
+</tr>
+
+<tr>
+<td class="org-left">使用单词</td>
+<td class="org-left">一般来说，形容词可以充当定语</td>
+<td class="org-left">状语一般是由副词充当，分词和介宾短语也可以充当状语</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">分词和介宾短语也可以充当定语</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">例句</td>
+<td class="org-left">He is a dedicated teacher.</td>
+<td class="org-left">He has been working hard.</td>
+</tr>
+
+<tr>
+<td class="org-left">大意</td>
+<td class="org-left">他是一个敬业的老师</td>
+<td class="org-left">他一直工作很勤奋</td>
+</tr>
+
+<tr>
+<td class="org-left">解析</td>
+<td class="org-left">老师这个名词前出现了 dedicated 这个形容词，</td>
+<td class="org-left">这里的 hard 就是一个副词，修饰 work 这个动词</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">充当定语。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">句子中的位置</td>
+<td class="org-left">定语一般放在名词的前面，</td>
+<td class="org-left">位置非常灵活</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">有时候也会放在名词的后面，称为后置定语。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">使用限制</td>
+<td class="org-left">定语不能修饰动词</td>
+<td class="org-left">状语不能修饰名词</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org48a74de" class="outline-3">
+<h3 id="org48a74de">形容词和副词怎么分辨？</h3>
+<div class="outline-text-3" id="text-org48a74de">
+<p>
+形容词的英文是 adjective，副词的英文是 adverb。查英文字典的时候可以留意单词后面的=adj.=或者=adv.=。在单词构造上，形容词很多时候后加 ly 就是副词。*在句子里，形容词一般都是修饰名词（不管是充当定语，还是表语）的，而副词除了不能修饰名词之外，其他词都能修饰。*
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">形容词</th>
+<th scope="col" class="org-left">副词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">例词</td>
+<td class="org-left">quick,slow,efficient,effective,clear,</td>
+<td class="org-left">quickly,slowly,efficiently,effectively,clearly,</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">brave,recent 等</td>
+<td class="org-left">bravely,recently 等</td>
+</tr>
+
+<tr>
+<td class="org-left">例句</td>
+<td class="org-left">Students have found an effective way</td>
+<td class="org-left">Studens can learn this language effectively.</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">to learn this language.</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">大意</td>
+<td class="org-left">学生们找到了一种学习这种语言的有效方法</td>
+<td class="org-left">学生可以有效地学习这门语言</td>
+</tr>
+
+<tr>
+<td class="org-left">解析</td>
+<td class="org-left">这句话里的 effective 是形容词，修饰名词 way</td>
+<td class="org-left">这句话里的 effectively 是副词，修饰动词 learn</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+然而，有时候，形容词和副词的变化又未必如此。
+</p>
+
+<p>
+有些形容词，是没有副词形式的；有些副词和形容词的拼写一样的；
+</p>
+
+<p>
+<b>因此，分析这些单词的区别可以借鉴一定规律，但也要注意特例。</b>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa735d6" class="outline-3">
+<h3 id="orgfa735d6">介宾短语在句子中可以充当什么成分？</h3>
+<div class="outline-text-3" id="text-orgfa735d6">
+<p>
+所谓的介宾短语， <b>就是在介词 in，at，on 这些单词后面，出现一个名字或动名词充当介词的宾语。</b> 介词后面一般不可以加动词、形容词、副词、句子等。
+</p>
+
+<p>
+介宾短语可以充当定语、表语、状语、补语。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">定语</th>
+<th scope="col" class="org-left">表语</th>
+<th scope="col" class="org-left">状语</th>
+<th scope="col" class="org-left">补语</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">例句</td>
+<td class="org-left">Gu jiabei is a teacher</td>
+<td class="org-left">Gu Jiabei is in China</td>
+<td class="org-left">Gu Jiabei is working</td>
+<td class="org-left">Gu Jiabei has relocated</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">from New Zealand.</td>
+<td class="org-left">now.</td>
+<td class="org-left">in China.</td>
+<td class="org-left">to Shenzhen.</td>
+</tr>
+
+<tr>
+<td class="org-left">大意</td>
+<td class="org-left">顾家北是来自新西兰的</td>
+<td class="org-left">顾家北目前在中国</td>
+<td class="org-left">顾家北在中国工作</td>
+<td class="org-left">顾家北搬到深圳</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">一位老师</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">解析</td>
+<td class="org-left">这里的 from New Zealand</td>
+<td class="org-left">这里的 in China 就是一个</td>
+<td class="org-left">这里的 in China 就是一个</td>
+<td class="org-left">这里的 to Shenzhen 就是一个</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">就是一个介词 from 加名词</td>
+<td class="org-left">介词 in 加名词 China 的结</td>
+<td class="org-left">介词 in 加名词 China 的结</td>
+<td class="org-left">介词 to 加上 Shenzhen，充当</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">New Zealand 的结构，充当</td>
+<td class="org-left">构，充当表语，修饰主语</td>
+<td class="org-left">构，修饰 work 这个动词，</td>
+<td class="org-left">relocate 的补语</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">定语，修饰 teacher</td>
+<td class="org-left">Gu Jiabei</td>
+<td class="org-left">充当状语。</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+常用的介词有这么一些。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">表示方位的介词</th>
+<th scope="col" class="org-left">表示时间的介词</th>
+<th scope="col" class="org-left">表示原因的介词</th>
+<th scope="col" class="org-left">表示让步的介词</th>
+<th scope="col" class="org-left">表示“关于”的介词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">in,at,on,above,</td>
+<td class="org-left">before,after,until</td>
+<td class="org-left">because of,</td>
+<td class="org-left">despite,</td>
+<td class="org-left">about,concerning,</td>
+</tr>
+
+<tr>
+<td class="org-left">below,inside,</td>
+<td class="org-left">since</td>
+<td class="org-left">due to,</td>
+<td class="org-left">in spite of,</td>
+<td class="org-left">as to, as for,</td>
+</tr>
+
+<tr>
+<td class="org-left">side,next to,</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">owing to,</td>
+<td class="org-left">notwithstanding</td>
+<td class="org-left">regarding</td>
+</tr>
+
+<tr>
+<td class="org-left">besides</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">thanks to</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9254e27" class="outline-2">
+<h2 id="org9254e27">补语</h2>
+<div class="outline-text-2" id="text-org9254e27">
+<p>
+补语（complement）补充说明前面一个名词：有些时候也可以是补充说明形容词和动词。
+</p>
+</div>
+
+<div id="outline-container-org36541ec" class="outline-3">
+<h3 id="org36541ec">补语一般出现在句子哪里？</h3>
+<div class="outline-text-3" id="text-org36541ec">
+<p>
+补语是句子的必要成分。换言之，如果补语在句子中出现，不可以删除。否则，句子会不完成。
+</p>
+
+<p>
+很多时候，*补语是由句子结构决定的，而句子结构由动词决定*。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">系动词</th>
+<th scope="col" class="org-left">某些及物动词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">动词</td>
+<td class="org-left">become,appear,seem,feel,stay 等</td>
+<td class="org-left">make,enable,let,regard 等</td>
+</tr>
+
+<tr>
+<td class="org-left">句子结构</td>
+<td class="org-left">主语+系动词+表语（主语的补语）</td>
+<td class="org-left">主语+及物动词+宾语+宾语补足语</td>
+</tr>
+
+<tr>
+<td class="org-left">例句</td>
+<td class="org-left">Studens have become knowledgeable.</td>
+<td class="org-left">Education has makde students knowledgeable.</td>
+</tr>
+
+<tr>
+<td class="org-left">大意</td>
+<td class="org-left">学生变得有知识</td>
+<td class="org-left">教育使得学生变得有知识</td>
+</tr>
+
+<tr>
+<td class="org-left">解析</td>
+<td class="org-left">knowledgeable 是补充说明主语 students 的补语</td>
+<td class="org-left">knowledgeable 是补充说明宾语 students 的补语</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org981ee9b" class="outline-3">
+<h3 id="org981ee9b">补语还可以在哪里出现？</h3>
+<div class="outline-text-3" id="text-org981ee9b">
+<p>
+在某些情况下，补语也可以是 <b>由单词的性质来决定的</b> 。
+</p>
+
+<ol class="org-ol">
+<li><p>
+动词有些时候后面会出现一些固定的搭配，充当这个动词的补语
+</p>
+
+<p>
+下面这句话的 take 有固定的词伙，就是 take&#x2026;seriously，而 seriously 就是这个 take 的补语。
+</p>
+
+<p>
+People take education seriously.
+</p></li>
+
+<li><p>
+名词有些时候后面会出现一些固定的搭配，充当这个名词的补语
+</p>
+
+<p>
+下面这句话的 key 有固定的词伙，就是 key to&#x2026;，而 to
+success 就是这个 key 的补语。
+</p>
+
+<p>
+People regard education as the key to success.
+</p></li>
+
+<li><p>
+形容词有些时候后面会出现一些固定的搭配，充当这个形容词的补语
+</p>
+
+<p>
+下面这句话的 aware 有固定的词伙，就是 aware of&#x2026;，而 of environmental
+problems 就是这个 aware 的补语。
+</p>
+
+<p>
+People are aware of environmental problems.
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7652cef" class="outline-2">
+<h2 id="org7652cef"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

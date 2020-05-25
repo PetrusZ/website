@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>优化程序性能</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">优化程序性能</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3f41eaa">优化程序性能</a></li>
+<li><a href="#orgfe7c61f">妨碍优化的因素</a></li>
+<li><a href="#orgb15ea6c">优化程序性能的方法</a>
+<ul>
+<li><a href="#org6c924ce">消除循环的低效率</a></li>
+<li><a href="#org2525d52">减少过程调用</a></li>
+<li><a href="#orge566daf">消除不必要的存储器引用</a></li>
+<li><a href="#orge9fe12f">循环展开</a></li>
+<li><a href="#org0a64851">提高并行性</a></li>
+</ul>
+</li>
+<li><a href="#org838b4dd">其他限制因素</a>
+<ul>
+<li><a href="#org9ba8515">寄存器溢出</a></li>
+<li><a href="#org56c8e9b">分支预测或预测错误处罚</a></li>
+<li><a href="#orge6d6ac3">存储器性能</a></li>
+</ul>
+</li>
+<li><a href="#org9f42ecd">Amdahl 定律</a></li>
+<li><a href="#org45e7bfd">总结</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3f41eaa" class="outline-2">
+<h2 id="org3f41eaa">优化程序性能</h2>
+<div class="outline-text-2" id="text-org3f41eaa">
+<p>
+优化程序性能大体上可以分为两个步骤：
+</p>
+
+<p>
+第一步就是消除不必要的内容，让代码尽可能有效地执行它期望的工作。这包括消除不必要的函数调用、条件测试和存储器引用。这些优化不依赖于目标机器的任何具体属性。
+</p>
+
+<p>
+第二步是利用处理器提供的*指令级并行*能力，同时执行多条指令。而想要充分利用指令级并行能力，我们必须了解处理器的运作，以及程序的汇编代码。研究程序的汇编代码表示，是理解编译器，以及产生的代码如果在处理器上运行的最有效的手段之一。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgfe7c61f" class="outline-2">
+<h2 id="orgfe7c61f">妨碍优化的因素</h2>
+<div class="outline-text-2" id="text-orgfe7c61f">
+<p>
+我们将两个指针可能指向同一个存储器位置的情况称为*存储器别名使用*。在只执行安全的优化中，编译器必须假设不同的指针可能会指向存储器中同一个位置。这就造成了一个主要的*妨碍优化的因素*，这也是可能严重限制编译器产生优化代码机会的一个方面。如果编译器不能确定两个指针是否指向同一个位置就必须假设什么情况都有可能，限制了可能的优化策略。例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">fun1</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">xp</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">yp</span>)
+    {
+        *xp += *yp;
+        *xp += *yp;
+    }
+
+    <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">fun2</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">xp</span>, <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">yp</span>)
+    {
+        *xp += <span style="color: #da8548; font-weight: bold;">2</span> * *yp;
+    }
+</pre>
+</div>
+
+<p>
+如果 xp 与 yp 不同，则编译器可以将 fun1 优化为 fun2 的形式，这样只需要三次存储器引用（读*xp，读*yp，写*xp），而 fun1 需要六次。但是如果 xp 与 yp 相同，则这两个函数会产生不相同的结果，fun1 会将*xp 的值增加 4 倍，而 fun2 会将*xp 的值增加 3 倍，所以编译器必须假设所有情况，因此不同进行这样的优化。
+</p>
+
+<p>
+第二个妨碍优化的因素是函数调用。大多数编译器不会试图判断一个函数是否没有副作用，因此任意函数都可能是优化的候选者。相反，编译器会假设最糟的情况，并保持所有函数调用不变。假设我们有如下函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">counter</span>;
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">f</span>()
+    {
+        <span style="color: #51afef;">return</span> counter++;
+    }
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">fun1</span>()
+    {
+        <span style="color: #51afef;">return</span> f() + f() + f() + f();
+    }
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">fun2</span>()
+    {
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">4</span> * f();
+    }
+</pre>
+</div>
+
+<p>
+因为函数 f()有一个副作用-&#x2013;&#x2014;修改了全局变量 counter 的值，所以编译器不能将 fun1()优化为 fun2()，这两个函数会返回不同的值，fun1 返回 6 而 fun2 返回 0。因此一个函数可能会产生各种可能的副作用，所以编译器会假设最糟糕的情况并保持所有函数调用不变。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgb15ea6c" class="outline-2">
+<h2 id="orgb15ea6c">优化程序性能的方法</h2>
+<div class="outline-text-2" id="text-orgb15ea6c">
+</div>
+<div id="outline-container-org6c924ce" class="outline-3">
+<h3 id="org6c924ce">消除循环的低效率</h3>
+<div class="outline-text-3" id="text-org6c924ce">
+<p>
+找出要执行多次但是计算结果不会改变的计算，将该计算移动到代码前面不会被多次求值的部分。这种方法称为*代码移动*。优化编译器会试着进行代码移动，但不幸的是，就像前面讨论的那样，对于会改变在哪里调用函数或调用多少次的变换，编译器通常非常小心，假设函数都会有副作用。所以程序员必须帮助编译器显示地完成代码移动。（一个看上去无足轻重的代码片断有隐藏的渐进低效率。）
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2525d52" class="outline-3">
+<h3 id="org2525d52">减少过程调用</h3>
+<div class="outline-text-3" id="text-org2525d52">
+<p>
+过程调用会带来相当大的开销（参数传递、保护现场、控制转移等），而且妨碍大多数形式的程序优化。虽然减少过程调用会损害程序的模块性，但对于性能至关重要的应用来说，为了速度，经常必须要损害一些模块性和抽象性。为了防止以后要修改代码，添加一些文档是很明智的，说明采用了哪些变换以及导致进行这些变换的假设。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge566daf" class="outline-3">
+<h3 id="orge566daf">消除不必要的存储器引用</h3>
+<div class="outline-text-3" id="text-orge566daf">
+<p>
+消除无用的存储器读写，引入一个临时变量，用来累积计算出来的值，只有在完成计算之后存放到存储器中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge9fe12f" class="outline-3">
+<h3 id="orge9fe12f">循环展开</h3>
+<div class="outline-text-3" id="text-orge9fe12f">
+<p>
+循环展开能够从两个方面改善程序的性能。首先，它减少了不直接有助于程序结果的操作的数量，例如循环检索引用计算和条件分支。其次，它提供了一些方法，可以进一步变化代码，减少整个计算中关键路径上的操作数量。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0a64851" class="outline-3">
+<h3 id="org0a64851">提高并行性</h3>
+<div class="outline-text-3" id="text-org0a64851">
+<ul class="org-ul">
+<li><b>多个累积变量。</b>
+对于一个可结合和可交换的合并运算，比如整数加法或乘法，可以通过一组合并运算分割成两个或更多的部分，引入多个累积变量，并在最后合并结果来提高性能。充分利用处理器的吞吐能力。</li>
+
+<li>*重新结合变换。*通过在计算中添加、删除括号来改变元素的合并方式。重新结合变换能够减少计算中关键路径上操作的数量，通过更好地利用功能单元的流水线能力得到更好的性能。例如：</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-C">    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">OP&#21487;&#33021;&#20026;+,-,*,/&#20013;&#20219;&#24847;&#19968;&#20010;&#25805;&#20316;</span>
+    acc = (acc OP <span style="color: #ECBE7B;">data</span>[i]) <span style="color: #ECBE7B;">OP</span> <span style="color: #dcaeea;">data</span>[i+<span style="color: #da8548; font-weight: bold;">1</span>];
+    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#37325;&#26032;&#32467;&#21512;&#21464;&#25442;&#20026;</span>
+    acc = acc OP (data[i] OP data[i+<span style="color: #da8548; font-weight: bold;">1</span>]);
+</pre>
+</div>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org838b4dd" class="outline-2">
+<h2 id="org838b4dd">其他限制因素</h2>
+<div class="outline-text-2" id="text-org838b4dd">
+</div>
+<div id="outline-container-org9ba8515" class="outline-3">
+<h3 id="org9ba8515">寄存器溢出</h3>
+<div class="outline-text-3" id="text-org9ba8515">
+<p>
+循环并行性的好处受到描述计算的汇编代码的能力限制。特别地，IA32 指令集只有很少量的寄存器来存放累积的值。如果我们的并行度 p 超过了可能的寄存器数量，那么编译器会诉诸*溢出*，将某些临时值存放到栈中。一旦出现这种情况，性能会急剧下降。不过 x86-64 代码能够同时累积最多 12 个值，而不会溢出任何寄存器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56c8e9b" class="outline-3">
+<h3 id="org56c8e9b">分支预测或预测错误处罚</h3>
+<div class="outline-text-3" id="text-org56c8e9b">
+<p>
+当分支预测逻辑不能正确预测一个分支是否要跳转的时候，条件分支可能会导致严重的*预测错误处罚*。虽然错误的分支预测的影响可能非常大，但是这并不意味着所有的程序分支都会减缓程序的执行。实际上，现在处理器中的分支预测逻辑非常善于辨别不同的分支指令有规律的模式和长期的趋势。例如，在闭合循环的分支中通常会被预测为选择继续循环的分支，因此只在最后一次会导致预测错误处罚。另外，还可以显示的编写功能式的条件表达式，以产生条件传送，减小预测错误处罚。不过并不是所有的条件行为都能用条件数据传送来实现。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge6d6ac3" class="outline-3">
+<h3 id="orge6d6ac3">存储器性能</h3>
+<div class="outline-text-3" id="text-orge6d6ac3">
+<p>
+如果程序中存在写/读相关——一个存储器读的结果依赖于最近的存储器写，会导致处理速度下降，关键路径变长，程序的并行性下降。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f42ecd" class="outline-2">
+<h2 id="org9f42ecd">Amdahl 定律</h2>
+<div class="outline-text-2" id="text-org9f42ecd">
+<p>
+<a href="http://codeplayer.org/wp-content/uploads/2014/02/amdahl.jpg">[[http://codeplayer.org/wp-content/uploads/2014/02/amdahl.jpg</a>]]
+(图片丢失)
+</p>
+
+<p>
+f 为执行某个任务的总时间可被改进部分的执行时间所占百分比，m为可被改进部分采用改进措施后比没有改进前性能提高倍数。
+</p>
+
+<p>
+该公式表示 Amdahl 定律的主要观点——要想大幅度提高整个系统的速度，我们必须提高整个系统很大一部分的速度。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org45e7bfd" class="outline-2">
+<h2 id="org45e7bfd">总结</h2>
+<div class="outline-text-2" id="text-org45e7bfd">
+<p>
+优化程序性能可以分为三种基础策略：
+</p>
+
+<ol class="org-ol">
+<li><b>高级设计。</b> 使用适当的算法和数据结构。避免使用渐进产生糟糕性能的算法或编码技术。算法方面的内容，可以参考我的<a href="Wiki/Program/CLRS/index.html">《算法导论》笔记</a>。</li>
+<li><b>基本编码原则。</b> 避免限制优化的因素，使编译器产生高效的代码。
+
+<ul class="org-ul">
+<li>消除连续的函数调用。在可能时，将计算移到循环外。考虑有选择地妥协程序的模块性以获得更大的效率。</li>
+<li>消除不必要的存储器引用。引入临时变量来保存中间结果。只有在最后的值计算出来时，才将结果存放到数组或全局变量中。</li>
+</ul></li>
+
+<li><b>低级优化。</b>
+
+<ul class="org-ul">
+<li>展开循环，降低开销。</li>
+<li>通过使用例如多个累积变量和重新结合等技术，找到方法提高指令级并行。</li>
+<li>用功能的风格重写条件操作，使得编译采用条件数据传送。
+(功能的风格即为”a ? b : c;”)</li>
+</ul></li>
+</ol>
+
+<p>
+最后，要警惕，在为了提高效率重写程序时避免引入错误。在引入新变量、改变循环边界和使得代码整体上更加复杂时，很容易犯错误。一项有用的技术是在优化函数时，用检查代码来测试函数的每个版本，以确保在这个过程没有引入错误。检查代码对函数的新版本实施一系列的测试，确保它们产生与原来一样的结果。
+</p>
+
+<p>
+<i>“过早的优化是万恶之源”-&#x2013;&#x2014;C.A.R.Hoare</i>
+</p>
+
+<p>
+正如 Amdahl定律所表明的那样，除非你知道瓶颈在哪，否则不要匆忙进行优化。比起跑，先学会走更加重要。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>红黑树的C语言实现</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">红黑树的C语言实现</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgaf22aae">红黑树的 C 语言实现</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaf22aae" class="outline-2">
+<h2 id="orgaf22aae">红黑树的 C 语言实现</h2>
+<div class="outline-text-2" id="text-orgaf22aae">
+<p>
+这篇只讨论实现，完整红黑树的 C 语言代码。有关红黑树理论的请看另一篇<a href="红黑树.html">红黑树博文</a>。
+</p>
+
+<p>
+主要参考了算法导论中的红黑树伪代码，另外也参考了一下 linux 内核中的红黑树实现，不过最终没有采用 linux 内核中的方案，稍微有点复杂。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">     * =====================================================================================</span>
+<span style="color: #5B6268;">     *</span>
+<span style="color: #5B6268;">     *       Filename:  rbtree.c</span>
+<span style="color: #5B6268;">     *</span>
+<span style="color: #5B6268;">     *    Description:  &#32418;&#40657;&#26641;&#23454;&#29616;&#65288;&#21442;&#32771;CLRS&#65289;</span>
+<span style="color: #5B6268;">     *</span>
+<span style="color: #5B6268;">     *        Version:  1.0</span>
+<span style="color: #5B6268;">     *        Created:  2013&#24180;11&#26376;13&#26085; 20&#26102;05&#20998;58&#31186;</span>
+<span style="color: #5B6268;">     *       Revision:  none</span>
+<span style="color: #5B6268;">     *       Compiler:  gcc</span>
+<span style="color: #5B6268;">     *</span>
+<span style="color: #5B6268;">     *         Author:  codeplayer(silencly07@gmail.com)</span>
+<span style="color: #5B6268;">     *   Organization:  http://codeplayer.org</span>
+<span style="color: #5B6268;">     *</span>
+<span style="color: #5B6268;">     * =====================================================================================</span>
+<span style="color: #5B6268;">     */</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">BLACK</span>   <span style="color: #da8548; font-weight: bold;">1</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">RED</span>     <span style="color: #da8548; font-weight: bold;">0</span>
+
+    <span style="color: #51afef;">typedef</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> {
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> *<span style="color: #dcaeea;">right</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> *<span style="color: #dcaeea;">left</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> *<span style="color: #dcaeea;">parent</span>;
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">key</span>;
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">color</span>;
+    }<span style="color: #ECBE7B;">RB_NODE</span>;
+
+    <span style="color: #51afef;">typedef</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_tree</span> {
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> *<span style="color: #dcaeea;">root</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">rb_node</span> *<span style="color: #dcaeea;">nil</span>;
+    }<span style="color: #ECBE7B;">RB_TREE</span>;
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">node_init</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">node</span>;
+
+        node = (<span style="color: #ECBE7B;">RB_NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(RB_NODE));
+        node-&gt;color = BLACK;
+        node-&gt;key = <span style="color: #da8548; font-weight: bold;">0</span>;
+        node-&gt;right = node-&gt;left = node-&gt;parent = T-&gt;nil;
+
+        <span style="color: #51afef;">return</span>(node);
+    }
+
+    <span style="color: #ECBE7B;">RB_TREE</span> *
+    <span style="color: #c678dd;">tree_init</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">RB_TREE</span>     *<span style="color: #dcaeea;">T</span>;
+
+        T = (<span style="color: #ECBE7B;">RB_TREE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(RB_TREE));
+        T-&gt;nil = (<span style="color: #ECBE7B;">RB_NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(RB_NODE));
+        T-&gt;nil-&gt;color = BLACK;
+        T-&gt;nil-&gt;parent = T-&gt;nil-&gt;left = T-&gt;nil-&gt;right = T-&gt;nil;
+
+        T-&gt;root = T-&gt;nil;
+
+        <span style="color: #51afef;">return</span>(T);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">node_destory</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">node</span>)
+    {
+        <span style="color: #51afef;">if</span> (node != T-&gt;nil) {
+            node_destory(T, node-&gt;left);
+            node_destory(T, node-&gt;right);
+            free(node);
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">tree_destory</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>)
+    {
+        free(T-&gt;nil);
+        free(T);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">inorder_tree_walk</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #51afef;">if</span> (x != T-&gt;nil) {
+            inorder_tree_walk(T, x-&gt;left);
+            printf(<span style="color: #98be65;">"%d "</span>, x-&gt;key);
+            inorder_tree_walk(T, x-&gt;right);
+        }
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbtree_minimum</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#20108;&#21449;&#25628;&#32034;&#26641;&#24615;&#36136;&#20445;&#35777;&#20102;tree_minimum&#26159;&#27491;&#30830;&#30340;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x-&gt;left != T-&gt;nil)
+            x = x-&gt;left;
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbtree_maximum</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#19982;tree_minimum&#26159;&#23545;&#31216;&#30340;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x-&gt;right != T-&gt;nil)
+            x = x-&gt;right;
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbtree_search</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #51afef;">if</span> (x == T-&gt;nil || k == x-&gt;key)
+            <span style="color: #51afef;">return</span>(x);
+        <span style="color: #51afef;">if</span> (k &lt; x-&gt;key)
+            <span style="color: #51afef;">return</span>(rbtree_search(T, x-&gt;left, k));
+        <span style="color: #51afef;">else</span>
+            <span style="color: #51afef;">return</span>(rbtree_search(T, x-&gt;right, k));
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbiterative_tree_search</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#23545;&#20110;&#22823;&#22810;&#25968;&#35745;&#31639;&#26426;&#65292;&#37319;&#29992;while&#24490;&#29615;</span>
+<span style="color: #5B6268;">         * &#26469;&#23637;&#24320;&#36882;&#24402;&#65292;&#29992;&#19968;&#31181;&#36845;&#20195;&#26041;&#24335;&#37325;&#26032;</span>
+<span style="color: #5B6268;">         * &#36825;&#20010;&#36807;&#31243;&#65292;&#36816;&#34892;&#30340;&#25928;&#29575;&#35201;&#27604;&#36882;&#24402;&#39640;</span>
+<span style="color: #5B6268;">         * &#30340;&#22810;&#12290;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x != T-&gt;nil &amp;&amp; k != x-&gt;key) {
+            <span style="color: #51afef;">if</span> (k &lt; x-&gt;key)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+        }
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbtree_successor</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#26597;&#25214;&#19968;&#20010;&#33410;&#28857;&#30340;&#21518;&#32487;</span>
+<span style="color: #5B6268;">         *</span>
+<span style="color: #5B6268;">         * case1: &#22914;&#26524;&#32467;&#28857;x&#30340;&#21491;&#23376;&#26641;&#38750;&#31354;&#65292;</span>
+<span style="color: #5B6268;">         * &#37027;&#20040;x&#30340;&#21518;&#32487;&#24688;&#26159;x&#21491;&#23376;&#26641;&#20013;&#30340;&#26368;&#24038;&#32467;&#28857;&#12290;</span>
+<span style="color: #5B6268;">         *</span>
+<span style="color: #5B6268;">         * case2:&#22914;&#26524;&#32467;&#28857;x&#30340;&#21491;&#23376;&#26641;&#20026;&#31354;,&#24182;&#26377;&#19968;&#20010;&#21518;&#32487;y&#65292;</span>
+<span style="color: #5B6268;">         * &#37027;&#20040;y&#23601;&#26159;x&#30340;&#26377;&#24038;&#23401;&#23376;&#30340;&#26368;&#24213;&#23618;&#31062;&#20808;&#65292;&#24182;&#19988;&#23427;&#20063;&#26159;</span>
+<span style="color: #5B6268;">         * x&#30340;&#19968;&#20010;&#31062;&#20808;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">RB_NODE</span>    *<span style="color: #dcaeea;">y</span>;
+
+        y = node_init(T);
+
+        <span style="color: #51afef;">if</span> (x-&gt;right != T-&gt;nil)
+            <span style="color: #51afef;">return</span> rbtree_minimum(T, x-&gt;right);
+
+        y = x-&gt;parent;
+        <span style="color: #51afef;">while</span> (y != T-&gt;nil &amp;&amp; x == y-&gt;right) {
+            x = y;
+            y = y-&gt;parent;
+        }
+
+        <span style="color: #51afef;">return</span>(y);
+
+    }
+
+    <span style="color: #ECBE7B;">RB_NODE</span> *
+    <span style="color: #c678dd;">rbtree_predecessor</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#26597;&#25214;&#20808;&#39537;&#65292;&#19982;tree_successor&#23545;&#31216;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">RB_NODE</span>    *<span style="color: #dcaeea;">y</span>;
+
+        y = node_init(T);
+
+        <span style="color: #51afef;">if</span> (x-&gt;left != T-&gt;nil)
+            <span style="color: #51afef;">return</span> rbtree_maximum(T, x-&gt;left);
+
+        y = x-&gt;parent;
+        <span style="color: #51afef;">while</span> (y != T-&gt;nil &amp;&amp; x == y-&gt;left) {
+            x = y;
+            y = y-&gt;parent;
+        }
+
+        <span style="color: #51afef;">return</span>(y);
+
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">left_rotate</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">y</span>;
+
+        y = x-&gt;right;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">set y</span>
+        x-&gt;right = y-&gt;left;             <span style="color: #5B6268;">//</span><span style="color: #5B6268;">turn y's left subtree into x's right subtree</span>
+        <span style="color: #51afef;">if</span> (y-&gt;left != T-&gt;nil)
+            y-&gt;left-&gt;parent = x;
+        y-&gt;parent = x-&gt;parent;          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">link x's parent to y</span>
+        <span style="color: #51afef;">if</span> (x-&gt;parent == T-&gt;nil)
+            T-&gt;root = y;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (x == x-&gt;parent-&gt;left)
+            x-&gt;parent-&gt;left = y;
+        <span style="color: #51afef;">else</span>
+            x-&gt;parent-&gt;right = y;
+        y-&gt;left = x;                    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">put x on y's left</span>
+        x-&gt;parent = y;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">right_rotate</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">y</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>;
+
+        x = y-&gt;left;                    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">set x</span>
+        y-&gt;left = x-&gt;right;             <span style="color: #5B6268;">//</span><span style="color: #5B6268;">turn x's left subtree into y's left subtree</span>
+        <span style="color: #51afef;">if</span> (x-&gt;right != T-&gt;nil)
+            x-&gt;right-&gt;parent = y;
+        x-&gt;parent = y-&gt;parent;          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">link y's parent to x</span>
+        <span style="color: #51afef;">if</span> (y-&gt;parent == T-&gt;nil)
+            T-&gt;root = x;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (y == y-&gt;parent-&gt;right)
+            y-&gt;parent-&gt;right = x;
+        <span style="color: #51afef;">else</span>
+            y-&gt;parent-&gt;left = x;
+        x-&gt;right = y;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">put y on x's left</span>
+        y-&gt;parent = x;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_insert_fixup</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">y</span>;
+
+        <span style="color: #51afef;">while</span> (z-&gt;parent-&gt;color == RED) {
+            <span style="color: #51afef;">if</span> (z-&gt;parent-&gt;parent != T-&gt;nil &amp;&amp; z-&gt;parent == z-&gt;parent-&gt;parent-&gt;left) {
+                y = z-&gt;parent-&gt;parent-&gt;right;
+                <span style="color: #51afef;">if</span> (y-&gt;color == RED) {
+                    z-&gt;parent-&gt;color = BLACK;           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    y-&gt;color = BLACK;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z-&gt;parent-&gt;parent-&gt;color = RED;     <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z = z-&gt;parent-&gt;parent;              <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    <span style="color: #51afef;">continue</span>;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                }
+                <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z == z-&gt;parent-&gt;right) {
+                    z = z-&gt;parent;                      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                    left_rotate(T, z);                  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                }
+                z-&gt;parent-&gt;color = BLACK;               <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                z-&gt;parent-&gt;parent-&gt;color = RED;         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                right_rotate(T, z-&gt;parent-&gt;parent);     <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+            } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z-&gt;parent-&gt;parent != T-&gt;nil){
+                y = z-&gt;parent-&gt;parent-&gt;left;
+                <span style="color: #51afef;">if</span> (y-&gt;color == RED) {
+                    z-&gt;parent-&gt;color = BLACK;           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    y-&gt;color = BLACK;                   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z-&gt;parent-&gt;parent-&gt;color = RED;     <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    z = z-&gt;parent-&gt;parent;              <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    <span style="color: #51afef;">continue</span>;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                }
+                <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z == z-&gt;parent-&gt;left) {
+                    z = z-&gt;parent;                      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                    right_rotate(T, z);                 <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                }
+                z-&gt;parent-&gt;color = BLACK;               <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                z-&gt;parent-&gt;parent-&gt;color = RED;         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                left_rotate(T, z-&gt;parent-&gt;parent);      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+            }
+        T-&gt;root-&gt;color = BLACK;
+        }
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_insert</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">x</span>, *<span style="color: #dcaeea;">y</span>;
+
+        y = T-&gt;nil;
+        x = T-&gt;root;
+        <span style="color: #51afef;">while</span> (x != T-&gt;nil) {
+            y = x;
+            <span style="color: #51afef;">if</span> (z-&gt;key &lt; x-&gt;key)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+        }
+        z-&gt;parent = y;
+        <span style="color: #51afef;">if</span> (y == T-&gt;nil)
+            T-&gt;root = z;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z-&gt;key &lt; y-&gt;key)
+            y-&gt;left = z;
+        <span style="color: #51afef;">else</span>
+            y-&gt;right = z;
+        z-&gt;left = T-&gt;nil;
+        z-&gt;right = T-&gt;nil;
+        z-&gt;color = RED;
+        rb_insert_fixup(T, z);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_transplant</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">u</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">v</span>)
+    {
+        <span style="color: #51afef;">if</span> (u-&gt;parent == T-&gt;nil)
+            T-&gt;root = v;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (u == u-&gt;parent-&gt;left)
+            u-&gt;parent-&gt;left = v;
+        <span style="color: #51afef;">else</span>
+            u-&gt;parent-&gt;right = v;
+        v-&gt;parent = u-&gt;parent;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_delete_fixup</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">w</span>;
+
+        <span style="color: #51afef;">while</span> (x != T-&gt;root &amp;&amp; x-&gt;color == BLACK) {
+            <span style="color: #51afef;">if</span> (x == x-&gt;parent-&gt;left) {
+                w = x-&gt;parent-&gt;right;
+                <span style="color: #51afef;">if</span> (w-&gt;color == RED) {
+                    w-&gt;color = BLACK;                               <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    x-&gt;parent-&gt;color = RED;                         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    left_rotate(T, x-&gt;parent);                      <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                    w = x-&gt;parent-&gt;right;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 1</span>
+                }
+
+                <span style="color: #51afef;">if</span> (w-&gt;left-&gt;color == BLACK &amp;&amp; w-&gt;right-&gt;color == BLACK) {
+                    w-&gt;color = RED;                                 <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                    x = x-&gt;parent;                                  <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 2</span>
+                } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (w-&gt;right-&gt;color == BLACK) {
+                    w-&gt;left-&gt;color = BLACK;                         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    w-&gt;color = RED;                                 <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    right_rotate(T, w);                             <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                    w = x-&gt;parent-&gt;right;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 3</span>
+                }
+                w-&gt;color = x-&gt;parent-&gt;color;                        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                x-&gt;parent-&gt;color = BLACK;                           <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                w-&gt;right-&gt;color = BLACK;                            <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                left_rotate(T, x-&gt;parent);                          <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+                x = T-&gt;root;                                        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">case 4</span>
+            } <span style="color: #51afef;">else</span> {
+                <span style="color: #51afef;">if</span> (x == x-&gt;parent-&gt;right) {
+                    w = x-&gt;parent-&gt;left;
+                    <span style="color: #51afef;">if</span> (w-&gt;color == RED) {
+                        w-&gt;color = BLACK;
+                        x-&gt;parent-&gt;color = RED;
+                        right_rotate(T, x-&gt;parent);
+                        w = x-&gt;parent-&gt;left;
+                    }
+
+                    <span style="color: #51afef;">if</span> (w-&gt;right-&gt;color == BLACK &amp;&amp; w-&gt;left-&gt;color == BLACK) {
+                        w-&gt;color = RED;
+                        x = x-&gt;parent;
+                    } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (w-&gt;left-&gt;color == BLACK) {
+                        w-&gt;right-&gt;color = BLACK;
+                        w-&gt;color = RED;
+                        left_rotate(T, w);
+                        w = x-&gt;parent-&gt;left;
+                    }
+                    w-&gt;color = x-&gt;parent-&gt;color;
+                    x-&gt;parent-&gt;color = BLACK;
+                    w-&gt;left-&gt;color = BLACK;
+                    right_rotate(T, x-&gt;parent);
+                    x = T-&gt;root;
+                }
+            }
+        }
+        x-&gt;color = BLACK;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">rb_delete</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">RB_NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">x</span>, *<span style="color: #dcaeea;">y</span>;
+        <span style="color: #ECBE7B;">int</span>         <span style="color: #dcaeea;">y_orginal_color</span>;
+
+        y = z;
+        y_orginal_color = y-&gt;color;
+        <span style="color: #51afef;">if</span> (z-&gt;left == T-&gt;nil) {
+            x = z-&gt;right;
+            rb_transplant(T, z, z-&gt;right);
+        } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span>(z-&gt;right == T-&gt;nil) {
+            x = z-&gt;left;
+            rb_transplant(T, z, z-&gt;left);
+        } <span style="color: #51afef;">else</span> {
+            y = rbtree_minimum(T, z-&gt;right);
+            y_orginal_color = y-&gt;color;
+            x = y-&gt;right;
+            <span style="color: #51afef;">if</span> (y-&gt;parent == z)
+                x-&gt;parent = y;
+            <span style="color: #51afef;">else</span> {
+                rb_transplant(T, y, y-&gt;right);
+                y-&gt;right = z-&gt;right;
+                y-&gt;right-&gt;parent = y;
+            }
+            rb_transplant(T, z, y);
+            y-&gt;left = z-&gt;left;
+            y-&gt;left-&gt;parent = y;
+            y-&gt;color = z-&gt;color;
+        }
+        <span style="color: #51afef;">if</span> (y_orginal_color == BLACK)
+            rb_delete_fixup(T, x);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">node_insert</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">key</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">node</span>;
+
+        node = node_init(T);
+        node-&gt;key = key;
+
+        rb_insert(T, node);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">node_delete</span>(<span style="color: #ECBE7B;">RB_TREE</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">key</span>)
+    {
+        <span style="color: #ECBE7B;">RB_NODE</span>     *<span style="color: #dcaeea;">node</span>;
+
+        <span style="color: #51afef;">if</span> ((node = rbtree_search(T, T-&gt;root, key)) != T-&gt;nil) {
+            rb_delete(T, node);
+            free(node);
+        }
+        <span style="color: #51afef;">else</span>
+            fprintf(stderr, <span style="color: #98be65;">"can't find %d\n"</span>, key);
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">int         i;</span>
+        <span style="color: #ECBE7B;">RB_TREE</span>     *<span style="color: #dcaeea;">T</span>;
+
+        T = tree_init();
+
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">23</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">94</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">32</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">84</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">12</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">8</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">82</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">31</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">59</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">41</span>);
+        node_insert(T, <span style="color: #da8548; font-weight: bold;">73</span>);
+
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">for ( i = 0 ; i &lt; 1000 ; i++ ) {</span>
+        <span style="color: #5B6268;">//    </span><span style="color: #5B6268;">key = rand() % 1000;</span>
+        <span style="color: #5B6268;">//    </span><span style="color: #5B6268;">node_insert(T, key);</span>
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">}</span>
+
+        inorder_tree_walk(T, T-&gt;root);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        node_delete(T, <span style="color: #da8548; font-weight: bold;">32</span>);
+        node_delete(T, <span style="color: #da8548; font-weight: bold;">8</span>);
+        node_delete(T, <span style="color: #da8548; font-weight: bold;">4</span>);
+
+        printf(<span style="color: #98be65;">"after delete 32, 8, 4:\n"</span>);
+        inorder_tree_walk(T, T-&gt;root);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        printf(<span style="color: #98be65;">"sucessor of 23 is %d\n"</span>, rbtree_successor(T, rbtree_search(T, T-&gt;root, <span style="color: #da8548; font-weight: bold;">23</span>))-&gt;key);
+        printf(<span style="color: #98be65;">"predecessor of 84 is %d\n"</span>, rbtree_predecessor(T, rbtree_search(T, T-&gt;root, <span style="color: #da8548; font-weight: bold;">84</span>))-&gt;key);
+        printf(<span style="color: #98be65;">"the maximun is %d\n"</span>, rbtree_maximum(T, T-&gt;root)-&gt;key);
+        printf(<span style="color: #98be65;">"the minimum is %d\n"</span>, rbtree_minimum(T, T-&gt;root)-&gt;key);
+
+        node_destory(T, T-&gt;root);
+        tree_destory(T);
+
+        exit(<span style="color: #da8548; font-weight: bold;">0</span>);
+    }
+</pre>
+</div>
+
+<p>
+另外附一篇非常好的 linux 内核红黑树的讲解文章：<a href="http://blog.csdn.net/npy_lp/article/details/7420689">http://blog.csdn.net/npy_lp/article/details/7420689</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

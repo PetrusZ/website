@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 19:27 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>组播&#x2013;IGMPv2</title>
@@ -234,30 +234,30 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#igmp 工作原理">1. IGMP 工作原理</a></li>
-<li><a href="#特性">2. 特性</a>
+<li><a href="#igmp 工作原理">IGMP 工作原理</a></li>
+<li><a href="#特性">特性</a>
 <ul>
-<li><a href="#igmp-snooping-和-igmp-proxy">2.1. IGMP snooping 和 IGMP proxy</a>
+<li><a href="#igmp-snooping-和-igmp-proxy">IGMP snooping 和 IGMP proxy</a>
 <ul>
-<li><a href="#igmp-snooping">2.1.1. IGMP snooping</a></li>
-<li><a href="#igmp-proxy">2.1.2. IGMP proxy</a></li>
+<li><a href="#igmp-snooping">IGMP snooping</a></li>
+<li><a href="#igmp-proxy">IGMP proxy</a></li>
 </ul>
 </li>
-<li><a href="#igmpv1">2.2. IGMPv1</a></li>
-<li><a href="#igmpv2">2.3. IGMPv2</a>
+<li><a href="#igmpv1">IGMPv1</a></li>
+<li><a href="#igmpv2">IGMPv2</a>
 <ul>
-<li><a href="#查询器选举机制">2.3.1. 查询器选举机制</a></li>
-<li><a href="#离开组机制">2.3.2. 离开组机制</a></li>
-<li><a href="#igmpv2 报文格式">2.3.3. IGMPv2 报文格式</a></li>
-<li><a href="#设置 max_resp_time">2.3.4. 设置 max\<sub>resp</sub>\<sub>time</sub></a></li>
+<li><a href="#查询器选举机制">查询器选举机制</a></li>
+<li><a href="#离开组机制">离开组机制</a></li>
+<li><a href="#igmpv2 报文格式">IGMPv2 报文格式</a></li>
+<li><a href="#设置 max_resp_time">设置 max\_resp\_time</a></li>
 </ul>
 </li>
-<li><a href="#igmpv3">2.4. IGMPv3</a></li>
-<li><a href="#igmp-snooping 查询器">2.5. IGMP snooping 查询器</a></li>
+<li><a href="#igmpv3">IGMPv3</a></li>
+<li><a href="#igmp-snooping 查询器">IGMP snooping 查询器</a></li>
 </ul>
 </li>
-<li><a href="#参考">3. 参考</a></li>
-<li><a href="#link">4. Link</a></li>
+<li><a href="#参考">参考</a></li>
+<li><a href="#link">Link</a></li>
 </ul>
 </div>
 </div>
@@ -278,7 +278,7 @@ IGMP 是 Internet Group Management Protocol（互联网组管理协议）的简�
 </p>
 
 <div id="outline-container-igmp 工作原理" class="outline-2">
-<h2 id="igmp 工作原理"><span class="section-number-2">1</span> IGMP 工作原理</h2>
+<h2 id="igmp 工作原理">IGMP 工作原理</h2>
 <div class="outline-text-2" id="text-igmp 工作原理">
 <ul class="org-ul">
 <li>第一阶段：当某个主机加入新的组播时，该主机应向多播租的多播地址发送一个 IGMP 报文，声明自己要成为该租的成员。本地的多播路由器收到 IGMP 报文后，还要利用多播路由选择协议把这种组成员关系转发给因特网上的其他多播路由器。</li>
@@ -289,17 +289,17 @@ IGMP 是 Internet Group Management Protocol（互联网组管理协议）的简�
 </div>
 
 <div id="outline-container-特性" class="outline-2">
-<h2 id="特性"><span class="section-number-2">2</span> 特性</h2>
+<h2 id="特性">特性</h2>
 <div class="outline-text-2" id="text-特性">
 </div>
 
 <div id="outline-container-igmp-snooping-和-igmp-proxy" class="outline-3">
-<h3 id="igmp-snooping-和-igmp-proxy"><span class="section-number-3">2.1</span> IGMP snooping 和 IGMP proxy</h3>
+<h3 id="igmp-snooping-和-igmp-proxy">IGMP snooping 和 IGMP proxy</h3>
 <div class="outline-text-3" id="text-igmp-snooping-和-igmp-proxy">
 </div>
 
 <div id="outline-container-igmp-snooping" class="outline-4">
-<h4 id="igmp-snooping"><span class="section-number-4">2.1.1</span> IGMP snooping</h4>
+<h4 id="igmp-snooping">IGMP snooping</h4>
 <div class="outline-text-4" id="text-igmp-snooping">
 <blockquote>
 <p>
@@ -310,7 +310,7 @@ IGMP 是 Internet Group Management Protocol（互联网组管理协议）的简�
 </div>
 
 <div id="outline-container-igmp-proxy" class="outline-4">
-<h4 id="igmp-proxy"><span class="section-number-4">2.1.2</span> IGMP proxy</h4>
+<h4 id="igmp-proxy">IGMP proxy</h4>
 <div class="outline-text-4" id="text-igmp-proxy">
 <blockquote>
 <p>
@@ -322,7 +322,7 @@ IGMP 是 Internet Group Management Protocol（互联网组管理协议）的简�
 </div>
 
 <div id="outline-container-igmpv1" class="outline-3">
-<h3 id="igmpv1"><span class="section-number-3">2.2</span> IGMPv1</h3>
+<h3 id="igmpv1">IGMPv1</h3>
 <div class="outline-text-3" id="text-igmpv1">
 <p>
 IGMPv1 主要基于查询和响应机制来完成对组播组成员的管理。
@@ -350,7 +350,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-igmpv2" class="outline-3">
-<h3 id="igmpv2"><span class="section-number-3">2.3</span> IGMPv2</h3>
+<h3 id="igmpv2">IGMPv2</h3>
 <div class="outline-text-3" id="text-igmpv2">
 <p>
 与 IGMPv1 相比，IGMPv2 增加了 <code>查询器选举机制</code> 和 <code>离开组机制</code> 。
@@ -358,7 +358,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-查询器选举机制" class="outline-4">
-<h4 id="查询器选举机制"><span class="section-number-4">2.3.1</span> 查询器选举机制</h4>
+<h4 id="查询器选举机制">查询器选举机制</h4>
 <div class="outline-text-4" id="text-查询器选举机制">
 <p>
 在 IGMPv1 中，当某共享网段上存在多个组播路由器时，由组播路由协议（如 PIM）选举的指定路由器充当查询器。
@@ -377,7 +377,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-离开组机制" class="outline-4">
-<h4 id="离开组机制"><span class="section-number-4">2.3.2</span> 离开组机制</h4>
+<h4 id="离开组机制">离开组机制</h4>
 <div class="outline-text-4" id="text-离开组机制">
 <p>
 在 IGMPv1 中，主机离开组播组时不会向组播路由器发出任何通知，导致组播路由器只能依靠组播组成员查询的响应超时来获知组播组成员的离开。
@@ -397,7 +397,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-igmpv2 报文格式" class="outline-4">
-<h4 id="igmpv2 报文格式"><span class="section-number-4">2.3.3</span> IGMPv2 报文格式</h4>
+<h4 id="igmpv2 报文格式">IGMPv2 报文格式</h4>
 <div class="outline-text-4" id="text-igmpv2 报文格式">
 <pre class="example">
     0             7 8             1516                             31
@@ -478,7 +478,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-设置 max_resp_time" class="outline-4">
-<h4 id="设置 max_resp_time"><span class="section-number-4">2.3.4</span> 设置 max\<sub>resp</sub>\<sub>time</sub></h4>
+<h4 id="设置 max_resp_time">设置 max\_resp\_time</h4>
 <div class="outline-text-4" id="text-设置 max_resp_time">
 <p>
 <code>ip igmp snooping query-max-response-time seconds</code>
@@ -488,7 +488,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 </div>
 
 <div id="outline-container-igmpv3" class="outline-3">
-<h3 id="igmpv3"><span class="section-number-3">2.4</span> IGMPv3</h3>
+<h3 id="igmpv3">IGMPv3</h3>
 <div class="outline-text-3" id="text-igmpv3">
 <p>
 IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主机的控制能力，并增强了查询和报告报文的功能。
@@ -497,7 +497,7 @@ IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主
 </div>
 
 <div id="outline-container-igmp-snooping 查询器" class="outline-3">
-<h3 id="igmp-snooping 查询器"><span class="section-number-3">2.5</span> IGMP snooping 查询器</h3>
+<h3 id="igmp-snooping 查询器">IGMP snooping 查询器</h3>
 <div class="outline-text-3" id="text-igmp-snooping 查询器">
 <p>
 在运行了 IGMP 的组播网络中，会有一台三层组播设备充当 IGMP 查询器，负责发送=IGMP 查询报文=，使三层组播设备能够在网络层=建立并维护组播转发表项，从而在网络层正常转发组播数据=。
@@ -507,7 +507,7 @@ IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主
 </div>
 
 <div id="outline-container-参考" class="outline-2">
-<h2 id="参考"><span class="section-number-2">3</span> 参考</h2>
+<h2 id="参考">参考</h2>
 <div class="outline-text-2" id="text-参考">
 <ul class="org-ul">
 <li><a href="https://blog.csdn.net/livelylittlefish/article/details/4286142">IGMP技术总结</a></li>
@@ -523,7 +523,7 @@ IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主
 </div>
 
 <div id="outline-container-link" class="outline-2">
-<h2 id="link"><span class="section-number-2">4</span> Link</h2>
+<h2 id="link">Link</h2>
 <div class="outline-text-2" id="text-link">
 <p>
 <a href="https://winddoing.github.io/post/39626.html">https://winddoing.github.io/post/39626.html</a>
@@ -533,7 +533,7 @@ IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 19:27</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

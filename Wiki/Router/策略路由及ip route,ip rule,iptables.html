@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 19:27 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>策略路由及ip route,ip rule,iptables</title>
@@ -234,26 +234,26 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#介绍">1. 介绍</a></li>
-<li><a href="#案例">2. 案例</a></li>
-<li><a href="#高级路由基础 ip-route2">3. 高级路由基础 IP ROUTE2</a>
+<li><a href="#介绍">介绍</a></li>
+<li><a href="#案例">案例</a></li>
+<li><a href="#高级路由基础 ip-route2">高级路由基础 IP ROUTE2</a>
 <ul>
-<li><a href="#传统网络配置命令">3.1. 传统网络配置命令</a></li>
-<li><a href="#ip 命令的基本语法">3.2. ip 命令的基本语法</a></li>
-<li><a href="#ip 命令的语法">3.3. ip 命令的语法</a></li>
-<li><a href="#linux 系统路由表">3.4. linux 系统路由表</a></li>
-<li><a href="#路由表-ip-route">3.5. 路由表 ip route</a></li>
-<li><a href="#路由规则-ip-rule">3.6. 路由规则 ip rule</a></li>
-<li><a href="#示例">3.7. 示例</a></li>
-<li><a href="#多播-ip-maddress">3.8. 多播 ip maddress</a></li>
-<li><a href="#通道-ip-tunnel">3.9. 通道 ip tunnel</a></li>
+<li><a href="#传统网络配置命令">传统网络配置命令</a></li>
+<li><a href="#ip 命令的基本语法">ip 命令的基本语法</a></li>
+<li><a href="#ip 命令的语法">ip 命令的语法</a></li>
+<li><a href="#linux 系统路由表">linux 系统路由表</a></li>
+<li><a href="#路由表-ip-route">路由表 ip route</a></li>
+<li><a href="#路由规则-ip-rule">路由规则 ip rule</a></li>
+<li><a href="#示例">示例</a></li>
+<li><a href="#多播-ip-maddress">多播 ip maddress</a></li>
+<li><a href="#通道-ip-tunnel">通道 ip tunnel</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <div id="outline-container-介绍" class="outline-2">
-<h2 id="介绍"><span class="section-number-2">1</span> 介绍</h2>
+<h2 id="介绍">介绍</h2>
 <div class="outline-text-2" id="text-介绍">
 <p>
 linux 高级路由即基于策略的路由，比传统路由在功能上更强大，使用也更灵活，它不仅能够像传统路由一样，根据目的地址来转发数据，而且也能够根据报文大小、应用，协议或 ip 源地址来选择路由转发路径从而让系统管理员能轻松做到：
@@ -288,7 +288,7 @@ linux 高级路由即基于策略的路由，比传统路由在功能上更强�
 </div>
 
 <div id="outline-container-案例" class="outline-2">
-<h2 id="案例"><span class="section-number-2">2</span> 案例</h2>
+<h2 id="案例">案例</h2>
 <div class="outline-text-2" id="text-案例">
 <p>
 公司内网要求 192.168.0.100 以内的使用 10.0.0.1
@@ -347,7 +347,7 @@ linux 高级路由即基于策略的路由，比传统路由在功能上更强�
 </div>
 
 <div id="outline-container-高级路由基础 ip-route2" class="outline-2">
-<h2 id="高级路由基础 ip-route2"><span class="section-number-2">3</span> 高级路由基础 IP ROUTE2</h2>
+<h2 id="高级路由基础 ip-route2">高级路由基础 IP ROUTE2</h2>
 <div class="outline-text-2" id="text-高级路由基础 ip-route2">
 <p>
 ip 是 iproute2 软件包里面的一个强大的网络配置工具，它能够替代一些传统的网络管理工具。例如：ifconfig、route 等。
@@ -355,7 +355,7 @@ ip 是 iproute2 软件包里面的一个强大的网络配置工具，它能够�
 </div>
 
 <div id="outline-container-传统网络配置命令" class="outline-3">
-<h3 id="传统网络配置命令"><span class="section-number-3">3.1</span> 传统网络配置命令</h3>
+<h3 id="传统网络配置命令">传统网络配置命令</h3>
 <div class="outline-text-3" id="text-传统网络配置命令">
 <ol class="org-ol">
 <li>使用 ifconfig 命令配置并查看网络接口情况</li>
@@ -439,7 +439,7 @@ ip 是 iproute2 软件包里面的一个强大的网络配置工具，它能够�
 </div>
 
 <div id="outline-container-ip 命令的基本语法" class="outline-3">
-<h3 id="ip 命令的基本语法"><span class="section-number-3">3.2</span> ip 命令的基本语法</h3>
+<h3 id="ip 命令的基本语法">ip 命令的基本语法</h3>
 <div class="outline-text-3" id="text-ip 命令的基本语法">
 <ul class="org-ul">
 <li>ip link list 显示 ip 链路状态信息</li>
@@ -455,7 +455,7 @@ ip 是 iproute2 软件包里面的一个强大的网络配置工具，它能够�
 </div>
 
 <div id="outline-container-ip 命令的语法" class="outline-3">
-<h3 id="ip 命令的语法"><span class="section-number-3">3.3</span> ip 命令的语法</h3>
+<h3 id="ip 命令的语法">ip 命令的语法</h3>
 <div class="outline-text-3" id="text-ip 命令的语法">
 <p>
 ip 命令的用法如下：
@@ -617,7 +617,7 @@ ip neighbour flush &#x2013; 清除邻接条目. 缩写：flush、f
 </div>
 
 <div id="outline-container-linux 系统路由表" class="outline-3">
-<h3 id="linux 系统路由表"><span class="section-number-3">3.4</span> linux 系统路由表</h3>
+<h3 id="linux 系统路由表">linux 系统路由表</h3>
 <div class="outline-text-3" id="text-linux 系统路由表">
 <p>
 linux 可以自定义从 1－252 个路由表，linux 系统维护了 4 个路由表：
@@ -647,7 +647,7 @@ local 表由系统自动维护，管理员不能操作此表。
 
 <blockquote>
 <p>
-注：rt\<sub>tables</sub> 文件中表以数字来区分表，保留最多支持 255 张表。
+注：rt\_tables 文件中表以数字来区分表，保留最多支持 255 张表。
 </p>
 </blockquote>
 
@@ -656,12 +656,12 @@ local 表由系统自动维护，管理员不能操作此表。
 </p>
 
 <ul class="org-ul">
-<li>ip route list table table\<sub>number</sub></li>
-<li>ip route list table table\<sub>name</sub></li>
+<li>ip route list table table\_number</li>
+<li>ip route list table table\_name</li>
 </ul>
 
 <p>
-路由表序号和表名的对应关系在/etc/iproute2/rt\<sub>tables</sub> 中，可手动编辑。
+路由表序号和表名的对应关系在/etc/iproute2/rt\_tables 中，可手动编辑。
 </p>
 
 <p>
@@ -671,7 +671,7 @@ local 表由系统自动维护，管理员不能操作此表。
 </div>
 
 <div id="outline-container-路由表-ip-route" class="outline-3">
-<h3 id="路由表-ip-route"><span class="section-number-3">3.5</span> 路由表 ip route</h3>
+<h3 id="路由表-ip-route">路由表 ip route</h3>
 <div class="outline-text-3" id="text-路由表-ip-route">
 <ol class="org-ol">
 <li><p>
@@ -791,14 +791,14 @@ get 命令在必要时会派生出新的路由。
 </div>
 
 <div id="outline-container-路由规则-ip-rule" class="outline-3">
-<h3 id="路由规则-ip-rule"><span class="section-number-3">3.6</span> 路由规则 ip rule</h3>
+<h3 id="路由规则-ip-rule">路由规则 ip rule</h3>
 <div class="outline-text-3" id="text-路由规则-ip-rule">
 <p>
 进行路由时，根据路由规则来进行匹配，按优先级（pref）从低到高匹配，直到找到合适的规则，所以在应用中配置默认路由是必要的。
 </p>
 
 <p>
-策略路由一般手工添加路由表，路由表的添加只需编辑 rt\<sub>tables</sub> 文件，规定表序号，表名即可。路由表添加完毕，即可在策略路由表内添加路由。
+策略路由一般手工添加路由表，路由表的添加只需编辑 rt\_tables 文件，规定表序号，表名即可。路由表添加完毕，即可在策略路由表内添加路由。
 </p>
 
 <p>
@@ -877,7 +877,7 @@ get 命令在必要时会派生出新的路由。
 </div>
 
 <div id="outline-container-示例" class="outline-3">
-<h3 id="示例"><span class="section-number-3">3.7</span> 示例</h3>
+<h3 id="示例">示例</h3>
 <div class="outline-text-3" id="text-示例">
 <p>
 Source IP
@@ -979,7 +979,7 @@ show 命令所显示内容的第一个字段就是优先级别，数字越小，
 </div>
 
 <div id="outline-container-多播-ip-maddress" class="outline-3">
-<h3 id="多播-ip-maddress"><span class="section-number-3">3.8</span> 多播 ip maddress</h3>
+<h3 id="多播-ip-maddress">多播 ip maddress</h3>
 <div class="outline-text-3" id="text-多播-ip-maddress">
 <ol class="org-ol">
 <li><p>
@@ -1054,7 +1054,7 @@ ip mroute show &#x2013; 列出多播路由缓存条目
 </div>
 
 <div id="outline-container-通道-ip-tunnel" class="outline-3">
-<h3 id="通道-ip-tunnel"><span class="section-number-3">3.9</span> 通道 ip tunnel</h3>
+<h3 id="通道-ip-tunnel">通道 ip tunnel</h3>
 <div class="outline-text-3" id="text-通道-ip-tunnel">
 <ol class="org-ol">
 <li><p>
@@ -1123,7 +1123,7 @@ ip monitor [ file FILE ] [ all | OBJECT-LIST ]
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 19:27</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

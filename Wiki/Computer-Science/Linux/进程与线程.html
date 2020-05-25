@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 21:40 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>进程与线程</title>
@@ -234,14 +234,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#进程与线程">1. 进程与线程</a></li>
-<li><a href="#使用线程的理由">2. 使用线程的理由</a></li>
+<li><a href="#进程与线程">进程与线程</a></li>
+<li><a href="#使用线程的理由">使用线程的理由</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-进程与线程" class="outline-2">
-<h2 id="进程与线程"><span class="section-number-2">1</span> 进程与线程</h2>
+<h2 id="进程与线程">进程与线程</h2>
 <div class="outline-text-2" id="text-进程与线程">
 <p>
 进程是程序执行时的一个实例，即它是程序已经执行到何种程度的数据结构的汇集。从内核的观点看，进程的目的就是担当分配系统资源（CPU 时间、内存等）的基本单位。
@@ -266,7 +266,7 @@
 </div>
 
 <div id="outline-container-使用线程的理由" class="outline-2">
-<h2 id="使用线程的理由"><span class="section-number-2">2</span> 使用线程的理由</h2>
+<h2 id="使用线程的理由">使用线程的理由</h2>
 <div class="outline-text-2" id="text-使用线程的理由">
 <p>
 使用多线程的理由之一是和进程相比，它是一种非常"节俭"的多任务操作方式。我们知道，在 Linux 系统下，启动一个新的进程必须分配给它独立的地址空间，建立众多的数据表来维护它的代码段、堆栈段和数据段，这是一种"昂贵"的多任务工作方式。而运行于一个进程中的多个线程，它们彼此之间使用相同的地址空间，共享大部分数据，启动一个线程所花费的空间远远小于启动一个进程所花费的空间，而且，线程间彼此切换所需的时间也远远小于进程间切换所需要的时间。据统计，总的说来，一个进程的开销大约是一个线程开销的 30 倍左右，当然，在具体的系统上，这个数据可能会有较大的区别。
@@ -315,7 +315,7 @@ consuming）置于一个新的线程，可以避免这种尴尬的情况。</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 21:40</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

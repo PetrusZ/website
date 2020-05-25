@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>散列表之开放寻址法</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">散列表之开放寻址法</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9777aec">线性探查</a></li>
+<li><a href="#org23ad74e">二次探查</a></li>
+<li><a href="#orgc104690">3.双重散列</a></li>
+</ul>
+</div>
+</div>
+<p>
+在开放寻址法(open addressing)中，所有的元素都存放在散列表中。也就是说，每个表项或包含动态集合的一个元素，或包含 NIL。当查找某个元素时，要系统地检查所有的表项，直到找到所需的元素，或者最终查明该元素不在表中。不像链接法，这里既没有链表，也没有元素存放在散列表以外。因此在开放寻址法中，散列表可能会被填满，以至于不能插入任何新的元素。该方法导致的一个结果便是装载因子绝对不会超过 1。
+</p>
+
+<p>
+开放寻址方式的好处在于它不用指针，而是计算出要存取的槽序列。于是，不用存储指针而节省的空间，使得可以用同样的空间来提供更多的槽，潜在地减少了冲突，提高了检索速度。
+</p>
+
+<p>
+为了使用开放寻址法插入一个元素，需要连续地检查散列表，或称为探查（probe），直到找到一个空槽来存放待插入的关键字为止。
+</p>
+
+<div id="outline-container-org9777aec" class="outline-2">
+<h2 id="org9777aec">线性探查</h2>
+<div class="outline-text-2" id="text-org9777aec">
+<p>
+给定一个普通的散列函数 h‘: U‘→{0, 1, &#x2026;, m &#x2013; 1}，称之为辅助散列函数，线性探查方法采用的散列函数为：
+</p>
+
+<p>
+h(k, i) = (h'(k) + i) mod m,  i = 0, 1, &#x2026;, m &#x2013; 1
+</p>
+
+<p>
+线性探查方法比较容易实现，但它存在着一个问题，称为一次群集。随着连续被占用的槽不断增加，平均查找时间也随之不断增加。群集现象很容易出现，这是因为当一个空槽前有 i 个满的槽时，该空槽为下一个将被占用的概率是(i + 1) / m。连续被占用的槽就会变得越来越长，因而平均查找时间也会越来越大。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23ad74e" class="outline-2">
+<h2 id="org23ad74e">二次探查</h2>
+<div class="outline-text-2" id="text-org23ad74e">
+<p>
+二次探查采用如下形式的散列函数：
+</p>
+
+<p>
+h(k, i) = (h'(k) + c1* i + c2 * i * i) mod m
+</p>
+
+<p>
+其中 h'是一个辅助散列函数，c1 和 c2 为正的辅助常数， i = 0, 1, &#x2026;, m &#x2013; 1。初始探查位置为 T[h'(k)]，后续的探查位置要加上一个偏移量，该偏移量以二次的方式依赖于探查序号 i。这种探查方法的效果要比线性探查好得多，但是，为了能够充分利用散列表， c1、c2 和 m 的值要受到限制。
+</p>
+
+<p>
+此外，如果两个关键字的初始探查位置相同，那么它们的探查序列也是相同的，这是因为 h(k1, 0) = h(k2, 0)蕴含着 h(k1, i) = h(k2, i)。这一性质可导致一种轻度的群集，成为二次群集。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc104690" class="outline-2">
+<h2 id="orgc104690">3.双重散列</h2>
+<div class="outline-text-2" id="text-orgc104690">
+<p>
+双重散列是用于开放寻址法的最好的方法之一，因为它所产生的排序具有随机选择排列的许多特性。双重散列采用如下形式的散列函数：
+</p>
+
+<p>
+h(k, i) = (h1(k) + i * h2(k)) mod m
+</p>
+
+<p>
+其中 h1 和 h2 均为辅助散列函数。初始探查位置为 T[h1(k)]，后续的探查位置是前一个位置加上偏移量 h2(k)模 m。因此，不像线性探查或二次探查，这里的探查序列以两种不同方式依赖于关键字 k，因为初始探查位置、偏移量或者二者都可能发生变化。
+</p>
+
+<p>
+为了能查找整个散列表，值 h2(k)必须要与表大小 m 互素。有一种简便的方法确保这个条件成立，就是取 m 为 2 的幂，并设计一个总产生奇数的 h2。另一种方法是取 m 为素数，并设计一个总是返回较 m 小的正整数的函数 h2。例如，我们可以取 m 为素数，并取
+</p>
+
+<p>
+h1(k) = k mod m，h2(k) = 1 + ( k mod m')
+</p>
+
+<p>
+其中 m‘略小于 m（比如 m-1）。
+</p>
+
+<p>
+最后，开放寻址法散列表的实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">m</span>           <span style="color: #da8548; font-weight: bold;">17</span>
+    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">#define HASH(k)    k % m       //&#38500;&#27861;&#25955;&#21015;&#27861;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">A</span>           <span style="color: #da8548; font-weight: bold;">0.85</span>
+    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">#define HASH(k)    (int)(m * (k * A - (int)(k * A)))         //&#20056;&#27861;&#25955;&#21015;&#27861;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">c1</span>          <span style="color: #da8548; font-weight: bold;">7</span>
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">c2</span>          <span style="color: #da8548; font-weight: bold;">5</span>
+    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">#define h(k, i)     (HASH(k) + i) % m       //&#32447;&#24615;&#25506;&#26597;</span>
+    <span style="color: #5B6268;">//</span><span style="color: #5B6268;">#define h(k, i)     (HASH(i) + c1 * i + c2 * i * i) % m         //&#20108;&#27425;&#25506;&#26597;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #c678dd;">h1</span>(<span style="color: #dcaeea;">k</span>)       k % m
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #c678dd;">h2</span>(<span style="color: #dcaeea;">k</span>)       <span style="color: #da8548; font-weight: bold;">1</span> + (k % (m - <span style="color: #da8548; font-weight: bold;">1</span>))
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #c678dd;">h</span>(<span style="color: #dcaeea;">k</span>, <span style="color: #dcaeea;">i</span>)     (h1(k) + i * h2(k)) % m       <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#21452;&#37325;&#25955;&#21015;</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">DEL</span>         -<span style="color: #da8548; font-weight: bold;">65535</span>
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">hash_insert</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#22312;&#25955;&#21015;&#34920;&#20013;&#25554;&#20837;&#19968;&#20010;&#20803;&#32032;&#65292;&#19981;&#26029;&#30340;&#25506;&#26597;</span>
+<span style="color: #5B6268;">         * &#20197;&#25214;&#21040;&#19968;&#20010;&#31354;&#27133;&#21487;&#20197;&#25554;&#20837;&#65292;&#25110;&#32773;&#25506;&#26597;&#20102;</span>
+<span style="color: #5B6268;">         * &#25972;&#20010;&#25955;&#21015;&#34920;&#65292;&#36755;&#20986;&#38169;&#35823;&#20449;&#24687;&#24182;&#36864;&#20986;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i != m; i++) {
+            j = h(k, i);
+            <span style="color: #51afef;">if</span> (T[j] == <span style="color: #a9a1e1;">NULL</span> || T[j] == DEL) {
+                T[j] = k;
+                <span style="color: #51afef;">return</span>(j);
+            }
+        }
+
+        fprintf(stderr, <span style="color: #98be65;">"hash table overflow\n"</span>);
+        exit(<span style="color: #da8548; font-weight: bold;">1</span>);
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">hash_search</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#22312;&#25955;&#21015;&#34920;&#20013;&#26597;&#25214;&#19968;&#20010;&#20803;&#32032;&#65292;&#19981;&#26029;&#36827;&#34892;</span>
+<span style="color: #5B6268;">         * &#25506;&#26597;&#65292;&#30452;&#21040;&#25214;&#21040;&#35813;&#20803;&#32032;&#65292;&#25110;&#32773;&#25506;&#26597;&#21040;</span>
+<span style="color: #5B6268;">         * &#20102;&#19968;&#20010;&#31354;&#27133;&#65292;&#25110;&#32773;&#25214;&#36941;&#20102;&#25972;&#20010;&#25955;&#21015;&#34920;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i != m; i++) {
+            j = h(k, i);
+            <span style="color: #51afef;">if</span> (T[j] == k) {
+                printf(<span style="color: #98be65;">"found value: %d in key: %d\n"</span>, k, j);
+                <span style="color: #51afef;">return</span>(j);
+            } <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (T[j] == <span style="color: #a9a1e1;">NULL</span>) {
+                <span style="color: #51afef;">break</span>;
+            }
+        }
+
+        fprintf(stderr, <span style="color: #98be65;">"can't find value: %d\n"</span>, k);
+        <span style="color: #51afef;">return</span>(<span style="color: #a9a1e1;">NULL</span>);
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">hash_delete</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">T</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#21024;&#38500;&#19968;&#20010;&#20803;&#32032;&#30340;&#26102;&#20505;&#24182;&#19981;&#23558;&#23427;&#32622;&#20026;NULL&#65292;</span>
+<span style="color: #5B6268;">         * &#22240;&#20026;&#36825;&#26377;&#21487;&#33021;&#20250;&#20351;&#24471;&#22312;&#26597;&#25214;&#30340;&#26102;&#20505;&#25214;&#19981;&#21040;</span>
+<span style="color: #5B6268;">         * &#21518;&#32493;&#30340;&#20803;&#32032;&#65292;&#26597;&#25214;&#22312;&#21024;&#38500;&#30340;&#22320;&#26041;&#23601;&#20013;&#26029;&#20102;&#12290;</span>
+<span style="color: #5B6268;">         * &#21487;&#20197;&#22312;&#21024;&#38500;&#30340;&#26102;&#20505;&#23558;&#20854;&#32622;&#20026;&#19968;&#20010;&#29305;&#27530;&#30340;&#20540;&#65292;</span>
+<span style="color: #5B6268;">         * &#20197;&#36991;&#20813;&#36825;&#31181;&#24773;&#20917;&#12290;&#36825;&#37324;&#29992;&#30340;&#26159;DEL&#12290;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>;
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i != m; i++) {
+            j = h(k, i);
+            <span style="color: #51afef;">if</span> (T[j] == k) {
+                T[j] = DEL;
+                <span style="color: #51afef;">return</span>(<span style="color: #da8548; font-weight: bold;">0</span>);
+            }
+        }
+
+        fprintf(stderr, <span style="color: #98be65;">"can't find %d in hashtable\n"</span>, k);
+        exit(<span style="color: #da8548; font-weight: bold;">1</span>);
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">print_hash</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">T</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>;
+
+        printf(<span style="color: #98be65;">"---------------hashtable---------------\n"</span>);
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; m; i++) {
+            <span style="color: #51afef;">if</span> (T[i] != <span style="color: #a9a1e1;">NULL</span> &amp;&amp; T[i] != DEL)
+                printf(<span style="color: #98be65;">"key: %2d, value: %4d\n"</span>, i, T[i]);
+            <span style="color: #51afef;">else</span>
+                printf(<span style="color: #98be65;">"key: %2d, value: NULL\n"</span>, i);
+        }
+        printf(<span style="color: #98be65;">"------------------end------------------\n\n"</span>);
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#29992;&#25968;&#32452;&#23454;&#29616;&#30340;&#31616;&#21333;&#30340;&#24320;&#25918;&#23547;&#22336;&#27861;&#30340;&#25955;&#21015;&#34920;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">i</span>;
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">T</span>[m];
+
+        <span style="color: #51afef;">for</span> (i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; m; i++) {
+            T[i] = <span style="color: #a9a1e1;">NULL</span>;
+        }
+
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">28</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">438</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">923</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">239</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">29</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">31</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">32</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">39</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">2</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">24</span>);
+        hash_insert(T, <span style="color: #da8548; font-weight: bold;">432</span>);
+
+        print_hash(T);
+
+        hash_delete(T, <span style="color: #da8548; font-weight: bold;">239</span>);
+        hash_delete(T, <span style="color: #da8548; font-weight: bold;">31</span>);
+        hash_delete(T, <span style="color: #da8548; font-weight: bold;">28</span>);
+
+        printf(<span style="color: #98be65;">"\nafter delete 239, 31, 28...\n\n"</span>);
+
+        print_hash(T);
+
+        hash_search(T, <span style="color: #da8548; font-weight: bold;">438</span>);
+        hash_search(T, <span style="color: #da8548; font-weight: bold;">239</span>);
+
+        exit(<span style="color: #da8548; font-weight: bold;">0</span>);
+    }
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

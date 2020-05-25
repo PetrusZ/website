@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分治策略和寻找最大子数组</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">分治策略和寻找最大子数组</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1f16409">分治策略</a></li>
+<li><a href="#orgb657d79">2.最大子数组问题</a>
+<ul>
+<li><a href="#org006c8b7">情形一</a></li>
+<li><a href="#orgdb9c8dc">情形二</a></li>
+<li><a href="#org8fc7742">情形三</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1f16409" class="outline-2">
+<h2 id="org1f16409">分治策略</h2>
+<div class="outline-text-2" id="text-org1f16409">
+<p>
+许多有用的算法在结构上是递归的：为了解决一个给定的问题，算法一次或多次递归的调用其自身以解决紧密相关的若干子问题。这些算法典型地遵循分治法的思想：将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。
+</p>
+
+<p>
+分治模式在每层递归的时候都有三个步骤：
+</p>
+
+<ul class="org-ul">
+<li><b>分解</b> （Divide）步骤将问题划分为一些子问题，子问题的形式与原问题一样，只是规模更小。</li>
+<li><b>解决</b> （Conquer）步骤递归地求解出子问题。如果子问题的规模足够小，则停止递归，直接求解。</li>
+<li><b>合并</b> （Combine）步骤将子问题的解组合成原问题的解。</li>
+</ul>
+
+<p>
+当子问题足够大，需要递归求解时，我们称之为*递归情况*（recursive case）。当子问题变得足够小，不再需要递归时，我们说递归已经“触底”，进入了 <b>基本情况</b> （base case）。
+</p>
+
+<p>
+有三种求解递归式的方法，即得出算法的“Theta”或“O”渐进界的方法：
+</p>
+
+<ul class="org-ul">
+<li><b>代入法</b> —— 我们猜测一个界，然后用数学归纳法证明这个界是正确的。</li>
+<li><b>递归树法</b> —— 将递归式转换为一棵树，其结点表示不同曾测的递归调用产生的代价。然后采用边界和技术来求解递归式。</li>
+<li><b>主方法</b> —— 可求解形如下面公式的递归式的界：</li>
+</ul>
+
+<p>
+T(n) = aT(n/b) + f(n)
+</p>
+
+<p>
+其中 a&gt;=1, b&gt;1, f(n)是一个给定的函数。这种形势的递归式很常见，它刻画了这样一个分治算法：生成 a 个子问题，每个子问题的规模是原问题规模的 1/b，分解和合并步骤总共花费时间为 f(n)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb657d79" class="outline-2">
+<h2 id="orgb657d79">2.最大子数组问题</h2>
+<div class="outline-text-2" id="text-orgb657d79">
+<p>
+寻找 A 的和最大的非空连续子数组。我们称这样的连续子数组为 <b>最大子数组</b> 。
+</p>
+
+<p>
+数组 A[low..high]的一个最大子数组 A[i..j]所处的位置必然是下面三种情况之一：
+</p>
+
+<ul class="org-ul">
+<li>完全位于子数组 A[low..mid]中，因此 low &lt;=i &lt;=j &lt;mid。</li>
+<li>完全位于子数组 A[mid+1..hight]中，因此 mid &lt; i &lt;= j &lt;= high。</li>
+<li>跨越了中点 mid，因此 low &lt;= i &lt;= mid &lt;= j &lt;= high。</li>
+</ul>
+
+<p>
+我们可以递归的求解 A[low..mid]和 A[mid+1..high]的最大子数组，因为这两子问题仍是最大子数组问题，只是规模更小。因此，剩下的全部工作就是寻找跨越中点的子数组，然后求这三种情况中的最大值。
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/最大子数组.png" alt="最大子数组.png">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>最大子数组</p>
+</div>
+
+<p>
+如图(b)，任何跨越中点的子数组都由两个子数组 A[i..mid]和 A[mid+1..j]组成，因此我们只需要找出形如 A[i..mid]和 A[mid+1..j]的最大子数组，然后将其合并即可。
+</p>
+
+<p>
+C 语言求解最大子数组问题代码：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span>
+
+<span style="color: #51afef; font-weight: bold;">    #define</span> <span style="color: #dcaeea;">MIN</span>     -<span style="color: #da8548; font-weight: bold;">65535</span>
+
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span> {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">max_left</span>;
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">max_right</span>;
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">max_sum</span>;
+    };
+
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span>
+    <span style="color: #c678dd;">find_max_crossing_subarray</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">low</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">mid</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">high</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#27714;&#35299;&#36328;&#36234;&#20013;&#28857;&#30340;&#26368;&#22823;&#23376;&#25968;&#32452;&#20989;&#25968;</span>
+<span style="color: #5B6268;">         */</span>
+
+        <span style="color: #ECBE7B;">int</span>             <span style="color: #dcaeea;">i</span>, <span style="color: #dcaeea;">j</span>, <span style="color: #dcaeea;">sum</span>, <span style="color: #dcaeea;">left_sum</span>, <span style="color: #dcaeea;">right_sum</span>;
+        <span style="color: #ECBE7B;">int</span>             <span style="color: #dcaeea;">max_left</span>, <span style="color: #dcaeea;">max_right</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span>   <span style="color: #dcaeea;">max</span>;
+
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">left_sum = -(pow(2, sizeof(int) * 8));</span>
+        left_sum = MIN;
+        sum = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">for</span> (i = mid; i&gt;= low; i--) {
+            sum = sum + A[i];
+            <span style="color: #51afef;">if</span> (sum &gt; left_sum) {
+                left_sum = sum;
+                max.max_left = i;
+            }
+        }
+
+        <span style="color: #5B6268;">//</span><span style="color: #5B6268;">right_sum = -(pow(2, sizeof(int) * 8));</span>
+        right_sum = MIN;
+        sum = <span style="color: #da8548; font-weight: bold;">0</span>;
+        <span style="color: #51afef;">for</span> (j = mid + <span style="color: #da8548; font-weight: bold;">1</span>; j &lt;= high; j++) {         sum = sum + A[j];         <span style="color: #51afef;">if</span> (sum &gt; right_sum) {
+                right_sum = sum;
+                max.max_right = j;
+            }
+        }
+
+        max.max_sum = left_sum + right_sum;
+        <span style="color: #51afef;">return</span>(max);
+    }
+
+    <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span>
+    <span style="color: #c678dd;">find_maximum_subarray</span>(<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">A</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">low</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">high</span>)
+    {
+        <span style="color: #ECBE7B;">int</span>                 <span style="color: #dcaeea;">mid</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span>    <span style="color: #dcaeea;">left</span>, <span style="color: #dcaeea;">right</span>, <span style="color: #dcaeea;">cross</span>;
+
+        <span style="color: #51afef;">if</span> (high == low) {      <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">base case: only one element</span><span style="color: #5B6268;"> */</span>
+            cross.max_left = low;
+            cross.max_right = high;
+            cross.max_sum = A[low];
+            <span style="color: #51afef;">return</span>(cross);
+        } <span style="color: #51afef;">else</span> {
+            mid = (low + high) / <span style="color: #da8548; font-weight: bold;">2</span>;
+            left = find_maximum_subarray(A, low, mid);
+            right = find_maximum_subarray(A, mid + <span style="color: #da8548; font-weight: bold;">1</span>, high);
+            cross = find_max_crossing_subarray(A, low, mid, high);
+
+            <span style="color: #51afef;">if</span> (left.max_sum &gt;= right.max_sum &amp;&amp; left.max_sum &gt;= cross.max_sum)
+                <span style="color: #51afef;">return</span>(left);
+            <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (right.max_sum &gt;= left.max_sum &amp;&amp; right.max_sum &gt;= cross.max_sum)
+                <span style="color: #51afef;">return</span>(right);
+            <span style="color: #51afef;">else</span>
+                <span style="color: #51afef;">return</span>(cross);
+        }
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">A</span>[<span style="color: #da8548; font-weight: bold;">16</span>] = {<span style="color: #da8548; font-weight: bold;">13</span>, -<span style="color: #da8548; font-weight: bold;">3</span>, -<span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">20</span>, -<span style="color: #da8548; font-weight: bold;">3</span>, -<span style="color: #da8548; font-weight: bold;">16</span>, -<span style="color: #da8548; font-weight: bold;">23</span>, <span style="color: #da8548; font-weight: bold;">18</span>, <span style="color: #da8548; font-weight: bold;">20</span>, -<span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">12</span>, -<span style="color: #da8548; font-weight: bold;">5</span>, -<span style="color: #da8548; font-weight: bold;">22</span>, <span style="color: #da8548; font-weight: bold;">15</span>, -<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">7</span>};
+
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">maxsubarr</span>   <span style="color: #dcaeea;">max_subarray</span>;
+
+        max_subarray = find_maximum_subarray(A, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">15</span>);
+
+        printf(<span style="color: #98be65;">"left: %d, right: %d, maxsum: %d\n"</span>, max_subarray.max_left, max_subarray.max_right, max_subarray.max_sum);
+    }
+</pre>
+</div>
+
+<p>
+其时间复杂度为 O(nlgn)，实际上还有一个线性时间的算法，并未使用分治法。
+</p>
+
+<p>
+线性时间算法的 C 代码：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span>
+
+    <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">find_maximum_subarray_liner</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">A</span>[],<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">n</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">thisum</span>, <span style="color: #dcaeea;">maxsum</span>, <span style="color: #dcaeea;">i</span>;
+
+        thisum = maxsum = <span style="color: #da8548; font-weight: bold;">0</span>;
+
+        <span style="color: #51afef;">for</span>(i = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; n; i++) {         thisum += A[i];         <span style="color: #51afef;">if</span>(thisum &gt; maxsum)
+                maxsum = thisum;
+            <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span>(thisum &lt; <span style="color: #da8548; font-weight: bold;">0</span>)
+                thisum = <span style="color: #da8548; font-weight: bold;">0</span>;
+        }
+        <span style="color: #51afef;">return</span> maxsum;
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">A</span>[<span style="color: #da8548; font-weight: bold;">16</span>] = {<span style="color: #da8548; font-weight: bold;">13</span>, -<span style="color: #da8548; font-weight: bold;">3</span>, -<span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">20</span>, -<span style="color: #da8548; font-weight: bold;">3</span>, -<span style="color: #da8548; font-weight: bold;">16</span>, -<span style="color: #da8548; font-weight: bold;">23</span>, <span style="color: #da8548; font-weight: bold;">18</span>, <span style="color: #da8548; font-weight: bold;">20</span>, -<span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">12</span>, -<span style="color: #da8548; font-weight: bold;">5</span>, -<span style="color: #da8548; font-weight: bold;">22</span>, <span style="color: #da8548; font-weight: bold;">15</span>, -<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">7</span>};
+        <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">maxsubarr</span>;
+
+        maxsubarr = find_maximum_subarray_liner(A, <span style="color: #da8548; font-weight: bold;">16</span>);
+
+        printf(<span style="color: #98be65;">"maxsubarray: %d\n"</span>, maxsubarr);
+    }
+</pre>
+</div>
+
+<p>
+上面这个代码是转载别人的，原文链接：<a href="http://blog.csdn.net/v_JULY_v/article/details/6444021">http://blog.csdn.net/v_JULY_v/article/details/6444021</a>
+</p>
+
+<p>
+ 
+</p>
+
+<p>
+<b>附主定理：</b>
+</p>
+
+<p>
+假设有递推关系式
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/bbefdd00e0cd1472926c74fe1350b8a4.png" alt="bbefdd00e0cd1472926c74fe1350b8a4.png">
+</p>
+</div>
+
+<p>
+，其中
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/60adf3d8450792f60d75c81d29e45572.png" alt="60adf3d8450792f60d75c81d29e45572.png">
+</p>
+</div>
+
+<p>
+其中， <b>n</b> 为问题规模， <b>a</b> 为递推的子问题数量， <b>n/b</b> 为每个子问题的规模（假设每个子问题的规模基本一样）， <b>f(n)</b> 为递推以外进行的计算工作。
+</p>
+</div>
+
+<div id="outline-container-org006c8b7" class="outline-3">
+<h3 id="org006c8b7">情形一</h3>
+<div class="outline-text-3" id="text-org006c8b7">
+<p>
+如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有<img src="../../../pics/CLRS/79a7ecad7f97f19240be140f505ddbed.png" alt="79a7ecad7f97f19240be140f505ddbed.png">，并且是多项式的小于 那么
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/83551c0953b5c391e3fdeb90b81deee2.png" alt="83551c0953b5c391e3fdeb90b81deee2.png">
+</p>
+<p><span class="figure-number">&#22270;4&nbsp; </span>T(n) = &Theta;\left( n\^{log\_b a} \right)</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb9c8dc" class="outline-3">
+<h3 id="orgdb9c8dc">情形二</h3>
+<div class="outline-text-3" id="text-orgdb9c8dc">
+<p>
+如果存在常数 <b>k</b> ≥ 0，有
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/5ec7448a407893b0364e72e624e56a26.png" alt="5ec7448a407893b0364e72e624e56a26.png">
+</p>
+<p><span class="figure-number">&#22270;5&nbsp; </span>f(n) = &Theta;\left( n\^{log\_b a} log\^{k} n \right)</p>
+</div>
+
+<p>
+那么
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/f4bebc5698e39bdae898ce959e9e5428.png" alt="f4bebc5698e39bdae898ce959e9e5428.png">
+</p>
+<p><span class="figure-number">&#22270;6&nbsp; </span>T(n) = &Theta;\left( n\^{log\_b a} log\^{k+1} n \right)</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8fc7742" class="outline-3">
+<h3 id="org8fc7742">情形三</h3>
+<div class="outline-text-3" id="text-org8fc7742">
+<p>
+如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有
+</p>
+
+<p>
+<img src="../../../pics/CLRS/155fcd52bbd5a31ed4d61bff0405bedd.png" alt="155fcd52bbd5a31ed4d61bff0405bedd.png"> ，并且是多项式的大于
+</p>
+
+<p>
+同时存在常数<img src="../../../pics/CLRS/0cc651adcbc36cc71d73183dc46ab214.png" alt="0cc651adcbc36cc71d73183dc46ab214.png">以及充分大的<img src="../../../pics/CLRS/7b8b965ad4bca0e41ab51de7b31363a1.png" alt="7b8b965ad4bca0e41ab51de7b31363a1.png">，满足
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/67ad62611c82b235d6cf0b0cedab740b.png" alt="67ad62611c82b235d6cf0b0cedab740b.png">
+</p>
+<p><span class="figure-number">&#22270;7&nbsp; </span>a f\left( \frac{n}{b} \right) &le; c f(n)</p>
+</div>
+
+<p>
+那么
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/4753885194212a420f0126c6896f0ad9.png" alt="4753885194212a420f0126c6896f0ad9.png">
+</p>
+<p><span class="figure-number">&#22270;8&nbsp; </span>T\left(n \right) = &Theta; \left(f \left(n \right) \right)</p>
+</div>
+
+<p>
+摘自维基百科：<a href="http://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%9A%E7%90%86">http://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%9A%E7%90%86</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

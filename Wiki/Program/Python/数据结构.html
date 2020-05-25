@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 23:48 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据结构</title>
@@ -234,25 +234,25 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2d2af05">1. 列表的更多特性</a></li>
-<li><a href="#org0fd05f4">2. 列表作为栈使用</a></li>
-<li><a href="#org6a1c417">3. 列表作为队列使用</a></li>
-<li><a href="#org79b1139">4. 列表推导式</a></li>
-<li><a href="#org1399636">5. 嵌套的列表推导式</a></li>
-<li><a href="#org64a3153">6. del 语句</a></li>
-<li><a href="#orgeb4aebf">7. 元组和序列</a></li>
-<li><a href="#org255eb85">8. 集合</a></li>
-<li><a href="#orgfd591ed">9. 字典</a></li>
-<li><a href="#orgf144d34">10. 循环的技巧</a></li>
-<li><a href="#org3706448">11. 深入条件控制</a></li>
-<li><a href="#org26e70db">12. 序列和其它类型的比较</a></li>
+<li><a href="#org2d2af05">列表的更多特性</a></li>
+<li><a href="#org0fd05f4">列表作为栈使用</a></li>
+<li><a href="#org6a1c417">列表作为队列使用</a></li>
+<li><a href="#org79b1139">列表推导式</a></li>
+<li><a href="#org1399636">嵌套的列表推导式</a></li>
+<li><a href="#org64a3153">del 语句</a></li>
+<li><a href="#orgeb4aebf">元组和序列</a></li>
+<li><a href="#org255eb85">集合</a></li>
+<li><a href="#orgfd591ed">字典</a></li>
+<li><a href="#orgf144d34">循环的技巧</a></li>
+<li><a href="#org3706448">深入条件控制</a></li>
+<li><a href="#org26e70db">序列和其它类型的比较</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-org2d2af05" class="outline-2">
-<h2 id="org2d2af05"><span class="section-number-2">1</span> 列表的更多特性</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org2d2af05">列表的更多特性</h2>
+<div class="outline-text-2" id="text-org2d2af05">
 <p>
 列表数据类型还有很多的方法。这里是列表对象方法的清单：
 </p>
@@ -378,8 +378,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org0fd05f4" class="outline-2">
-<h2 id="org0fd05f4"><span class="section-number-2">2</span> 列表作为栈使用</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org0fd05f4">列表作为栈使用</h2>
+<div class="outline-text-2" id="text-org0fd05f4">
 <p>
 列表方法使得列表作为堆栈非常容易，最后一个插入，最先取出（“后进先出”）。要添加一个元素到堆栈的顶端，使用 append() 。要从堆栈顶部取出一个元素，使用 pop() ，不用指定索引。
 </p>
@@ -387,8 +387,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org6a1c417" class="outline-2">
-<h2 id="org6a1c417"><span class="section-number-2">3</span> 列表作为队列使用</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org6a1c417">列表作为队列使用</h2>
+<div class="outline-text-2" id="text-org6a1c417">
 <p>
 列表也可以用作队列，其中先添加的元素被最先取出 (“先进先出”)；然而列表用作这个目的相当低效。因为在列表的末尾添加和弹出元素非常快，但是在列表的开头插入或弹出元素却很慢 (因为所有的其他元素都必须移动一位)。
 </p>
@@ -414,8 +414,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org79b1139" class="outline-2">
-<h2 id="org79b1139"><span class="section-number-2">4</span> 列表推导式</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org79b1139">列表推导式</h2>
+<div class="outline-text-2" id="text-org79b1139">
 <p>
 列表推导式提供了一个更简单的创建列表的方法。常见的用法是把某种操作应用于序列或可迭代对象的每个元素上，然后使用其结果来创建列表，或者通过满足某些特定条件元素来创建子序列。
 </p>
@@ -463,8 +463,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org1399636" class="outline-2">
-<h2 id="org1399636"><span class="section-number-2">5</span> 嵌套的列表推导式</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org1399636">嵌套的列表推导式</h2>
+<div class="outline-text-2" id="text-org1399636">
 <p>
 列表推导式中的初始表达式可以是任何表达式，包括另一个列表推导式。
 </p>
@@ -472,8 +472,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org64a3153" class="outline-2">
-<h2 id="org64a3153"><span class="section-number-2">6</span> del 语句</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org64a3153">del 语句</h2>
+<div class="outline-text-2" id="text-org64a3153">
 <p>
 有一种方式可以从列表按照给定的索引而不是值来移除一个元素: 那就是 del 语句。 它不同于会返回一个值的 pop() 方法。 del 语句也可以用来从列表中移除切片或者清空整个列表（我们之前用过的方式是将一个空列表赋值给指定的切片）。 例如:
 </p>
@@ -499,8 +499,8 @@ list.copy()
 </div>
 
 <div id="outline-container-orgeb4aebf" class="outline-2">
-<h2 id="orgeb4aebf"><span class="section-number-2">7</span> 元组和序列</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="orgeb4aebf">元组和序列</h2>
+<div class="outline-text-2" id="text-orgeb4aebf">
 <p>
 我们看到列表和字符串有很多共同特性，例如索引和切片操作。他们是 序列 数据类型（参见 序列类型 &#x2014; list, tuple, range）中的两种。随着 Python 语言的发展，其他的序列类型也会被加入其中。这里介绍另一种标准序列类型: 元组。
 </p>
@@ -558,8 +558,8 @@ list.copy()
 </div>
 
 <div id="outline-container-org255eb85" class="outline-2">
-<h2 id="org255eb85"><span class="section-number-2">8</span> 集合</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org255eb85">集合</h2>
+<div class="outline-text-2" id="text-org255eb85">
 <p>
 Python 也包含有 集合 类型。集合是由不重复元素组成的无序的集。它的基本用法包括成员检测和消除重复元素。集合对象也支持像 联合，交集，差集，对称差分等数学运算。
 </p>
@@ -612,8 +612,8 @@ Python 也包含有 集合 类型。集合是由不重复元素组成的无序�
 </div>
 
 <div id="outline-container-orgfd591ed" class="outline-2">
-<h2 id="orgfd591ed"><span class="section-number-2">9</span> 字典</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="orgfd591ed">字典</h2>
+<div class="outline-text-2" id="text-orgfd591ed">
 <p>
 另一个非常有用的 Python 內置数据类型是 字典 (参见 映射类型 &#x2014; dict)。字典在其他语言里可能会被叫做 联合内存 或 联合数组。与以连续整数为索引的序列不同，字典是以 关键字 为索引的，关键字可以是任意不可变类型，通常是字符串或数字。如果一个元组只包含字符串、数字或元组，那么这个元组也可以用作关键字。但如果元组直接或间接地包含了可变对象，那么它就不能用作关键字。列表不能用作关键字，因为列表可以通过索引、切片或 append() 和 extend() 之类的方法来改变。
 </p>
@@ -677,8 +677,8 @@ Python 也包含有 集合 类型。集合是由不重复元素组成的无序�
 </div>
 
 <div id="outline-container-orgf144d34" class="outline-2">
-<h2 id="orgf144d34"><span class="section-number-2">10</span> 循环的技巧</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgf144d34">循环的技巧</h2>
+<div class="outline-text-2" id="text-orgf144d34">
 <p>
 当在字典中循环时，用 items() 方法可将关键字和对应的值同时取出
 </p>
@@ -731,8 +731,8 @@ Python 也包含有 集合 类型。集合是由不重复元素组成的无序�
 </div>
 
 <div id="outline-container-org3706448" class="outline-2">
-<h2 id="org3706448"><span class="section-number-2">11</span> 深入条件控制</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org3706448">深入条件控制</h2>
+<div class="outline-text-2" id="text-org3706448">
 <p>
 <code>while</code> 和 <code>if</code> 条件句中可以使用任意操作，而不仅仅是比较操作。
 </p>
@@ -772,8 +772,8 @@ Python 也包含有 集合 类型。集合是由不重复元素组成的无序�
 </div>
 
 <div id="outline-container-org26e70db" class="outline-2">
-<h2 id="org26e70db"><span class="section-number-2">12</span> 序列和其它类型的比较</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org26e70db">序列和其它类型的比较</h2>
+<div class="outline-text-2" id="text-org26e70db">
 <p>
 序列对象通常可以与相同序列类型的其他对象比较。 这种比较使用 字典式 顺序：首先比较开头的两个对应元素，如果两者不相等则比较结果就由此确定；如果两者相等则比较之后的两个元素，以此类推，直到有一个序列被耗尽。 如果要比较的两个元素本身又是相同类型的序列，则会递归地执行字典式顺序比较。 如果两个序列中所有的对应元素都相等，则两个序列也将被视为相等。 如果一个序列是另一个的初始子序列，则较短的序列就被视为较小（较少）。 对于字符串来说，字典式顺序是使用 Unicode 码位序号对单个字符排序。 下面是一些相同类型序列之间比较的例子:
 </p>
@@ -797,7 +797,7 @@ Python 也包含有 集合 类型。集合是由不重复元素组成的无序�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 23:48</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>

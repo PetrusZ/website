@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二叉搜索树</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">二叉搜索树</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org89f12bb">什么是二叉搜索树</a></li>
+<li><a href="#orgb77855b">2.动态集合操作</a></li>
+<li><a href="#orgae0f534">3.随机构建二叉搜索树</a></li>
+</ul>
+</div>
+</div>
+<p>
+搜索树数据结构支持许多动态集合操作，因为，使用一颗搜索树既可以作为一个字典又可以作为一个优先队列。
+</p>
+
+<p>
+二叉搜索树上的基本操作所花费的时间与这颗树的高度成正比。对于有 n 个结点的一棵完全二叉树来说，这些操作的最坏运行时间为Θ(lgn)。然而，如果这棵树是一条 n 个结点所组成的线性链，那么同样的操作花费Θ(n)的最坏运行时间。
+</p>
+
+<div id="outline-container-org89f12bb" class="outline-2">
+<h2 id="org89f12bb">什么是二叉搜索树</h2>
+<div class="outline-text-2" id="text-org89f12bb">
+<p>
+顾名思义，一颗二叉搜索树是以一颗二叉数来组织的。这样一棵树可以使用一个链表数据结构来表示，其中每个节点就是一个对象，除了 key 外，每一个结点还包含属性 left、right 和 p，分别指向结点的左孩子、右孩子和双亲。
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/tree1.png" alt="tree1.png">
+</p>
+<p><span class="figure-number">&#22270;1&nbsp; </span>tree1</p>
+</div>
+
+<p>
+二叉搜索树中的关键字满足二叉搜索树性质：每一个结点的左孩子总是小于等于该结点，右孩子大于等于该节点。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb77855b" class="outline-2">
+<h2 id="orgb77855b">2.动态集合操作</h2>
+<div class="outline-text-2" id="text-orgb77855b">
+<p>
+遍历：二叉搜索树性质允许我们通过一个简单的递归算法来按序输出二叉搜索树中的所有关键字，这种算法称为中序遍历（inorder tree walk）算法。这样命名的原因是输出的子树根的关键字位于其左子树的关键字和右子树的关键字值之间。
+</p>
+
+<p>
+插入：tree_insert 从树根开始，指针 x 记录了一条向下的简单路径，并查找要替换的输入项 z 的 NIL。该过程保持遍历指针 y 作为 x 的双亲。while 循环使得这两个指针沿树向下移动，向左或向右移动取决于 z.key 和 x.key 的比较，直到 x 变为 NIL。这个 NIL 占据的位置就是输入项 z 要放置的地方。我们需要遍历指针 y，这是因为找到 NIL 时要知道 z 属于哪个节点。
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/tree2.png" alt="tree2.png">
+</p>
+<p><span class="figure-number">&#22270;2&nbsp; </span>tree2</p>
+</div>
+
+<p>
+插入关键字 13 的过程。浅阴影结点指示了一条从树根到要插入位置的简单路径。
+</p>
+
+<p>
+删除： 从一颗二叉搜索树 T 中删除一个结点 z 的整个策略分为三种基本情况，但只有一种情况有点棘手。
+</p>
+
+<ul class="org-ul">
+<li>如果 z 没有孩子结点，那么只是简单的将其删除，并修改父节点，用 NIL 替换 z。</li>
+<li>如果 z 只有一个孩子，那么将这个孩子提升到树中 z 的位置上，并修改 z 的父节点，用 z 的孩子替换 z。</li>
+<li>如果 z 有两个孩子，那么找 z 的后继 y，并让 y 占据书中 z 的位置。z的原来右子树部分成为 y 的新的右子树，并且 z 的左子树成为 y 的新的左子。</li>
+</ul>
+
+
+<div class="figure">
+<p><img src="../../../pics/CLRS/tree3.png" alt="tree3.png">
+</p>
+<p><span class="figure-number">&#22270;3&nbsp; </span>tree3</p>
+</div>
+
+<p>
+为了能在二叉搜索树内移动子树，定义一个子过程 transplant，它是用另一棵子树替换一棵子树并成为其双亲的孩子结点。
+</p>
+
+<p>
+二叉搜索树的 C 语言简单实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+
+    <span style="color: #51afef;">typedef</span> <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">node</span> {
+        <span style="color: #ECBE7B;">int</span>     <span style="color: #dcaeea;">key</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">node</span>    *<span style="color: #dcaeea;">left</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">node</span>    *<span style="color: #dcaeea;">right</span>;
+        <span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">node</span>    *<span style="color: #dcaeea;">p</span>;
+    }<span style="color: #ECBE7B;">NODE</span>;
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">node_init</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">node</span>)
+    {
+        node-&gt;left = <span style="color: #a9a1e1;">NULL</span>;
+        node-&gt;right = <span style="color: #a9a1e1;">NULL</span>;
+        node-&gt;p = <span style="color: #a9a1e1;">NULL</span>;
+        node-&gt;key = <span style="color: #da8548; font-weight: bold;">0</span>;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">inorder_tree_walk</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #51afef;">if</span> (x != <span style="color: #a9a1e1;">NULL</span>) {
+            inorder_tree_walk(x-&gt;left);
+            printf(<span style="color: #98be65;">"%d "</span>, x-&gt;key);
+            inorder_tree_walk(x-&gt;right);
+        }
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">tree_search</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #51afef;">if</span> (x == <span style="color: #a9a1e1;">NULL</span> || k == x-&gt;key)
+            <span style="color: #51afef;">return</span>(x);
+        <span style="color: #51afef;">if</span> (k &lt; x-&gt;key)
+            <span style="color: #51afef;">return</span>(tree_search(x-&gt;left, k));
+        <span style="color: #51afef;">else</span>
+            <span style="color: #51afef;">return</span>(tree_search(x-&gt;right, k));
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">iterative_tree_search</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">k</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#23545;&#20110;&#22823;&#22810;&#25968;&#35745;&#31639;&#26426;&#65292;&#37319;&#29992;while&#24490;&#29615;</span>
+<span style="color: #5B6268;">         * &#26469;&#23637;&#24320;&#36882;&#24402;&#65292;&#29992;&#19968;&#31181;&#36845;&#20195;&#26041;&#24335;&#37325;&#26032;</span>
+<span style="color: #5B6268;">         * &#36825;&#20010;&#36807;&#31243;&#65292;&#36816;&#34892;&#30340;&#25928;&#29575;&#35201;&#27604;&#36882;&#24402;&#39640;</span>
+<span style="color: #5B6268;">         * &#30340;&#22810;&#12290;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x != <span style="color: #a9a1e1;">NULL</span> &amp;&amp; k != x-&gt;key) {
+            <span style="color: #51afef;">if</span> (k &lt; x-&gt;key)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+        }
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">tree_minimum</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#20108;&#21449;&#25628;&#32034;&#26641;&#24615;&#36136;&#20445;&#35777;&#20102;tree_minimum&#26159;&#27491;&#30830;&#30340;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x-&gt;left != <span style="color: #a9a1e1;">NULL</span>)
+            x = x-&gt;left;
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">tree_maximum</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#19982;tree_minimum&#26159;&#23545;&#31216;&#30340;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">while</span> (x-&gt;right != <span style="color: #a9a1e1;">NULL</span>)
+            x = x-&gt;right;
+
+        <span style="color: #51afef;">return</span>(x);
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">tree_successor</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#26597;&#25214;&#19968;&#20010;&#33410;&#28857;&#30340;&#21518;&#32487;</span>
+<span style="color: #5B6268;">         *</span>
+<span style="color: #5B6268;">         * case1: &#22914;&#26524;&#32467;&#28857;x&#30340;&#21491;&#23376;&#26641;&#38750;&#31354;&#65292;</span>
+<span style="color: #5B6268;">         * &#37027;&#20040;x&#30340;&#21518;&#32487;&#24688;&#26159;x&#21491;&#23376;&#26641;&#20013;&#30340;&#26368;&#24038;&#32467;&#28857;&#12290;</span>
+<span style="color: #5B6268;">         *</span>
+<span style="color: #5B6268;">         * case2:&#22914;&#26524;&#32467;&#28857;x&#30340;&#21491;&#23376;&#26641;&#20026;&#31354;,&#24182;&#26377;&#19968;&#20010;&#21518;&#32487;y&#65292;</span>
+<span style="color: #5B6268;">         * &#37027;&#20040;y&#23601;&#26159;x&#30340;&#26377;&#24038;&#23401;&#23376;&#30340;&#26368;&#24213;&#23618;&#31062;&#20808;&#65292;&#24182;&#19988;&#23427;&#20063;&#26159;</span>
+<span style="color: #5B6268;">         * x&#30340;&#19968;&#20010;&#31062;&#20808;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">NODE</span>    *<span style="color: #dcaeea;">y</span>;
+
+        y = (<span style="color: #ECBE7B;">NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(NODE));
+        node_init(y);
+
+        <span style="color: #51afef;">if</span> (x-&gt;right != <span style="color: #a9a1e1;">NULL</span>)
+            <span style="color: #51afef;">return</span> tree_minimum(x-&gt;right);
+
+        y = x-&gt;p;
+        <span style="color: #51afef;">while</span> (y != <span style="color: #a9a1e1;">NULL</span> &amp;&amp; x == y-&gt;right) {
+            x = y;
+            y = y-&gt;p;
+        }
+
+        <span style="color: #51afef;">return</span>(y);
+
+    }
+
+    <span style="color: #ECBE7B;">NODE</span> *
+    <span style="color: #c678dd;">tree_predecessor</span>(<span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">x</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#26597;&#25214;&#20808;&#39537;&#65292;&#19982;tree_successor&#23545;&#31216;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">NODE</span>    *<span style="color: #dcaeea;">y</span>;
+
+        y = (<span style="color: #ECBE7B;">NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(NODE));
+        node_init(y);
+
+        <span style="color: #51afef;">if</span> (x-&gt;left != <span style="color: #a9a1e1;">NULL</span>)
+            <span style="color: #51afef;">return</span> tree_minimum(x-&gt;left);
+
+        y = x-&gt;p;
+        <span style="color: #51afef;">while</span> (y != <span style="color: #a9a1e1;">NULL</span> &amp;&amp; x == y-&gt;left) {
+            x = y;
+            y = y-&gt;p;
+        }
+
+        <span style="color: #51afef;">return</span>(y);
+
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">tree_insert</span>(<span style="color: #ECBE7B;">NODE</span> **<span style="color: #dcaeea;">root</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">key</span>)
+    {
+        <span style="color: #ECBE7B;">NODE</span>    *<span style="color: #dcaeea;">x</span>, *<span style="color: #dcaeea;">y</span>, *<span style="color: #dcaeea;">z</span>;
+
+        y = <span style="color: #a9a1e1;">NULL</span>;
+        z = (<span style="color: #ECBE7B;">NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(NODE));
+        node_init(z);
+        z-&gt;key = key;
+
+        x = *root;
+
+        <span style="color: #51afef;">while</span> (x != <span style="color: #a9a1e1;">NULL</span>) {
+            y = x;
+            <span style="color: #51afef;">if</span> (z-&gt;key &lt; x-&gt;key)
+                x = x-&gt;left;
+            <span style="color: #51afef;">else</span>
+                x = x-&gt;right;
+        }
+
+        z-&gt;p = y;
+        <span style="color: #51afef;">if</span> (y == <span style="color: #a9a1e1;">NULL</span>)
+            *root = z;         <span style="color: #5B6268;">//</span><span style="color: #5B6268;">tree T was empty</span>
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z-&gt;key &lt; y-&gt;key)
+            y-&gt;left = z;
+        <span style="color: #51afef;">else</span>
+            y-&gt;right = z;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">transplant</span>(<span style="color: #ECBE7B;">NODE</span> **<span style="color: #dcaeea;">root</span>, <span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">u</span>, <span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">v</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * &#29992;&#19968;&#39063;&#20197;v&#20026;&#26681;&#30340;&#23376;&#26641;&#26469;&#26367;&#25442;&#19968;&#39063;&#20197;u&#20026;&#26681;&#30340;&#23376;&#26641;&#26102;&#65292;</span>
+<span style="color: #5B6268;">         * &#32467;&#28857;u&#30340;&#21452;&#20146;&#23601;&#21464;&#25104;&#20102;&#32467;&#28857;v&#30340;&#21452;&#20146;&#12290;</span>
+<span style="color: #5B6268;">         * &#27880;&#24847;&#65292;transplant&#24182;&#27809;&#26377;&#22788;&#29702;v.left&#21644;v.right&#30340;&#26356;&#26032;&#65292;</span>
+<span style="color: #5B6268;">         * &#36825;&#20123;&#26356;&#26032;&#37117;&#26159;&#30001;transplant&#30340;&#35843;&#29992;&#32773;&#26469;&#36127;&#36131;&#12290;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #51afef;">if</span> (u-&gt;p == <span style="color: #a9a1e1;">NULL</span>)
+            *root = v;
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (u == u-&gt;p-&gt;left)
+            u-&gt;p-&gt;left = v;
+        <span style="color: #51afef;">else</span>
+            u-&gt;p-&gt;right =v;
+
+        <span style="color: #51afef;">if</span> (v != <span style="color: #a9a1e1;">NULL</span>)
+            v-&gt;p = u-&gt;p;
+    }
+
+    <span style="color: #ECBE7B;">void</span>
+    <span style="color: #c678dd;">tree_delete</span>(<span style="color: #ECBE7B;">NODE</span> **<span style="color: #dcaeea;">root</span>, <span style="color: #ECBE7B;">NODE</span> *<span style="color: #dcaeea;">z</span>)
+    {
+        <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">         * case1: &#32467;&#28857;z&#27809;&#26377;&#24038;&#23401;&#23376;</span>
+<span style="color: #5B6268;">         * case2: &#32467;&#28857;z&#27809;&#26377;&#21491;&#23401;&#23376;</span>
+<span style="color: #5B6268;">         * case3: &#32467;&#28857;z&#26377;&#20004;&#20010;&#23401;&#23376;</span>
+<span style="color: #5B6268;">         */</span>
+        <span style="color: #ECBE7B;">NODE</span>    *<span style="color: #dcaeea;">y</span>;
+
+        y = (<span style="color: #ECBE7B;">NODE</span> *)malloc(<span style="color: #51afef;">sizeof</span>(NODE));
+        node_init(y);
+
+        <span style="color: #51afef;">if</span> (z-&gt;left == <span style="color: #a9a1e1;">NULL</span>)
+            transplant(root, z, z-&gt;right);
+        <span style="color: #51afef;">else</span> <span style="color: #51afef;">if</span> (z-&gt;right == <span style="color: #a9a1e1;">NULL</span>)
+            transplant(root, z, z-&gt;left);
+        <span style="color: #51afef;">else</span> {
+            y = tree_minimum(z-&gt;right);
+            <span style="color: #51afef;">if</span> (y-&gt;p != z) {
+                transplant(root, y, y-&gt;right);
+                y-&gt;right = z-&gt;right;
+                y-&gt;right-&gt;p = y;
+            }
+            transplant(root, z, y);
+            y-&gt;left = z-&gt;left;
+            y-&gt;left-&gt;p = y;
+        }
+
+    }
+
+    <span style="color: #ECBE7B;">int</span>
+    <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">void</span>)
+    {
+        <span style="color: #ECBE7B;">NODE</span>    *<span style="color: #dcaeea;">root</span>;
+
+        root = <span style="color: #a9a1e1;">NULL</span>;
+
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">13</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">3</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">83</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">15</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">61</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">74</span>);
+        tree_insert(&amp;root, <span style="color: #da8548; font-weight: bold;">81</span>);
+
+        printf(<span style="color: #98be65;">"after insert 7 elements:\n"</span>);
+        inorder_tree_walk(root);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        tree_delete(&amp;root, tree_search(root, <span style="color: #da8548; font-weight: bold;">3</span>));
+        tree_delete(&amp;root, iterative_tree_search(root, <span style="color: #da8548; font-weight: bold;">83</span>));
+
+        printf(<span style="color: #98be65;">"\nafter delete 3, 83:\n"</span>);
+        inorder_tree_walk(root);
+        printf(<span style="color: #98be65;">"\n"</span>);
+
+        printf(<span style="color: #98be65;">"\nminimum: %d\n"</span>, tree_minimum(root)-&gt;key);
+        printf(<span style="color: #98be65;">"\nmaximum: %d\n"</span>, tree_maximum(root)-&gt;key);
+
+        printf(<span style="color: #98be65;">"\nsuccessor of 15: %d\n"</span>, tree_successor(iterative_tree_search(root, <span style="color: #da8548; font-weight: bold;">15</span>))-&gt;key);
+        printf(<span style="color: #98be65;">"\npredeccessor of 74: %d\n"</span>, tree_predecessor(iterative_tree_search(root, <span style="color: #da8548; font-weight: bold;">74</span>))-&gt;key);
+    }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgae0f534" class="outline-2">
+<h2 id="orgae0f534">3.随机构建二叉搜索树</h2>
+<div class="outline-text-2" id="text-orgae0f534">
+<p>
+二叉搜索树上的每一个基本操作都能在О(h)时间内完成，h为树的高度。我们可以将输入序列随机化，可以实现随机构建一棵期望高度为О(lgn)的二叉搜索树。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

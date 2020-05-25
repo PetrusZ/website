@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>摊还分析：动态表</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">摊还分析：动态表</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org6beb96c">表扩张</a></li>
+<li><a href="#orgf7d1412">表扩张和收缩</a></li>
+</ul>
+</div>
+</div>
+<p>
+对某些应用程序，我们无法预先知道会将多少个元素存储在表中。我们为一个表分配一定的内存空间，随后可能会发现不够用。于是为其重新分配更大的空间，并将所有对象从原表中复制到新的空间中。类似地，如果从表中删除了很多元素，可能为其重新分配一个更小的内存空间是值得的。本文我们使用摊还分析来证明，虽然表在扩张和收缩时有较高的实际代价，但它们的摊还代价都是О(1)，且表中的空间空间与总空间的比例永远不会超过一个常量分数。为了方便分析，我们将一个非空表 T 的*装载因子*α(T)定义为表中存储的数据项的数量除以表的规模，一个规模为 0 的空表α(T) = 1。
+</p>
+
+<hr>
+
+<div id="outline-container-org6beb96c" class="outline-2">
+<h2 id="org6beb96c">表扩张</h2>
+<div class="outline-text-2" id="text-org6beb96c">
+<p>
+一个常用的分配新表的启发式策略是：当旧表被填满时，我们为新表分配 2 倍旧表的槽。如果只允许插入操作，那么装载因子总是保持在 1/2 以上，因此，浪费的空间永远不会超过总空间的一半。
+</p>
+
+<p>
+令 T.table 保存指向表的存储空间的指针，T.num 保存表中的数据数量，T.size 保存表的规模，其伪代码如下：
+</p>
+
+<pre class="example">
+    if T.size == 0
+        allocate T.table with 1 slot
+        T.size = 1
+    if T.num == T.size
+        allocate new-table with 2*T.size slot
+        insert all items in T.table into new-table
+        free T.table
+        T.table = new-table
+        T.size = 2*T.size
+    insert x into T.table
+    T.num = T.num + 1
+</pre>
+
+<p>
+我们将每次插入一个元素的代价设定为 1,然后用插入元素的次数来描述 TABLE-INSERT 的运行时间。设第 i 个操作的代价为 ci，一个操作的最坏情况发生在需要表扩张时，如果执行 n 个操作，一个操作的最坏情况时间为Ο(n)，从而可以的到 n 个操作的总运行时间上界Ο(n\^2)。
+</p>
+
+<p>
+当然这不是一个紧确界，因为实际上仅当 i-1 恰好为 2 的幂时，第 i 个操作才会引起一次扩张，所以第 i 个操作的代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-095310%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-095310%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+因此 n 个 TABLE-INSERT 操作的总代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-095404%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-095404%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+由于 n 个 TABLE-INSERT 操作的总代价以 3n 为上界，所以单一操作的摊还代价仅为 3。
+</p>
+
+<p>
+如果使用核算法，则插入一个元素的 3 个代价其实分别为：插入到当前表中的代价，当表扩张时移动它的代价，当表扩张时移动另一个已经移动过一次的数据项。前一个是插入元素的实际代价，我们将后两个代价存为信用，这样在表需要扩张的时候，表中的每一个数据项都储存了 1 个代价，可以用来支付扩张时插入到新表的代价。
+</p>
+
+<p>
+另外我们还可以使用势能法来分析。定义一个势函数Φ，在扩张操作之后其值为 0，而表满时其值为表的规模，这样就可以用势能来支付下次扩张的代价。则势函数为
+</p>
+
+<p>
+Φ(T) = 2*T.num &#x2013; T.size
+</p>
+
+<p>
+为了分析第 i 个 TABLE-INSERT 操作的摊还代价，我们另 numi 表示第 i 个操作后表中数据数量，sizei 表示第 i 个操作后的总规模，Φi 表示第 i 个操作后的势。则如果第 i 个操作没有触发扩张，size(i) = size(i-1)，则摊还代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-101920%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-101920%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+如果第 i 个操作触发了扩张，则 size(i) = 2/size(i-1)及 size(i-1) = num(i-1) = num(i)-1，也就是 size(i) = 2/(num(i) &#x2013; 1)。所以其摊还代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-102232%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-102232%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<p>
+下图画出了 num(i)、size(i)和Φ(i)随 i 变化的情况。注意势是如何累积来支付表扩张代价的，另外在每次扩张之后，势变为 0，但会立即变为 2-&#x2013;&#x2014;引起扩张的那个数据被插入表中。
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-102459%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-102459%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+(图片丢失)
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgf7d1412" class="outline-2">
+<h2 id="orgf7d1412">表扩张和收缩</h2>
+<div class="outline-text-2" id="text-orgf7d1412">
+<p>
+表收缩和表扩张是类似的操作所以省略的收缩的叙述及伪代码。理想情况下，我们希望表收缩的时候保持两个性质：
+</p>
+
+<ul class="org-ul">
+<li>动态表的装载因子有一个正的常数的下界</li>
+<li>一个表操作的摊还代价有一个常数上界</li>
+</ul>
+
+<p>
+我们假定用元素的插入、删除次数来衡量动态表操作的代价。
+</p>
+
+<p>
+你可能认为当插入一个数据到满表时应该将其扩张，当删除一个数据导致装载因子小于 1/2 时就应该将表规模减半。此策略可以保证表的装载因子永远不会低于 1/2，但遗憾的是，这回导致操作的瘫痪代价过大。考虑如下场景，对一个表 T 执行 n 个操作，n恰好是 2 的幂。其中前 n/2 个操作都是插入，由之前的分析可知其总代价为Θ(n)。插入序列结束时，T.num = T.size = n/2。接下来 n/2 个操作是这样的：
+</p>
+
+<p>
+插入、删除、删除、插入、插入、删除、删除、插入、插入、&#x2026;&#x2026;
+</p>
+
+<p>
+第一个插入导致表扩张至 n，接下来两个删除导致表收缩为 n/2，再接下来两个插入又导致表扩张为 n，依此类推。收缩和扩张的次数将为Θ(n)，每次扩张和收缩的代价为Θ(n)。因此，n个操作的总代价为Θ(n\^2)，每个操作的摊还代价为Θ(n)。
+</p>
+
+<p>
+此策略的缺点是明显的：在表扩张之后，我们无法删除足够多的数据项来为收缩操作支付费用;类似地，在表收缩之后，我们无法插入足够多的表项来支付扩张操作。
+</p>
+
+<p>
+我们可以改进此策略，当向一个满表插入一个新数据项时，我们仍然将表规模加倍，但是只有当装载因子小于 1/4 而不是 1/2 时，才将表规模减半。
+</p>
+
+<p>
+可能我们直觉上认为装载因子为 1/2 比较理想，而表的势此时为 0。随着装载因此偏离 1/2，势应该增长，使得当扩张或收缩表时，表已经储存了足够的势来支付复制所有数据到新表的代价。因此，我们需要一个势函数，当装载因子增长为 1 或下降为 1/4 时，势函数值增长为 T.num。而表扩张或收缩之后，装载因子重新变为 1/2，而表的势降回 0。因此可以得到势函数如下：
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-114807%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-114807%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+空表时势为 0，且势永远不可能为负，所以势函数定义的操作序列的总摊还代价是总实际代价的上界。
+</p>
+
+<p>
+下图画出了 num(i)、size(i)和Φ(i)随 i 变化的情况。
+</p>
+
+
+<div class="figure">
+<p><img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+</p>
+</div>
+
+<p>
+使用势能法首先分析第 i 个操作为 TABLE-INSERT 时的情况，若α(i-1) &gt;= 1/2，分析与前文相同，无论表是否扩张摊还代价最多为 3。若α(i-1) &lt; 1/2 且α(i) &lt; 1/2，第 i 个操作的摊还代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-132929%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-132929%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+若α(i-1) &lt; 1/2 但α(i) &gt;= 1/2，则
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-133037%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-133037%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+所以，一个 TABLE-INSERT 操作的摊还代价最多为 3.
+</p>
+
+<p>
+接着分析第 i 个操作为 TABLE-DELETE 的情况。如果α(i-1) &lt;1/2 且并未引起收缩，则摊还代价为
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-135637%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-135637%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+如果α(i-1) &lt; 1/2 且第 i 个操作触发了收缩，我们有
+</p>
+
+<p>
+<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-135802%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-135802%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+（图片丢失）
+</p>
+
+<p>
+当第i个操作为TABLE-DELETE且α(i-1)时，书中将这个分析留做练习，我的算出来的答案是摊还代价为-1。
+</p>
+
+<p>
+总之，每个操作的摊还代价的上界是一个常数，在一个动态表上执行任意n个操作的实际运行时间是Ο(n)。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

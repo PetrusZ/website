@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kernel</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Kernel</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0c84b37">How upgrade kernel</a></li>
+<li><a href="#org2e890f8">Configure kernel</a>
+<ul>
+<li><a href="#org25d24a3">将 intel wifi 固件编译进内核</a></li>
+<li><a href="#orgf286e1c">将 Intel microcode 编译进内核</a></li>
+<li><a href="#其他配置">其他配置</a>
+<ul>
+<li><a href="#开启 zswap">开启 zswap</a></li>
+<li><a href="#org868b301">CPU Frequency scaling</a></li>
+<li><a href="#org4481ad2">I/O Schedulers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org078bd65">参考</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0c84b37" class="outline-2">
+<h2 id="org0c84b37">How upgrade kernel</h2>
+<div class="outline-text-2" id="text-org0c84b37">
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/bash</span>
+
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">1.select the kernel will use</span>
+    eselect kernel list
+    eselect kernel set &lt;No.&gt;
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">2.configure the kernel with old config (and diff with previous config)</span>
+    zcat /proc/config.gz &gt; /usr/src/linux/.config
+    diff .config ../linux-x.xx.x-gentoo/.config
+    <span style="color: #ECBE7B;">make</span> silentoldconfig/syncconfig/oldconfig
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">3.compile&amp;install kernel/modules</span>
+    <span style="color: #ECBE7B;">make</span> -j9
+    <span style="color: #ECBE7B;">make</span> install
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">compile&amp;install out-of-tree module(s)</span>
+    <span style="color: #ECBE7B;">make</span> modules_prepare
+    emerge --ask @module-rebuild
+    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">install initramfs</span>
+    genkernel --install initramfs
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">4.clean up old kernel files</span>
+    eclean-kernel
+    grub-mkconfig -o /boot/grub/grub.cfg
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e890f8" class="outline-2">
+<h2 id="org2e890f8">Configure kernel</h2>
+<div class="outline-text-2" id="text-org2e890f8">
+</div>
+<div id="outline-container-org25d24a3" class="outline-3">
+<h3 id="org25d24a3">将 intel wifi 固件编译进内核</h3>
+<div class="outline-text-3" id="text-org25d24a3">
+<ol class="org-ol">
+<li>Enable <code>CONFIG_IWLWIFI</code> and <code>CONFIG_IWLMVM</code></li>
+
+<li>固件与网卡之间的对应关系可参考<a href="https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi">iwlwifi驱动的wiki文档</a></li>
+
+<li>将在上面找到的与网卡对应的的二进制固件名称填入 <code>EXTRA_FIRMWARE</code> 选项中。 此选项的值是一个空格分隔的固件文件名字符串，这些文件必须位于 <code>CONFIG_EXTRA_FIRMWARE_DIR</code> 目录中(其默认值为 <code>/lib/firmware</code> ).</li>
+</ol>
+
+<pre class="example">
+    Symbol: EXTRA_FIRMWARE
+    Type  : string
+    Prompt: Build named firmware blobs into the kernel binary
+      Location:
+        -&gt; Device Drivers
+          -&gt; Generic Driver Options
+            -&gt; Firmware loader
+              -&gt; Firmware loading facility (FW_LOADER [=y])
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf286e1c" class="outline-3">
+<h3 id="orgf286e1c">将 Intel microcode 编译进内核</h3>
+<div class="outline-text-3" id="text-orgf286e1c">
+<ol class="org-ol">
+<li>Enable <code>CONFIG_MICROCODE</code>, and <code>CONFIG_MICROCODE_INTEL</code></li>
+</ol>
+
+<pre class="example">
+    Processor type and features  ---&gt;
+        &lt;*&gt; CPU microcode loading support
+        [*]   Intel microcode loading support
+</pre>
+
+<ol class="org-ol">
+<li>查找 CPU 和 microcode 的对应关系</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#26597;&#30475;microcode&#30340;sig&#20540;:</span>
+    dmesg | <span style="color: #ECBE7B;">grep</span> microcode
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20363;&#22914;sig=0x306c3</span>
+
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#28982;&#21518;&#26597;&#30475;intel-ucode&#30446;&#24405;:</span>
+    <span style="color: #ECBE7B;">ls</span> /lib/firmware/intel-ucode
+    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#22312;&#30446;&#24405;&#20013;&#25214;&#21040;&#19982;sig&#20540;&#23545;&#24212;&#20026;06-3c-03&#30340;microcode</span>
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>将在上面找到 microcode 名称填入 <code>EXTRA_FIRMWARE</code> 选项中</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-其他配置" class="outline-3">
+<h3 id="其他配置">其他配置</h3>
+<div class="outline-text-3" id="text-其他配置">
+</div>
+
+<div id="outline-container-开启 zswap" class="outline-4">
+<h4 id="开启 zswap">开启 zswap</h4>
+<div class="outline-text-4" id="text-开启 zswap">
+<p>
+在内核中选中 zswap 对应的选项后，在=CONFIG_CMDLINE=中添加对应选项开启：
+</p>
+
+<p>
+<code>CONFIG_CMDLINE="zswap.enabled=1 zswap.compressor=lz4 zswap.max_pool_percent=20 zswap.zpool=z3fold"</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org868b301" class="outline-4">
+<h4 id="org868b301">CPU Frequency scaling</h4>
+<div class="outline-text-4" id="text-org868b301">
+<p>
+<code>CONFIG_CPU_FREQ_GOV_POWERSAVE</code> 配合 <code>CONFIG_X86_INTEL_PSTATE</code> 使用，效果与 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 差异不大。 甚至可以获得比 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 更优秀的"性能/瓦特"比。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4481ad2" class="outline-4">
+<h4 id="org4481ad2">I/O Schedulers</h4>
+<div class="outline-text-4" id="text-org4481ad2">
+<p>
+TODO
+</p>
+
+<p>
+创建 udev 使得 lightdm 反复重启，最终导致退出
+</p>
+
+<p>
+<a href="https://blog.justforlxz.com/2019/10/24/%E7%BB%99Archlinux%E5%BC%80%E5%90%AFBFQ%E5%92%8CMuQSS/">https://blog.justforlxz.com/2019/10/24/%E7%BB%99Archlinux%E5%BC%80%E5%90%AFBFQ%E5%92%8CMuQSS/</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org078bd65" class="outline-2">
+<h2 id="org078bd65">参考</h2>
+<div class="outline-text-2" id="text-org078bd65">
+<ol class="org-ol">
+<li><a href="https://wiki.gentoo.org/wiki/Kernel/Upgrade/en">https://wiki.gentoo.org/wiki/Kernel/Upgrade/en</a></li>
+<li><a href="http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html">http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

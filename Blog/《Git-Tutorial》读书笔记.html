@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-25 Mon 14:08 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>《Git Tutorial》读书笔记</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">《Git Tutorial》读书笔记</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5572cf8">前言</a></li>
+<li><a href="#orgb0abc9c">创建版本库</a></li>
+<li><a href="#org58616d3">时光机穿梭</a>
+<ul>
+<li><a href="#org2659436">版本回退</a></li>
+<li><a href="#org020d78d">工作区和暂存区</a></li>
+<li><a href="#orge2df303">管理修改</a></li>
+<li><a href="#org206dad5">撤销修改</a></li>
+<li><a href="#org1bba32b">删除文件</a></li>
+</ul>
+</li>
+<li><a href="#org4dc0007">远程仓库</a>
+<ul>
+<li><a href="#orgabb3287">添加远程库</a></li>
+<li><a href="#org6199285">从远程库克隆</a></li>
+</ul>
+</li>
+<li><a href="#org82efdc6">分支管理</a>
+<ul>
+<li><a href="#orgbe76dee">创建与合并分支</a></li>
+<li><a href="#org0913e24">解决冲突</a></li>
+<li><a href="#org5df098c">分支管理策略</a></li>
+<li><a href="#org64c4662">Bug 分支</a></li>
+<li><a href="#orgd961840">Feature 分支</a></li>
+<li><a href="#org38a34e5">多人协作</a></li>
+</ul>
+</li>
+<li><a href="#org5e4584c">标签管理</a>
+<ul>
+<li><a href="#orgd649ba5">创建标签</a></li>
+<li><a href="#org68ee076">操作标签</a></li>
+</ul>
+</li>
+<li><a href="#org3b05dd2">使用 GitHub</a></li>
+<li><a href="#orgea255e3">自定义 Git</a>
+<ul>
+<li><a href="#org56e60b7">忽略特殊文件</a></li>
+<li><a href="#orgbe3476b">配置别名</a></li>
+</ul>
+</li>
+<li><a href="#orgbc1f650">参考文章</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5572cf8" class="outline-2">
+<h2 id="org5572cf8">前言</h2>
+<div class="outline-text-2" id="text-org5572cf8">
+<p>
+虽然说以前就学过一些 git，并且也用了一阵子 GitHub 了，但是还是有很多地方模糊不清，一旦遇到问题总是有一种恐惧&#x2026;&#x2026;因为我不知道该怎么解决它。
+</p>
+
+<p>
+正好最近遇到了<a href="http://lvwzhen.gitbooks.io/git-tutorial">Git-Tutorial</a> ，把 git 中最主要、最常用的知识重新梳理的一遍，顺便记到这里，以备不时之需。<a href="http://lvwzhen.gitbooks.io/git-tutorial">Git-Tutorial</a>风趣幽默、生动形象，可以说是入门 git 与 github 的最佳教程，只需要 2-3 个小时学习就可以将 git 应用于实际开发中。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgb0abc9c" class="outline-2">
+<h2 id="orgb0abc9c">创建版本库</h2>
+<div class="outline-text-2" id="text-orgb0abc9c">
+<p>
+初始化一个 Git 仓库，使用=git init=命令。
+</p>
+
+<p>
+添加文件到 Git 仓库，分两步：
+</p>
+
+<p>
+第一步，使用命令=git add=，注意，可反复多次使用，添加多个文件；
+</p>
+
+<p>
+第二步，使用命令=git commit=，完成。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-org58616d3" class="outline-2">
+<h2 id="org58616d3">时光机穿梭</h2>
+<div class="outline-text-2" id="text-org58616d3">
+<p>
+要随时掌握工作区的状态，使用 <code>git status</code> 命令。
+</p>
+
+<p>
+如果 <code>git status</code> 告诉你有文件被修改过，用 <code>git diff</code> 可以查看修改内容。
+</p>
+</div>
+
+<div id="outline-container-org2659436" class="outline-3">
+<h3 id="org2659436">版本回退</h3>
+<div class="outline-text-3" id="text-org2659436">
+<p>
+<code>HEAD</code> 指向的版本就是当前版本，因此，Git 允许我们在版本的历史之间穿梭，使用命令 <code>git reset --hard commit_id</code> 。
+</p>
+
+<p>
+穿梭前，用 <code>git log</code> 可以查看提交历史，以便确定要回退到哪个版本。
+</p>
+
+<p>
+要重返未来，用 <code>git reflog</code> 查看命令历史，以便确定要回到未来的哪个版本。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org020d78d" class="outline-3">
+<h3 id="org020d78d">工作区和暂存区</h3>
+<div class="outline-text-3" id="text-org020d78d">
+<p>
+<code>git add</code> 命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行 <code>git commit</code> 就可以一次性把暂存区的所有修改提交到分支。
+</p>
+
+<p>
+暂存区是 Git 非常重要的概念，弄明白了暂存区，就弄明白了 Git 的很多操作到底干了什么。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2df303" class="outline-3">
+<h3 id="orge2df303">管理修改</h3>
+<div class="outline-text-3" id="text-orge2df303">
+<p>
+Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add 到暂存区，那就不会加入到 commit 中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org206dad5" class="outline-3">
+<h3 id="org206dad5">撤销修改</h3>
+<div class="outline-text-3" id="text-org206dad5">
+<p>
+场景 1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令 <code>git checkout -- file</code> 。
+</p>
+
+<p>
+场景 2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令 <code>git reset HEAD file</code> ，就回到了场景 1，第二步按场景 1 操作。
+</p>
+
+<p>
+场景 3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1bba32b" class="outline-3">
+<h3 id="org1bba32b">删除文件</h3>
+<div class="outline-text-3" id="text-org1bba32b">
+<p>
+<code>git checkout</code> 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+</p>
+
+<p>
+命令 <code>git rm</code> 用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4dc0007" class="outline-2">
+<h2 id="org4dc0007">远程仓库</h2>
+<div class="outline-text-2" id="text-org4dc0007">
+</div>
+<div id="outline-container-orgabb3287" class="outline-3">
+<h3 id="orgabb3287">添加远程库</h3>
+<div class="outline-text-3" id="text-orgabb3287">
+<p>
+要关联一个远程库，使用命令 <code>git remote add origin git@server-name:path/repo-name.git</code> ；
+</p>
+
+<p>
+关联后，使用命令 <code>git push -u origin master</code> 第一次推送 master 分支的所有内容；
+</p>
+
+<p>
+此后，每次本地提交后，只要有必要，就可以使用命令 <code>git push origin master</code> 推送最新修改；
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6199285" class="outline-3">
+<h3 id="org6199285">从远程库克隆</h3>
+<div class="outline-text-3" id="text-org6199285">
+<p>
+这个好像没什么好说的，git 最基础的命令 <code>git clone</code> 。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org82efdc6" class="outline-2">
+<h2 id="org82efdc6">分支管理</h2>
+<div class="outline-text-2" id="text-org82efdc6">
+</div>
+<div id="outline-container-orgbe76dee" class="outline-3">
+<h3 id="orgbe76dee">创建与合并分支</h3>
+<div class="outline-text-3" id="text-orgbe76dee">
+<p>
+查看分支： <code>git branch</code>
+</p>
+
+<p>
+创建分支： <code>git branch name</code>
+</p>
+
+<p>
+切换分支： <code>git checkout name</code>
+</p>
+
+<p>
+创建+切换分支： <code>git checkout -b name</code> （= <code>git branch name</code> + <code>git checkout name</code> ）
+</p>
+
+<p>
+合并某分支到当前分支： <code>git merge name</code>
+</p>
+
+<p>
+删除分支： <code>git branch -d name</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0913e24" class="outline-3">
+<h3 id="org0913e24">解决冲突</h3>
+<div class="outline-text-3" id="text-org0913e24">
+<p>
+当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
+</p>
+
+<p>
+用 <code>git log --graph</code> 命令可以看到分支合并图。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5df098c" class="outline-3">
+<h3 id="org5df098c">分支管理策略</h3>
+<div class="outline-text-3" id="text-org5df098c">
+<p>
+Git 分支十分强大，在团队开发中应该充分应用。
+</p>
+
+<p>
+合并分支时，加上&#x2013;no-ff 参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而 fast forward 合并就看不出来曾经做过合并。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org64c4662" class="outline-3">
+<h3 id="org64c4662">Bug 分支</h3>
+<div class="outline-text-3" id="text-org64c4662">
+<p>
+修复 bug 时，我们会通过创建新的 bug 分支进行修复，然后合并，最后删除；
+</p>
+
+<p>
+当手头工作没有完成时，先把工作现场 <code>git stash</code> 一下，然后去修复 bug，修复后，再 <code>git stash pop</code> ，回到工作现场。
+</p>
+
+<p>
+<code>git stash</code> 可以当前工作现场“储藏”起来，等以后恢复现场后继续工作。
+</p>
+
+<p>
+<code>git stash list</code> 可以查看 stash 保存的内容。
+</p>
+
+<p>
+<code>git stash apply</code> 可以恢复 stash 中的内容，但是不将其删除， <code>git stash pop</code> 则在恢复的同时把 stash 内容也删了。
+</p>
+
+<p>
+多次 stash，恢复的时候，先用 git stash list 查看，然后恢复指定的 stash，用命令 <code>git stash apply stash@{0}</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd961840" class="outline-3">
+<h3 id="orgd961840">Feature 分支</h3>
+<div class="outline-text-3" id="text-orgd961840">
+<p>
+开发一个新 feature，最好新建一个分支；
+</p>
+
+<p>
+如果要丢弃一个没有被合并过的分支，可以通过 git branch -D name 强行删除。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38a34e5" class="outline-3">
+<h3 id="org38a34e5">多人协作</h3>
+<div class="outline-text-3" id="text-org38a34e5">
+<p>
+查看远程库信息，使用 <code>git remote -v</code> ；
+</p>
+
+<p>
+本地新建的分支如果不推送到远程，对其他人就是不可见的；
+</p>
+
+<p>
+从本地推送分支，使用 <code>git push origin branch-name</code> ，如果推送失败，先用 <code>git pull</code> 抓取远程的新提交；
+</p>
+
+<p>
+在本地创建和远程分支对应的分支，使用 <code>git checkout -b branch-name origin/branch-name</code> ，本地和远程分支的名称最好一致；
+</p>
+
+<p>
+建立本地分支和远程分支的关联，使用 <code>git branch --set-upstream branch-name origin/branch-name</code> ；
+</p>
+
+<p>
+从远程抓取分支，使用 <code>git pull</code> ，如果有冲突，要先处理冲突。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5e4584c" class="outline-2">
+<h2 id="org5e4584c">标签管理</h2>
+<div class="outline-text-2" id="text-org5e4584c">
+<p>
+Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit 的指针。
+</p>
+</div>
+
+<div id="outline-container-orgd649ba5" class="outline-3">
+<h3 id="orgd649ba5">创建标签</h3>
+<div class="outline-text-3" id="text-orgd649ba5">
+<p>
+命令 <code>git tag name</code> 用于新建一个标签，默认为 <code>HEAD</code> ，也可以指定一个 commit id；
+</p>
+
+<p>
+<code>-a tagname -m "blablabla..."</code> 可以指定标签信息；
+</p>
+
+<p>
+<code>-s tagname -m "blablabla..."</code> 可以用 PGP 签名标签；
+</p>
+
+<p>
+命令 <code>git tag</code> 可以查看所有标签；
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68ee076" class="outline-3">
+<h3 id="org68ee076">操作标签</h3>
+<div class="outline-text-3" id="text-org68ee076">
+<p>
+命令 <code>git push origin tagname</code> 可以推送一个本地标签；
+</p>
+
+<p>
+命令 <code>git push origin --tags</code> 可以推送全部未推送过的本地标签；
+</p>
+
+<p>
+命令 <code>git tag -d tagname</code> 可以删除一个本地标签；
+</p>
+
+<p>
+命令 <code>git push origin :refs/tags/tagname</code> 可以删除一个远程标签。
+</p>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b05dd2" class="outline-2">
+<h2 id="org3b05dd2">使用 GitHub</h2>
+<div class="outline-text-2" id="text-org3b05dd2">
+<p>
+在 GitHub 上，可以任意 Fork 开源仓库；
+</p>
+
+<p>
+自己拥有 Fork 后的仓库的读写权限；
+</p>
+
+<p>
+可以推送 pull request 给官方仓库来贡献代码。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-orgea255e3" class="outline-2">
+<h2 id="orgea255e3">自定义 Git</h2>
+<div class="outline-text-2" id="text-orgea255e3">
+</div>
+<div id="outline-container-org56e60b7" class="outline-3">
+<h3 id="org56e60b7">忽略特殊文件</h3>
+<div class="outline-text-3" id="text-org56e60b7">
+<p>
+忽略某些文件时，需要编写.gitignore。.gitignore 文件本身要放到版本库里，并且可以对.gitignore 做版本管理！
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbe3476b" class="outline-3">
+<h3 id="orgbe3476b">配置别名</h3>
+<div class="outline-text-3" id="text-orgbe3476b">
+<div class="org-src-container">
+<pre class="src src-sh">    $ <span style="color: #ECBE7B;">git</span> config --global alias.st status
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.co checkout
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.ci commit
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.br branch
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.unstage <span style="color: #98be65;">'reset HEAD'</span>
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.last <span style="color: #98be65;">'log -1'</span>
+    $ <span style="color: #ECBE7B;">git</span> config --global alias.lg <span style="color: #98be65;">"log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span>
+</pre>
+</div>
+
+<hr>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc1f650" class="outline-2">
+<h2 id="orgbc1f650">参考文章</h2>
+<div class="outline-text-2" id="text-orgbc1f650">
+<p>
+Git-Tutorial 全文：<a href="http://lvwzhen.gitbooks.io/git-tutorial/">http://lvwzhen.gitbooks.io/git-tutorial/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
+</div>
+</body>
+</html>

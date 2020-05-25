@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-23 Sat 21:40 -->
+<!-- 2020-05-25 Mon 14:08 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>内核</title>
@@ -234,15 +234,15 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#什么是 cgroups">1. 什么是 Cgroups</a></li>
-<li><a href="#udev">2. udev</a></li>
-<li><a href="#开启 bbr">3. 开启 BBR</a></li>
+<li><a href="#什么是 cgroups">什么是 Cgroups</a></li>
+<li><a href="#udev">udev</a></li>
+<li><a href="#开启 bbr">开启 BBR</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-什么是 cgroups" class="outline-2">
-<h2 id="什么是 cgroups"><span class="section-number-2">1</span> 什么是 Cgroups</h2>
+<h2 id="什么是 cgroups">什么是 Cgroups</h2>
 <div class="outline-text-2" id="text-什么是 cgroups">
 <p>
 control groups，控制组，也称为 cgroups，是 Linux 内核通过进程的层次化组织用于控制资源分配的功能
@@ -266,7 +266,7 @@ control groups，控制组，也称为 cgroups，是 Linux 内核通过进程的
 </div>
 
 <div id="outline-container-udev" class="outline-2">
-<h2 id="udev"><span class="section-number-2">2</span> udev</h2>
+<h2 id="udev">udev</h2>
 <div class="outline-text-2" id="text-udev">
 <p>
 当服务器启动时，各种磁盘设备、网络设备的初始化顺序是随机的，每次识别出的 sdX 和 ethX 设备可能并不完全相同。例如，如果服务器上插了 U 盘，再次启动，可能 U 盘被识别成 sda 设备，而原先服务器中安装的命名为 sdaSAS 磁盘可能被识别成 sdb 设备。
@@ -290,7 +290,7 @@ udev 只为那些连接到 Linux 操作系统的设备产生设备文件。并�
 </div>
 
 <div id="outline-container-开启 bbr" class="outline-2">
-<h2 id="开启 bbr"><span class="section-number-2">3</span> 开启 BBR</h2>
+<h2 id="开启 bbr">开启 BBR</h2>
 <div class="outline-text-2" id="text-开启 bbr">
 <div class="org-src-container">
 <pre class="src src-sh">    modprobe tcp_bbr
@@ -305,7 +305,7 @@ udev 只为那些连接到 Linux 操作系统的设备产生设备文件。并�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-23 Sat 21:40</p>
+<p class="date">Created: 2020-05-25 Mon 14:08</p>
 </div>
 </body>
 </html>
