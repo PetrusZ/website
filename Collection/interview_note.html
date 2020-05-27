@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-27 Wed 16:27 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>&lrm;</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#京东">京东</a></li>
+<li><a href="#淘米网面试内容">淘米网面试内容</a></li>
+<li><a href="#腾讯">腾讯</a></li>
+<li><a href="#关于面试耗子">关于面试-&#x2013;&#x2014;耗子</a></li>
+<li><a href="#其他">其他</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-京东" class="outline-2">
+<h2 id="京东">京东</h2>
+<div class="outline-text-2" id="text-京东">
+<p>
+面试关键词
+</p>
+
+<p>
+项目，架构，负载均衡，C++深入，UNIX网络（深入）
+</p>
+</div>
+</div>
+
+<div id="outline-container-淘米网面试内容" class="outline-2">
+<h2 id="淘米网面试内容">淘米网面试内容</h2>
+<div class="outline-text-2" id="text-淘米网面试内容">
+<p>
+基础知识（概念性）：进程通信的方式，vector的插入删除时间复杂度，TCP/IP的四次分手，还有针对笔试卷提问。
+</p>
+
+<p>
+软件工程知识点，C++的知识点，c/c++的区别、进程、线程？
+</p>
+
+<p>
+技术问题，C语言的。
+</p>
+
+<p>
+算法的时间复杂度。前一晚笔试的题目。
+</p>
+
+<p>
+数据库方面知识，nosql的知识，mysql原理，引擎？
+</p>
+
+<p>
+简单的多线程程序和简单的linux编程。简单的两个线程同步，线程和进程的区别等。
+</p>
+
+<p>
+网络基础的问题，操作系统的问题。
+</p>
+
+<p>
+数据结构？
+</p>
+
+<p>
+每个面试官都会拿着应聘者的笔试卷子和上个面试官的面试记录提问。
+</p>
+
+<p>
+淘米我投的是AS，也是问了一些算法，比如说怎样判断一个数字是否是2的n次幂，怎样判断一个链表是否是有环的，怎么寻找树中两个节点的最近公共父节点，怎样去寻找一个链表的中间节点。
+</p>
+
+<p>
+一面针对笔试题问问题，主要包括数据库、数据结构，现场编程，勉强通过；二面在对这个岗位的认识和要求上挂掉了。 印象最深的问题：单链表旋转?
+</p>
+
+<hr>
+
+<p>
+前两面都是技术面，一面上来就问我证明勾股定理，
+</p>
+
+<p>
+然后问了我一些算法，问我map是怎么实现的，貌似对C++特别感兴趣，
+</p>
+
+<p>
+一直在问我C++
+</p>
+
+<p>
+二面就问一些项目，问我大学看了什么书，什么什么的，不难。
+</p>
+
+<p>
+结果三面就被刷了。我也不知道为什么。
+</p>
+</div>
+</div>
+
+<div id="outline-container-腾讯" class="outline-2">
+<h2 id="腾讯">腾讯</h2>
+<div class="outline-text-2" id="text-腾讯">
+<p>
+自我介绍，项目介绍，这两个是必须的，在介绍项目的时候，面试官会深入问问题，会对某些细节，例如数据机构，算法复杂度，数据库连接问一些问题。随后是专业面试，题目都是相当经典的题目，大致有:进程与线程；Unix和windows进程间通信的主要方式和系统调用；叙述TCP/UDP协议，他们的应用，TCP的三次握手，滑动窗口，超时重传；HTTP协议和COOKIE机制和一些COOKIE的问题(这个我不会)；让你设计一个PDA上的通信簿，你会用树还是哈希，从这个问题会引申出hash,平衡数，红黑数的一系列问题；面向对象的多态是什么，设计一个多态的例子；C++的虚函数实现机制。问题不难，
+</p>
+
+<p>
+在进行技术面的时候，一个最重要的问题就是，你要清楚的知道自己的强项，自己的特长，尽可能的把面试官朝你的方向引。我的特长是应用软件开发和面向对象建模，所以我每次自我介绍总要强调自己的软工很好，软件开发流程很熟，这样和很多面试官在软件开发流程方面就有很多问题可以探讨。你一定要展现出你的技术专业性(你是技术类的)和你对公司，职位的热情。
+</p>
+
+<p>
+进程和线程，TCP/UDP,排序算法(让我给他完整的说了一遍我所知道的排序算法和他们的时间复杂度)，Windows的内存寻址方式，Socket中阻塞模式干什么用的，你所认为的软件开发模式和你对你所做项目的一些评价。最后是那个程序题，写代码，个题非常重要，如果做不出来或者做错了，那就估计没戏了。题目是给定一个字符串，例如
+abc123de4f67,把里面所有的数字字串找出来，并且存贮起来，例如你要把123，4，67找出来，放到3个char型数组里。这个题目很经典了，相信很多人都知道。
+</p>
+
+<p>
+对技术类公司的一些总结：基础全面，重点突出，专业对口，满足这三点，就绝对可以找到一个不错的技术类职位。如果你能对你所要从事的行业有清醒的认识(主要公司，目前格局，发展趋势),那你将在求职中无往不胜
+</p>
+</div>
+</div>
+
+<div id="outline-container-关于面试耗子" class="outline-2">
+<h2 id="关于面试耗子">关于面试-&#x2013;&#x2014;耗子</h2>
+<div class="outline-text-2" id="text-关于面试耗子">
+<p>
+我想，让面试者解决一个难题的真正思路是：
+</p>
+
+<ul class="org-ul">
+<li>看看他对知识的应用和理解。比如，他是否会用一些基础的数据结构和算法来解决算法题？</li>
+<li>看看他的整个解题思路和想法。答案是次要的，他的想法和行为才是重要的。</li>
+<li>看看他是如何和你讨论交流的。把面试者当成你未来的同事，当成你的工作伙伴，一起解题，一起讨论，这样可以看看大家是否可以在一起工作。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-其他" class="outline-2">
+<h2 id="其他">其他</h2>
+<div class="outline-text-2" id="text-其他">
+<p>
+这些方面才是考查应聘者的能力（思路，方法、态度，性格等），并顺带着考查面试者的经验和知识。下面是一些面试的点：
+</p>
+
+<ul class="org-ul">
+<li>应聘者在解算法题时会不会分解或简化这个难题。这是分析能力。</li>
+<li>应聘者在解算法题时会不会使用一些基础知识，如数据结构和基础算法。这是知识。</li>
+<li>应聘者在解题时和你讨论的过程中你有没有感到应聘者的专研精神和良好的沟通。</li>
+<li>应聘者在对待这个算法题的心态和态度。如，面试面是否有畏难情绪。</li>
+<li>应聘者在解题时的思路和方法是否得当，是否是比较科学的方法？</li>
+<li>等等。</li>
+</ul>
+
+<p>
+在解难题的过程中考查应聘者的能力才是最终目的，而不是为难应聘者，不然，你只是一个傲慢而无知的面试官。
+</p>
+
+<p>
+模拟实际中的挑战和能力
+</p>
+
+<p>
+作为面试官的你，你应该多想想你的工作，以及你的成长经历。这会对你的面试很有帮助。你在工作中解决问题的实际情况是什么？你写代码的实际情况是什么？你的成长经历是什么？你是怎么获得知识和能力的？你喜欢和什么样的人工作？相信你不难会发现你工作中的实际情况和面试的情况完全是两码事，那么，你怎么可以用这种与实际情况差别那么大的面试来评估一个人的能力呢？
+</p>
+
+<p>
+所以，最为理想的面试是一起工作一段时间。当然，这个在招聘过程中，操作起来几乎不可能，因此，这就要求我们的面试官尽可能地把面试的过程模拟成平时工作的过程。大家一些讨论来解决一个难题，和应聘者一起回顾一下他已经做过的事情，并在回础的过程中相互讨论相互学习。下面举一个例子。
+</p>
+
+<p>
+我们知道，对于软件开发来说，开发软件不难，难是的下面是这些挑战：
+</p>
+
+<ul class="org-ul">
+<li>软件的维护成本远远大于软件的开发成本。</li>
+<li>软件的质量变得越来越重要，所以，测试工作也变得越来越重要。</li>
+<li>软件的需求总是在变的，软件的需求总是一点一点往上加的。</li>
+<li>程序中大量的代码都是在处理一些错误的或是不正常的流程。</li>
+</ul>
+
+<p>
+所以，当我们在考查应聘者的代码能力时候，我们为什么不能模拟这样的过程呢？比如，让应聘者实现一个atoi()的函数，实现起来应该很简单，然后不断地往上加新的需求或新的案例，比如：处理符号，处理非数字的字母的情况，处理有空格的情况，处理十六进制，处理二进制，处理“逗号”，等等，我们要看应聘者是怎么修改他的代码的，怎么写测试案例的，怎么重构的，随着要处理的东西越来越多，他的代码是否还是那么易读和清晰。如果只是考查编码能力，一个小时，就问这一个问题，足矣。真正的程序员每天都在和这样的事打交道的。
+</p>
+
+<p>
+如果要考查应聘者的设计能力，同样可以如法泡制。不断地加新的功能，新的需求。看看面试者的思路，想法，分析的方法，和你的讨论是否流畅，说没说在点上，思想清不清晰，会应用什么样的知识，他在设计这个系统时的经验是会是什么样的，面对不断的修改和越来越复杂的需求，他的设计是否还是那么好？
+</p>
+
+<p>
+当然，因为时间比较短，所以，你不能出太复杂的问题，这需要你精心设计一些精制的有代表性的问题。
+</p>
+
+<p>
+比如我一个朋友在回答什么是异步的问题时，举例说明了异步调用就是不能处理完就返回，并且需要传递一个回调函数给调用方以便完成后回调通知结果。这样的回答并没有错，但是这并不符合面试官心里想要的答案，面试官对此并不满意，进而认为我这个朋友还需要去多读读书。
+</p>
+
+<hr>
+</div>
+</div>
+
+<div id="outline-container-参考资料" class="outline-2">
+<h2 id="参考资料">参考资料</h2>
+<div class="outline-text-2" id="text-参考资料">
+<p>
+[1] 程序员软件开发 面试常见问题
+<a href="http://blog.163.com/wenxianliang08@126/blog/static/83583263201132401541805/">http://blog.163.com/wenxianliang08@126/blog/static/83583263201132401541805/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-27 Wed 16:27</p>
+</div>
+</body>
+</html>

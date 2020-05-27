@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-27 Wed 16:27 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互联网市场为什么涨薪这么快？目前的市场供需情况？</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">互联网市场为什么涨薪这么快？目前的市场供需情况？</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org91c7d67">互联网市场为什么涨薪这么快？目前的市场供需情况？</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org91c7d67" class="outline-2">
+<h2 id="org91c7d67">互联网市场为什么涨薪这么快？目前的市场供需情况？</h2>
+<div class="outline-text-2" id="text-org91c7d67">
+<p>
+价格围绕价值波动,影响波动的因素主要是供需关系。那码农的薪水取决于什么？自然取决于供给和需求。那整个码农市场供给几多？需求几多？这话题太大，估计只有教育部和人社部能回答。在此，我取个巧，建个简单的模型。我的建模思路很简单，社招不管怎么折腾，都是在现有的人才池子里做文章。我们只需看看新增需求和新增供给就行了，也就是说-&#x2013;&#x2014;看看校招情况就行了。（社招的情况，我们下周以移动互联网行业为例来单独做个个案分析）
+</p>
+
+<p>
+（一）、每年的码农都流去哪了？
+</p>
+
+<p>
+最优质的码农都去 BAT 了？错，纯论薪水，BAT 最多只能算是 3、4 等的 offer。
+IT 民工的毕业去处有哪几类？就员工来说，我觉得按照待遇，大概可以分为以下几类：国外的 offer、国内互联网顶级 offer（主要是游戏公司）、银行 IT、互联网、华为、运营商、IT 软硬件外企、其它通信设备商、IT 软硬件内资公司。
+</p>
+
+<p>
+1、 最好的 offer 是哪？
+</p>
+
+<p>
+适合码农发展的，薪水也高的，当然是 Google、FB、Amazon、MS 等总部的了；另外，还有一些薪水也不错的，例如斯伦贝谢等跨领域的公司来大陆招人去海外工作的；HK 等也有很多投行的 IT 中心，来大陆招人去 HK、海外工作，这也算是很不错的 offer。这代表了哪批人？那批天才码农，或者综合素质很高的码农。这些公司，加起来每年在大陆会发几百个 offer。
+</p>
+
+<p>
+另，八卦一个：据说国内极客氛围很好的网易有道，是 Google、FB 非常喜欢的一个资源池。去了有道，可能等于打开了去国外的半个大门。我不知道这该是网易有道的荣耀还是悲伤。在有道，一堆高智商的码农没有像 360、去哪儿那样接地气。投了巨大力量做的有道搜索不得不改用 360 的资源。所幸，有道这两年开始务实、接地气起来。不知道过几年会成为另外一个接地气的本土卓越互联网公司，还是继续做大家去 Google、FB 的跳板。
+</p>
+
+<p>
+2、其次是哪？国内互联网的顶级 offer：
+</p>
+
+<p>
+例如网易、完美、盛大的 3、40W 的 offer（不是所有人都给这数，个别的），BAT 的 special
+offer，还包括 MS、Google 等外企中国区给的 special offer。这代表哪批人？代表了那批很优秀的码农，这批人，热爱编程也很聪明，国内互联网公司是大家很好的归宿。这里面实际有很多人也拿过美国的 offer，只是不想去而已。这个市场，每年几百个 offer 还是有的。
+</p>
+
+<p>
+3、再次是哪？BAT 普通 offer？NO，银行 IT 等。
+</p>
+
+<p>
+每到年底、年初，互联网公司总会迎来一拨校招的拒 offer、毁约高潮，为啥？因为各个银行软开、科技部等发 offer 了。同样素质的人，如果在银行，80%的概率税后收入比互联网的税前收入高。对，你没看错，就是人家税后比我们税前高。在大部分银行，转正后 1、2 年内税后超 20W 很常见，更不用说民生银行等高帅富了。一个是税后 20W，一个是税前 20W，高低立现。而且，人家还解决北京户口！@＃~
+</p>
+
+<p>
+这代表了哪批人？技术水平不错，综合能力也不错，但是不太想做一线开发、不是特别热爱编程的人，这些人一般会选择去银行。这批一年发多少 offer？北京的四大行，加上十几家中小银行、政策银行，一年差不多有 1、2k 人的需求。
+</p>
+
+<p>
+插播一下：大家觉得他们拿的挺多是不是？错！金融 IT 就该拿这个收入，甚至说，他们现在的收入还低了，国企对于 IT 还是不够重视，银行 IT 创造的价值远高于客户经理、高于柜员。看看光大证券的事情就知道了，图便宜，不自建 IT 团队，不花大价钱买 IT 服务。你以为高盛、摩根忽悠客户那么多钱，靠的只是销售和关系嘛?后台也很重要。但是，在国内的体制下，他们只能拿这么点。为什么这么说，暂且按下不表。回头第三部分，讲整个社会，讲整个大行业的时候再做分析。
+</p>
+
+<p>
+4、接下来：BAT 等主流公司的一般 offer
+</p>
+
+<p>
+BAT 三家一年就有 3、4K 人的校招量，360、新浪、网易（含有道）、搜狐（含搜狗、搜狐视频等）、完美、去哪儿等公司每家也有个上百的招聘量，也就是说，主流互联网公司每年得有个 5、6K 的新增码农需求量。这里面据说能给北京的高校发出 3、40%。这批人是哪批人？基础扎实，也很聪明，很努力，热爱编程的码农。她们可能不如 40W 的大牛们那么耀眼，但她们是各个公司最可靠的中坚力量。一个大公司，人力工作的关键就在于能招来多少这样的码农，并留住她们。这档 offer 一般在 20W 左右，360、有道、搜狗、阿里、去哪儿一般会多给点，百度、腾讯等一般会少给点。
+</p>
+
+<p>
+插播：
+</p>
+
+<p>
+这里面有种特别的 offer，就是体制内的互联网——人搜、盘古。前两年为什么那么多人去这两家？大家不就是图个户口，收入也还不错嘛，公司也还算行嘛。至于现在公司什么情况，很重要吗？干的不爽交了户口违约金接着跳嘛。有了户口，起码人家不用等两年后工作居住证下来再买房子，不用交孩子上学的赞助费，光看这两年房子涨的速度，也抵得上你在百度干个 5 年 10 年了。什么？你在这两家工作，但是毕业后没有立刻买房？我只能替你默哀下了。那你要了户口干吗。。。
+</p>
+
+<p>
+5、再往下是谁？是华为
+</p>
+
+<p>
+你看到的没错，我单独把华为当作一类跟行业平级的列出来，因为华为不招则以，一招就是 1W、2W 人地招，对市场的冲击太大。华为是中国最大的、最国际化的、最有竞争力的 IT 高科技企业，虽然我不喜欢华为的作风，虽然华为坑过我的猎头费，不过不妨碍我们对他的认可。在这里，我要强调的是，论应届生收入，华为只能甘居前几类人的后面，但是同样素质的人，如果你能适应华为的文化，那么工作 5、6 年后，前面的所有人一般会被华为甩的连影子都看不见。一个素质中规中矩的人，如果愿意在华为拼搏，去海外工作，4、5年下来，工资+分红+奖金，4、50W 是个很轻松的事情。在华为，80 后的国家首代已经很常见了。百万年薪，在互联网这边真心算个高收入，在华为真心不算啥，全国几十个办事处，哪个办事处没几个这样人的？全球上百个代表处，哪个代表处没有几个这样的人？每次有华为海外的人咨询我跳槽的事情，我第一句都问降薪 5、60%考虑吗？为什么华为能给这么多钱？这个我们按下不表，在第三部分分析行业的时候再讲。至于华为招多少人，那看心情，2011 年是 2W 人？offer 情况我就不说了。
+</p>
+
+<p>
+6、再往下是运营商及其它国企。
+</p>
+
+<p>
+北京这边，CMCC、CT、CU 三家的北分、研究院、设计院，加起来大概 2K 人左右。这些公司基本都解决户口，薪水基本都是 15_{20W（折合到手 10}15W 左右）。不过，友情提醒，运营商一直在降薪，从未停止过。最近移动都被抓了快 10 个省公司老总了，前几天广东移动的老总也被抓了，为啥？按集团某领导的说法：十年了，一直在降薪，能不出事嘛。。。运营商为什么一直降薪？下次再说。
+</p>
+
+<p>
+另外，有大量的军工企业，我不了解招聘规模、收入，不便评价，但是，北航每年大把的人放弃互联网 offer 转去航天五院等应该不仅仅是因为对方解决户口。
+</p>
+
+<p>
+7、再其次：IT 外资公司、通信设备商、互联网公司的二等 offer、部分国内软家公司：
+</p>
+
+<p>
+年薪 10_{15W 左右，月薪 8K}1W。爱立信、IBM、O 记、阿朗、HP 等，大批的互联网公司就不说了。大部分外企，例如 NSN、索尼、阿朗这种赶上总部要裁掉欧洲、美国、日本哪个产品线了，也会转移几十几百个职位到中国来，否则万年不招人。另外用友、金蝶、亚信等，前几年年景好的时候，收入也不算差（起薪不高，奖金多）。这批公司中，很多公司的性价比比互联网的更好。为什么？因为工作轻松+户口。首先，传统行业嘛，没那么多竞争，就那么几家公司。其次户口指标一般比互联网公司多。为什么？因为她们大多是销售型企业，给北京的纳税多，像用友，2012 年的销售额也有 42 亿，这是什么概念？就是除了 BAT、盛大、网易、搜狐、当当（这是赚了电商的优势），其它的公司收入都比用友少，自然纳税也少多了。因此很多技术不错的、综合素质不错的，也经常会选择这类公司。其实每天 9、10 点上班，5、6点下班，没事喝个下午茶，聊聊 QQ 也挺好的。这批 offer 有多少？一年上万个？
+</p>
+
+<p>
+8、再最后，是那些做软件外包、给政府、央企做项目的公司：
+</p>
+
+<p>
+中软、东软、海辉、软通、各地的中小型为政府、央企做项目的公司等，这个基本 4、5K 起了。这每年的量海的去了，几万几十万地招。
+</p>
+
+<p>
+（二）、靠谱的码农到底有多少？
+</p>
+
+<p>
+中国每年有多少新增码农？据热心网友统计，23%的大学生都是学计算机、通信、电子相关专业的。也就是说，全国每年有 160 万新增供给。可实际呢？合格的码农呢？传百度去年应届生没招满，为什么？质量的问题，新增码农中靠谱的码农数量极少。
+</p>
+
+<p>
+1、 靠谱码农多难找？
+</p>
+
+<p>
+我们不讲 BAT 的需求，以华为为例吧，对比 BAT，华为的要求算低了。如果一个人大学的课程都认真学了，能考个 70 分，实验课就算抄了也能看懂别人的代码，这样的人在技术上就可以满足华为的要求了。可就这样，在很多 211 院校，华为的 offer 就是一等一的 offer 了，一个班也就个别人能拿到。
+</p>
+
+<p>
+2、 靠谱码农占学生中的多少？
+</p>
+
+<p>
+那到底靠谱码农占学生比例多少？我们提升一下要求，以 BAT 为标准，举北邮为例：刨去清北，北邮应该是北京最大的靠谱码农池子了。（北航、中科院等院校码农素质也很不错，只是人没有北邮多，因此以北邮做代表举例。）那北邮有多少比例的靠谱码农呢？北邮每年约 3000 名本硕毕业生找工作（估算，抛去考研出国的），其中约 2000 人是计算机、通信、电子相关专业，估计其中有 1000_{1500 人跟计算机相关的。这 1000}1500 人里可能 7、80%的都投过百度，有多少人能拿到 offer 呢？据说是 3_{400 个。也就是说，北邮的学生，只有 30}50%的比例可以拿到百度的 offer。上述数据只是估算，欢迎百度的亲帮忙修正下数据。
+</p>
+
+<p>
+这让我想起来去年一个百度的哥哥调侃校招，在北京招聘的时候，抱怨现在的应届生素质怎么一年不如一年。等到了外地，才发现，哦，北京的学生质量还挺好的。
+</p>
+
+<p>
+3、新增码农的新增池子有多大？
+</p>
+
+<p>
+以北京地区为例，北京每年，清北、北邮、中科院、北航、北交、北理、北科等几所最主要的池子加起来，计算机、通信相关专业毕业要找工作的，也就 8、9 千人，这里面就算有 50%的靠谱码农，也就 4、5K 人。这还是往高里说的。但你看看我们上文列的招聘需求？虽然不是只有小部分 offer 发给北京的学生了，但是北京市场的靠谱码农显然是供不应求的。另外，入学的学生每年都在减少，我国高校的招生规模已经连续 5 年下降了，而且这个学生人数减少的趋势会一直继续下去。。。
+</p>
+
+<p>
+大家算是明白招人有多难了吧。
+</p>
+
+<p>
+4、都谁在跟互联网抢人？
+</p>
+
+<p>
+其实上文已经说的很透彻了，这里再多说两句。
+</p>
+
+<p>
+A、 20W 的童鞋都在犹豫去哪？
+</p>
+
+<p>
+这档童鞋技术都不错，互联网公司给 20W，嗯，不少了。但是大部分互联网公司不解决户口，或者说，20W 的这档童鞋在大部分互联网公司没有肯定的把握拿到户口。但是，这批童鞋在很多 IT 公司，会被当作绝对主力看待，如果愿意，公司会百分百愿意帮给你在公司的户口指标队伍中排前列。而且，相对而言，IT 公司更为轻松一些，性价比更高一些。因此，很多通信、电子的童鞋会放弃互联网的 offer，转投其它行业。
+</p>
+
+<p>
+B、15W 左右的人在犹豫去哪？
+</p>
+
+<p>
+这档的同学，大多是基础也挺不错的，但是对于编程没太多热爱的童鞋，她们做互联网、做通信、做 IT 其实差别不是很大。通信、IT 相对稳定、轻松，而且运营商还是甲方，工作心态不同。而且，运营商有户口。且部分运营商的北分，以及部分研究院的收入并不低，税后 15W 还是有的，比 20W 的税前还略高一些。在这种情况下，大家何苦一定要去互联网呢？能给户口吗？钱多很多吗？
+</p>
+
+<p>
+C、内杠啊，内杠阿
+</p>
+
+<p>
+满足要求的码农就那么点，各家互联网公司还不往死里面抢。哪个码农手里不是几个 offer？在这力，说个八卦。听说，只是听说，BAT 的某司今年校招非常重视，量很给力，薪水一贯地给力。考虑到某司各个产品线业务量不断翻倍，新业务不断，看起来都很有前景，风头正旺。而 BAT 的另外两家，这两年发展有点缓慢，校招的薪水如果再跟不上，那招聘堪忧阿。
+</p>
+
+<p>
+综上：
+</p>
+
+<p>
+因此各位老板、用人部门也别老苛求招聘 HR 们，别老说今年的简历质量不行，你们 HR 做的不够。事实是，码农的量一年比一年少。有本事多加点钱，多申请几个户口指标，多申请几个工作证的指标。否则你们拿什么跟银行 IT、运营商抢人，拿什么跟友商抢人？
+</p>
+
+<p>
+作者：魏小康 xiaokang
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-27 Wed 16:27</p>
+</div>
+</body>
+</html>

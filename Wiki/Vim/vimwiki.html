@@ -4,7 +4,7 @@
 <!-- 2020-05-27 Wed 16:27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Other</title>
+<title>vimwiki</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,85 +229,185 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Other</h1>
+<h1 class="title">vimwiki</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4061ab0">How to migrate system to new HDD</a></li>
-<li><a href="#orgd601baf">List of maintained packages</a></li>
+<li><a href="#org7908723">常用命令</a></li>
+<li><a href="#org057d1c4">基本语法</a></li>
+<li><a href="#org48cfa61">特殊占位符</a></li>
+<li><a href="#orgf8905ee">快捷键</a></li>
+<li><a href="#orgd598a05">vimwiki 使用体会</a>
+<ul>
+<li><a href="#org8cc99ec">文件命名</a></li>
+<li><a href="#orgd4e1707">文档归类</a></li>
+<li><a href="#org84ba174">日期与时间戳</a></li>
+<li><a href="#org23bef55">写作方法</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4061ab0" class="outline-2">
-<h2 id="org4061ab0">How to migrate system to new HDD</h2>
-<div class="outline-text-2" id="text-org4061ab0">
-<div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/bash</span>
+<div id="outline-container-org7908723" class="outline-2">
+<h2 id="org7908723">常用命令</h2>
+<div class="outline-text-2" id="text-org7908723">
+<ul class="org-ul">
+<li>:VimWiki2HTML：将当前页面编译成 HTML 文件</li>
+<li>:VimWikiAll2HTML：将本 wiki 所有源文件都编译成 HTML 文件（如果文件很多，将花费较长时间）</li>
+<li>:VimWikiGoTo：转到指定的 wiki 页面</li>
+<li>:VimWikiIndex：转到 wiki 首页</li>
+<li>:VimWikiSearch
+/Ruchee/：搜索指定关键字，:cnext 跳到下一个，:cprevious 跳到上一个</li>
+<li>:VimWikiTable 3 2：插入一个 2 行 3 列的表格。注意，列数在前，行数在后</li>
+<li>:VimWikiDeleteLink：删除当前页面</li>
+<li><leader>wto 为当前页面生成 table of contents</li>
+</ul>
 
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">1.boot from live CD, part the new HDD, mount original HDD and new HDD</span>
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">2.migrate rootfs</span>
-    <span style="color: #5B6268;">#</span><span style="color: #98be65; font-weight: bold;">NOTE:</span><span style="color: #5B6268;"> This will flush the console, and you can't see the error.</span>
-    <span style="color: #5B6268;">#</span><span style="color: #98be65; font-weight: bold;">NOTE:</span><span style="color: #5B6268;"> -a = archive mode, -v = -vebose, -h = -human-readable, -P = same as --partial --progress, -H = --hard-links, -A = --acls, -X = --xattrs, -x = --one-file-system.</span>
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">--partial &#40664;&#35748;&#24773;&#20917;&#19979;&#65292;&#22914;&#26524;&#20256;&#36755;&#20013;&#26029;&#65292;rsync&#23558;&#21024;&#38500;&#20219;&#20309;&#37096;&#20998;&#20256;&#36755;&#30340;&#25991;&#20214;&#12290;&#22312;&#26576;&#20123;&#24773;&#20917;&#19979;&#65292;&#26356;&#38656;&#35201;&#20445;&#30041;&#37096;&#20998;&#20256;&#36755;&#30340;&#25991;&#20214;&#12290;&#20351;&#29992; --partial&#36873;&#39033;&#21578;&#35785;rsync&#20445;&#30041;&#37096;&#20998;&#25991;&#20214;&#65292;&#36825;&#24212;&#35813;&#20351;&#25991;&#20214;&#30340;&#20854;&#20313;&#37096;&#20998;&#30340;&#21518;&#32493;&#20256;&#36755;&#26356;&#24555;; --process &#26174;&#31034;&#20256;&#36755;&#36827;&#24230;</span>
-    <span style="color: #5B6268;">#</span><span style="color: #ff6c6b; font-weight: bold;">FIXME:</span><span style="color: #5B6268;"> option -q will suppress non-error messages, maybe conflict with -P</span>
-    rsync -avhPHAXx --exclude=<span style="color: #51afef;">{</span>/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found<span style="color: #51afef;">}</span> old_disk new_disk
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">3.migrate the boot partition</span>
-    rsync -avhPHAXx --exclude=<span style="color: #51afef;">{</span>/lost+found<span style="color: #51afef;">}</span> old_boot new_boot
-    <span style="color: #5B6268;">#</span><span style="color: #98be65; font-weight: bold;">NOTE:</span><span style="color: #5B6268;"> diff -r src_dir dest_dir, may help check the file consistence</span>
+<p>
+更多命令使用方法请参考 Vimwiki 自带的帮助文件，使用命令:help VimWiki
+</p>
+</div>
+</div>
 
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">4.mount necessary system partition and chroot in new HDD</span>
-    mount --types proc /proc /mnt/new_rootfs/proc
-    mount --rbind /sys /mnt/new_rootfs/sys
-    mount --make-rslave /mnt/new_rootfs/sys
-    mount --rbind /dev /mnt/new_rootfs/dev
-    mount --make-rslave /mnt/new_rootfs/dev
+<div id="outline-container-org057d1c4" class="outline-2">
+<h2 id="org057d1c4">基本语法</h2>
+<div class="outline-text-2" id="text-org057d1c4">
+<pre class="example">
+    = 一级标题 =
+    == 二级标题 ==
+    === 三级标题 ===
+    此次类推。
 
-    chroot /mnt/new_disk /bin/bash
-    <span style="color: #c678dd;">source</span> /etc/profile
-    <span style="color: #c678dd;">export</span> <span style="color: #dcaeea;">PS1</span>=<span style="color: #98be65;">"(chroot) </span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">PS1</span><span style="color: #98be65;">"</span>
+    当标题前面有空白时，标题文本居中对齐。
+           = 我是居中的标题 =
 
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">5.install grub and </span><span style="color: #5B6268;">make</span><span style="color: #5B6268;"> new grub config file</span>
-    grub-install --recheck /dev/sdX
-    grub-mkconfig -o /boot/grub/grub.cfg
+    *粗体*  _斜体_  ~~删除线~~   `Some Code 代码`
+
+    注意 这几个针对文本格式的标签，都要求左右留有空白。
+    请注意你的代码高亮，一般来说，有了相应的高亮，你用的wiki标签才生效。
+
+    ^上^标  ,,下,,标
+
+        四个空格缩进的内容会被转成blockquote
+
+    NOTE:已废弃
+    {{ { class="brush:php"
+    这中间的内容会被放到一个 pre 里，适合贴代码。
+    上面的 class 是可选的，一般用来安排代码高亮。
+    事实上，这一块代码展示就是放在了一个 pre 里。
+    }} }
+
+    WikiItem  大写开头的驼峰英文会被自动当作一个维基词条，并添加链接
+    [[Wiki Item]]  这是手动建立维基词条的方式
+    [[wiki item|description]]  输出HTML时显示description，链到 wiki item
+    http://ktmud.com/  外部URL会被自动转换成链接
+    [http://ktmud.com Ktmud]  带文字的外链
+    [images/hello.jpg] 输出 &lt;img src="images/hello.jpg" /&gt;
+    [[images/hello.jpg]] 输出图片，并链向图片地址
+
+    * 无序列表 条目一
+    * 无序列表 条目二
+      - 子列表 条目一
+      - 自列表 条目二
+
+    # 有序列表 条目一
+    # 有序列表 条目二
 </pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgd601baf" class="outline-2">
-<h2 id="orgd601baf">List of maintained packages</h2>
-<div class="outline-text-2" id="text-orgd601baf">
-<p>
-in gig:
-</p>
 
 <ul class="org-ul">
-<li>app-misc/tusk</li>
-<li>app-dicts/translator</li>
-<li>net-irc/ircclound-desktop</li>
+<li>和 - 是等价的，后面必须跟一个空格 <i>参考</i>:h vimwiki-syntax</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org48cfa61" class="outline-2">
+<h2 id="org48cfa61">特殊占位符</h2>
+<div class="outline-text-2" id="text-org48cfa61">
+<p>
+在 wiki 条目中使用以下占位符，能对生成的 HTML 文件做一些特殊的处理。
+</p>
+
+<p>
+%% * %toc 自动生成的目录 * %title 指定 HTML 文档的 title，建议放到文档最末尾。如果不指定，title 就是文件名 * %nohtml 告诉 vimwiki 不为某条目生成 HTML 文件。即使你在该条目打开时为它单独执行 :Vimwiki2HTML ，也不会生成。 * $template * %date
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf8905ee" class="outline-2">
+<h2 id="orgf8905ee">快捷键</h2>
+<div class="outline-text-2" id="text-orgf8905ee">
+<p>
+快捷键总览
+</p>
+<ul class="org-ul">
+<li><leader>ww 在当前窗口打开维基首页</li>
+<li><leader>wt 在新 tab 打开维基首页</li>
+<li><leader>wi 打开日至索引</li>
+<li><leader>w<leader>w 打开/新建当天日记</li>
+<li><leader>w<keader>t 在新 tab 打开/新建当天日记</li>
+<li><leader>ws 选择维基项目（详见下面的“多个维基项目”一节）</li>
 </ul>
 
 <p>
-in guru:
+编辑时的按键
 </p>
-
 <ul class="org-ul">
-<li>app-misc/tealdeer</li>
-<li>dev-vcs/git-extras</li>
-<li>sys-kernel/xow</li>
-<li>x11-misc/i3lock-color</li>
-<li>x11-misc/betterlockscreen</li>
+<li>尚未建立的词条会被显示为红色（或其他你的 Vim 语法高亮定义的错误颜色），在词条上敲回车键，可以编辑这个词条。点击 Shift-回车， 在新的分割窗口编辑该词条。编辑好以后点击退格（Backspace）键，可以返回链入页</li>
+<li>使用 Tab 键，可以跳到下一个维基词条或链接，使用 Shift-Tab 跳到上一个</li>
+<li>插入模式下使用 Shift-Enter，插入 <code>&lt;br&gt;</code> 并换行</li>
+<li>在标题上点击 - 和 = （也就是 - 和 + ），可以分表提升和降低标题层级</li>
 </ul>
 
 <p>
-in local:
+另有条目管理相关的快捷键 <leader>wd 和 <leader>wr ，分表代表删除和重命名当前条目。其中重命名条目很强大， 还能更改所有其他条目内引用了该条目的链接。 重命名之后别忘了重新生成所有条目的 HTML。
 </p>
+</div>
+</div>
 
-<ul class="org-ul">
-<li>dev-util/StarUML</li>
-</ul>
+<div id="outline-container-orgd598a05" class="outline-2">
+<h2 id="orgd598a05">vimwiki 使用体会</h2>
+<div class="outline-text-2" id="text-orgd598a05">
+<p>
+摘自<a href="http://www.berlinix.com/vim/VimWiki.php">http://www.berlinix.com/vim/VimWiki.php</a>
+</p>
+</div>
+
+<div id="outline-container-org8cc99ec" class="outline-3">
+<h3 id="org8cc99ec">文件命名</h3>
+<div class="outline-text-3" id="text-org8cc99ec">
+<p>
+出于编辑效率考虑，我没有在 wiki 目录下划分目录。区分不同类别的 wiki，用文件名完成，例如 Linux 类别的文档 linux_xxx.wiki， Apache 类别的文档 apache_xxx.wiki，如果还有子类，继续用 _ 串联起来。文件名一定要规范，否则等到你需要用脚本批量处理 wiki 文件时，麻烦就纷至沓来。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd4e1707" class="outline-3">
+<h3 id="orgd4e1707">文档归类</h3>
+<div class="outline-text-3" id="text-orgd4e1707">
+<p>
+文件划分的另一个问题是，因为 VimWiki 创建文件过于方便，所以可能创建很多小文档，其中又没有太多内容（我的 wiki 就有这个严重毛病，在克服）。 最好是把同类知识放入一个文档，直到该文档大得维护/引用不便后，再去拆分。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84ba174" class="outline-3">
+<h3 id="org84ba174">日期与时间戳</h3>
+<div class="outline-text-3" id="text-org84ba174">
+<p>
+日期。把 VimWiki 当作知识管理工具，通常无需为文档注明日期，因为需要在一份文档上进行数十，甚至上百次修改（如果你经常更新知识库的话）；如果要输出 HTML，供人阅读，那最好也通过脚本自动为文档添加日期（最后修改时间）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org23bef55" class="outline-3">
+<h3 id="org23bef55">写作方法</h3>
+<div class="outline-text-3" id="text-org23bef55">
+<p>
+写作。看到的、实践过的、学习的、经历过的都可以记录在案，供日后快速恢复思路、供人参考之需。有句话说不要在一个地方摔倒两次， 那么通过日积月累的写作、归纳，可以在一个小知识点上进行巨大的扩展，打通不同领域的知识。特别是当前人心浮躁，知识碎片过多，通过 wiki 式的不懈记录， 可以积小流而成江海，积跬步而至千里。
+</p>
+</div>
 </div>
 </div>
 </div>
