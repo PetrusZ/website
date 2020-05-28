@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-05-27 Wed 18:16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>malloc free函数的实现.org</title>
+<title>malloc free函数的实现</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,7 +229,7 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">malloc free函数的实现.org</h1>
+<h1 class="title">malloc free函数的实现</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
@@ -249,10 +249,11 @@
 malloc 管理的空间不一定是连续的，因为程序中的某些地方可能不通过 malloc 调用申请空间。所以空闲存储空间是以空闲块链表的方式组织的，每个块包含一个长度、一个指向下一块的指针以及一个指向自身存储空间的指针。并且按张存储地址的升序组织，最后一块指向第一块，形成一个循环链表。(K&amp;R 第二版的中文版居然将“in use, owned by malloc”译为不是由 malloc 控制的空间，将“not owned by malloc”译为空闲链表，译者是四级没过吗？)
 </p>
 
-<p>
-<a href="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-08-101021%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">[[http://codeplayer.org/wp-content/uploads/2013/12/2013-12-08-101021的屏幕截图.png</a>]]
-(图片丢失)
+
+<div class="figure">
+<p><img src="../pics/Blog/malloc函数实现原理-block分裂.png" alt="malloc函数实现原理-block分裂.png">
 </p>
+</div>
 
 <p>
 当有申请请求时，malloc 使用首次适配算法扫描空闲块链表，找到第一个足够大的块时就返回。首先搜索空闲块链表，以找到一个能够插入空闲块的合适位置。除了首次适配算法之外，还有最佳适配算法等。但是最佳适配算法比首次适配算法更加复杂，同时因为每次调用最佳适配算法都要搜索整个链表，所以它比首次适配算法慢，而且还会浪费更多内存，因为它会产生大量无用的小空闲区。
@@ -290,7 +291,6 @@ malloc 管理的空间不一定是连续的，因为程序中的某些地方可�
 </p>
 
 <p>
-<a href="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-08-104008%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">[[http://codeplayer.org/wp-content/uploads/2013/12/2013-12-08-104008的屏幕截图.png</a>]]
 （图片丢失）
 </p>
 
@@ -432,14 +432,14 @@ free 函数从 freep 指向的地址开始，逐个扫描空闲块链表，寻�
 <hr>
 
 <p>
-参考：《C程序设计语言》(K&amp;R)
+参考：《C 程序设计语言》(K&amp;R)
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-05-27 Wed 18:16</p>
 </div>
 </body>
 </html>
