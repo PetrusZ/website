@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-06-20 Sat 12:31 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C++ Primer 第 III部分 类设计者的工具</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">C++ Primer 第 III部分 类设计者的工具</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0831bb0">第 13 章 拷贝控制</a>
+<ul>
+<li><a href="#org30a30b0">13.1 拷贝、赋值与销毁</a>
+<ul>
+<li><a href="#org821b3eb">13.1.1 拷贝构造函数</a>
+<ul>
+<li><a href="#org356c994">合成构造函数</a></li>
+<li><a href="#orga2d7139">拷贝初始化</a></li>
+<li><a href="#orgd14e9cb">参数和返回值</a></li>
+<li><a href="#org6629dbd">拷贝初始化的限制</a></li>
+<li><a href="#org9438882">编译器可以绕过拷贝构造函数</a></li>
+</ul>
+</li>
+<li><a href="#org4107955">13.1.2 拷贝赋值运算符</a>
+<ul>
+<li><a href="#orga4b64b2">重载赋值运算符</a></li>
+<li><a href="#org5b5e178">合成拷贝赋值运算符</a></li>
+</ul>
+</li>
+<li><a href="#orgb424241">13.1.3 析构函数</a>
+<ul>
+<li><a href="#orgbc7a118">析构函数完成什么工作</a></li>
+<li><a href="#org1f82646">什么时候会调用析构函数</a></li>
+<li><a href="#org9cfe538">合成析构函数</a></li>
+</ul>
+</li>
+<li><a href="#org4015a5d">13.1.4 三/五法则</a>
+<ul>
+<li><a href="#orge534101">需要析构函数的类也需要拷贝和赋值操作</a></li>
+<li><a href="#org0db02ec">需要拷贝操作的类也需要赋值操作，反之亦然</a></li>
+</ul>
+</li>
+<li><a href="#orgce8a93e">13.1.5 使用=default</a></li>
+<li><a href="#orgdad3238">13.1.6 阻止拷贝</a>
+<ul>
+<li><a href="#orgf8a16b2">定义删除的函数</a></li>
+<li><a href="#orgcd45330">析构函数不能是删除的成员</a></li>
+<li><a href="#orgea46332">合成的拷贝哦嗯直成员可能是删除的</a></li>
+<li><a href="#org750a025">private 拷贝控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4059d25">13.2 拷贝控制和资源管理</a>
+<ul>
+<li><a href="#org04f6b60">13.2.1 行为像值的类</a>
+<ul>
+<li><a href="#org0917205">类值拷贝赋值运算符</a></li>
+</ul>
+</li>
+<li><a href="#org14c1140">13.2.2 定义行为像指针的类</a>
+<ul>
+<li><a href="#orge0307ff">引用计数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4248a30">13.3 交换操作</a>
+<ul>
+<li><a href="#orga27014b">编写我们自己的 swap 函数</a></li>
+<li><a href="#orge80b6f3">swap 函数应该调用 swap，而不是 std::swap</a></li>
+<li><a href="#org3a7fbfd">在赋值运算符中使用 swap</a></li>
+</ul>
+</li>
+<li><a href="#org89bc40d">13.4 拷贝控制示例</a></li>
+<li><a href="#org1c6f9b5">13.6 对象移动</a>
+<ul>
+<li><a href="#org5f75c66">13.6.1 右值引用</a>
+<ul>
+<li><a href="#org380a4d4">左值持久；右值短暂</a></li>
+<li><a href="#org0a1ddb2">变量是左值</a></li>
+<li><a href="#org446033d">标准库 move 函数</a></li>
+</ul>
+</li>
+<li><a href="#org17ec99d">13.6.2 移动构造函数和移动赋值运算符</a>
+<ul>
+<li><a href="#org641751e">移动操作、标准库容器和异常</a></li>
+<li><a href="#orge97db37">移动赋值运算符</a></li>
+<li><a href="#org40c578e">移后源对象必须可析构</a></li>
+<li><a href="#org40f2a80">合成的移动操作</a></li>
+<li><a href="#org9cf1cb9">移动右值，拷贝左值……</a></li>
+<li><a href="#orgc32f9f5">……但如果没有移动构造函数，右值也被拷贝</a></li>
+<li><a href="#orge95d5e6">拷贝并交换赋值运算符和移动操作</a></li>
+<li><a href="#org6be071d">移动迭代器</a></li>
+</ul>
+</li>
+<li><a href="#orgd7fdd8f">13.6.3 右值引用和成员函数</a>
+<ul>
+<li><a href="#org963f426">右值和左值引用成员函数</a></li>
+<li><a href="#org20c8db7">重载和引用函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8a94e53">第 14 章 重载运算与类型转换</a>
+<ul>
+<li><a href="#org3c5ba35">14.1 基本概念</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org6a62377">某些运算符不应该被重载</a></li>
+<li><a href="#orgc45a224">使用内置类型一直的含义</a></li>
+<li><a href="#org104331f">选择作为成员或者非成员函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8232ed4">14.2 输入和输出运算符</a>
+<ul>
+<li><a href="#orgb626611">14.2.1 重载输出运算符&lt;&lt;</a>
+<ul>
+<li><a href="#org201e316">输出运算符尽量减少格式化操作</a></li>
+<li><a href="#org446b0bc">输入输出运算符必须是非成员函数</a></li>
+</ul>
+</li>
+<li><a href="#orgef5cb32">14.2.2 重载输入运算符&gt;&gt;</a>
+<ul>
+<li><a href="#org0784ab3">输入时的错误</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgacb73fd">14.3 算术和关系运算符</a>
+<ul>
+<li><a href="#orgdd7770b">14.3.1 相等运算符</a></li>
+<li><a href="#org3ae6724">14.3.2 关系运算符</a></li>
+</ul>
+</li>
+<li><a href="#org38df6e7">14.4 赋值运算符</a>
+<ul>
+<li><a href="#orgd593d9e">复合赋值运算符</a></li>
+</ul>
+</li>
+<li><a href="#org82fef0f">14.5 下标运算符</a></li>
+<li><a href="#org37c30bb">14.6 递增和递减运算符</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orge226ab7">定义前置递增/递减运算符</a></li>
+<li><a href="#org914fc5f">区分前置和后置运算符</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org65a98d4">14.7 成员访问运算符</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org9714a2b">对箭头运算符返回值的限定</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4e7f399">14.8 函数调用运算符</a>
+<ul>
+<li><a href="#org0ec4b97">14.8.1 lambda 是函数对象</a>
+<ul>
+<li><a href="#org272a31d">表示 lambda 及相应捕获行为的类</a></li>
+</ul>
+</li>
+<li><a href="#org4ab3307">14.8.2 标准库定义的函数对象</a>
+<ul>
+<li><a href="#org42e2e79">在算法中使用标准库函数对象</a></li>
+</ul>
+</li>
+<li><a href="#org1e1aee9">14.8.3 可调用对象与 function</a>
+<ul>
+<li><a href="#org61d77bf">不同类型可能具有相同的调用形式</a></li>
+<li><a href="#org6130938">标准库 function 类型</a></li>
+<li><a href="#org0f93e8a">重载的函数与 function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5eb9de1">14.9 重载、类型转换与运算符</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0831bb0" class="outline-2">
+<h2 id="org0831bb0">第 13 章 拷贝控制</h2>
+<div class="outline-text-2" id="text-org0831bb0">
+<p>
+当定义一个类时，我们显示地或隐士地指定在此类型的对象拷贝、移动、赋值和销毁时做什么。一个类通过定义五种特殊的成员函数来控制这些操作，包括： <b>拷贝构造函数</b> 、 <b>拷贝赋值运算符</b> 、 <b>移动构造函数</b> 、 <b>移动赋值运算符</b> 、 <b>析构函数</b> 。拷贝和移动构造函数定义了当用同类型的另一个对象初始化本对象时做什么。拷贝和移动赋值运算符定义了讲一个对象赋予同类型的另一个对象时做什么。析构函数定义了当此类型对象销毁时做什么。我们称这些操作为 <b>拷贝控制操作</b> 。
+</p>
+</div>
+<div id="outline-container-org30a30b0" class="outline-3">
+<h3 id="org30a30b0">13.1 拷贝、赋值与销毁</h3>
+<div class="outline-text-3" id="text-org30a30b0">
+</div>
+<div id="outline-container-org821b3eb" class="outline-4">
+<h4 id="org821b3eb">13.1.1 拷贝构造函数</h4>
+<div class="outline-text-4" id="text-org821b3eb">
+<p>
+如果一个构造函数的第一个参数时自身类类型的引用，且任何额外参数都有默认值，则此构造函数时拷贝构造函数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Foo</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #c678dd;">Foo</span>();            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#40664;&#35748;&#26500;&#36896;&#20989;&#25968;</span>
+  <span style="color: #c678dd;">Foo</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Foo</span>&amp;);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25335;&#36125;&#26500;&#36896;&#20989;&#25968;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+</pre>
+</div>
+
+<p>
+虽然我们可以定义一个接受非 const 引用的拷贝构造函数，但此参数几乎总是一个 const 的引用。拷贝构造函数在几种情况下都会被隐式地使用。因此，拷贝构造函数通常不应是 explicit 的。
+</p>
+</div>
+<div id="outline-container-org356c994" class="outline-5">
+<h5 id="org356c994">合成构造函数</h5>
+<div class="outline-text-5" id="text-org356c994">
+<p>
+如果我们没有为一个类定义拷贝构造函数，编译器会为我们定义一个。与合成默认构造函数不同，即是我们定义了其他构造函数，编译器也会为我们合成一个拷贝构造函数。
+</p>
+
+<p>
+如我们将在 13.1.6 节中所见，对某些类来说， <b>合成拷贝构造函数</b> 用来阻止我们拷贝该类类型的对象。而一般情况，合成的拷贝构造函数会将其参数的成员逐个拷贝到正在创建的对象中。编译器从给定对象中依次将每个非 static 成员拷贝到正在创建的对象中。
+</p>
+
+<p>
+每个成员的类型决定它如何拷贝：对类类型的成员，会使用其拷贝构造函数来拷贝；内置类型的成员则直接拷贝。虽然我们不能拷贝一个数组，但合成构造函数会逐元素地拷贝一个数组类型的成员。如果数组元素是类类型，则使用元素的拷贝构造函数来进行拷贝。
+</p>
+</div>
+</div>
+<div id="outline-container-orga2d7139" class="outline-5">
+<h5 id="orga2d7139">拷贝初始化</h5>
+<div class="outline-text-5" id="text-orga2d7139">
+<p>
+当使用直接初始化时，我们实际上是要求编译器使用普通的函数匹配来算则与我们提供的参数最匹配的构造函数。当我们使用 <b>拷贝初始化</b> 时，我们要求编译器将右侧运算对象拷贝到正在创建的对象中，如果需要的话还要进行类型转换。
+</p>
+
+<p>
+拷贝初始化不仅在我们用=定义变量时会发生，在下列情况也会发生。
+</p>
+
+<ul class="org-ul">
+<li>将一个对象作为实参传递给一个非引用类型的形参</li>
+<li>从一个返回类型为非已用类型的函数返回一个对象</li>
+<li>用花括号列表初始化一个数组中的元素或一个聚合类中的成员（参见 7.5.5 节）</li>
+</ul>
+
+<p>
+某些类类型还会对它们所分配的对象使用拷贝初始化。例如，当我们初始化标准库容器或是调用其 insert 或 push 成员时，容器会对其元素进行拷贝初始化。与之相对的，用 emplace 成员创建的元素都进行直接初始化。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd14e9cb" class="outline-5">
+<h5 id="orgd14e9cb">参数和返回值</h5>
+<div class="outline-text-5" id="text-orgd14e9cb">
+<p>
+拷贝构造函数被用来初始化非引用类类型参数，这一特性解释了为什么拷贝构造函数自己的参数必须是引用类型。如果其参数不是引用类型，则调用永远也不会成功——为了调用拷贝构造函数，我们必须拷贝它的实参，但为了拷贝实参，我们又需要调用拷贝构造函数，如此无限循环。
+</p>
+</div>
+</div>
+<div id="outline-container-org6629dbd" class="outline-5">
+<h5 id="org6629dbd">拷贝初始化的限制</h5>
+<div class="outline-text-5" id="text-org6629dbd">
+<p>
+如前所述，如果我们使用的初始化值要求通过一个 explicit 的构造函数来进行类型转换，那么使用拷贝初始化还是直接初始化就不是无关紧要的了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v1</span>(<span style="color: #da8548; font-weight: bold;">10</span>);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#30452;&#25509;&#21021;&#22987;&#21270;</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v2</span> = <span style="color: #da8548; font-weight: bold;">10</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#25509;&#21463;&#22823;&#23567;&#21442;&#25968;&#30340;&#26500;&#36896;&#20989;&#25968;&#26159;explicit&#30340;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">f</span>(<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">f&#30340;&#21442;&#25968;&#36827;&#34892;&#25335;&#36125;&#21021;&#22987;&#21270;</span>
+f(<span style="color: #da8548; font-weight: bold;">10</span>);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#29992;&#19968;&#20010;explicit&#30340;&#26500;&#36896;&#20989;&#25968;&#25335;&#36125;&#19968;&#20010;&#23454;&#21442;</span>
+f(vector&lt;<span style="color: #ECBE7B;">int</span>&gt;(<span style="color: #da8548; font-weight: bold;">10</span>));    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#20174;&#19968;&#20010;int&#30452;&#25509;&#26500;&#36896;&#19968;&#20010;&#20020;&#26102;vector</span>
+</pre>
+</div>
+
+<p>
+直接初始化 v1 是合法的，但 看起来与之等价的拷贝初始化 v2 则是错误的，因为 vector 的接受单一大小参数的构造函数是 explicit 的。出于同样的原因，当传递一个实参或从函数返回一个值时，我们不能隐式使用一个 explicit 构造函数。如果我们希望使用一个 explicit 构造函数，就必须显式地使用，就像此代码中最后一样那样。
+</p>
+</div>
+</div>
+<div id="outline-container-org9438882" class="outline-5">
+<h5 id="org9438882">编译器可以绕过拷贝构造函数</h5>
+<div class="outline-text-5" id="text-org9438882">
+<p>
+在拷贝初始化过程中，编译器可以（但不是必须）跳过拷贝/移动构造函数，直接创建对象。即，编译器被允许将下面的代码
+</p>
+
+<p>
+<code>string null_book = "9-999-99999-9";   // 拷贝初始化</code>
+</p>
+
+<p>
+改写为
+</p>
+
+<p>
+<code>string null_book("9-999-99999-9");   // 编译器略过了拷贝构造函数</code>
+</p>
+
+<p>
+但是，即使编译器略过了拷贝/移动构造函数，但在这个程序点上，拷贝/移动构造函数必须是存在且可访问的（例如，不能是 private 的）。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4107955" class="outline-4">
+<h4 id="org4107955">13.1.2 拷贝赋值运算符</h4>
+<div class="outline-text-4" id="text-org4107955">
+<p>
+与拷贝构造函数一样，如果类未定义自己的拷贝赋值运算符，编译器会为它合成一个。
+</p>
+</div>
+<div id="outline-container-orga4b64b2" class="outline-5">
+<h5 id="orga4b64b2">重载赋值运算符</h5>
+<div class="outline-text-5" id="text-orga4b64b2">
+<p>
+重载运算符本质上是函数，其名字由 operator 关键字后接表示要定义的运算符的符号组成。因此，赋值运算符就是一个名为 operator=的函数。类似于任何其他函数，运算符函数也有一个返回类型和参数列表。
+</p>
+
+<p>
+重载运算符的参数表示运算符的运算对象。某些运算符，包括赋值运算符。必须定义为成员函数。如果一个一个运算符是一个成员函数，其左侧运算对象就绑定到隐式的 this 参数。对一个二元运算符，例如赋值运算符，其右侧运算对象作为显式参数传递。
+</p>
+
+<p>
+拷贝赋值运算符接受一个与其所在类相同类型的参数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Foo</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #ECBE7B;">Foo</span>&amp; <span style="color: #51afef;">operator</span><span style="color: #c678dd;">=</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Foo</span>&amp;);
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+</pre>
+</div>
+
+<p>
+为了与内置类型的赋值保持一直，赋值运算符通常返回一个指向其左侧运算对象的引用。另外值得注意的是，标准库通常要求保存在容器中的类型要具有赋值运算符，且其返回值是左侧运算对象的引用。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+赋值运算符通常应该返回一个指向其左侧运算对象的引用。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org5b5e178" class="outline-5">
+<h5 id="org5b5e178">合成拷贝赋值运算符</h5>
+<div class="outline-text-5" id="text-org5b5e178">
+<p>
+与处理拷贝构造函数一样，如果一个类未定义自己的拷贝赋值运算符，编译器会为它生成一个 <b>合成拷贝赋值运算符</b> 。类似于拷贝构造函数，对于某些类，合成拷贝赋值运算符来禁止该类型对象的赋值。如果拷贝赋值运算符并非出于此目的，它会将右侧运算对象的每个非 static 成员赋予左侧运算对象的对应成员，这一工作是通过成员类型的拷贝赋值运算符来完成的。对于数组类型的成员，逐个赋值数组元素。合成拷贝赋值运算符返回一个指向其左侧运算对象的引用。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb424241" class="outline-4">
+<h4 id="orgb424241">13.1.3 析构函数</h4>
+<div class="outline-text-4" id="text-orgb424241">
+<p>
+析构函数执行与构造函数相反的操作：构造函数初始化对象的非 static 数据成员，还可能做一些其他工作；析构函数释放对象使用的资源，并销毁对象的非 static 数据成员。
+</p>
+
+<p>
+析构函数是类的一个成员函数，名字由波浪号接类名构成。它没有返回值，也不接受参数。
+</p>
+</div>
+<div id="outline-container-orgbc7a118" class="outline-5">
+<h5 id="orgbc7a118">析构函数完成什么工作</h5>
+<div class="outline-text-5" id="text-orgbc7a118">
+<p>
+在一个构造函数中，成员的初始化是在函数体执行之前完成，且按照它们在类中出现的顺序进行初始化。在一个析构函数中，首先执行函数体，然后销毁成员。成员按初始化顺序的逆序销毁。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+隐式销毁一个内置指针类型的成员不会 delete 它所指向的对象。
+</p>
+</blockquote>
+
+<p>
+与普通指针不同，智能指针是类类型，所以具有析构函数。因此，与普通指针不同，智能指针成员在析构阶段会被自动销毁。
+</p>
+</div>
+</div>
+<div id="outline-container-org1f82646" class="outline-5">
+<h5 id="org1f82646">什么时候会调用析构函数</h5>
+<div class="outline-text-5" id="text-org1f82646">
+<p>
+无论何时一个对象被销毁，就会自动调用其析构函数：
+</p>
+<ul class="org-ul">
+<li>当变量在离开其作用域时被销毁。</li>
+<li>当一个对象被销毁时，其成员被销毁。</li>
+<li>容器（无论是标准容器还是数组）被销毁时，其元素被销毁。</li>
+<li>对于动态分配的对象，当对指向它的指针应用 delete 运算符时被销毁</li>
+<li>对于临时对象，当创建它的完整表达式结束时被销毁</li>
+</ul>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当指向一个对象的引用或指针离开作用域时，析构函数不会执行。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org9cfe538" class="outline-5">
+<h5 id="org9cfe538">合成析构函数</h5>
+<div class="outline-text-5" id="text-org9cfe538">
+<p>
+当一个类未定义自己的析构函数时，编译器会为它定义一个 <b>合成析构函数</b> 。类似拷贝构造函数和拷贝赋值运算符，对于某些类，合成析构函数被用来阻止该类型的对象被销毁。如果不是这种情况，合成析构函数的函数体就为空。
+</p>
+
+<p>
+认识到析构函数体自身并不直接销毁成员函数是非常重要的。成员是在析构函数体之后隐含的析构阶段中被销毁的。在整个对象的销毁过程中，析构函数体是作为成员销毁步骤之外的另一部分而进行的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4015a5d" class="outline-4">
+<h4 id="org4015a5d">13.1.4 三/五法则</h4>
+<div class="outline-text-4" id="text-org4015a5d">
+<p>
+如前所述，有三个基本操作可以控制类的拷贝操作：拷贝构造函数、拷贝赋值运算符和析构函数。而且，在新标准下，一个类还可以定义一个移动构造函数和一个移动赋值运算符。
+</p>
+
+<p>
+C++语言并不要求我们定义所有这些操作：可以只定义其中一个或两个，而不必定义所有。但是，这些操作通常应该被看作一个整体。通常，只需要其中一个操作，而不需要定义所有操作的情况是很少见的。
+</p>
+</div>
+<div id="outline-container-orge534101" class="outline-5">
+<h5 id="orge534101">需要析构函数的类也需要拷贝和赋值操作</h5>
+<div class="outline-text-5" id="text-orge534101">
+<p>
+当我们决定一个类是否要定义它自己版本的拷贝控制成员时，一个基本原则是首先确定这个类是否需要一个析构函数。通常，对析构函数的需求比对拷贝构造函数或赋值运算符的需求更为明显。如果一个类需要一个析构函数，我们几乎可以肯定它也需要一个拷贝构造函数和一个拷贝赋值运算符。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+如果一个类需要自定义析构函数，几乎可以肯定它也需要自定义拷贝赋值运算符和拷贝构造函数。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org0db02ec" class="outline-5">
+<h5 id="org0db02ec">需要拷贝操作的类也需要赋值操作，反之亦然</h5>
+<div class="outline-text-5" id="text-org0db02ec">
+<p>
+如果一个类需要一个拷贝构造函数，几乎可以肯定它也需要一个拷贝赋值运算符。反之亦然——如果一个类需要一个拷贝赋值运算符，几乎可以肯定它也需要一个拷贝构造函数。然而，无论时需要拷贝构造函数还是需要拷贝赋值运算符都不必然意味着也需要析构函数。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgce8a93e" class="outline-4">
+<h4 id="orgce8a93e">13.1.5 使用=default</h4>
+<div class="outline-text-4" id="text-orgce8a93e">
+<p>
+我们可以通过将拷贝控制成员定义为=default 来显示地要求编译器生成合成的版本。
+</p>
+
+<p>
+当我们在类内使用=default 修饰成员的声明时，合成的函数将隐式地声明为内联的（就像任何其他前类内声明的成员一样）。如果我们不希望合成的成员时内联函数，应该只对成员的类外定义使用=default。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+我们只能对具有合成版本的成员函数使用=default（即，默认构造函数或拷贝控制成员）。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgdad3238" class="outline-4">
+<h4 id="orgdad3238">13.1.6 阻止拷贝</h4>
+<div class="outline-text-4" id="text-orgdad3238">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+大多数类应该定义默认构造函数、拷贝构造函数和拷贝赋值运算符，无论是隐式地还是显式地。
+</p>
+</blockquote>
+
+<p>
+虽然大多数类应该定义（而且通常也的确定义了）拷贝构造函数和拷贝赋值运算符，但对某些类来说，这些操作没有合理的意义。在此情况下，定义类时必须采用某种机制阻止拷贝或赋值。
+</p>
+</div>
+<div id="outline-container-orgf8a16b2" class="outline-5">
+<h5 id="orgf8a16b2">定义删除的函数</h5>
+<div class="outline-text-5" id="text-orgf8a16b2">
+<p>
+在新标准下，我们可以通过将拷贝构造函数和拷贝赋值运算符定义为 <b>删除的函数</b> 来阻止拷贝。删除的函数时这样一种函数：我们虽然声明了它们，但不能以任何方式使用它们。在函数的参数列表后加上=delete 来只出我们希望它定义为删除的。
+</p>
+
+<p>
+与=defualt 不同，=delete 必须出现在函数第一次声明的时候，这个差异与这些声明的含义在逻辑上是吻合的。一个默认的成员只影响为这个成员而生成的代码，因此=defualt 直到编译器生成代码时才需要。而另一方面，编译器需要直到一个函数是删除的，以便禁止试图使用它的操作。
+</p>
+
+<p>
+与=deafult 的另一个不同之处是，我们可以对任何函数指定=delete（我们只能对编译器可以合成的默认构造函数或拷贝控制成员使用=defualt）。虽然删除函数的主要用途是禁止拷贝控制成员，但当我们希望引导函数匹配过程时，删除函数有时也是有用的。
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd45330" class="outline-5">
+<h5 id="orgcd45330">析构函数不能是删除的成员</h5>
+<div class="outline-text-5" id="text-orgcd45330">
+<p>
+值得注意的是，我们不能删除析构函数。如果析构函数被删除，就无法销毁此类型的对象了。对于一个删除了析构函数的类型，编译器将不允许定义该类型的变量或创建该类的临时对象了。而且，如果一个类有某个成员的类型删除了析构函数，我们也不能定义该类的变量或临时对象。因为如果一个成员的析构函数是删除的，则该成员无法被销毁。而如果一个成员无法被销毁，则对象整个也就无法被销毁了。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+对于析构函数已删除的类型，不能定义该类型的变量或释放指向该类型动态分配对象的指针。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgea46332" class="outline-5">
+<h5 id="orgea46332">合成的拷贝哦嗯直成员可能是删除的</h5>
+<div class="outline-text-5" id="text-orgea46332">
+<p>
+如前所述，如果我们未定义拷贝控制成员，编译器会为我们定义合成的版本。类似的，如果一个类未定义构造函数，编译器会为其合成一个默认构造函数。对某些类来说，编译器将这些合成的成员定义为删除的函数：
+</p>
+<ul class="org-ul">
+<li>如果类的某个成员的析构函数是删除的或不可访问的（例如，是 private 的），则类的合成析构函数被定义为删除的。</li>
+<li>如果类的某个成员的拷贝构造函数是删除的或不可访问的，则类的合成拷贝构造函数被定义为删除的。如果类的某个成员的析构函数是删除的或不可访问的，则类合成的拷贝构造函数也被定义为删除的。</li>
+<li>如果类的某个成员的拷贝赋值运算符是删除的或不可访问的，或是类有一个 const 的或引用成员，则类的合成拷贝赋值运算符被定义为删除的。</li>
+<li>如果类的某个成员的析构函数是删除的或不可访问的，或是类有一个引用成员，它没有类内初始化器（参见 2.6.1），或是类有一个 const 成员，它没有类内初始化器且类型未显式定义默认构造函数，则该类的默认构造函数被定义为删除的。</li>
+</ul>
+
+<p>
+本质上，这些规则的含义是：如果一个类有数据成员不能默认构造、拷贝、复制或销毁，则对应的成员函数被定义为删除的。
+</p>
+
+<p>
+虽然我们可以将一个新值赋予一个引用成员，但这样做改变的是引用指向的对象的值，而不是引用本身。如果为这样的类合成拷贝赋值运算符，则赋值后，左侧运算对象仍然指向与赋值前一样的对象，而不会与右侧运算对象指向相同的对象。由于这种行为看起来并不是我们所期望的，因此对于有引用成员的类，合成拷贝赋值运算符被定义为删除的。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+本质上，当不可能拷贝、赋值或销毁类的成员时，类的合成拷贝控制成员就被定义为删除的。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org750a025" class="outline-5">
+<h5 id="org750a025">private 拷贝控制</h5>
+<div class="outline-text-5" id="text-org750a025">
+<p>
+新标准发布之前，类是通过将其拷贝构造函数和拷贝赋值运算符声明为 private 的来阻止拷贝的。
+</p>
+
+<p>
+声明但不定义一个成员函数是合法的，对此只有一个例外，我们将在 15.2.1 节中介绍。试图访问一个未定义的成员将导致一个链接时错误。通过声明（但不定义）private 的拷贝构造函数，我们可以预先阻止任何拷贝该类型对象的企图：试图拷贝对象的用户代码将在编译器阶段被标记为错误；成员函数或友元函数中的拷贝错误将会导致链接时错误。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+希望阻止拷贝的类应该使用=delete 来定义它们自己的拷贝构造函数和拷贝赋值运算符，而不应该将它们声明为 private 的。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4059d25" class="outline-3">
+<h3 id="org4059d25">13.2 拷贝控制和资源管理</h3>
+<div class="outline-text-3" id="text-org4059d25">
+<p>
+通常，管理类外资源的类必须定义拷贝控制成员。入股我们在 13.1.4 节中所见，这种类需要通过析构函数来释放对象所分配的资源。一旦一个类需要析构函数，那么它几乎肯定也需要一个拷贝构造函数和一个拷贝赋值运算符。
+</p>
+
+<p>
+为了定义这些成员，我们首先必须确定此类型对象的拷贝语义。一般来说，有两种选择：可以定义拷贝操作，是类的行为看起来像一个值或者像一个指针。
+</p>
+
+<p>
+类的行为像一个值，意味着它应该也有自己的状态。当我们拷贝一个像值的对象时，副本和原对象是完全独立的。改变副本不会对原对象有任何影响，反之亦然。
+</p>
+
+<p>
+行为像指针的类则共享状态。当我们拷贝一个这种类的对象时，副本和原对象使用相同的底层数据。改变副本也会改变原对象，反之亦然。
+</p>
+</div>
+<div id="outline-container-org04f6b60" class="outline-4">
+<h4 id="org04f6b60">13.2.1 行为像值的类</h4>
+<div class="outline-text-4" id="text-org04f6b60">
+</div>
+<div id="outline-container-org0917205" class="outline-5">
+<h5 id="org0917205">类值拷贝赋值运算符</h5>
+<div class="outline-text-5" id="text-org0917205">
+<p>
+赋值运算符通常组合了析构函数和构造函数的操作。类似析构函数，赋值操作会销毁左侧运算对象的资源。类似拷贝构造函数，赋值操作会从右侧运算对象拷贝数据。但是，非常重要的一点是，这些操作是以正确的顺序执行的，即使将一个对想赋予它自身，也保证正确。而且，如果可能，我们编写的赋值运算还应该是异常安全的——当以常发生时能将左侧运算对象置于一个有意义的状态。
+</p>
+
+<blockquote>
+<p>
+关键概念：赋值运算符
+</p>
+
+<p>
+当你编写赋值运算符时，有两点需要记住：
+</p>
+<ul class="org-ul">
+<li>如果将一个对象赋予它自身，赋值运算符必须能正常工作</li>
+<li>大多数赋值运算符组合了析构函数和拷贝构造函数的工作</li>
+</ul>
+
+<p>
+当你编写一个赋值运算符时，一个好的模式时先将右侧运算对象拷贝到一个局部临时对象中。当拷贝完成后，销毁左侧运算对象的现有成员就是安全的了。一旦一个左侧运算对象的资源被销毁，就只剩下将数据从临时对象拷贝到左侧运算对象的成员中了。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+对于一个赋值运算符来说，正确工作时非常正要的，即使是将一个对象赋予它自身，也要能正确工作。一个好的方法是在销毁左侧运算对象资源之前拷贝右侧运算对象。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org14c1140" class="outline-4">
+<h4 id="org14c1140">13.2.2 定义行为像指针的类</h4>
+<div class="outline-text-4" id="text-org14c1140">
+<p>
+令一个类展现类似指针的行为的最好办法是使用 shared_ptr 来管理类中的资源。拷贝（或赋值）一个 shared_ptr 会拷贝（赋值）shared_ptr 所指向的指针。shared_ptr 类自己记录有多少用户共享它所指向的对象。当没有用户使用对象时，shared_ptr 类负责释放资源。
+</p>
+
+<p>
+单是，有时我们希望直接管理资源。在这种情况下，使用 <b>引用计数</b> 就很有用了。
+</p>
+</div>
+<div id="outline-container-orge0307ff" class="outline-5">
+<h5 id="orge0307ff">引用计数</h5>
+<div class="outline-text-5" id="text-orge0307ff">
+<p>
+引用计数的工作方式如下：
+</p>
+<ul class="org-ul">
+<li>除了初始化对象外，每个构造函数（拷贝构造函数除外）还要创建一个引用计数，用来记录有多少对象与正在创建的对象共享状态。当我们创建一个对象时，只有一个对象共享状态，因此将计数器初始化为 1.</li>
+<li>拷贝构造函数不分配新的计数器，而是拷贝给定对象的数据成员，包括计数器。拷贝构造函数递增共享的计数器，只出给定对象的状态又被一个新用户所共享。</li>
+<li>析构函数递减计数器，指出共享状态的用户少了一个。如果计数器变为 0，则析构函数释放状态。</li>
+<li>拷贝赋值运算符递增右侧运算对象的计数器，递减左侧运算对象的计数器。如果左侧运算对象的计数器变为 0，意味着它的共享状态没有用户了，拷贝赋值运算符就必须销毁状态。</li>
+</ul>
+
+<p>
+唯一的难题时确定在哪里存放引用计数。解决此问题的一种方法是计数器保存在动态内存中。当创建一个对象时，我们也分配一个新的计数器。当拷贝或赋值对象时，我们拷贝指向计数器的指针。使用这种方法，副本和原对象都会指向相同的计数器。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4248a30" class="outline-3">
+<h3 id="org4248a30">13.3 交换操作</h3>
+<div class="outline-text-3" id="text-org4248a30">
+<p>
+除了定义拷贝控制成员，管理资源的类通常还定义一个名为 swap 的函数。对于那些与重排元素顺序的算法一起使用的类，定义 swap 时非常重要的。这类算法在需要交换两个元素时会调用 swap。
+</p>
+
+<p>
+如果一个类定义了自己的 swap，那么算法将使用类自定义版本。否则，算法将使用标准库定义的 swap。
+</p>
+</div>
+<div id="outline-container-orga27014b" class="outline-4">
+<h4 id="orga27014b">编写我们自己的 swap 函数</h4>
+<div class="outline-text-4" id="text-orga27014b">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+与控制拷贝成员不同，swap 并不是必要的。但是，对于分配了资源的类，定义 swap 可能是一种很重要的优化手段。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orge80b6f3" class="outline-4">
+<h4 id="orge80b6f3">swap 函数应该调用 swap，而不是 std::swap</h4>
+<div class="outline-text-4" id="text-orge80b6f3">
+<p>
+正确的 swap 函数如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #dcaeea;">swap</span>(Foo &amp;lhs, Foo, &amp;rhs) {
+  <span style="color: #51afef;">using</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">swap</span>;
+  swap(lhs.h, rhs.h);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20351;&#29992;HasPtr&#29256;&#26412;&#30340;swap</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20132;&#25442;&#31867;&#22411;Foo&#30340;&#20854;&#20182;&#25104;&#21592;</span>
+}
+</pre>
+</div>
+
+<p>
+每个 swap 调用应该都是未加限定的。即，每个调用都应该是 swap，而不是 std::swap。如果存在类型特定的 swap 版本，其匹配程度会优于 std 中定义的版本，原因我们将在 16.3 节中进行解释。因此，如果存在类型特定的 swap 版本，swap 调用会与之匹配。如果不存在类型特定的版本，则会使用 std 中的版本（假定作用域中有 using 声明）。
+</p>
+
+<p>
+非常仔细的读者可能会奇怪为什么 swap 函数中的 using 声明没有隐藏 HasPtr 版本的 swap 声明。我们将在 18.2.3 节中解释为什么这段代码能正常工作。
+</p>
+</div>
+</div>
+<div id="outline-container-org3a7fbfd" class="outline-4">
+<h4 id="org3a7fbfd">在赋值运算符中使用 swap</h4>
+<div class="outline-text-4" id="text-org3a7fbfd">
+<p>
+定义 swap 的类通常用 swap 来定义它们的赋值运算符。这些运算符使用了一种名为 <b>拷贝并交换</b> 的技术。这种技术将左侧运算对象与右侧运算对象的一个副本进行交换：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27880;&#24847;rhs&#26159;&#25353;&#20540;&#20256;&#36882;&#30340;&#65292;&#24847;&#21619;&#30528;HasPtr&#30340;&#25335;&#36125;&#26500;&#36896;&#20989;&#25968;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;&#21491;&#20391;&#36816;&#31639;&#23545;&#35937;&#20013;&#30340;string&#25335;&#36125;&#21040;rhs</span>
+<span style="color: #ECBE7B;">HasPtr</span>&amp; <span style="color: #a9a1e1;">HasPtr</span>::<span style="color: #51afef;">operator</span><span style="color: #c678dd;">=</span>(<span style="color: #ECBE7B;">HasPtr</span> <span style="color: #dcaeea;">rhs</span>) {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20132;&#25442;&#24038;&#20391;&#36816;&#31639;&#23545;&#35937;&#21644;&#23616;&#37096;&#21464;&#37327;rhs&#30340;&#20869;&#23481;</span>
+  swap(*<span style="color: #51afef;">this</span>, rhs);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">rhs&#29616;&#22312;&#25351;&#21521;&#26412;&#23545;&#35937;&#26366;&#32463;&#20351;&#29992;&#30340;&#20869;&#23481;</span>
+  <span style="color: #51afef;">return</span> *<span style="color: #51afef;">this</span>;            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">rhs&#34987;&#38144;&#27585;&#65292;&#20174;&#26469;delete&#20102;rhs&#20013;&#30340;&#25351;&#38024;</span>
+}
+</pre>
+</div>
+
+<p>
+这个技术的有趣之处是它自动处理了自赋值情况且天然就是异常安全的。它通过在改变左侧运算对象之前拷贝右侧运算对象保证了自赋值的正确，这与我们在原来的赋值运算符中使用的方法是一致的。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+使用拷贝和交换的赋值运算符自动就是异常安全的，且能正确处理自赋值。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org89bc40d" class="outline-3">
+<h3 id="org89bc40d">13.4 拷贝控制示例</h3>
+<div class="outline-text-3" id="text-org89bc40d">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+拷贝赋值运算符通常执行拷贝构造函数和析构函数中也要做的工作。这种情况下，公共的工作应该放在 private 的工具函数中完成。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org1c6f9b5" class="outline-3">
+<h3 id="org1c6f9b5">13.6 对象移动</h3>
+<div class="outline-text-3" id="text-org1c6f9b5">
+<p>
+新标准的一个最主要的特性是可以移动而非拷贝对象的能力。如我们在 13.1.1 节中所见，很多情况下都会发生对象拷贝。在其中某些情况下，对象拷贝后就立即被销毁了。在这些情况下，移动而非拷贝对象会大幅度提升性能。
+</p>
+
+<p>
+在旧 C++标准中，没有直接的方法移动对象。因此，即使不必拷贝对象的情况下，我们也不得不拷贝。如果对象较大，或者是对象本身要求分配内存空间（如 string），进行不必要的拷贝代价非常高。类似的，在旧版本的标准库中，容器中所保存的类必须是可拷贝的。但在新标准中，我们可以用容器保存不可拷贝的类型，只要它们能被移动即可。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+标准库容器、string 和 shared_ptr 类既支持移动也支持拷贝。IO 类和 unique_ptr 类可以移动但不能拷贝。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org5f75c66" class="outline-4">
+<h4 id="org5f75c66">13.6.1 右值引用</h4>
+<div class="outline-text-4" id="text-org5f75c66">
+<p>
+wile 支持移动操作，新标准引入了一种新的引用类型—— <b>右值引用</b> 。所谓右值因一哦嗯就是必须绑定到右值的引用。我们通过&amp;&amp;而不是&amp;来获得右值引用。如我们将要看到的，右值引用有一个重要的性质——只能绑定到一个将要销毁的对象。因此，我们可以自由地将一个右值引用的资源“移动”到另一个对象中。
+</p>
+
+<p>
+回忆一下，左值和右值是表达式的属性（参见 4.1.1 节），一些表达式生成或要求左值，而另外一些则生成或要求右值。一般而言，一个左值表达式表示的是一个对象的身份，而一个右值表达式表示的是对象的值。
+</p>
+
+<p>
+类似任何引用,一个右值引用也不过是某个对象的另一个名字而已。如我们所值，对于常规引用（为了与右值引用区分开，我们称之为 <b>左值引用</b> ），我们不能将其绑定到要求转换的表达式、字面常量或是返回右值的表达式。右值引用有着完全相反的绑定特性：我们可以将一个右值引用绑定到这类表达式上，但不能将一个右值引用直接绑定到一个左值上：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">42</span>;
+<span style="color: #ECBE7B;">int</span> &amp;<span style="color: #dcaeea;">r</span> = i;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;r&#24341;&#29992;i</span>
+<span style="color: #ECBE7B;">int</span> &amp;&amp;<span style="color: #dcaeea;">rr</span> = i;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#23558;&#19968;&#20010;&#21491;&#20540;&#24341;&#29992;&#32465;&#23450;&#21040;&#19968;&#20010;&#24038;&#20540;&#19978;</span>
+<span style="color: #ECBE7B;">int</span> &amp;<span style="color: #dcaeea;">r2</span> = i * <span style="color: #da8548; font-weight: bold;">42</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;i*42&#26159;&#19968;&#20010;&#21491;&#20540;</span>
+<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span> &amp;<span style="color: #dcaeea;">r3</span> = i * <span style="color: #da8548; font-weight: bold;">42</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#25105;&#20204;&#21487;&#20197;&#23558;&#19968;&#20010;const&#30340;&#24341;&#29992;&#32465;&#23450;&#21040;&#19968;&#20010;&#21491;&#20540;&#19978;</span>
+<span style="color: #ECBE7B;">int</span> &amp;&amp;<span style="color: #dcaeea;">rr2</span> = i * <span style="color: #da8548; font-weight: bold;">42</span>;       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#23558;rr2&#32465;&#23450;&#21040;&#20056;&#27861;&#32467;&#26524;&#19978;</span>
+</pre>
+</div>
+
+<p>
+返回左值引用的函数，连同赋值、下标、解引用和前置递增/递减运算符，都是返回左值的表达式的例子。我们可以将一个左值引用绑定到这类表达式的结果上。
+</p>
+
+<p>
+返回非引用类型的函数，连同算术、关系、位以及后置递增/递减运算符，都生成右值。我们不能将一个左值引用绑定到这类表达式上，但我们可以将一个 const 左值引用或者一个右值引用绑定到这类表达式上。
+</p>
+</div>
+<div id="outline-container-org380a4d4" class="outline-5">
+<h5 id="org380a4d4">左值持久；右值短暂</h5>
+<div class="outline-text-5" id="text-org380a4d4">
+<p>
+考察左值和右值表达式的列表，两者相互区别之处就很明显了：左值有持久的状态，而右值要么是字面常量，要么是在表达式求值过程中创建的临时对象。
+</p>
+
+<p>
+由于右值引用只能绑定到临时对象，我们得知
+</p>
+<ul class="org-ul">
+<li>所引用的对象将要被销毁</li>
+<li>该对象没有其他用户</li>
+</ul>
+
+<p>
+这两个特性意味着：使用右值引用的代码可以自由地接管所引用的对象的资源。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+右值引用指向将要被销毁的对象。因此，我们可以从绑定到右值引用的对象“窃取”状态。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org0a1ddb2" class="outline-5">
+<h5 id="org0a1ddb2">变量是左值</h5>
+<div class="outline-text-5" id="text-org0a1ddb2">
+<p>
+变量可以看作只有一个运算对象而没有运算符的表达式，虽然我们很少这样看待变量。类似其他任何表达式，变量表达式也有左值/右值属性。变量表达式都是左值。带来的结果就是，我们不能将一个右值引用绑定到一个右值引用类型的变量上。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+变量是左值，因此我们不能将一个右值引用直接绑定到一个变量上，即使这个变量是右值引用类型也不行。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org446033d" class="outline-5">
+<h5 id="org446033d">标准库 move 函数</h5>
+<div class="outline-text-5" id="text-org446033d">
+<p>
+虽然不能将一个右值引用直接绑定到一个左值上，但我们可以显示地将一个左值转换为对应的右值引用类型。我们还可以通过调用一个名为 <b>move</b> 的新标准库函数来获得绑定到左值上的右值引用，此函数定义在头文件 utility 中。move 函数使用了我们将在 16.2.6 节中描述的机制来返回给定对象的右值引用。
+</p>
+
+<p>
+<code>int &amp;&amp;r3 = std::move(rr1); // ok</code>
+</p>
+
+<p>
+move 调用告诉编译器：我们有一个左值，但我们希望像一个右值一样处理它。我们必须认识到，调用 move 就意味着承诺；除了对 rr1 赋值或销毁它外，我们将不再使用它。在调用 move 之后，我们不能对移后源对象的值做任何假设。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+我们可以销毁一个移后源对象，也可以赋予它新值，但不能使用一个移后源对象的值
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org17ec99d" class="outline-4">
+<h4 id="org17ec99d">13.6.2 移动构造函数和移动赋值运算符</h4>
+<div class="outline-text-4" id="text-org17ec99d">
+<p>
+类似拷贝构造函数，移动构造函数的第一个参数是该类类型的一个引用，不同拷贝构造函数的是，这个引用参数在移动构造函数中是一个右值引用。与拷贝构造函数一样，任何额外的参数必须有默认实参。
+</p>
+
+<p>
+除了完成资源移动，移动构造函数还必须确保移后原对象处于这样一个状态——销毁它是无害的。特别是，一旦资源完成移动，源对象必须不再指向被移动的资源——这些资源的所有权已经归属新创建的对象。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #a9a1e1;">StrVec</span>::<span style="color: #c678dd;">StrVec</span>(<span style="color: #ECBE7B;">StrVec</span> &amp;&amp;<span style="color: #dcaeea;">s</span>) <span style="color: #51afef;">noexcept</span>  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20197;&#20908;&#25805;&#20316;&#19981;&#24212;&#25243;&#20986;&#20219;&#20309;&#24322;&#24120;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25104;&#21592;&#21021;&#22987;&#21270;&#22120;&#25509;&#23448;s&#20013;&#30340;&#36164;&#28304;</span>
+  : elements(s.elements), first_free(s.first_free), cap(s.cap)
+{
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20196;s&#36827;&#20837;&#36825;&#26679;&#30340;&#29366;&#24577;&#8212;&#8212;&#23545;&#20854;&#36816;&#34892;&#26512;&#26500;&#20989;&#25968;&#26159;&#23433;&#20840;&#30340;</span>
+  s.elements = s.first_free = s.cap = <span style="color: #a9a1e1;">nullptr</span>;
+}
+</pre>
+</div>
+
+<p>
+与拷贝构造函数不同，移动构造函数不分配任何新内存；它接管给定的 StrVec 中的内存。接官内存之后，它将给定对象中的指针置位 nullptr。这样就完成了从给定对象的移动操作，此对象将继续存在。最终，移后源对象会被销毁，意味着将在其上运行析构函数。
+</p>
+</div>
+<div id="outline-container-org641751e" class="outline-5">
+<h5 id="org641751e">移动操作、标准库容器和异常</h5>
+<div class="outline-text-5" id="text-org641751e">
+<p>
+由于移动操作“窃取”资源，它通常不分配任何资源。因此，移动操作通常不会抛出任何异常。当遍写一个不抛出异常的移动操作时，我们应该将此事通知标准库。我们将看到，除非标准库知道我们的移动构造函数不会抛出异常，否则它会认为移动我们的类对象时可能会抛出异常，并且为了处理这种可能而做一些额外的工作。
+</p>
+
+<p>
+一种通知标准库的方法是在我们的构造函数中指明 noexcept。我们必须在类头文件的声明中和定义中（如果定义在类外的话）都指定 noexcept。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+不抛出异常的移动构造函数和移动赋值运算符必须标记为 noexcept。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orge97db37" class="outline-5">
+<h5 id="orge97db37">移动赋值运算符</h5>
+<div class="outline-text-5" id="text-orge97db37">
+<p>
+移动赋值运算符执行与析构函数和移动构造函数相同的工作。与移动构造函数一样，如果我们的移动赋值运算符不抛出任何异常，我们就应该将它标记为 noexcept。类似拷贝赋值运算符，移动赋值运算符必须正确处理自赋值。
+</p>
+</div>
+</div>
+<div id="outline-container-org40c578e" class="outline-5">
+<h5 id="org40c578e">移后源对象必须可析构</h5>
+<div class="outline-text-5" id="text-org40c578e">
+<p>
+从一个对象移动数据并不会销毁此对象，但有时在移动对象操作完成后，源对象会被销毁。因此，当我们编写一个移动操作时，必须确保移后源对象进入一个可析构的状态。
+</p>
+
+<p>
+除了将移后源对象置为析构安全的状态之外，移动操作还必须保证对象仍然是有效的。一般来说，对象有效就是指可以安全地为其赋予新值或者可以安全地使用而不依赖其当前值。另一方面，移动操作对移后对象中留下的值没有任何要求。因此，我们的程序不应该依赖于移后源对象中的数据。
+</p>
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+在移动操作之后，移后源对象必须保持有效的、可析构的状态，但是用户不能对其值进行任何假设。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org40f2a80" class="outline-5">
+<h5 id="org40f2a80">合成的移动操作</h5>
+<div class="outline-text-5" id="text-org40f2a80">
+<p>
+与拷贝操作不同，编译器根本不会为某些类合成移动操作。特别是，如果一个类定义了自己的拷贝构造函数、拷贝赋值运算符或者析构函数，编译器就不会为它合成移动构造函数和移动赋值运算符了。因此，某些类就没有移动构造函数或移动赋值运算符。如我们将在 477 页所见，如果一个类没有移动操作，通过正常的函数匹配，类会使用对应的拷贝操作来代替移动操作。
+</p>
+
+<p>
+只有当一个类没有定义任何自己版本的拷贝控制成员，且类的每个非 static 数据成员都可以移动时，编译器才会为它合成移动构造函数或移动赋值运算符。编译器可以移动内置类型的成员。如果一个成员时类类型，且该类有对应的移动操作，编译器也能移动这个成员。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+只有当一个类没有定义任何自己版本的拷贝控制成员，且它的所有数据成员都能移动构造或移动赋值时，编译器才会为它合成移动构造函数或移动赋值运算符。
+</p>
+</blockquote>
+
+<p>
+与拷贝操作不同，移动操作永远不会隐式定义为删除的函数。但是，如果我们显示地要求编译器生成=defualt 的移动操作，且编译器不能移动所有成员，则编译器会将移动操作定义为删除的函数。除了一个重要例外，什么时候将合成的移动操作定义为删除的函数遵循与定义删除的合成拷贝操作类似的原则：
+</p>
+<ul class="org-ul">
+<li>与拷贝构造函数不同，移动构造函数被定义为删除的函数的条件是是：有类成员定义了自己的拷贝构造函数且未定义移动构造函数，或者是有类成员未定义自己的拷贝构造函数且编译器不能为其合成移动构造函数。移动赋值运算符的情况类似。</li>
+<li>如果有类成员的移动构造函数或移动赋值运算符被定义为删除的或是不可访问的，则类的移动构造函数或移动赋值运算符被定义为删除的。</li>
+<li>类似拷贝构造函数，如果类的析构函数被定义为删除的或不可访问的，则类的移动构造函数被定义为删除的。</li>
+<li>类似拷贝赋值运算符，如果有类成员是 const 的或是引用，则类的移动赋值运算符被定义为删除的。</li>
+</ul>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+定义了一个移动构造函数或移动赋值运算符的类必须也定义自己的拷贝操作，否则，这些成员默认地被定义为删除的。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org9cf1cb9" class="outline-5">
+<h5 id="org9cf1cb9">移动右值，拷贝左值……</h5>
+<div class="outline-text-5" id="text-org9cf1cb9">
+<p>
+如果一个类既有移动构造函数，也有拷贝构造函数，编译器使用普通的函数匹配规则来确定使用哪个函数。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc32f9f5" class="outline-5">
+<h5 id="orgc32f9f5">……但如果没有移动构造函数，右值也被拷贝</h5>
+<div class="outline-text-5" id="text-orgc32f9f5">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果一个类有一个可用的拷贝构造函数而没有移动构造函数，则其对象是通过拷贝构造函数来“移动”的。拷贝赋值运算符和移动赋值运算符的情况类似。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orge95d5e6" class="outline-5">
+<h5 id="orge95d5e6">拷贝并交换赋值运算符和移动操作</h5>
+<div class="outline-text-5" id="text-orge95d5e6">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">HasPtr</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#28155;&#21152;&#30340;&#31227;&#21160;&#26500;&#36896;&#20989;&#25968;</span>
+  <span style="color: #c678dd;">HasPtr</span>(<span style="color: #ECBE7B;">HasPtr</span> &amp;&amp;<span style="color: #dcaeea;">p</span>) <span style="color: #51afef;">noexcept</span> : ps(p.ps), i(p.i) { p.ps = <span style="color: #da8548; font-weight: bold;">0</span>; }
+  <span style="color: #ECBE7B;">HasPtr</span>&amp; <span style="color: #51afef;">operator</span><span style="color: #c678dd;">=</span>(<span style="color: #ECBE7B;">HasPtr</span> <span style="color: #dcaeea;">rhs</span>)
+                 { swap(*<span style="color: #51afef;">this</span>, rhs); <span style="color: #51afef;">return</span> *<span style="color: #51afef;">this</span>; }
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">i&#20854;&#20182;&#25104;&#21592;&#30340;&#23450;&#20041;&#65292;&#21516;13.2.1&#33410;</span>
+};
+</pre>
+</div>
+
+<p>
+现在让我们观察赋值运算符。此运算符有一个非引用参数，这意味着此参数要进行拷贝初始化。依赖于实参的类型，拷贝初始化要么使用拷贝构造函数，要么使用移动构造函数——左值被拷贝，右值被移动。因此，单一的赋值运算符就实现了拷贝赋值运算符和移动赋值运算符两种功能。
+</p>
+
+<blockquote>
+<p>
+建议：更新三/五法则
+</p>
+
+<p>
+所有五个拷贝控制成员应该看作一个整体：一般来说，如果一个类定义了任何一个拷贝操作，它就应该定义所有五个操作。如前所述，某些类必须定义拷贝构造函数、拷贝赋值运算符和析构函数才能正确功能。这些类通常拥有一个资源，而拷贝成员必须拷贝此资源。一般来说，拷贝一个资源会导致一些额外开销。在这种拷贝并非必要的情况下，定义了移动构造函数的移动赋值运算符的类就可以避免此问题。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org6be071d" class="outline-5">
+<h5 id="org6be071d">移动迭代器</h5>
+<div class="outline-text-5" id="text-org6be071d">
+<p>
+新标准库中定义了一种 <b>移动迭代器</b> 适配器。一个移动迭代器通过改变给定迭代器的解引用运算符的行为来适配此迭代器。一般来说，一个迭代器的解引用运算符返回一个指向元素的左值。与其他迭代器不同，移动迭代器的解引用运算符生成一个右值引用。
+</p>
+
+<p>
+我们通过调用标准库的 make_move_iterator 函数将一个普通迭代器转换为一个移动迭代器。此函数接受一个迭代器参数，返回一个移动迭代器。
+</p>
+
+<blockquote>
+<p>
+建议：不能随意使用移动操作
+</p>
+
+<p>
+由于一个移后源对象具有不确定的状态，对其调用 std::move 是危险的。当我们调用 move 时，必须绝对确认移后源对象没有其他用户。
+</p>
+
+<p>
+通过在类代码中小心地调用 move，可以大幅度提升性能。而如果随意在普通用户代码（与类实现代码相对）中使用移动操作，很可能导致莫名其妙的、难以查找的错误，而难以提高升应用程序性能。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+在移动构造函数和移动赋值运算符这些类实现代码之外的地方，只有当你确信需要进行移动操作且移动操作时安全的，才可以使用 std::move
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd7fdd8f" class="outline-4">
+<h4 id="orgd7fdd8f">13.6.3 右值引用和成员函数</h4>
+<div class="outline-text-4" id="text-orgd7fdd8f">
+<p>
+除了构造函数和赋值运算符之外，如果一个成员函数同时提供拷贝和移动版本，它也能从中受益。这种允许移动的成员函数通常使用与拷贝/移动构造函数和赋值运算符相同的参数模式——一个版本接受一个指向 const 的左值引用，第二个版本接受一个指向非 const 的右值引用。
+</p>
+
+<p>
+一般来说，我们不需要为函数操作定义接受一个 const X&amp;&amp;或是一个（普通的）X&amp;参数的版本。当我们希望从实参“窃取”数据时，通常传递一个右值引用。为了达到这一目的，实参不能是 const 的。类似的，从一个对象进行拷贝的操作不应该改变该对象。因此，通常不需要定一个接受一个（普通的）X&amp;参数的版本。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+区分移动和拷贝的重载函数通常有一个版本接受一个 const T&amp;，而另一个版本接受 T&amp;&amp;。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org963f426" class="outline-5">
+<h5 id="org963f426">右值和左值引用成员函数</h5>
+<div class="outline-text-5" id="text-org963f426">
+<p>
+有时，右值的使用方式可能令人惊讶：
+</p>
+
+<p>
+<code>s1 + s2 = "wow!";</code>
+</p>
+
+<p>
+此处我们对两个 string 的连接结果——一个右值，进行了赋值。
+</p>
+
+<p>
+在旧标准中，我们没有办法阻止这种使用方式。为了维持向后兼容性，新标准库类仍然允许向右值赋值。但是，我们可能希望在自己的类中阻止这种用法。在此情况下，我们希望强制左侧运算对象（即，this 指向的对象）是一个左值。
+</p>
+
+<p>
+我们指出 this 的左值/右值属性的方式与定义 const 成员函数相同（参见 7.1.2 节），即，在参数列表后放置一个 *引用限定符*：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Foo</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #ECBE7B;">Foo</span> &amp;<span style="color: #51afef;">operator</span><span style="color: #c678dd;">=</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Foo</span>&amp;) &amp;;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21482;&#33021;&#21521;&#21487;&#20462;&#25913;&#30340;&#24038;&#20540;&#36171;&#20540;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Foo&#30340;&#20854;&#20182;&#21442;&#25968;</span>
+};
+
+<span style="color: #ECBE7B;">Foo</span> &amp;<span style="color: #a9a1e1;">Foo</span>::<span style="color: #51afef;">operator</span><span style="color: #c678dd;">=</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Foo</span> &amp;rhs) &amp; {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25191;&#34892;&#23558;rhs&#36171;&#20104;&#26412;&#23545;&#35937;&#25152;&#38656;&#30340;&#24037;&#20316;</span>
+  <span style="color: #51afef;">return</span> *<span style="color: #51afef;">this</span>;
+}
+</pre>
+</div>
+
+<p>
+引用限定符可以是&amp;或&amp;&amp;，分别指出 this 可以指向一个左值或右值。类似 const 限定符，引用限定符只能用于（非 static）成员函数，且必须同时出现在函数的声明和定义中。
+</p>
+
+<p>
+一个函数可以同时用 const 和引用限定。在此情况下，引用限定符必须跟随在 const 限定符之后。
+</p>
+</div>
+</div>
+<div id="outline-container-org20c8db7" class="outline-5">
+<h5 id="org20c8db7">重载和引用函数</h5>
+<div class="outline-text-5" id="text-org20c8db7">
+<p>
+就像一个成员函数可以根据是否有 const 来区分其重载版本一样，引用限定符也可以区分重载版本。而且，我们可以综合引用限定符和 const 来区分一个成员函数的重载版本。
+</p>
+
+<p>
+当我们定义 const 成员函数时，可以定义两个版本，唯一的差别是一个版本有 const 限定而另一个没有。引用限定的函数则不一样。如果我们定义两个或两个以上具有相同名字和相同参数列表的成员函数，就必须对所有函数都加上引用限定符，或者所有都不加。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果一个成员函数有引用限定符，则具有相同参数列表的所有版本都必须有引用限定符。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a94e53" class="outline-2">
+<h2 id="org8a94e53">第 14 章 重载运算与类型转换</h2>
+<div class="outline-text-2" id="text-org8a94e53">
+</div>
+<div id="outline-container-org3c5ba35" class="outline-3">
+<h3 id="org3c5ba35">14.1 基本概念</h3>
+<div class="outline-text-3" id="text-org3c5ba35">
+<p>
+重载的运算符时具有特殊名字的函数：它们的名字由关键 operator 和其后要定义的运算符号共同组成。和其他前函数一样，重载的运算符也包含返回类型、参数列表以及函数体。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当一个重载的运算符时成员函数时，this 绑定到左侧运算对象。成员运算符函数的（显式）参数数量比运算对象的数量少一个。
+</p>
+</blockquote>
+
+<p>
+我们只能重载已有的运算符，而无权发明新的运算符号。例如，我们不能提供 operator**来执行幂操作。
+</p>
+
+<p>
+有四个符号（+、-、*、&amp;）既是一元运算符也是二元运算符，所有这些运算符都能被重载，从参数的数量我们可以推断到底定义的时哪种运算符。
+</p>
+
+<p>
+对于一个重载的运算符来说，其优先级和结合律与对应的内置运算符保持一致。
+</p>
+
+
+<div class="figure">
+<p><img src="../../../pics/C++/operator.png" alt="operator.png">
+</p>
+</div>
+</div>
+<div id="outline-container-org6a62377" class="outline-5">
+<h5 id="org6a62377">某些运算符不应该被重载</h5>
+<div class="outline-text-5" id="text-org6a62377">
+<p>
+回忆之前介绍过的，某些运算符指定了运算对象求值的顺序。因为使用重载的运算符本质上是一次函数调用，所以这些关于运算对象求值顺序的规则无法应用到重载的运算符上。特别是，逻辑与运算符、逻辑或运算符和逗号运算符的运算对象求值顺序规则无法保留下来。除此之外，&amp;&amp;和||运算符的重载版本也无法保留内置运算符的短路求值属性，两个运算对象总是会被求值。
+</p>
+
+<p>
+因为上述运算符的重载版本无法保留求值顺序和/或短路求值属性，因此不建议重载它们。当代码使用了这些运算符的重载版本时，用户可能会突然发现他们一直习惯的求值规则不再适用。
+</p>
+
+<p>
+还有一个原因使得我们一般不重载欧好运算符和取地址运算符：C++语言定义了这两种运算符用于类类型对象时的特殊含义，这一点与大多数运算符都不相同。因为这两种运算符已经有了内置的含义，所以一般来说它们不应该被重载，否则它们的行为将异于常态，从而导致类的用户无法适应。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+通常情况下，不应该重载逗号、取地址、逻辑与和逻辑或运算符。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgc45a224" class="outline-5">
+<h5 id="orgc45a224">使用内置类型一直的含义</h5>
+<div class="outline-text-5" id="text-orgc45a224">
+<blockquote>
+<p>
+提示：尽量明智地使用运算符重载
+</p>
+
+<p>
+在实际编程过程中，一般没有特别明显的滥用运算符重载的情况。然而经常发生的一种情况是，程序员可能会强行扭曲了运算符“常规”含义使得其适应某种给定的类型，这显然是我们不希望发生的。因此我们的建议是：只有当操作的含义对于用户来说清晰明了时才使用运算符。如果用户对运算符可能有几种不同的理解，则使用这样的运算符将产生二义性。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org104331f" class="outline-5">
+<h5 id="org104331f">选择作为成员或者非成员函数</h5>
+<div class="outline-text-5" id="text-org104331f">
+<p>
+当我们定义重载的运算符时，必须首先决定是将其声明为类的成员函数还是声明为一个普通的非成员函数。在某些时候我们别无选择，因为有的运算符必须作为成员；另一些情况下，运算符作为普通函数比作为成员更好。
+</p>
+
+<p>
+下面的准则有助于我们在将运算符定义为成员函数还是普通的非成员函数做出抉择：
+</p>
+<ul class="org-ul">
+<li>赋值（=）、下标（[ ]）、调用（( )）和成员访问箭头(-&gt;)运算符必须是成员。</li>
+<li>复合赋值运算符一般来说应该是成员，但并非必须，这一点与赋值运算符略有不同。</li>
+<li>改变对象状态的运算符或者与给定类型密切相关的运算符，如递增、递减和解引用运算符，通常应该是成员。</li>
+<li>具有对称性的运算符可能转换任意一段的运算对象，例如算符、相等性、关系和位运算符等，因此它们通常应该是普通的非成员函数。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8232ed4" class="outline-3">
+<h3 id="org8232ed4">14.2 输入和输出运算符</h3>
+<div class="outline-text-3" id="text-org8232ed4">
+</div>
+<div id="outline-container-orgb626611" class="outline-4">
+<h4 id="orgb626611">14.2.1 重载输出运算符&lt;&lt;</h4>
+<div class="outline-text-4" id="text-orgb626611">
+<p>
+通常情况下，输出运算符的第一个形参是一个非常量 ostream 对象的引用。之所以 ostream 是非常量是因为向流写入内容会改变其状态；而改型惨是引用是因为我们无法直接赋值一个 ostream 对象。
+</p>
+
+<p>
+第二个形参一般来说是一个常量的引用，改常量是我们想要打印的类类型。第二个形参是引用的原因是我们希望避免复制实参；而之所以该形参可以是常量因为（通常情况下）打印对象不会改变对象的内容。
+</p>
+
+<p>
+为了与其他输出运算符保持一致，operator&lt;&lt;一般要返回它的 ostream 形参。
+</p>
+</div>
+<div id="outline-container-org201e316" class="outline-5">
+<h5 id="org201e316">输出运算符尽量减少格式化操作</h5>
+<div class="outline-text-5" id="text-org201e316">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+通常，输出运算符应该主要负责打印对象的内容而非控制格式，输出运算符不应该打印换行符。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org446b0bc" class="outline-5">
+<h5 id="org446b0bc">输入输出运算符必须是非成员函数</h5>
+<div class="outline-text-5" id="text-org446b0bc">
+<p>
+与 ostream 标准库兼容的输入输出运算符必须是普通的非成员函数，而不能是类的成员函数。
+</p>
+
+<p>
+如果我们希望为类自定义 IO 运算符，则必须将其定义成非成员函数。当然，IO 运算符通常需要读写类的非公有数据成员，所以 IO 运算符一般被声明为友元。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgef5cb32" class="outline-4">
+<h4 id="orgef5cb32">14.2.2 重载输入运算符&gt;&gt;</h4>
+<div class="outline-text-4" id="text-orgef5cb32">
+<p>
+通常情况下，输入运算符的第一个形参是运算符将要读取的流的引用，第二个形参时将要读入到的（非常量）对象的引用。该运算符通常会返回某个给定流的引用。第二个形参之所以必须是非常量是因为输入运算符本身的目的就是将数据读入到这个对象中。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+输入运算符必须处理输入可能失败的情况，而输出运算符不需要。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org0784ab3" class="outline-5">
+<h5 id="org0784ab3">输入时的错误</h5>
+<div class="outline-text-5" id="text-org0784ab3">
+<p>
+在执行输入运算符时可能发生下列错误：
+</p>
+<ul class="org-ul">
+<li>当流函数错误类型的数据时读取操作可能失败。例如在读取完 bookNo 后，输入运算符假定接下来读入的是两个数字数据，则读取操作及后续对流的其他使用都将失败。</li>
+<li>当读取操作到达文件末尾或者与到输入流的其他错误时也会失败。</li>
+</ul>
+
+<p>
+在程序中我们没有逐个检查每个读取操作，而是等读取了所有数据后赶在使用这些数据前一次性检查。
+</p>
+
+<p>
+如果在发生错误前对象已经有一部分被改变，则适时地将对象置为合法状态显得异常重要。通过将对象置位合法的状态，我们能（略微）保护使用者免于受到输入错误的影响。此是的对象处于可用状态，即它的成员都是被正确定义的。而且该对象也不会产生误导性的结果，因为它的数据在本质上确实是一体的。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+当读取操作发生错误时，输入运算符应该负责从错误中恢复。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgacb73fd" class="outline-3">
+<h3 id="orgacb73fd">14.3 算术和关系运算符</h3>
+<div class="outline-text-3" id="text-orgacb73fd">
+<p>
+通常情况下，我们把算符和关系运算符定义成非成员函数以允许对左侧或右侧的运算对象进行转换。因为这些运算符一般不需要改变运算对象的状态，所以形参都是常量的引用。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+如果类同时定义了算术运算符和相关的复合赋值运算符，则通常情况下应该使用复合赋值来实现算术运算符。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgdd7770b" class="outline-4">
+<h4 id="orgdd7770b">14.3.1 相等运算符</h4>
+<div class="outline-text-4" id="text-orgdd7770b">
+<ul class="org-ul">
+<li>如果一个类含有判断两个对象是否相等的操作，则它显然应该把函数定义成 operator==而非一个普通的命名函数：因为用户肯定那希望能使用==比较对象，所以提供了==意味着用户无须再费时费力学习并即以一个全新的函数名字。此外，类定义了==运算符之后也更容器使用标准库容其和算法。</li>
+<li>如果类行一了 operator==，则该运算符应该能判断一组给定的对象中是否函数重复数据。</li>
+<li>通常情况下，相等运算符应该具有传递性，换句话说，如果 a==b 和 b==c 都为真，则 a==c 也应该为真。</li>
+<li>如果类定义了 operator==，则这各类也应该定义 operator!=。对于用户来说，当它们能使用==时也希望能使用!=，反之亦然。</li>
+<li>相等运算符和不相等运算符中的一个应该把工作委托给另一个，这意味着其中一个运算符应该负责实际比较对象的工作，而另一个运算符则只是调用那个真正工作的运算符。</li>
+</ul>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+如果某个类在逻辑上有相等性的含义，则该类应该定义 operator==，这样做可以使得用户更容易使用标准库算法来处理这个类。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org3ae6724" class="outline-4">
+<h4 id="org3ae6724">14.3.2 关系运算符</h4>
+<div class="outline-text-4" id="text-org3ae6724">
+<p>
+定义了相等运算符的类也常常（但不总是）包含关系运算符。特别是，因为关联容器喝一些算法要用到小于运算符，所以定义 operator&lt;会比较有用。
+</p>
+
+<p>
+通常情况下关系运算符应该
+</p>
+<ol class="org-ol">
+<li>定义顺序关系，令其与关联容器中对关键字的要求一致；并且</li>
+<li>如果类同时也含有==运算符的话，则定义一种关系令其与==保持一致。特别是，如果两个对象是!=的，那么一个对象应该&lt;另外一个。</li>
+</ol>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+如果存在唯一一种逻辑可靠的&lt;定义，则应该考虑为这个类定义&lt;运算符。如果类同时还包含==，则当且仅当&lt;的定义喝==产生的结果一致时才定义&lt;运算符。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org38df6e7" class="outline-3">
+<h3 id="org38df6e7">14.4 赋值运算符</h3>
+<div class="outline-text-3" id="text-org38df6e7">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+我们可以重载赋值运算符。不论形参的类型是什么，赋值运算符都必须定义为成员函数。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgd593d9e" class="outline-4">
+<h4 id="orgd593d9e">复合赋值运算符</h4>
+<div class="outline-text-4" id="text-orgd593d9e">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+赋值运算符必须定义成类的成员，复合赋值运算符通常情况下也应该这样做。这两类运算都应该返回左侧运算对象的引用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org82fef0f" class="outline-3">
+<h3 id="org82fef0f">14.5 下标运算符</h3>
+<div class="outline-text-3" id="text-org82fef0f">
+<p>
+表示容器的类通常可以通过元素在容器中的位置访问元素，这些类一般会定义下标运算符 operator[]。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+下标运算符必须是成员函数。
+</p>
+</blockquote>
+
+<p>
+为了与下标的原始定义兼容，下标运算符通常以所访问元素的引用作为返回值，这样做的好处是下标可以出现在赋值运算符的任意一端。进一步，我们最好同时定义下标运算符的常量版本喝非常量版本，当作用于一个常量对象时，下标运算符返回常量引用以确保我们不会给返回的对象赋值。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+如果一个类包含下标运算符，则它通常会定义两个版本：一个返回普通引用，另一个是类的常量成员并返回常量引用。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org37c30bb" class="outline-3">
+<h3 id="org37c30bb">14.6 递增和递减运算符</h3>
+<div class="outline-text-3" id="text-org37c30bb">
+<p>
+在迭代器类中通常会实现递增运算符（++）和递减运算符（&#x2013;），这两种运算符使得类可以在元素的序列中前后移动。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+定义递增喝递减运算符的类应该同时定义前置版本和后置版本。这些运算符通常被定义成类的成员。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orge226ab7" class="outline-5">
+<h5 id="orge226ab7">定义前置递增/递减运算符</h5>
+<div class="outline-text-5" id="text-orge226ab7">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+为了于内置版本保持一致，前置运算符应该返回递增或递减后对象的引用。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org914fc5f" class="outline-5">
+<h5 id="org914fc5f">区分前置和后置运算符</h5>
+<div class="outline-text-5" id="text-org914fc5f">
+<p>
+要想同时定义前值和后置运算符，必须好搜显解决一个问题，即普通的重载形式无法区分这两种情况。前置和后置版本使用的是同一个符号，意味着其重载版本所用的名字将是相同的，并且运算对象的数量和类型也相同。
+</p>
+
+<p>
+为了解决这个问题，后置版本接受一个额外的（不被使用）int 类型的形参。当我们使用后置运算符时，编译器为这个形参提供一个值为 0 的实参。尽管从语法上来说后置函数可以使用这个额外的形参，但是在实际过程中通常不会这么做。这个形参的唯一作用就是区分前置版本和后置版本的函数，而不是真的要在实现后置版本时参与运算。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">StrBlobPtr</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21069;&#32622;&#36816;&#31639;&#31526;&#65292;&#36882;&#22686;&#21644;&#36882;&#20943;&#36816;&#31639;&#31526;</span>
+  <span style="color: #ECBE7B;">StrBlobPtr</span>&amp; <span style="color: #51afef;">operator</span><span style="color: #c678dd;">++</span>();
+  <span style="color: #ECBE7B;">StrBlobPtr</span>&amp; <span style="color: #51afef;">operator</span><span style="color: #c678dd;">--</span>();
+
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21518;&#32622;&#36816;&#31639;&#31526;</span>
+  <span style="color: #ECBE7B;">StrBlobPtr</span> <span style="color: #51afef;">operator</span><span style="color: #c678dd;">++</span>(<span style="color: #ECBE7B;">int</span>);
+  <span style="color: #ECBE7B;">StrBlobPtr</span> <span style="color: #51afef;">operator</span><span style="color: #c678dd;">--</span>(<span style="color: #ECBE7B;">int</span>);
+};
+</pre>
+</div>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+为了于内置版本保持一致，后置运算符应该返回对象的原值（递增或递减之前的值），返回的形式时一个值而非引用。
+</p>
+</blockquote>
+
+<p>
+对于后置版本来说，在递增对象之前首先要记录对象的状态。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org65a98d4" class="outline-3">
+<h3 id="org65a98d4">14.7 成员访问运算符</h3>
+<div class="outline-text-3" id="text-org65a98d4">
+</div>
+<div id="outline-container-org9714a2b" class="outline-5">
+<h5 id="org9714a2b">对箭头运算符返回值的限定</h5>
+<div class="outline-text-5" id="text-org9714a2b">
+<p>
+和大多数其他运算符一样（尽管这么做不太好），我们能令 operator*完成任何我们指向的操作。换句话说，我们可以让 operator*返回一个固定值 42,或者打印对象的内容，或者其他。箭头运算符不是这样，它永远不会丢掉成员访问这个最近基本的含义。当我们重载箭头时，可以改变的是箭头从哪个对象当中获取成员，而箭头获取成员这一事实则永远不变。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+重载的箭头运算符必须返回类的指针或者自定义了箭头运算符的某个类的对象。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e7f399" class="outline-3">
+<h3 id="org4e7f399">14.8 函数调用运算符</h3>
+<div class="outline-text-3" id="text-org4e7f399">
+<p>
+如果类重载了函数调用运算符，则噢我们可以像使用函数一样使用该类的对象。因为这样的类同时也能存储状态，所以与普通函数相比它们更加灵活。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+函数调用运算符必须是成员函数。一个类可以定义多个不同版本的调用运算符，互相之间应该在参数数量或类型上有所区别。
+</p>
+</blockquote>
+
+<p>
+如果类定义了调用运算符，则该类的对象称作 <b>函数对象</b> 。因为可以调用这种对象，所以我们说这些对象的“行为像函数一样”。
+</p>
+</div>
+<div id="outline-container-org0ec4b97" class="outline-4">
+<h4 id="org0ec4b97">14.8.1 lambda 是函数对象</h4>
+<div class="outline-text-4" id="text-org0ec4b97">
+<p>
+当我们编写了一个 lambda 后，编译器将该表达式翻译成一个未命名类的未命名对象。在 lambda 表达式产生的类中含有一个重载的函数调用运算符。
+</p>
+</div>
+<div id="outline-container-org272a31d" class="outline-5">
+<h5 id="org272a31d">表示 lambda 及相应捕获行为的类</h5>
+<div class="outline-text-5" id="text-org272a31d">
+<p>
+如我们所知，当一个 lambda 表达式通过引用捕获变量时，将由程序负责确保 lambda 执行时所引用的对象确实存在。因此，编译器可以直接使用该引用而无须在 lambda 产生的类中将其存储为数据成员。
+</p>
+
+<p>
+相反，通过值捕获的变量被拷贝到 lambda 中。因此，这种 lambda 产生的类必须为每个值捕获的变量建立对应的数据成员，同时创建构造函数，令其使用捕获的变量的值来初始化数据成员。
+</p>
+
+<p>
+lambda 表达式产生的类不含默认构造函数、赋值运算符及默认析构函数；它是否含有默认的拷贝/移动构造函数则通常要视捕获的数据成员类型而定。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ab3307" class="outline-4">
+<h4 id="org4ab3307">14.8.2 标准库定义的函数对象</h4>
+<div class="outline-text-4" id="text-org4ab3307">
+<p>
+标准库定义了一组表示算术运算符、关系运算符和逻辑运算符的类，每个类分别定义了一个执行命名操作的调用运算符。例如，plus 类定义了有一个函数调用运算符用于一对运算对象执行+的操作；modulus 类定义了一个调用运算符执行二元的%操作；equl_to 类执行==，等等。
+</p>
+
+<p>
+这些类都被定义成模板的形式，我们可以为其指定具体的应用类型，这里的类型即调用运算符的形参类型。例如，plus&lt;string&gt;令 string 加法运算符作用于 string 对象；plus&lt;int&gt;的运算对象时 int；plus&lt;Sales_data&gt;对 Sales_data 对象执行加法运算，以此类推。
+</p>
+
+<p>
+下表所列的类型定义在 functional 头文件中。
+</p>
+
+<table id="org033cfef">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>算术</b></td>
+<td class="org-left"><b>关系</b></td>
+<td class="org-left"><b>逻辑</b></td>
+</tr>
+
+<tr>
+<td class="org-left">plus&lt;Type&gt;</td>
+<td class="org-left">equal_to&lt;Type&gt;</td>
+<td class="org-left">logical_and&lt;Type&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">minus&lt;Type&gt;</td>
+<td class="org-left">not_equal_to&lt;Type&gt;</td>
+<td class="org-left">logical_or&lt;Type&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">multiplies&lt;Type&gt;</td>
+<td class="org-left">greater&lt;Type&gt;</td>
+<td class="org-left">logical_not&lt;Type&gt;</td>
+</tr>
+
+<tr>
+<td class="org-left">divides&lt;Type&gt;</td>
+<td class="org-left">greater_equal&lt;Type&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">modulus&lt;Type&gt;</td>
+<td class="org-left">less&lt;Type&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">negate&lt;Type&gt;</td>
+<td class="org-left">less_equal&lt;Type&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org42e2e79" class="outline-5">
+<h5 id="org42e2e79">在算法中使用标准库函数对象</h5>
+<div class="outline-text-5" id="text-org42e2e79">
+<p>
+表示运算符的函数对象类常用来替换算法中的默认运算符。如我们所知，在默认情况下排序算法使用 operator&lt;将序列按升序排列。如果要执行降序排序的话，我们可以传入一个 greater 类型的对象。该类将产生一个调用运算符并负责执行待排序类型的大于运算。例如，如果 svec 是一个 vector&lt;string&gt;。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20256;&#20837;&#19968;&#20010;&#20020;&#26102;&#30340;&#20989;&#25968;&#23545;&#35937;&#29992;&#20110;&#25191;&#34892;&#20004;&#20010;string&#23545;&#35937;&#30340;&gt;&#27604;&#36739;&#36816;&#31639;</span>
+sort(svec.begin(), svec.end(), greater&lt;<span style="color: #ECBE7B;">string</span>&gt;());
+</pre>
+</div>
+
+<p>
+需要特别注意的是，标准库规定其函数对象对于指针同样适用。我们之前曾经介绍过比较两个无关指针将产生未定义的行为，然而我们可能会希望通过比较指针的内存地址来 sort 指针的 vector。直接这么做将产生未定义的行为，因此我们可以使用一个标准库函数对象来实现该目的。
+</p>
+
+<p>
+关联容器使用 less&lt;key_type&gt;对元素排序，因此我们可以定义一个指针的 set 或者在 map 中使用指针作为关键值而无须直接声明 less。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1e1aee9" class="outline-4">
+<h4 id="org1e1aee9">14.8.3 可调用对象与 function</h4>
+<div class="outline-text-4" id="text-org1e1aee9">
+<p>
+C++语言中有几种可调用的对象：函数、函数指针、lambda 表达式（参见 10.3.2 节）、bind 创建的对象（参见 10.3.4 节）以及重载了函数调用运算符的类。
+</p>
+
+<p>
+和其他对象一样，可调用的对象也有类型。例如，每个 lambda 有它自己唯一的（未命名）类类型；函数及函数指针的类型则由返回值类型的实参类型决定，等等。
+</p>
+
+<p>
+然而，两个不同类型的可调用对象却能共享同一种 <b>调用形式</b> 。调用形式指明了调用返回的类型以及传递给调用的实参类型。一种调用形式对应一个函数类型，例如：
+</p>
+
+<p>
+<code>int(int, int)</code>
+</p>
+
+<p>
+是一个函数类型，它接受两个 int、返回一个 int。
+</p>
+</div>
+<div id="outline-container-org61d77bf" class="outline-5">
+<h5 id="org61d77bf">不同类型可能具有相同的调用形式</h5>
+<div class="outline-text-5" id="text-org61d77bf">
+<p>
+对于几个可调用对象共享同一种调用形式的情况，有时我们会希望把它们看成具有相同的类型。例如，考虑下列不同类型的可调用对象：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26222;&#36890;&#20989;&#25968;</span>
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">add</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">j</span>) { <span style="color: #51afef;">return</span> i + j; }
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">lambda</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">mod</span> = [](<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">j</span>) { <span style="color: #51afef;">return</span> i % j; };
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20989;&#25968;&#23545;&#20687;&#31867;</span>
+<span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">divide</span> {
+  <span style="color: #ECBE7B;">int</span> <span style="color: #51afef;">operator</span><span style="color: #c678dd;">()</span> (<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">denominator</span>, <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">divisor</span>) {
+    <span style="color: #51afef;">return</span> denominator / divisor;
+  }
+};
+</pre>
+</div>
+
+<p>
+上面这些可调用对象分别对其参数执行了不同的算术运算，尽管它们的类型各不相同，但是共享同一种调用形式：
+</p>
+
+<p>
+<code>int(int, int)</code>
+</p>
+
+<p>
+我们可能希望使用这些可调用对象构建一个简单的桌面计算器。为了实现这一目的，需要定义一个 <b>函数表</b> 用于存储指向这些可调用对象的“指针”。当程序需要执行某个特定的操作时，从表中查找该调用的函数。
+</p>
+
+<p>
+在 C++语言中，函数表很容易通过 map 来实现。对于此例来说，我们使用一个表示运算符符号的 string 对象作为关键字；使用实现运算符的函数作为值。当我们需要求给定运算符的值时，先通过运算符索引 map，然后调用找到的那个于元素。
+</p>
+</div>
+</div>
+<div id="outline-container-org6130938" class="outline-5">
+<h5 id="org6130938">标准库 function 类型</h5>
+<div class="outline-text-5" id="text-org6130938">
+<p>
+function 定义在 functional 头文件中。
+</p>
+
+<table id="org6e1b443">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">function&lt;T&gt; f;</td>
+<td class="org-left">f 是一个用来存储可调用对象的空 function，这些可调用对象的调用形式应该与函数类型 T 相同（即 T 是 retType(args)）</td>
+</tr>
+
+<tr>
+<td class="org-left">function&lt;T&gt; f(nullptr);</td>
+<td class="org-left">显式地构造一个空 function</td>
+</tr>
+
+<tr>
+<td class="org-left">function&lt;T&gt; f(obj);</td>
+<td class="org-left">在 f 中存储一个可调用对象 obj 的副本</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-left">将 f 作为条件：当 f 含有一个可调用对象时未真；否则为假</td>
+</tr>
+
+<tr>
+<td class="org-left">f(args)</td>
+<td class="org-left">调用 f 中的对象，参数是 args</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b>定义为 function&lt;T&gt;的成员的类型</b></td>
+</tr>
+
+<tr>
+<td class="org-left">result_type</td>
+<td class="org-left">该 function 类型的可调用对象的返回类型</td>
+</tr>
+
+<tr>
+<td class="org-left">argument_type</td>
+<td class="org-left">当 T 有一个或两个实参时定义的类型。如果 T 只有一个实参，则 argument_type 是该类型的同义词；</td>
+</tr>
+
+<tr>
+<td class="org-left">first_argument_type</td>
+<td class="org-left">如果 T 有两个实参，则 first_argument_type 和 second_argument_type 分别代表两个实参的类型</td>
+</tr>
+
+<tr>
+<td class="org-left">second_argument_type</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+function 是一个模板，和我们使用过的其他模板一样，当创建一个具体的 function 类型时我们必须提供额外的信息。在此例中，所谓额外的信息是指该 function 类型能够表示的对象的调用形式。参见其他模板，我们在一对尖括号内指定类型：
+</p>
+
+<p>
+<code>function&lt;int(int, int)&gt;</code>
+</p>
+
+<p>
+在这里我们声明了一个 function 类型，它可以表示接受两个 int，返回一个 int 的可调用对象。
+</p>
+</div>
+</div>
+<div id="outline-container-org0f93e8a" class="outline-5">
+<h5 id="org0f93e8a">重载的函数与 function</h5>
+<div class="outline-text-5" id="text-org0f93e8a">
+<p>
+我们不能（直接）将重载函数的名字存入 function 类型的对象中，这将会导致二义性。解决上述二义性问题的一条途径是存储函数指针而非函数的名字。同样，我们也可以使用 lambda 来消除二义性。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5eb9de1" class="outline-3">
+<h3 id="org5eb9de1">14.9 重载、类型转换与运算符</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-06-20 Sat 12:31</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-05-29 Fri 21:54 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C/C++ Primer</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">C/C++ Primer</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org77ff41c">第 I 部分 C++基础</a>
+<ul>
+<li><a href="#orga0a8985">第 2 章 变量和基本类型</a>
+<ul>
+<li><a href="#org330566a">2.1 基本内置类型</a>
+<ul>
+<li><a href="#orga0e6c6c">2.1.1 算术类型</a>
+<ul>
+<li><a href="#org1f890d3">带符号类型和无符号类型</a></li>
+</ul>
+</li>
+<li><a href="#orgf0de6e2">2.1.2 类型转换</a>
+<ul>
+<li><a href="#org685b962">含有无符号类型的表达式</a></li>
+</ul>
+</li>
+<li><a href="#orgfcd2eb7">2.1.3 字面值常量</a>
+<ul>
+<li><a href="#org9785d8c">整型和浮点型字面值</a></li>
+<li><a href="#org6f75ca8">字符和字符串字面值</a></li>
+<li><a href="#orgfa21676">指定字面值类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8e28048">2.2 变量</a>
+<ul>
+<li><a href="#org493e363">2.2.1 变量定义</a>
+<ul>
+<li><a href="#orgc703198">初始值</a></li>
+<li><a href="#org1510545">列表初始化</a></li>
+<li><a href="#orgf1024ec">默认初始化</a></li>
+</ul>
+</li>
+<li><a href="#orgbccdfc8">2.2.4 名字的作用域</a>
+<ul>
+<li><a href="#org2e3dd5b">嵌套作用域</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org30a2238">2.3 复合类型</a>
+<ul>
+<li><a href="#org82b90e9">2.3.3 理解复合类型的声明</a></li>
+</ul>
+</li>
+<li><a href="#org23c44ef">const 限定符</a>
+<ul>
+<li><a href="#orgb41ff3e">2.4.3 顶层 const</a></li>
+<li><a href="#org7dadd55">2.4.4 constexpr 和常量表达式</a>
+<ul>
+<li><a href="#org3260be0">constexpr 变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga247bed">2.5 处理类型</a>
+<ul>
+<li><a href="#org6412b2e">2.5.1 类型别名</a></li>
+<li><a href="#orge7826c7">2.5.2 auto 类型说明符</a>
+<ul>
+<li><a href="#orgb281230">复合类型、常量和 auto</a></li>
+</ul>
+</li>
+<li><a href="#orge58cd0d">2.5.3 decltype 类型指示符</a>
+<ul>
+<li><a href="#org9f7606f">decltype 和引用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org878be42">2.6 自定义数据结构</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org2bb41f3">类数据成员</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org44f580a">第 3 章 字符串、向量和数组</a>
+<ul>
+<li><a href="#org2b4ddc8">3.1 命名空间和 using 声明</a>
+<ul>
+<li><a href="#org03b865f">头文件不应包含 using 声明</a></li>
+</ul>
+</li>
+<li><a href="#org37c2080">3.2 标准库类型 string</a>
+<ul>
+<li><a href="#org4fbc0f0">3.2.1 定义和初始化 string 对象</a>
+<ul>
+<li><a href="#org18c5cad">直接初始化和拷贝初始化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org77ff41c" class="outline-2">
+<h2 id="org77ff41c">第 I 部分 C++基础</h2>
+<div class="outline-text-2" id="text-org77ff41c">
+</div>
+<div id="outline-container-orga0a8985" class="outline-3">
+<h3 id="orga0a8985">第 2 章 变量和基本类型</h3>
+<div class="outline-text-3" id="text-orga0a8985">
+</div>
+<div id="outline-container-org330566a" class="outline-4">
+<h4 id="org330566a">2.1 基本内置类型</h4>
+<div class="outline-text-4" id="text-org330566a">
+</div>
+<div id="outline-container-orga0e6c6c" class="outline-5">
+<h5 id="orga0e6c6c">2.1.1 算术类型</h5>
+<div class="outline-text-5" id="text-orga0e6c6c">
+<p>
+wchat_t 类型用于确保可以存放机器最大扩展字符集中的任意一个字符，类型 char16_t 和 char32_t 则为 Unicode 字符集服务（Unicode 用于表示所有自然语言中字符的标准）。
+</p>
+
+<blockquote>
+<p>
+大多数计算机以 2 的整数次幂个比特作为块来处理内存，可寻址的最小内存块称为“字节(byte）”，存储的基本单元称为“字（word）“，它通常由几个字节组成。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org1f890d3" class="outline-6">
+<h6 id="org1f890d3">带符号类型和无符号类型</h6>
+<div class="outline-text-6" id="text-org1f890d3">
+<p>
+特别需要注意的是：类型 char 和类型 signed char 并不一样。尽管字符型有三种，但是字符的表现形式却只有两种：带符号的和无符号的。类型 char 实际上会表现为上述两种形式中的一种，具体是哪种由编译器决定。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0de6e2" class="outline-5">
+<h5 id="orgf0de6e2">2.1.2 类型转换</h5>
+<div class="outline-text-5" id="text-orgf0de6e2">
+<p>
+当我们赋给无符号类型一个超出它表示范围的值时，结果时初始值对无符号类型表示数值总数取模后的余数。
+</p>
+</div>
+<div id="outline-container-org685b962" class="outline-6">
+<h6 id="org685b962">含有无符号类型的表达式</h6>
+<div class="outline-text-6" id="text-org685b962">
+<p>
+当一个算术表达式中既有无符号数又有 int 值时，那个 int 值就会转换成无符号数。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfcd2eb7" class="outline-5">
+<h5 id="orgfcd2eb7">2.1.3 字面值常量</h5>
+<div class="outline-text-5" id="text-orgfcd2eb7">
+</div>
+<div id="outline-container-org9785d8c" class="outline-6">
+<h6 id="org9785d8c">整型和浮点型字面值</h6>
+<div class="outline-text-6" id="text-org9785d8c">
+<p>
+尽管整型字面值可以存储在带符号类型中，但严格来说，十进制字面值不会时负数。如果我们适用了一个形如-42 的负十进制字面值，那个负号并不在字面值之内，它的作用仅仅是对字面值取负值而已。
+</p>
+</div>
+</div>
+<div id="outline-container-org6f75ca8" class="outline-6">
+<h6 id="org6f75ca8">字符和字符串字面值</h6>
+<div class="outline-text-6" id="text-org6f75ca8">
+<p>
+由单引号括起来的一个字符称为 char 型字面值，双引号括起来的零个或多个字符则构成字符串字面值。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #98be65;">'a'</span>    <span style="color: #5B6268;">//  </span><span style="color: #5B6268;">&#23383;&#31526;&#23383;&#38754;&#20540;</span>
+<span style="color: #98be65;">"Hello World!"</span>   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;</span>
+</pre>
+</div>
+
+<p>
+如果两个字符串字面值位置紧邻且仅由空格、缩进和换行符分割，则它们实际上时一个整体。当书写的字符串字面值比较长，写在一行里不太合适时，就可以采取分开书写的方式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20998;&#22810;&#34892;&#20070;&#20889;&#30340;&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;</span>
+<span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"a really, really long string literal "</span>
+             <span style="color: #98be65;">"that spans two lines"</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfa21676" class="outline-6">
+<h6 id="orgfa21676">指定字面值类型</h6>
+<div class="outline-text-6" id="text-orgfa21676">
+<table id="org6ea6c4f">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">前缀</th>
+<th scope="col" class="org-left">含义</th>
+<th scope="col" class="org-left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">u</td>
+<td class="org-left">Unicode16 字符</td>
+<td class="org-left">char16_t</td>
+</tr>
+
+<tr>
+<td class="org-left">U</td>
+<td class="org-left">Unicode32 字符</td>
+<td class="org-left">char32_t</td>
+</tr>
+
+<tr>
+<td class="org-left">L</td>
+<td class="org-left">宽字符</td>
+<td class="org-left">wchar_t</td>
+</tr>
+
+<tr>
+<td class="org-left">u8</td>
+<td class="org-left">UTF-8（仅用于字符串字面常量）</td>
+<td class="org-left">char</td>
+</tr>
+</tbody>
+</table>
+
+<table id="org3d4fae3">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">后缀</th>
+<th scope="col" class="org-left">最小匹配类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">u or U</td>
+<td class="org-left">unsigned</td>
+</tr>
+
+<tr>
+<td class="org-left">l or L</td>
+<td class="org-left">long</td>
+</tr>
+
+<tr>
+<td class="org-left">ll or LL</td>
+<td class="org-left">long long</td>
+</tr>
+</tbody>
+</table>
+
+<table id="org88bf6f8">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">后缀</th>
+<th scope="col" class="org-left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">f or F</td>
+<td class="org-left">float</td>
+</tr>
+
+<tr>
+<td class="org-left">l or L</td>
+<td class="org-left">long double</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8e28048" class="outline-4">
+<h4 id="org8e28048">2.2 变量</h4>
+<div class="outline-text-4" id="text-org8e28048">
+</div>
+<div id="outline-container-org493e363" class="outline-5">
+<h5 id="org493e363">2.2.1 变量定义</h5>
+<div class="outline-text-5" id="text-org493e363">
+</div>
+<div id="outline-container-orgc703198" class="outline-6">
+<h6 id="orgc703198">初始值</h6>
+<div class="outline-text-6" id="text-orgc703198">
+<p>
+当一次定义了两个或多个变量时，对象的名字随着定义也就马上可以使用了。因此在同一条定义语句中，可以用先定义的变量值去初始化后定义的其他变量。
+</p>
+
+<blockquote>
+<p>
+WARNING
+</p>
+
+<p>
+初始化不是赋值，初始化的含义时创建变量时赋予其一个初始值，而赋值的含义时把对象的当前值擦出，而以一个新值来替代。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org1510545" class="outline-6">
+<h6 id="org1510545">列表初始化</h6>
+<div class="outline-text-6" id="text-org1510545">
+<p>
+作为 C++11 新标准的一部分，用花括号来初始化变量得到了全面应用，而在此之前这种初始化形式仅在某些收线场合才能适用。这种初始化的形式被称为 <b>列表初始化</b> 。现在，无论时初始化对象还是某些时候为对象赋新值，都可以适用这样一组由花括号括起来的初始值了。
+</p>
+
+<p>
+当用于内置类型的变量时，这种初始化形式有一个重要特点：如果我们使用列表初始化且初始值存在丢失信息的风险，则编译器将报错：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">long</span> <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">ld</span> = <span style="color: #da8548; font-weight: bold;">3.1415926536</span>;
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>{ld}, b = {ld};         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#36716;&#25442;&#26410;&#25191;&#34892;&#65292;&#22240;&#20026;&#23384;&#22312;&#20002;&#22833;&#20449;&#24687;&#30340;&#39118;&#38505;</span>
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">c</span>(ld), <span style="color: #dcaeea;">d</span> = ld;           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#36716;&#25442;&#25191;&#34892;&#65292;&#20999;&#30830;&#23454;&#20002;&#22833;&#20102;&#37096;&#20998;&#20540;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf1024ec" class="outline-6">
+<h6 id="orgf1024ec">默认初始化</h6>
+<div class="outline-text-6" id="text-orgf1024ec">
+<p>
+如果定义变量时没有执行初值，则变量被 <b>默认初始化</b> ，此时变量被赋予了”默认值“。默认值到底是什么由变量类型决定，同时定义变量的位置也会对此有影响。
+</p>
+
+<p>
+定义于任何函数体之外的内置类型的变量都被初始化未 0，定义在函数体内部的内质类型变量将 <b>不被初始化</b> 。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbccdfc8" class="outline-5">
+<h5 id="orgbccdfc8">2.2.4 名字的作用域</h5>
+<div class="outline-text-5" id="text-orgbccdfc8">
+</div>
+<div id="outline-container-org2e3dd5b" class="outline-6">
+<h6 id="org2e3dd5b">嵌套作用域</h6>
+<div class="outline-text-6" id="text-org2e3dd5b">
+<p>
+因为全局作用域本身没有名字，所以当作用域操作符的左侧为空时，向全局作用域发出请求获取作用域操作符右侧名字对应的变量。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;iostream&gt;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35813;&#31243;&#24207;&#20165;&#29992;&#20110;&#35828;&#26126;&#65306;&#20989;&#25968;&#20869;&#37096;&#19981;&#23452;&#23450;&#20041;&#19982;&#20840;&#23616;&#21464;&#37327;&#21516;&#21517;&#30340;&#26032;&#21464;&#37327;</span>
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">reused</span> = <span style="color: #da8548; font-weight: bold;">42</span>;
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>() {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">42</span>
+  <span style="color: #a9a1e1;">std</span>::count &lt;&lt; reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+  <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">reused</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">0</span>
+  <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">42</span>
+  <span style="color: #a9a1e1;">std</span>::count &lt;&lt; ::reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::end;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org30a2238" class="outline-4">
+<h4 id="org30a2238">2.3 复合类型</h4>
+<div class="outline-text-4" id="text-org30a2238">
+</div>
+<div id="outline-container-org82b90e9" class="outline-5">
+<h5 id="org82b90e9">2.3.3 理解复合类型的声明</h5>
+<div class="outline-text-5" id="text-org82b90e9">
+<p>
+面对一条比较复杂的指针或引用的声明语句时，从右向左阅读有助于弄清楚它的真实含义。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org23c44ef" class="outline-4">
+<h4 id="org23c44ef">const 限定符</h4>
+<div class="outline-text-4" id="text-org23c44ef">
+</div>
+<div id="outline-container-orgb41ff3e" class="outline-5">
+<h5 id="orgb41ff3e">2.4.3 顶层 const</h5>
+<div class="outline-text-5" id="text-orgb41ff3e">
+<p>
+<b>顶层 const</b> 表示指针本身是个常量，而 <b>底层 const</b> 表示指针所指的对象是一个常量。
+</p>
+
+<p>
+更一般的，顶层 const 可以表示任意对象是常量，这一点对任何数据类型都适用，如算术类型、类、指针等。底层 const 则与指针和引用等符合类型的基本类型部分有关。
+</p>
+</div>
+</div>
+<div id="outline-container-org7dadd55" class="outline-5">
+<h5 id="org7dadd55">2.4.4 constexpr 和常量表达式</h5>
+<div class="outline-text-5" id="text-org7dadd55">
+<p>
+<b>常量表达式</b> 是指不会改变并且在编译过程就能得到计算结果的表达式。
+</p>
+</div>
+<div id="outline-container-org3260be0" class="outline-6">
+<h6 id="org3260be0">constexpr 变量</h6>
+<div class="outline-text-6" id="text-org3260be0">
+<p>
+C++11 新标准规定，允许将变量声明为 <b>constexpr</b> 类型以便由编译器来验证变量值是否是一个常量表达式。声明为 constexpr 的变量一定是一个常量，而且必须用常量表达式初始化
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga247bed" class="outline-4">
+<h4 id="orga247bed">2.5 处理类型</h4>
+<div class="outline-text-4" id="text-orga247bed">
+</div>
+<div id="outline-container-org6412b2e" class="outline-5">
+<h5 id="org6412b2e">2.5.1 类型别名</h5>
+<div class="outline-text-5" id="text-org6412b2e">
+<p>
+有两种方法可用于定义类型别名。传统的方法是使用关键字 <b>typedef</b> 。
+</p>
+
+<p>
+新标准规定了一种新的方法，使用 <b>别名声明</b> 来定义类型的别名：
+</p>
+
+<p>
+<code>using SI = Sales_item;   // SI是Sales_item的同义词</code>
+</p>
+
+<p>
+这种方法用关键词 using 作为别名声明的开始，其后紧跟别名和等号，其作用是把等号左侧的名字规定成等号右侧类型的别名。
+</p>
+</div>
+</div>
+<div id="outline-container-orge7826c7" class="outline-5">
+<h5 id="orge7826c7">2.5.2 auto 类型说明符</h5>
+<div class="outline-text-5" id="text-orge7826c7">
+<p>
+C++11 新标准引入了 auto 类型说明符，用它就能让编译器替我们去分析表达式所属的类型。
+</p>
+
+<p>
+因为一条语句只能有一个数据类型，所以该语句中所有变量的初始基本数据类型都必须一样：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">0</span>, *<span style="color: #dcaeea;">p</span> = &amp;i;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;i&#26159;&#25972;&#25968;&#12289;p&#26159;&#31867;&#22411;&#25351;&#38024;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">sz</span> = <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">pi</span> = <span style="color: #da8548; font-weight: bold;">3.14</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;sz&#21644;pi&#30340;&#31867;&#22411;&#19981;&#19968;&#33268;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb281230" class="outline-6">
+<h6 id="orgb281230">复合类型、常量和 auto</h6>
+<div class="outline-text-6" id="text-orgb281230">
+<p>
+auto 一般会忽略掉顶层 const，同时底层 const 则会保留下来，比如当初始值是一个指向常量的指针时。如果希望推断出 auto 类型时一个顶层 const，则需要明确指出：
+</p>
+
+<p>
+<code>const auto f = ci;      // ci的推演类型时int， f是const int</code>
+</p>
+
+<p>
+还可以将引用类型设为 auto，此时原来的初始化规则仍然适用。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge58cd0d" class="outline-5">
+<h5 id="orge58cd0d">2.5.3 decltype 类型指示符</h5>
+<div class="outline-text-5" id="text-orge58cd0d">
+<p>
+C++11 新标准引入了第二种类型说明符 <b>decltype</b> ，它的作用是选择并返回操作数的数据类型。在此过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值：
+</p>
+
+<p>
+<code>decltype(f()) sum = x;   // sum的类型就是函数f的返回类型</code>
+</p>
+
+<p>
+编译器并不实际调用函数 f，而且适用当调用发生时 f 的返回类型作为 sum 的类型。
+</p>
+
+<p>
+decltype 处理顶层 const 和引用的方式与 auto 有些许不同。如果 decltype 使用的表达式时一个变量，则 decltype 返回该变量的类型（包括顶层 const 和引用在内）。
+</p>
+</div>
+
+<div id="outline-container-org9f7606f" class="outline-6">
+<h6 id="org9f7606f">decltype 和引用</h6>
+<div class="outline-text-6" id="text-org9f7606f">
+<p>
+如果 decltype 适用的表达式不是一个变量，则 decltype 返回表达式对应的类型。
+</p>
+
+<p>
+另一方面，如果表达式的内容是解引用，则 decltype 将得到引用类型。正如我们所熟悉的那样，解引用指针可以得到指针所指的对象，而且还能给这个对象赋值。因此，decltype (*p)的结果类型就是 int&amp;，而非 int。
+</p>
+
+<p>
+对于 decltype 所用的表达式来说，如果变量名加上了一对括号，则得到的类型与不加括号时会有不同。如果 decltype 使用的是一个不加括号的变量，则得到的结果就是该变量的类型；如果给变量加上了一层或多层括号，编译器就会把它当成是一个表达式。变量是一种可以作为赋值语句左值的特殊表达式，所以这样的 decltype 就会得道引用类型。
+</p>
+
+<blockquote>
+<p>
+WARNING
+</p>
+
+<p>
+切记：decltype((variable))（注意是双层括号）的结果永远是引用，而 decltype(variable)结果只有当 variable 本身就是一个引用时才是引用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org878be42" class="outline-4">
+<h4 id="org878be42">2.6 自定义数据结构</h4>
+<div class="outline-text-4" id="text-org878be42">
+<p>
+类体右侧的表示结束的花括号后必须写一个分号，这是因为类体后面可以紧跟变量名以示对该类型对象的定义，所以分号必不可少：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Sales_date</span> { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> } <span style="color: #dcaeea;">accum</span>, <span style="color: #dcaeea;">trans</span>, *<span style="color: #dcaeea;">salesptr</span>;
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#19982;&#19978;&#19968;&#26465;&#35821;&#21477;&#31561;&#20215;&#65292;&#20294;&#21487;&#33021;&#26356;&#22909;&#19968;&#20123;</span>
+<span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Sales_date</span> { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> };
+<span style="color: #ECBE7B;">Sales_date</span> <span style="color: #dcaeea;">accum</span>, <span style="color: #dcaeea;">trans</span>, *<span style="color: #dcaeea;">salesptr</span>;
+</pre>
+</div>
+
+<p>
+分号表示声明符（通常为空）的结束。一般来说，最好不要把对象的定义和类的定义放在一起。这么做无异吧两种不同实体的定义混在了一条语句里，一会儿定义类，一会儿又定义变量，显示这是一种不被建议的行为。
+</p>
+</div>
+
+<div id="outline-container-org2bb41f3" class="outline-6">
+<h6 id="org2bb41f3">类数据成员</h6>
+<div class="outline-text-6" id="text-org2bb41f3">
+<p>
+C++11 新标准规定，可以为数据成员提供一个 <b>类内初始值</b> 。创建对象时，雷内初始值将用于初始化数据成员。没有初始值的成员将被默认初始化。
+</p>
+
+<p>
+对类内初始值的限制与之前介绍的类似（参见 2.2.1 节）：或者放在花括号里，或者放在等号右边，记住不能使用圆括号。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org44f580a" class="outline-3">
+<h3 id="org44f580a">第 3 章 字符串、向量和数组</h3>
+<div class="outline-text-3" id="text-org44f580a">
+</div>
+<div id="outline-container-org2b4ddc8" class="outline-4">
+<h4 id="org2b4ddc8">3.1 命名空间和 using 声明</h4>
+<div class="outline-text-4" id="text-org2b4ddc8">
+<p>
+有了 using 声明就无须专门的前缀（形如命名空间::）也能使用所需的名字了。 using 声明具有如下的形式：
+</p>
+
+<p>
+<code>using namespace::name;</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;iosteam&gt;</span>
+<span style="color: #51afef;">using</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">cin</span>;
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>() {
+  <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+  cin &gt;&gt; i;
+  <span style="color: #a9a1e1;">std</span>::count &lt;&lt; i;
+  <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-org03b865f" class="outline-5">
+<h5 id="org03b865f">头文件不应包含 using 声明</h5>
+<div class="outline-text-5" id="text-org03b865f">
+<p>
+位于头文件的代码一般来说不应该使用 using 声明。这是因为头文件的内容会拷贝到所有引导它的文件中，如果头文件里有某个 using 声明，那么每个使用了该文件的文件都会有这个声明。对于某些程序来说，由于不经意间包含了一些名字，反而可能产生始料未及的名字冲突。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org37c2080" class="outline-4">
+<h4 id="org37c2080">3.2 标准库类型 string</h4>
+<div class="outline-text-4" id="text-org37c2080">
+<p>
+标准库类型 <b>string</b> 表示可变长的字符序列。作为标准库的一部分，string 定义在命名空间 std 中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;string&gt;</span>
+<span style="color: #51afef;">using</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-org4fbc0f0" class="outline-5">
+<h5 id="org4fbc0f0">3.2.1 定义和初始化 string 对象</h5>
+<div class="outline-text-5" id="text-org4fbc0f0">
+<table id="orgcd93cec">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">string s1</td>
+<td class="org-left">默认初始化，s1 是一个空串</td>
+</tr>
+
+<tr>
+<td class="org-left">string s2(s1)</td>
+<td class="org-left">s2 是 s1 的副本</td>
+</tr>
+
+<tr>
+<td class="org-left">string s2 = s1</td>
+<td class="org-left">等价于 s2(s1)</td>
+</tr>
+
+<tr>
+<td class="org-left">string s3("value")</td>
+<td class="org-left">s3 是字面值"values"副本，除了字面值最后的那个空字符外</td>
+</tr>
+
+<tr>
+<td class="org-left">string 3 = "value"</td>
+<td class="org-left">等价于 s3("value")</td>
+</tr>
+
+<tr>
+<td class="org-left">string s4(n, 'c')</td>
+<td class="org-left">把 s4 初始化为由连续 n 个字符 c 组成的串</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org18c5cad" class="outline-6">
+<h6 id="org18c5cad">直接初始化和拷贝初始化</h6>
+<div class="outline-text-6" id="text-org18c5cad">
+<p>
+如果使用等号（=）初始化一个变量，实际上执行的是 <b>拷贝初始化</b> ，编译器把等号右侧的初始值拷贝到新创建的对象中去。与之相反，如果不使用等号，则执行的是 <b>直接初始化</b> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s5</span> = <span style="color: #98be65;">"hiya"</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25335;&#36125;&#21021;&#22987;&#21270;</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s6</span>(<span style="color: #98be65;">"hiya"</span>);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#30452;&#25509;&#21021;&#22987;&#21270;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-05-29 Fri 21:54</p>
+</div>
+</body>
+</html>

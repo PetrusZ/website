@@ -1,0 +1,5372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-06-04 Thu 14:52 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C/C++ Primer 第 I 部分 C++基础</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">C/C++ Primer 第 I 部分 C++基础</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org09dc24b">第 2 章 变量和基本类型</a>
+<ul>
+<li><a href="#org9a7b44d">2.1 基本内置类型</a>
+<ul>
+<li><a href="#orga67e2d6">2.1.1 算术类型</a>
+<ul>
+<li><a href="#org40a4a95">带符号类型和无符号类型</a></li>
+</ul>
+</li>
+<li><a href="#orgbc0b99f">2.1.2 类型转换</a>
+<ul>
+<li><a href="#org5c255a0">含有无符号类型的表达式</a></li>
+</ul>
+</li>
+<li><a href="#org2660c21">2.1.3 字面值常量</a>
+<ul>
+<li><a href="#org74ee0af">整型和浮点型字面值</a></li>
+<li><a href="#org9732059">字符和字符串字面值</a></li>
+<li><a href="#org06b19cd">指定字面值类型</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgad4add7">2.2 变量</a>
+<ul>
+<li><a href="#orgcebbff4">2.2.1 变量定义</a>
+<ul>
+<li><a href="#orge52b000">初始值</a></li>
+<li><a href="#org02da349">列表初始化</a></li>
+<li><a href="#orgae7e380">默认初始化</a></li>
+</ul>
+</li>
+<li><a href="#org834edde">2.2.4 名字的作用域</a>
+<ul>
+<li><a href="#orgdfeddb7">嵌套作用域</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org650c26a">2.3 复合类型</a>
+<ul>
+<li><a href="#org5f527c9">2.3.3 理解复合类型的声明</a></li>
+</ul>
+</li>
+<li><a href="#orgbf0a73b">2.4 const 限定符</a>
+<ul>
+<li><a href="#org03c03cb">2.4.3 顶层 const</a></li>
+<li><a href="#org7baef06">2.4.4 constexpr 和常量表达式</a>
+<ul>
+<li><a href="#orgb351e01">constexpr 变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcb773e4">2.5 处理类型</a>
+<ul>
+<li><a href="#orgff8f485">2.5.1 类型别名</a></li>
+<li><a href="#org0f1f431">2.5.2 auto 类型说明符</a>
+<ul>
+<li><a href="#org63ea21f">复合类型、常量和 auto</a></li>
+</ul>
+</li>
+<li><a href="#org732b034">2.5.3 decltype 类型指示符</a>
+<ul>
+<li><a href="#org40f1d18">decltype 和引用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org69a96cd">2.6 自定义数据结构</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgaeac252">类数据成员</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org719a869">第 3 章 字符串、向量和数组</a>
+<ul>
+<li><a href="#orgb851d10">3.1 命名空间和 using 声明</a>
+<ul>
+<li><a href="#orgb827c03">头文件不应包含 using 声明</a></li>
+</ul>
+</li>
+<li><a href="#org23e6c92">3.2 标准库类型 string</a>
+<ul>
+<li><a href="#org4e97c88">3.2.1 定义和初始化 string 对象</a>
+<ul>
+<li><a href="#org8ccc75c">直接初始化和拷贝初始化</a></li>
+</ul>
+</li>
+<li><a href="#org33481b5">3.2.2 string 对象上的操作</a>
+<ul>
+<li><a href="#orgc648999">读写 string 对象</a></li>
+<li><a href="#orgc3ac5a1">使用 getline 读取一整行</a></li>
+<li><a href="#orgb6be999">string::size_type 类型</a></li>
+<li><a href="#org9e0dbf5">字面值和 string 对象相加</a></li>
+<li><a href="#org16120a7">使用 C++版本的 C 标准库头文件</a></li>
+<li><a href="#org7dbefe7">处理每个字符？使用基于范围的 for 语句</a></li>
+<li><a href="#org6e2e805">使用范围 for 语句改变字符串中的字符</a></li>
+<li><a href="#org6480ac7">只处理一部分字符？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf81f2e7">3.3 标准库类型 vector</a>
+<ul>
+<li><a href="#orgde09100">3.3.1 定义和初始化 vector 对象</a>
+<ul>
+<li><a href="#org94dc641">值初始化</a></li>
+<li><a href="#orgd962a3f">列表初始化还是元素数量？</a></li>
+</ul>
+</li>
+<li><a href="#orgf0e670c">3.3.2 向 vector 对象中添加元素</a>
+<ul>
+<li><a href="#orgf1e5ca3">向 vector 对象添加元素蕴含的编程假定</a></li>
+</ul>
+</li>
+<li><a href="#org8efd3a3">3.3.3 其他 vector 操作</a>
+<ul>
+<li><a href="#orgd7dc070">不能用下标形式添加元素</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf4b248c">3.4 迭代器介绍</a>
+<ul>
+<li><a href="#org45675cf">3.4.1 使用迭代器可以访问某个元素</a>
+<ul>
+<li><a href="#org4b661ee">迭代器运算符</a></li>
+<li><a href="#org97ef1f4">将迭代器从一个元素移动到另一个元素</a></li>
+<li><a href="#org86b2682">迭代器类型</a></li>
+<li><a href="#org577978d">begin 和 end 运算符</a></li>
+<li><a href="#org1bc75a7">某些对 vector 对象的操作会使迭代器失效</a></li>
+</ul>
+</li>
+<li><a href="#org4de33ad">3.4.2 迭代器运算符</a>
+<ul>
+<li><a href="#org0cb837d">迭代器的算术运算</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9884bdd">3.5 数组</a>
+<ul>
+<li><a href="#org9521a13">3.5.1 定义和初始化内置数组</a>
+<ul>
+<li><a href="#orgf167ac0">不允许拷贝和赋值</a></li>
+<li><a href="#org108de39">理解复杂的数组声明</a></li>
+</ul>
+</li>
+<li><a href="#org7081292">3.5.2 访问数组元素</a></li>
+<li><a href="#orged5e44f">3.5.3 指针和数组</a>
+<ul>
+<li><a href="#orgc2e4c5b">标准库函数 begin 和 end</a></li>
+<li><a href="#orgc7fb983">指针运算</a></li>
+<li><a href="#org181e8bc">下标和指针</a></li>
+</ul>
+</li>
+<li><a href="#org6d6617d">3.5.5 与旧代码的接口</a>
+<ul>
+<li><a href="#org62f5dac">混用 string 对象和 C 风格字符串</a></li>
+<li><a href="#org5f182ad">使用数组初始化 vector 对象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga761b84">3.6 多维数组</a></li>
+</ul>
+</li>
+<li><a href="#org2aaf28f">第 4 章 表达式</a>
+<ul>
+<li><a href="#org9f7c33d">4.1 基础</a>
+<ul>
+<li><a href="#org9809cde">4.1.1 基本概念</a>
+<ul>
+<li><a href="#org20a48bf">左值和右值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org17e4b51">4.4 赋值运算符</a>
+<ul>
+<li><a href="#orgc242961">赋值运算满足右结合律</a></li>
+<li><a href="#orge4a085b">赋值运算优先级较低</a></li>
+<li><a href="#org95435e5">复合赋值运算符</a></li>
+</ul>
+</li>
+<li><a href="#org01c47e4">4.5 递增和递减运算符</a>
+<ul>
+<li><a href="#org394600d">运算对象可按任意顺序求值</a></li>
+</ul>
+</li>
+<li><a href="#org4d4b75f">4.7 条件运算符</a>
+<ul>
+<li><a href="#org02381b5">嵌套条件运算符</a></li>
+<li><a href="#org94c37bd">在输出表达式中使用条件运算符</a></li>
+</ul>
+</li>
+<li><a href="#orgca33a61">4.8 位运算符</a>
+<ul>
+<li><a href="#orgc9c74ab">移位运算符</a></li>
+<li><a href="#orgc4166cb">位与、位或、位异或运算符</a></li>
+<li><a href="#org6918bf4">移位运算符（又叫 IO 运算符）满足左结合律</a></li>
+</ul>
+</li>
+<li><a href="#org10081a7">4.9 sizeof 运算符</a></li>
+<li><a href="#org6b0d158">4.10 逗号运算符</a></li>
+<li><a href="#org893d11c">4.11 类型转换</a>
+<ul>
+<li><a href="#org8403a36">4.11.1 算术转换</a>
+<ul>
+<li><a href="#org174523c">整型提升</a></li>
+<li><a href="#org4e7a89f">无符号类型的运算对象</a></li>
+</ul>
+</li>
+<li><a href="#org65a48e6">4.11.2 其他隐式类型转换</a></li>
+<li><a href="#orgb506be7">4.11.3 显式转换</a>
+<ul>
+<li><a href="#org7c6d17d">命名的强制类型转换</a></li>
+<li><a href="#org3bc53f4">static_cast</a></li>
+<li><a href="#org26d3a21">const_cast</a></li>
+<li><a href="#org994eb79">reinterpret_cast</a></li>
+<li><a href="#orgcedd6bb">旧式的强制类型转换</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge1c883a">第 5 章 语句</a>
+<ul>
+<li><a href="#orgd626575">5.1 简单语句</a>
+<ul>
+<li><a href="#org49b0a94">复合语句（块）</a></li>
+</ul>
+</li>
+<li><a href="#org127c4e7">5.2 语句作用域</a></li>
+<li><a href="#orgf13f76a">5.3 条件语句</a>
+<ul>
+<li><a href="#org944d497">5.3.1 if 语句</a>
+<ul>
+<li><a href="#org2b41cb9">悬垂 else</a></li>
+</ul>
+</li>
+<li><a href="#org9549fc0">5.3.2 switch 语句</a>
+<ul>
+<li><a href="#orgf1ec9aa">switch 内部的变量定义</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5d6e327">5.4 迭代语句</a>
+<ul>
+<li><a href="#org03a0e44">5.4.1 while 语句</a></li>
+<li><a href="#org4024776">5.4.2 传统的 for 语句</a></li>
+<li><a href="#org4dc0685">5.4.3 范围 for 语句</a></li>
+<li><a href="#org0cabb19">5.4.4 do while 语句</a></li>
+</ul>
+</li>
+<li><a href="#orga3e5cb1">5.5 跳转语句</a>
+<ul>
+<li><a href="#org55de8a7">5.5.3 goto 语句</a></li>
+</ul>
+</li>
+<li><a href="#orgdf6be1d">5.6 try 语句块和异常处理</a>
+<ul>
+<li><a href="#orgb898c4d">5.6.1 throw 表达式</a></li>
+<li><a href="#org21d783e">5.6.2 try 语句块</a>
+<ul>
+<li><a href="#org18b650c">函数在寻找处理代码的过程中退出</a></li>
+</ul>
+</li>
+<li><a href="#orga84fe8a">5.6.3 标准异常</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4b904c0">第 6 章 函数</a>
+<ul>
+<li><a href="#org45f5c8e">6.1 函数基础</a>
+<ul>
+<li><a href="#org8f99176">6.1.1 局部对象</a>
+<ul>
+<li><a href="#org3fcc6f7">自动对象</a></li>
+<li><a href="#orgb4795fb">局部静态对象</a></li>
+</ul>
+</li>
+<li><a href="#orgf341bf3">6.1.2 函数声明</a></li>
+</ul>
+</li>
+<li><a href="#org23d72d1">6.2 参数传递</a>
+<ul>
+<li><a href="#org46beb04">6.2.2 传引用参数</a>
+<ul>
+<li><a href="#org68076a4">使用引用避免拷贝</a></li>
+</ul>
+</li>
+<li><a href="#org5289339">6.2.4 数组形参</a>
+<ul>
+<li><a href="#org6c5154a">数组引用形参</a></li>
+<li><a href="#orgff5962b">传递多维数组</a></li>
+</ul>
+</li>
+<li><a href="#org748c3ed">6.2.6 含有可变形参的函数</a>
+<ul>
+<li><a href="#orgb793176">initializer_list 形参</a></li>
+<li><a href="#orgb126c08">省略符形参</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org31cf559">6.3 返回类型和 return 语句</a>
+<ul>
+<li><a href="#orga145960">6.3.2 有返回值函数</a>
+<ul>
+<li><a href="#org060d142">值时如何被返回的</a></li>
+<li><a href="#orge9ee74b">不要返回局部对象的引用或指针</a></li>
+<li><a href="#orgf5faf22">引用返回左值</a></li>
+<li><a href="#orge92abfa">列表初始化返回值</a></li>
+</ul>
+</li>
+<li><a href="#orgd90488b">6.3.3 返回数组指针</a>
+<ul>
+<li><a href="#orga0e53eb">声明一个返回数组指针的函数</a></li>
+<li><a href="#orgfcf3059">使用尾置返回类型</a></li>
+<li><a href="#org0aef322">使用 decltype</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org80c6a66">6.4 函数重载</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org25160b4">定义重载函数</a></li>
+<li><a href="#org8bca610">重载和 const 形参</a></li>
+<li><a href="#org4c4515e">const_cast 和重载</a></li>
+<li><a href="#orgdd214bf">调用重载的函数</a></li>
+</ul>
+</li>
+<li><a href="#orgc5219a2">6.4.1 重载与作用域</a></li>
+</ul>
+</li>
+<li><a href="#org05edd83">6.5 特殊用途语言特性</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgda1e5a0">默认实参声明</a></li>
+<li><a href="#orgb510021">默认实参初始值</a></li>
+</ul>
+</li>
+<li><a href="#orgb45d34d">6.5.2 内联函数和 constexpr 函数</a>
+<ul>
+<li><a href="#org1d6fe72">内联函数可避免函数调用的开销</a></li>
+<li><a href="#org5044469">constexpr 函数</a></li>
+<li><a href="#org3a2e4b0">把内联函数和 constexpr 函数放在头文件内</a></li>
+</ul>
+</li>
+<li><a href="#orgeb60385">6.5.3 调试帮助</a>
+<ul>
+<li><a href="#org2a40388">assert 预处理宏</a></li>
+<li><a href="#orge946302">NDEBUG 预处理变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org28dc76b">6.6 函数匹配</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org6181d4b">确定候选函数和可行函数</a></li>
+<li><a href="#org486155a">寻找最佳匹配（如果有的话）</a></li>
+<li><a href="#orgc54b767">含有多个形参的函数匹配</a></li>
+</ul>
+</li>
+<li><a href="#orga6a329d">6.6.1 实参类型转换</a>
+<ul>
+<li><a href="#org634d95a">需要类型提供和算术类型转换的匹配</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org32330a7">6.7 函数指针</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgd57c2a6">使用函数指针</a></li>
+<li><a href="#orgb732e4a">重载函数的指针</a></li>
+<li><a href="#org7101e57">函数指针形参</a></li>
+<li><a href="#orgebabeaf">返回指向函数的指针</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org234d944">第 7 章 类</a>
+<ul>
+<li><a href="#org6b402a9">7.1 定义抽象数据类型</a>
+<ul>
+<li><a href="#org2196246">7.1.2 定义该进的 Sales_data 类</a>
+<ul>
+<li><a href="#org5eef6f7">定义成员函数</a></li>
+<li><a href="#org797ac78">引入 this</a></li>
+<li><a href="#org425b750">引入 const 成员函数</a></li>
+<li><a href="#org86af6ff">在类的外部定义成员函数</a></li>
+</ul>
+</li>
+<li><a href="#org1cfd517">7.1.3 定义类相关的非成员函数</a></li>
+<li><a href="#org8143c61">7.1.4 构造函数</a>
+<ul>
+<li><a href="#orgbc18fc1">合成的默认构造函数</a></li>
+<li><a href="#orgebbee2d">某些类不同依赖于合成的默认构造函数</a></li>
+<li><a href="#org033fa7d">= default 的含义</a></li>
+<li><a href="#org9b412c4">构造函数的初始值列表</a></li>
+<li><a href="#org4e52ed7">在类的外部定义构造函数</a></li>
+</ul>
+</li>
+<li><a href="#orgd118158">7.1.5 拷贝、赋值和析构</a>
+<ul>
+<li><a href="#org0b0d0dc">某些类不能依赖于合成的版本</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0f1f8b8">7.2 访问控制与封装</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org392cfb8">使用 class 或 struct 关键字</a></li>
+</ul>
+</li>
+<li><a href="#org98dabb2">7.2.1 友元</a>
+<ul>
+<li><a href="#org76697ff">友元的声明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7f8fcde">7.3 类的其他特性</a>
+<ul>
+<li><a href="#org29413b2">7.3.1 类成员再探</a>
+<ul>
+<li><a href="#orga05a865">定义一个类型成员</a></li>
+<li><a href="#orgdadfd10">令成员作为内联函数</a></li>
+<li><a href="#org110289d">可变数据成员</a></li>
+<li><a href="#orgfe49afb">类数据成员的初始值</a></li>
+<li><a href="#orgf3142e8">从 const 成员函数返回*this</a></li>
+</ul>
+</li>
+<li><a href="#orgf808b5f">7.3.3 类类型</a>
+<ul>
+<li><a href="#org041f17a">类的声明</a></li>
+</ul>
+</li>
+<li><a href="#org71feac7">7.3.4 友元再探</a>
+<ul>
+<li><a href="#org03c691d">类之间的友元关系</a></li>
+<li><a href="#orgc24543f">令成员函数作为友元</a></li>
+<li><a href="#org79dfb58">函数重载和友元</a></li>
+<li><a href="#org17851fe">友元声明和作用域</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgb750f95">7.4 类的作用域</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orge8b27f4">作用域和定义在类外部的成员</a></li>
+</ul>
+</li>
+<li><a href="#org83ccb57">7.4.1 名字查找与类的作用域</a>
+<ul>
+<li><a href="#org95a261c">用于类成员声明的名字查找</a></li>
+<li><a href="#org8d0abef">类型名要特殊处理</a></li>
+<li><a href="#org6f864f1">成员定义中的普通块作用域的名字查找</a></li>
+<li><a href="#org496fe0c">在文件中名字的出现处对其进行解析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8e0d8d7">7.5 构造函数再探</a>
+<ul>
+<li><a href="#org8abf996">7.5.1 构造函数初始值列表</a>
+<ul>
+<li><a href="#org5ca9be5">构造函数的初始值有时必不可少</a></li>
+<li><a href="#org0fb5781">成员初始化的顺序</a></li>
+<li><a href="#orge3a6925">默认实参和构造函数</a></li>
+</ul>
+</li>
+<li><a href="#orgfd29ddc">7.5.2 委托构造函数</a></li>
+<li><a href="#orgf6aae54">7.5.3 默认构造函数的作用</a></li>
+<li><a href="#orgb0484bc">7.5.4 隐式的类类型转换</a>
+<ul>
+<li><a href="#orgc339057">只允许一步类类型转换</a></li>
+<li><a href="#org942777c">抑制构造函数定义的隐式转换</a></li>
+<li><a href="#org47fc171">explicit 构造函数只能用于直接初始化</a></li>
+<li><a href="#org902e285">为转换显式地使用构造函数</a></li>
+<li><a href="#org6e308ba">标准库中含有显示构造函数的类</a></li>
+</ul>
+</li>
+<li><a href="#org1293d13">7.5.5 聚合类</a></li>
+<li><a href="#orgfcf7fff">7.5.6 字面值常量类</a>
+<ul>
+<li><a href="#orga2605bc">constepxr 构造函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org72ed48b">7.6 类的静态成员</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgb1d408f">声明静态成员</a></li>
+<li><a href="#org64b3a3d">使用类的静态成员</a></li>
+<li><a href="#orgdaf71e1">定义静态成员</a></li>
+<li><a href="#org7734a84">静态成员的类内初始化</a></li>
+<li><a href="#org47206f8">静态成员能用于某些场景，而普通成员不能</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org09dc24b" class="outline-2">
+<h2 id="org09dc24b">第 2 章 变量和基本类型</h2>
+<div class="outline-text-2" id="text-org09dc24b">
+</div>
+<div id="outline-container-org9a7b44d" class="outline-3">
+<h3 id="org9a7b44d">2.1 基本内置类型</h3>
+<div class="outline-text-3" id="text-org9a7b44d">
+</div>
+<div id="outline-container-orga67e2d6" class="outline-4">
+<h4 id="orga67e2d6">2.1.1 算术类型</h4>
+<div class="outline-text-4" id="text-orga67e2d6">
+<p>
+wchat_t 类型用于确保可以存放机器最大扩展字符集中的任意一个字符，类型 char16_t 和 char32_t 则为 Unicode 字符集服务（Unicode 用于表示所有自然语言中字符的标准）。
+</p>
+
+<blockquote>
+<p>
+大多数计算机以 2 的整数次幂个比特作为块来处理内存，可寻址的最小内存块称为“字节(byte）”，存储的基本单元称为“字（word）“，它通常由几个字节组成。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org40a4a95" class="outline-5">
+<h5 id="org40a4a95">带符号类型和无符号类型</h5>
+<div class="outline-text-5" id="text-org40a4a95">
+<p>
+特别需要注意的是：类型 char 和类型 signed char 并不一样。尽管字符型有三种，但是字符的表现形式却只有两种：带符号的和无符号的。类型 char 实际上会表现为上述两种形式中的一种，具体是哪种由编译器决定。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbc0b99f" class="outline-4">
+<h4 id="orgbc0b99f">2.1.2 类型转换</h4>
+<div class="outline-text-4" id="text-orgbc0b99f">
+<p>
+当我们赋给无符号类型一个超出它表示范围的值时，结果时初始值对无符号类型表示数值总数取模后的余数。
+</p>
+</div>
+<div id="outline-container-org5c255a0" class="outline-5">
+<h5 id="org5c255a0">含有无符号类型的表达式</h5>
+<div class="outline-text-5" id="text-org5c255a0">
+<p>
+当一个算术表达式中既有无符号数又有 int 值时，那个 int 值就会转换成无符号数。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2660c21" class="outline-4">
+<h4 id="org2660c21">2.1.3 字面值常量</h4>
+<div class="outline-text-4" id="text-org2660c21">
+</div>
+<div id="outline-container-org74ee0af" class="outline-5">
+<h5 id="org74ee0af">整型和浮点型字面值</h5>
+<div class="outline-text-5" id="text-org74ee0af">
+<p>
+尽管整型字面值可以存储在带符号类型中，但严格来说，十进制字面值不会时负数。如果我们适用了一个形如-42 的负十进制字面值，那个负号并不在字面值之内，它的作用仅仅是对字面值取负值而已。
+</p>
+</div>
+</div>
+<div id="outline-container-org9732059" class="outline-5">
+<h5 id="org9732059">字符和字符串字面值</h5>
+<div class="outline-text-5" id="text-org9732059">
+<p>
+由单引号括起来的一个字符称为 char 型字面值，双引号括起来的零个或多个字符则构成字符串字面值。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #98be65;">'a'</span>    <span style="color: #5B6268;">//  </span><span style="color: #5B6268;">&#23383;&#31526;&#23383;&#38754;&#20540;</span>
+<span style="color: #98be65;">"Hello World!"</span>   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;</span>
+</pre>
+</div>
+
+<p>
+如果两个字符串字面值位置紧邻且仅由空格、缩进和换行符分割，则它们实际上时一个整体。当书写的字符串字面值比较长，写在一行里不太合适时，就可以采取分开书写的方式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20998;&#22810;&#34892;&#20070;&#20889;&#30340;&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;</span>
+<span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"a really, really long string literal "</span>
+             <span style="color: #98be65;">"that spans two lines"</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org06b19cd" class="outline-5">
+<h5 id="org06b19cd">指定字面值类型</h5>
+<div class="outline-text-5" id="text-org06b19cd">
+<table id="orgeba755b">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">前缀</th>
+<th scope="col" class="org-left">含义</th>
+<th scope="col" class="org-left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">u</td>
+<td class="org-left">Unicode16 字符</td>
+<td class="org-left">char16_t</td>
+</tr>
+
+<tr>
+<td class="org-left">U</td>
+<td class="org-left">Unicode32 字符</td>
+<td class="org-left">char32_t</td>
+</tr>
+
+<tr>
+<td class="org-left">L</td>
+<td class="org-left">宽字符</td>
+<td class="org-left">wchar_t</td>
+</tr>
+
+<tr>
+<td class="org-left">u8</td>
+<td class="org-left">UTF-8（仅用于字符串字面常量）</td>
+<td class="org-left">char</td>
+</tr>
+</tbody>
+</table>
+
+<table id="org313f477">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">后缀</th>
+<th scope="col" class="org-left">最小匹配类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">u or U</td>
+<td class="org-left">unsigned</td>
+</tr>
+
+<tr>
+<td class="org-left">l or L</td>
+<td class="org-left">long</td>
+</tr>
+
+<tr>
+<td class="org-left">ll or LL</td>
+<td class="org-left">long long</td>
+</tr>
+</tbody>
+</table>
+
+<table id="org07760da">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">后缀</th>
+<th scope="col" class="org-left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">f or F</td>
+<td class="org-left">float</td>
+</tr>
+
+<tr>
+<td class="org-left">l or L</td>
+<td class="org-left">long double</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad4add7" class="outline-3">
+<h3 id="orgad4add7">2.2 变量</h3>
+<div class="outline-text-3" id="text-orgad4add7">
+</div>
+<div id="outline-container-orgcebbff4" class="outline-4">
+<h4 id="orgcebbff4">2.2.1 变量定义</h4>
+<div class="outline-text-4" id="text-orgcebbff4">
+</div>
+<div id="outline-container-orge52b000" class="outline-5">
+<h5 id="orge52b000">初始值</h5>
+<div class="outline-text-5" id="text-orge52b000">
+<p>
+当一次定义了两个或多个变量时，对象的名字随着定义也就马上可以使用了。因此在同一条定义语句中，可以用先定义的变量值去初始化后定义的其他变量。
+</p>
+
+<blockquote>
+<p>
+WARNING
+</p>
+
+<p>
+初始化不是赋值，初始化的含义时创建变量时赋予其一个初始值，而赋值的含义时把对象的当前值擦除，而以一个新值来替代。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org02da349" class="outline-5">
+<h5 id="org02da349">列表初始化</h5>
+<div class="outline-text-5" id="text-org02da349">
+<p>
+作为 C++11 新标准的一部分，用花括号来初始化变量得到了全面应用，而在此之前这种初始化形式仅在某些收线场合才能适用。这种初始化的形式被称为 <b>列表初始化</b> 。现在，无论时初始化对象还是某些时候为对象赋新值，都可以适用这样一组由花括号括起来的初始值了。
+</p>
+
+<p>
+当用于内置类型的变量时，这种初始化形式有一个重要特点：如果我们使用列表初始化且初始值存在丢失信息的风险，则编译器将报错：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">long</span> <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">ld</span> = <span style="color: #da8548; font-weight: bold;">3.1415926536</span>;
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>{ld}, b = {ld};         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#36716;&#25442;&#26410;&#25191;&#34892;&#65292;&#22240;&#20026;&#23384;&#22312;&#20002;&#22833;&#20449;&#24687;&#30340;&#39118;&#38505;</span>
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">c</span>(ld), <span style="color: #dcaeea;">d</span> = ld;           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#36716;&#25442;&#25191;&#34892;&#65292;&#20999;&#30830;&#23454;&#20002;&#22833;&#20102;&#37096;&#20998;&#20540;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgae7e380" class="outline-5">
+<h5 id="orgae7e380">默认初始化</h5>
+<div class="outline-text-5" id="text-orgae7e380">
+<p>
+如果定义变量时没有执行初值，则变量被 <b>默认初始化</b> ，此时变量被赋予了”默认值“。默认值到底是什么由变量类型决定，同时定义变量的位置也会对此有影响。
+</p>
+
+<p>
+定义于任何函数体之外的内置类型的变量都被初始化未 0，定义在函数体内部的内质类型变量将 <b>不被初始化</b> 。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org834edde" class="outline-4">
+<h4 id="org834edde">2.2.4 名字的作用域</h4>
+<div class="outline-text-4" id="text-org834edde">
+</div>
+<div id="outline-container-orgdfeddb7" class="outline-5">
+<h5 id="orgdfeddb7">嵌套作用域</h5>
+<div class="outline-text-5" id="text-orgdfeddb7">
+<p>
+因为全局作用域本身没有名字，所以当作用域操作符的左侧为空时，向全局作用域发出请求获取作用域操作符右侧名字对应的变量。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;iostream&gt;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35813;&#31243;&#24207;&#20165;&#29992;&#20110;&#35828;&#26126;&#65306;&#20989;&#25968;&#20869;&#37096;&#19981;&#23452;&#23450;&#20041;&#19982;&#20840;&#23616;&#21464;&#37327;&#21516;&#21517;&#30340;&#26032;&#21464;&#37327;</span>
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">reused</span> = <span style="color: #da8548; font-weight: bold;">42</span>;
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>() {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">42</span>
+  <span style="color: #a9a1e1;">std</span>::count &lt;&lt; reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+  <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">reused</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">0</span>
+  <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">42</span>
+  <span style="color: #a9a1e1;">std</span>::count &lt;&lt; ::reused &lt;&lt; <span style="color: #a9a1e1;">std</span>::end;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org650c26a" class="outline-3">
+<h3 id="org650c26a">2.3 复合类型</h3>
+<div class="outline-text-3" id="text-org650c26a">
+</div>
+<div id="outline-container-org5f527c9" class="outline-4">
+<h4 id="org5f527c9">2.3.3 理解复合类型的声明</h4>
+<div class="outline-text-4" id="text-org5f527c9">
+<p>
+面对一条比较复杂的指针或引用的声明语句时，从右向左阅读有助于弄清楚它的真实含义。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf0a73b" class="outline-3">
+<h3 id="orgbf0a73b">2.4 const 限定符</h3>
+<div class="outline-text-3" id="text-orgbf0a73b">
+</div>
+<div id="outline-container-org03c03cb" class="outline-4">
+<h4 id="org03c03cb">2.4.3 顶层 const</h4>
+<div class="outline-text-4" id="text-org03c03cb">
+<p>
+<b>顶层 const</b> 表示指针本身是个常量，而 <b>底层 const</b> 表示指针所指的对象是一个常量。
+</p>
+
+<p>
+更一般的，顶层 const 可以表示任意对象是常量，这一点对任何数据类型都适用，如算术类型、类、指针等。底层 const 则与指针和引用等复合类型的基本类型部分有关。
+</p>
+
+<blockquote>
+<p>
+As we’ve seen, a pointer is an object that can point to a different object. As a result,we can talk independently about whether a pointer is const and whether the objectsto which it can point are const. We use the term top-level const to indicate that thepointer itself is a const. When a pointer can point to a const object, we refer tothat const as a low-level const.
+</p>
+</blockquote>
+
+<p>
+<a href="https://www.zhihu.com/question/24785843">https://www.zhihu.com/question/24785843</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org7baef06" class="outline-4">
+<h4 id="org7baef06">2.4.4 constexpr 和常量表达式</h4>
+<div class="outline-text-4" id="text-org7baef06">
+<p>
+<b>常量表达式</b> 是指不会改变并且在编译过程就能得到计算结果的表达式。
+</p>
+</div>
+<div id="outline-container-orgb351e01" class="outline-5">
+<h5 id="orgb351e01">constexpr 变量</h5>
+<div class="outline-text-5" id="text-orgb351e01">
+<p>
+C++11 新标准规定，允许将变量声明为 <b>constexpr</b> 类型以便由编译器来验证变量值是否是一个常量表达式。声明为 constexpr 的变量一定是一个常量，而且必须用常量表达式初始化
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcb773e4" class="outline-3">
+<h3 id="orgcb773e4">2.5 处理类型</h3>
+<div class="outline-text-3" id="text-orgcb773e4">
+</div>
+<div id="outline-container-orgff8f485" class="outline-4">
+<h4 id="orgff8f485">2.5.1 类型别名</h4>
+<div class="outline-text-4" id="text-orgff8f485">
+<p>
+有两种方法可用于定义类型别名。传统的方法是使用关键字 <b>typedef</b> 。
+</p>
+
+<p>
+新标准规定了一种新的方法，使用 <b>别名声明</b> 来定义类型的别名：
+</p>
+
+<p>
+<code>using SI = Sales_item;   // SI是Sales_item的同义词</code>
+</p>
+
+<p>
+这种方法用关键词 using 作为别名声明的开始，其后紧跟别名和等号，其作用是把等号左侧的名字规定成等号右侧类型的别名。
+</p>
+</div>
+</div>
+<div id="outline-container-org0f1f431" class="outline-4">
+<h4 id="org0f1f431">2.5.2 auto 类型说明符</h4>
+<div class="outline-text-4" id="text-org0f1f431">
+<p>
+C++11 新标准引入了 auto 类型说明符，用它就能让编译器替我们去分析表达式所属的类型。
+</p>
+
+<p>
+因为一条语句只能有一个数据类型，所以该语句中所有变量的初始基本数据类型都必须一样：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">0</span>, *<span style="color: #dcaeea;">p</span> = &amp;i;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;i&#26159;&#25972;&#25968;&#12289;p&#26159;&#31867;&#22411;&#25351;&#38024;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">sz</span> = <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">pi</span> = <span style="color: #da8548; font-weight: bold;">3.14</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;sz&#21644;pi&#30340;&#31867;&#22411;&#19981;&#19968;&#33268;</span>
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org63ea21f" class="outline-5">
+<h5 id="org63ea21f">复合类型、常量和 auto</h5>
+<div class="outline-text-5" id="text-org63ea21f">
+<p>
+auto 一般会忽略掉顶层 const，同时底层 const 则会保留下来，比如当初始值是一个指向常量的指针时。如果希望推断出 auto 类型时一个顶层 const，则需要明确指出：
+</p>
+
+<p>
+<code>const auto f = ci;      // ci的推演类型时int， f是const int</code>
+</p>
+
+<p>
+还可以将引用类型设为 auto，此时原来的初始化规则仍然适用。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org732b034" class="outline-4">
+<h4 id="org732b034">2.5.3 decltype 类型指示符</h4>
+<div class="outline-text-4" id="text-org732b034">
+<p>
+C++11 新标准引入了第二种类型说明符 <b>decltype</b> ，它的作用是选择并返回操作数的数据类型。在此过程中，编译器分析表达式并得到它的类型，却不实际计算表达式的值：
+</p>
+
+<p>
+<code>decltype(f()) sum = x;   // sum的类型就是函数f的返回类型</code>
+</p>
+
+<p>
+编译器并不实际调用函数 f，而且适用当调用发生时 f 的返回类型作为 sum 的类型。
+</p>
+
+<p>
+decltype 处理顶层 const 和引用的方式与 auto 有些许不同。如果 decltype 使用的表达式时一个变量，则 decltype 返回该变量的类型（包括顶层 const 和引用在内）。
+</p>
+</div>
+
+<div id="outline-container-org40f1d18" class="outline-5">
+<h5 id="org40f1d18">decltype 和引用</h5>
+<div class="outline-text-5" id="text-org40f1d18">
+<p>
+如果 decltype 适用的表达式不是一个变量，则 decltype 返回表达式对应的类型。
+</p>
+
+<p>
+另一方面，如果表达式的内容是解引用，则 decltype 将得到引用类型。正如我们所熟悉的那样，解引用指针可以得到指针所指的对象，而且还能给这个对象赋值。因此，decltype (*p)的结果类型就是 int&amp;，而非 int。
+</p>
+
+<p>
+对于 decltype 所用的表达式来说，如果变量名加上了一对括号，则得到的类型与不加括号时会有不同。如果 decltype 使用的是一个不加括号的变量，则得到的结果就是该变量的类型；如果给变量加上了一层或多层括号，编译器就会把它当成是一个表达式。变量是一种可以作为赋值语句左值的特殊表达式，所以这样的 decltype 就会得道引用类型。
+</p>
+
+<blockquote>
+<p>
+WARNING
+</p>
+
+<p>
+切记：decltype((variable))（注意是双层括号）的结果永远是引用，而 decltype(variable)结果只有当 variable 本身就是一个引用时才是引用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org69a96cd" class="outline-3">
+<h3 id="org69a96cd">2.6 自定义数据结构</h3>
+<div class="outline-text-3" id="text-org69a96cd">
+<p>
+类体右侧的表示结束的花括号后必须写一个分号，这是因为类体后面可以紧跟变量名以示对该类型对象的定义，所以分号必不可少：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Sales_date</span> { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> } <span style="color: #dcaeea;">accum</span>, <span style="color: #dcaeea;">trans</span>, *<span style="color: #dcaeea;">salesptr</span>;
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#19982;&#19978;&#19968;&#26465;&#35821;&#21477;&#31561;&#20215;&#65292;&#20294;&#21487;&#33021;&#26356;&#22909;&#19968;&#20123;</span>
+<span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Sales_date</span> { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> };
+<span style="color: #ECBE7B;">Sales_date</span> <span style="color: #dcaeea;">accum</span>, <span style="color: #dcaeea;">trans</span>, *<span style="color: #dcaeea;">salesptr</span>;
+</pre>
+</div>
+
+<p>
+分号表示声明符（通常为空）的结束。一般来说，最好不要把对象的定义和类的定义放在一起。这么做无异吧两种不同实体的定义混在了一条语句里，一会儿定义类，一会儿又定义变量，显示这是一种不被建议的行为。
+</p>
+</div>
+
+<div id="outline-container-orgaeac252" class="outline-5">
+<h5 id="orgaeac252">类数据成员</h5>
+<div class="outline-text-5" id="text-orgaeac252">
+<p>
+C++11 新标准规定，可以为数据成员提供一个 <b>类内初始值</b> 。创建对象时，雷内初始值将用于初始化数据成员。没有初始值的成员将被默认初始化。
+</p>
+
+<p>
+对类内初始值的限制与之前介绍的类似（参见 2.2.1 节）：或者放在花括号里，或者放在等号右边，记住不能使用圆括号。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org719a869" class="outline-2">
+<h2 id="org719a869">第 3 章 字符串、向量和数组</h2>
+<div class="outline-text-2" id="text-org719a869">
+</div>
+<div id="outline-container-orgb851d10" class="outline-3">
+<h3 id="orgb851d10">3.1 命名空间和 using 声明</h3>
+<div class="outline-text-3" id="text-orgb851d10">
+<p>
+有了 using 声明就无须专门的前缀（形如命名空间::）也能使用所需的名字了。 using 声明具有如下的形式：
+</p>
+
+<p>
+<code>using namespace::name;</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;iosteam&gt;</span>
+<span style="color: #51afef;">using</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">cin</span>;
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>() {
+  <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>;
+  cin &gt;&gt; i;
+  <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; i;
+  <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb827c03" class="outline-4">
+<h4 id="orgb827c03">头文件不应包含 using 声明</h4>
+<div class="outline-text-4" id="text-orgb827c03">
+<p>
+位于头文件的代码一般来说不应该使用 using 声明。这是因为头文件的内容会拷贝到所有引导它的文件中，如果头文件里有某个 using 声明，那么每个使用了该文件的文件都会有这个声明。对于某些程序来说，由于不经意间包含了一些名字，反而可能产生始料未及的名字冲突。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org23e6c92" class="outline-3">
+<h3 id="org23e6c92">3.2 标准库类型 string</h3>
+<div class="outline-text-3" id="text-org23e6c92">
+<p>
+标准库类型 <b>string</b> 表示可变长的字符序列。作为标准库的一部分，string 定义在命名空间 std 中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;string&gt;</span>
+<span style="color: #51afef;">using</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-org4e97c88" class="outline-4">
+<h4 id="org4e97c88">3.2.1 定义和初始化 string 对象</h4>
+<div class="outline-text-4" id="text-org4e97c88">
+<table id="org5fb8e1d">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">string s1</td>
+<td class="org-left">默认初始化，s1 是一个空串</td>
+</tr>
+
+<tr>
+<td class="org-left">string s2(s1)</td>
+<td class="org-left">s2 是 s1 的副本</td>
+</tr>
+
+<tr>
+<td class="org-left">string s2 = s1</td>
+<td class="org-left">等价于 s2(s1)</td>
+</tr>
+
+<tr>
+<td class="org-left">string s3("value")</td>
+<td class="org-left">s3 是字面值"values"副本，除了字面值最后的那个空字符外</td>
+</tr>
+
+<tr>
+<td class="org-left">string 3 = "value"</td>
+<td class="org-left">等价于 s3("value")</td>
+</tr>
+
+<tr>
+<td class="org-left">string s4(n, 'c')</td>
+<td class="org-left">把 s4 初始化为由连续 n 个字符 c 组成的串</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org8ccc75c" class="outline-5">
+<h5 id="org8ccc75c">直接初始化和拷贝初始化</h5>
+<div class="outline-text-5" id="text-org8ccc75c">
+<p>
+如果使用等号（=）初始化一个变量，实际上执行的是 <b>拷贝初始化</b> ，编译器把等号右侧的初始值拷贝到新创建的对象中去。与之相反，如果不使用等号，则执行的是 <b>直接初始化</b> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s5</span> = <span style="color: #98be65;">"hiya"</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25335;&#36125;&#21021;&#22987;&#21270;</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s6</span>(<span style="color: #98be65;">"hiya"</span>);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#30452;&#25509;&#21021;&#22987;&#21270;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org33481b5" class="outline-4">
+<h4 id="org33481b5">3.2.2 string 对象上的操作</h4>
+<div class="outline-text-4" id="text-org33481b5">
+<table id="org7f9f7c1">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">os&lt;&lt;s</td>
+<td class="org-left">将 s 写道输出流 os 当中，返回 os</td>
+</tr>
+
+<tr>
+<td class="org-left">is &gt;&gt; s</td>
+<td class="org-left">从 is 中读取字符串赋给 s，字符串以空白分隔，返回 is</td>
+</tr>
+
+<tr>
+<td class="org-left">getline(is, s)</td>
+<td class="org-left">从 is 中读取一行赋给 s，返回 is</td>
+</tr>
+
+<tr>
+<td class="org-left">s.empty()</td>
+<td class="org-left">s 为空返回 true，否则返回 false</td>
+</tr>
+
+<tr>
+<td class="org-left">s.size()</td>
+<td class="org-left">返回 s 中字符的个数</td>
+</tr>
+
+<tr>
+<td class="org-left">s[n]</td>
+<td class="org-left">返回 s 中第 n 个字符的引用，位置 n 从 0 计起</td>
+</tr>
+
+<tr>
+<td class="org-left">S1+s2</td>
+<td class="org-left">返回 s1 和 s2 连接后的结果</td>
+</tr>
+
+<tr>
+<td class="org-left">s1=s2</td>
+<td class="org-left">用 s2 的副本代替 s1 原来的字符</td>
+</tr>
+
+<tr>
+<td class="org-left">s1==s2</td>
+<td class="org-left">如果 s1 和 s2 中所含字符完全一样，则它们相等；</td>
+</tr>
+
+<tr>
+<td class="org-left">s1!=s2</td>
+<td class="org-left">string 对象的相等性判断对字母的大小写敏感</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;, &lt;=, &gt;, &gt;=</td>
+<td class="org-left">利用字符在字典中的顺序进行比较，且对字母的大小写敏感</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgc648999" class="outline-5">
+<h5 id="orgc648999">读写 string 对象</h5>
+<div class="outline-text-5" id="text-orgc648999">
+<p>
+在执行读取操作时，string 对象会自动忽略开头的空白（即空格符、换行符、制表符等）并从第一个真正的字符开始读起，直到遇见下一处空白为止。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>() {
+  <span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s</span>;
+  cin &gt;&gt; s;
+  cout &lt;&lt; s &lt;&lt; endl;
+  <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+
+<p>
+例如上述程序输入 <b>"    Hello World!    "</b> ，则输出为 <b>"Hello"</b> ，输出结果中没有任何空格。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc3ac5a1" class="outline-5">
+<h5 id="orgc3ac5a1">使用 getline 读取一整行</h5>
+<div class="outline-text-5" id="text-orgc3ac5a1">
+<p>
+如果希望能在最终得道的字符串中保留输入时的空白字符串，这时应该用 <b>getline</b> 函数替代原来的&gt;&gt;运算符。getline 只要一遇到换行符就结束读取操作并返回结果，哪怕输入的一开始就是换行符也是如此。如果输入真的一开始就是换行符，那么所得的结果是个空 string。（注意 getline 只读取而不存储换行符）。
+</p>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+触发 getline 函数返回的那个换行符实际上被丢掉了，得到的 string 对象并不包含换行符。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgb6be999" class="outline-5">
+<h5 id="orgb6be999">string::size_type 类型</h5>
+<div class="outline-text-5" id="text-orgb6be999">
+<p>
+其是 size 函数返回的时一个 string::size_type 类型的值。
+</p>
+
+<p>
+string 类及其他大多数标准库类型都定义了几种配套的类型。这些配套类型体验了标准库类型与机器无关的特性。类型 <b>size_type</b> 即是其中一种。
+</p>
+
+<p>
+尽管我们不太清除 string::size_type 类型的细节，但有一点是肯定的：它是一个无符号类型的值而且能足够存放下任何 string 对象的大小。所有用于存放 string 类的 size 函数返回值的变量，都应该是 string::size_type 类型的。
+</p>
+
+<blockquote>
+<p>
+Tip:
+</p>
+
+<p>
+如果一条表达式中已经有了 size（）函数就不要再使用 int 了，这样可以避免混用 int 和 unsigned 可能带来的问题。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org9e0dbf5" class="outline-5">
+<h5 id="org9e0dbf5">字面值和 string 对象相加</h5>
+<div class="outline-text-5" id="text-org9e0dbf5">
+<p>
+当把 string 对象和字符字面值及字符串字面值混在一条语句中使用时，必须确保每个加法运算符（+）的两侧的运算对象至少有一个时 string：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s4</span> = s1 + <span style="color: #98be65;">", "</span>;           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s5</span> = <span style="color: #98be65;">"hello"</span> + <span style="color: #98be65;">", "</span>;       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#20004;&#20010;&#36816;&#31639;&#23545;&#35937;&#37117;&#19981;&#26159;string</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s6</span> = s1 + <span style="color: #98be65;">", "</span> + <span style="color: #98be65;">"world"</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#27599;&#20010;&#21152;&#21457;&#36816;&#31639;&#31526;&#37117;&#19968;&#20010;&#36816;&#31639;&#23545;&#35937;&#26159;string</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s7</span> = <span style="color: #98be65;">"hello"</span> + <span style="color: #98be65;">", "</span> + s2;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#25226;&#23383;&#38754;&#20540;&#30452;&#25509;&#30456;&#21152;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+因为某些历史原因，也为了与 C 兼容，所以 C++语言中的字符串字面值并不是标准库类型 string 的对象。切记，字符串字面值与 string 是不同的类型。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org16120a7" class="outline-5">
+<h5 id="org16120a7">使用 C++版本的 C 标准库头文件</h5>
+<div class="outline-text-5" id="text-org16120a7">
+<p>
+C++标准库中除了定义 C++语言特有的功能外，也兼容了 C 语言的标准库。C语言的头文件形如 name.h，C++则将这些文件命名为 cname。也就是去掉了.h 后缀，而在文件名 name 之前添加了字母 c，这里的 c 表示这是一个属于 C 语言标准库的头文件。
+</p>
+
+<p>
+因此，cctype 头文件和 ctype.h 头文件的内容是一样的，只不过从命名规范上来讲更符合 C++语言的要求。特别的，在名为 cname 的头文件中定义的名字从属于命名空间 std，而定义在名为.h 的头文件中的则不然。
+</p>
+
+<p>
+一般来说，C++程序应该使用名为 cname 的头文件而不使用 name.h 的形式，标准库中的名字总能在命名空间 std 中找到。如果使用.h 形式的头文件，程序员就不得不时刻牢记哪些是从 C 语言那儿继承过来的，哪些又是 C++语言所独有的。
+</p>
+</div>
+</div>
+<div id="outline-container-org7dbefe7" class="outline-5">
+<h5 id="org7dbefe7">处理每个字符？使用基于范围的 for 语句</h5>
+<div class="outline-text-5" id="text-org7dbefe7">
+<p>
+如果想对 string 对象中的每个字符做点什么操作，目前最好的办法是使用 C++11 新标准提供的一种语句： <b>范围 for</b> 语句。这种语句遍历给定序列中的每个元素并对序列的每个值执行某种操作，其语法形式是：
+</p>
+
+<pre class="example">
+for (declaration : expression)
+    statement
+</pre>
+
+<p>
+其中，expression 部分是一个对象，用于表示一个序列。declaration 部分负责定义一个变量，该变量将被用于访问序列中的基础元素。每次迭代，declaration 部分的变量会被初始化为 expression 部分的 i 想啊一个元素。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">str</span>(<span style="color: #98be65;">"some string"</span>);
+<span style="color: #51afef;">for</span> (<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">c</span> : str)
+  cout &lt;&lt; c &lt;&lt; endl;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e2e805" class="outline-5">
+<h5 id="org6e2e805">使用范围 for 语句改变字符串中的字符</h5>
+<div class="outline-text-5" id="text-org6e2e805">
+<p>
+如果想要改变 string 对象中的字符的值，必须把循环变量定义成引用类型。记住所谓引用值是给定对象的一个别名，因此当使用引用作为循环控制变量时，这个变量实际上被依次绑定到了序列的每个元素上。使用这个引用，我们就能改变它绑定的字符。
+</p>
+</div>
+</div>
+<div id="outline-container-org6480ac7" class="outline-5">
+<h5 id="org6480ac7">只处理一部分字符？</h5>
+<div class="outline-text-5" id="text-org6480ac7">
+<p>
+<b>下表运算符</b> （[ ]）接收的输入参数时 string::size_type 类型的值。string 对象的下表从 0 计起。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf81f2e7" class="outline-3">
+<h3 id="orgf81f2e7">3.3 标准库类型 vector</h3>
+<div class="outline-text-3" id="text-orgf81f2e7">
+<p>
+标准库类型 vector 表示对象集合，其中所有对象的类型都相同。集合中的每个对象都一个与之对应的索引，索引用于访问对象。因为 vector“容纳着”其他对象，所以它 也常被称为 <b>容器</b> 。第 II 部分将对容器进行更为详细的介绍。
+</p>
+
+<p>
+模板本身不是类或函数，相反可以将模板模板看作为编译器生成类或函数编写的一份说明。编译器根据模板创建类或函数的过程称为 <b>实例化</b> ，当使用模板时，需要指出编译器应把类或函数实例化成何种类型。
+</p>
+
+<p>
+vector 能容纳绝大多数类型的对象作为其元素，但时因为引用不是对象（参见 2.3.1 节），所以不存在包含引用的 vector。
+</p>
+</div>
+<div id="outline-container-orgde09100" class="outline-4">
+<h4 id="orgde09100">3.3.1 定义和初始化 vector 对象</h4>
+<div class="outline-text-4" id="text-orgde09100">
+<table id="orga54140e">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">vector&lt;T&gt; v1</td>
+<td class="org-left">v1 是一个空 vector，它潜在的元素是 T 类型的，执行默认初始化</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v2(v1)</td>
+<td class="org-left">v2 中包含有 v1 所有元素的副本</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v2 = v1</td>
+<td class="org-left">等级于 v2(v1)，v2 中包含有 v1 所有元素的副本</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v3(n, val)</td>
+<td class="org-left">v3 包含了 n 个重复的元素，每个元素的值都是 val</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v4(n)</td>
+<td class="org-left">v4 包含了 n 个重复地执行了值初始化的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v5{a,b,c&#x2026;}</td>
+<td class="org-left">v5 包含了初始值个数的元素，每个元素被赋予相应的初始值</td>
+</tr>
+
+<tr>
+<td class="org-left">vector&lt;T&gt; v5={a,b,c&#x2026;}</td>
+<td class="org-left">等价于 v5{a,b,c&#x2026;}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org94dc641" class="outline-5">
+<h5 id="org94dc641">值初始化</h5>
+<div class="outline-text-5" id="text-org94dc641">
+<p>
+通常情况下，可以只提供 vector 对象容纳的元素数量而不用略去初始值。此时库会创建一个 <b>值初始化</b> 元素初值，并把它赋给容器中的所有元素。这个初值由 vector 对象中元素的类型决定。
+</p>
+
+<p>
+如果 vector 对象的元素是内置类型，比如 int，则元素初始值自动设为 0.如果元素是某种类型，比如 string，则元素由类默认初始化。
+</p>
+
+<p>
+对这种初始化的方式有两个特殊限制：其一，有些类要求必须明确地提供初始值（参见 2.2.1 节），如果 vector 对象中元素的类型不支持默认初始化，我们就必须提供初始化的元素值。对这种类型的对象来说，只提供元素的数量而不设定初始值无法完成初始化工作。
+</p>
+
+<p>
+其二，如果只提供了元素的数量而没有设定初始值，只能使用直接初始化。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd962a3f" class="outline-5">
+<h5 id="orgd962a3f">列表初始化还是元素数量？</h5>
+<div class="outline-text-5" id="text-orgd962a3f">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v1</span>(<span style="color: #da8548; font-weight: bold;">10</span>);       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v1&#26377;10&#20010;&#20803;&#32032;&#65292;&#27599;&#20010;&#20540;&#37117;&#26159;0</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v2</span>{<span style="color: #da8548; font-weight: bold;">10</span>};       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v2&#26377;1&#20010;&#20803;&#32032;&#65292;&#35813;&#20803;&#32032;&#30340;&#20540;&#26159;10</span>
+
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v3</span>(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">1</span>);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v3&#26377;10&#20010;&#20803;&#32032;&#65292;&#27599;&#20010;&#30340;&#20540;&#37117;&#26159;1</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">v4</span>{<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">1</span>};    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v4&#26377;2&#20010;&#20803;&#32032;&#65292;&#20540;&#20998;&#21035;&#26159;10&#21644;1</span>
+</pre>
+</div>
+
+<p>
+如果用的是圆括号，可以说提供的值用来构造 vector 对象的。如果用的是花括号，可以表述成我们想列表初始化该 vector 对象。
+</p>
+
+<p>
+另一方面，如果初始化时使用了花括号的形式但提供的值又不能用来列表初始化，就要考虑用这样的值来构造 vector 对象了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">v5</span>{<span style="color: #98be65;">"hi"</span>};     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21015;&#34920;&#21021;&#22987;&#21270;&#65292;&#65306;v5&#26377;&#19968;&#20010;&#20803;&#32032;</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">v6</span>(<span style="color: #98be65;">"hi"</span>);     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#20351;&#29992;&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;&#26500;&#24314;vector&#23545;&#35937;</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">v7</span>{<span style="color: #da8548; font-weight: bold;">10</span>};       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v7&#26377;10&#20010;&#40664;&#35748;&#21021;&#22987;&#20540;&#30340;&#20803;&#32032;</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">v8</span>{<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #98be65;">"hi"</span>}  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v8&#26377;10&#20010;&#20540;&#20026;"hi"&#30340;&#20803;&#32032;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf0e670c" class="outline-4">
+<h4 id="orgf0e670c">3.3.2 向 vector 对象中添加元素</h4>
+<div class="outline-text-4" id="text-orgf0e670c">
+<p>
+更好的处理方法是先创建一个空 vector，然后在运行时再利用 vector 的成员函数 <b>push_back</b> 向其中添加元素。push_back 负责把一个值当成 vector 对象的尾元素”压到（push）“vector 对象的”尾端（back）“。
+</p>
+</div>
+<div id="outline-container-orgf1e5ca3" class="outline-5">
+<h5 id="orgf1e5ca3">向 vector 对象添加元素蕴含的编程假定</h5>
+<div class="outline-text-5" id="text-orgf1e5ca3">
+<p>
+如果徐缓体内部包含有向 vector 对象添加元素的语句，则不能使用范围 for 循环，具体原因将在 5.4.3 节详细解释。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+方位 for 语句体内不应改变其所遍历序列的大小。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org8efd3a3" class="outline-4">
+<h4 id="org8efd3a3">3.3.3 其他 vector 操作</h4>
+<div class="outline-text-4" id="text-org8efd3a3">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">v.empty()</td>
+<td class="org-left">如果 v 不含任何元素，返回真；否则返回假</td>
+</tr>
+
+<tr>
+<td class="org-left">v.size()</td>
+<td class="org-left">返回 v 中元素的个数</td>
+</tr>
+
+<tr>
+<td class="org-left">v.push_back(t)</td>
+<td class="org-left">向 v 的尾端添加一个值为 t 的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">v[n]</td>
+<td class="org-left">返回 v 中第 n 个位置上元素的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">v1 = v2</td>
+<td class="org-left">用 v2 中元素的拷贝替换 v1 中的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">v1 = {a,b,c&#x2026;}</td>
+<td class="org-left">用列表中元素的拷贝替换 v1 的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">v1 == v2</td>
+<td class="org-left">v1 和 v2 相等当且仅当它们的元素数量相同且对应位置的元素值都相同</td>
+</tr>
+
+<tr>
+<td class="org-left">v1 !+ v2</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;, &lt;=, &gt;, &gt;=</td>
+<td class="org-left">顾名思义，以字典顺序进行比较</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+要使用 size_type，需首先指定它是由哪种类型定义的。vector 对象类型总是包含着元素的类型（参见 3.3 节）
+</p>
+
+<p>
+vector&lt;int&gt;::size_type     <i>/ 正确
+vector::size_type          /</i> 错误
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgd7dc070" class="outline-5">
+<h5 id="orgd7dc070">不能用下标形式添加元素</h5>
+<div class="outline-text-5" id="text-orgd7dc070">
+<p>
+刚接触 C++语言的程序员也许会认为可以通过 vector 对象的下标形式来添加元素，事实并非如此。如前所述，正确的方式是使用 push_back。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+vector 对象（以及 string 对象）的下标运算符可用于方位已存在的元素，而不能用于添加元素。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf4b248c" class="outline-3">
+<h3 id="orgf4b248c">3.4 迭代器介绍</h3>
+<div class="outline-text-3" id="text-orgf4b248c">
+<p>
+我们已经知道可以使用下标运算符来访问 string 对象的字符或 vector 对象的元素，还有另外一种更通用的机制也可以实现同样的目的，这就是 <b>迭代器</b> 。
+</p>
+
+<p>
+类似于指针类型，迭代器也提供了对对象的间接访问。就迭代器而言，其对象是容器中的元素或 string 对象中的字符。使用迭代器可以访问某个元素，迭代器也能从一个元素移动到另一个元素。迭代器有有效和无效之分，这一点和指针差不多。有效的迭代器或者指向某个元素，或者指向容器中尾元素的下一位置；其他所有情况都属于无效。
+</p>
+</div>
+<div id="outline-container-org45675cf" class="outline-4">
+<h4 id="org45675cf">3.4.1 使用迭代器可以访问某个元素</h4>
+<div class="outline-text-4" id="text-org45675cf">
+<p>
+和指针不一样的是，获取迭代器不是使用取地址符，有迭代器的类型同时拥有返回迭代器的成员。比如，这些类型都拥有名为 <b>begin</b> 和 <b>end</b> 的成员，其中 begin 成员负责范围指向第一个元素的迭代器，end 成员则负责返回指向容器”尾元素的下一位置“的迭代器，也就是说，该迭代器指示的是容器的一个本不存在的“ <b>尾后</b> ”元素。这样的迭代器没什么实际含义，仅是个标记而已，表示我们已经处理完了容器中的所有元素。end 成员返回的迭代器常被称作 <b>尾后迭代器</b> 或者简称尾迭代器。特殊情况下如果容器为空，则 begin 和 end 返回的是同一个迭代器。
+</p>
+
+<p>
+<code>auto b = v.begin(), e = v.end();</code>
+</p>
+</div>
+
+<div id="outline-container-org4b661ee" class="outline-5">
+<h5 id="org4b661ee">迭代器运算符</h5>
+<div class="outline-text-5" id="text-org4b661ee">
+<table id="org742068b">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">*iter</td>
+<td class="org-left">返回迭代器 iter 所指元素的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">iter-&gt;mem</td>
+<td class="org-left">解引用 iter 并获取该元素的名为 mem 的成员，等价于(*iter).mem</td>
+</tr>
+
+<tr>
+<td class="org-left">++iter</td>
+<td class="org-left">令 iter 指示容器中的下一个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;iter</td>
+<td class="org-left">令 iter 指示容器中的上一个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">iter1 == iter2</td>
+<td class="org-left">判断两个迭代器是否相等（不相等），如果两个迭代器指针的是同一个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">iter1 != iter2</td>
+<td class="org-left">或者它们是同一个容器的尾后迭代器，则相等；反之，则相等</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org97ef1f4" class="outline-5">
+<h5 id="org97ef1f4">将迭代器从一个元素移动到另一个元素</h5>
+<div class="outline-text-5" id="text-org97ef1f4">
+<p>
+迭代器使用递增（++）运算符来从一个元素移动到一下元素。从逻辑上来说，迭代器的递增和整数的递增类似，整数的递增是在整数值上”加 1“，迭代器的递增则是将迭代器”向前移动一个位置“。
+</p>
+
+<blockquote>
+<p>
+NOTE:
+</p>
+
+<p>
+因为 end 返回的迭代器并不实际指示某个元素，所以不能对其进行递增或解引用的操作。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+关键概念：泛型编程
+</p>
+
+<p>
+之前已经说过，只有 string 和 vector 等一些标准库类型有下标运算符，而并非全都如此。与此类似，所有标准库容器和迭代器都定义了==和!=，但它们中的大多数都没有定义&lt;运算符。因此，只要我们养成使用迭代器和!=的习惯，就不用太再一用的到底是哪种容器类型。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org86b2682" class="outline-5">
+<h5 id="org86b2682">迭代器类型</h5>
+<div class="outline-text-5" id="text-org86b2682">
+<p>
+就像不知道 string 和 vector 的 size_type 成员到底是什么类型一样，一般来说我们也不知道（其实也无需知道）迭代器的精准类型。而实际上，哪些拥有迭代器的标准库类型使用 iterator 和 const_iterator 来表示迭代器的类型：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #a9a1e1;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;::<span style="color: #ECBE7B;">iterator</span> <span style="color: #dcaeea;">it</span>;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">it &#33021;&#35835;&#20889;vector&lt;int&gt;&#30340;&#20803;&#32032;</span>
+<span style="color: #a9a1e1;">string</span>::<span style="color: #ECBE7B;">iterator</span> <span style="color: #dcaeea;">it2</span>;         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">it2&#33021;&#35835;&#20889;string&#23545;&#35937;&#20013;&#30340;&#23383;&#31526;</span>
+
+<span style="color: #a9a1e1;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;::<span style="color: #ECBE7B;">const_iterator</span> <span style="color: #dcaeea;">it3</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">it3&#21482;&#33021;&#35835;&#20803;&#32032;&#65292;&#19981;&#33021;&#20889;&#20803;&#32032;</span>
+<span style="color: #a9a1e1;">string</span>::<span style="color: #ECBE7B;">const_iterator</span> <span style="color: #dcaeea;">it4</span>;       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">it4&#21482;&#33021;&#35835;&#20803;&#32032;&#65292;&#19981;&#33021;&#20889;&#20803;&#32032;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org577978d" class="outline-5">
+<h5 id="org577978d">begin 和 end 运算符</h5>
+<div class="outline-text-5" id="text-org577978d">
+<p>
+为了便于专门得到 const_iterator 类型的返回值，C++新标准引入了两个新函数，分别是 cbegin 和 cend：
+~auto it3 = v.cbegin();  // it3 的类型是 vector&lt;int&gt;::const_iterator
+</p>
+</div>
+</div>
+<div id="outline-container-org1bc75a7" class="outline-5">
+<h5 id="org1bc75a7">某些对 vector 对象的操作会使迭代器失效</h5>
+<div class="outline-text-5" id="text-org1bc75a7">
+<p>
+虽然 vector 对象可以动态的增长，但是也会有一些副作用。已知的一个限制是不能在范围 for 循环中向 vector 对象添加元素。另外一个限制是任何一种可能改变 vector 对象容量的操作，比如 push_back，都会使该 vector 对象的迭代器失效。9.3.6 节将详细解释迭代器是如何失效的。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+谨记，但凡使用了迭代器的循环体，都不要向迭代器所属的容器添加元素。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org4de33ad" class="outline-4">
+<h4 id="org4de33ad">3.4.2 迭代器运算符</h4>
+<div class="outline-text-4" id="text-org4de33ad">
+<table id="org37c2fea">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">iter + n</td>
+<td class="org-left">迭代器加上一个整数值仍得一个迭代器，迭代器指示的新位置与原来相比向前移动了若干个元素。结果迭代器或者指示容器其内的一个元素，或者指示容器尾元素的下一位置</td>
+</tr>
+
+<tr>
+<td class="org-left">iter - n</td>
+<td class="org-left">迭代器减去一个整数值仍得一个迭代器，迭代器指示的新位置与原来相比向后移动了若干个元素。结果迭代器或者指示容器其内的一个元素，或者指示容器尾元素的下一位置</td>
+</tr>
+
+<tr>
+<td class="org-left">iter += n</td>
+<td class="org-left">迭代器加法的复合赋值语句，将 iter1 加 n 的结果赋给 iter1</td>
+</tr>
+
+<tr>
+<td class="org-left">iter -= n</td>
+<td class="org-left">迭代器加法的复合赋值语句，将 iter1 减 n 的结果赋给 iter1</td>
+</tr>
+
+<tr>
+<td class="org-left">iter1 - iter2</td>
+<td class="org-left">两个迭代器相减的结构就是它们之间的距离，也就是说，将运算符右侧的迭代器向前移动差值个元素后将得到左侧的迭代器。参与运算的两个迭代器必须指向大是同一个容器中的元素或尾元素的下一位置</td>
+</tr>
+
+<tr>
+<td class="org-left">&gt;、 &gt;=、 &lt;、 &lt;=</td>
+<td class="org-left">迭代器的关系运算符，如果某迭代器指向的容器位置在另一个迭代器所指位置之前，则说前者小于后者。参与运算的两个迭代器必须指向大是同一个容器中的元素或尾元素的下一位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org0cb837d" class="outline-5">
+<h5 id="org0cb837d">迭代器的算术运算</h5>
+<div class="outline-text-5" id="text-org0cb837d">
+<p>
+只要两个迭代器指向的是同一个容器中的元素或者尾元素的下一位置，就能将其相减，所得结果是两个迭代器的距离。所谓距离指的是右侧的迭代器向前移动多少位置就能追上左侧迭代器，其类型是名为 <b>different_type</b> 的带符号整数。string 和 vector 都定义了 different_type，因为这个距离可正可负，所以 different_type 是带符号类型的。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9884bdd" class="outline-3">
+<h3 id="org9884bdd">3.5 数组</h3>
+<div class="outline-text-3" id="text-org9884bdd">
+<p>
+与 vector 相似的地方是，数组也是存放类型相同的对象的容器，这些对象本身没有名字，需要通过其所在位置方位。与 vector 不同的地方是，数组的大小确定不变，不能随意向数组中增加元素。因为数组的大小固定，因此对某些特殊的应用来说程序的运行时性能较好，但是相应地也损失了一些灵活性。
+</p>
+
+<blockquote>
+<p>
+Tip:
+</p>
+
+<p>
+如果不清楚元素的确切个数，请使用 vector。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org9521a13" class="outline-4">
+<h4 id="org9521a13">3.5.1 定义和初始化内置数组</h4>
+<div class="outline-text-4" id="text-org9521a13">
+<p>
+定义数组的时候必须指定数组的类型，不允许用 auto 关键字由初始值的列表推断类型。另外和 vector 一样，数组的元素为对象，因此不存在引用的数组。
+</p>
+</div>
+<div id="outline-container-orgf167ac0" class="outline-5">
+<h5 id="orgf167ac0">不允许拷贝和赋值</h5>
+<div class="outline-text-5" id="text-orgf167ac0">
+<p>
+不能将数组的内容拷贝给其他数组作为其初始值，也不能用数组为其他数组赋值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a</span>[] = {<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>};
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">a2</span>[] = a;          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#20801;&#35768;&#20351;&#29992;&#19968;&#20010;&#25968;&#32452;&#21021;&#22987;&#21270;&#21478;&#19968;&#20010;&#25968;&#32452;</span>
+a2 = a;                <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65292;&#19981;&#33021;&#25226;&#19968;&#20010;&#25968;&#32452;&#30452;&#25509;&#36171;&#32473;&#21478;&#19968;&#20010;&#25968;&#32452;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+一些编译器支持数组的赋值，这就是所谓的 <b>编译器扩展</b> 。但一般来说，最好避免使用非标准特性，因为含有非标准它诶嗯的程序很可能在其他编译器上无法正常工作。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org108de39" class="outline-5">
+<h5 id="org108de39">理解复杂的数组声明</h5>
+<div class="outline-text-5" id="text-org108de39">
+<p>
+和 vector 一样，数组能存放大多数类型的对象。又因为数组本身就是对象，所以允许定义数组的指针及数组的引用。在这几种情况中，定义存放指针的数组比较简单和直接，但是定义数组的指针或数组的引用就稍微复杂一点了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">ptrs</span>[<span style="color: #da8548; font-weight: bold;">10</span>];       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">ptrs&#26159;&#21547;&#26377;10&#20010;&#25972;&#22411;&#25351;&#38024;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">int</span> &amp;<span style="color: #dcaeea;">refs</span>[<span style="color: #da8548; font-weight: bold;">10</span>] = <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">?</span><span style="color: #5B6268;"> */</span>;    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#19981;&#23384;&#22312;&#24341;&#29992;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">int</span> (*<span style="color: #dcaeea;">Parray</span>)[<span style="color: #da8548; font-weight: bold;">10</span>] = &amp;arr;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Parray&#25351;&#21521;&#19968;&#20010;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">int</span> (&amp;<span style="color: #dcaeea;">arrRef</span>)[<span style="color: #da8548; font-weight: bold;">10</span>] = arr;    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">arrRef&#24341;&#29992;&#19968;&#20010;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Tip:
+</p>
+
+<p>
+要想理解数组声明的含义，最好的办法是从数组的名字开始按照由内向外的顺序阅读。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org7081292" class="outline-4">
+<h4 id="org7081292">3.5.2 访问数组元素</h4>
+<div class="outline-text-4" id="text-org7081292">
+<p>
+在使用数组下标的时候，通常将其定义为 <b>size_t</b> 类型。size_t 是一种机器相关的无符号类型，它被设计的足够大一遍能表示内容中任意对象的大小。
+</p>
+</div>
+</div>
+<div id="outline-container-orged5e44f" class="outline-4">
+<h4 id="orged5e44f">3.5.3 指针和数组</h4>
+<div class="outline-text-4" id="text-orged5e44f">
+<p>
+数组还有一个特定：在很多用到数组名字的地方，编译器都会自动将其替换为一个指向数组首元素的指针：
+</p>
+
+<p>
+<code>string *p2 = nums;  // 等价于p2 = &amp;nums[0]</code>
+</p>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+在大多数表达式中，使用数组类型的对象其实是使用一个指向该数组首元素的指针。
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ia</span>[] = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #51afef;">auto</span> <span style="color: #c678dd;">ia2</span>(ia);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">ia2&#26159;&#19968;&#20010;&#25972;&#22411;&#25351;&#38024;&#65292;&#25351;&#21521;ia&#30340;&#31532;&#19968;&#20010;&#20803;&#32032;</span>
+ia2 = <span style="color: #da8548; font-weight: bold;">43</span>;            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;ia2&#26159;&#19968;&#20010;&#25351;&#38024;&#65292;&#19981;&#33021;&#29992;int&#20540;&#32473;&#25351;&#38024;&#36171;&#20540;</span>
+</pre>
+</div>
+
+<p>
+尽管 ia 是由 10 个整数构成的数组，但当使用 ia 作为初始值时，编译器实际执行的初始化过程类型于下面的形式：
+</p>
+
+<p>
+<code>auto ia2(&amp;ia[0]);  // 显然ia2的类型是int *</code>
+</p>
+
+<p>
+必须指出的是，当使用 decltype 关键字时上述转换不会发生，decltype(ia)返回的类型时由 10 个整数构成的数组：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">ia3&#26102;&#19968;&#20010;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #51afef;">decltype</span>(ia) <span style="color: #dcaeea;">ia3</span> = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+ia3 = p;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#21738;&#33021;&#29992;&#25972;&#22411;&#25351;&#38024;&#32473;&#25968;&#32452;&#36171;&#20540;</span>
+ia3[<span style="color: #da8548; font-weight: bold;">4</span>] = i;   <span style="color: #5B6268;">//</span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#25226;i&#30340;&#20540;&#36171;&#32473;ia3&#30340;&#19968;&#20010;&#20803;&#32032;</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc2e4c5b" class="outline-5">
+<h5 id="orgc2e4c5b">标准库函数 begin 和 end</h5>
+<div class="outline-text-5" id="text-orgc2e4c5b">
+<p>
+C++11 新标准引入了两个名为 begin 和 end 的函数。这两个函数与容器中的两个同名成员功能类似，不过数组毕竟不是类类型，因此这两个函数不是成员函数。正确的使用形式时将数组作为它们的参数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ia</span>[] = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">beg</span> = begin(ia);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25351;&#21521;ia&#39318;&#20803;&#32032;&#30340;&#25351;&#38024;</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">end</span> = end(ia);      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25351;&#21521;arr&#23614;&#20803;&#32032;&#30340;&#19979;&#19968;&#20301;&#32622;&#30340;&#25351;&#38024;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+一个指针如果指向了某种内置类型数组的尾元素的“下一个位置”，则其具备与 vector 的 end 函数返回的迭代器类似的功能。特别要注意，尾后指针不能执行解引用和递增操作。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgc7fb983" class="outline-5">
+<h5 id="orgc7fb983">指针运算</h5>
+<div class="outline-text-5" id="text-orgc7fb983">
+<p>
+两个指针相减的结果的类型时一种名为 <b>ptrdiff_t</b> 的标准库类型，和 size_t 一样，ptrdiff_t 也是一种定义在 cstddef 头文件中的机器相关类型。因为差值可能为负值，所以 ptrdiff_t 时一种带符号类型。
+</p>
+</div>
+</div>
+<div id="outline-container-org181e8bc" class="outline-5">
+<h5 id="org181e8bc">下标和指针</h5>
+<div class="outline-text-5" id="text-org181e8bc">
+<p>
+标准库类型限定使用的下标必须粗时无符号类型，而内置的下标运算无此要求。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+内置的下标运算符所用的索引值不是无符号类型，这一点与 vector 和 string 不一样。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org6d6617d" class="outline-4">
+<h4 id="org6d6617d">3.5.5 与旧代码的接口</h4>
+<div class="outline-text-4" id="text-org6d6617d">
+</div>
+<div id="outline-container-org62f5dac" class="outline-5">
+<h5 id="org62f5dac">混用 string 对象和 C 风格字符串</h5>
+<div class="outline-text-5" id="text-org62f5dac">
+<p>
+任何出现字符串字面值的地方都可以用以空字符串结束的字符数组来替代：
+</p>
+
+<ul class="org-ul">
+<li>允许使用以空字符结束的字符数组来初始化 string 对象或为 string 对象赋值。</li>
+<li>在 string 对象的加法运算中允许使用以空字符串结束的字符数组作为其中一个运算对象（不能两个运算对象都是）；在 string 对象的复合赋值运算中允许使用以空字符结束的字符串数组作为右侧的运算对象。</li>
+</ul>
+
+<p>
+上述性质反过来就不成立了。为了完成该功能，string 专门提供了一个名为 c_str 的成员函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">str</span> = s;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#29992;string&#23545;&#35937;&#21021;&#22987;&#21270;char*</span>
+<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">str</span> = s.c_str();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;</span>
+</pre>
+</div>
+
+<p>
+我们无法保证 c_str 函数返回的数组一直有效，事实上，如果后续的操作改变了 s 的值就可能让之前的数组失去效用。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+如果执行完 c_str()函数后程序想一直都能使用其返回数组，最好将该数组重新拷贝一份。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org5f182ad" class="outline-5">
+<h5 id="org5f182ad">使用数组初始化 vector 对象</h5>
+<div class="outline-text-5" id="text-org5f182ad">
+<p>
+可以使用数组来初始化 vector 对象。要实现这一亩的，只需要指明需要拷贝区域的首元素地址和尾后地址就可以了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">int_arr</span>[] = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>};
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #c678dd;">ivec</span>(<span style="color: #ECBE7B;">begin</span>(<span style="color: #dcaeea;">int_arr</span>), <span style="color: #ECBE7B;">end</span>(<span style="color: #dcaeea;">int_arr</span>));
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga761b84" class="outline-3">
+<h3 id="orga761b84">3.6 多维数组</h3>
+<div class="outline-text-3" id="text-orga761b84">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">for</span> (<span style="color: #51afef;">const</span> <span style="color: #51afef;">auto</span> &amp;<span style="color: #dcaeea;">row</span> : ia)
+  <span style="color: #51afef;">for</span> (<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">col</span> : row)
+    cout &lt;&lt; col &lt;&lt; endl;
+</pre>
+</div>
+
+<p>
+这个循环中并没有任何写操作，可是我们还是将外侧循环的控制变量声明成了引用类型，这是为了避免数组被自动转成指针（参见 3.5.3 节）
+</p>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+要使用范围 for 语句处理多维数组，除了最内层的循环外，其他所有循环的控制变量都应该时引用类型。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org2aaf28f" class="outline-2">
+<h2 id="org2aaf28f">第 4 章 表达式</h2>
+<div class="outline-text-2" id="text-org2aaf28f">
+</div>
+<div id="outline-container-org9f7c33d" class="outline-3">
+<h3 id="org9f7c33d">4.1 基础</h3>
+<div class="outline-text-3" id="text-org9f7c33d">
+</div>
+<div id="outline-container-org9809cde" class="outline-4">
+<h4 id="org9809cde">4.1.1 基本概念</h4>
+<div class="outline-text-4" id="text-org9809cde">
+</div>
+<div id="outline-container-org20a48bf" class="outline-5">
+<h5 id="org20a48bf">左值和右值</h5>
+<div class="outline-text-5" id="text-org20a48bf">
+<p>
+C++的表格是要不然是 <b>右值</b> ，要不然就是 <b>左值</b> 。这两个名词是从 C 语言继承过来的，原本是为了帮助记忆：左值可以位于赋值语句的左侧，右值则不能。
+</p>
+
+<p>
+在 C++语言中，二者的区别就没那么简单了。一个左值表达式的求值结果是一个对象或者一个函数，然而以常量对象为代表的某些左值实际上不能作为赋值语句的左侧运算对象。此外，虽然某些表示的求值结果是对象，但它们是右值而非左值。可以做一个简单的归纳：当一个对象被用作右值的时候，用的是对象的值（内容）；当对象被用作左值的时候，用的是对象的身份（在内存中的位置）。
+</p>
+
+<p>
+一个重要的原则（参见 13.6 节将介绍一种例外的情况）是在需要右值的地方可以用左值来替代，但是不能把右值当成左值（也就是位置使用）。当一个左值被当成右值使用时，实际使用的时它的内容（值）。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org17e4b51" class="outline-3">
+<h3 id="org17e4b51">4.4 赋值运算符</h3>
+<div class="outline-text-3" id="text-org17e4b51">
+</div>
+<div id="outline-container-orgc242961" class="outline-4">
+<h4 id="orgc242961">赋值运算满足右结合律</h4>
+<div class="outline-text-4" id="text-orgc242961">
+<p>
+赋值运算满足右结合律，这一点与其他二元运算烦不太一样。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ival</span>, <span style="color: #dcaeea;">jval</span>;
+ival = jval = <span style="color: #da8548; font-weight: bold;">0</span>;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#37117;&#34987;&#36171;&#20540;&#20026;0</span>
+</pre>
+</div>
+
+<p>
+因为赋值运算符满足右结合律，所以靠右的赋值运算 jval=0 作为靠左的赋值运算符的右侧运算对象。又因为赋值运算返回的时其左侧运算对象，所以靠右的赋值运算结果（即 jval）被赋给了 ival。
+</p>
+
+<p>
+对于多重赋值语句中的每一个对象，它的类型或者与右边对象的类型相同、或者可由右边对象的类型转换得到（参见 4.11 节）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ival</span>, *<span style="color: #dcaeea;">pval</span>;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">ival&#30340;&#31867;&#22411;&#26102;int&#65307;pval&#26102;&#25351;&#21521;int&#30340;&#25351;&#38024;</span>
+ival = jval = <span style="color: #da8548; font-weight: bold;">0</span>;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#25226;&#30495;&#20540;&#30340;&#20540;&#36171;&#32473;int</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s1</span>, <span style="color: #dcaeea;">s2</span>
+s1 = s2 = <span style="color: #98be65;">"OK"</span>          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23383;&#31526;&#20018;&#23383;&#38754;&#20540;"OK"&#36716;&#25442;&#25104;string&#23545;&#35937;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge4a085b" class="outline-4">
+<h4 id="orge4a085b">赋值运算优先级较低</h4>
+<div class="outline-text-4" id="text-orge4a085b">
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+因为赋值运算符的优先级低于关系运算符的优先级，所以在条件语句中，赋值部分通常应该加上括号。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org95435e5" class="outline-4">
+<h4 id="org95435e5">复合赋值运算符</h4>
+<div class="outline-text-4" id="text-org95435e5">
+<p>
+任何一种复合运算符都完全等价于
+</p>
+
+<p>
+<code>a = a op b;</code>
+</p>
+
+<p>
+以为的区别是左侧运算对象的求值次数：使用复合运算符只求值一次，使用普通的运算符则求值两次。这两次包括：一次是作为右边子表达式的一部分求值，另一次是作为赋值运算的左侧运算对象求值。其实在很多地方，这种区别除了对程序性能有些许影响外几乎可以忽略不计。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org01c47e4" class="outline-3">
+<h3 id="org01c47e4">4.5 递增和递减运算符</h3>
+<div class="outline-text-3" id="text-org01c47e4">
+<p>
+递增和递减运算符有两种形式：前置版本和后只版本。到目前位置，本书使用的都是前置版本，这种形式的运算符首先将运算对象加 1（或减 1），然后将改变后的对象作为求值结果。后置版本也会将运算对象加 1（或减 1），但是求值结果是运算对象改变之前那个值的副本：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">j</span>;
+j = ++i;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">j = 1, i = 1&#65306;&#21069;&#32622;&#29256;&#26412;&#24471;&#21040;&#36882;&#22686;&#20043;&#21518;&#30340;&#20540;</span>
+j = i++;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">j = 1, i = 2&#65306;&#21518;&#32622;&#29256;&#26412;&#24471;&#21040;&#36882;&#22686;&#20043;&#21069;&#30340;&#20540;</span>
+</pre>
+</div>
+
+<p>
+建议：除非必须，否则不用递增递减运算符的后置版本
+</p>
+</div>
+<div id="outline-container-org394600d" class="outline-4">
+<h4 id="org394600d">运算对象可按任意顺序求值</h4>
+<div class="outline-text-4" id="text-org394600d">
+<p>
+大多数运算符都没有规定运算对象的求值顺序（参见 4.1.3 节），这在一般情况下不会有什么印象。然而，如果一条子表达式改变了某个运算对象的值，另一条子表达式又要使用该值的话，运算对象的求值顺序就很关键了。因为递增运算符和递减运算符会改变运算对象的值，所以要提防在复合表达式中错误这两个运算符。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35813;&#24490;&#29615;&#30340;&#34892;&#20026;&#26159;&#26410;&#23450;&#20041;&#30340;</span>
+<span style="color: #51afef;">while</span> (beg != s.end() &amp;&amp; <span style="color: #51afef; font-weight: bold;">!</span>isspace(*beg))
+  *beg = toupper(*beg++)    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#35813;&#36171;&#20540;&#35821;&#21477;&#26410;&#23450;&#20041;</span>
+</pre>
+</div>
+
+<p>
+赋值运算符左右两端的运算对象都用到了 beg，并且右侧的运算对象还改变了 beg 的值，所以该赋值语句是未定义的。编译器可能按照下面任意一种思路处理该表达式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">*beg = toupper(*beg);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;&#20808;&#27714;&#24038;&#20391;&#30340;&#20540;</span>
+*(beg + <span style="color: #da8548; font-weight: bold;">1</span>) = toupper(*beg);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;&#20808;&#27714;&#21491;&#20391;&#30340;&#20540;</span>
+</pre>
+</div>
+
+<p>
+也可能采取别的什么方式处理它。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d4b75f" class="outline-3">
+<h3 id="org4d4b75f">4.7 条件运算符</h3>
+<div class="outline-text-3" id="text-org4d4b75f">
+<p>
+条件运算符按照如下形式使用：
+</p>
+
+<p>
+<code>cond ? expr1 : expr2</code>
+</p>
+
+<p>
+当条件运算符的两个表达式都是左值或者能转换成同一种左值类型时，运算的结果时左值；否则运算的结果时右值。
+</p>
+</div>
+<div id="outline-container-org02381b5" class="outline-4">
+<h4 id="org02381b5">嵌套条件运算符</h4>
+<div class="outline-text-4" id="text-org02381b5">
+<p>
+条件运算符满足右结合律，意味着运算对象（一般）按照从右向左的顺序结合。
+</p>
+</div>
+</div>
+<div id="outline-container-org94c37bd" class="outline-4">
+<h4 id="org94c37bd">在输出表达式中使用条件运算符</h4>
+<div class="outline-text-4" id="text-org94c37bd">
+<p>
+条件运算符的优先级非常低，因此当一条长表达式中嵌套了条件运算子表达式时，通常需要在它两端加上括号。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca33a61" class="outline-3">
+<h3 id="orgca33a61">4.8 位运算符</h3>
+<div class="outline-text-3" id="text-orgca33a61">
+<table id="orgc4dca59">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">运算符</th>
+<th scope="col" class="org-left">功能</th>
+<th scope="col" class="org-left">用法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">~</td>
+<td class="org-left">位求反</td>
+<td class="org-left">~ expr</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;&lt;</td>
+<td class="org-left">左移</td>
+<td class="org-left">expr1 &lt;&lt; expr2</td>
+</tr>
+
+<tr>
+<td class="org-left">&gt;&gt;</td>
+<td class="org-left">右移</td>
+<td class="org-left">expr1 &gt;&gt; expr2</td>
+</tr>
+
+<tr>
+<td class="org-left">&amp;</td>
+<td class="org-left">位与</td>
+<td class="org-left">expr &amp; expr</td>
+</tr>
+
+<tr>
+<td class="org-left">^</td>
+<td class="org-left">位异或</td>
+<td class="org-left">expr ^ expr</td>
+</tr>
+
+<tr>
+<td class="org-left">&vert;</td>
+<td class="org-left">位或</td>
+<td class="org-left">expr &vert; expr</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+如果运算对象时带符号的且它的值为负，那么位运算符如果处理运算对象的“符号位”依赖于机器。而且，此时的左移操作可能会改变符号位的值，因此时一种未定义的行为。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+关于符号位如何处理没有明确的规定，所以强烈建议仅将位运算符用于处理无符号类型。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgc9c74ab" class="outline-4">
+<h4 id="orgc9c74ab">移位运算符</h4>
+<div class="outline-text-4" id="text-orgc9c74ab">
+<p>
+<b>左移运算符</b> ( <code>&lt;&lt;</code> )在右侧插入值为 0 的二进制位。 <b>右移运算符</b> ( <code>&gt;&gt;</code> )的行为则依赖于其左侧运算对象的类型：如果该运算对象时无符号类型，在左侧插入值为 0 的二进制位；如果该运算对象时带符号类型，在左侧插入符号位的副本或值为 0 的二进制位，如何选择要视具体环境而定。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc4166cb" class="outline-4">
+<h4 id="orgc4166cb">位与、位或、位异或运算符</h4>
+<div class="outline-text-4" id="text-orgc4166cb">
+<p>
+对于 <b>位与运算符</b> (&amp;)来说，如果两个运算对象的对应位置都是 1 则运算结果中该位为 1，否则为 0。对于 <b>位或运算符</b> (|)来说，如果两个运算符对象的对应位置至少有一个为 1 则运算结果中该位为 1，否则为 0。对于 <b>位异或运算符</b> (^)来说，如果两个运算对象的对应位置有且仅有一个为 1 则运算结果中该位为 1，否则为 0。
+</p>
+</div>
+</div>
+<div id="outline-container-org6918bf4" class="outline-4">
+<h4 id="org6918bf4">移位运算符（又叫 IO 运算符）满足左结合律</h4>
+<div class="outline-text-4" id="text-org6918bf4">
+<p>
+移位运算符的优先级不高不低，介于中间：比算术运算符的优先级低，但比关系运算符、赋值运算符和条件运算符的优先级高。因此在一次使用多个运算符时，有必要在适当的地方加上括号使其满足我们的要求。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org10081a7" class="outline-3">
+<h3 id="org10081a7">4.9 sizeof 运算符</h3>
+<div class="outline-text-3" id="text-org10081a7">
+<p>
+sizeof 运算符返回一条表达式或一个类型名字所占的字节数。sizeof 运算符满足右结合律，其所得的值是一个 size_t 类型（参见 3.5.2 节）的常量表达式（参见 2.4.4 节）。运算符的运算对象有两种形式：
+</p>
+
+<pre class="example">
+sizeof (type)
+sizeof expr
+</pre>
+
+<p>
+在第二种形式中，sizeof 返回的时表达式结果类型的大小。与众不同的一点时，sizeof 并不实际计算其运算对象的值。
+</p>
+
+<p>
+C++新标准允许我们使用作用域运算符来获取类成员的大小。通常情况下只有通过类的对象才能访问到类的成员，但 sizeof 运算符无须我们提供一个具体的对象，因为要想知道类成员的大小无须真的获取该成员。
+</p>
+</div>
+</div>
+<div id="outline-container-org6b0d158" class="outline-3">
+<h3 id="org6b0d158">4.10 逗号运算符</h3>
+<div class="outline-text-3" id="text-org6b0d158">
+<p>
+对于逗号运算符来说，首先对左侧的表达式求值，然后将求值结果丢弃掉。逗号运算符真正的结果时右侧表达式的值。如果右侧运算对象是左值，那么最终的求值结果也是左值。
+</p>
+</div>
+</div>
+<div id="outline-container-org893d11c" class="outline-3">
+<h3 id="org893d11c">4.11 类型转换</h3>
+<div class="outline-text-3" id="text-org893d11c">
+<p>
+在 C++语言中，某些类型之间有关联。如果两种类型有关联，那么当程序需要其中一种类型的运算对象时，可以用另一种关联类型的对象或值来替代。换句话说，如果两种类型可以 <b>相互转换</b> ，那么它们就是关联的。
+</p>
+
+<p>
+C++语言不会直接将两个不同类型的值相加，而是先根据类型转换规则设法将运算对象的类型统一后再求值。上述的类型转换时自动执行的，无须程序的接入，有时甚至不需要程序员了解。因此，它们被称作 <b>隐式转换</b> 。
+</p>
+</div>
+<div id="outline-container-org8403a36" class="outline-4">
+<h4 id="org8403a36">4.11.1 算术转换</h4>
+<div class="outline-text-4" id="text-org8403a36">
+<p>
+<b>算术转换</b> 的含义是把一种算术类型转换成另外一种算术类型，这一点在 2.1.2 节中已有介绍。算术转换的规则定义了一套类型转换的层次，其中运算符的运算对象将转换成最宽的类型。
+</p>
+</div>
+<div id="outline-container-org174523c" class="outline-5">
+<h5 id="org174523c">整型提升</h5>
+<div class="outline-text-5" id="text-org174523c">
+<p>
+<b>整型提升</b> 负责把小整数类型转换成较大的整数类型。
+</p>
+</div>
+</div>
+<div id="outline-container-org4e7a89f" class="outline-5">
+<h5 id="org4e7a89f">无符号类型的运算对象</h5>
+<div class="outline-text-5" id="text-org4e7a89f">
+<p>
+如果一个运算对象是无符号类型、另一个运算对象是带符号类型，而且其中的无符号类型不小于带符号类型，那么带符号的运算对象转换成无符号的。
+</p>
+
+<p>
+剩下的一种情况是带符号类型大于无符号类型，此时转换的结果依赖于机器。如果无符号类型的所有值都能存在该带符号的类型中，则无符号类型的运算对象转换成带符号类型。如果不能，那么带符号类型的运算对象转换成无符号类型。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org65a48e6" class="outline-4">
+<h4 id="org65a48e6">4.11.2 其他隐式类型转换</h4>
+<div class="outline-text-4" id="text-org65a48e6">
+<p>
+<b>数组转换成指针</b> ：在大多数用到数组的表达式中，数组字的自动转换成指向数组首元素的指针：
+</p>
+
+<p>
+当数组被用多 decltype 关键字的参数，或者作为取地址符（&amp;）、sizeof 及 typeid 等运算符的运算对象时，上述转换不会发生。
+</p>
+
+<p>
+<b>指针的转换</b> ：C++还规定了几种其他的指针转换方式，包括常量整数值 0 或者字面值 nullptr 能转换成任意指针类型；指向任意非常量的指针能转换成 void*；指向任意对象的指针能转换成 const void*。
+</p>
+
+<p>
+<b>转换成常量</b> ： 允许将指向非常量类型的指针转换成指向相应的常量类型的指针，对于引用也是这样。也就是说，如果 T 时一种类型，我们就能将指向 T 的指针或引用分别转换成指向 const T 的指针或引用。相反的转换并不存在，因为它试图删掉底层 const。
+</p>
+
+<p>
+<b>类类型定义的转换</b> ：类类型能定义由编译器自动执行的转换，不过编译器每次只能执行一种类类型的转换。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb506be7" class="outline-4">
+<h4 id="orgb506be7">4.11.3 显式转换</h4>
+<div class="outline-text-4" id="text-orgb506be7">
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+虽然有时不得不使用强制类型转换，但这种方法本质上时非常危险的。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org7c6d17d" class="outline-5">
+<h5 id="org7c6d17d">命名的强制类型转换</h5>
+<div class="outline-text-5" id="text-org7c6d17d">
+<p>
+一个命名的强制类型转换具有如下形式：
+</p>
+
+<p>
+<code>cast-name&lt;type&gt;(expression);</code>
+</p>
+
+<p>
+其中 type 是转换的目标类型而 expression 是要转换的值。如果 type 是引用类型，则结果是左值。cast-name 是 <b>static_cast</b> 、 <b>dynamic_cast</b> 、 <b>const_cast</b> 、 <b>reinterpret_cast</b> 中的一种 dynamic_cast 支持类型识别，我们将在 19.2 节对其左更详细的介绍。cast-name 指定了执行的是哪种转换。
+</p>
+</div>
+</div>
+<div id="outline-container-org3bc53f4" class="outline-5">
+<h5 id="org3bc53f4">static_cast</h5>
+<div class="outline-text-5" id="text-org3bc53f4">
+<p>
+任何具有明确定义的类型转换，只要不包含底层 const，都可以使用 static_cast。
+</p>
+</div>
+</div>
+<div id="outline-container-org26d3a21" class="outline-5">
+<h5 id="org26d3a21">const_cast</h5>
+<div class="outline-text-5" id="text-org26d3a21">
+<p>
+const_cast 只能改变运算对象的底层 const（参见 2.4.3 节）。
+</p>
+
+<p>
+对于将常量对象转换成非常量对象的行为，我们一般称其为“去掉 const 性能”
+</p>
+</div>
+</div>
+<div id="outline-container-org994eb79" class="outline-5">
+<h5 id="org994eb79">reinterpret_cast</h5>
+<div class="outline-text-5" id="text-org994eb79">
+<p>
+reinterpret_cast 通常为运算对象的位模式提供较低层次上的重新解释。例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">ip</span>;
+<span style="color: #ECBE7B;">char</span> *<span style="color: #dcaeea;">pc</span> = <span style="color: #51afef;">reinterpret_cast</span>&lt;<span style="color: #ECBE7B;">char</span>*&gt;(ip);
+</pre>
+</div>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+reinterpret_cast 本质上依赖于机器。要想安全地使用 reinterpret_cast 必须对涉及的类型和编译器实现转换的过程都非常了解。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgcedd6bb" class="outline-5">
+<h5 id="orgcedd6bb">旧式的强制类型转换</h5>
+<div class="outline-text-5" id="text-orgcedd6bb">
+<p>
+在早期版本的 C++语言中，显式地进行强制类型转换包含两种形式：
+</p>
+
+<pre class="example">
+type (expr);            // 函数形式的强制类型转换
+(type) expr;            // C语言风格的强制类型转换
+</pre>
+
+<p>
+根据所涉及的类型不同，旧式的强制类型转换分别具有于 const_cast、 static_cast 或 reinterpret_cast 相似的行为。当我们在某处执行旧式的强制类型转换时，如果换成 const_char 和 static_cast 也合法，则其行为与对应的命名转换一致。如果替换后不合法，则旧式强制类型转换执行与 reinterpret_cast 类似的功能：
+</p>
+
+<p>
+<code>char *pc = (char*) ip;   // ip是指向整数的指针</code>
+</p>
+
+<p>
+的效果与使用 reinterpret_cast 一样。
+</p>
+
+<blockquote>
+<p>
+WARNING:
+</p>
+
+<p>
+于命名的强制类型转换相比，旧式的强制类型转换从表现形式来说不是那么清晰明了，容易被看漏，所以一旦转换过程出现问题，追踪起来也更加困难。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge1c883a" class="outline-2">
+<h2 id="orge1c883a">第 5 章 语句</h2>
+<div class="outline-text-2" id="text-orge1c883a">
+</div>
+<div id="outline-container-orgd626575" class="outline-3">
+<h3 id="orgd626575">5.1 简单语句</h3>
+<div class="outline-text-3" id="text-orgd626575">
+</div>
+<div id="outline-container-org49b0a94" class="outline-4">
+<h4 id="org49b0a94">复合语句（块）</h4>
+<div class="outline-text-4" id="text-org49b0a94">
+<p>
+<b>复合语句</b> 是指用花括号括起来的（可能为空的）语句和声明的序列，复合语句也被称作 <b>块</b> 。一个块就是一个作用域（参见 2.2.4 节），再块中引入的名字只能在块内部以及嵌套在块中的子块里访问。通常，名字在有限的区域内可见，该区域从名字定义处开始，到名字所在的（最内层）块的节为为止。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org127c4e7" class="outline-3">
+<h3 id="org127c4e7">5.2 语句作用域</h3>
+<div class="outline-text-3" id="text-org127c4e7">
+<p>
+定义在控制结构中的变量只在相应语句的内部可见，一旦语句结束，变量也就超出其作用范围了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf13f76a" class="outline-3">
+<h3 id="orgf13f76a">5.3 条件语句</h3>
+<div class="outline-text-3" id="text-orgf13f76a">
+</div>
+<div id="outline-container-org944d497" class="outline-4">
+<h4 id="org944d497">5.3.1 if 语句</h4>
+<div class="outline-text-4" id="text-org944d497">
+</div>
+<div id="outline-container-org2b41cb9" class="outline-5">
+<h5 id="org2b41cb9">悬垂 else</h5>
+<div class="outline-text-5" id="text-org2b41cb9">
+<p>
+当一个 if 语句嵌套在另一个 if 语句内部时，很可能 if 分支会多于 else 分支。这时候问题出现了：我们怎么知道某个给定 else 是和哪个 if 匹配呢？
+</p>
+
+<p>
+这个问题通常称作 <b>悬垂 else</b> ，在那些即有 if 语句又有 if else 语句的编程语句中是个普遍存在的问题。不同语言解决该问题的思路也不同，就 C++而言，它规定 else 与离它最近的尚未匹配的 if 匹配，从而消除了程序的二义性。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9549fc0" class="outline-4">
+<h4 id="org9549fc0">5.3.2 switch 语句</h4>
+<div class="outline-text-4" id="text-org9549fc0">
+<p>
+case 关键字和它对象的值一起被称为 <b>case 标签</b> 。case 标签必须是整型常量表达式（参见 2.4.4 节）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">char</span> <span style="color: #dcaeea;">ch</span> = getVal();
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ival</span> = <span style="color: #da8548; font-weight: bold;">42</span>;
+<span style="color: #51afef;">switch</span>(ch) {
+  <span style="color: #51afef;">case</span> <span style="color: #da8548; font-weight: bold;">3.14</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;case&#26631;&#31614;&#19981;&#26159;&#19968;&#20010;&#25972;&#25968;</span>
+  <span style="color: #51afef;">case</span> ival;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;case&#26631;&#31614;&#19981;&#26159;&#19968;&#20010;&#24120;&#37327;</span>
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf1ec9aa" class="outline-5">
+<h5 id="orgf1ec9aa">switch 内部的变量定义</h5>
+<div class="outline-text-5" id="text-orgf1ec9aa">
+<p>
+如前所述，siwtch 的执行流程有可能会跨过某些 case 标签。如果程序跳转到了某个特定的 case，则 switch 结果中该 case 标签之前的部分会被忽略掉。这种忽略掉一部分代码的行为引出了一个有趣的问题：如果被略过的代码中含有变量的定义该怎么办？
+</p>
+
+<p>
+答案是：如果在某处一个带有初值的变量位于作用域之外，在另一处该变量位于作用域之内，则从前一处跳转到后一处的行为是非法行为。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">case</span> <span style="color: #a9a1e1;">true</span>:
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22240;&#20026;&#31243;&#24207;&#30340;&#25191;&#34892;&#27969;&#31243;&#21487;&#33021;&#32469;&#24320;&#19979;&#38754;&#30340;&#21021;&#22987;&#21270;&#35821;&#21477;&#65292;&#25152;&#20197;&#35813;switch&#35821;&#21477;&#19981;&#20309;&#26041;</span>
+    <span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">file_name</span>;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#25511;&#21046;&#27969;&#32469;&#36807;&#19968;&#20010;&#38544;&#24335;&#21021;&#22987;&#21270;&#30340;&#21464;&#37327;</span>
+    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ival</span> = <span style="color: #da8548; font-weight: bold;">0</span>;         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#25511;&#21046;&#27969;&#32469;&#36807;&#19968;&#20010;&#26174;&#31034;&#21021;&#22987;&#21270;&#30340;&#21464;&#37327;</span>
+    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">jval</span>;             <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#22240;&#20026;jval&#27809;&#26377;&#21021;&#22987;&#21270;</span>
+    <span style="color: #51afef;">break</span>;
+<span style="color: #51afef;">case</span> <span style="color: #a9a1e1;">false</span>:
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;jval&#34429;&#28982;&#22312;&#20316;&#29992;&#22495;&#20869;&#65292;&#20294;&#23427;&#27809;&#26377;&#34987;&#21021;&#22987;&#21270;</span>
+    jval = next_num();    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#32473;jval&#36171;&#19968;&#20010;&#20540;</span>
+</pre>
+</div>
+
+<p>
+C++语言规定，不允许跨过变量的初始化语句直接跳转到该变量作用域内的另一个位置。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d6e327" class="outline-3">
+<h3 id="org5d6e327">5.4 迭代语句</h3>
+<div class="outline-text-3" id="text-org5d6e327">
+</div>
+<div id="outline-container-org03a0e44" class="outline-4">
+<h4 id="org03a0e44">5.4.1 while 语句</h4>
+<div class="outline-text-4" id="text-org03a0e44">
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+定义在 while 条件部分或者 while 循环体内的变量每次迭代都经历从创建到销毁的过程。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org4024776" class="outline-4">
+<h4 id="org4024776">5.4.2 传统的 for 语句</h4>
+<div class="outline-text-4" id="text-org4024776">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+牢记 for 语句头中定义的对象只在 for 循环体内可见。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org4dc0685" class="outline-4">
+<h4 id="org4dc0685">5.4.3 范围 for 语句</h4>
+<div class="outline-text-4" id="text-org4dc0685">
+<p>
+C++11 新标准引入了一种更简单的 for 语句，这种语句可以遍历容器或其他序列的所有元素。 <b>范围 for 语句</b> 的语法形式是：
+</p>
+
+<pre class="example">
+for (declaration : expression)
+    statement
+</pre>
+
+<p>
+expression 表示的必须是一个序列，比如用花括号或起来的初始值列表（参见 3.3.1 节）、数组或者 vector 或 string 等类型的对象，这些类型的共同特点是拥有能返回迭代器的 begin 和 end 成员（参见 3.4 节）。
+</p>
+
+<p>
+declaration 定义一个变量，序列中的每个元素都能转换成该变量的类型（参见 4.11 节）。确保类型相容最简单的办法是使用 auto 类型说明符（参见 2.5.2 节），这个关键字可以令编译器帮助我们指定合适的类型。如果需要对序列中的元素执行写操作，循环变量必须声明成引用类型。
+</p>
+
+<p>
+每次迭代都会重新定义循环控制变量，并将其初始化成序列中的下一个值，之后才会执行 statement。像往常一样，statement 可以是一条单独的语句也可以是一个块。所有元素都处理完毕后循环终止。
+</p>
+</div>
+</div>
+<div id="outline-container-org0cabb19" class="outline-4">
+<h4 id="org0cabb19">5.4.4 do while 语句</h4>
+<div class="outline-text-4" id="text-org0cabb19">
+<pre class="example">
+do
+    statement
+while (condition);
+</pre>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+do while 语句应该在括号包围起来的条件后面用一个分号表示语句结束。
+</p>
+</blockquote>
+
+<p>
+condition 使用的变量必须定义在循环体之外。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3e5cb1" class="outline-3">
+<h3 id="orga3e5cb1">5.5 跳转语句</h3>
+<div class="outline-text-3" id="text-orga3e5cb1">
+</div>
+<div id="outline-container-org55de8a7" class="outline-4">
+<h4 id="org55de8a7">5.5.3 goto 语句</h4>
+<div class="outline-text-4" id="text-org55de8a7">
+<p>
+goto 语句的语法形式是
+</p>
+
+<p>
+<code>goto label;</code>
+</p>
+
+<p>
+其中，label 是用于标识一条语句的标识符。 <b>带标签语句</b> 是一种特殊的语句，在它之前有一个标识符以及一个冒号：
+</p>
+
+<p>
+<code>end: return;  // 带标签语句，可以作为goto的目标</code>
+</p>
+
+<p>
+标签提示符独立于变量和其他提示符的名字，因此，标签提示符可以和程序中其他实体的提示符使用同一个名字而不会互相干扰。goto 语句和控制权专项的那条代表前的语句必须位于同一个函数内。
+</p>
+
+<p>
+和 switch 语句类型，goto 语句也不能将程序的控制权从变量的作用域之外转义到作用域之内：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+    <span style="color: #51afef;">goto</span> <span style="color: #a9a1e1;">end</span>;
+    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ix</span> = <span style="color: #da8548; font-weight: bold;">10</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;goto&#35821;&#21477;&#32469;&#36807;&#20102;&#19968;&#20010;&#24102;&#21021;&#22987;&#21270;&#30340;&#21464;&#37327;&#23450;&#20041;</span>
+<span style="color: #a9a1e1;">end</span>:
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#27492;&#22788;&#30340;&#20195;&#30721;&#38656;&#35201;&#20351;&#29992;ix&#65292;&#20294;&#26159;goto&#35821;&#21477;&#32469;&#36807;&#20102;&#23427;&#30340;&#22768;&#26126;</span>
+    ix = <span style="color: #da8548; font-weight: bold;">42</span>;
+</pre>
+</div>
+
+<p>
+向后跳过一个已经执行的定义是合法的。跳回到变量定义之前意味着系统将销毁该变量，然后重新创建它：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21521;&#21518;&#36339;&#36807;&#19968;&#20010;&#24102;&#21021;&#22987;&#21270;&#30340;&#21464;&#37327;&#23450;&#20041;&#26159;&#21512;&#27861;&#30340;</span>
+<span style="color: #a9a1e1;">begin</span>:
+    <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">sz</span> = get_size();
+    <span style="color: #51afef;">if</span> (sz &lt;= <span style="color: #da8548; font-weight: bold;">0</span>) {
+          <span style="color: #51afef;">goto</span> <span style="color: #a9a1e1;">begin</span>;
+    }
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdf6be1d" class="outline-3">
+<h3 id="orgdf6be1d">5.6 try 语句块和异常处理</h3>
+<div class="outline-text-3" id="text-orgdf6be1d">
+<p>
+异常处理机制为程序中异常检测的异常处理这两部分的协作提供支持。在 C++语言中，异常处理包括：
+</p>
+<ul class="org-ul">
+<li><b>throw 表达式</b> ，异常检测部分使用 throw 表达式来表示它遇到了无法处理的问题。我们说 trhow <b>引发</b> 了异常。</li>
+<li><b>try 语句块</b> ，异常处理部分使用 try 语句块处理异常。try 语句块以关键字 try 开始，并以一个或多个 <b>catch 子句</b> 结束。try 语句块中代码抛出的异常通常会被某个 catch 子句处理。因为 catch 子句“处理”异常，所以它们也被称作 <b>异常处理代码</b> 。</li>
+<li>一套 <b>异常类</b> ，用于在 throw 表达式和相关的 catch 子句之间传递异常的具体信息</li>
+</ul>
+</div>
+<div id="outline-container-orgb898c4d" class="outline-4">
+<h4 id="orgb898c4d">5.6.1 throw 表达式</h4>
+<div class="outline-text-4" id="text-orgb898c4d">
+<p>
+程序的异常检测部分使用 throw 表达式引发一个异常。throw 表达式包含关键字 throw 和紧随其后的一个表达式，其中表的是的类型就是抛出的异常类型。
+</p>
+</div>
+</div>
+<div id="outline-container-org21d783e" class="outline-4">
+<h4 id="org21d783e">5.6.2 try 语句块</h4>
+<div class="outline-text-4" id="text-org21d783e">
+<p>
+try 语句块的通用语法形式是
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">try</span> {
+    program-statements
+} <span style="color: #51afef;">catch</span> (exception-declaration) {
+    handler-statements
+} <span style="color: #51afef;">catch</span> (exception-declaration) {
+    handler-statements
+} <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+</pre>
+</div>
+
+<p>
+跟在 try 块之后的是一个或多个 catch 子句。catch 子句包括三个部分：关键字 catch、括号内的一个（可能未命名的）对象的声明（称作 <b>异常声明</b> ）以及块。当选中了某个 catch 子句处理异常之后，执行与之对应的块。catch 一旦完成，程序跳转到 try 语句块最后一个 catch 子句之后的那条语句继续执行。
+</p>
+
+<p>
+try 语句块中的 program-statements 组成程序的正常逻辑，像其他任何块一样，program-statements 可以有包括声明在内的任意 C++语句。一如往常，try 语句块内声明的变量在块外部无法访问，特别是在 catch 子句内也无法访问。
+</p>
+</div>
+<div id="outline-container-org18b650c" class="outline-5">
+<h5 id="org18b650c">函数在寻找处理代码的过程中退出</h5>
+<div class="outline-text-5" id="text-org18b650c">
+<p>
+在复杂系统中，程序在遇到抛出异常的代码前，其执行路径可能已经经过了多个 try 语句块。例如，一个 try 语句块可能调用了包含另一个 try 语句块的函数，新的 try 语句块可能调用了包含又一个 try 语句块的新函数，以此类推。
+</p>
+
+<p>
+寻找处理代码的过程与函数调用链刚好相反。当异常被抛出时，首先搜索抛出该异常的函数。如果没有找到匹配的 catch 子句，终止该函数，并在调用该函数的函数中继续寻找。如果还是没有找到匹配的子句，这个新的函数也被终止，继续搜索调用它的函数。以此类推，沿着调成的执行路径逐层回退，知道找到适当类型的 catch 子句为止。
+</p>
+
+<p>
+如果最终还是没能找到匹配的 catch 子句，程序转到名为 <b>terminate</b> 的标准库函数。该函数的行为与系统有关，一般情况下，执行该函数将导致程序非正常退出。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga84fe8a" class="outline-4">
+<h4 id="orga84fe8a">5.6.3 标准异常</h4>
+<div class="outline-text-4" id="text-orga84fe8a">
+<p>
+C++标准库定义了一组类，用于报告标准库函数遇到的问题。这些异常类也可以在用户编写的程序中使用，它们分别定义在 4 个头文件中：
+</p>
+<ul class="org-ul">
+<li>exception 头文件定一个了最通用的异常类 exception。它只报告异常的发生，不提供任何额外信息。</li>
+<li>stdexcept 头文件定义几种常用的异常类，详细信息在下表中列出。</li>
+<li>new 头文件定义了 bad_alloc 异常类型，这种类型将在 12.1.2 节详细介绍</li>
+<li>type_info 头文件定义了 bad_cast 异常类型，这种类型将在 19.2 节详细介绍。</li>
+</ul>
+
+<table id="org1c9b396">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">exception</td>
+<td class="org-left">最常见的问题</td>
+</tr>
+
+<tr>
+<td class="org-left">runtime_error</td>
+<td class="org-left">只有在运行时才能检测出问题</td>
+</tr>
+
+<tr>
+<td class="org-left">range_error</td>
+<td class="org-left">运行时错误：生成的结果超出了有意义的值域范围</td>
+</tr>
+
+<tr>
+<td class="org-left">overflow_error</td>
+<td class="org-left">运行时错误：计算上溢</td>
+</tr>
+
+<tr>
+<td class="org-left">underflow_error</td>
+<td class="org-left">运行时错误：计算下溢</td>
+</tr>
+
+<tr>
+<td class="org-left">logic_error</td>
+<td class="org-left">程序逻辑错误</td>
+</tr>
+
+<tr>
+<td class="org-left">domain_error</td>
+<td class="org-left">逻辑错误：参数对应的结果只不存在</td>
+</tr>
+
+<tr>
+<td class="org-left">invalid_argument</td>
+<td class="org-left">逻辑错误：无效参数</td>
+</tr>
+
+<tr>
+<td class="org-left">length_error</td>
+<td class="org-left">逻辑错误：试图创建一个超出该类型最大长度的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">out_of_rang</td>
+<td class="org-left">逻辑错误：使用一个超出有效范围的值</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+我们只能以默认初始化（参见 2.2.1 节）的方式初始化 exception、bad_alloc 和 bad_cast 对象，不允许为这些对象提供初始值。
+</p>
+
+<p>
+其他异常类型的行为则恰好相反：应该使用 string 对象或者 C 风格字符串初始化这些类型的对象，但是不允许使用默认初始化的方法。当创建此类对象时，必须提供初始化值，该初始值含有错误相关的信息。
+</p>
+
+<p>
+异常类型只定义了一个名为 what 的成员函数，该函数没有任何参数，返回值时一个指向 C 风格字符串（参见 3.5.4 节）的 const char*。该字符串的亩的时提供关于异常的一些文本信息。
+</p>
+
+<p>
+what 函数返回的 C 风格字符串的内容与异常对象的类型有关。如果异常类型有一个字符串初始值，则 what 返回该字符串。对于其他无初始值的异常类型来说，what 返回的内容由编译器决定。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b904c0" class="outline-2">
+<h2 id="org4b904c0">第 6 章 函数</h2>
+<div class="outline-text-2" id="text-org4b904c0">
+</div>
+<div id="outline-container-org45f5c8e" class="outline-3">
+<h3 id="org45f5c8e">6.1 函数基础</h3>
+<div class="outline-text-3" id="text-org45f5c8e">
+<p>
+我们通过 <b>调用运算符</b> 来执行函数。调用运算符的形式是一对圆括号，它作用于一个表达式，该表达式是函数或者指向函数的指针；圆括号之内是一个用逗号隔开的实参列表，我们用实参初始化函数的形参。调用表达式的类型就是函数的返回类型。
+</p>
+</div>
+<div id="outline-container-org8f99176" class="outline-4">
+<h4 id="org8f99176">6.1.1 局部对象</h4>
+<div class="outline-text-4" id="text-org8f99176">
+</div>
+<div id="outline-container-org3fcc6f7" class="outline-5">
+<h5 id="org3fcc6f7">自动对象</h5>
+<div class="outline-text-5" id="text-org3fcc6f7">
+<p>
+对于普通局部变量对应的对象来说，当函数的控制路径经过变量定义语句时创建该对象，当到达定义所在块末尾时销毁它。我们把只存在于块执行期间的对象称为 <b>自动对象</b> 。当块的执行结束后，块中创建的自动对象的值就编程未定义的了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb4795fb" class="outline-5">
+<h5 id="orgb4795fb">局部静态对象</h5>
+<div class="outline-text-5" id="text-orgb4795fb">
+<p>
+<b>局部静态对象</b> 在程序的执行路径第一次经过对象定义语句时初始化，并且直到程序终止才被销毁，再次期间即使对象所在的函数结束也不会对它有影响。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf341bf3" class="outline-4">
+<h4 id="orgf341bf3">6.1.2 函数声明</h4>
+<div class="outline-text-4" id="text-orgf341bf3">
+<p>
+因为函数的声明不包含函数体，所以也就无须形参的名字。事实上，在函数的声明中经常省略形参的名字。尽管如此，写上形参的名字还是有用初的，它可以帮助使用者更好地理解函数的功能：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #a9a1e1;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;::<span style="color: #ECBE7B;">const_iterator</span> <span style="color: #dcaeea;">beg</span>,
+           <span style="color: #a9a1e1;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;::<span style="color: #ECBE7B;">const_iterator</span> <span style="color: #dcaeea;">end</span>);
+</pre>
+</div>
+
+<p>
+函数的三要素（返回类型、函数名、形参类型）描述的函数的接口，说明了调用该函数所需的全部信息。函数声明也被称作 <b>函数原型</b> 。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org23d72d1" class="outline-3">
+<h3 id="org23d72d1">6.2 参数传递</h3>
+<div class="outline-text-3" id="text-org23d72d1">
+<p>
+当形参时引用类型时，我们说它对应的实参被 <b>引用调用</b> 或者函数被 <b>传引用调用</b> 。和其他引用一样，引用形参也是它绑定的对象的别名；也就是说，引用形参时它对应的实参的别名。
+</p>
+
+<p>
+当实参的值被拷贝给形参时，形参和实参时两个互相独立的对象。我们说这样的实参被 <b>值传递</b> 或者函数被 <b>传值调用</b> 。
+</p>
+</div>
+<div id="outline-container-org46beb04" class="outline-4">
+<h4 id="org46beb04">6.2.2 传引用参数</h4>
+<div class="outline-text-4" id="text-org46beb04">
+</div>
+<div id="outline-container-org68076a4" class="outline-5">
+<h5 id="org68076a4">使用引用避免拷贝</h5>
+<div class="outline-text-5" id="text-org68076a4">
+<p>
+拷贝大的类类型对象或者容器对象比较低效，甚至有的类类型（包括 IO 类型在内）根本就不支持拷贝操作。当某种类型不支持拷贝操作时，函数只能通过引用形参访问该类型的对象。
+</p>
+
+<blockquote>
+<p>
+Best Practies:
+</p>
+
+<p>
+如果函数无须改变引用形参的值，最好将其声明为常量引用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org5289339" class="outline-4">
+<h4 id="org5289339">6.2.4 数组形参</h4>
+<div class="outline-text-4" id="text-org5289339">
+<p>
+数组的两个特殊性质对我们定义和使用作用在数组上的函数有影响，这两个性质分别是：不允许拷贝数组（参见 3.5.1 节）以及使用数组时（通常）会将其转换成指针（参见 3.5.3 节）。因为不能拷贝数组，所以我们无法以值传递的方式使用数组参数。因为数组会被转成指针，所以当我们为函数传递一个数组时，实际上传递的是指向数组首元素的指针。
+</p>
+
+<p>
+尽管不能以值传递的方式传递数组，但是我们可以把形参写成类似数组的形式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36827;&#27454;&#24418;&#24335;&#19981;&#21516;&#65292;&#20294;&#36825;&#19977;&#20010;print&#20989;&#25968;&#26159;&#31561;&#20215;&#30340;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27599;&#20010;&#20989;&#25968;&#37117;&#26377;&#19968;&#20010;const int*&#31867;&#22411;&#30340;&#24418;&#21442;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span>*);
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span>[]);     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21487;&#20197;&#30475;&#20986;&#26469;&#65292;&#20989;&#25968;&#30340;&#24847;&#22270;&#26159;&#20316;&#29992;&#22495;&#19968;&#20010;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>]);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36825;&#37324;&#30340;&#32500;&#24230;&#34920;&#31034;&#25105;&#20204;&#26399;&#26395;&#25968;&#32452;&#21547;&#26377;&#22810;&#23569;&#20803;&#32032;&#65292;&#23454;&#38469;&#19981;&#19968;&#23450;</span>
+</pre>
+</div>
+
+<p>
+如果我们传给 print 函数的是一个数组，则实参自动低转换成指向数组首元素的指针，数组的大小对函数的调用没有影响。
+</p>
+</div>
+<div id="outline-container-org6c5154a" class="outline-5">
+<h5 id="org6c5154a">数组引用形参</h5>
+<div class="outline-text-5" id="text-org6c5154a">
+<p>
+C++语言允许将变量定义成数组的引用（参见 3.5.1 节），基于同样的道理，形参也可以是数组的引用。此时，引用形参绑定对应的实参上，俄语就是绑定到数组上：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#24418;&#21442;&#26159;&#25968;&#32452;&#30340;&#24341;&#29992;&#65292;&#26410;&#35835;&#26159;&#31867;&#22411;&#30340;&#19968;&#37096;&#20998;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #ECBE7B;">int</span> (&amp;<span style="color: #dcaeea;">arr</span>)[<span style="color: #da8548; font-weight: bold;">10</span>])
+{
+  <span style="color: #51afef;">for</span> (<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">elem</span> : arr)
+    cout &lt;&lt; elem &lt;&lt; endl;
+}
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+&amp;arr 两端的括号必不可少（参见 3.5.1 节）
+</p>
+
+<p>
+f(int &amp;arr[10])    <i>/ 错误：将 arr 声明成了引用的数组
+f(int (&amp;arr)[10])  /</i> 正确：arr 是具有 10 个整数的整型数组的引用
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgff5962b" class="outline-5">
+<h5 id="orgff5962b">传递多维数组</h5>
+<div class="outline-text-5" id="text-orgff5962b">
+<p>
+和所有数组一样，当将多维数组传递给函数时，真正传递的是指向数组首元素的指针（参见 3.6 节）。因为我们处理的是数组的数组，所以首元素本身就是一个数组，指针就是一个指向数组的指针。数组第二维（以及后面所有维度）的大小都是数组类型的一部分，不能省略：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">matrix&#25351;&#21521;&#25968;&#32452;&#30340;&#26377;&#20803;&#32032;&#65292;&#35813;&#25968;&#32452;&#30340;&#20803;&#32032;&#26159;&#30001;10&#20010;&#25972;&#25968;&#26500;&#25104;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #ECBE7B;">int</span> (*<span style="color: #dcaeea;">matrix</span>)[<span style="color: #da8548; font-weight: bold;">10</span>], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">rowSize</span>) { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> }
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+再一次强调，*matrix 两端的括号必不可少：
+int *matrix[10];          <i>/ 10 个指针构成的数组
+int (*matrix)[10];        /</i> 指向含有 10 个整数的数组的指针
+</p>
+</blockquote>
+
+<p>
+我们也可以使用数组的语法定义函数，此时编译器会一如既往地忽略掉第一个维度，所以最好不要把它包括在形参列表内：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20215;&#23450;&#20041;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">matrix</span>[][<span style="color: #da8548; font-weight: bold;">10</span>], <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">rowSize</span>) { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">...</span><span style="color: #5B6268;"> */</span> }
+</pre>
+</div>
+
+<p>
+matrix 的声明看起来是一个二维数组，实际上形参是指向含有 10 个整数的数组的指针。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org748c3ed" class="outline-4">
+<h4 id="org748c3ed">6.2.6 含有可变形参的函数</h4>
+<div class="outline-text-4" id="text-org748c3ed">
+<p>
+为了编写能处理不同数量实参的函数，C++11 新标准提供了两种主要的方法：如果所有的实参类型型钢，可以传递一个名为 initializer_list 的标准库类型；如果实参的类型不同，我们可以编写一种特殊的函数，也就是所谓的可变参数模板，关于它的细节将在 16.4 节介绍。
+</p>
+</div>
+<div id="outline-container-orgb793176" class="outline-5">
+<h5 id="orgb793176">initializer_list 形参</h5>
+<div class="outline-text-5" id="text-orgb793176">
+<p>
+如果函数的实参数量未知但是全部实参的类型都相同，我们可以使用 <b>initializer_list</b> 类型的形参。initializer_list 是一种标准库类型，用于表示某种特定类型的值的数组（参见 3.5 节）。initializer_list 类型定义在同名头文件中，它提供的操作如下表所示。
+</p>
+
+<table id="org000994a">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">initializer_list&lt;T&gt; lst;</td>
+<td class="org-left">默认初始化；T类型元素的空列表</td>
+</tr>
+
+<tr>
+<td class="org-left">initializer_list&lt;T&gt; lst{a,b,c&#x2026;};</td>
+<td class="org-left">lst 的元素数量和初始值一样多；lst 的元素是对应初始值的副本；列表中的元素是 const</td>
+</tr>
+
+<tr>
+<td class="org-left">lst2(lst)</td>
+<td class="org-left">拷贝或赋值一个 initializer_list 对象不会拷贝列表中的元素；</td>
+</tr>
+
+<tr>
+<td class="org-left">lst2 = lst</td>
+<td class="org-left">拷贝后原是列表和副本共享元素</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.size()</td>
+<td class="org-left">列表中的元素数量</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.begin()</td>
+<td class="org-left">返回指向 lst 中首元素的指针</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.end()</td>
+<td class="org-left">返回 lst 中尾元素下一位置的指针</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+和 vector 一样，initializer_list 也是一种模板类型（参见 3.3 节）。和 vector 不一样的是，initializer_list 对象中的元素永远是常量值，我们无法改变 initializer_list 对象中元素的值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb126c08" class="outline-5">
+<h5 id="orgb126c08">省略符形参</h5>
+<div class="outline-text-5" id="text-orgb126c08">
+<p>
+省略符形参是为了便于 C++程序访问某些特殊的 C 代码而设置的，这些代码使用了名为 varargs 的 C 标准库功能。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+省略符形参硬仅仅用于 C 和 C++通用的类型。特别应该注意的是，大多数类类型的对象在传递给省略符形参时都无法正确拷贝。
+</p>
+</blockquote>
+
+<p>
+省略符形参只能出现在形参列表的最后一个位置，它的形式无外乎以下两种：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #dcaeea;">foo</span>(parm_list, ...);
+<span style="color: #ECBE7B;">void</span> <span style="color: #dcaeea;">foo</span>(...);
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org31cf559" class="outline-3">
+<h3 id="org31cf559">6.3 返回类型和 return 语句</h3>
+<div class="outline-text-3" id="text-org31cf559">
+</div>
+<div id="outline-container-orga145960" class="outline-4">
+<h4 id="orga145960">6.3.2 有返回值函数</h4>
+<div class="outline-text-4" id="text-orga145960">
+<p>
+return 语句返回值的类型必须与函数的返回值类型相同，或能隐式的转换成（参见 4.11 节）函数的返回类型。
+</p>
+</div>
+<div id="outline-container-org060d142" class="outline-5">
+<h5 id="org060d142">值时如何被返回的</h5>
+<div class="outline-text-5" id="text-org060d142">
+<p>
+返回一个值的方式和初始化一个变量或形参的方式完全一样：返回的值用于初始化调用点的一个临时量，该临时量就是函数调用的结果。
+</p>
+</div>
+</div>
+<div id="outline-container-orge9ee74b" class="outline-5">
+<h5 id="orge9ee74b">不要返回局部对象的引用或指针</h5>
+<div class="outline-text-5" id="text-orge9ee74b">
+<p>
+函数完整后，它所占用的存储空间也随之被释放掉。因此，函数终止意味着局部变量的引用将指向不再有效的内存区域。
+</p>
+
+<p>
+如前所述，返回局部对象的引用是错误的；同样，返回局部对象的指针也是错误的。一旦函数完成，局部对象被释放，指针将指向一个不存在的对象。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf5faf22" class="outline-5">
+<h5 id="orgf5faf22">引用返回左值</h5>
+<div class="outline-text-5" id="text-orgf5faf22">
+<p>
+函数的返回类型决定函数调用是否是左值（参见 4.1.1 节）。调用一个返回引用的函数得到左值，其他返回了类型得到右值。可以像使用其他左值那样来使用返回引用的函数调用，特别是，我们能为返回类型是非常量引用的函数的结果赋值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">char</span> &amp;<span style="color: #c678dd;">get_val</span>(<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">str</span>, <span style="color: #a9a1e1;">string</span>::<span style="color: #ECBE7B;">size_type</span> <span style="color: #dcaeea;">ix</span>){
+  <span style="color: #51afef;">return</span> str[ix];           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">get_val&#20551;&#23450;&#32034;&#24341;&#20540;&#26159;&#26377;&#25928;&#30340;</span>
+}
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">main</span> {
+  string s(<span style="color: #98be65;">"a value"</span>);
+  cout &lt;&lt; s &lt;&lt; endl;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36755;&#20986;a value</span>
+  get_val(s, <span style="color: #da8548; font-weight: bold;">0</span>) = <span style="color: #98be65;">'A'</span>;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;s[0]&#30340;&#20540;&#25913;&#20026;A</span>
+  cout &lt;&lt; s &lt;&lt; endl;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36755;&#20986;A value</span>
+
+  <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+
+<p>
+把函数调用放在赋值语句的左侧可能看起来有点奇怪，但其实这没什么特别的。返回值是引用，因此调用是个左值，和其他左值一样它也能出现在赋值运算符的左侧。
+</p>
+</div>
+</div>
+<div id="outline-container-orge92abfa" class="outline-5">
+<h5 id="orge92abfa">列表初始化返回值</h5>
+<div class="outline-text-5" id="text-orge92abfa">
+<p>
+C++11 新标准规定，函数可以返回花括号的值的列表。类似于其他返回结果，此初的列表也用来对表示函数返回的临时量进行初始化。如果列表为空，临时量执行值初始化（参见 3.3.1 节）；否则，返回的值由函数的返回类型决定。
+</p>
+
+<p>
+如果函数返回的内置类型，则花括号包围的列表最多包含一个值，而且该值所占空间不应该大于目标类型的空间（参见 2.2.1 节）。如果函数返回的是类类型，由类本身定义初始值如何使用（参见 3.3.1 节）。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd90488b" class="outline-4">
+<h4 id="orgd90488b">6.3.3 返回数组指针</h4>
+<div class="outline-text-4" id="text-orgd90488b">
+<p>
+因为数组不能被拷贝，所以函数不能返回数组。不过，函数可以返回数组的指针或引用。虽然从语法上来说，要想定义个返回数组的指针或引用的函数比较凡所，但是有一些方法可以简化这一任务，其中最直接的办法是使用类型别名（参见 2.5.1 节）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">typedef</span> <span style="color: #ECBE7B;">int</span> <span style="color: #ECBE7B;">arrT</span>[<span style="color: #da8548; font-weight: bold;">10</span>];          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">arrT&#26159;&#19968;&#20010;&#31867;&#22411;&#27604;&#35830;&#21999;&#65292;&#23427;&#34920;&#31034;&#30340;&#31867;&#22411;&#26159;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #51afef;">using</span> <span style="color: #ECBE7B;">arrT</span> = <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>];          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">arrT&#30340;&#31561;&#20215;&#22768;&#26126;</span>
+<span style="color: #ECBE7B;">arrT</span>* <span style="color: #c678dd;">func</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>);             <span style="color: #5B6268;">// </span><span style="color: #5B6268;">func&#36820;&#22238;&#19968;&#20010;&#25351;&#21521;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;&#25351;&#38024;</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-orga0e53eb" class="outline-5">
+<h5 id="orga0e53eb">声明一个返回数组指针的函数</h5>
+<div class="outline-text-5" id="text-orga0e53eb">
+<p>
+要想在声明 func 时不适用类型别名，我们必须牢记被定义的名字后面数组的维度：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">arr</span>[<span style="color: #da8548; font-weight: bold;">10</span>];         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">arr&#26102;&#19968;&#20010;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p1</span>[<span style="color: #da8548; font-weight: bold;">10</span>];         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">p1&#26102;&#19968;&#20010;&#20989;&#25968;10&#20010;&#25351;&#38024;&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">int</span> (*<span style="color: #dcaeea;">p2</span>)[<span style="color: #da8548; font-weight: bold;">10</span>] = &amp;arr  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">p2&#26102;&#19968;&#20010;&#25351;&#38024;&#65292;&#23427;&#25351;&#21521;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+</pre>
+</div>
+
+<p>
+和这些声明一样，如果我们想定义一个返回数组指针的函数，则数组的维度必须跟在函数名字之后。然而，函数的形参列表也跟在函数名字后面且形参列表应该先于数组的维度。因此，返回数组指针的函数形式如下所示：
+</p>
+
+<p>
+<code>Type (*function(parameter_list))[dimension]</code>
+</p>
+
+<p>
+类似于其他数组的声明，Type 表示元素的类型，dimension 表示数组的大小。(*function(parameter_list))两端的扩招 i 必须存在，就像我们定义 p2 时两端必须有括号一样。如果没有这对括号，函数的返回类型将是指针的函数。
+</p>
+
+<p>
+举个具体点的例子。下面这个 func 函数的声明没有使用类型别名：
+</p>
+
+<p>
+<code>int (*func(int i))[10];</code>
+</p>
+
+<p>
+可以按照以下的顺序来逐层理解该声明的含义：
+</p>
+
+<ul class="org-ul">
+<li>func(int i)表示调用 func 函数时需要一个 int 类型的实参。</li>
+<li>(*func(int i))意味着我们可以对函数调用的结果执行解引用操作。</li>
+<li>(*func(int i))[10]表示解引用 func 的调用将得到一个大小时 10 的数组。</li>
+<li>int (*func(int i))[10]表示数组中的元素时 int 类型。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfcf3059" class="outline-5">
+<h5 id="orgfcf3059">使用尾置返回类型</h5>
+<div class="outline-text-5" id="text-orgfcf3059">
+<p>
+在 C++11 标准中还有一种可以简化上述 func 声明的方法，就是使用 <b>尾置返回类型</b> 。任何函数的定义都能使用尾置返回，但是这种形式对于返回类型比较复杂的函数最有效，比如返回类型是函数的指针或数组的引用。尾置返回类型跟在形参列表后面并以一个-&gt;符号开头。为了表示函数真正的返回类型跟在形参列表之后，我们在本应该出现返回类型的地方放置一个 auto：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">func&#25509;&#21463;&#19968;&#20010;int&#31867;&#22411;&#30340;&#23454;&#21442;&#65292;&#36820;&#22238;&#19968;&#20010;&#25351;&#38024;&#65292;&#35813;&#25351;&#38024;&#25351;&#21521;&#21547;&#26377;10&#20010;&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #c678dd;">func</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>) -&gt; <span style="color: #ECBE7B;">int</span>(*)[<span style="color: #da8548; font-weight: bold;">10</span>];
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0aef322" class="outline-5">
+<h5 id="org0aef322">使用 decltype</h5>
+<div class="outline-text-5" id="text-org0aef322">
+<p>
+还有一种情况，如果我们知道函数返回的指针将指向哪个数组，就可以使用 decltype 关键字声明返回类型。例如，下面的函数返回一个指针，该指针根据参数 i 的不同指向两个已知数组中的一个：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">odd</span>[] = {<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">even</span>[] = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">8</span>};
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36820;&#22238;&#19968;&#20010;&#25351;&#38024;&#65292;&#35813;&#25351;&#38024;&#25351;&#21521;&#21547;&#26377;5&#25972;&#25968;&#30340;&#25968;&#32452;</span>
+<span style="color: #51afef;">decltype</span>(odd) *<span style="color: #c678dd;">arrPtr</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span>) {
+  <span style="color: #51afef;">return</span> {i % <span style="color: #da8548; font-weight: bold;">2</span>} ? &amp;odd : &amp;even;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36820;&#22238;&#19968;&#20010;&#25351;&#21521;&#25968;&#32452;&#30340;&#25351;&#38024;</span>
+}
+</pre>
+</div>
+
+<p>
+有一个地方需要注意：decltype 并不负责把数组类型转换成对应的指针，所以 decltype 的结果是个数组，要想表示 arrPtr 返回指针还必须在函数声明时加一个*符号。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org80c6a66" class="outline-3">
+<h3 id="org80c6a66">6.4 函数重载</h3>
+<div class="outline-text-3" id="text-org80c6a66">
+<p>
+如果同一作用域内的几个函数名字相同但形参列表不同，我们称之为 <b>重载函数</b> 。
+</p>
+</div>
+<div id="outline-container-org25160b4" class="outline-5">
+<h5 id="org25160b4">定义重载函数</h5>
+<div class="outline-text-5" id="text-org25160b4">
+<p>
+不允许两个函数除了返回类型外其他所有的要素都相同。假设有两个函数，它们的形参列表一样但是返回类型不同，则第二个函数的声明是错误的：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Account</span>&amp;);
+<span style="color: #ECBE7B;">bool</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Account</span>&amp;);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19982;&#19978;&#19968;&#20010;&#20989;&#25968;&#30456;&#27604;&#21482;&#26377;&#36820;&#22238;&#31867;&#22411;&#19981;&#21516;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8bca610" class="outline-5">
+<h5 id="org8bca610">重载和 const 形参</h5>
+<div class="outline-text-5" id="text-org8bca610">
+<p>
+如果 6.2.3 节介绍的，顶层 const 不影响传入函数的对象。一个拥有顶层 const 的形参无法和另一个没有顶层 const 的形参区分开来。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(Phone);
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #ECBE7B;">Const</span> <span style="color: #dcaeea;">Phone</span>);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#37325;&#22797;&#22768;&#26126;&#20102;Record looksup(Phone)</span>
+
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #ECBE7B;">Phone</span>*);
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #ECBE7B;">Phone</span>* <span style="color: #51afef;">const</span>); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#37325;&#22797;&#22768;&#26126;&#20102;Record looksup(Phone*)</span>
+</pre>
+</div>
+
+<p>
+另一个方面，如果形参是某种类型的指针或引用，则通过区分其指向的是常量对象还是非常量对象可以实现函数重载，此时的 const 是底层的。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23545;&#20110;&#25509;&#21463;&#24341;&#29992;&#25110;&#25351;&#38024;&#30340;&#20989;&#25968;&#26469;&#35828;&#65292;&#23545;&#35937;&#26159;&#24120;&#37327;&#36824;&#26159;&#38750;&#24120;&#37327;&#23545;&#24212;&#30340;&#24418;&#21442;&#19981;&#21516;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23450;&#20041;4&#20010;&#29420;&#31435;&#30340;&#37325;&#36733;&#20989;&#25968;</span>
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #ECBE7B;">Account</span>&amp;);         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20989;&#25968;&#20316;&#29992;&#20110;Account&#30340;&#24341;&#29992;</span>
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Account</span>&amp;);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26032;&#20989;&#25968;&#65292;&#20316;&#29992;&#20110;&#24120;&#37327;&#24341;&#29992;</span>
+
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #ECBE7B;">Account</span>*);         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26032;&#20989;&#25968;&#65292;&#20316;&#29992;&#22495;&#25351;&#21521;Account&#30340;&#25351;&#38024;</span>
+<span style="color: #ECBE7B;">Record</span> <span style="color: #c678dd;">looksup</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Account</span>*);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26032;&#20989;&#25968;&#65292;&#20316;&#29992;&#20110;&#25351;&#21521;&#24120;&#37327;&#30340;&#25351;&#38024;</span>
+</pre>
+</div>
+
+<p>
+在上面的例子中，编译器可以通过实参是否是常量来推断应该调用哪个函数。因为 const 不能转换成其他其类型（参见 4.11.2 节），所以我们只能把 const 对象（或指向 const 的指针）传递给 const 形参。相反的，因为非常量可以转换成 const，所以上面的 4 个函数都能作用于非常量对象或指向非常量对象的指针。不过，如 6.6.1 节降妖介绍的，当我们传递一个非常量对象或者指向非常量对象的指针时，编译器会优先选用非常量版本的函数。
+</p>
+</div>
+</div>
+<div id="outline-container-org4c4515e" class="outline-5">
+<h5 id="org4c4515e">const_cast 和重载</h5>
+<div class="outline-text-5" id="text-org4c4515e">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #c678dd;">shorterString</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s1</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s2</span>) {
+  <span style="color: #51afef;">return</span> s1.size() &lt;= s2.size() ? s1 : s2;
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> &amp;<span style="color: #c678dd;">shorterString</span>(<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s1</span>, <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s2</span>) {
+  <span style="color: #51afef;">auto</span> &amp;<span style="color: #dcaeea;">r</span> = shorterString(<span style="color: #51afef;">const_cast</span>&lt;<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;&gt;(s1),
+                          <span style="color: #51afef;">const_cast</span>&lt;<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;&gt;(s2));
+
+  <span style="color: #51afef;">return</span> <span style="color: #51afef;">const_cast</span>&lt;<span style="color: #ECBE7B;">string</span>&amp;&gt;(r);
+}
+</pre>
+</div>
+
+<p>
+在这个版本的函数中，首先将它的实参强制转换成对 const 的引用，然后调用了 shorterString 函数的 const 版本。const 版本返回对 const string 的引用，这个引用事实上绑定在了某个初始的非常量实参上。因此，我们可以再将其转换回一个普通的 string&amp;，这显示是安全的。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdd214bf" class="outline-5">
+<h5 id="orgdd214bf">调用重载的函数</h5>
+<div class="outline-text-5" id="text-orgdd214bf">
+<p>
+<b>函数匹配</b> 是指一个过程，在这个过程中我们把函数调用与一组重载函数中的某一个关联起来，函数匹配也叫做 <b>重载确定</b> 。编译器首先将调用的实参与重载集合中每一个函数的形参进行比较，然后根据比较的结果决定到底调用哪个函数。
+</p>
+
+<p>
+现在我们需要章武的是，当调用重载函数时有三种可能的结果：
+</p>
+
+<ul class="org-ul">
+<li>编译器找到一个与实参 <b>最佳匹配</b> 的函数，并声称调用该函数的代码。</li>
+<li>找不到任何一个函数与调用的实参匹配，此时编译器发出 <b>无匹配</b> 的错误信息</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc5219a2" class="outline-4">
+<h4 id="orgc5219a2">6.4.1 重载与作用域</h4>
+<div class="outline-text-4" id="text-orgc5219a2">
+<p>
+一旦在当前作用域中找到了所需的名字，编译器就会忽略掉外层作用域中的同名实体。剩下的工作就是检查函数是否有效了。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+在 C++语言中，名字找查发生在类型检查之前。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org05edd83" class="outline-3">
+<h3 id="org05edd83">6.5 特殊用途语言特性</h3>
+<div class="outline-text-3" id="text-org05edd83">
+</div>
+<div id="outline-container-orgda1e5a0" class="outline-5">
+<h5 id="orgda1e5a0">默认实参声明</h5>
+<div class="outline-text-5" id="text-orgda1e5a0">
+<p>
+对于函数的声明来说，通常的习惯时将其放在头文件中，并且一个函数只声明一次，但是多次声明同一个函数也是合法的。不过有一点需要注意，在给定的作用域中一个形参只能被赋予一次默认实参。换句话说，函数的后续声明只能为值前那些没有默认值的形参添加默认实参，而且该形参右侧所有形参必须都有默认值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb510021" class="outline-5">
+<h5 id="orgb510021">默认实参初始值</h5>
+<div class="outline-text-5" id="text-orgb510021">
+<p>
+局部变量不能作为默认实参。除此之外，只要表达式的类型能转换成形参所需的类型，该表达式就能作为默认实参：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">wd&#12289;def&#21644;ht&#30340;&#22768;&#26126;&#24517;&#39035;&#20986;&#29616;&#22312;&#20989;&#25968;&#20043;&#22806;</span>
+<span style="color: #ECBE7B;">sz</span> <span style="color: #dcaeea;">wd</span> = <span style="color: #da8548; font-weight: bold;">80</span>;
+<span style="color: #ECBE7B;">char</span> <span style="color: #dcaeea;">def</span> = <span style="color: #98be65;">' '</span>;
+<span style="color: #ECBE7B;">sz</span> <span style="color: #c678dd;">ht</span>();
+<span style="color: #ECBE7B;">string</span> <span style="color: #c678dd;">screen</span>(sz = ht(), sz = wd, <span style="color: #ECBE7B;">char</span> = def);
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">window</span> = screen();   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35843;&#29992;screen(ht(), 80, ' ')</span>
+</pre>
+</div>
+
+<p>
+用作默认实参的名字在函数声明所在的作用域内解析，而这些名字的求值过程发生在函数调用时。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb45d34d" class="outline-4">
+<h4 id="orgb45d34d">6.5.2 内联函数和 constexpr 函数</h4>
+<div class="outline-text-4" id="text-orgb45d34d">
+</div>
+<div id="outline-container-org1d6fe72" class="outline-5">
+<h5 id="org1d6fe72">内联函数可避免函数调用的开销</h5>
+<div class="outline-text-5" id="text-org1d6fe72">
+<p>
+将函数指定为 <b>内联函数</b> ，通常就是将它在每个调用点上“内联地”展开。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+内联说明只是向编译器发出一个请求，编译器可以选择忽略这个请求。
+</p>
+</blockquote>
+
+<p>
+一般来说，内联机制用于优化规模较小，流程直接、频繁调用的函数。很多编译器都不支持内联递归函数，而且一个 75 行的函数也不大可能在调用点内联地展开。
+</p>
+</div>
+</div>
+<div id="outline-container-org5044469" class="outline-5">
+<h5 id="org5044469">constexpr 函数</h5>
+<div class="outline-text-5" id="text-org5044469">
+<p>
+<b>constexpr 函数</b> 是指能用于常量表达式（参见 2.4.4 节）的函数。定义 constexpr 函数的方法与其他函数类似，不过要遵循几项约定：函数的返回类型及所有形参的类型都得是字面值类型（参见 2.4.4 节），而且函数体中必须有且只有一条 return 语句：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">constexpr</span> <span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">new_sz</span>() { <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">42</span>; }
+<span style="color: #51afef;">constexpr</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">foo</span> = new_sz();    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;foo&#26159;&#19968;&#20010;&#24120;&#37327;&#34920;&#36798;&#24335;</span>
+</pre>
+</div>
+
+<p>
+执行该初始化任何时，编译器把对 constexpr 函数的调用替换成其结果只。为了能在编译过程中随时展开，constexpr 函数被隐式地指定为内联函数。
+</p>
+
+<p>
+constexpr 函数体内也可以包含其他语句，只要这些语句在运行时不执行任何操作就行。例如，constexpr 函数中可以有空语句、类型别名（参见 2.5.1 节）以及 using 声明。
+</p>
+
+<blockquote>
+<p>
+Note:
+</p>
+
+<p>
+constexpr 函数不一定返回常量表达式。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org3a2e4b0" class="outline-5">
+<h5 id="org3a2e4b0">把内联函数和 constexpr 函数放在头文件内</h5>
+<div class="outline-text-5" id="text-org3a2e4b0">
+<p>
+和其他函数不一样，内联函数的 constexpr 函数可以在程序中多次定义。毕竟，编译器想展开函数仅有函数声明是不够的，还需要函数的定义。不过对于某个给定的内联函数或者 constexpr 函数来说，它的多个定义必须完全一致。基于这个原因，内联函数和 constexpr 函数通常定义在头文件中。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeb60385" class="outline-4">
+<h4 id="orgeb60385">6.5.3 调试帮助</h4>
+<div class="outline-text-4" id="text-orgeb60385">
+</div>
+<div id="outline-container-org2a40388" class="outline-5">
+<h5 id="org2a40388">assert 预处理宏</h5>
+<div class="outline-text-5" id="text-org2a40388">
+<p>
+<b>assert</b> 是一种 <b>预处理宏</b> 。所谓预处理宏其实是一个预处理变量，它的行为有点类似于内联函数。assert 宏使用一个表达式作为它的条件：
+</p>
+
+<p>
+<code>assert(expr);</code>
+</p>
+
+<p>
+首先对 expr 求值，如果表达式为假（即 0），assert 输出信息并终止程序的执行。如果表达式为真（即非 0），assert 什么也不做。
+</p>
+</div>
+</div>
+<div id="outline-container-orge946302" class="outline-5">
+<h5 id="orge946302">NDEBUG 预处理变量</h5>
+<div class="outline-text-5" id="text-orge946302">
+<p>
+assert 的行为依赖于一个名为 NDEBUG 的预处理变量的状态。如果定义了 NDEBUG，则 assert 什么也不做。默认状态下没有定义 NDEBUG，此时 assert 将执行运行时检查。
+</p>
+
+<p>
+我们可以使用一个#define 语句定义 NDEBUG，从而关闭调试状态。同时，很多编译器都提供了一个命令行选项使我们可以定义预处理变量：
+</p>
+
+<p>
+<code>$ CC -D NDEBUG main.c</code>
+</p>
+
+<p>
+这条命令的作用等级与在 main.c 文件的一开始写#define NDEBUG。
+</p>
+
+<p>
+除了用于 assert 外，也可以使用 NDEBUG 编写自己的条件调试代码。如果 NDEBUG 未定义，将执行#ifndef 和#endif 之间的代码；如果定义了 NDEBUG，这些代码将被忽略掉：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">print</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ia</span>[], <span style="color: #ECBE7B;">size_t</span> <span style="color: #dcaeea;">size</span>) {
+<span style="color: #51afef; font-weight: bold;">#if</span><span style="color: #51afef; font-weight: bold;">n</span><span style="color: #51afef; font-weight: bold;">def</span> NDEBUG
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">__func__ &#26159;&#32534;&#35793;&#22120;&#23450;&#20041;&#30340;&#19968;&#20010;&#23616;&#37096;&#38745;&#24577;&#21464;&#37327;&#65292;&#29992;&#20110;&#23384;&#25918;&#20989;&#25968;&#30340;&#21517;&#23383;</span>
+  cerr &lt;&lt; __func__ &lt;&lt; <span style="color: #98be65;">": array size is "</span> &lt;&lt; size &lt;&lt; endl;
+<span style="color: #51afef; font-weight: bold;">#endif</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+}
+</pre>
+</div>
+
+<p>
+除了 C++编译器定义的__func__之外，预处理器还定义了另外 4 个对于程序调试很有用的名字：
+</p>
+
+<p>
+<code>__FILE__</code> 存放文件名的字符串字面值
+</p>
+
+<p>
+<code>__LINE__</code> 存放当前行号的整型字面值。
+</p>
+
+<p>
+<code>__TIME__</code> 存当文件编译时间的字符串字面值。
+</p>
+
+<p>
+<code>__DATE__</code> 存放文件编译时期的字符串字面值。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org28dc76b" class="outline-3">
+<h3 id="org28dc76b">6.6 函数匹配</h3>
+<div class="outline-text-3" id="text-org28dc76b">
+</div>
+<div id="outline-container-org6181d4b" class="outline-5">
+<h5 id="org6181d4b">确定候选函数和可行函数</h5>
+<div class="outline-text-5" id="text-org6181d4b">
+<p>
+函数匹配的第一步是选定本次调用对应的重载函数集，集合中的函数称为 <b>候选函数</b> 。候选函数具备两个特征：一是与被调用的函数同名，二是其声明在调用点可见。
+</p>
+
+<p>
+第二步考察本次调用提供的实参，然后从候选函数中选出能被这组实参调用的函数，这些新选出的函数称为 <b>可行函数</b> 。可行函数也有两个特征：一是其形参数量与本次调用提供的实参数量相等，二是每个实参的类型与对应的形参类型相同，或者能转换成形参的类型。
+</p>
+</div>
+</div>
+<div id="outline-container-org486155a" class="outline-5">
+<h5 id="org486155a">寻找最佳匹配（如果有的话）</h5>
+<div class="outline-text-5" id="text-org486155a">
+<p>
+函数匹配的第三步是从可行函数中选择与本次调用最匹配的函数。在这一过程中，逐一检查函数调用提供的实参，寻找形参类型与实参类型最匹配的那个可行函数。下一节将介绍“最匹配”的细节，它的基本思想是，实参类型与形参类型越接近，它们匹配得越好。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc54b767" class="outline-5">
+<h5 id="orgc54b767">含有多个形参的函数匹配</h5>
+<div class="outline-text-5" id="text-orgc54b767">
+<p>
+当实参的数量有两个或更多时，函数匹配就比较复杂了。
+</p>
+
+<p>
+选择可行函数的方法和只有一个实参时一样，编译器选择那些形参数量满足要求且实参类型和形参类型能够匹配的函数。
+</p>
+
+<p>
+如果有且只有一个函数满足下列条件，则匹配成功：
+</p>
+
+<ul class="org-ul">
+<li>该函数每个实参的匹配都不劣于其他可行函数需要的匹配</li>
+<li>至少有一个实参的匹配优于其他可行函数提供的匹配</li>
+</ul>
+
+<p>
+如果在检查了所有实参之后没有任何一个函数脱颖而出，则该调用时错误的。编译器将报告二义性调用的信息。
+</p>
+
+<blockquote>
+<p>
+Best Practies：
+</p>
+
+<p>
+调用函数时应仅两避免强制类型转换。如果在实际应用中确实需要强制类型转换，则说明我们设计的形参集合不合理。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orga6a329d" class="outline-4">
+<h4 id="orga6a329d">6.6.1 实参类型转换</h4>
+<div class="outline-text-4" id="text-orga6a329d">
+<p>
+为了确定最佳匹配，编译器将实参类型到形参类型的转换划分称为几个等级，具体排序如下所示：
+</p>
+
+<ol class="org-ol">
+<li>精确匹配，包括以下情况：
+<ul class="org-ul">
+<li>实参类型和形参类型相同。</li>
+<li>实参从数组类型或函数类型转换成对应的指针。</li>
+<li>向实参添加顶层 const 或者从实参中删述顶层 const。</li>
+</ul></li>
+<li>通过 const 转换实现的匹配（参见 4.11.2 节）。</li>
+<li>通过类型体呈实现的匹配（参见 4.11.1 节）。</li>
+<li>通过算术类型转换（参见 4.11.1 节）或者指针转换（参见 4.11.2 节）实现的匹配。</li>
+<li>通过类类型转换实现的匹配（参见 14.9 节）</li>
+</ol>
+</div>
+<div id="outline-container-org634d95a" class="outline-5">
+<h5 id="org634d95a">需要类型提供和算术类型转换的匹配</h5>
+<div class="outline-text-5" id="text-org634d95a">
+<p>
+所有算术类型转换的级别都一样。例如，从 int 向 unsigned int 的转换并不比从 int 向 double 的转换级别高。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org32330a7" class="outline-3">
+<h3 id="org32330a7">6.7 函数指针</h3>
+<div class="outline-text-3" id="text-org32330a7">
+<p>
+函数的类型由它的返回类型和形参类型共同决定，与函数名无关。例如：
+</p>
+
+<p>
+<code>bool lengthCompare(const string &amp;, const string &amp;);</code>
+</p>
+
+<p>
+该函数的类型时 bool(const string&amp;, const string&amp;)。要想声明一个可以指向该函数的指针，只需要用指针替换函数名即可：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">pf&#25351;&#21521;&#19968;&#20010;&#20989;&#25968;&#65292;&#35813;&#20989;&#25968;&#30340;&#21442;&#25968;&#26102;&#20004;&#20010;const string&#30340;&#24341;&#29992;&#65292;&#36820;&#22238;&#20540;&#26159;bool&#31867;&#22411;</span>
+<span style="color: #ECBE7B;">bool</span> (*<span style="color: #c678dd;">pf</span>)(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;);  <span style="color: #5B6268;">/// </span><span style="color: #5B6268;">&#26410;&#21021;&#22987;&#21270;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+*pf 两端的括号必不可少。如果不写这对括号，则 pf 是一个返回值为 bool 指针的函数：
+</p>
+
+<p>
+bool *pf(const string &amp;, const string &amp;);
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgd57c2a6" class="outline-5">
+<h5 id="orgd57c2a6">使用函数指针</h5>
+<div class="outline-text-5" id="text-orgd57c2a6">
+<p>
+当我们把函数名作为一个值使用时，该函数自动地转换成指针。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">pf = lengthCompare;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">pf&#25351;&#21521;&#21517;&#20026;lengthCompare&#30340;&#20989;&#25968;</span>
+pf = &amp;lengthCompare;       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20110;&#30340;&#36171;&#20540;&#35821;&#21477;&#65306;&#21462;&#22320;&#22336;&#31526;&#26102;&#21487;&#36873;&#30340;</span>
+</pre>
+</div>
+
+<p>
+此外，我们还可能着接使用指向函数的指针调用该函数，无须提前解引用指针：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">b1</span> = pf(<span style="color: #98be65;">"hello"</span>, <span style="color: #98be65;">"goodbye"</span>);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35843;&#29992;lengthCompare&#20989;&#25968;</span>
+<span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">b2</span> = (*pf)(<span style="color: #98be65;">"hello"</span>, <span style="color: #98be65;">"goodbye"</span>); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#19968;&#20010;&#31561;&#20215;&#30340;&#35843;&#29992;</span>
+<span style="color: #ECBE7B;">bool</span> <span style="color: #dcaeea;">b3</span> = lengthCompare(<span style="color: #98be65;">"hello"</span>, <span style="color: #98be65;">"goodbye"</span>);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21478;&#19968;&#20010;&#31561;&#20215;&#30340;&#35843;&#29992;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb732e4a" class="outline-5">
+<h5 id="orgb732e4a">重载函数的指针</h5>
+<div class="outline-text-5" id="text-orgb732e4a">
+<p>
+当我们使用重载函数时，上下文必须清晰地界定到底应该选用哪个函数。
+</p>
+</div>
+</div>
+<div id="outline-container-org7101e57" class="outline-5">
+<h5 id="org7101e57">函数指针形参</h5>
+<div class="outline-text-5" id="text-org7101e57">
+<p>
+和数组类型，虽然不能定义函数类型的形参，但形参可以时指向函数的指针。此时，形参看起来是函数类型，但实际上确实当成指针使用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31532;&#19977;&#20010;&#24418;&#21442;&#26159;&#20989;&#25968;&#31867;&#22411;&#65292;&#23427;&#20250;&#33258;&#21160;&#22320;&#36716;&#25442;&#25104;&#25351;&#21521;&#20989;&#25968;&#30340;&#25351;&#38024;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">useBigger</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s1</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s2</span>,
+               <span style="color: #ECBE7B;">bool</span> <span style="color: #c678dd;">pf</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;));
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20215;&#30340;&#22768;&#26126;&#65292;&#26174;&#24335;&#22320;&#23558;&#24418;&#21442;&#23450;&#20041;&#25104;&#25351;&#21521;&#20989;&#25968;&#30340;&#25351;&#38024;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">useBigger</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s1</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s2</span>,
+               <span style="color: #ECBE7B;">bool</span> (*<span style="color: #c678dd;">pf</span>)(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;));
+</pre>
+</div>
+
+<p>
+直接使用函数指针类型显得于冗长烦琐。类型别名（参见 2.5.1 节）和 decltype 能让我们简化使用了函数指针的代码：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">Func&#21644;Func2&#26159;&#20989;&#25968;&#31867;&#22411;</span>
+<span style="color: #51afef;">typedef</span> <span style="color: #ECBE7B;">bool</span> <span style="color: #ECBE7B;">Func</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;);
+<span style="color: #51afef;">typedef</span> <span style="color: #51afef;">decltype</span>(lengthCompare) Func2        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20215;&#30340;&#31867;&#22411;</span>
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">FuncP&#21644;FuncP2&#26159;&#25351;&#21521;&#20989;&#25968;&#30340;&#25351;&#38024;</span>
+<span style="color: #51afef;">typedef</span> <span style="color: #ECBE7B;">bool</span>(*<span style="color: #ECBE7B;">FuncP</span>)(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span>&amp;);
+<span style="color: #51afef;">typedef</span> <span style="color: #51afef;">decltype</span>(lengthCompare) *<span style="color: #ECBE7B;">FuncP2</span>;    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20215;&#30340;&#31867;&#22411;</span>
+</pre>
+</div>
+
+<p>
+需要注意的是，decltype 返回函数类型，此时不会将函数类型自动转换成指针类型。因为 decltype 的结果是函数类型，所以只有在结果前面加上*才能得到指针。
+</p>
+</div>
+</div>
+<div id="outline-container-orgebabeaf" class="outline-5">
+<h5 id="orgebabeaf">返回指向函数的指针</h5>
+<div class="outline-text-5" id="text-orgebabeaf">
+<p>
+和数组类型，虽然不能返回一个函数，但是能返回指向函数类型的指针。然而，我们必须把函数类型写成指针形式，编译器不会自动地将函数返回类型当成对应的指针类型处理。
+</p>
+
+<p>
+<code>int (*f1(int))(int*, int);</code>
+</p>
+
+<p>
+按照由内向外的顺序阅读这条声明语句：我们看到 f1 有形参列表，所以 f1 是个函数；f1 前面有*，所以 f1 返回一个指针；进一步观察发现，指针的类型本身也包含形参列表，因此指针指向函数，该函数的返回类型是 int。
+</p>
+
+<p>
+出于完整性考虑，有必要提醒读者我们还可以使用尾置返回类型的方式（参见 6.3.3 节）声明一个返回函数指针的函数：
+</p>
+
+<p>
+<code>auto f1(int) -&gt; int (*)(int*, int);</code>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org234d944" class="outline-2">
+<h2 id="org234d944">第 7 章 类</h2>
+<div class="outline-text-2" id="text-org234d944">
+<p>
+类的基本思想是 <b>数据抽象</b> 和 <b>封装</b> 。数据抽象是一种依赖于 <b>接口</b> 和 <b>实现</b> 分离的编程（以及设计）技术。类的接口包括用户所能执行的操作；类的实现则包括类的数据成员、负责接口实现的函数体以及定义累所需的各种私有函数。
+</p>
+
+<p>
+封装实现了类的接口和实现的分离。封装后的类隐藏了它的实现细节，也就是说，类的用户只能使用接口而无法访问实现的部分。
+</p>
+
+<p>
+类要想实现数据抽象和封装，需要首先定义一个 <b>抽象数据类型</b> 。在抽象数据类型中，由类的设计者负责考虑类的实现过程；使用该类的程序员则只需要抽象地思考类型做了什么，而无须了解类型的工作细节。
+</p>
+</div>
+<div id="outline-container-org6b402a9" class="outline-3">
+<h3 id="org6b402a9">7.1 定义抽象数据类型</h3>
+<div class="outline-text-3" id="text-org6b402a9">
+</div>
+<div id="outline-container-org2196246" class="outline-4">
+<h4 id="org2196246">7.1.2 定义该进的 Sales_data 类</h4>
+<div class="outline-text-4" id="text-org2196246">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Sales_data</span> {
+  <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #c678dd;">isbn</span>() <span style="color: #51afef;">const</span> ( <span style="color: #51afef;">return</span> bookNo; )
+  <span style="color: #ECBE7B;">Sales_data</span>&amp; <span style="color: #c678dd;">combine</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+  <span style="color: #ECBE7B;">double</span> <span style="color: #c678dd;">avg_price</span>() <span style="color: #51afef;">const</span>;
+
+  <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">bookNo</span>;
+  <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">units_sold</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">revenue</span> = <span style="color: #da8548; font-weight: bold;">0.0</span>;
+};
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+定义在类内部的函数是隐式的 inline 函数。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org5eef6f7" class="outline-5">
+<h5 id="org5eef6f7">定义成员函数</h5>
+<div class="outline-text-5" id="text-org5eef6f7">
+<p>
+尽管所有成员都必须在类的内部声明，但是成员函数体可以定义在类内也可以定义在类外。
+</p>
+</div>
+</div>
+<div id="outline-container-org797ac78" class="outline-5">
+<h5 id="org797ac78">引入 this</h5>
+<div class="outline-text-5" id="text-org797ac78">
+<p>
+成员函数通过一个名为 <b>this</b> 的额外的隐式参数来访问调用它的那个对象。当我们调用一个成员函数时，用请求该函数的对象地址初始化 this。例如，如果调用
+</p>
+
+<p>
+<code>total.isbn()</code>
+</p>
+
+<p>
+则编译器负责把 total 的地址传递给 isbn 隐式形参 this，可以等价地认为编译器将该调用重写成了如下的形式：
+</p>
+
+<p>
+<code>Sales_date::isbn(&amp;total)</code>
+</p>
+
+<p>
+在成员函数内部，我们可以直接使用调用该函数的对象的成员，而无须通过成员访问运算符来做到这一点，因为 this 所指的正是这个对象。任何对类成员的直接访问都被看作 this 的隐式引用。也就是说，当 isbn 使用 bookNo 时，它隐式第使用 this 指向的成员，就像我们书写了 this-&gt;bookNo 一样。
+</p>
+
+<p>
+因为 this 的亩的总是指向“这个”对象，所以 this 是一个常量指针，我们不允许改变 this 中保存的地址。
+</p>
+</div>
+</div>
+<div id="outline-container-org425b750" class="outline-5">
+<h5 id="org425b750">引入 const 成员函数</h5>
+<div class="outline-text-5" id="text-org425b750">
+<p>
+isbn 函数的另一个关键之处时紧随参数列表之后的 const 关键字，这里，const 的作用是修改隐式 this 指针的类型。
+</p>
+
+<p>
+默认情况下，this 的类型是指向类类行非常量版本的常量指针。例如在 Sales_data 成员函数中，this 的类型是 Sales_data *const。尽管 this 是隐式的，但它仍然需要遵循初始化规则，意味着（在默认情况下）我们不能把 this 绑定到一个常量对象上。这一情况也使得我们不能在一个常量对象上调用普通的成员函数。
+</p>
+
+<p>
+如果 isbn 是一个普通函数而且 this 是一个普通的指针参数，则我们应该把 this 声明称 const Sales_data *const。毕竟，在 isbn 的函数体内不会改变 this 所指的对象，所以把 this 设置为指向常量的指针有助于提高函数的灵活性。
+</p>
+
+<p>
+然而，this 是隐式的并且不会出现在参数列表中，所以在哪儿将 this 声明成指向常量的指针成为我们必须面对的问题。C++语言的做法是允许把 const 关键字放在成员函数的参数列表之后，此时，紧跟在参数列表后面的 const 表示 this 是一个指向常量的指针，像这样使用 const 的成员函数被称作 <b>常量成员函数</b> 。
+</p>
+
+<p>
+可以把 isbn 的函数体想像成如下的形式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20266;&#20195;&#30721;&#65292;&#35828;&#26126;&#38544;&#24335;&#30340;this&#25351;&#38024;&#26159;&#22914;&#20309;&#20351;&#29992;&#30340;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#19979;&#38754;&#30340;&#20195;&#30721;&#26159;&#38750;&#27861;&#30340;&#65306;&#22240;&#20026;&#25105;&#20204;&#19981;&#33021;&#26174;&#24335;&#22320;&#23450;&#20041;&#33258;&#24049;&#30340;this&#25351;&#38024;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35880;&#35760;&#27492;&#22788;&#30340;this&#26159;&#19968;&#20010;&#25351;&#21521;&#24120;&#37327;&#30340;&#25351;&#38024;&#65292;&#22240;&#20026;isbn&#26159;&#19968;&#20010;&#24120;&#37327;&#25351;&#38024;</span>
+<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #a9a1e1;">Sales</span>::<span style="color: #c678dd;">isbn</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span> *<span style="color: #51afef;">const</span> <span style="color: #51afef;">this</span>)
+{ <span style="color: #51afef;">return</span> <span style="color: #51afef;">this</span>-&gt;isbn; }
+</pre>
+</div>
+
+<p>
+因为 this 是指向常量的指针，所以常量成员函数不能改变调用它的对象的内容。在上例中，sibn 可以读取调用它的对象的数据成员，但是不能写入新值。
+</p>
+</div>
+</div>
+<div id="outline-container-org86af6ff" class="outline-5">
+<h5 id="org86af6ff">在类的外部定义成员函数</h5>
+<div class="outline-text-5" id="text-org86af6ff">
+<p>
+像其他函数一样，当我们在类的外部定义成员函数时，成员函数的定义必须与它的声明匹配。也就是说，返回类型、参数列表和函数名都得与类内部的声明保持一致。如果成员被声明成常量函数，那么它的定义也必须在参数列表后面指定 const 属性。同时，类外外部定义的成员的名字必须包含它所属的类名：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">double</span> <span style="color: #a9a1e1;">Sales_data</span>::<span style="color: #c678dd;">avg_price</span>() <span style="color: #51afef;">const</span> {
+  <span style="color: #51afef;">if</span> (units_sold)
+    <span style="color: #51afef;">return</span> revenue/units_sold;
+  <span style="color: #51afef;">else</span>
+    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1cfd517" class="outline-4">
+<h4 id="org1cfd517">7.1.3 定义类相关的非成员函数</h4>
+<div class="outline-text-4" id="text-org1cfd517">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+一般来说，如果非成员函数时类接口的组成部分，则这些函数声明应该与类在同一个头文件内。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org8143c61" class="outline-4">
+<h4 id="org8143c61">7.1.4 构造函数</h4>
+<div class="outline-text-4" id="text-org8143c61">
+<p>
+每个类都分别定义了它的对象被初始化的方式，类通过一个或几个特殊的成员函数来控制其对象的初始化过程，这些函数叫做 <b>构造函数</b> 。构造函数的任务时初始化类的数据成员，无论何时只要类的对象被创建，就会执行构造函数。
+</p>
+
+<p>
+构造函数的名字和类名相同。和其他函数不一样的时，构造函数没有返回类型；除此之外类似于其他的函数，构造函数也有一个（可能为空的）参数列表和一个（可能为空的函数体）。类可以包括多个构造函数，和其他重载函数差不多，不同的构造函数之间必须在参数数量或参数类型上有所区别。
+</p>
+
+<p>
+不同于其他函数成员，构造函数不能声明成 const 的（参见 7.1.2 节）。当我们创建一类的一个 const 对象时，知道构造函数完成初始化过程，对象才能真正取得其“常量属性”。因此，构造函数在 const 对象的构造过程中可以向其写值。
+</p>
+</div>
+<div id="outline-container-orgbc18fc1" class="outline-5">
+<h5 id="orgbc18fc1">合成的默认构造函数</h5>
+<div class="outline-text-5" id="text-orgbc18fc1">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">Sales_data</span> <span style="color: #dcaeea;">total</span>;
+<span style="color: #ECBE7B;">Sales_data</span> <span style="color: #dcaeea;">trans</span>;
+</pre>
+</div>
+
+<p>
+我们没有为这些对象提供初始值，因此我们知道它们执行了默认初始化（参见 2.2.1 节）。类通过一个特殊的构造函数来控制默认值初始化过程，这个函数叫做 <b>默认构造函数</b> 。默认构造函数无须任何实参。
+</p>
+
+<p>
+如我们所见，默认构造函数有很多方便都有其特殊性。其中之一时，如果我们的类没有显式地定义构造函数，那么编译器就会为我们隐式地定义一个默认构造函数。
+</p>
+
+<p>
+编译器创建的构造函数又被称为 <b>合成的默认构造函数</b> 。对于大多数类来说，这个合成的默认构造函数将按照如下规则初始化类的数据成员：
+</p>
+<ul class="org-ul">
+<li>如果存在类内的初始值（参见 2.6.1 节），则用它来初始化成员</li>
+<li>否则，默认初始化（参见 2.2.1 节）该成员。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgebbee2d" class="outline-5">
+<h5 id="orgebbee2d">某些类不同依赖于合成的默认构造函数</h5>
+<div class="outline-text-5" id="text-orgebbee2d">
+<p>
+合成的默认构造函数适合非常简单的类。对于一个普通的类来说，必须定义它自己的默认构造函数，原因有三：第一个原因也是最容易理解的一个原因就是编译器只有在发现类不包含任何构造函数的情况下才会替我们生成一个默认的构造函数。一旦我们定义了一些其他的构造函数，那么除非我们再定义一个默认的构造函数，否则类将没有默认构造函数。这条规则的依据时，如果一个类在某种情况下需要控制对象初始化，那么该类很可能在所有情况下都需要控制。
+</p>
+
+<p>
+第二个原因是对于某些类来说，合成的默认构造函数可能执行错误的操作。回忆我们值前介绍过的，如果定义在块中的内置类型或者复合类型（比如数组和指针）的对象被默认初始化（参见 2.2.1 节），则它们的值是未定义的。该准则同样适用于默认初始化的内置类型成员。因此，含有内置类型或复合类型成员的类应该在类的内部初始化这些成员，或者定义一个自己的默认构造函数。否则，用户在创建类的对象时可能得到未定义的值。
+</p>
+
+<p>
+第三个原因是有的时候编译器不能为某些类合成默认的构造函数。例如，如果类中包含一个其他类类成员且这个成员的类型没有默认构造函数，那么编译器将无法初始化该成员。对于这样的函数，我们必须自定义默认构造函数，否则该类将没有可用的默认构造函数。
+</p>
+</div>
+</div>
+<div id="outline-container-org033fa7d" class="outline-5">
+<h5 id="org033fa7d">= default 的含义</h5>
+<div class="outline-text-5" id="text-org033fa7d">
+<p>
+我们从解释默认构造函数的含义开始：
+</p>
+
+<p>
+<code>Sales_data() = default</code>
+</p>
+
+<p>
+首先请明确一点：因为该构造函数不接受任何实参，所以它是一个默认构造函数。我们定义这个构造函数的目的仅仅是因为我们既需要其他形式的构造函数，也需要默认的构造函数。我们希望这个函数的作用完全等同于值前使用的合成默认构造函数。
+</p>
+
+<p>
+在 C++新标准中，如果我们需要默认的行为，那么可以通过在参数列表后面写上 <b>= defualt</b> 来要求编译器生成构造函数。其中，= default 既可以和声明一起出现在类的内部，也可以作用定义出现在类的外部。和其他函数一样，如果= default 在类的内部，则默认构造函数是内联的；如果它在类的外部，则该成员默认情况下不是内联的。
+</p>
+</div>
+</div>
+<div id="outline-container-org9b412c4" class="outline-5">
+<h5 id="org9b412c4">构造函数的初始值列表</h5>
+<div class="outline-text-5" id="text-org9b412c4">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>) : bookNo(s) {  }
+<span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">p</span>):
+           bookNo(s), units_sold(n), revenue(p*n) {  }
+</pre>
+</div>
+
+<p>
+这两个定义中出现了新的部分，即冒号以及冒号和花括号之间的代码，其中花括号定义了（空的）函数体。我们把新出现的部分称为 <b>构造函数初始值列表</b> ，它负责为新创建的对象的一个或几个数据成员赋初值，构造函数初始值是成员名字的一个列表，每个名字后面紧跟括号括起来的（或者在花括号内的）成员初始值。不同成员的初始化通过逗号分隔开来。
+</p>
+
+<p>
+当某个数据成员被构造函数初始值列表忽略时，它将以于合成默认构造函数相同的方式隐式初始化。
+</p>
+
+<blockquote>
+<p>
+Best Practies:
+</p>
+
+<p>
+构造函数不应该轻易覆盖掉类内初始值，除非新赋值的值与原值不同。如果你不能使用类内初始值，则所有构造函数都应该显式地初始化每个内置类型的成员。
+</p>
+</blockquote>
+
+<p>
+有一点需要注意，在上面的两个构造函数中函数体都是空的。这是因为这些构造函数的唯一目的就是为数据成员赋初值，一旦没有其他任务需要执行，函数体也就为空了。
+</p>
+</div>
+</div>
+<div id="outline-container-org4e52ed7" class="outline-5">
+<h5 id="org4e52ed7">在类的外部定义构造函数</h5>
+<div class="outline-text-5" id="text-org4e52ed7">
+<p>
+构造函数没有返回类型，所以定义从指定的函数名字开始。和其他成员函数一样，当我们在类的外部定义构造函数时，必须指明该构造函数时哪个类的成员。
+</p>
+
+<p>
+没有出现在构造函数初始值列表中的成员将通过相应的类内初始值（如果存在的话）初始化，或者执行默认初始值。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd118158" class="outline-4">
+<h4 id="orgd118158">7.1.5 拷贝、赋值和析构</h4>
+<div class="outline-text-4" id="text-orgd118158">
+<p>
+除了定义类的对象如何初始化之外，类还需要控制拷贝、赋值和销毁对象时发生的行为。对象在几种情况下会被拷贝，如我们初始化变量以及以值的方式传递或返回一个对象等（参见 6.2.1 节和 6.3.2 节）。当我们使用赋值运算符（参见 4.4 节）时会发生对象的赋值操作。当对象不再存在时执行销毁的操作，比如一个局部对象会在创建它的块结束时被销毁，当 vector 对象（或者数组）销毁时存储在其中的对象也会被销毁。
+</p>
+
+<p>
+如果我们不主动定义这些操作，则编译器将替我们合成它们，一般来说，编译器生成的版本将对对象的每个成员执行拷贝、赋值和销毁操作。
+</p>
+
+<p>
+我们将在第 13 章中介绍如何自定义上述操作。
+</p>
+</div>
+<div id="outline-container-org0b0d0dc" class="outline-5">
+<h5 id="org0b0d0dc">某些类不能依赖于合成的版本</h5>
+<div class="outline-text-5" id="text-org0b0d0dc">
+<p>
+尽管编译器能替我们合成拷贝、赋值和销毁的操作，但是必须要清楚的一点是，对于某些类来说合成的版本无法正常工作。特别是，当类需要分配类对象之外的资源时，合成的版本常常会失效。
+</p>
+
+<p>
+不过值的注意的是，很多需要动态内存的类能（而且应该）使用 vector 对象或者 string 对象管理必要的存储空间。使用 vector 或者 string 的类能避免分配和释放内存带来的复杂性。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0f1f8b8" class="outline-3">
+<h3 id="org0f1f8b8">7.2 访问控制与封装</h3>
+<div class="outline-text-3" id="text-org0f1f8b8">
+<p>
+在 C++语言中，我们使用 <b>访问说明符</b> 加强类的封装行：
+</p>
+<ul class="org-ul">
+<li>定义在 <b>public</b> 说明符之后的成员在整个程序内可被访问，public 成员定义类的接口</li>
+<li>定义在 <b>private</b> 说明符之后的成员可以被类的成员函数访问，但是不能被使用该类的代码访问，private 部分封装了（即隐藏了）类的实现细节。</li>
+</ul>
+
+<p>
+每个访问说明符指定了接下来的成员的访问级别，其有效范围直到出现下一个访问说明符或者达到类的结尾为止。
+</p>
+</div>
+<div id="outline-container-org392cfb8" class="outline-5">
+<h5 id="org392cfb8">使用 class 或 struct 关键字</h5>
+<div class="outline-text-5" id="text-org392cfb8">
+<p>
+类可以在它第一个访问说明符之前定义成员，对这种成员的访问权限依赖于类定义的方式。如果我们使用 struct 关键字，则定义在一个访问说明符之前的成员是 public 的；相反，如果我们使用 class 关键字，则这些成员是 private 的。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+使用 class 和 struct 定义类唯一的区别就是默认访问权限。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org98dabb2" class="outline-4">
+<h4 id="org98dabb2">7.2.1 友元</h4>
+<div class="outline-text-4" id="text-org98dabb2">
+<p>
+类可以允许其他类或者函数访问它的非共有成员，方法是令其他其类或者函数成为它的 <b>友元</b> 。如果类想把一个函数作为它的友元，只要添加一条 friend 关键字开始的函数声明语句即可：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Sales_data</span> {
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20026;Sales_data&#30340;&#38750;&#25104;&#21592;&#20989;&#25968;&#25152;&#20570;&#30340;&#21451;&#20803;&#22768;&#26126;</span>
+<span style="color: #51afef;">friend</span> <span style="color: #ECBE7B;">Sales_data</span> <span style="color: #c678dd;">add</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+<span style="color: #51afef;">friend</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span> &amp;<span style="color: #c678dd;">read</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span>&amp;, <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+<span style="color: #51afef;">friend</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">ostream</span> &amp;<span style="color: #c678dd;">print</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">ostream</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+
+<span style="color: #51afef;">public</span>:
+  <span style="color: #c678dd;">Sales_data</span>() = <span style="color: #51afef;">default</span>;
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">p</span>):
+             bookNo(s), units_sold(n), revenue(p*n) {  }
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>): <span style="color: #c678dd;">bookNo</span>(s) {  }
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span>&amp;);
+  <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #c678dd;">isbn</span>() <span style="color: #51afef;">const</span> { <span style="color: #51afef;">return</span> bookNo; }
+  <span style="color: #ECBE7B;">Sales_data</span> &amp;<span style="color: #c678dd;">combine</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+<span style="color: #51afef;">private</span>:
+  <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">bookNo</span>;
+  <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">units_sold</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">revenue</span> = <span style="color: #da8548; font-weight: bold;">0.0</span>;
+};
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">Sales_data&#25509;&#21475;&#30340;&#38750;&#25104;&#21592;&#32452;&#25104;&#37096;&#20998;&#30340;&#22768;&#26126;</span>
+<span style="color: #ECBE7B;">Sales_data</span> <span style="color: #c678dd;">add</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span> &amp;<span style="color: #c678dd;">read</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span>&amp;, <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">ostream</span> &amp;<span style="color: #c678dd;">print</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">ostream</span>&amp;, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Sales_data</span>&amp;);
+</pre>
+</div>
+
+<p>
+友元声明只能出现在类定义的内部，但是在类内出现的具体位置不限。友元不是类的成员也不受它所在区域访问控制级别的约束。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+一般来说，最好在类定义开始或结束前的位置几种声明友元。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+关键概念：封装的益处
+</p>
+
+<p>
+封装有两个重要的优点：
+</p>
+<ul class="org-ul">
+<li>确保用户代码不会无意间破坏封装对象的状态。</li>
+<li>被封装的类的具体实现细节可以随时改变，而无须调整用户级别的代码。</li>
+</ul>
+</blockquote>
+</div>
+<div id="outline-container-org76697ff" class="outline-5">
+<h5 id="org76697ff">友元的声明</h5>
+<div class="outline-text-5" id="text-org76697ff">
+<p>
+友元的声明仅仅指定了访问的权限，而非一个通常意义上的函数声明。如果我希望类的用户能够调用某个友元函数，那么我们就必须在友元声明之外再专门对函数进行一次声明。
+</p>
+
+<p>
+为了使友元对类的用户可见，我们通常把友元的声明与类本身放置再同一个头文件中（类的外部）。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f8fcde" class="outline-3">
+<h3 id="org7f8fcde">7.3 类的其他特性</h3>
+<div class="outline-text-3" id="text-org7f8fcde">
+</div>
+<div id="outline-container-org29413b2" class="outline-4">
+<h4 id="org29413b2">7.3.1 类成员再探</h4>
+<div class="outline-text-4" id="text-org29413b2">
+</div>
+<div id="outline-container-orga05a865" class="outline-5">
+<h5 id="orga05a865">定义一个类型成员</h5>
+<div class="outline-text-5" id="text-orga05a865">
+<p>
+除了定义数据和函数成员之外，类还可以自定义某种类型在类中的别名。由类定义的类型名字和其他成员一样存当访问限制，可以是 public 或者 private 中的一种：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Screen</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #51afef;">typedef</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #a9a1e1;">string</span>::<span style="color: #ECBE7B;">size_type</span> <span style="color: #ECBE7B;">pos</span>;
+<span style="color: #51afef;">private</span>:
+  <span style="color: #ECBE7B;">pos</span> <span style="color: #dcaeea;">curosr</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #ECBE7B;">pos</span> <span style="color: #dcaeea;">heigh</span> = <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #dcaeea;">width</span> = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">contents</span>;
+};
+</pre>
+</div>
+
+<p>
+用来定义类型的成员必须先定义后使用，这一点与普通成员有所区别，具体原因将在 7.4.1 节解释。因此，类型成员通常出现在类开始的地方。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdadfd10" class="outline-5">
+<h5 id="orgdadfd10">令成员作为内联函数</h5>
+<div class="outline-text-5" id="text-orgdadfd10">
+<p>
+我们可以在类的内部把 inline 作用声明的一部分显式地声明成员函数，同样的，也能在类的外部用 inline 关键字修时函数的定义。
+</p>
+
+<p>
+虽然我们无须在声明和定义的地方同时说明 inline，但这么做其实是合法的。不过，最好只在类外部定义的地方说明 inline，这样可以使类更加容易理解。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+和我们在头文件中定义 inline 函数的原因一样（参见 6.5.2 节），inline 成员函数也应该与相应的类定义在同一个头文件中。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org110289d" class="outline-5">
+<h5 id="org110289d">可变数据成员</h5>
+<div class="outline-text-5" id="text-org110289d">
+<p>
+有时（但并不频繁）会发生这样一种情况，我们希望能修改类的某个数据成员，即是在一个 const 成员函数内。可以通过在变量的声明中加入 mutable 关键字做到这一点。
+</p>
+
+<p>
+一个 <b>可变数据成员</b> 永远不会是 const，即是它是 const 对象的成员。因此，一个 const 成员函数可以改变一个可变成员的值。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Screen</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">some_member</span>() <span style="color: #51afef;">const</span>;
+<span style="color: #51afef;">private</span>:
+  <span style="color: #51afef;">mutable</span> <span style="color: #ECBE7B;">size_t</span> <span style="color: #dcaeea;">access_ctr</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21363;&#26159;&#22312;&#19968;&#20010;const&#23545;&#35937;&#20869;&#20063;&#33021;&#21591;&#20462;&#25913;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+
+<span style="color: #ECBE7B;">void</span> <span style="color: #a9a1e1;">Screen</span>::<span style="color: #c678dd;">some_member</span>() <span style="color: #51afef;">const</span> {
+  ++access_ctr;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe49afb" class="outline-5">
+<h5 id="orgfe49afb">类数据成员的初始值</h5>
+<div class="outline-text-5" id="text-orgfe49afb">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当我们提供一个类内初始值时，必须以符号=或者花括号表示
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgf3142e8" class="outline-5">
+<h5 id="orgf3142e8">从 const 成员函数返回*this</h5>
+<div class="outline-text-5" id="text-orgf3142e8">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+一个 const 成员函数如果以引用的形式返回*this，那么它的返回类型将是常量引用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf808b5f" class="outline-4">
+<h4 id="orgf808b5f">7.3.3 类类型</h4>
+<div class="outline-text-4" id="text-orgf808b5f">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+即使两个类的成员列表完全一致，他们也不是不同的类型。对于一个类来说，它的成员和其他任何类（或者任何其他其作用域）的成员都不是一回事儿。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org041f17a" class="outline-5">
+<h5 id="org041f17a">类的声明</h5>
+<div class="outline-text-5" id="text-org041f17a">
+<p>
+就像可以把函数的声明和定义完全分离开来（参见 6.1.2 节），我们也能仅仅声明类而暂时不定义它：
+</p>
+
+<p>
+<code>class Screen;       // Screen类的声明</code>
+</p>
+
+<p>
+这种声明有时被称作 <b>前向声明</b> ，它向程序中引入了名字 Screen 并且指明 Screen 时一种类类型。对于类型 Screen 来说，在它声明之后定义之前时一个 <b>不完全类型</b> ，也就是说，此时我们已知 Screen 时一个类类型，但时不清楚它刀第包含哪些成员。
+</p>
+
+<p>
+不完全类型只能在非常有限的情景下使用：可以定义指向这种类型的指针或引用，也可以声明（但是不能定义）以不完全类型作为参数或者返回类型的函数。
+</p>
+
+<p>
+在 7.6 节中我们将描述一种例外的情况：直到类被定义之后数据成员才能被声明成这种类类型。换句话说，我们必须首先完成类的定义，然后编译器才能直到存储该数据成员需要多少空间。因为只有当类全部完成后类才算被定义，所以一个类的成员类型不能是该类自己。然而，一旦以各类的名字出现后，它就是被认为是声明过了（但尚未定义），因此类允许包含指向它自身类型的引用或指针：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Link_screen</span> {
+  <span style="color: #ECBE7B;">Screen</span> <span style="color: #dcaeea;">window</span>;
+  <span style="color: #ECBE7B;">Link_screen</span> *<span style="color: #dcaeea;">next</span>;
+  <span style="color: #ECBE7B;">Link_screen</span> *<span style="color: #dcaeea;">prev</span>;
+};
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org71feac7" class="outline-4">
+<h4 id="org71feac7">7.3.4 友元再探</h4>
+<div class="outline-text-4" id="text-org71feac7">
+</div>
+<div id="outline-container-org03c691d" class="outline-5">
+<h5 id="org03c691d">类之间的友元关系</h5>
+<div class="outline-text-5" id="text-org03c691d">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Screen</span> {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Windows_mgr&#30340;&#25104;&#21592;&#21487;&#20197;&#35775;&#38382;Screen&#31867;&#30340;&#31169;&#26377;&#37096;&#20998;</span>
+  <span style="color: #51afef;">friend</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Windows_mgr</span>;
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+</pre>
+</div>
+
+<p>
+如果一个类指定了友元类，则友元类的成员函数可以访问词类包括非公有成员在内的所有成员。
+</p>
+
+<p>
+必须要注意的一点是，友元关系不存在传递性。也就是说，如果 Windows_mgr 有它自己的友元，则这些友元并不能理所当然地具有访问 Screen 的特权。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">Note&#65306;
+
+&#27599;&#20010;&#31867;&#36127;&#36131;&#25511;&#21046;&#33258;&#24049;&#30340;&#21451;&#20803;&#31867;&#25110;&#21451;&#20803;&#20989;&#25968;&#12290;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc24543f" class="outline-5">
+<h5 id="orgc24543f">令成员函数作为友元</h5>
+<div class="outline-text-5" id="text-orgc24543f">
+<p>
+当把一个成员函数声明成友元时，我们必须明确指出该成员函数属于哪个类：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Screen</span> {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">Windows_mgr::clear&#24517;&#39035;&#22312;Sceen&#31867;&#20043;&#21069;&#34987;&#22768;&#26126;</span>
+  <span style="color: #51afef;">friend</span> <span style="color: #ECBE7B;">void</span> <span style="color: #a9a1e1;">Windows_mgr</span>::<span style="color: #c678dd;">clear</span>(ScreenIndex);
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">....</span>
+};
+</pre>
+</div>
+
+<p>
+要想令某个成员函数作为友元，我们必须仔细组织程序的结果以满足声明和定义的彼此依赖关系。在这个例子中，我们必须按照如下方式设计程序：
+</p>
+<ul class="org-ul">
+<li>首先定义 Window_mgr 类，其中声明 clear 函数，但是不定义它。在 clear 使用 Screen 的成员之前必须先声明 Screen。</li>
+<li>接下来定义 Screen，包括对于 clear 的友元声明</li>
+<li>最后定义 clear，此时它才可以使用 Screen 的成员。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org79dfb58" class="outline-5">
+<h5 id="org79dfb58">函数重载和友元</h5>
+<div class="outline-text-5" id="text-org79dfb58">
+<p>
+尽管重载函数的名字相同，但它们仍然是不同的函数。因此，如果一个类想把一组重载函数声明成它的友元，它需要对这组函数中的每个分别声明。
+</p>
+</div>
+</div>
+<div id="outline-container-org17851fe" class="outline-5">
+<h5 id="org17851fe">友元声明和作用域</h5>
+<div class="outline-text-5" id="text-org17851fe">
+<p>
+类和非成员函数的声明不是必须在它们的友元声明之前。当一个名字第一次出现在一个友元声明中时，我们隐式地假定该名字在当前作用域中是可见的。然而，友元本身不一定真的声明在当前作用域中（参见 7.2.1 节）。
+</p>
+
+<p>
+甚至就算在类的内部定义该函数，我们也必须在类的外部提供相应的声明从而使得函数可见。换句话说，即使我们仅仅是用声明友元的类的成员调用该友元函数，它也必须是被声明过的：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">X</span> {
+  <span style="color: #51afef;">friend</span> <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">f</span>() { <span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#21451;&#20803;&#20989;&#25968;&#21487;&#20197;&#23450;&#20041;&#22312;&#31867;&#30340;&#20869;&#37096;</span><span style="color: #5B6268;"> */</span> }
+  <span style="color: #c678dd;">X</span>() { f(); }                     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;f&#36824;&#27809;&#21448;&#34987;&#22768;&#26126;</span>
+  <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">g</span>();
+  <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">h</span>();
+};
+<span style="color: #ECBE7B;">void</span> <span style="color: #a9a1e1;">X</span>::<span style="color: #c678dd;">g</span>() { <span style="color: #51afef;">return</span> f(); }        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;f&#36824;&#27809;&#21448;&#34987;&#22768;&#26126;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">f</span>();                          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22768;&#26126;&#37027;&#20010;&#23450;&#20041;&#22312;X&#20013;&#30340;&#20989;&#25968;</span>
+<span style="color: #ECBE7B;">void</span> <span style="color: #a9a1e1;">X</span>::<span style="color: #c678dd;">h</span>() { <span style="color: #51afef;">return</span> f(); }        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#29616;&#22312;f&#22768;&#26126;&#22312;&#20316;&#29992;&#22495;&#20013;&#20102;</span>
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+请注意，有的编译器并不强制执行上述有关友元的限制规则（参见 7.2.1 节）。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb750f95" class="outline-3">
+<h3 id="orgb750f95">7.4 类的作用域</h3>
+<div class="outline-text-3" id="text-orgb750f95">
+</div>
+<div id="outline-container-orge8b27f4" class="outline-5">
+<h5 id="orge8b27f4">作用域和定义在类外部的成员</h5>
+<div class="outline-text-5" id="text-orge8b27f4">
+<p>
+一个类就是一个作用域的事实能够很好地解释为什么当我们在类的外部定义成员函数时必须同时提供类名和函数名（参见 7.1.2 节）。在类的外部，成员的名字被隐藏起来了。
+</p>
+
+<p>
+一旦与到了类名，定义的剩余部分就在类的作用域之内的，这里的剩余部分包括参数列表和函数体。结果就是，我们可以直接使用类的其他成员而无法再次授权了。
+</p>
+
+<p>
+另一方面，函数的返回类型通常出现在函数名之前。因此当成员函数定义在类的外部时，返回类型中使用的名字都位于类的作用域之外。这是，返回类型必须指明它是哪个类的成员。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Window_mgr</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #ECBE7B;">ScreenIndex</span> <span style="color: #c678dd;">addScreen</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Screen</span>&amp;);
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#39318;&#20808;&#22788;&#29702;&#36820;&#22238;&#31867;&#22411;&#65292;&#20043;&#21518;&#25105;&#20204;&#25165;&#36827;&#20837;Window_mgr&#30340;&#20316;&#29992;&#22495;</span>
+<span style="color: #a9a1e1;">Window_mgr</span>::<span style="color: #ECBE7B;">ScreenIndex</span>
+<span style="color: #a9a1e1;">Window_mgr</span>::<span style="color: #c678dd;">addScreen</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">Screen</span> &amp;<span style="color: #dcaeea;">s</span>) {
+  screens.push_back(s);
+  <span style="color: #51afef;">return</span> screens.size() - <span style="color: #da8548; font-weight: bold;">1</span>;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org83ccb57" class="outline-4">
+<h4 id="org83ccb57">7.4.1 名字查找与类的作用域</h4>
+<div class="outline-text-4" id="text-org83ccb57">
+<p>
+在目前为止，我们编写的程序中， <b>名字查找</b> （寻找与所用名字最匹配的声明的过程）的过程比较直接了当：
+</p>
+<ul class="org-ul">
+<li>首先，在名字所在的块中寻找其声明语句，只考虑在名字的使用之前出现的声明。</li>
+<li>如果没有找到，继续查找外层作用域。</li>
+<li>如果最终没有找到匹配的声明，则程序报错。</li>
+</ul>
+
+<p>
+对于定义在类内部的成员函数来说，解析其中名字的方式与上述的查找规则有所区别，不过在当前的这个例子中体现得不太明显。类的定义分两步处理：
+</p>
+<ul class="org-ul">
+<li>首先，编译成员的声明。</li>
+<li>直到类全部可见后才编译函数体。</li>
+</ul>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+编译器处理完类中的全部声明后才会处理成员函数的定义。
+</p>
+</blockquote>
+
+<p>
+按照这种两阶段的方式处理类可以简化类代码的组织方式。因为成员函数体直到整个类可见后才会被处理，所以它能使用类中定义的任何名字。相反，如果函数的定义和成员的声明被同时处理，那么我们将不得不在成员函数中只使用那些已经出现的名字。
+</p>
+</div>
+<div id="outline-container-org95a261c" class="outline-5">
+<h5 id="org95a261c">用于类成员声明的名字查找</h5>
+<div class="outline-text-5" id="text-org95a261c">
+<p>
+这两种阶段的处理方式只适用于成员函数中使用的名字。声明中使用的名字，包括返回类型或者参数列表中使用的名字，都必须在使用前确保可见。如果某个成员声明使用了类中尚未出现的名字，则编译器将会在定义该类的作用域中继续查找。
+</p>
+</div>
+</div>
+<div id="outline-container-org8d0abef" class="outline-5">
+<h5 id="org8d0abef">类型名要特殊处理</h5>
+<div class="outline-text-5" id="text-org8d0abef">
+<p>
+一般来说，内层作用域可以重新定义外层作用域中的名字，即是该名字已经在内层作用域中使用过。然而在类中，如果成员使用了外层作用域中的某个名字，而该名字代表一种类型，则类不能在之后重新定义该名字。
+</p>
+
+<blockquote>
+<p>
+Tip:
+</p>
+
+<p>
+类型名的定义通常出现在类的开始初，这样就能确保所有使用该类的成员都出现在类名的定义之后。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org6f864f1" class="outline-5">
+<h5 id="org6f864f1">成员定义中的普通块作用域的名字查找</h5>
+<div class="outline-text-5" id="text-org6f864f1">
+<p>
+成员函数中使用的名字按照如下方式解析：
+</p>
+<ul class="org-ul">
+<li>首先，在成员函数内查找该名字的声明。和前面一样，只有在函数使用之前出现的声明才被考虑。</li>
+<li>如果在成员函数内没有找到，则在类内继续查找，这时类的所有成员函数都可以被考虑。</li>
+<li>如果类内也没找到该名字的声明，在成员函数定义之前的作用域内继续查找。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org496fe0c" class="outline-5">
+<h5 id="org496fe0c">在文件中名字的出现处对其进行解析</h5>
+<div class="outline-text-5" id="text-org496fe0c">
+<p>
+当成员定义在类的外部时，名字查找的第三不不仅要考虑定义之前的全局作用域中的声明，还需要考虑在成员函数定义之前的全局作用域中的声明。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8e0d8d7" class="outline-3">
+<h3 id="org8e0d8d7">7.5 构造函数再探</h3>
+<div class="outline-text-3" id="text-org8e0d8d7">
+</div>
+<div id="outline-container-org8abf996" class="outline-4">
+<h4 id="org8abf996">7.5.1 构造函数初始值列表</h4>
+<div class="outline-text-4" id="text-org8abf996">
+<p>
+当我们定义变量时习惯于立即对其进行初始化，而非先定义、再赋值。就对象的数据成员而言，初始化和赋值也有类似的区别。如果没有再构造函数的初始值列表中显式地初始化成员，则该成员将在构造函数体之前执行默认初始化。例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">Sales_data&#26500;&#36896;&#20989;&#25968;&#30340;&#19968;&#31181;&#20889;&#27861;&#65292;&#34429;&#28982;&#21512;&#27861;&#20294;&#27604;&#36739;&#33609;&#29575;&#65306;&#27809;&#26377;&#20351;&#29992;&#26500;&#36896;&#20989;&#25968;&#21021;&#22987;&#20540;</span>
+<span style="color: #a9a1e1;">Sales_data</span>::<span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>,
+                       <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">cnt</span>, <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">price</span>) {
+  bookNo = s;
+  units_sold = cnt;
+  revenue = cnt * price;
+}
+</pre>
+</div>
+
+<p>
+这段代码和我们在 7.1.4 节的原始定义效果是相同的：当构造函数完成后，数据成员的值相同。区别是原来的版本初始化了它的数据成员，而这个版本是对数据成员执行了赋值操作。这一区别刀第会有什么深层次的影响完全依赖于数据成员的类型。
+</p>
+</div>
+<div id="outline-container-org5ca9be5" class="outline-5">
+<h5 id="org5ca9be5">构造函数的初始值有时必不可少</h5>
+<div class="outline-text-5" id="text-org5ca9be5">
+<p>
+有时我们可以忽略数据成员初始化和赋值之间的差异，但并非总能这样。如果成员是 const 或者是引用的话，必须将其初始化。类似的，当成员属于某种类类型且该类没有定义默认构造函数时，也必须将这个成员函数初始化。
+</p>
+
+<p>
+随着构造函数体一开始执行，初始化就完成了。我们初始化 const 或者引用类型的数据成员的唯一机会就是通过构造函数初始值。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果成员是 const、引用，或者属于某种未提供默认构造函数的类类型，我们必须通过构造函数初始值列表为这些成员提供初值。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+建议：使用构造函数初始值
+</p>
+
+<p>
+在很多类中，初始化和赋值的区别事关底层效率问题：前者直接初始化数据成员，后者则先初始化再赋值。
+</p>
+
+<p>
+除了效率问题外更重要的是，一些数据成员必须被初始化。建议读者养成使用构造函数初始值的习惯，这样能避免某些意想不到的编译错误，特别是遇到有的类含有需要构造函数初始值的成员时。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org0fb5781" class="outline-5">
+<h5 id="org0fb5781">成员初始化的顺序</h5>
+<div class="outline-text-5" id="text-org0fb5781">
+<p>
+成员的初始化顺序与它们在类定义中出现顺序一致：第一个成员先被初始化，然后第二个，以此类推。构造函数初始值列表中初始值的前后位置关系不会影响实际的初始化顺序。
+</p>
+
+<blockquote>
+<p>
+Best Practies：
+</p>
+
+<p>
+最好令构造函数初始值的顺序与成员声明的顺序保持一致。而且如果可能的话，尽量避免使用某些成员初始化其他成员。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orge3a6925" class="outline-5">
+<h5 id="orge3a6925">默认实参和构造函数</h5>
+<div class="outline-text-5" id="text-orge3a6925">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果一个构造函数为所有参数都提供了默认实参，则它实际上也定义了默认构造函数。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfd29ddc" class="outline-4">
+<h4 id="orgfd29ddc">7.5.2 委托构造函数</h4>
+<div class="outline-text-4" id="text-orgfd29ddc">
+<p>
+C++11 新标准扩展了构造函数初始值的功能，使得我们可以定义所谓的 <b>委托构造函数</b> 。一个委托构造函数使用它所属类的其他构造函数执行它自己的初始化过程，或者说它把它自己的一些（或者全部）职责委托给了其他构造函数。
+</p>
+
+<p>
+和其他构造函数一样，一个委托构造函数也有一个成员初始值的列表和一个函数体。在委托构造函数内，成员初始值列表只有一个唯一的入口，就是类名本身。和其他成员初始值一样，类名后面紧跟圆括号括起来的参数列表，参数列表必须与类中另外一个构造函数匹配。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Sales_data</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38750;&#22996;&#25176;&#26500;&#36896;&#20989;&#25968;&#20351;&#29992;&#23545;&#24212;&#30340;&#23454;&#21442;&#21021;&#22987;&#21270;&#25104;&#21592;</span>
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">cnt</span>, <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">price</span>):
+        bookNo(s), units_sold(cnt), revenue(cnt*price) {  }
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20854;&#20313;&#26500;&#36896;&#20989;&#25968;&#20840;&#37117;&#22996;&#25176;&#32473;&#21478;&#19968;&#20010;&#26500;&#36896;&#20989;&#25968;</span>
+  <span style="color: #c678dd;">Sales_data</span>(): Sales_data(<span style="color: #98be65;">""</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">0</span>) {  }
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s</span>): <span style="color: #dcaeea;">Sales_data</span>(s, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">0</span>) {  }
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span> &amp;<span style="color: #dcaeea;">is</span>): <span style="color: #c678dd;">Sales_data</span>()
+                                { read(is, *<span style="color: #51afef;">this</span>); }
+};
+</pre>
+</div>
+
+<p>
+当一个构造函数委托给另一个构造函数时，受委托的构造函数的初始值列表和函数体被依次执行。假如函数体包含有代码的话，将先执行这些代码，然后控制权才会交还给委托者的函数体。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf6aae54" class="outline-4">
+<h4 id="orgf6aae54">7.5.3 默认构造函数的作用</h4>
+<div class="outline-text-4" id="text-orgf6aae54">
+<p>
+当对象被默认初始化或值初始化时自动执行默认构造函数。默认初始化在以下情况下发生：
+</p>
+<ul class="org-ul">
+<li>当我们在块作用域内不适用任何初始值定义一个非静态变量或数据时。</li>
+<li>当一个类本身含有类类型的成员且使用合成的默认构造函数时。</li>
+<li>当类类型的成员没有在构造函数列表中显式地初始化时。</li>
+</ul>
+
+<p>
+值初始化在以下情况下发生：
+</p>
+<ul class="org-ul">
+<li>在数组初始化的过程中我们提供的初始值数量少于数组的大小时。</li>
+<li>当我们不适用初始值定一个局部静态变量时</li>
+<li>当我们通过书写形如 T( )的表达式显式地请求值初始化时，其中 T 时类型名（vector 的一个构造函数只接受一个实参用于说明 vector 大小，它就是使用一个这种形式的实参来对它的元素初始化器进行值初始化）。</li>
+</ul>
+
+<p>
+类必须包含一个默认构造函数以便在上述情况下使用，其中大多数情况非常容易判断。
+</p>
+
+<blockquote>
+<p>
+Best Practies：
+</p>
+
+<p>
+在实际中，如果定义了其他构造函数，那么最好也提供一个默认构造函数
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgb0484bc" class="outline-4">
+<h4 id="orgb0484bc">7.5.4 隐式的类类型转换</h4>
+<div class="outline-text-4" id="text-orgb0484bc">
+<p>
+我们也能为类定义隐式转换规则。如果构造函数只接受一个实参，则它实际上定义了转换为此类类型的隐式转换机制，有时我们把这种构造函数称作 <b>转换构造函数</b> 。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+能通过一个实参调用的构造函数定义了一条从构造函数的类型参数向类类型隐式转换的规则。
+</p>
+</blockquote>
+
+<p>
+在 Sales_data 类中，接受 string 的构造函数和接受 istream 的构造函数分别定义了从这两种类型向 Sales_data 隐式转换的规则。也就死后说，在需要使用 Sales_data 的地方，我们可以使用 string 或者 istream 作为替代：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">null_book</span> = <span style="color: #98be65;">"9-999-99999-9"</span>;
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26500;&#36896;&#19968;&#20010;&#20020;&#26102;&#30340;Sales_data&#23545;&#35937;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35813;&#23545;&#35937;&#30340;units_sold&#21644;revenue&#31561;&#20110;0,bookNo&#31561;&#20110;null_book</span>
+item.combine(null_book);
+</pre>
+</div>
+
+<p>
+在这里我们用一个 string 实参调用了 Sales_data 的 combine 成员。该调用是合法的，编译器用给定的 string 自动创建了一个 Sales_data 对象。新生成的这个（临时）Sales_data 对象被传递给 combine。因为 combine 的参数时一个常量引用，所以我们可以给该函数传递一个临时量。
+</p>
+</div>
+<div id="outline-container-orgc339057" class="outline-5">
+<h5 id="orgc339057">只允许一步类类型转换</h5>
+<div class="outline-text-5" id="text-orgc339057">
+<p>
+在 4.11.2 节中我们指出，编译器只会自动地执行一步类型转换。
+</p>
+</div>
+</div>
+<div id="outline-container-org942777c" class="outline-5">
+<h5 id="org942777c">抑制构造函数定义的隐式转换</h5>
+<div class="outline-text-5" id="text-org942777c">
+<p>
+在要求隐式转换的程序上下文中，我们可以通过将构造函数声明为 <b>explicit</b> 加以阻止：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Sales_data</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #c678dd;">Sales_data</span>() = <span style="color: #51afef;">default</span>;
+  <span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">unsigned</span> <span style="color: #dcaeea;">n</span>, <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">p</span>):
+             bookNo(s), units_sold(n), revenue(p*n) {  }
+  <span style="color: #51afef;">explicit</span> <span style="color: #c678dd;">Sales_data</span>(<span style="color: #51afef;">const</span> <span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>) : bookNo(s) {  }
+  <span style="color: #51afef;">explicit</span> <span style="color: #c678dd;">Sales_data</span>(<span style="color: #a9a1e1;">std</span>::<span style="color: #ECBE7B;">istream</span>&amp;);
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+};
+</pre>
+</div>
+
+<p>
+此时，没有任何构造函数能用于隐式地创建 Sales_data 对象，之前的两种用法都无法通过编译：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">item.combine(null_book);      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;string&#26500;&#36896;&#20989;&#25968;&#26102;explicit&#30340;</span>
+item.combine(cin);            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;istream&#26500;&#36896;&#20989;&#25968;&#26102;explicit&#30340;</span>
+</pre>
+</div>
+
+<p>
+关键字 explicit 只对一个实参的构造函数有效。需要多个实参的构造函数不能用于隐式转换，所以无法将这些构造函数指定为 explicit 的。只能在类内声明构造函数时使用 explicit 关键字，在类外部定义时不应重复。
+</p>
+</div>
+</div>
+<div id="outline-container-org47fc171" class="outline-5">
+<h5 id="org47fc171">explicit 构造函数只能用于直接初始化</h5>
+<div class="outline-text-5" id="text-org47fc171">
+<p>
+发生隐式转换的一种情况是当我们执行拷贝形式的初始化时（使用=）。此时，我们只能使用直接初始化而不能使用 explicit 构造函数。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当我们用 explicit 关键字声明构造函数时，它将只能以直接初始化的形式使用。而且编译器将不会在自动转换过程中使用该构造函数。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org902e285" class="outline-5">
+<h5 id="org902e285">为转换显式地使用构造函数</h5>
+<div class="outline-text-5" id="text-org902e285">
+<p>
+尽管编译器不会将 explicit 的构造函数用于隐式转换过程，但是我们可以使用这样的构造函数显式地强制进行转换。
+</p>
+</div>
+</div>
+<div id="outline-container-org6e308ba" class="outline-5">
+<h5 id="org6e308ba">标准库中含有显示构造函数的类</h5>
+<div class="outline-text-5" id="text-org6e308ba">
+<p>
+我们用过的一些标准库中的类含有单参数的构造函数：
+</p>
+<ul class="org-ul">
+<li>接受一个单参数的 const char*的 string 构造函数不是 explicit 的。</li>
+<li>接受一个容量参数的 vector 构造函数时 explicit 的。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org1293d13" class="outline-4">
+<h4 id="org1293d13">7.5.5 聚合类</h4>
+<div class="outline-text-4" id="text-org1293d13">
+<p>
+<b>聚合类</b> 时的用户可以直接访问其成员，并且具有特殊的初始化语法形式。当一个类满足如下条件时，我们说它是聚合的：
+</p>
+<ul class="org-ul">
+<li>所有成员都是 public 的</li>
+<li>没有定义任何构造函数</li>
+<li>没有类内初始值（参见 2.6.1 节）</li>
+<li>没有基类，也没有 virtual 函数。</li>
+</ul>
+
+<p>
+例如，下面的类是一个聚合类：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">struct</span> <span style="color: #ECBE7B;">Data</span> {
+  <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">ival</span>;
+  <span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">s</span>;
+};
+</pre>
+</div>
+
+<p>
+我们可以提供一个花括号括起来的成员初始值列表，并用它初始化聚合类的数据成员：
+</p>
+
+<p>
+<code>Data vall = { 0, "Anna" };</code>
+</p>
+
+<p>
+初始值的顺序必须与声明的顺序一致，也就是说，第一个成员的初始值要放在第一个，然后是第二个，以此类推。
+</p>
+
+<p>
+与初始化数据元素的规则一样，如果初始值列表中的元素个数少于类的成员数量，则靠后的成员被值初始化。初始值列表的元素个数绝对不能超过类的成员数量。
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcf7fff" class="outline-4">
+<h4 id="orgfcf7fff">7.5.6 字面值常量类</h4>
+<div class="outline-text-4" id="text-orgfcf7fff">
+<p>
+数据成员都是字面值类型的聚合类是字面值常量类。如果一个类不是聚合类，但它符合下述要求，则它也是一个字面值常量类：
+</p>
+<ul class="org-ul">
+<li>数据成员必须都是字面值类型。</li>
+<li>类必须至少有一个 constexpr 构造函数。</li>
+<li>如果一个数据成员含有类内初始值，则内置类型成员的初始值必须是一条常量表达式（参见 2.4.4 节）；或者如果成员属于某种类类型，则初始值必须使用成员自己的 constexpr 函数。</li>
+<li>类必须使用析构函数的默认定义，该成员负责销毁类的对象。</li>
+</ul>
+</div>
+<div id="outline-container-orga2605bc" class="outline-5">
+<h5 id="orga2605bc">constepxr 构造函数</h5>
+<div class="outline-text-5" id="text-orga2605bc">
+<p>
+尽管构造函数不能是 const 的，单字面值常量类的构造函数可以是 constexpr 函数。事实上，一个字面值常量类必须至少提供一个 constexpr 构造函数。
+</p>
+
+<p>
+constexpr 构造函数可以声明称=default 的形式（或者是删除函数的形式）。否则，constexpr 构造函数就必须既符合构造函数的要求（意味着不能包含返回语句），又复合 constexpr 函数的要求（意味着它能拥有的唯一可执行语句就是返回语句（参见 6.5.2 节））。综合这两点可知，constexpr 构造函数体一般来说应该是空的。我们通过前置关键字 constexpr 就可以声明一个 constexpr 构造函数了。
+</p>
+
+<p>
+constexpr 构造函数必须初始化所有数据成员，初始值或者使用 constexpr 构造函数，或者是一条常量表达式。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org72ed48b" class="outline-3">
+<h3 id="org72ed48b">7.6 类的静态成员</h3>
+<div class="outline-text-3" id="text-org72ed48b">
+<p>
+有的时候类需要它的一些成员与类本身直接相关，而不是与类的各个对象保持关联。
+</p>
+</div>
+<div id="outline-container-orgb1d408f" class="outline-5">
+<h5 id="orgb1d408f">声明静态成员</h5>
+<div class="outline-text-5" id="text-orgb1d408f">
+<p>
+类的静态成员存在于任何对象之外，对象中不包含任何与静态数据成员有关的数据。
+</p>
+
+<p>
+类似的，静态成员函数也不与任何对象绑定在一起，它们不包含 this 指针。作为结果，静态成员函数不能声明称 const 的，而且我们也不能在 static 函数体内使用 this 指针。这一限制既适用于 this 的显式使用，也对调用非静态成员的隐式使用有效。
+</p>
+</div>
+</div>
+<div id="outline-container-org64b3a3d" class="outline-5">
+<h5 id="org64b3a3d">使用类的静态成员</h5>
+<div class="outline-text-5" id="text-org64b3a3d">
+<p>
+我们使用作用域运算符直接访问静态成员：
+</p>
+
+<p>
+<code>double r = Account::rate();      // 使用作用域运算符访问静态成员</code>
+</p>
+
+<p>
+虽然静态成员不属于类的某个对象，但是我们仍然可以使用类的对象、引用或者指针来访问静态成员：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">Account</span> <span style="color: #dcaeea;">ac1</span>;
+<span style="color: #ECBE7B;">Account</span> *<span style="color: #dcaeea;">ac2</span> = &amp;ac1;
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35843;&#29992;&#38745;&#24577;&#25104;&#21592;&#20989;&#25968;rate&#30340;&#31561;&#20215;&#24418;&#24335;</span>
+r = ac1.rate();
+r = ac2-&gt;rate();
+</pre>
+</div>
+
+<p>
+成员函数不用通过作用域运算符就能直接使用静态对象。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdaf71e1" class="outline-5">
+<h5 id="orgdaf71e1">定义静态成员</h5>
+<div class="outline-text-5" id="text-orgdaf71e1">
+<p>
+和其他的成员函数一样，我们既可以在类的内部也可以在类的外部定义静态成员函数。当在类的外部定义静态成员时，不能重复 static 关键字，该关键字只出现在类内部的声明语句。
+</p>
+
+<p>
+因为静态数据成员不属于类的任何一个对象，所以它们并不是在创建类的对象时被定义的。这意味着它们不是由类的构造函数初始化的。而且一般来说，我们不能在类的内部初始化静态成员。相反的，必须在类的外部定义和初始化每个静态成员。和其他对象一样，一个静态成员只能定义一次。
+</p>
+
+<p>
+类似于全局变量，静态数据成员定义在任何函数之外。因此一旦它被定义，就将一致存在于程序的整个声明周期。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+要想确保对象只定义一次，最好的办法就是把静态数据成员的定义与其他非内联函数的定义放在同一个文件中。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org7734a84" class="outline-5">
+<h5 id="org7734a84">静态成员的类内初始化</h5>
+<div class="outline-text-5" id="text-org7734a84">
+<p>
+通常情况下，类的静态成员不应该在类的内部初始化。然而，我们可以为静态成员提供 const 整数类型的类内初始值，不过要求静态成员必须是字面值常量类型的 constexpr（参见 7.5.6）。初始值必须是常量表达式，因为这些成员本身就是常量表达式，所以它们能在所有适合于常量表达式的地方。
+</p>
+
+<blockquote>
+<p>
+Best Practies：
+</p>
+
+<p>
+即使一个常量静态成员在类内部被初始化了，通常情况下也应该在类的外部定义以下该成员。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org47206f8" class="outline-5">
+<h5 id="org47206f8">静态成员能用于某些场景，而普通成员不能</h5>
+<div class="outline-text-5" id="text-org47206f8">
+<p>
+如我们所见，静态成员独立于任何对象。因此，在某些非静态数据成员可能非法的场合，静态成员却可以正常地使用。举个例子，静态数据成员可以是不完全类型（参见 7.3.3）。特别的，静态数据成员的类型可以就是它所属的类类型。而非静态数据成员则受到限制，只能声明称它所属类的指针或引用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Bar</span> {
+<span style="color: #51afef;">public</span>:
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+<span style="color: #51afef;">private</span>:
+  <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">Bar</span> <span style="color: #dcaeea;">mem1</span>;         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#38745;&#24577;&#25104;&#21592;&#21487;&#20197;&#26159;&#19981;&#23436;&#25972;&#31867;&#22411;</span>
+  <span style="color: #ECBE7B;">Bar</span> *<span style="color: #dcaeea;">mem2</span>;               <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#25351;&#38024;&#25104;&#21592;&#21487;&#20197;&#26159;&#19981;&#23436;&#20840;&#31867;&#22411;</span>
+  <span style="color: #ECBE7B;">Bar</span> <span style="color: #dcaeea;">mem3</span>;                <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#25968;&#25454;&#25104;&#21592;&#24517;&#39035;&#26159;&#23436;&#20840;&#31867;&#22411;</span>
+};
+</pre>
+</div>
+
+<p>
+静态成员和普通成员的另一个区别是我们可以使用静态成员作为默认实参（参见 6.5.1 节）。
+</p>
+
+<p>
+非静态数据成员不能作为默认实参，因为它的值本身属于对象的一部分，这么做的结果是无法真正提供一个对象以便从中获取成员的值，最终将引发错误。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-06-04 Thu 14:52</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,5571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-06-12 Fri 13:37 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C++ Primer 第 II 部分 C++标准库</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">C++ Primer 第 II 部分 C++标准库</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org5b2f693">第 8 章 IO 库</a>
+<ul>
+<li><a href="#org2185105">8.1 IO 类</a>
+<ul>
+<li><a href="#orge5c0f63">8.1.1 IO 对象无拷贝或赋值</a></li>
+<li><a href="#org93d82cd">8.1.2 条件状态</a>
+<ul>
+<li><a href="#org14729fb">查寻流的状态</a></li>
+</ul>
+</li>
+<li><a href="#org0e6e733">8.1.3 管理输出缓冲</a>
+<ul>
+<li><a href="#org27efc87">刷新输出缓冲区</a></li>
+<li><a href="#orgbd401eb">unitbuf 操纵符</a></li>
+<li><a href="#orgfc9cfab">关联输入和输出流</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1eeee6b">8.2 文件输入输出</a>
+<ul>
+<li><a href="#org2d2faed">8.2.1 使用文件流对象</a>
+<ul>
+<li><a href="#orga9965b2">成员函数 open 和 close</a></li>
+<li><a href="#org521a53f">自动构造和析构</a></li>
+</ul>
+</li>
+<li><a href="#org39b02e8">8.2.2 文件模式</a>
+<ul>
+<li><a href="#org2a827e8">以 out 模式打开文件会丢失已有数据</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org653db16">8.3 string 流</a></li>
+</ul>
+</li>
+<li><a href="#orgbdd29c8">第 9 章 顺序容器</a>
+<ul>
+<li><a href="#org21182a5">9.1 顺序容器概述</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgea77848">确定使用哪种顺序容器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org865c814">9.2 容器库概览</a>
+<ul>
+<li><a href="#orgf31a089">9.2.4 容器定义和初始化</a>
+<ul>
+<li><a href="#org05c0867">将一个容器初始化为另一个容器的拷贝</a></li>
+<li><a href="#org6348075">与顺序容器大小相关的构造函数</a></li>
+<li><a href="#org1ec0ab0">标准库 array 具有固定大小</a></li>
+</ul>
+</li>
+<li><a href="#orga5920e7">9.2.5 赋值和 swap</a>
+<ul>
+<li><a href="#org515083a">使用 assign（仅顺序容器）</a></li>
+<li><a href="#org497f7e2">使用 swap</a></li>
+</ul>
+</li>
+<li><a href="#org3a027c9">9.2.7 关系运算符</a></li>
+<li><a href="#org7f5ff45">容器的关系运算符使用元素的关系运算符完成比较</a></li>
+</ul>
+</li>
+<li><a href="#org3ebc477">9.3 顺序容器操作</a>
+<ul>
+<li><a href="#orga1d6ca8">9.3.1 向顺序容器添加元素</a>
+<ul>
+<li><a href="#org086f3f5">在容器中的特定位置添加元素</a></li>
+<li><a href="#org78703e8">插入范围内元素</a></li>
+<li><a href="#org0c2f82c">使用 insert 的返回值</a></li>
+<li><a href="#org4d4761f">使用 emplace 操作</a></li>
+</ul>
+</li>
+<li><a href="#orgc3865be">9.3.2 访问元素</a>
+<ul>
+<li><a href="#org5c5dceb">访问成员函数返回的时引用</a></li>
+<li><a href="#orgca5a4cb">下标操作和安全的随机访问</a></li>
+</ul>
+</li>
+<li><a href="#org3e26178">9.3.3 删除元素</a></li>
+<li><a href="#org3c008d4">9.3.4 特殊的 forward_list 操作</a></li>
+<li><a href="#orge05ef94">9.3.5 改变容器大小</a></li>
+<li><a href="#org30d23d5">9.3.6 容器操作可能使迭代器失效</a>
+<ul>
+<li><a href="#org1421c68">不要保存 end 返回的迭代器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6cac9d3">9.4 vector 对象是如何增长的</a>
+<ul>
+<li><a href="#orgd8c87a7">管理容量的成员函数</a></li>
+</ul>
+</li>
+<li><a href="#org075d593">9.5 额外的 string 操作</a>
+<ul>
+<li><a href="#org47b452f">9.5.1 构造 string 的其他方法</a>
+<ul>
+<li><a href="#org67dba71">substr 操作</a></li>
+</ul>
+</li>
+<li><a href="#org6441f51">9.5.2 改变 string 的其他方法</a></li>
+<li><a href="#orgba3e73e">9.5.3 string 搜索操作</a></li>
+<li><a href="#org28841d9">9.5.4 compare 函数</a></li>
+<li><a href="#org033ddbb">9.5.5 数值转换</a></li>
+</ul>
+</li>
+<li><a href="#orgf14b541">9.6 容器适配器</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org9861047">栈适配器</a></li>
+<li><a href="#orgae460b0">队列适配器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6fe430a">第 10 章 泛型算法</a>
+<ul>
+<li><a href="#orgba112a4">10.1 概述</a></li>
+<li><a href="#orgd926f45">10.2 初识泛型算法</a>
+<ul>
+<li><a href="#org78002f6">10.2.1 只读算法</a>
+<ul>
+<li><a href="#org70d80b6">算法和元素类型</a></li>
+<li><a href="#orgd82b832">操作两个序列的算法</a></li>
+</ul>
+</li>
+<li><a href="#orge0f123f">10.2.2 写容器元素的算法</a>
+<ul>
+<li><a href="#orgd3620c0">算法不检查写操作</a></li>
+<li><a href="#org06788c2">介绍 back_inserter</a></li>
+<li><a href="#orgad805f9">拷贝算法</a></li>
+</ul>
+</li>
+<li><a href="#org50fa00e">10.2.3 重排容器元素的算法</a></li>
+</ul>
+</li>
+<li><a href="#orgb2ac4be">10.3 定制操作</a>
+<ul>
+<li><a href="#orgac2f22d">10.3.1 向算法传递函数</a>
+<ul>
+<li><a href="#orge817e66">谓词</a></li>
+</ul>
+</li>
+<li><a href="#orga3bc31c">10.3.2 lambda 表达式</a>
+<ul>
+<li><a href="#org4eba886">介绍 lambda 表达式</a></li>
+<li><a href="#org88cb0e8">向 lambda 传递参数</a></li>
+<li><a href="#orgf1af0ed">使用捕获列表</a></li>
+</ul>
+</li>
+<li><a href="#org6cab6e7">10.3.3 lambda 捕获和返回</a>
+<ul>
+<li><a href="#org9c32688">值捕获</a></li>
+<li><a href="#orgc2d117c">引用捕获</a></li>
+<li><a href="#orga13792d">隐式捕获</a></li>
+<li><a href="#orgad1e7b7">可变 lambda</a></li>
+<li><a href="#orgede50d1">指定 lambda 返回类型</a></li>
+</ul>
+</li>
+<li><a href="#orgeee3a23">10.3.4 参数绑定</a>
+<ul>
+<li><a href="#orgd278c08">标准库 bind 函数</a></li>
+<li><a href="#org144021d">使用 placeholders 名字</a></li>
+<li><a href="#org885a4f9">bind 的参数</a></li>
+<li><a href="#org6c16e3f">绑定引用参数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org81b73f0">10.4 再探迭代器</a>
+<ul>
+<li><a href="#org8b783f3">10.4.1 插入迭代器</a></li>
+<li><a href="#orgef214a3">10.4.2 iostream 迭代器</a>
+<ul>
+<li><a href="#org5589819">istream_iterator 操作</a></li>
+<li><a href="#orge57cd1a">istream_iterator 允许使用懒惰求值</a></li>
+<li><a href="#org8071a70">ostream_iterator 操作</a></li>
+</ul>
+</li>
+<li><a href="#org473032e">10.4.3 反向迭代器</a></li>
+</ul>
+</li>
+<li><a href="#orgc99b32b">10.5 泛型算法结构</a>
+<ul>
+<li><a href="#org5a9534c">10.5.1 5 类迭代器</a>
+<ul>
+<li><a href="#orge23befb">迭代器类别</a></li>
+</ul>
+</li>
+<li><a href="#org93cc113">10.5.2 算法形参模式</a>
+<ul>
+<li><a href="#orgbacfaf6">接受单个目标迭代器的算法</a></li>
+<li><a href="#orgf43ef4f">接受第二个输入序列的算法</a></li>
+</ul>
+</li>
+<li><a href="#orgd9c5f97">10.5.3 算法命名规则</a>
+<ul>
+<li><a href="#org32fe32a">一些算法使用重载形式传递一个谓词</a></li>
+<li><a href="#orgde9934b">_if 版本的算法</a></li>
+<li><a href="#org7e90210">区分拷贝元素的版本和不拷贝的版本</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org128f629">10.6 特定容器算法</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgb7f049f">splice 成员</a></li>
+<li><a href="#orga525e06">链表特有的操作会改变容器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6f573e5">第 11 章 关联容器</a>
+<ul>
+<li><a href="#org391ee71">11.1 使用关联容器</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgf86da9b">使用 map</a></li>
+<li><a href="#org722ee6b">使用 set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge66c819">11.2 关联容器概述</a>
+<ul>
+<li><a href="#org153712b">11.2.1 定义关联容器</a></li>
+<li><a href="#orgdaf9dde">11.2.2 关键字类型的要求</a>
+<ul>
+<li><a href="#org44c3896">有序容器的关键字类型</a></li>
+<li><a href="#org8a5cd79">使用关键字类型的比较函数</a></li>
+</ul>
+</li>
+<li><a href="#orgd7caae7">11.2.3 pair 类型</a>
+<ul>
+<li><a href="#orgd442b98">创建 pair 对象的函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgebb85bb">11.3 关联容器操作</a>
+<ul>
+<li><a href="#orgd1f10b9">11.3.1 关联容器迭代器</a>
+<ul>
+<li><a href="#orga00eb05">set 的迭代器是 const 的</a></li>
+<li><a href="#orgd9a3d33">遍历关联容器</a></li>
+<li><a href="#orgaca57ec">关联容器和算法</a></li>
+</ul>
+</li>
+<li><a href="#org25d53ca">11.3.2 添加元素</a>
+<ul>
+<li><a href="#orge362401">向 map 添加元素</a></li>
+<li><a href="#orgc2b553b">检测 insert 的返回值</a></li>
+<li><a href="#org9c38655">向 multiset 和 multimap 添加元素</a></li>
+</ul>
+</li>
+<li><a href="#orgb63db4b">11.3.3 删除元素</a></li>
+<li><a href="#org9b68d1d">11.3.4 map 的下标操作</a>
+<ul>
+<li><a href="#orgcbfb5aa">使用下标操作的返回值</a></li>
+</ul>
+</li>
+<li><a href="#org0bdf0bf">11.3.5 访问元素</a>
+<ul>
+<li><a href="#orga008551">一种不同的，面向迭代器的解决方法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgebcb79a">11.4 无序容器</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org8b297ff">使用无序容器</a></li>
+<li><a href="#org97fe55f">管理桶</a></li>
+<li><a href="#org8fdd5e9">无序容器对关键类型的要求</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org46eaed4">第 12 章 动态内存</a>
+<ul>
+<li><a href="#org694b049">12.1 动态内存与智能指针</a>
+<ul>
+<li><a href="#org0a70a59">12.1.1 shared_ptr 类</a>
+<ul>
+<li><a href="#org3ac401d">make_shared 函数</a></li>
+<li><a href="#org868fd8b">shared_ptr 的拷贝和赋值</a></li>
+<li><a href="#org3ebe766">shared_ptr 自动销毁所管理的对象……</a></li>
+<li><a href="#orgb6928f8">……shared_ptr 还会自动释放相关联的内存</a></li>
+<li><a href="#org40c26c9">使用了动态生存期的资源的类</a></li>
+</ul>
+</li>
+<li><a href="#orgc8c2fec">12.1.2 直接管理内存</a>
+<ul>
+<li><a href="#org9ed193b">使用 new 动态分配和初始化对象</a></li>
+<li><a href="#org2ac0a8f">动态分配 const 对象</a></li>
+<li><a href="#org0671978">内存耗尽</a></li>
+<li><a href="#orgb35f27a">指针值和 delete</a></li>
+<li><a href="#orgb6a44b5">delete 之后重值指针值……</a></li>
+</ul>
+</li>
+<li><a href="#org45bbd59">12.1.3 shared_ptr 和 new 结合使用</a>
+<ul>
+<li><a href="#orgde35f93">不要混合使用普通指针和智能指针……</a></li>
+<li><a href="#org9f3926a">……也不要使用 get 初始化另一个智能指针或为智能指针赋值</a></li>
+<li><a href="#org227a72e">其他 shared_ptr 操作</a></li>
+</ul>
+</li>
+<li><a href="#orgd069a6e">12.1.4 智能指针和异常</a></li>
+<li><a href="#org629ddda">12.1.5 unique_ptr</a>
+<ul>
+<li><a href="#org0eca5f0">传递 unique_ptr 参数和返回 unique_ptr</a></li>
+</ul>
+</li>
+<li><a href="#org8acfbde">12.1.6 weak_ptr</a></li>
+</ul>
+</li>
+<li><a href="#orga57de89">12.2 动态数组</a></li>
+<li><a href="#org3d4b0e3">12.2.1 new 和数组</a>
+<ul>
+<li><a href="#org39c4471">初始化动态分配对象的数组</a></li>
+<li><a href="#org1bdf644">释放动态数组</a></li>
+<li><a href="#org6e8c11e">智能指针和动态数组</a></li>
+</ul>
+</li>
+<li><a href="#org7e81f3e">12.2.2 allocator 类</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orga5173ee">allocator</a></li>
+<li><a href="#orgf359a75">allocator 分配未构造的内存</a></li>
+<li><a href="#org2f024c1">拷贝和填充未初始化内存的算法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5b2f693" class="outline-2">
+<h2 id="org5b2f693">第 8 章 IO 库</h2>
+<div class="outline-text-2" id="text-org5b2f693">
+</div>
+<div id="outline-container-org2185105" class="outline-3">
+<h3 id="org2185105">8.1 IO 类</h3>
+<div class="outline-text-3" id="text-org2185105">
+<table id="orgd3ed85d">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">头文件</th>
+<th scope="col" class="org-left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">iostream</td>
+<td class="org-left">istream, wistream 从流读取数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ostream, wostream 向流先入数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">iostream, wiostream 读写流</td>
+</tr>
+
+<tr>
+<td class="org-left">fstream</td>
+<td class="org-left">ifstream, wifstream 从文件读取数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ofstream, wofstream 向文件写入数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">fstream, wfstream 读写文件</td>
+</tr>
+
+<tr>
+<td class="org-left">sstream</td>
+<td class="org-left">istringstream, wistringstream 从 string 读取数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ostringstream, wostringstream 向 string 写入数据</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">stringstream, wstringstream 读写 string</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+为了支持使用宽字符的语言，标准库定义了一组类型和对象来操作 wchar_t 类型的数据（参见 2.1.1 节）。宽字符版本的类型和函数名字以一个 w 开始。
+</p>
+</div>
+<div id="outline-container-orge5c0f63" class="outline-4">
+<h4 id="orge5c0f63">8.1.1 IO 对象无拷贝或赋值</h4>
+<div class="outline-text-4" id="text-orge5c0f63">
+<p>
+由于不能拷贝 IO 对象，因此我们也不能将形参或返回类型设置为流类型（参见 6.2.1 节）。进行 IO 操作的函数通常以引用方式传递和返回流。读写一个 IO 对象会改变其状态，因此传递和返回的引用不能是 const 的。
+</p>
+</div>
+</div>
+<div id="outline-container-org93d82cd" class="outline-4">
+<h4 id="org93d82cd">8.1.2 条件状态</h4>
+<div class="outline-text-4" id="text-org93d82cd">
+<p>
+IO 操作一个与生俱来的问题是可能发生错误。一些错误是可恢复的，而其他错误则发生在系统深处，已经超出了应用程序可以修正的范围。下表列出了 IO 类所定义的一些函数和标志，可以帮助我们访问和操纵流的 <b>条件状态</b> 。
+</p>
+<table id="orgb746fa3">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">strm::iostate</td>
+<td class="org-left">strm 是一种 IO 类型。iostate 是一种机器相关的类型，提供了表达条件状态的完整功能</td>
+</tr>
+
+<tr>
+<td class="org-left">strm::badbit</td>
+<td class="org-left">strm::badbit 用来指出流已崩溃</td>
+</tr>
+
+<tr>
+<td class="org-left">strm::failbit</td>
+<td class="org-left">strm::failbit 用来指出一个 IO 操作失败了</td>
+</tr>
+
+<tr>
+<td class="org-left">strm::eofbit</td>
+<td class="org-left">strm::eofbit 用来指出流到达了文件结束</td>
+</tr>
+
+<tr>
+<td class="org-left">strm::goodbit</td>
+<td class="org-left">strm::goodbit 用来指出流未处于错误状态。此值保证为零</td>
+</tr>
+
+<tr>
+<td class="org-left">s.eof()</td>
+<td class="org-left">若流 s 的 eofbit 置位，则返回 true</td>
+</tr>
+
+<tr>
+<td class="org-left">s.fail()</td>
+<td class="org-left">若流 s 的 failbit 或 badbit 置位，则返回 true</td>
+</tr>
+
+<tr>
+<td class="org-left">s.bad()</td>
+<td class="org-left">若流 s 的 badbit 置位，则返回 true</td>
+</tr>
+
+<tr>
+<td class="org-left">s.good()</td>
+<td class="org-left">若流 s 处于有效状态，则返回 true</td>
+</tr>
+
+<tr>
+<td class="org-left">s.clear()</td>
+<td class="org-left">若流 s 中所有条件状态复位，将流的状态设置为有效。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">s.clear(flags)</td>
+<td class="org-left">根据给定 flags 标志位，将流 s 中对应条件状态位复位。flags 的类型为 strm::iostate。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">s.setstate(flags)</td>
+<td class="org-left">根据给定 flags 标志位，将流 s 中对应条件状态位复位。flags 的类型为 strm::iostate。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">s.rdstate()</td>
+<td class="org-left">返回流 s 的当前条件状态，返回值类型为 strm::iostate</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+一个流一旦发生错误，其上后续的 IO 操作都会失败。只有当一个流处于无错状态时，我们才可以从它读取数据，向它写入数据。由于流可能处于错误状态，因此代码通常应该在使用一个流之前检查它是否处于良好状态。确定一个流对象的状态的最简单的办法时将它当作一个条件来使用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">while</span> (cin &gt;&gt; word)
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">OK&#65306;&#35835;&#25805;&#20316;&#25104;&#21151;</span>
+</pre>
+</div>
+
+<p>
+while 循环检查&gt;&gt;表达式返回的流的状态。如果输入操作成功，流保持有效状态，则条件为真。
+</p>
+</div>
+<div id="outline-container-org14729fb" class="outline-5">
+<h5 id="org14729fb">查寻流的状态</h5>
+<div class="outline-text-5" id="text-org14729fb">
+<p>
+IO 库定义了一个与机器无关的 iostate 类型，它提供了表达流状态的完整功能。
+</p>
+
+<p>
+标准库还定义了一组函数来查寻这些标志位的状态。操作 good 在所有位置错误位均未置位的情况下返回 true，而 bad、fail 和 eof 则在对应错误被位置时返回 true。此外，在 badbit 被置位时，fail 也会返回 true。这意味着，使用 good 或 fail 时确定流的总体状态的正确方法。实际上，我们将流当作条件使用的代码就等价于!fail()。而 eof 和 bad 操作只能表示特定的错误。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e6e733" class="outline-4">
+<h4 id="org0e6e733">8.1.3 管理输出缓冲</h4>
+<div class="outline-text-4" id="text-org0e6e733">
+<p>
+每个输出流都管理一个缓冲区，用来保存程序读写的数据。例如，如果执行下面的代码
+</p>
+
+<p>
+<code>os &lt;&lt; "please enter a value: ";</code>
+</p>
+
+<p>
+文本串可能立即大快银出来，但也有可能被操作系统保存在缓冲区中，随后再打印。有了缓冲机制，操作系统就可以将程序的多个输出操作组合成单一的系统级写操作。由于设备的写操作可能很耗时，允许操作系统将多个输出操作组合为单一的设备写操作可以带来很大的性能提升。
+</p>
+
+<p>
+导致缓冲刷新（即，数据真正写到输出设备或文件）的原因有很多：
+</p>
+<ul class="org-ul">
+<li>程序正常结束，作为 main 函数的 retrun 操作的一部分，缓冲刷新被执行。</li>
+<li>缓冲区满时，需要刷新缓冲，而后新的数据才能继续写入缓冲区。</li>
+<li>我们可以使用操作符如 endl 来显式刷新缓冲区</li>
+<li>在每个输出操作之后，我们可以用操纵符 unitbuf 设置流的内部状态，来清空缓冲区。默认情况下，对 cerr 时设置 unitbuf 的，因此写到 cerr 的内容都是立即率先那的</li>
+<li>一个输出流可能被关联到另一个流。在这种情况下，当读写被关联的流时，关联到的流的缓冲区会被刷新。例如，默认情况下，cin 和 cerr 都关联到 cout。因此读 cin 或写 cerr 都会导致 cout 的缓冲区被刷新。</li>
+</ul>
+</div>
+<div id="outline-container-org27efc87" class="outline-5">
+<h5 id="org27efc87">刷新输出缓冲区</h5>
+<div class="outline-text-5" id="text-org27efc87">
+<p>
+我们已经使用过操纵符 endl，它完成换行并刷新缓冲区的工作。IO 库中还有两个类似的操纵符：flush 和 ends。flush 刷新缓冲区，但不输出任何额外的字符：ends 向缓冲区插入一个空字符，然后刷新缓冲区。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">cout &lt;&lt; <span style="color: #98be65;">"hi!"</span> &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #98be65;">"hi!"</span> &lt;&lt; flush;
+cout &lt;&lt; <span style="color: #98be65;">"hi!"</span> &lt;&lt; ends;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd401eb" class="outline-5">
+<h5 id="orgbd401eb">unitbuf 操纵符</h5>
+<div class="outline-text-5" id="text-orgbd401eb">
+<p>
+如果想在每次输出操作后都刷新缓冲区，我们可以使用 unitbuf 操纵符。它告诉流在接下来的每次写操作之后都进行一次 flush 操作。而 nounitbuf 操作符则重值流，使其恢复使用正常的系统管理的缓冲区刷新机制：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">cout &lt;&lt; unitbuf
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20219;&#20309;&#36755;&#20986;&#37117;&#31435;&#21363;&#21047;&#26032;&#65292;&#26080;&#32531;&#20914;</span>
+count &lt;&lt; nounitbuf
+</pre>
+</div>
+
+<blockquote>
+<p>
+警告：如果程序崩溃，输出缓冲区不会被刷新
+</p>
+
+<p>
+如果程序异常终止，输出缓冲区是不会被刷新的。当一个程序崩溃后，它所输出的数据很可能停留在输出缓冲区中等待打印。
+</p>
+
+<p>
+当调试一个已经崩溃的程序时，需要确认那些你认为已经输出的数据确实已经刷新了。否则，可能将大量的时间浪费在追踪代码为什么没有执行上，而实际上代码已经执行了，只是程序崩溃后缓冲区没有被刷新，输出数据被挂起没有打印而已。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgfc9cfab" class="outline-5">
+<h5 id="orgfc9cfab">关联输入和输出流</h5>
+<div class="outline-text-5" id="text-orgfc9cfab">
+<div class="org-src-container">
+<pre class="src src-C++">&#20132;&#20114;&#24335;&#31995;&#32479;&#36890;&#24120;&#24212;&#35813;&#20851;&#32852;&#36755;&#20837;&#27969;&#21644;&#36755;&#20986;&#27969;&#12290;&#36825;&#24847;&#21619;&#30528;&#25152;&#26377;&#36755;&#20986;&#65292;&#21253;&#25324;&#29992;&#25143;&#25552;&#31034;&#20449;&#24687;&#65292;&#37117;&#20250;&#22312;&#35835;&#21462;&#25805;&#20316;&#20043;&#21069;&#34987;&#25171;&#21360;&#20986;&#26469;&#12290;
+</pre>
+</div>
+
+<p>
+tie 有两个重载的版本：一个版本不带参数，返回指向输出流的指针。如果本对象当前关联到一个输出流，则返回的就是指向这个流的指针，如果对象未关联到流，则返回空指针。tie 的第二个版本接受一个指向 ostream 的指针。即，x.tie(&amp;o)将流 x 关掉到输出流 o。
+</p>
+
+<p>
+每个流同时最多关联一个流，但多个流可以同时关联到同一个 ostream。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1eeee6b" class="outline-3">
+<h3 id="org1eeee6b">8.2 文件输入输出</h3>
+<div class="outline-text-3" id="text-org1eeee6b">
+<p>
+ifstream、ofstream 以及 fstream 提供的操作与我们之前已经使用过的 cin 和 cout 操作一样。特别是，我们可以用 IO 运算符（ <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> ）来读写文件，可以用 getline 从 ifstream 读取数据，包括 8.1 节中介绍的内容也都适用于这些类型。
+</p>
+
+<table id="orga4cd5b4">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">fstream fstrm;</td>
+<td class="org-left">创建一个未绑定的文件流。fstream 是头文件 fstream 中定义的一个类型</td>
+</tr>
+
+<tr>
+<td class="org-left">fstream fstrm(s);</td>
+<td class="org-left">创建一个 fstream，并打开名为 s 的文件。s可以是 string 类型，或者是一个指向 C 风格的字符串的指针。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些构造函数都是 explicit 的。默认的问键模式 mode 依赖于 fstream 的类型</td>
+</tr>
+
+<tr>
+<td class="org-left">fstream fstrm(s, mode);</td>
+<td class="org-left">与前一个构造函数类型，但按执行 mode 打开文件</td>
+</tr>
+
+<tr>
+<td class="org-left">fstrm.open(s)</td>
+<td class="org-left">打开名为 s 的文件，并将文件与 fstrm 绑定。s可以是一个 string 或指向 C 风格字符串的指针。默认的文件 mode 依赖于 fstream 的类型。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">fstrm.close()</td>
+<td class="org-left">关闭与 fstrm 绑定的文件。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">fstrm.is_open()</td>
+<td class="org-left">返回一个 bool 值，指出与 fstrm 关联的文件是否成功打开且尚未关闭</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org2d2faed" class="outline-4">
+<h4 id="org2d2faed">8.2.1 使用文件流对象</h4>
+<div class="outline-text-4" id="text-org2d2faed">
+<p>
+创建文件流对象时，我们可以提供文件名（可以选的）。如果提供了一个文件名，则 open 会自动被调用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">ifstream</span> <span style="color: #c678dd;">in</span>(ifile);
+<span style="color: #ECBE7B;">ofstream</span> <span style="color: #dcaeea;">out</span>;
+</pre>
+</div>
+</div>
+<div id="outline-container-orga9965b2" class="outline-5">
+<h5 id="orga9965b2">成员函数 open 和 close</h5>
+<div class="outline-text-5" id="text-orga9965b2">
+<p>
+一旦一个文件流已经打开，它就保持与对应文件的关联。实际上，对一个已经打开的文件流调用 open 会失败，并会导致 failbit 被置位。随后的试图使用文件流的操作都会失败。为了将文件流关联到另一个文件，必须首先关闭已经关联的文件。一旦文件成功关闭，我们可以打开新的文件。如果 open 成功，则 open 会设置流的状态，使得 good()为 true。
+</p>
+</div>
+</div>
+<div id="outline-container-org521a53f" class="outline-5">
+<h5 id="org521a53f">自动构造和析构</h5>
+<div class="outline-text-5" id="text-org521a53f">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当一个 fstream 对象被销毁时，close 会被自动调用。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org39b02e8" class="outline-4">
+<h4 id="org39b02e8">8.2.2 文件模式</h4>
+<div class="outline-text-4" id="text-org39b02e8">
+<p>
+每个流都有一个关联的 <b>文件模式</b> ，用来指出如果使用文件。下表列出了文件模式和它们的含义。
+</p>
+
+<table id="org7dfd172">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">in</td>
+<td class="org-left">以读方式打开</td>
+</tr>
+
+<tr>
+<td class="org-left">out</td>
+<td class="org-left">以写方式打开</td>
+</tr>
+
+<tr>
+<td class="org-left">app</td>
+<td class="org-left">每次写操作前均定位到文件末尾</td>
+</tr>
+
+<tr>
+<td class="org-left">ate</td>
+<td class="org-left">打开文件后立即定位到文件末尾</td>
+</tr>
+
+<tr>
+<td class="org-left">trunc</td>
+<td class="org-left">截断文件</td>
+</tr>
+
+<tr>
+<td class="org-left">binary</td>
+<td class="org-left">以二进制方式进行 IO</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+无论用哪种方式打开文件，我们都可以指定文件模式，调用 open 打开文件时也可以，用一个文件名初始化流来隐式打开文件时也可以。指定文件模式有如下限制：
+</p>
+<ul class="org-ul">
+<li>只可以对 ofstream 和 fstream 对象设定 out 模式。</li>
+<li>只可以对 ifstream 和 fstream 对象设定 in 模式。</li>
+<li>只有当 out 也被设定时才可设定 trunc 模式。</li>
+<li>只要 trunc 没被设定，就可以设定 app 模式。在 app 模式下，即是没有显式指定 out 模式，文件也总是以输出方式被打开。</li>
+<li>默认情况下，即是我们没有指定 trunc，以 out 模式打开的文件也会被截断。为了保留以 out 模式打开的文件的内容，我们必须同时指定 app 模式，这样只会将数据追加写到文件末尾；或者同时指定 in 模式，即打开文件同时进行读写操作。</li>
+</ul>
+
+<p>
+每个文件流类型读定义了一个默认的文件模式，当我们未指定文件模式时，就使用此默认模式。与 ifstream 关联的文件默认以 in 模式打开；与 ofstream 关联的文件默认以 out 模式打开；与 fstream 关联的文件默认以 in 和 out 模式打开。
+</p>
+</div>
+<div id="outline-container-org2a827e8" class="outline-5">
+<h5 id="org2a827e8">以 out 模式打开文件会丢失已有数据</h5>
+<div class="outline-text-5" id="text-org2a827e8">
+<p>
+默认情况下，当我们打开一个 ofstream 时，文件的内容会被丢弃。阻止一个 ofstream 清空给定文件内容的方法是同时指定 app 模式：
+</p>
+
+<p>
+<code>ofstream app("file2", ofstream::app);   // 隐含为输出模式</code>
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+保留被 ofstream 打开的文件中已有数据的唯一方法是显式指定 app 或 in 模式。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org653db16" class="outline-3">
+<h3 id="org653db16">8.3 string 流</h3>
+<div class="outline-text-3" id="text-org653db16">
+<table id="org464dd30">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">sstream strm;</td>
+<td class="org-left">strm 是一个未绑定的 stringstream 对象。sstream 是头文件 sstream 中定义的一个类型</td>
+</tr>
+
+<tr>
+<td class="org-left">sstream strm(s);</td>
+<td class="org-left">strm 是一个 sstream 对象，保存 string s 的一个拷贝。此构造函数是 explicit 的</td>
+</tr>
+
+<tr>
+<td class="org-left">strm.str()</td>
+<td class="org-left">返回 strm 所保存的 string 的拷贝</td>
+</tr>
+
+<tr>
+<td class="org-left">strm.str(s)</td>
+<td class="org-left">将 string s 拷贝到 strm 中。返回 void</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbdd29c8" class="outline-2">
+<h2 id="orgbdd29c8">第 9 章 顺序容器</h2>
+<div class="outline-text-2" id="text-orgbdd29c8">
+<p>
+一个容器就是一些特定类型的集合。 <b>顺序容器</b> 为程序员提供了控制元素存储和访问顺序的能力。这种顺序不依赖于元素的值，而是与元素加入容器时的位置相对应。
+</p>
+</div>
+<div id="outline-container-org21182a5" class="outline-3">
+<h3 id="org21182a5">9.1 顺序容器概述</h3>
+<div class="outline-text-3" id="text-org21182a5">
+<table id="orga86d969">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">vector</td>
+<td class="org-left">可变大小数组。支持快速随机访问。在尾部之外的位置插入或删除元素可能很慢</td>
+</tr>
+
+<tr>
+<td class="org-left">deque</td>
+<td class="org-left">双端队列。支持快速随机访问。在头尾插入/删除速度很快</td>
+</tr>
+
+<tr>
+<td class="org-left">list</td>
+<td class="org-left">双向链表。只支持双向顺序访问。在 list 中任何位置进行插入/删除操作速度都很快</td>
+</tr>
+
+<tr>
+<td class="org-left">forward_list</td>
+<td class="org-left">单向列表。只支持单向顺序访问。在链表任何位置进行插入/删除操作速度都很快</td>
+</tr>
+
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">固定大小数组。支持快速随机访问。不能添加或删除元素</td>
+</tr>
+
+<tr>
+<td class="org-left">string</td>
+<td class="org-left">与 vector 相似的容器，但专门用于保存字符。随机访问快。在尾部插入/删除速度快</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgea77848" class="outline-5">
+<h5 id="orgea77848">确定使用哪种顺序容器</h5>
+<div class="outline-text-5" id="text-orgea77848">
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+通常，使用 vector 时最好的选择，除非你有很好的理由选择其他容器。
+</p>
+</blockquote>
+
+<p>
+以下是一些选择容器的基本原则：
+</p>
+<ul class="org-ul">
+<li>除非你有很多的里有选择其他其容器，否则应该使用 vector。</li>
+<li>如果你的程序有很多小的元素，且空间的额外开销很重要，则不要使用 list 或 forward_list。</li>
+<li>如果程序要求随机访问元素，应使用 vector 和 deque。</li>
+<li>如果程序要求在容器的中间插入或删除元素，应使用 list 或 forward_list。</li>
+<li>如果程序需要在头尾位置插入或删除元素，但不会在中间位置进行插入或删除操作，则使用 deque。</li>
+<li>如果程序只有在读取输入时才需要在容器中间位置插入元素，随后需要随机访问元素，则
+<ul class="org-ul">
+<li>首先，确定是否真的需要在容器中间位置添加元素。当处理输入数据时，通常可以很容易地向 vector 追加数据，然后再调用标准库的 sort 函数来重排容器中的元素，从而避免在中间位置添加元素。</li>
+<li>如果必须在中间位置插入元素，考虑在输入阶段使用 list，一旦输入完成，将 list 中的内容拷贝到一个 vector 中</li>
+</ul></li>
+</ul>
+
+<p>
+如果程序既需要随机访问元素，又需要在容器中间位置插入元素，那该怎么办？答案取决于在 list 或 forward_list 中访问元素与 vector 或 deque 中插入/删除元素的相对性能。一般来说，应用中占主导地方的操作（执行的访问操作更多还是插入/删除更多）决定了容器类型的选择。在此情况下，对两种容器分别测试应用的性能可能就是必要的了。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+如果你不确定应该使用哪种容器，那么可以在程序中只使用 vector 和 list 公共的操作：使用迭代器，不使用下标操作，避免随机访问。这样，在必要时选择使用 vector 或 list 都很方便。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org865c814" class="outline-3">
+<h3 id="org865c814">9.2 容器库概览</h3>
+<div class="outline-text-3" id="text-org865c814">
+<table id="org2ecc144">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>类型别名</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">iterator</td>
+<td class="org-left">此容器类型的迭代器类型</td>
+</tr>
+
+<tr>
+<td class="org-left">const_iterator</td>
+<td class="org-left">可以读取元素，但不能修改源的迭代器类型</td>
+</tr>
+
+<tr>
+<td class="org-left">size_type</td>
+<td class="org-left">无符号整数类型，足够保存此种容器类型最大可能容器的大小</td>
+</tr>
+
+<tr>
+<td class="org-left">difference_type</td>
+<td class="org-left">带符号整数类型，足够保存两个迭代器之间的距离</td>
+</tr>
+
+<tr>
+<td class="org-left">value_type</td>
+<td class="org-left">元素类型</td>
+</tr>
+
+<tr>
+<td class="org-left">reference</td>
+<td class="org-left">元素的左值类型：与 value_type&amp;含义相同</td>
+</tr>
+
+<tr>
+<td class="org-left">const_reference</td>
+<td class="org-left">元素的 const 左值类型（即，const value_type&amp;）</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>构造函数</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">C c;</td>
+<td class="org-left">默认构造函数，构造孔融其</td>
+</tr>
+
+<tr>
+<td class="org-left">C c1(c2);</td>
+<td class="org-left">构造 c2 的拷贝 c1</td>
+</tr>
+
+<tr>
+<td class="org-left">C c(b, e);</td>
+<td class="org-left">构造 c，将迭代器 b 和 e 指定的范围内的元素拷贝到 c（array 不支持）</td>
+</tr>
+
+<tr>
+<td class="org-left">C c{a, b, c&#x2026;}</td>
+<td class="org-left">列表初始化 c</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>赋值与 swap</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c1 = c2</td>
+<td class="org-left">将 c1 种的元素替换为 c2 中元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c1 = {a, b, c&#x2026;}</td>
+<td class="org-left">将 c1 中的元素替换为列表中的元素（不适用于 array）</td>
+</tr>
+
+<tr>
+<td class="org-left">a.swap(b)</td>
+<td class="org-left">交换 a 和 b 的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">swap(a, b)</td>
+<td class="org-left">与 a.swap(b)等价</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>大小</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.size()</td>
+<td class="org-left">c 中元素的数目（不支持 forward_list）</td>
+</tr>
+
+<tr>
+<td class="org-left">c.max_size()</td>
+<td class="org-left">c 可保存的最大元素数据</td>
+</tr>
+
+<tr>
+<td class="org-left">c.empty()</td>
+<td class="org-left">若 c 中存储了元素，返回 false，否则返回 true</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>添加/删除元素</b> （适用于 array）</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">注：在不同容器中，这些操作的接口都不同</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(args)</td>
+<td class="org-left">将 args 中的元素拷贝进 c</td>
+</tr>
+
+<tr>
+<td class="org-left">c.emplace(inits)</td>
+<td class="org-left">使用 inits 构造 c 中的一个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.erase(args)</td>
+<td class="org-left">删除 args 指定的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.clear()</td>
+<td class="org-left">删除 c 中的所有元素，返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>关系运算符</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>==</code> ， <code>!=</code></td>
+<td class="org-left">所有容器都支持相同（不等）运算符</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;, &lt;=, &gt;, &gt;=</td>
+<td class="org-left">关系运算符（无序关联容器不支持）</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>获取迭代器</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.begin(), c.end()</td>
+<td class="org-left">返回指向 c 的首元素和尾元素之后位置的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.cbegin(), c.end()</td>
+<td class="org-left">返回 const_iterator</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>反向容器的额外成员</b> （不支持 forward_list）</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">reverse_iterator</td>
+<td class="org-left">按逆序寻址元素的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">const_reverse_iterator</td>
+<td class="org-left">不能修改元素的逆序迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.rbegin(), c.rend()</td>
+<td class="org-left">返回指向 c 的尾元素和首元素之前位置的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.crbegin(), c.crend()</td>
+<td class="org-left">返回 const_reverse_iterator</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgf31a089" class="outline-4">
+<h4 id="orgf31a089">9.2.4 容器定义和初始化</h4>
+<div class="outline-text-4" id="text-orgf31a089">
+</div>
+<div id="outline-container-org05c0867" class="outline-5">
+<h5 id="org05c0867">将一个容器初始化为另一个容器的拷贝</h5>
+<div class="outline-text-5" id="text-org05c0867">
+<p>
+为了创建一个容器为另一个容器的拷贝，两个容器的类型及其元素类型必须匹配。不过，当传递迭代器参数来拷贝一个范围时，就不要求容器类型是相同的了。而且，新容器和原容器中的元素类型也可以不同，只要能将要拷贝的元素转换为要初始化的容器的元素类型即可。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27599;&#20010;&#23481;&#22120;&#26377;&#19977;&#20010;&#20803;&#32032;&#65292;&#29992;&#32473;&#23450;&#30340;&#21021;&#22987;&#21270;&#22120;&#36827;&#34892;&#21021;&#22987;&#21270;</span>
+<span style="color: #ECBE7B;">list</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">authors</span> = {<span style="color: #98be65;">"Milton"</span>, <span style="color: #98be65;">"Shakespeare"</span>, <span style="color: #98be65;">"Austen"</span>};
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">char</span>*&gt; <span style="color: #dcaeea;">articles</span> = {<span style="color: #98be65;">"a"</span>, <span style="color: #98be65;">"a"</span>, <span style="color: #98be65;">"the"</span>};
+
+<span style="color: #ECBE7B;">list</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">list2</span>(authors);       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#31867;&#22411;&#21305;&#37197;</span>
+<span style="color: #ECBE7B;">deque</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">authList</span>(authors);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#23481;&#22120;&#31867;&#22411;&#19981;&#21305;&#37197;</span>
+<span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">words</span>(articles);    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#23481;&#22120;&#31867;&#22411;&#24517;&#39035;&#21305;&#37197;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#21487;&#20197;&#23558;const char*&#20803;&#32032;&#36716;&#25442;&#20026;string</span>
+<span style="color: #ECBE7B;">forward_list</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">words</span>(articles.begin(), articles.end());
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6348075" class="outline-5">
+<h5 id="org6348075">与顺序容器大小相关的构造函数</h5>
+<div class="outline-text-5" id="text-org6348075">
+<p>
+除了与关联容器相同的构造函数外，顺序容器（array 除外）还提供另一个构造函数，它接受一个容器大小和一个（可选的）元素初始值。如果我们不提供元素初始值，则标准库会创建一个值初始化器：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">ivec</span>(<span style="color: #da8548; font-weight: bold;">10</span>, -<span style="color: #da8548; font-weight: bold;">1</span>);
+<span style="color: #ECBE7B;">list</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">svec</span>(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #98be65;">"hi!"</span>);
+<span style="color: #ECBE7B;">forward_list</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">ivec</span>(<span style="color: #da8548; font-weight: bold;">10</span>);
+<span style="color: #ECBE7B;">deque</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">svec</span>(<span style="color: #da8548; font-weight: bold;">10</span>);
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1ec0ab0" class="outline-5">
+<h5 id="org1ec0ab0">标准库 array 具有固定大小</h5>
+<div class="outline-text-5" id="text-org1ec0ab0">
+<p>
+与内置数组一样，标准库 array 的大小也是类型的一部分。当定一个 array 时，除了指定元素类型，还要真定容器大小：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">array</span>&lt;<span style="color: #ECBE7B;">int</span>, <span style="color: #da8548; font-weight: bold;">42</span>&gt;        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31867;&#22411;&#20026;&#65306;&#20445;&#23384;42&#20010;int&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">array</span>&lt;<span style="color: #ECBE7B;">string</span>, <span style="color: #da8548; font-weight: bold;">10</span>&gt;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31867;&#22411;&#20026;&#65306;&#20445;&#23384;10&#20010;string&#30340;&#25968;&#32452;</span>
+</pre>
+</div>
+
+<p>
+为了使用 array 类型，我们必须同时指定元素类型和大小。
+</p>
+
+<p>
+由于大小时 array 类型的一部分，array 不支持普通的容器构造函数。这些构造函数都会确定容器的大喜爱，要么隐式地，要么显式地。而允许用户向一个 array 构造函数传递大小参数，最好情况下也是多余的，而且容器出错。
+</p>
+
+<p>
+值得注意的是，虽然我们不能对内置数组类型进行拷贝或对象赋值操作，但 array 无此限制。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">digs</span>[<span style="color: #da8548; font-weight: bold;">10</span>] = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">cpy</span>[<span style="color: #da8548; font-weight: bold;">10</span>] = digs;          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#20869;&#32622;&#25968;&#32452;&#19981;&#25903;&#25345;&#25335;&#36125;&#25110;&#36171;&#20540;</span>
+<span style="color: #ECBE7B;">array</span>&lt;<span style="color: #ECBE7B;">int</span>, <span style="color: #da8548; font-weight: bold;">10</span>&gt; <span style="color: #dcaeea;">digits</span> = {<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #ECBE7B;">array</span>&lt;<span style="color: #ECBE7B;">int</span>, <span style="color: #da8548; font-weight: bold;">10</span>&gt; <span style="color: #dcaeea;">copy</span> = digits;    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#21482;&#35201;&#25968;&#32452;&#31867;&#22411;&#21305;&#37197;&#21363;&#21512;&#27861;</span>
+</pre>
+</div>
+
+<p>
+与其他容器一样，array 也要求初始值的类型必须与要创建的容器类型相同。此外 array 要求元素类型和大小也都一样，因为大小时 array 类型的一部分。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga5920e7" class="outline-4">
+<h4 id="orga5920e7">9.2.5 赋值和 swap</h4>
+<div class="outline-text-4" id="text-orga5920e7">
+<table id="org612d10b">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">c1=c2</td>
+<td class="org-left">将 c1 中的元素替换为 c2 中元素的拷贝。c1 和 c2 必须具有相同的类型</td>
+</tr>
+
+<tr>
+<td class="org-left">c={a,b,c&#x2026;}</td>
+<td class="org-left">将 c1 中元素替换为初始化列表中元素的拷贝（array 不适用）</td>
+</tr>
+
+<tr>
+<td class="org-left">swap(c1,c2)</td>
+<td class="org-left">交换 c1 和 c2 中的元素。c1 和 c2 必须具有相同的类型。swap 通常比从 c2 向 c1 拷贝元素快得多</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">assign 操作不适用于关联容器和 array</td>
+</tr>
+
+<tr>
+<td class="org-left">seq.assign(b,e)</td>
+<td class="org-left">将 seq 中的元素替换为迭代器 b 和 e 所表示的范围中的元素。迭代器 b 和 e 不能指向 seq 中的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">seq.assign(il)</td>
+<td class="org-left">将 seq 中的元素替换为初始化列表 il 中的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">seq.assign(n,t)</td>
+<td class="org-left">将 seq 中的元素替换为 n 个值为 t 的元素</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+赋值相关运算会导致指向左边容器内部的迭代器、引用和指针失效。而 swap 操作将容器内容交换不会导致指向容器的迭代器、引用和指针失效（容器类型为 array 和 string 的情况除外。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org515083a" class="outline-5">
+<h5 id="org515083a">使用 assign（仅顺序容器）</h5>
+<div class="outline-text-5" id="text-org515083a">
+<p>
+赋值运算符要求左边和右边的运算对象具有相同的类型。它将右边运算对象中所有元素拷贝到左边运算对象中。顺序容器（array 除外）还定义了一个名为 assign 的成员，允许我们从一个不同但相容的类型赋值，或者从容器的子序列赋值。assign 操作用参数所指定的元素（的拷贝）替换左边容器中的所有元素。
+</p>
+</div>
+</div>
+<div id="outline-container-org497f7e2" class="outline-5">
+<h5 id="org497f7e2">使用 swap</h5>
+<div class="outline-text-5" id="text-org497f7e2">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+除 array 外，swap 不对任何元素进行拷贝、删除或插入操作，因此可以保证在常数时间内完成。
+</p>
+</blockquote>
+
+<p>
+元素不会被移动的事实意味着，除 string 外，指向容器的迭代器、引用和指针在 swap 操作之后都不会失效。它们仍指向 swap 操作之前所指向的那些元素。但在 swap 之后，这些元素已经属于不同的容器了。与其他容器不同，对一个 string 调用 swap 会导致迭代器、引用和指针失效。
+</p>
+
+<p>
+与其他容器不同，swap 两个 array 会真正交换它们的元素。因此，交换两个 array 所需的时间与 array 中元素的数目成正比。
+</p>
+
+<p>
+因此，对于 array，在 swap 操作之后，指针、引用和迭代器所绑定的元素保持不变，但元素值已经与另一个 array 中对应元素的值进行了交换。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3a027c9" class="outline-4">
+<h4 id="org3a027c9">9.2.7 关系运算符</h4>
+<div class="outline-text-4" id="text-org3a027c9">
+<p>
+每个容器类型都支持相等运算符（ <code>==</code> 和 <code>!=</code> ）；除了无须关联容器外的所有容器都支持关系运算符（&gt;、&gt;=、&lt;、&lt;=）。关系运算符左右两边的运算对象必须是相同类型的容器，且必须保存相同类型的元素。
+</p>
+
+<p>
+比较两个容器实际上是进行元素的逐对比较。这些运算符的工作方式与 string 的关系运算类型：
+</p>
+<ul class="org-ul">
+<li>如果两个容器具有相同大小且所有元素都两两对应相等，则这两个容器相等；否则两个容器不等。</li>
+<li>如果两个容器大小不同，但较小容器中每个元素都等于较大容器的对应元素，则较小容器小于较大容器。</li>
+<li>如果两个容器都不是另一个容器的前缀子序列，则它们的比较结果取决于第一个不相等的元素的比较结果。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f5ff45" class="outline-4">
+<h4 id="org7f5ff45">容器的关系运算符使用元素的关系运算符完成比较</h4>
+<div class="outline-text-4" id="text-org7f5ff45">
+<p>
+容器的相等运算符实际上是使用元素的==运算符实现比较的，而其他关系运算符是使用元素的&lt;运算符。如果元素类型不支持所需运算符，那么保存这种元素的容器就不能使用相等的关系运算。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ebc477" class="outline-3">
+<h3 id="org3ebc477">9.3 顺序容器操作</h3>
+<div class="outline-text-3" id="text-org3ebc477">
+<p>
+顺序容器和关联容器的不同之处在于两者组织元素的方式。这些不同指出着接关系到了元素如果存储、访问、添加以及删除。
+</p>
+</div>
+<div id="outline-container-orga1d6ca8" class="outline-4">
+<h4 id="orga1d6ca8">9.3.1 向顺序容器添加元素</h4>
+<div class="outline-text-4" id="text-orga1d6ca8">
+<p>
+除 array 外，所有标准库容器都提供灵活的内存管理。在运行时可以动态添加或删除元素来改变容器大小。下表列出了向顺序容器（非 array）添加元素的操作。
+</p>
+<table id="orgadc1f82">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些操作会改变容器的大小；array 不支持这些操作</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">forward_list 有自己转有版本的 insert 和 emplace</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">forward_list 不支持 push_back 和 emplace_back</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">vector 和 string 不支持 push_front 和 emplace_front</td>
+</tr>
+
+<tr>
+<td class="org-left">c.push_back(t)</td>
+<td class="org-left">在 c 的尾部创建一个值为 t 或由 args 创建的元素。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">c.emplace_back(args)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.push_front(t)</td>
+<td class="org-left">在 c 的头部创建一个值为 t 或由 args 创建的元素。返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">c.emplace_front(args)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(p,t)</td>
+<td class="org-left">在迭代器 p 指向的元素之前创建一个值为 t 或由 args 创建的元素。返回指向新添加的元素的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.emplace(p,args)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(p,n,t)</td>
+<td class="org-left">在迭代器 p 指向的元素之前插入 n 个值为 t 的元素。返回指向新添加的第一个元素的迭代器；若 n 为 0，则返回 p</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(p,b,e)</td>
+<td class="org-left">将迭代器 b 和 e 指定的范围内的元素插入到迭代器 p 指向的元素之前。b和 e 不能指向 c 中的元素。返回指向新添加的第一个元素的迭代器；若范围为空，则返回 p</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(p,il)</td>
+<td class="org-left">il 是一个花括号包围的元素值列表。将这些给定值插入到迭代器 p 指向的元素之前。返回指向新添加的第一个元素的迭代器；若列表为空，则返回 p</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+向 vector、string 或 deque 插入元素会使所有指向容器的迭代器、引用和指针失效。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+关键概念：容器元素是拷贝
+</p>
+
+<p>
+当我们用一个对象来初始化容器时，或将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝，而不是对象本身。就像我们将一个对象传递给非引用参数一样，容器中的元素与提供值的对象之间没有任何关系。随后对容器中的元素的任何改变都不会影响到原始对象，反之亦然。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org086f3f5" class="outline-5">
+<h5 id="org086f3f5">在容器中的特定位置添加元素</h5>
+<div class="outline-text-5" id="text-org086f3f5">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+将元素插入到 vector、deque 和 string 中的任何位置都是合法的。然而，这样做可能很耗时。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org78703e8" class="outline-5">
+<h5 id="org78703e8">插入范围内元素</h5>
+<div class="outline-text-5" id="text-org78703e8">
+<p>
+新标准下，接受元素个数或范围 insert 版本返回指向第一个新加入元素的迭代器。（在旧版本的标准库中，这些操作返回 void）。如果范围为空，不插入任何元素，insert 操作会将第一个参数返回。
+</p>
+</div>
+</div>
+<div id="outline-container-org0c2f82c" class="outline-5">
+<h5 id="org0c2f82c">使用 insert 的返回值</h5>
+<div class="outline-text-5" id="text-org0c2f82c">
+<p>
+通过使用 insert 的返回值，可以在容器中一个特定位置反复插入元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">list</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">lst</span>;
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">iter</span> = lst.begin();
+<span style="color: #51afef;">while</span> (cin &gt;&gt; word)
+  iter = iter.insert(iter, word);     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#20215;&#20110;&#35843;&#29992;push_front</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d4761f" class="outline-5">
+<h5 id="org4d4761f">使用 emplace 操作</h5>
+<div class="outline-text-5" id="text-org4d4761f">
+<p>
+新标准引入了三个新成员——emplace_front、emplace 和 emplace_back，这些操作构造而不是拷贝元素。这些操作分别对应 push_front、insert 和 push_back，允许我们将元素防止在容器头部、一个指定位置之前或容器尾部。
+</p>
+
+<p>
+当我们调用一个 emplace 成员函数时，则是将参数传递给元素类型的构造函数。emplace 成员使用这些参数在容器管理的内存空间中直接构造元素。例如，假定 c 保存 Sales_data（参见 7.1.4 节）元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22312;c&#30340;&#26411;&#23614;&#26500;&#36896;&#19968;&#20010;Sales_data&#23545;&#35937;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20351;&#29992;&#19977;&#20010;&#21442;&#25968;&#30340;Sales_data&#26500;&#36896;&#20989;&#25968;</span>
+c.emplace_back(<span style="color: #98be65;">"978-0590353403"</span>, <span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">15.99</span>);
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#27809;&#26377;&#25509;&#21463;&#19977;&#20010;&#21442;&#25968;&#30340;push_back&#29256;&#26412;</span>
+c.push_back(<span style="color: #98be65;">"978-0590353403"</span>, <span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">15.99</span>);
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#21019;&#24314;&#19968;&#20010;&#20020;&#26102;&#30340;Sales_data&#23545;&#35937;&#20256;&#36882;&#32473;push_back</span>
+c.push_back(Sales_data(<span style="color: #98be65;">"978-0590353403"</span>, <span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">15.99</span>));
+</pre>
+</div>
+
+<p>
+其中对 emplace_back 的调用和第二个 push_back 调用都会创建新的 Sales_data 对象。在调用 emplace_back 时，会在容器管理的内存空间中直接创建对象。而调用 push_back 则会创建一个局部临时对象，并将其压入容器中。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+emplace 函数在容器中直接构造元素。传递给 emplace 函数的参数必须与元素类型的构造函数相匹配。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc3865be" class="outline-4">
+<h4 id="orgc3865be">9.3.2 访问元素</h4>
+<div class="outline-text-4" id="text-orgc3865be">
+<table id="orgcc36dcb">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">at 和下表操作只适用于 string、vecotr、deque 和 array。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">back 不适用于 forward_list。</td>
+</tr>
+
+<tr>
+<td class="org-left">c.back()</td>
+<td class="org-left">返回 c 中尾元素的引用。若 c 为空，函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">c.front()</td>
+<td class="org-left">返回 c 中首元素的引用。若 c 为空，函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">c[n]</td>
+<td class="org-left">返回 c 中下标为 n 的元素的引用，n时一个无符号整数。若 n&gt;=c.size()，则函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">c.at(n)</td>
+<td class="org-left">返回下标未 n 的元素的引用。如果下标越界，则抛出一 out_of_range 异常</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+对一个空容器调用 front 和 back，就像使用一个越界的下标一样，是一种验证的程序设计错误。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org5c5dceb" class="outline-5">
+<h5 id="org5c5dceb">访问成员函数返回的时引用</h5>
+<div class="outline-text-5" id="text-org5c5dceb">
+<p>
+在容器中访问元素的成员函数（即，front、back、下标和 at）返回的都是引用。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">if</span> (<span style="color: #51afef; font-weight: bold;">!</span>c.empty()) {
+  c.front() = <span style="color: #da8548; font-weight: bold;">42</span>;      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;42&#36171;&#20104;c&#20013;&#30340;&#31532;&#19968;&#20010;&#20803;&#32032;</span>
+  <span style="color: #51afef;">auto</span> &amp;<span style="color: #dcaeea;">v</span> = c.back();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#33719;&#24471;&#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#20803;&#32032;&#30340;&#24341;&#29992;</span>
+  v = <span style="color: #da8548; font-weight: bold;">1024</span>;            <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25913;&#21464;c&#20013;&#30340;&#20803;&#32032;</span>
+  <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">v2</span> = c.back();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">v2&#19981;&#26159;&#19968;&#20010;&#24341;&#29992;&#65292;&#23427;&#26159;c.back()&#30340;&#19968;&#20010;&#25335;&#36125;</span>
+  v2 = <span style="color: #da8548; font-weight: bold;">0</span>;              <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26410;&#25913;&#21464;c&#20013;&#30340;&#20803;&#32032;</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca5a4cb" class="outline-5">
+<h5 id="orgca5a4cb">下标操作和安全的随机访问</h5>
+<div class="outline-text-5" id="text-orgca5a4cb">
+<p>
+提供快速随机访问的容器（string、vector、deque 和 array）也都提供下标运算符。
+</p>
+
+<p>
+如果我们希望确保下标时合法的，可以使用 at 成员函数。at 成员函数类似下标运算符，但如果下标越界，at 会抛出一个 out_of_range 异常。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3e26178" class="outline-4">
+<h4 id="org3e26178">9.3.3 删除元素</h4>
+<div class="outline-text-4" id="text-org3e26178">
+<table id="org2b11b27">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些操作会改变容器的大小，所以不适用于 array。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">forward_list 有特殊版本的 erase，参见 9.3.4 节</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">forward_list 不支持 pop_back；vector 和 string 不支持 pop_front</td>
+</tr>
+
+<tr>
+<td class="org-left">c.pop_back()</td>
+<td class="org-left">删除 c 中尾元素。若 c 为空，则函数行为未定义。函数返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">c.pop_front()</td>
+<td class="org-left">删除 c 中首元素。若 c 为空，则函数行为未定义。函数返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">c.erase(p)</td>
+<td class="org-left">删除迭代器 p 所指定的元素，返回一个指向被删元素之后元素的迭代器，若 p 指向尾元素，则返回尾后（off-the-end）迭代器。若 p 时尾后迭代器，则函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">c.erase(b,e)</td>
+<td class="org-left">删除迭代器 b 和 e 所指定范围内的元素。返回一个指向最后一个被删元素之后元素的迭代器，若 e 本身就是尾后迭代器，则函数也返回尾后迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.clear()</td>
+<td class="org-left">删除 c 中的所有元素。返回 void</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+删除 deque 中除首尾之外的任何元素都会使所有迭代器、引用和指针失效。指向 vector 和 string 中删除点之后位置的迭代器、引用和指针都会失效。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+删除元素的成员函数并不检查其参数。在删除元素之前，程序员必须确保它（们）是存在的。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org3c008d4" class="outline-4">
+<h4 id="org3c008d4">9.3.4 特殊的 forward_list 操作</h4>
+<div class="outline-text-4" id="text-org3c008d4">
+
+<div class="figure">
+<p><img src="../../../pics/C++/forward_list.png" alt="forward_list.png">
+</p>
+</div>
+
+<p>
+当添加或删除一个元素时，删除或添加的元素之前的那个元素的后继会发生改变。为了添加或删除一个元素，我们需要添加其前驱，以便改变前驱的链接。单是，forward_list 是单向链表。在一个单向链表中，没有简单的方法来获取一个元素的前驱。出于这个原因，在一个 forward_list 中添加或删除元素的操作是通过改变给定元素之后的元素来完成的。这样，我们总是可以访问被添加或删除操作所影响的元素。
+</p>
+
+<p>
+<b>首前</b> 迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素（亦即在链表首元素之前添加删除元素）。
+</p>
+
+<table id="org5b11b62">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">lst.before_begin()</td>
+<td class="org-left">返回指向链表首元素之前的元素迭代器。此迭代器不能解引用。</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.cbefore_begin()</td>
+<td class="org-left">cbefore_begin()返回一个 const_iterator</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.insert_after(p,t)</td>
+<td class="org-left">在迭代器 p 之后的位置插入元素。t是一个对象，n是数量，b和 e 是表示范围的一对迭代器（b和 e 不能指向 lst 内），il 是一个花括号列表。</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.insert_after(p,n,t)</td>
+<td class="org-left">返回一个指向最后一个插入元素的迭代器。如果范围为空，则返回 p。若 p 为尾后迭代器，则函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.insert_after(p,b,e)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.insert_after(p,il)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">emplace_after(p,args)</td>
+<td class="org-left">使用 args 在 p 指定的位置之后创建一个元素。返回一个指向这个新元素的迭代器。若 p 为尾后迭代器，则函数行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.erase_after(p)</td>
+<td class="org-left">删除 p 指向的位置之后的元素，或删除从 b 之后直到但不包含）e之间的元素。</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.erase_after(b,e)</td>
+<td class="org-left">返回一个指向被删元素之后元素的迭代器，若不存在这样的元素，则返回尾后迭代器。如果 p 指向 lst 的尾元素或者一个尾后迭代器，则函数未定义</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orge05ef94" class="outline-4">
+<h4 id="orge05ef94">9.3.5 改变容器大小</h4>
+<div class="outline-text-4" id="text-orge05ef94">
+<table id="org24745f9">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">resize 不适用于 array</td>
+</tr>
+
+<tr>
+<td class="org-left">c.resize(n)</td>
+<td class="org-left">调整 c 的大小为 n 个元素。若 n&lt;c.size()，则多出的元素被丢弃。若必须添加新元素，对新元素进行值初始化</td>
+</tr>
+
+<tr>
+<td class="org-left">c.resize(n,t)</td>
+<td class="org-left">调整 c 的大小为 n 个元素。任何新添加的元素都初始化为值 t</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+如果 resize 缩小容器，则指向被删除元素迭代器、引用和指针都会失效；对 vector、string 或 deque 进行 resize 可能导致迭代器、指针和引用失效。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org30d23d5" class="outline-4">
+<h4 id="org30d23d5">9.3.6 容器操作可能使迭代器失效</h4>
+<div class="outline-text-4" id="text-org30d23d5">
+<p>
+在向容器添加元素后：
+</p>
+<ul class="org-ul">
+<li>如果容器是 vector 或 string，且存储空间被重新分配，则指向容器的迭代器、指针和引用都会失效。如果存储空间未重新分配，指向插入位置之前的元素的迭代器、指针和引用仍有效，但指向插入位置之后元素的迭代器、指针和引用将会失效。</li>
+<li>对于 deque，插入到除首尾位置之外的任何位置都会导致迭代器、指针和引用失效。如果在首尾位置添加元素，迭代器会失效，但指向存在的元素的引用和指针不会失效。</li>
+<li>对于 list 和 forward_list，指向容器的迭代器（包括尾后迭代器和首前迭代器）、指针和引用仍有效。</li>
+</ul>
+
+<p>
+当我们从一个容器中删除元素后，指向被删除元素的迭代器、指针和引用会失效，这应该不会令人惊讶。毕竟，这些元素都已经被销毁了。当我们删除一个元素后：
+</p>
+<ul class="org-ul">
+<li>对于 list 和 forward_list，指向容器其他位置的迭代器（包或尾后迭代器和首前迭代器）、引用和指针仍有效。</li>
+<li>对于 deque，如果在首尾之外的任何位置删除元素，那么指向被删除元素外其他元素的迭代器、引用或指针也会失效。如果是删除 deque 的尾元素，则尾后迭代器也会失效，但其他前迭代器、引用和指针不受影响；如果是删除首元素，这些也不会受影响。</li>
+<li>对于 vector 和 string，指向被删除元素之前的迭代器、引用和指针仍有效。注意：我们删除元素时，尾后迭代器总是会失效。</li>
+</ul>
+
+<blockquote>
+<p>
+建议：管理迭代器
+</p>
+
+<p>
+当你使用迭代器（或指向容器元素的引用或指针）时，最小化要求迭代器必须保持有效的程序片段是一个好的方法。
+</p>
+
+<p>
+由于向迭代器添加元素和从迭代器删除元素的代码可能会使迭代器失效，因此必须保证每次改变容器的操作之后都正确当地重新定位迭代器。这个建议对 vector、string 和 deque 尤为有效。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org1421c68" class="outline-5">
+<h5 id="org1421c68">不要保存 end 返回的迭代器</h5>
+<div class="outline-text-5" id="text-org1421c68">
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+如果在一个循环中插入/删除 deque、string 或 vector 中的元素，不要缓存 end 返回的迭代器。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6cac9d3" class="outline-3">
+<h3 id="org6cac9d3">9.4 vector 对象是如何增长的</h3>
+<div class="outline-text-3" id="text-org6cac9d3">
+<p>
+为了支持快速随机访问，vector 将元素连续存储——每个元素紧挨着前一个元素存储。通常情况下，我们不必关系一个标准库类型是如何实现的，而只需要关系它如何使用。然而，对于 vector 和 string，其部分实现渗透到了接口中。
+</p>
+
+<p>
+假定容器中元素是连续存储的，且容器的大小是可变的，考虑向 vector 或 string 中添加元素会发生什么；如果没有空间容纳新元素，容器不可能简单地将它添加到内存中其他位置——因为元素必须连续存储。容器必须分配新的内存空间来保存已有元素和新元素，将已有元素从旧位置移动到新空间中，然后添加新元素，释放旧存储空间。如果我们每添加一个新元素，vector 就执行一次这样的内存分配和释放操作，性能会慢到不可接受。
+</p>
+
+<p>
+为了避免这种代价，标准库实现者采用了可以减少容器空间重新分配次数的策略。当不得不获取新的内存空间时，vector 和 string 的实现通常会分配比新的空间需求更大的内存空间。容器预留这些空间作为备用，可用来保存更多的新元素。这样，就不需要每次添加新元素都重新分配容器的内存空间了。
+</p>
+
+<p>
+这种分配策略比每次添加元素都重新分配容器内存空间的策略要高效得多。其实际性能也表现得足够好——虽然 vector 在每次重新分配内存空间时都要移动所有元素，但使用此策略后，其扩张操作通常比 list 和 dqeue 还要快。
+</p>
+</div>
+<div id="outline-container-orgd8c87a7" class="outline-4">
+<h4 id="orgd8c87a7">管理容量的成员函数</h4>
+<div class="outline-text-4" id="text-orgd8c87a7">
+<table id="org922dd00">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">shrink_to_fit 只适用于 vector、string 和 deque。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">capacity 和 reserve 只适用于 vector 和 string。</td>
+</tr>
+
+<tr>
+<td class="org-left">c.shrink_to_fit()</td>
+<td class="org-left">请将 capacity()减少为与 size()相同大小</td>
+</tr>
+
+<tr>
+<td class="org-left">c.capacity()</td>
+<td class="org-left">不重新分配内存空间的话，c可以保存多少元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.reserve(n)</td>
+<td class="org-left">分配至少能容纳 n 个元素的内存空间</td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+reserve 并不改变容器中元素的数量，它仅影响 vector 预先分配多大的内存空间
+</p>
+</blockquote>
+
+<p>
+只有当需要的内存空间超过当前容量时，reserve 调用才会改变 vector 的容量。如果需求大小大于当前容量，reserve 至少分配与需求一样大的内存空间（可能更大）。
+</p>
+
+<p>
+如果需求大小小于或等于当前容量，reserve 什么也不做。特别时，当需求大小小于当前容量时，容器不会退回内存空间。因此，在调用 reserve 之后，capacity 将会大于等于传递给 reserve 的参数。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org075d593" class="outline-3">
+<h3 id="org075d593">9.5 额外的 string 操作</h3>
+<div class="outline-text-3" id="text-org075d593">
+</div>
+<div id="outline-container-org47b452f" class="outline-4">
+<h4 id="org47b452f">9.5.1 构造 string 的其他方法</h4>
+<div class="outline-text-4" id="text-org47b452f">
+<table id="org2658679">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">n、len2 和 pos2 都是无符号值</td>
+</tr>
+
+<tr>
+<td class="org-left">string s(cp, n)</td>
+<td class="org-left">s 时 cp 指向的数组中前 n 个字符的拷贝。此数足至少应该包含 n 个字符</td>
+</tr>
+
+<tr>
+<td class="org-left">string s(s2,pos2)</td>
+<td class="org-left">s 时 string s2 从下标 pos2 开始的字符串的拷贝。若 pos2&gt;s2.size()，构造函数的行为未定义</td>
+</tr>
+
+<tr>
+<td class="org-left">string s(s2,pos2,len2)</td>
+<td class="org-left">s 是 string s2 从下标 pos2 开始 len2 个字符的拷贝。若 pos2&gt;s2.size()，构造函数的行为未定义。不管 len2 的值是多少，构造函数至多拷贝 s2.size()-pos2 个字符</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+通常当我们从一个 const char*创建 string 时，指针指向的数组必须以空字符串结尾，拷贝操作遇到空字符时停止。
+</p>
+</div>
+<div id="outline-container-org67dba71" class="outline-5">
+<h5 id="org67dba71">substr 操作</h5>
+<div class="outline-text-5" id="text-org67dba71">
+<table id="orgc8bde88">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">s.substr(pos,n)</td>
+<td class="org-left">返回一个 string，包含 s 中从 pos 开始的那个字符的拷贝、pos 的默认值为 0。即拷贝从 pos 开始的所有字符</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org6441f51" class="outline-4">
+<h4 id="org6441f51">9.5.2 改变 string 的其他方法</h4>
+<div class="outline-text-4" id="text-org6441f51">
+<table id="org42975b2">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">s.insert(pos,args)</td>
+<td class="org-left">在 pos 之前插入 args 指定的字符，pos 可以是一个下标或一个迭代器。接受下标的版本返回一个指向 s 的引用；接受迭代器的版本返回指向第一个插入字符的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">s.erase(pos,len)</td>
+<td class="org-left">删除从位置 pos 开始的 len 个字符。如果 len 被省略，则删除从 pos 开始直接 s 末尾的所有字符。返回一个指向 s 的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">s.assign(args)</td>
+<td class="org-left">将 s 中的字符替换为 args 指定的字符。返回一个指向 s 的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">s.append(args)</td>
+<td class="org-left">将 args 追加到 s。返回一个指向 s 的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">s.replace(range,args)</td>
+<td class="org-left">删除 s 中范围 range 内的字符，替换为 args 指定的字符。range 或者是一个下标和一个长度，或者是一对指向 s 的迭代器。返回一个指向 s 的引用</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">args 可以是下列形式之一；append 和 assign 可以使用所有形式</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">str 不能与 s 相同，迭代器 b 和 e 不能指向 s</td>
+</tr>
+
+<tr>
+<td class="org-left">str</td>
+<td class="org-left">字符串 str</td>
+</tr>
+
+<tr>
+<td class="org-left">str,pos,len</td>
+<td class="org-left">str 从 pos 开始最多 len 个字</td>
+</tr>
+
+<tr>
+<td class="org-left">cp,len</td>
+<td class="org-left">从 cp 指向的字符数组的前（最多）len 个字符</td>
+</tr>
+
+<tr>
+<td class="org-left">cp</td>
+<td class="org-left">cp 指向的以空字符结尾的字符数据</td>
+</tr>
+
+<tr>
+<td class="org-left">n,c</td>
+<td class="org-left">n 个字符 c</td>
+</tr>
+
+<tr>
+<td class="org-left">b,e</td>
+<td class="org-left">迭代器 b 和 e 指定的范围内的字符</td>
+</tr>
+
+<tr>
+<td class="org-left">初始化列表</td>
+<td class="org-left">花括号包围的，以逗号分隔的字符列表</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgba3e73e" class="outline-4">
+<h4 id="orgba3e73e">9.5.3 string 搜索操作</h4>
+<div class="outline-text-4" id="text-orgba3e73e">
+<p>
+string 类每个搜索操作都返回一个 string::size_type 值，表示匹配发生位置的下标。如果搜索失败，则返回一个名为 string::npos 和 static 成员。标准库将 npos 定义为一个 const string::size_type 类型，并初始化为-1.由于 npos 是一个 unsigned 类型，此初始值意味着 npos 等于任何 string 最大的可能大小。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+string 搜索函数返回 string::size_type 值，该类型是一个 unsigned 类型。因此用一个 int 或其他带符号类型来保存这些函数的返回值不是一个好注意。
+</p>
+</blockquote>
+
+<table id="orge2370b4">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">搜索操作返回指定字符差与显的下标，如果未找到噢啊则返回 npos</td>
+</tr>
+
+<tr>
+<td class="org-left">s.find(args)</td>
+<td class="org-left">查找 s 中 args 第一次出现的位置</td>
+</tr>
+
+<tr>
+<td class="org-left">s.rfind(args)</td>
+<td class="org-left">查找 s 中 args 最后一次出现的位置</td>
+</tr>
+
+<tr>
+<td class="org-left">s.find_first_of(args)</td>
+<td class="org-left">在 s 中查找 args 中任何一个字符第一次出现的位置</td>
+</tr>
+
+<tr>
+<td class="org-left">s.find_last_of(args)</td>
+<td class="org-left">在 s 中查找 args 中任何一个字符最后一次出现的位置</td>
+</tr>
+
+<tr>
+<td class="org-left">s.find_first_not_of(args)</td>
+<td class="org-left">在 s 中查找第一个不在 args 中的字符</td>
+</tr>
+
+<tr>
+<td class="org-left">s.find_last_not_of(args)</td>
+<td class="org-left">在 s 中查找最后一个不在 args 中的字符</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b>args 必须是以下形式之一</b></td>
+</tr>
+
+<tr>
+<td class="org-left">c.pos</td>
+<td class="org-left">从 s 中位置 pos 开始查找字符 c，pos 默认未 0</td>
+</tr>
+
+<tr>
+<td class="org-left">s2,pos</td>
+<td class="org-left">从 s 中位置 pos 开始查找字符串 s2，pos 默认为 0</td>
+</tr>
+
+<tr>
+<td class="org-left">cp,pos</td>
+<td class="org-left">从 s 中位置 pos 开始查找指针 cp 指向的以空字符串结尾的 C 风格字符串</td>
+</tr>
+
+<tr>
+<td class="org-left">cp,pos,n</td>
+<td class="org-left">从 s 中位置 pos 开始查找指针 cp 指向的数组的前 n 个字符，pos 和 n 无默认值</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org28841d9" class="outline-4">
+<h4 id="org28841d9">9.5.4 compare 函数</h4>
+<div class="outline-text-4" id="text-org28841d9">
+<table id="org155b4a6">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">s2</td>
+<td class="org-left">比较 s 和 s2</td>
+</tr>
+
+<tr>
+<td class="org-left">pos1,n1,s2</td>
+<td class="org-left">将 s 中从 pos1 开始的 n1 个字符与 s2 进行比较</td>
+</tr>
+
+<tr>
+<td class="org-left">pos1,n1,s2,pos2,n2</td>
+<td class="org-left">将 s 中从 pos1 开始的 n1 个字符与 s2 中从 pos2 开始的 n2 个字符进行比较</td>
+</tr>
+
+<tr>
+<td class="org-left">cp</td>
+<td class="org-left">比较 s 与 cp 指向的以空字符结尾的字符数组</td>
+</tr>
+
+<tr>
+<td class="org-left">pos1,n1,cp</td>
+<td class="org-left">将 s 中从 pos1 开始的 n1 个字符与 cp 指向的以空字符串结尾的字符数组进行比较</td>
+</tr>
+
+<tr>
+<td class="org-left">pos1,n1,cp,n2</td>
+<td class="org-left">将 s 中从 pos1 开始的 n1 个字符与指针 cp 指向的地址开始的 n2 个字符进行比较</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org033ddbb" class="outline-4">
+<h4 id="org033ddbb">9.5.5 数值转换</h4>
+<div class="outline-text-4" id="text-org033ddbb">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果 string 不能转换为一个数值，这些函数抛出一个 invalid_argument 异常。如果转换得到的数值无法用任何类型来表示，则抛出一个 out_of_range 异常。
+</p>
+</blockquote>
+
+<table id="org04b97a1">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">to_string(val)</td>
+<td class="org-left">一组重载函数，返回数值 val 的 string 表示。val 可以是任何算术类型。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">对每个负电类型和 int 或更大的整型，都有相应版本的 to_string。与往常一样，小整形会被提升</td>
+</tr>
+
+<tr>
+<td class="org-left">stoi(s, p, b)</td>
+<td class="org-left">返回 s 的起始子串（表示整数内容）的数值，返回值类型分别是 int、long、unsigned long、long long、unsigned long long。</td>
+</tr>
+
+<tr>
+<td class="org-left">stol(s, p, b)</td>
+<td class="org-left">b 表示转换所用的基数，默认值为 10，。p是 size_t 指针，用来保存 s 中第一个非数值字符的下标，p默认为 0，即，函数不保存下标</td>
+</tr>
+
+<tr>
+<td class="org-left">stoul(s, p, b)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">stoll(s, p, b)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">stoull(s, p, b)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">stof(s. p)</td>
+<td class="org-left">返回 s 的起始子串（表示浮点数内容）的数据，返回值类型分别是 float、double 或 long double。</td>
+</tr>
+
+<tr>
+<td class="org-left">stod(s, p)</td>
+<td class="org-left">参数 p 的作用与整数转换函数中的一样</td>
+</tr>
+
+<tr>
+<td class="org-left">stold(s, p)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf14b541" class="outline-3">
+<h3 id="orgf14b541">9.6 容器适配器</h3>
+<div class="outline-text-3" id="text-orgf14b541">
+<p>
+除了顺序容器外，标准库还定义了三个顺序容器适配器：stack、queue 和 priority_queue。 <b>适配器</b> 是标准库中的一个通用概念。容器、迭代器和函数都有适配器。本质上，一个适配器是一种机制，能使某种事物的行为看起来像另外一种事物一样。一个容器适配器接受一种已有的容器类型，使其行为看起来像一种不同的类型。例如，stack 适配器接受一个顺序容器，并使其操作起来像 stack 一样。
+</p>
+
+<table id="org4d7e6f9">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">size_type</td>
+<td class="org-left">一种类型，足以保存当前类型的最大对象的大小</td>
+</tr>
+
+<tr>
+<td class="org-left">value_type</td>
+<td class="org-left">元素类型</td>
+</tr>
+
+<tr>
+<td class="org-left">container_type</td>
+<td class="org-left">实现适配器的底层容器类型</td>
+</tr>
+
+<tr>
+<td class="org-left">A a;</td>
+<td class="org-left">创建一个名为 a 的空适配器</td>
+</tr>
+
+<tr>
+<td class="org-left">A a(c);</td>
+<td class="org-left">创建一个名为 a 的适配器，带有容器 c 的一个拷贝</td>
+</tr>
+
+<tr>
+<td class="org-left">关系运算符</td>
+<td class="org-left">每个适配器都支持所有关系运算符：==、!=、&lt;、&lt;=、&gt;和&gt;=</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些运算符返回底层容器的比较结果</td>
+</tr>
+
+<tr>
+<td class="org-left">a.empty()</td>
+<td class="org-left">若 a 包含任何元素，返回 false，否额发安徽 true</td>
+</tr>
+
+<tr>
+<td class="org-left">a.size()</td>
+<td class="org-left">返回 a 中的元素数目</td>
+</tr>
+
+<tr>
+<td class="org-left">swap(a,b)</td>
+<td class="org-left">交换 a 和 b 的内容，a和 b 必须有相同的类型，包括底层容器也必须相同</td>
+</tr>
+
+<tr>
+<td class="org-left">a.swap(b)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+对于一个给定的适配器，可以使用哪些容器是有限制的。所有适配器都要求容器具有添加和删除元素的能力。因此，适配器不能构造在 array 之上。类似的，我们也不能用 forward_list 来构造适配器，因为所有适配器都要求容器具有添加、删除以及访问尾元素的能力。stack 只要求 push_back、pop_back 和 back 操作，因此可以使用除 array 和 forward_list 之外的任何之外的任何容器类型来构造 stack。queue 适配器要求 back、push_back、front 和 push_front，因此它可以构造于 list 或 deque 之上，但不能基于 vector 构造，priority_queue 除了 front、push_back 和 pop_back 操作之外还要求随机访问能力，因此它可以构造于 vector 或 deque 之上，但不能基于 list 构造。
+</p>
+</div>
+<div id="outline-container-org9861047" class="outline-5">
+<h5 id="org9861047">栈适配器</h5>
+<div class="outline-text-5" id="text-org9861047">
+<table id="org39649a4">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">栈默认基于 deque 实现，也可以在 list 或 vector 之上实现</td>
+</tr>
+
+<tr>
+<td class="org-left">s.pop()</td>
+<td class="org-left">删除栈顶元素，但不返回该元素值</td>
+</tr>
+
+<tr>
+<td class="org-left">s.push(item)</td>
+<td class="org-left">创建一个新元素压入栈顶，该元素通过拷贝或移动 item 而来，或者由 args 构造</td>
+</tr>
+
+<tr>
+<td class="org-left">s.emplace(args)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">s.top()</td>
+<td class="org-left">返回栈顶元素，但不将元素弹出栈</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgae460b0" class="outline-5">
+<h5 id="orgae460b0">队列适配器</h5>
+<div class="outline-text-5" id="text-orgae460b0">
+<table id="org5840ff9">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">queue 默认基于 deque，priority_queue 默认基于 vector 实现；</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">queue 也可以使用 list 或 vector 实现，priority_queue 也可以用 deque 实现</td>
+</tr>
+
+<tr>
+<td class="org-left">q.pop()</td>
+<td class="org-left">删除 queue 的首元素或 priority_queue 的最高优先级的元素，但不返回此元素</td>
+</tr>
+
+<tr>
+<td class="org-left">q.front()</td>
+<td class="org-left">返回首元素或尾元素，但不删除此元素</td>
+</tr>
+
+<tr>
+<td class="org-left">q.back()</td>
+<td class="org-left">只适用于 queue</td>
+</tr>
+
+<tr>
+<td class="org-left">q.top()</td>
+<td class="org-left">返回最高优先级元素，但不删除该元素</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">只适用于 priority_queue</td>
+</tr>
+
+<tr>
+<td class="org-left">q.push(item)</td>
+<td class="org-left">在 queue 末尾或 priority_queue 中恰当的位置创建有高 ieyuansu，其值为 item，或者由 args 构造</td>
+</tr>
+
+<tr>
+<td class="org-left">q.emplace(args)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6fe430a" class="outline-2">
+<h2 id="org6fe430a">第 10 章 泛型算法</h2>
+<div class="outline-text-2" id="text-org6fe430a">
+<p>
+顺序容器只定义了很少的操作：在多数情况下，我们可以添加和删除元素、访问首尾元素、确定容器是否为空以及获得指向首元素或尾元素之后位置的迭代且。
+</p>
+
+<p>
+我们可以向想像用户还希望做其他很多有用的操作：查找特定元素、替换或删除一个特定值、重排元素顺序等。
+</p>
+
+<p>
+标准库并未给每个容器都定义成员函数来实现这些操作，而是定义了一组 <b>泛型算法</b> ：称它们为“算法”，是因为它们实现了一些经典算法的公共接口，如排序和搜索；成它们是”泛型的“，是因为它们可以用于不同类型的元素和多种容器类型（不仅包括标准库类型，如 vector 或 list，还包括内置的数组类型），以及我们将看到的，还能用于其他类型的序列。
+</p>
+</div>
+<div id="outline-container-orgba112a4" class="outline-3">
+<h3 id="orgba112a4">10.1 概述</h3>
+<div class="outline-text-3" id="text-orgba112a4">
+<p>
+大多数算法都定义在头文件 algorithm 中。标准库还在头文件 numeric 中定义了一组数值泛型算法。
+</p>
+
+<p>
+一般情况下，这些算法并不值接操作容器，而是编译由两个迭代器指定的一个元素范围来进行操作。通常情况下，算法遍历范围，对其中每个元素进行一些处理。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd926f45" class="outline-3">
+<h3 id="orgd926f45">10.2 初识泛型算法</h3>
+<div class="outline-text-3" id="text-orgd926f45">
+</div>
+<div id="outline-container-org78002f6" class="outline-4">
+<h4 id="org78002f6">10.2.1 只读算法</h4>
+<div class="outline-text-4" id="text-org78002f6">
+<p>
+一些算法只读取其输入范围内的元素，而从不改变元素。find 就是这样的一种反法，count 函数也是。
+</p>
+
+<p>
+另一个只读算法是 accumulate，它定义在头文件 numeric 中。accumulate 函数接受三个参数，前两个指出了需要求和的元素的范围，第三个参数是和的初值。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+accumulate 的第三个参数的类型决定了函数中使用哪个加法运算符以及返回值的类型
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org70d80b6" class="outline-5">
+<h5 id="org70d80b6">算法和元素类型</h5>
+<div class="outline-text-5" id="text-org70d80b6">
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+对于只读取而不改变元素的算法，通常最好使用 cbegin()和 cend()。单是，如果你计划使用算法返回的迭代器来改变元素的值，就需要使用 begin()和 end()的结果作为参数。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgd82b832" class="outline-5">
+<h5 id="orgd82b832">操作两个序列的算法</h5>
+<div class="outline-text-5" id="text-orgd82b832">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+哪些值接受一个单一迭代器来表示第二序列的算法，都假定第二个序列至少与第一个序列一样长。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orge0f123f" class="outline-4">
+<h4 id="orge0f123f">10.2.2 写容器元素的算法</h4>
+<div class="outline-text-4" id="text-orge0f123f">
+<p>
+一些算法将新值赋予序列中的元素。当我们使用这类算法时，必须注意确保序列原大小至少不小于我们要求算法写入的元素数目。及诸，算法不会值形容其操作，因此它们自身不可能改变容器的大小。
+</p>
+
+<p>
+一些算法会自己向输入范围写入元素。这些算法本质上并不未显，它们最多写入与给定序列一样多的元素。
+</p>
+
+<blockquote>
+<p>
+关键概念：迭代器参数
+</p>
+
+<p>
+一些算法从两个序列中读取元素。构成这两个序列的元素可以来自于不同类型的容器。而且，两个序列中元素的类型也不要求严格匹配。算法要求的只是能够比较两个序列中的元素。
+</p>
+
+<p>
+操作两个序列的算法之间的区别在于我们如何传递第二个序列。一些算法，例如 equal，接受三个迭代器：前两个表示第一个序列的范围，第三个表示第二个序列中的首元素。其他算法接受四个迭代器：前两个表示第一个序列的范围，后两个表示第二个序列的范围。
+</p>
+
+<p>
+用一个单一迭代器表示第二个序列的算法都假定第二个序列至少与第一个序列一样长。确保算法不会试图访问第二个序列中不存在的元素是程序员的责任。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orgd3620c0" class="outline-5">
+<h5 id="orgd3620c0">算法不检查写操作</h5>
+<div class="outline-text-5" id="text-orgd3620c0">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+向亩的位置迭代器写入数据的算法假定目地位置足够大，能容纳要写入的元素。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org06788c2" class="outline-5">
+<h5 id="org06788c2">介绍 back_inserter</h5>
+<div class="outline-text-5" id="text-org06788c2">
+<p>
+一种保证算法有足够元素空间来容纳输出数据的方法是使用插入迭代器。插入迭代器是一种向容器中添加元素的迭代器。通常情况，当我们通过一个迭代器向容器元素赋值时，只被赋予迭代器指向的元素。而当我们通过一个插入迭代器赋值时，一个与赋值号右侧值相等的元素被添加到了容器中。
+</p>
+
+<p>
+我们将在 10.4.1 节中详细介绍插入迭代器的内容。单是，为了展示如何用算法写入数据，我们现在将使用 <b>back_inserter</b> ，它是定义在头文件 interator 中的一个函数。
+</p>
+
+<p>
+back_inserter 接受一个指向容器的引用，返回一个与该容器绑定的插入迭代器。当我们通过此迭代器赋值时，赋值运算符会调用 push_back 将一个具有给定值的元素添加到容器中
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">vector</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">vec</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31354;&#21521;&#37327;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">it</span> = back_inserter(vec);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36890;&#36807;&#23427;&#36171;&#20540;&#20250;&#23558;&#20803;&#32032;&#28155;&#21152;&#21040;vec&#20013;</span>
+*it = <span style="color: #da8548; font-weight: bold;">42</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">vec&#20013;&#29616;&#22312;&#26377;&#19968;&#20010;&#20803;&#32032;&#65292;&#20540;&#20026;42</span>
+</pre>
+</div>
+
+<p>
+我们常常使用 back_inserter 来创建一个迭代器，作为算法的目的位置来使用。
+</p>
+</div>
+</div>
+<div id="outline-container-orgad805f9" class="outline-5">
+<h5 id="orgad805f9">拷贝算法</h5>
+<div class="outline-text-5" id="text-orgad805f9">
+<p>
+拷贝算法是另一个向目的位置迭代器指向的输出序列中的元素写入数据的算法。此算法接受三个迭代器，前两个表示一个输入范围，第三个表示目的序列的起始位置。此算法将输入范围中的元素拷贝到目的序列中。
+</p>
+
+<p>
+多个算法都提供所谓的“拷贝”版本。这些算法计算新元素的值，但不会将它们防止在输入序列的末尾，而是创建一个新序列保存这些结果。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org50fa00e" class="outline-4">
+<h4 id="org50fa00e">10.2.3 重排容器元素的算法</h4>
+<div class="outline-text-4" id="text-org50fa00e">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+标准库算法对迭代器而不是容器进行操作，因此不能（直接）添加或删除元素。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb2ac4be" class="outline-3">
+<h3 id="orgb2ac4be">10.3 定制操作</h3>
+<div class="outline-text-3" id="text-orgb2ac4be">
+</div>
+<div id="outline-container-orgac2f22d" class="outline-4">
+<h4 id="orgac2f22d">10.3.1 向算法传递函数</h4>
+<div class="outline-text-4" id="text-orgac2f22d">
+</div>
+<div id="outline-container-orge817e66" class="outline-5">
+<h5 id="orge817e66">谓词</h5>
+<div class="outline-text-5" id="text-orge817e66">
+<p>
+谓词是一个可调用的表达式，其返回结果是一个能用作条件的值。标准库苏阿法所使用的谓词分为两类： <b>一元谓词</b> （意味着它们值接受单一参数）和 <b>二元谓词</b> （意味着它们有两个参数）。接受谓词参数的算法对输入序列中的元素调用谓词。因此，元素类型必须能转换为谓词的参数类型。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3bc31c" class="outline-4">
+<h4 id="orga3bc31c">10.3.2 lambda 表达式</h4>
+<div class="outline-text-4" id="text-orga3bc31c">
+</div>
+<div id="outline-container-org4eba886" class="outline-5">
+<h5 id="org4eba886">介绍 lambda 表达式</h5>
+<div class="outline-text-5" id="text-org4eba886">
+<p>
+我们可以向一个算法传递任何类别的 <b>可调用对象</b> 。对于一个对象或一个表达式，如果可以对其使用调用运算符（参见 1.5.2），则称它为可调用的。
+</p>
+
+<p>
+到目前为止，我们使用过的仅有的两种可调用对象是函数的函数指针。还有其他两种可调用的对象：重载了函数调用运算符的类，我们将在 14.8 节介绍，以及 <b>lambda 表达式</b> 。
+</p>
+
+<p>
+一个 lambda 表达式表示一个可调用的代码单元。我们可以将其理解为一个未命名的内联函数。与任何函数类似，一个 lambda 具有一个返回类型、一个参数列表和一个函数体。但与函数不同，lambda 可能定义在函数内部。一个 lambda 表达式具有如下形式
+</p>
+
+<p>
+<code>[capture list](parameter list) -&gt; return type { function body }</code>
+</p>
+
+<p>
+其中，capture list（捕获列表）是一个 lambda 所在函数中定义的局部变量的列表（通过为空）；return type、parameter list 和 function body 与任何普通函数一样，分别表示返回类型、参数列表和函数体。但是，与普通函数不同，lambda 必须使用尾置返回来指定返回类型。
+</p>
+
+<p>
+我们可以忽略参数列表和返回类型，但必须永远包含捕获列表和函数体
+</p>
+
+<p>
+<code>auto f = [] { return 42; };</code>
+</p>
+
+<p>
+此列中，我们定义了一个可调用对象 f，它不接受参数，返回 42。
+</p>
+
+<p>
+在 lambda 中忽略括号和参数列表等价于指定一个空参数列表。在此例中，当调用 f 时，参数列表是空的。如果忽略返回类型，lambda 根据函数体中的代码推断出返回类型。如果函数体只是一个 return 语句，则返回类型从返回的表达式的类型推断而来，否则返回类型为 void。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果 lambda 的函数体包含任何单一 return 语句之外的内容，且未指定返回类型，则返回 void。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org88cb0e8" class="outline-5">
+<h5 id="org88cb0e8">向 lambda 传递参数</h5>
+<div class="outline-text-5" id="text-org88cb0e8">
+<p>
+与一个普通函数调用类型，调用一个 lambda 时给定的实参被用来初始化 lambda 的形参。通常，实参和形参的类型必须匹配。但与普通函数不同，lambda 不能有默认参数。因此，一个 lambda 调用的实参数目永远与形参数目相等。一旦形参初始化完毕，就可以执行函数体了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1af0ed" class="outline-5">
+<h5 id="orgf1af0ed">使用捕获列表</h5>
+<div class="outline-text-5" id="text-orgf1af0ed">
+<p>
+虽然一个 lambda 可以出现在一个函数中，使用其局部变量，但它只能使用那些明确指明的变量。一个 lambda 通过将局部变量包含在其捕获列表中来指出将会使用这些变量。捕获列表指引 lambda 在其内部包含访问局部变量所需的信息。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">[<span style="color: #a9a1e1;">sz</span>](<span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">a</span>)
+    { <span style="color: #51afef;">return</span> a.size() &gt; sz; };
+</pre>
+</div>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+一个 lambda 只有在其捕获列表中捕获一个它所在函数中的局部变量，才能在函数体中使用该变量。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+捕获列表只有用于局部非 static 变量，lambda 可以值接使用局部 static 变量和它所在函数之外声明的名字。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org6cab6e7" class="outline-4">
+<h4 id="org6cab6e7">10.3.3 lambda 捕获和返回</h4>
+<div class="outline-text-4" id="text-org6cab6e7">
+<p>
+当定义一个 lambda 时，编译器生成一个与 lambda 对应的新的（未命名的）类类型。我们将在 14.8.1 节介绍这种类时如何生成的。目前，可以这样理解，当向一个函数传递一个 lambda 时，同时定义一个新类型和该类型的一个对象；传递的参数就是此编译器生成的类类型的未命名对象。类似的，当使用 auto 定义一个 lambda 初始化的变量时，定义了一个从 lambda 生成的类型的对象。
+</p>
+
+<p>
+默认情况下，从 lambda 生成的类都包含一个对应该 lambda 所捕获的变量的数据成员。类似任何普通类的数据成员，lambda 的数据成员也在 lambda 对象创建时被初始化。
+</p>
+</div>
+<div id="outline-container-org9c32688" class="outline-5">
+<h5 id="org9c32688">值捕获</h5>
+<div class="outline-text-5" id="text-org9c32688">
+<p>
+类似参数传递，变量捕获的方式也可以是值或引用。与传值参数类型，采用值捕获的前提是变量可以拷贝。与参数不同，被捕获的变量的值在 lambda 创建时拷贝，而不是调用时拷贝：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #dcaeea;">fcn1</span> {
+  size_t v1 = <span style="color: #da8548; font-weight: bold;">42</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23616;&#37096;&#21464;&#37327;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;v1&#25335;&#36125;&#21040;&#21517;&#20026;f&#30340;&#21487;&#35843;&#29992;&#23545;&#35937;</span>
+  <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">f</span> = [<span style="color: #a9a1e1;">v1</span>] { <span style="color: #51afef;">return</span> v1; };
+  v1 = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">j</span> = f();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">j&#20026;42&#65307;f&#20445;&#23384;&#20102;&#25105;&#20204;&#21019;&#24314;&#23427;&#26102;v1&#30340;&#25335;&#36125;</span>
+}
+</pre>
+</div>
+
+<p>
+由于被捕获变量的值是在 lambda 创建时拷贝，因此随后对其修改不会影响到 lambda 内对应的值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc2d117c" class="outline-5">
+<h5 id="orgc2d117c">引用捕获</h5>
+<div class="outline-text-5" id="text-orgc2d117c">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #dcaeea;">fcn2</span> {
+  size_t v1 = <span style="color: #da8548; font-weight: bold;">42</span>;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23616;&#37096;&#21464;&#37327;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23545;&#35937;f2&#21253;&#21547;v1&#30340;&#24341;&#29992;</span>
+  <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">f2</span> = [&amp;<span style="color: #dcaeea;">v1</span>] { <span style="color: #51afef;">return</span> v1; };
+  v1 = <span style="color: #da8548; font-weight: bold;">0</span>;
+  <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">j</span> = f2();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">j&#20026;0&#65307;f&#20445;&#23384;v1&#30340;&#24341;&#29992;&#65292;&#32780;&#38750;&#25335;&#36125;</span>
+}
+</pre>
+</div>
+
+<p>
+引用捕获与返回引用有着相同的问题和限制。如果我们采用引用方式捕获一个变量，就必须确保被引用的对象在 lambda 执行的时候是存在的。lambda 捕获的都是局部变量，这些变量在函数结果后就不复存在了。如果 lambda 可能在函数结束后执行，捕获的引用指向的局部变量已经消失。
+</p>
+
+<p>
+我们也可以从一个函数返回 lambda。函数可以值接返回一个可调用对象，或者返回一个类对象，该类含有可调用对象的数据成员。如果函数返回一个 lambda，则与函数不能返回一个局部变量的引用类型四，此 lambda 也不能包含引用捕获。
+</p>
+
+<blockquote>
+<p>
+当以引用方式捕获一个变量时，必须保证在 lambda 执行时变量是存在的。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orga13792d" class="outline-5">
+<h5 id="orga13792d">隐式捕获</h5>
+<div class="outline-text-5" id="text-orga13792d">
+<p>
+除了显式列出我们希望使用的来自所在函数的变量之外，还可以让编译器根据 lambda 体种的代码来推断我们要使用哪些变量。为了指示编译器推断捕获列表，应在捕获列表种写一个&amp;或=。&amp;告诉编译器采用捕获引用方式，=则表示采用值捕获方式。
+</p>
+
+<p>
+如果我们希望对一部分变量采用值捕获，对其他变量采用引用捕获，可以混合使用隐式捕获和显式捕获。
+</p>
+
+<p>
+当我们混合使用隐式捕获和显式捕获时，捕获列表种的第一个元素必须时一个&amp;或=。此符号执行默认捕获方式为引用或值。
+</p>
+
+<p>
+当混合使用隐式捕获和显式捕获时，显式捕获的变量必须使用与隐式捕获不同的方式。即，如果隐式捕获是引用方式（使用了&amp;），则显式捕获命名变量必须采用值方式，因此不能在其名字前使用&amp;。类型的，如果隐式捕获采用的值方式（使用了=），则显式捕获命名变量必须采用引用方式，即，在名字前使用&amp;。
+</p>
+
+<table id="org5c5550d">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">[]</td>
+<td class="org-left">空捕获列表。lambda 不能使用所在函数种的变量。一个 lambda 只有捕获变量后才能使用它们</td>
+</tr>
+
+<tr>
+<td class="org-left">[names]</td>
+<td class="org-left">names 是一个逗号分隔的名字列表，这些名字都是 lambda 所在函数的局部变量。默认情况下，捕获列表种的变量都被拷贝。名字前如果使用了&amp;，则采用引用捕获方式</td>
+</tr>
+
+<tr>
+<td class="org-left">[&amp;]</td>
+<td class="org-left">隐式捕获列表，采用引用捕获方式。lambda 体中所使用的来自所在函数的实体都采用引用方式使用</td>
+</tr>
+
+<tr>
+<td class="org-left">[=]</td>
+<td class="org-left">隐式捕获列表，采用值捕获方式。lambda 体将拷所使用的来自所在函数的实体的值</td>
+</tr>
+
+<tr>
+<td class="org-left">[&amp;, identifier_list]</td>
+<td class="org-left">identifier_list 是一个逗号分隔的列表，包含 0 个或多个来自所在函数的变量。这些变量采用值捕获方式，而任何隐式捕获的变量都采用引用方式捕获。identifier_list 中的名字钱明不能使用&amp;</td>
+</tr>
+
+<tr>
+<td class="org-left">[=, identifier_list]</td>
+<td class="org-left">identifier_list 中的变量都采用引用方式捕获，而任何隐式捕获的变量都采用值方式捕获。identifier_list 中的名字不能包括 this，且这些名字之前必须使用&amp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgad1e7b7" class="outline-5">
+<h5 id="orgad1e7b7">可变 lambda</h5>
+<div class="outline-text-5" id="text-orgad1e7b7">
+<p>
+默认情况下，对于一个值被拷贝的变量，lambda 不会改变其值。如果我们希望能改变一个被捕获的变量的值，就必须在参数列表首加上关键字 mutable。因此可变 lambda 能省略参数列表：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">fcn3</span>() {
+  <span style="color: #ECBE7B;">size_t</span> <span style="color: #dcaeea;">v1</span> = <span style="color: #da8548; font-weight: bold;">42</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23616;&#37096;&#21464;&#37327;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">f&#21487;&#20197;&#25913;&#21464;&#23427;&#25152;&#25429;&#33719;&#30340;&#21464;&#37327;&#30340;&#20540;</span>
+ <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">f</span> = [<span style="color: #a9a1e1;">v1</span>] () <span style="color: #51afef;">mutable</span> { <span style="color: #51afef;">return</span> ++v1; } ;
+ v1 = <span style="color: #da8548; font-weight: bold;">0</span>;
+ <span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">j</span> = f();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">j&#20026;42</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgede50d1" class="outline-5">
+<h5 id="orgede50d1">指定 lambda 返回类型</h5>
+<div class="outline-text-5" id="text-orgede50d1">
+<p>
+当我们需要为一个 lambda 定义返回类型时，必须使用尾置返回类型。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeee3a23" class="outline-4">
+<h4 id="orgeee3a23">10.3.4 参数绑定</h4>
+<div class="outline-text-4" id="text-orgeee3a23">
+<p>
+对于哪种只在一两个地方使用的简单操作，lambda 表达式是最有用的。如果我们需要在很多地方使用相同的操作，通常应该定义一个函数，而不是多次编写相同的 lambda 表达式。类似的，如果一个操作需要很多语句才能完成，通常使用函数更好。
+</p>
+</div>
+<div id="outline-container-orgd278c08" class="outline-5">
+<h5 id="orgd278c08">标准库 bind 函数</h5>
+<div class="outline-text-5" id="text-orgd278c08">
+<p>
+可以将 bind 函数看作一个通用的函数适配器（参见 9.6 节），它接受一个可调用对象，生成一个新的可调用对象来“适应”原对象的参数列表。bind 定义在头文件 functional 中。
+</p>
+
+<p>
+调用 bind 的一般形式为：
+</p>
+
+<p>
+<code>auto newCallable = bind(callable, arg_list);</code>
+</p>
+
+<p>
+其中，newCallable 本身是一个可调用对象，arg_list 是一个逗号分隔的参数列表，对应给定的 callable 的参数。即，当我们调用 newCallable 时，newCallable 会调用 callable，并传递给它 arg_list 中的参数。
+</p>
+
+<p>
+arg_list 中的参数可能包含形如_n 的名字，其中 n 是一个整数。这些参数是“占位符”，表示 newCallable 的参数，他们占据了传递给 newCallable 的参数的“位置”。数值 n 表示生成的可调用对象中参数的位置：_1 为 newCallable 的第一个参数，_2 为第二个参数，依次类推。
+</p>
+</div>
+</div>
+<div id="outline-container-org144021d" class="outline-5">
+<h5 id="org144021d">使用 placeholders 名字</h5>
+<div class="outline-text-5" id="text-org144021d">
+<p>
+名字_n 都定义在一个名为 placeholders 的命名空间中，而这个命名空间本身定义在 std 命名空间值中。为了使用这些名字，两个命名空间都要写上。与我们的其他例子类似，对 bind 的调用代码假定之前已经适当地使用了 using 声明，例如，_1 对应的 using 声明为：
+</p>
+
+<p>
+<code>using std::placeholders::_1;</code>
+</p>
+
+<p>
+对每个占位符名字，我们都必须提供一个单独的 using 声明。编写这样的声明很烦人，也很容易出错。可以使用另外一种不同形式的 using 语句（详细内容在 18.2.2 节中介绍），而不是分别声明每个占位符。如下所示：
+</p>
+
+<p>
+<code>using namespace namespace_name;</code>
+</p>
+
+<p>
+这种形式说明希望所有来自 namespace_name 的名字都可以在我们的程序中直接使用。
+</p>
+</div>
+</div>
+<div id="outline-container-org885a4f9" class="outline-5">
+<h5 id="org885a4f9">bind 的参数</h5>
+<div class="outline-text-5" id="text-org885a4f9">
+<p>
+如前文所述，我们可以用 bind 修正参数的值。更一般的，可以用 bind 绑定给定可调用对象中的参数或重新安排其顺序。例如，假定 f 是一个可调用对象，它有 5 个此哪哈苏，则下面对 bind 的调用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">g&#26159;&#19968;&#20010;&#26377;&#20004;&#20010;&#21442;&#25968;&#30340;&#21487;&#35843;&#29992;&#23545;&#35937;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">g</span> = bind(f, a, b, _2, c, _1);
+</pre>
+</div>
+
+<p>
+生成一个信的可调用对象，它有两个参数，分别用占用符_2 和_1 表示。这个新的可调用对象将他自己的参数作为第三个和第五个参数传递给 f。f 的第一个、第二个和第四个参数分别绑定到给定的值 a、b 和 c 上。
+</p>
+
+<p>
+传递给 g 的参数按位置绑定到占位符。即，第个参数绑定到_1，第二个参数绑定到_2，当我们调用 g 时，其第一个参数将被传递给 f 作为最后一个参数，第二个参数将被传递给 f 作为第三个参数。实际上，这个 bind 调用会将
+</p>
+
+<p>
+<code>g(_1, _2)</code>
+</p>
+
+<p>
+映射为
+</p>
+
+<p>
+<code>f(a, b, _2, c, _2)</code>
+</p>
+
+<p>
+即，对 g 的调用会调用 f，用 g 的参数代替占位符，再加上绑定参数 a、b 和 c。例如，调用 g(X,Y)会调用
+</p>
+
+<p>
+<code>f(a, b, Y, c, X)</code>
+</p>
+</div>
+</div>
+<div id="outline-container-org6c16e3f" class="outline-5">
+<h5 id="org6c16e3f">绑定引用参数</h5>
+<div class="outline-text-5" id="text-org6c16e3f">
+<p>
+默认情况下，bind 的那些不是占位符的参数被拷贝到 bind 返回的可调用对象中。单是，与 lambda 类似，有时对有些绑定的参数我们希望以引用方式传递，或者要绑定参数的类型无法拷贝。例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">os&#26159;&#19968;&#20010;&#23616;&#37096;&#21464;&#37327;&#65292;&#24341;&#29992;&#19968;&#20010;&#36755;&#20986;&#27969;</span>
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">c&#26159;&#19968;&#20010;&#23616;&#37096;&#21464;&#37327;&#65292;&#31867;&#22411;&#20026;char</span>
+<span style="color: #ECBE7B;">ostream</span> &amp;<span style="color: #c678dd;">print</span>(<span style="color: #ECBE7B;">ostream</span> &amp;<span style="color: #dcaeea;">os</span>, <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">string</span> &amp;<span style="color: #dcaeea;">s</span>, <span style="color: #ECBE7B;">char</span> <span style="color: #dcaeea;">c</span>) {
+  <span style="color: #51afef;">return</span> os &lt;&lt; s &lt;&lt; c;
+}
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#19981;&#33021;&#25335;&#36125;os</span>
+for_each(words.begin(), words.end(), bind(print, os, _1, <span style="color: #ECBE7B;">''</span> ));
+</pre>
+</div>
+
+<p>
+如果我们希望传递给 bind 一个对象而又不拷贝它，就必须使用标准库 <b>ref</b> 函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">for_each(words.begin(), words.end(),
+         bind(print, ref(os), _1, <span style="color: #98be65;">' '</span>));
+</pre>
+</div>
+
+<p>
+函数 ref 返回一个对象，包含给定的引用，此对象是可以拷贝的。标准库中还有一个 <b>cref</b> 函数，生成一个保存 const 引用的类。与 bind 一样，函数 ref 和 cref 也定义在头文件 functional 中。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org81b73f0" class="outline-3">
+<h3 id="org81b73f0">10.4 再探迭代器</h3>
+<div class="outline-text-3" id="text-org81b73f0">
+<p>
+除了为每个容器定义的迭代器之外，标准库在头文件 iterator 中还定义了额外几种迭代器。这些迭代器包括以下几种：
+</p>
+<ul class="org-ul">
+<li><b>插入迭代器</b> ：这些迭代器被绑定到一个容器上，可用来向容器插入元素。</li>
+<li><b>流迭代器</b> ：这些迭代器被绑定到输入或输出流上，可用来遍历所关联的 IO 流。</li>
+<li><b>反向迭代器</b> ：这些迭代器向后而不是向前移动。除了 forward_list 之外的标准库容器都有反向迭代器。</li>
+<li><b>移动迭代器</b> ：这些专用的迭代器不是拷贝其中的元素，而是移动它们。我们将在 13.6.2 节介绍移动迭代器。</li>
+</ul>
+</div>
+<div id="outline-container-org8b783f3" class="outline-4">
+<h4 id="org8b783f3">10.4.1 插入迭代器</h4>
+<div class="outline-text-4" id="text-org8b783f3">
+<p>
+插入器是一种适配器（参见 9.6 节），它接受一个容器，生成一个迭代器，能实现向给定容器添加元素。当我们通过一个插入迭代器进行赋值时，该迭代器调用容器操作来想给定容器的指定位置插入一个元素。
+</p>
+
+<table id="org0a9e85a">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">it=t</td>
+<td class="org-left">在 it 指定的当前位置插入值 t。假定 c 是 it 绑定的容器，依赖于插入迭代器的不同种类，此赋值会分别调用 c.push_back(t)、c.push_front(t)或 c.insert(t,p)，其中 p 为传递给 inserter 的迭代器位置</td>
+</tr>
+
+<tr>
+<td class="org-left">*it,++it,it++</td>
+<td class="org-left">这些操作虽然存在，但不会 it 做任何事情。每个操作都返回 it</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+插入器有三种类型，差异再与元素插入的位置：
+</p>
+<ul class="org-ul">
+<li><b>back_inserter</b> 创建一个使用 push_back 的迭代器</li>
+<li><b>front_inserter</b> 创建一个使用 push_front 的迭代器</li>
+<li><b>inserter</b> 创建一个使用 insert 的迭代器。此函数接受第二个参数，这个参数必须是一个指向给定容器的迭代器。元素将被插入到给定迭代器所表示的元素之前。</li>
+</ul>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+只有在容器支持 push_front 的情况下，我们才可以使用 front_inserter。类似的，只有在容器支持 push_back 的情况下，我们才能使用 back_inserter。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgef214a3" class="outline-4">
+<h4 id="orgef214a3">10.4.2 iostream 迭代器</h4>
+<div class="outline-text-4" id="text-orgef214a3">
+<p>
+虽然 iostream 类型不是容器，但标准库定义了可以用于这些 IO 类型对象的迭代器。 <b>istream_iterator</b> 读取输入流， <b>ostream_iterator</b> 向一个输出流写数据。这些迭代器将它们对应的流当作一个特定类型的元素序列来处理。通过使用流迭代器，我们可以用泛型算法从流对象读取数据已经向其写入数据。
+</p>
+</div>
+<div id="outline-container-org5589819" class="outline-5">
+<h5 id="org5589819">istream_iterator 操作</h5>
+<div class="outline-text-5" id="text-org5589819">
+<p>
+当创建一个流迭代器时，必须指定迭代器将要读写的对象类型。一个 istream_iterator 使用&gt;&gt;来读取流。因此，istream_iterator 要读取的类型必须定义了输入运算符。当创建一个 istream_iterator 时，我们可以将它绑定到一个流。当然，我们还可以默认初始化迭代器，这样就创建了一个可以当作尾后值使用的迭代器。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">istream_iterator</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #c678dd;">int_it</span>(cin);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20174;cin&#35835;&#21462;int</span>
+<span style="color: #ECBE7B;">istream_iterator</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">int_eof</span>;       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23614;&#21518;&#36845;&#20195;&#22120;</span>
+<span style="color: #ECBE7B;">ifstream</span> <span style="color: #dcaeea;">in</span>(<span style="color: #98be65;">"afile"</span>);
+<span style="color: #ECBE7B;">istream_iterator</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">str_it</span>(in);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20174;"afile"&#35835;&#21462;&#23383;&#31526;&#20018;</span>
+</pre>
+</div>
+
+<p>
+下面时一个用 istream_iterator 从标准输入读取数据，存入一个 vector 的例子：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">istream_iterator</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #c678dd;">in_iter</span>(cin);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20174;cin&#35835;&#21462;int</span>
+<span style="color: #ECBE7B;">istream_iterator</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">eof</span>;           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">istream&#23614;&#21518;&#36845;&#20195;&#22120;</span>
+<span style="color: #51afef;">while</span> (in_iter != eof)
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20808;&#21518;&#32622;&#36882;&#22686;&#65292;&#20877;&#35299;&#24341;&#29992;</span>
+  vec.push_back(*in_iter++);
+</pre>
+</div>
+
+<table id="orgdebce57">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">istream_iterator&lt;T&gt; in(is);</td>
+<td class="org-left">in 从输入流 is 读取类型为 T 的值</td>
+</tr>
+
+<tr>
+<td class="org-left">istream_iterator&lt;T&gt; end;</td>
+<td class="org-left">读取类型为 T 的值的 istream_iterator 迭代器，表示尾后位置</td>
+</tr>
+
+<tr>
+<td class="org-left">in1 == in2</td>
+<td class="org-left">in1 和 in2 必须读取相同类型。如果它们都是尾后迭代器，或绑定到相同的输入，则两者相等</td>
+</tr>
+
+<tr>
+<td class="org-left">in1 != in2</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">*in</td>
+<td class="org-left">返回从流中读取的值</td>
+</tr>
+
+<tr>
+<td class="org-left">in-&gt;mem</td>
+<td class="org-left">与(*in).mem 的含义相同</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>++in, in++</code></td>
+<td class="org-left">使用元素类型所定义的&gt;&gt;运算符从输入流读取下一个值。与以往一样，前置版本返回一个指向递增后迭代器的引用，后置版本返回旧值</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orge57cd1a" class="outline-5">
+<h5 id="orge57cd1a">istream_iterator 允许使用懒惰求值</h5>
+<div class="outline-text-5" id="text-orge57cd1a">
+<p>
+当我们将一个 istream_iterator 绑定到一个流时，标准库并不保证迭代器立即从流读取数据。具体实现可以推迟从流中读取数据，直到我们使用迭代器时才真正读取。标准库中的实现所保证的是，在我们第一次解引用迭代器之前，从流中读取数据的操作已经完成了。对于大多数程序来说，立即读取还是推迟读取没有什么差别。单是，如果我们创建了一个 istream_iterator，没有使用就销毁了，或者我们正在从两个不同的对象同步读取同一个流，那么何时读取可能就很重要了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8071a70" class="outline-5">
+<h5 id="org8071a70">ostream_iterator 操作</h5>
+<div class="outline-text-5" id="text-org8071a70">
+<p>
+我们可以对任何具有输出运算符（&lt;&lt;运算符）的类型定义 ostream_iterator。当创建一个 ostream_iterator 时，我们可以提供（可选的）第二参数，它是一个字符串，在输出每个元素之后都会打印此字符。此字符串必须时一个 C 风格字符串（即，一个字符串字面常量或者一个指向以空字符结尾的字符数组的指针）。必须将 ostream_iterator 绑定到一个指定的流，不容许空的或表示尾后位置的 ostream_iterator。
+</p>
+
+<table id="orgd657676">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">ostream_iterator&lt;T&gt; out(os);</td>
+<td class="org-left">out 将类型为 T 的值写到输出流 os 中</td>
+</tr>
+
+<tr>
+<td class="org-left">ostream_iterator&lt;T&gt; out(os,d);</td>
+<td class="org-left">out 将类型为 T 的值写到输出流 os 中，每个值后面都输出一个 d。d 指向一个空字符结尾的字符数组</td>
+</tr>
+
+<tr>
+<td class="org-left">out = val</td>
+<td class="org-left">用&lt;&lt;运算符将 val 写入到 out 所绑定的 ostream 中。val 的类型必须与 out 可写的类型兼容</td>
+</tr>
+
+<tr>
+<td class="org-left">*out, <code>++out, out++</code></td>
+<td class="org-left">这些运算符是存在的，但不对 out 做任何事情。每个运算符都返回 out</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org473032e" class="outline-4">
+<h4 id="org473032e">10.4.3 反向迭代器</h4>
+<div class="outline-text-4" id="text-org473032e">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+反向迭代器的目的是表示元素范围、而这些范围是不对称的，这导致一个重要的结果：当我们从一个普通迭代器初始化一个反向迭代器，或是给一个反向迭代器赋值时，结果迭代器与原迭代器指向的并不是相同的元素。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc99b32b" class="outline-3">
+<h3 id="orgc99b32b">10.5 泛型算法结构</h3>
+<div class="outline-text-3" id="text-orgc99b32b">
+<p>
+算法所要求的迭代器操操作可以分为 <b>5 个迭代器类别</b> ，如下表所示。每个算法都会对它的每个迭代器参数指明须提供哪类迭代器。
+</p>
+
+<table id="orgab2827b">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">输入迭代器</td>
+<td class="org-left">只读，不写；单遍扫描，只能递增</td>
+</tr>
+
+<tr>
+<td class="org-left">输出迭代器</td>
+<td class="org-left">只写，不读；单遍扫描，只能递增</td>
+</tr>
+
+<tr>
+<td class="org-left">前向迭代器</td>
+<td class="org-left">可读写；多遍扫猫，只能递增</td>
+</tr>
+
+<tr>
+<td class="org-left">双向迭代器</td>
+<td class="org-left">可读写；多遍扫猫，可递增递减</td>
+</tr>
+
+<tr>
+<td class="org-left">随机访问迭代器</td>
+<td class="org-left">可读写，多遍扫猫，支持全部迭代器运算</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org5a9534c" class="outline-4">
+<h4 id="org5a9534c">10.5.1 5 类迭代器</h4>
+<div class="outline-text-4" id="text-org5a9534c">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+对于向一个算法传递错误类别的迭代器的问题，很多编译器不会给出任何警告或提示。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orge23befb" class="outline-5">
+<h5 id="orge23befb">迭代器类别</h5>
+<div class="outline-text-5" id="text-orge23befb">
+<p>
+<b>输入迭代器</b> ：可以读取序列中的元素。一个与输入迭代器必须支持
+</p>
+<ul class="org-ul">
+<li>用于比较两个迭代器的相等和不相等运算符（==、!=）</li>
+<li>用于推进迭代器的前置和后置递增运算符（++）</li>
+<li>用于读取元素的解引用（×）：解引用只会出现赋值运算符的右侧</li>
+<li>箭头运算符（-&gt;），等价于(*it).member，即，解引用迭代器，并提取对象的成员</li>
+</ul>
+
+<p>
+输入迭代器只用于顺序访问。对于一个输入迭代器，*it++保证是有效的，单递增它可能导致所有其他指向流的迭代器失效。其结果就是，不能保证输入迭代器的状态可以保存下来并用来访问元素。因此输入迭代器只能用于单遍扫描算法。算法 find 和 accumulate 要求输入迭代器；而 istream_iterator 是一种输入迭代器。
+</p>
+
+<p>
+<b>输出迭代器</b> ：可以看作输入迭代器功能上的补集——只写而不读元素。输出迭代器必须支持
+</p>
+<ul class="org-ul">
+<li>用于推进迭代器的前置和后置递增运算（++）</li>
+<li>解引用运算符（*），只出现在赋值运算符的左侧（向一个已解引用的输出迭代器赋值，就是将值写入它所指向的元素）</li>
+</ul>
+
+<p>
+我们只能向一个输出迭代器赋值一次。类似输入迭代器，输出迭代器只能用于单遍扫描算法。用作目的位置的迭代器通常都是输出迭代器。例如，copy 函数的第三个参数就是输出迭代器。ostream_iterator 类型也是输出迭代器。
+</p>
+
+<p>
+<b>前向迭代器</b> ：可以读写元素。这类迭代器只能在序列中沿一个方向移动。前向迭代器支持所有输入和输出迭代器的操作，而且可以多次读写同一个元素。因此，我们可以保存前向迭代器的状态，使用前向迭代器的算法可以对序列进行多遍扫描。算法 repalce 要求前向迭代器，forward_list 上的迭代器是前向迭代器。
+</p>
+
+<p>
+<b>双向迭代器</b> ：可以正向/反向读写序列中的元素。除了支持所有前向迭代器操作之外，双向迭代器还支持前置和后置递减运算符（&#x2013;）。算法 reverse 要求双向迭代器，除了 forward_list 之外，其他前标准库都提供符合双向迭代器要求的迭代器。
+</p>
+
+<p>
+<b>随机访问迭代器</b> ：提供在常量时间内访问弗烈中任意元素的能力。此类迭代器支持双向迭代器的所有功能，此外还支持表 3.7 中的操作：
+</p>
+<ul class="org-ul">
+<li>用于比较两个迭代器相对位置的关系运算符（&lt;、&lt;=、&gt;和&gt;=）</li>
+<li>迭代器和一个整数值的加减运算（+、+=、-和-=），计算结果是迭代器在序列中前进（或后退）给定整数个元素后的位置</li>
+<li>用于两个迭代器上的减法元算符（-），得道两个迭代器的距离</li>
+<li>下标运算符（iter[n]），与*(iter[n])等价</li>
+</ul>
+<p>
+算法 sort 要求随机访问迭代器。array、deque、string 和 vector 的迭代器都是随机访问迭代器，用于访问内置数据元素的指针也是。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org93cc113" class="outline-4">
+<h4 id="org93cc113">10.5.2 算法形参模式</h4>
+<div class="outline-text-4" id="text-org93cc113">
+<p>
+大多数算法具有如下 4 种形式之一：
+</p>
+<ul class="org-ul">
+<li>alg(beg, end, other args);</li>
+<li>alg(beg, end, dest, other args);</li>
+<li>alg(beg, end, beg2, other args);</li>
+<li>alg(beg, end, beg2, end2, other args);</li>
+</ul>
+
+<p>
+其中 alg 是算法的名字，beg 和 end 表示算法所操作的输入范围。几乎所有算法都接受一个输入范围，是否有其他参数依赖于要执行的操作。这里列出了常见的一种——dest、beg2 和 end2,都是迭代器参数。顾名思义，如果用到了这些迭代器参数，它们分别承担指定目的位置和第二个范围的角色。除了这些迭代器参数，一些算法还接受额外的、非迭代器的特定参数。
+</p>
+</div>
+<div id="outline-container-orgbacfaf6" class="outline-5">
+<h5 id="orgbacfaf6">接受单个目标迭代器的算法</h5>
+<div class="outline-text-5" id="text-orgbacfaf6">
+<p>
+dest 参数是一个表示算法可以写入的目的位置的迭代器。算法假定：按其需要写入数据，不管写入多少个元素都是安全的。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+向输出迭代器写入数据的算法都假定目标空间足够容纳写入的数据。
+</p>
+</blockquote>
+
+<p>
+如果 desk 是一个指向容器的迭代器，那么算法将输出数据写到容器种已存在的元素内。更常见的情况是，dest 被绑定到一个插入迭代器或是一个 ostream_iterator。插入迭代器会将新元素添加到容器中，因而保证空间元素是足够的。ostream_iterator 会将数据写入到一个输出流，同样不管要写多少个元素都么有问题。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf43ef4f" class="outline-5">
+<h5 id="orgf43ef4f">接受第二个输入序列的算法</h5>
+<div class="outline-text-5" id="text-orgf43ef4f">
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+接受单独 beg2 的算法假定从 beg2 开始的序列与 beg 和 end 所表示的范围至少一样大。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd9c5f97" class="outline-4">
+<h4 id="orgd9c5f97">10.5.3 算法命名规则</h4>
+<div class="outline-text-4" id="text-orgd9c5f97">
+</div>
+<div id="outline-container-org32fe32a" class="outline-5">
+<h5 id="org32fe32a">一些算法使用重载形式传递一个谓词</h5>
+<div class="outline-text-5" id="text-org32fe32a">
+<p>
+接受谓词参数来代替&lt;或==运算符的算法，以及那些不接受额外参数的算法，通常都是重载的函数。函数的一个版本用元素类型的运算符来比较元素；另一个版本接受一个额外谓词参数，啊里代替&lt;或==。
+</p>
+</div>
+</div>
+<div id="outline-container-orgde9934b" class="outline-5">
+<h5 id="orgde9934b">_if 版本的算法</h5>
+<div class="outline-text-5" id="text-orgde9934b">
+<p>
+接受一个元素值的算法通常有另一个不同名（不是重载的）版本，该版本接受一个谓词代替元素值。接受谓词参数的算法都有附加的_if 前缀。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">find(beg, end, val);       <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26597;&#25214;&#36755;&#20837;&#33539;&#22260;&#20013;val&#31532;&#19968;&#27425;&#20986;&#29616;&#30340;&#20301;&#32622;</span>
+find_if(beg, end, pred);   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26597;&#25214;&#31532;&#19968;&#20010;&#21517;pred&#20026;&#30495;&#30340;&#20803;&#32032;</span>
+</pre>
+</div>
+
+<p>
+这两个算法提供了命名差异的版本，而非重载版本，因为两个版本的算法都接受相同数目的参数。因此可能产生重载歧义。虽然很罕见，但为了避免任何可能的歧义，标准库选择提供不同名字的版本而不是重载。
+</p>
+</div>
+</div>
+<div id="outline-container-org7e90210" class="outline-5">
+<h5 id="org7e90210">区分拷贝元素的版本和不拷贝的版本</h5>
+<div class="outline-text-5" id="text-org7e90210">
+<p>
+默认情况下，重排元素的算法将重排后的元素写回给定的输入序列中。这些算法还提供另一个版本，将元素写到一个指定的输出目的位置。如我们所见，写到额外目的的空间的算法都在名字后面附加了一个_copy（参见 10.2.2 节）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">reverse(beg, end);           <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21453;&#36716;&#36755;&#20837;&#33539;&#22260;&#20013;&#30340;&#20803;&#32032;</span>
+reserve(beg, end, dest);     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;&#20803;&#32032;&#25353;&#36870;&#24207;&#25335;&#36125;&#21040;dest</span>
+</pre>
+</div>
+
+<p>
+一些算法同时提供_copy 和_if 版本。这些版本接受一个目的位置迭代器和一个谓词。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org128f629" class="outline-3">
+<h3 id="org128f629">10.6 特定容器算法</h3>
+<div class="outline-text-3" id="text-org128f629">
+<p>
+与其他容器不同，链表类型 list 和 forward_list 定义了几个成员函数形式的算法，如下表所示。特别是，它们定义了独有的 sort、merge、remove、reverseh 额 unique。通用版本的 sort 要求随机访问迭代器，因此不能用于 list 和 forward_list，因为这两个类型分别提供双向迭代器和前向迭代器。
+</p>
+
+<p>
+链表类型定义的其他算法的通用版本可以用于链接，但代加太高。这些算法需要交换输入序列中的元素。一个列表可以通过改变元素间的链接而不是真的交换它们的值来快速“交换元素”。因此，这些链表版本的算法的性能比对应的通用版本好得多。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+对于 list 和 forward_list，应该优先使用成员函数版本的算法而不是通用算法。
+</p>
+</blockquote>
+
+<table id="orgd41dfd1">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些操作都返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.merge(lst2)</td>
+<td class="org-left">将来自 lst2 的元素合并入 lst。list 和 lst2 都必须是有序的。</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.merge(lst2,comp)</td>
+<td class="org-left">元素将从 lst2 中删除。在合并之后，lst2 变空。第一个版本使用&lt;运算符；第二个版本使用给定的比较操作</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.remove(val)</td>
+<td class="org-left">调用 erase 删除掉与给定值相等（==）或令一元谓词为真的每个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.remove_if(pred)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.reserve()</td>
+<td class="org-left">反转 lst 中元素的顺序</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.sort()</td>
+<td class="org-left">使用&lt;或给定比较操作排序元素</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.sort(comp)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.unique()</td>
+<td class="org-left">调用 erase 删除同一个值的连续拷贝。第一个版本使用==；第二版本使用给定的二元谓词</td>
+</tr>
+
+<tr>
+<td class="org-left">lst.unique(pred)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgb7f049f" class="outline-5">
+<h5 id="orgb7f049f">splice 成员</h5>
+<div class="outline-text-5" id="text-orgb7f049f">
+<p>
+链表类型还定义了 splice 算法，其描述见下表。此算法是链表数据结构所特有的，因此不需要通用版本。
+</p>
+
+<table id="org880a355">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">lst.splice(args)或 flst.splice_after(args)</td>
+</tr>
+
+<tr>
+<td class="org-left">(p, lst2)</td>
+<td class="org-left">p 是一个指向 lst 中元素的迭代器，或一个指向 flst 首前位置的迭代器。函数将 lst2 的所有元素移动到 lst 中 p 之前的位置或是 flst 中 p 之后的位置。将元素从 lst2 中删除。lst2 的类型必须与 lst 或 flst 相同，且不能是同一个链表</td>
+</tr>
+
+<tr>
+<td class="org-left">(p, lst2, p2)</td>
+<td class="org-left">p2 是一个指向 lst2 中位置的有效的迭代器。将 p2 指向的元素移动到 lst 中，或将 p2 之后的元素移动到 flst 中。lst2 可以是与 lst 或 flst 相同的链表</td>
+</tr>
+
+<tr>
+<td class="org-left">(p, lst2, b, e)</td>
+<td class="org-left">b 和 e 必须表示 lst2 中的合法范围。将给定范围中的元素从 lst2 移动到 lst 或 flst。lst2 与 lst（或 flst）可以是相同的链表，但 p 不能指向给定范围中元素</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orga525e06" class="outline-5">
+<h5 id="orga525e06">链表特有的操作会改变容器</h5>
+<div class="outline-text-5" id="text-orga525e06">
+<p>
+多数链表特有的算法都与其通用版本很相似，但不完全相同。链表特有版本与通用版本间的一个至关重要的区别是链表版本会改变底层的容器。例如，remove 的链表版本会删除指定的元素。unique 的链表版本会删除第二个和后继的重复元素。
+</p>
+
+<p>
+类似的 merge 和 splice 会销毁其桉树。例如，通用版本的 mrege 将合并的序列写到一个给定的目的迭代器；两个输入序列是不变的。而链表版本的 merge 函数会销毁给定的链表——元素从参数指定的链表中删除，被合并到调用 merge 的链表对象中。在 merge 之后，来自两个链表的元素仍然存在，但它们都已在同一个链表中。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f573e5" class="outline-2">
+<h2 id="org6f573e5">第 11 章 关联容器</h2>
+<div class="outline-text-2" id="text-org6f573e5">
+<p>
+关联容器支持高效的关键字查找和访问。两个主要的 <b>关联容器</b> 类型是 <b>map</b> 和 <b>set</b> 。map 中的元素是一些关键字-值对；关键字起到索引的作用，值则表示与索引相关联的数据。set 中每个元素只包含一个关键字；set 支持高效的关键字查寻操作——检查一个给定关键字是否在 set 中。
+</p>
+
+<p>
+标准库提供 8 个关联容器，如下表所示。这 8 个容器间的不同体现在三个维度上：每个容器（1）说这是一个 set，或者是一个 map；（2）或者要求不重复的关键字，或者允许重复关键字；（3）按顺序保存元素，或无序保存。允许重复关键字的容器的名字都包含但此 multi；不保存关键字按顺序存储的容器的名字都以 unordered 开头。
+</p>
+
+<p>
+类型 map 和 mulimap 定义在头文件 map 中；set 和 multiset 定义在头文件 set 中；无须容器则定义在头文件 unordered_map 和 unordered_set 中。
+</p>
+
+<table id="orgdfff20c">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b>按关键字有序保存元素</b></td>
+</tr>
+
+<tr>
+<td class="org-left">map</td>
+<td class="org-left">关联数组；保存关键字-值对</td>
+</tr>
+
+<tr>
+<td class="org-left">set</td>
+<td class="org-left">关键字即值，即只保存关键字的容器</td>
+</tr>
+
+<tr>
+<td class="org-left">multimap</td>
+<td class="org-left">关键字可重复出现的 map</td>
+</tr>
+
+<tr>
+<td class="org-left">multiset</td>
+<td class="org-left">关键字可重复出现的 set</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left"><b>无序集合</b></td>
+</tr>
+
+<tr>
+<td class="org-left">unordered_map</td>
+<td class="org-left">用哈希函数组织的 map</td>
+</tr>
+
+<tr>
+<td class="org-left">unordered_set</td>
+<td class="org-left">用哈希函数组织的 set</td>
+</tr>
+
+<tr>
+<td class="org-left">unordered_multimap</td>
+<td class="org-left">哈希组织的 map；关键字可以重复出现</td>
+</tr>
+
+<tr>
+<td class="org-left">unordered_multiset</td>
+<td class="org-left">哈希组织的 set；关键字可以重复出现</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org391ee71" class="outline-3">
+<h3 id="org391ee71">11.1 使用关联容器</h3>
+<div class="outline-text-3" id="text-org391ee71">
+</div>
+<div id="outline-container-orgf86da9b" class="outline-5">
+<h5 id="orgf86da9b">使用 map</h5>
+<div class="outline-text-5" id="text-orgf86da9b">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">map</span>&lt;<span style="color: #ECBE7B;">string</span>, <span style="color: #ECBE7B;">size_t</span>&gt; <span style="color: #dcaeea;">word_count</span>;    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">string&#21040;size_t&#30340;&#31354;map</span>
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">word</span>;
+<span style="color: #51afef;">while</span> (cin &gt;&gt; word)
+  ++word_count[word]          <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#25552;&#21462;word&#30340;&#35745;&#25968;&#22120;&#24182;&#23558;&#20854;&#21152;1</span>
+<span style="color: #51afef;">for</span> (<span style="color: #51afef;">const</span> <span style="color: #51afef;">auto</span> &amp;<span style="color: #dcaeea;">w</span> : word_count)
+  count &lt;&lt; w.first &lt;&lt; <span style="color: #98be65;">" occurs "</span> &lt;&lt; w.second
+        &lt;&lt; ((w.second &gt; <span style="color: #da8548; font-weight: bold;">1</span>) ? <span style="color: #98be65;">" times"</span> : <span style="color: #98be65;">" time"</span>) &lt;&lt; endl;
+</pre>
+</div>
+
+<p>
+当从 map 中提取一个元素时，会得到一个 pair 类型的对象，我们将在 11.2.3 节介绍它。简单来说，pair 是一个模板类型，保存两个名为 first 和 second 的（公有）数据成员。map 所使用的 pair 用 first 成员保存关键字，用 second 成员保存对应值。
+</p>
+</div>
+</div>
+<div id="outline-container-org722ee6b" class="outline-5">
+<h5 id="org722ee6b">使用 set</h5>
+<div class="outline-text-5" id="text-org722ee6b">
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#32479;&#35745;&#36755;&#20837;&#20013;&#27599;&#20010;&#20294;&#27492;&#20986;&#29616;&#30340;&#27425;&#25968;</span>
+<span style="color: #ECBE7B;">map</span>&lt;<span style="color: #ECBE7B;">string</span>, <span style="color: #ECBE7B;">size_t</span>&gt; <span style="color: #dcaeea;">word_count</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">string&#21040;size_t&#30340;&#31354;map</span>
+<span style="color: #ECBE7B;">set</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">exclude</span> = {<span style="color: #98be65;">"The"</span>, <span style="color: #98be65;">"But"</span>, <span style="color: #98be65;">"And"</span>, <span style="color: #98be65;">"Or"</span>&#65292;<span style="color: #98be65;">"An"</span>, <span style="color: #98be65;">"A"</span>,
+                       <span style="color: #98be65;">"the"</span>, <span style="color: #98be65;">"but"</span>, <span style="color: #98be65;">"and"</span>, <span style="color: #98be65;">"or"</span>, <span style="color: #98be65;">"an"</span>, <span style="color: #98be65;">"a"</span>};
+<span style="color: #ECBE7B;">string</span> <span style="color: #dcaeea;">word</span>;
+<span style="color: #51afef;">while</span> (cin &gt;&gt; word)
+  <span style="color: #51afef;">if</span> (exclude.find(word) == exclude.end())
+    ++word_count[word];
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge66c819" class="outline-3">
+<h3 id="orge66c819">11.2 关联容器概述</h3>
+<div class="outline-text-3" id="text-orge66c819">
+<p>
+关联容器（有序的和无序的）都支持<a href="#org865c814">9.2节</a>中介绍的普通普通容器操作。关联容器不支持顺序容器的位置相关的操作，例如 push_front 或 push_back。原因时关联容器中元素时根据关键字存储的，这些操作对关联容器没有意义。而且，关联容器也不支持构造函数或插入操作这些接受一个元素值和一个数量值的操作。
+</p>
+
+<p>
+除了与顺序容器相同的操作之外，关联容器还支持一些顺序容器不支持的操作和类型别名。此外，无序容器还提供一些用来调整哈希性能的操作，我们将在 11.4 节中介绍。
+</p>
+
+<p>
+关联容器的迭代器都是双向的（参见 10.5.1 节）
+</p>
+</div>
+<div id="outline-container-org153712b" class="outline-4">
+<h4 id="org153712b">11.2.1 定义关联容器</h4>
+<div class="outline-text-4" id="text-org153712b">
+<p>
+如前所示，当定义一个 map 时，必须既指明关键字类型又指明值类型；而定义一个 set 时，只需指明关键字类型，因为 set 中没有值。每个关联容器都定义了一个默认构造函数，它创建一个指定类型的空容器。我们也可以将关联容器初始化为另一个同类型容器的拷贝，或时从一个值范围来初始化关联容器，只要这些值快诶又转换为容器所需类型就可以。在新标准下，我们也可以对关联容器进行值初始化：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">map</span>&lt;<span style="color: #ECBE7B;">string</span>, <span style="color: #ECBE7B;">size_t</span>&gt; <span style="color: #dcaeea;">word_count</span>;
+<span style="color: #ECBE7B;">set</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">exclude</span> = {<span style="color: #98be65;">"The"</span>, <span style="color: #98be65;">"But"</span>, <span style="color: #98be65;">"And"</span>, <span style="color: #98be65;">"Or"</span>&#65292;<span style="color: #98be65;">"An"</span>, <span style="color: #98be65;">"A"</span>,
+                       <span style="color: #98be65;">"the"</span>, <span style="color: #98be65;">"but"</span>, <span style="color: #98be65;">"and"</span>, <span style="color: #98be65;">"or"</span>, <span style="color: #98be65;">"an"</span>, <span style="color: #98be65;">"a"</span>};
+<span style="color: #ECBE7B;">map</span>&lt;<span style="color: #ECBE7B;">string</span>, <span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">authors</span> = { {<span style="color: #98be65;">"Joyce"</span>, <span style="color: #98be65;">"James"</span>},
+                                {<span style="color: #98be65;">"Austen"</span>, <span style="color: #98be65;">"Jane"</span>},
+                                {<span style="color: #98be65;">"Dickens"</span>, <span style="color: #98be65;">"Charles"</span>}};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdaf9dde" class="outline-4">
+<h4 id="orgdaf9dde">11.2.2 关键字类型的要求</h4>
+<div class="outline-text-4" id="text-orgdaf9dde">
+<p>
+对于有序容器——map、multimap、set 以及 multiset，关键字类型必须定义元素比较的方法。默认情况下，标准库使用关键字类型的&lt;运算符来比较两个关键字。在集合类型中，关键字类型就是元素类型；在映射类型中，关键字类型是元素的第一部分的类型。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+传递给排序算法的可调用对象（参见 10.3.1 节）必须满足与关键容器中关键字一样的类型要求。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org44c3896" class="outline-5">
+<h5 id="org44c3896">有序容器的关键字类型</h5>
+<div class="outline-text-5" id="text-org44c3896">
+<p>
+可以向一个算法提供我们自己定义的比较操作，与之类似，也可以提供 i 自己定义的操作来代替关键字上的&lt;运算符。所提供的操作必须在关键字类型上定义一个 <b>严格弱序</b> 。可以将严格弱序看作”小于等于“，虽然实际定义的操作可能是一个复杂的函数。无论我们怎么样定义比较函数，它必须具备如下基本性质：
+</p>
+<ul class="org-ul">
+<li>两个关键字不能同时”小于等于“对方；如果 k1”小于等于“k2,那么 k2 绝不能”小于等于“k1</li>
+<li>如果 k1”小于等于“k2，且 k2”小于等于“k3，那么 k1 必须”小于等于“k3.</li>
+<li>如果存在两个关键字，任何一个都不”小于等于“另一个，那么我们称这两个关键字是“等价”的。如果 k1“等价于”k2,且 k2“等价于”k3,那么 k1 必须“等价于”k3.</li>
+</ul>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+在实际编程中，重要的是，如果有一个类型定义了“行为正常”的&lt;运算符，则它可以用作关键字类型。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org8a5cd79" class="outline-5">
+<h5 id="org8a5cd79">使用关键字类型的比较函数</h5>
+<div class="outline-text-5" id="text-org8a5cd79">
+<p>
+用来组织一个容器中元素的操作的类型也是该容器类型的一部分。为了指定使用自定义的操作，必须在定义关联容器类型时提供此操作的类型。如前所述，用尖括号指出要定义哪种类型的容器，自定义的操作类型必须在尖括号中紧跟着元素类型给出。
+</p>
+
+<p>
+在尖括号中出现的每个类型，就仅仅是一个类型而已。当我们创建一个容器（对象）时，才会以构造函数参数的形式提供真正的比较操作（其类型必须与在尖括号中指定的类型相吻合）。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">multiset</span>&lt;Sales_data, <span style="color: #51afef;">decltype</span>(compareIsbn)*&gt;
+     <span style="color: #c678dd;">bookstore</span>(compareIsbn);
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd7caae7" class="outline-4">
+<h4 id="orgd7caae7">11.2.3 pair 类型</h4>
+<div class="outline-text-4" id="text-orgd7caae7">
+<p>
+在介绍关联容器操作之前，我们需要了解名为 <b>pair</b> 的标准库类型，它定义在头文件 utility 中。
+</p>
+
+<p>
+一个 pair 保存两个数据成员。类型容器，pair 是一个用来生成特定类型的模板。当创建一个 pair 时，我们必须提供两个类型名，pair 的数据类型将具有对应的类型。两个类型不要求一样：
+</p>
+
+<p>
+与其他标准库类型不同，pair 的数据成员是 public 的。两个成员分别命名为 first 和 second。
+</p>
+
+<table id="org053849d">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">pair&lt;T1, T2&gt; p;</td>
+<td class="org-left">p 是一个 pair，两个类型分别为 T1 和 T2 的成员都进行了值初始化</td>
+</tr>
+
+<tr>
+<td class="org-left">pair&lt;T1, T2&gt; p(v1, v2)</td>
+<td class="org-left">p 是一个成员类型为 T1 和 T2 的 pair；first 和 second 的成员分别用 v1 和 v2 进行初始化</td>
+</tr>
+
+<tr>
+<td class="org-left">pair&lt;T1, T2&gt;p = (v1, v2);</td>
+<td class="org-left">等价于 p(v1, v2)</td>
+</tr>
+
+<tr>
+<td class="org-left">make_pair(v1, v2)</td>
+<td class="org-left">返回一个用 v1 和 v2 初始化的 pair。pair 的类型从 v1 和 v2 的类型推断出来</td>
+</tr>
+
+<tr>
+<td class="org-left">p.first</td>
+<td class="org-left">返回 p 的名为 first 的（公有）数据成员</td>
+</tr>
+
+<tr>
+<td class="org-left">p.second</td>
+<td class="org-left">返回 p 的名为 second 的（公有）数据成员</td>
+</tr>
+
+<tr>
+<td class="org-left">p1 relop p2</td>
+<td class="org-left">关系运算符（&lt;、&gt;、&lt;=、&gt;=）按字典序定义：例如，当 p1.first &lt; p2.first 或!(p2.first &lt; p1.first) &amp;&amp; p1.second &lt; p2.second 成立时，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">p1 &lt; p2 为 true。关系运算符利用元素的&lt;运算符来实现</td>
+</tr>
+
+<tr>
+<td class="org-left">p1 == p2</td>
+<td class="org-left">当 first 和 second 成员分别相等时，两个 pair 相等。相等性判断利用元素的==运算符来实现</td>
+</tr>
+
+<tr>
+<td class="org-left">p1 != p2</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgd442b98" class="outline-5">
+<h5 id="orgd442b98">创建 pair 对象的函数</h5>
+<div class="outline-text-5" id="text-orgd442b98">
+<p>
+在新标准下，我们可以对返回值进行列表初始化。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgebb85bb" class="outline-3">
+<h3 id="orgebb85bb">11.3 关联容器操作</h3>
+<div class="outline-text-3" id="text-orgebb85bb">
+<table id="orgc24dd8a">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">key_type</td>
+<td class="org-left">此容器类型的关键字类型</td>
+</tr>
+
+<tr>
+<td class="org-left">mapped_type</td>
+<td class="org-left">每个关键字关联的类型；只适用于 map</td>
+</tr>
+
+<tr>
+<td class="org-left">value_type</td>
+<td class="org-left">对于 set，与 key_type 相同</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">对于 map，为 pair&lt;const key_type, mapped_type&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgd1f10b9" class="outline-4">
+<h4 id="orgd1f10b9">11.3.1 关联容器迭代器</h4>
+<div class="outline-text-4" id="text-orgd1f10b9">
+<p>
+当解引用一个关联容器迭代器时，我们会得到一个类型为容器的 value_type 的值的引用。对 map 而言，value_type 是一个 pair 类型，其 first 成员保存 const 的关键字，second 成员保存至。
+</p>
+
+<blockquote>
+<p>
+必须记住，一个 map 的 value_type 是一个 pair，我们可以改变 pair 的值，但不能改变关键字成员的值。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-orga00eb05" class="outline-5">
+<h5 id="orga00eb05">set 的迭代器是 const 的</h5>
+<div class="outline-text-5" id="text-orga00eb05">
+<p>
+虽然 set 类型同时定义了 iterator 和 const_iterator 类型，但两种类型都只允许只读访问 set 中的元素。与不能改变一个 map 元素的关键字一样，一个 set 中的关键字也是 const 的。可以用一个 set 迭代器来读取元素的值，但不能修改。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9a3d33" class="outline-5">
+<h5 id="orgd9a3d33">遍历关联容器</h5>
+<div class="outline-text-5" id="text-orgd9a3d33">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+当使用一个迭代器遍历一个 map、multimap、set 或 multiset 时，迭代器按关键字升序遍历元素。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgaca57ec" class="outline-5">
+<h5 id="orgaca57ec">关联容器和算法</h5>
+<div class="outline-text-5" id="text-orgaca57ec">
+<p>
+我们通常不对关键容器使用泛型算法。关键字 const 这一特性意味着不能将关联容器传递给修改或重排容器元素的算法，因为这类算法需要向元素写入值，而 set 类型中的元素时 const 的，map 中的元素是 pair，其第一个成员是 const 的。
+</p>
+
+<p>
+关联容器可用于只读取元素的算法。但是很多这类算法都要搜索序列。由于关联容器中的元素不能通过它们的关键字进行（快速）查找，因此对其使用泛型搜索算法几乎总是一个坏注意。
+</p>
+
+<p>
+在实际编程中，如果我们真要对一个关联容器使用算法，要么将它当作一个源序列，要么当作一个目的位置。例如，可以用泛型 copy 算法将元素从一个关联容器拷贝到另一个序列。类似的，可以调用 inserter 将一个插入器绑定到一个关联容器。通过 inserter，我们可以将关联容器当作一个目的位置来调用另一个算法。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org25d53ca" class="outline-4">
+<h4 id="org25d53ca">11.3.2 添加元素</h4>
+<div class="outline-text-4" id="text-org25d53ca">
+<p>
+关联容器的 insert 成员向容器中添加一个元素或一个元素范围。由于 map 和 set（以及对应的无序类型）包含不重复的关键字，因此插入一个已存在的元素对容器没有任何影响。
+</p>
+</div>
+<div id="outline-container-orge362401" class="outline-5">
+<h5 id="orge362401">向 map 添加元素</h5>
+<div class="outline-text-5" id="text-orge362401">
+<p>
+对一个 map 进行 insert 操作时，必须记住元素类型是 pair。通常，对于想要插入的数据，并没有一个现成的 pair 对象。可以在 insert 的参数列表中创建一个 pair：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21521;word_count&#25554;&#20837;word&#30340;4&#31181;&#26041;&#27861;</span>
+word_count.insert({word, <span style="color: #da8548; font-weight: bold;">1</span>});
+word_count.insert(make_pair(word, <span style="color: #da8548; font-weight: bold;">1</span>));
+word_count.insert(pair&lt;string, size_t&gt;(word, <span style="color: #da8548; font-weight: bold;">1</span>));
+word_count.insert(map&lt;string, size_t&gt;::value_type(word, <span style="color: #da8548; font-weight: bold;">1</span>));
+</pre>
+</div>
+
+<p>
+如我们所见，在新标准下，创建一个 pair 最简单的方法是在参数列表中使用花括号初始化。也可以调用 make_pair 或显式构造 pair。
+</p>
+
+<table id="orgc353709">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">c.insert(v)</td>
+<td class="org-left">v 是 value_type 类型的对象；args 用来构造一个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.emplace(args)</td>
+<td class="org-left">对于 map 和 set，只有当元素的关键字不在 c 中时才插入（或构造）元素。函数返回一个 pair，包含一个迭代器，指向具有特定关键的元素，以及一个指示插入是否成功的 bool 值</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">对于 multimap 和 multiset，总会插入（或构造）给定元素，并返回一个指向新元素的迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(b, e)</td>
+<td class="org-left">b 和 e 时迭代器，表示一个 c::value_type 类型值的范围；il 时这种值的花括号列表。函数返回 void</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">对于 map 和 set，只插入关键字不在 c 中的元素。对于 multimap 和 multiset，则会插入范围中的每个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.insert(p, v)</td>
+<td class="org-left">类似 insert(v)（或 emplace(args)），但将迭代器 p 作为一个提示，指出从哪里开始搜索新元素应该存储的位置。返回一个迭代器，指向具有给定关键字的元素</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgc2b553b" class="outline-5">
+<h5 id="orgc2b553b">检测 insert 的返回值</h5>
+<div class="outline-text-5" id="text-orgc2b553b">
+<p>
+insert（或 emplace）返回的值依赖于容器类型和参数。对于不包含重复关键字的容器，添加单一元素的 insert 和 emplace 版本返回一个 pair，告诉我们插入操作是否成功。pair 的 first 成员是一个迭代器，指向具有给定关键字的元素；second 成员是一个 bool 值，指出元素是插入成功还是已经存在于容器中。如果关键字已经在容器中，则 insert 什么事情也不做，且返回值中的 bool 部分为 false。如果关键字不存在，元素被插入容器中，且 bool 值为 true。
+</p>
+</div>
+</div>
+<div id="outline-container-org9c38655" class="outline-5">
+<h5 id="org9c38655">向 multiset 和 multimap 添加元素</h5>
+<div class="outline-text-5" id="text-org9c38655">
+<p>
+对允许重复关键字的容器，接受单个元素的 insert 操作返回一个指向新元素的迭代器。这里无须返回一个 bool 值，因为 insert 总是向这类容器中加入一个新元素。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb63db4b" class="outline-4">
+<h4 id="orgb63db4b">11.3.3 删除元素</h4>
+<div class="outline-text-4" id="text-orgb63db4b">
+<table id="orgd062f86">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">c.erase(k)</td>
+<td class="org-left">从 c 中删除每个关键字为 k 的元素。返回一个 size_type 值，指出删除的元素的数据</td>
+</tr>
+
+<tr>
+<td class="org-left">c.erase(p)</td>
+<td class="org-left">从 c 中删除迭代器 p 指定的元素。p必须指向 c 中一个真实元素，不能等于 c.end()。返回一个指向 p 之后元素的迭代器，若 p 指向 c 中的尾元素，则返回 c.end()</td>
+</tr>
+
+<tr>
+<td class="org-left">c.erase(b, e)</td>
+<td class="org-left">删除迭代器对 b 和 e 所表示的范围中的元素，返回 e</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org9b68d1d" class="outline-4">
+<h4 id="org9b68d1d">11.3.4 map 的下标操作</h4>
+<div class="outline-text-4" id="text-org9b68d1d">
+<table id="orgd69e60f">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">c[k]</td>
+<td class="org-left">返回关键字为 k 的元素；如果 k 不在 c 中，添加一个关键字为 k 的元素，对其进行值初始化</td>
+</tr>
+
+<tr>
+<td class="org-left">c.at(k)</td>
+<td class="org-left">访问关键字为 k 的元素，带参数检查；若 k 不在 c 中，抛出一个 out_of_range 异常</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgcbfb5aa" class="outline-5">
+<h5 id="orgcbfb5aa">使用下标操作的返回值</h5>
+<div class="outline-text-5" id="text-orgcbfb5aa">
+<p>
+map 的下标运算符与我们用过的其他下标运算符的另一个不同之处是其返回类型。通常情况下，解引用一个迭代器返回的类型与下标运算符返回的类型是一样的。但对 map 则不然；当对一个 map 进行下标操作时，会获得一个 mapped_type 对象；但当解引用一个 map 迭代器时，会得到一个 value_type 对象。
+</p>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+与 vector 与 string 不同，map 的下标运算符返回的类型与解引用 map 迭代器得到的类型不同。
+</p>
+</blockquote>
+
+<p>
+如果关键字还未在 map 中，下标运算符会添加一个新元素，这一特定允许我们编写出异常简洁的程序。另一方面，有时指示向直到一个元素是否已在 map 中，但再不存在时并不想添加元素。在这种情况下，就不能使用下标运算符。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0bdf0bf" class="outline-4">
+<h4 id="org0bdf0bf">11.3.5 访问元素</h4>
+<div class="outline-text-4" id="text-org0bdf0bf">
+<p>
+如果我们所关心的只不过时一个特定元素是否已在容器中，可能 find 是最佳选择。对于不允许重复关键字的容器，可能使用 find 还是 count 没什么区别。但对于允许重复关键字的容器，count 还会做更多的工作：如果元素在容器中，它还会统计有多少个元素有相同的关键字。如果不需要计数，最好使用 find。
+</p>
+
+<table id="org7bf704d">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">lower_bound 和 upper_bound 不适用于无序容器</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">下标和 at 操作只适用于非 const 的 map 和 unordered_map</td>
+</tr>
+
+<tr>
+<td class="org-left">c.find(k)</td>
+<td class="org-left">返回迭代器，指向第一个关键字为 k 的元素，若 k 不在容器中，则返回尾后迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.count(k)</td>
+<td class="org-left">返回关键字等于 k 的元素的数量。对于不允许重复关键字的容器，返回值永远时 0 或 1</td>
+</tr>
+
+<tr>
+<td class="org-left">c.lower_bound(k)</td>
+<td class="org-left">返回一个迭代器，指向第一个关键字不小于 k 的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.upper_bound(k)</td>
+<td class="org-left">返回一个迭代器，指向第一个关键字大于 k 的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.equal_range(k)</td>
+<td class="org-left">返回一个迭代器 pair，表示关键字等于 k 的元素的范围。若 k 不存在，pair 的两个成员均等于 c.end()</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orga008551" class="outline-5">
+<h5 id="orga008551">一种不同的，面向迭代器的解决方法</h5>
+<div class="outline-text-5" id="text-orga008551">
+<blockquote>
+<p>
+lower_bound 返回的迭代器可能指向一个具有给定关键字的元素，但也可能不指向。如果关键在不在容器中，则 lower_bound 会返回关键字的第一个安全插入点——不影响容器中元素顺序的插入位置。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果 lower_bound 和 upper_bound 返回相同的迭代器，则给定关键字不在容器中。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgebcb79a" class="outline-3">
+<h3 id="orgebcb79a">11.4 无序容器</h3>
+<div class="outline-text-3" id="text-orgebcb79a">
+<p>
+新标准定义了 4 <b>无序关联容器</b> 。这些容器不是使用比较运算符来组织元素，而是使用一个哈希函数和关键字类型的==运算符。在关键字类型的元素没有明显的序关系的情况下，无序容器是非常有用的。在某些应用中，维护元素的序代价非常高昂，此时无序容器也很有用。
+</p>
+
+<p>
+虽然理论上哈希技术能获得更好的平均性能，但在实际中想要达到很好的效果还需要进行一些性能测试和调优工作。因此，使用无序容器通常更为简单（通常也会有更好的性能）。
+</p>
+
+<blockquote>
+<p>
+Tip：
+</p>
+
+<p>
+如果关键字类型固有就是无序的，或者性能测试发现问题可以使用哈希技术解决，就可以使用无序容器。
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org8b297ff" class="outline-5">
+<h5 id="org8b297ff">使用无序容器</h5>
+<div class="outline-text-5" id="text-org8b297ff">
+<p>
+除了哈希管理操作之外，无序容器还提供了与有序容器相同的操作（find、insert 等）。这意味着我们曾用于 map 和 set 的操作也能用于 unordered_map 和 unordered_set。类似的，无序容器也有允许重复关键的版本。
+</p>
+
+<p>
+因此，通常可以用一个无序容器替换对应的有序容器，反之亦然。但是，由于元素未按顺序存储，一个使用无序容器的程序输出（通常）会与使用有序容器的版本不同。
+</p>
+</div>
+</div>
+<div id="outline-container-org97fe55f" class="outline-5">
+<h5 id="org97fe55f">管理桶</h5>
+<div class="outline-text-5" id="text-org97fe55f">
+<p>
+无序容器在存储上组织为一组桶，每个桶保存零个或多个元素。无序容器使用一个哈希函数将元素映射到桶。为了访问一个元素，容器首先计算元素的哈希值，它指出应该搜索哪个桶。容器将具有一个特定哈希值的所有元素都保存在相同的桶中。如果容器允许重复关键字，所有具有相同容器的元素也都会在同一个桶中。因此，无序容器的性能依赖于哈希函数的质量和桶的数量和大小。
+</p>
+
+<p>
+对于相同的参数，哈希函数必须总是产生相同的结果。理想情况下，哈希函数还能将每个特定的值映射到唯一的桶。单是，将不同关键字的元素映射到相同的桶也是允许的。当一个桶保存多个元素时，需要顺序搜索这些元素来查找我们想要的那个。计算一个元素的哈希值和在桶中搜索通常都是很快的操作。单是，如果一个桶中保存了很多元素，那么查找一个特定元素就需要大量比较操作。
+</p>
+
+<p>
+无序容器提供了一组管理桶的函数，如下表所示。这些成员函数允许我们查寻容器的状态以及在必要的时强制容器进行重组。
+</p>
+
+<table id="org3b2f39b">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left"><b>桶接口</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.bucket_count()</td>
+<td class="org-left">正在使用的桶的数目</td>
+</tr>
+
+<tr>
+<td class="org-left">c.max_bucket_count()</td>
+<td class="org-left">容器能容纳的最多的桶的数量</td>
+</tr>
+
+<tr>
+<td class="org-left">c.bucket_size(1)</td>
+<td class="org-left">第 n 个桶中有多少个元素</td>
+</tr>
+
+<tr>
+<td class="org-left">c.bucket(k)</td>
+<td class="org-left">关键字为 k 的元素在哪个桶中</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>桶迭代</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">local_iterator</td>
+<td class="org-left">可以用来访问桶中元素的迭代器类型</td>
+</tr>
+
+<tr>
+<td class="org-left">const_local_iterator</td>
+<td class="org-left">桶迭代器的 const 版本</td>
+</tr>
+
+<tr>
+<td class="org-left">c.begin(n), c.end(n)</td>
+<td class="org-left">桶 n 的首元素迭代器和尾后迭代器</td>
+</tr>
+
+<tr>
+<td class="org-left">c.cbegin(n), c,cend(n)</td>
+<td class="org-left">与前两个函数相似，但返回 const_local_iterator</td>
+</tr>
+
+<tr>
+<td class="org-left"><b>哈希策略</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">c.load_factor()</td>
+<td class="org-left">每个桶的平均元素数量，返回 float 值</td>
+</tr>
+
+<tr>
+<td class="org-left">c.max_load_factor()</td>
+<td class="org-left">c 试图维护的平均桶大小，返回 float 值。c会在需要时添加新的桶，以使得 load_factor&lt;=max_load_factor</td>
+</tr>
+
+<tr>
+<td class="org-left">c.rehash(n)</td>
+<td class="org-left">重组存储，使得 bucket_count&gt;=n 且 bucket_count&gt;size/max_load_factor</td>
+</tr>
+
+<tr>
+<td class="org-left">c.reserve(n)</td>
+<td class="org-left">重组存储，使得 c 可以保存 n 个元素且不必 rehash</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org8fdd5e9" class="outline-5">
+<h5 id="org8fdd5e9">无序容器对关键类型的要求</h5>
+<div class="outline-text-5" id="text-org8fdd5e9">
+<p>
+默认情况下，无序容器使用关键字类型的==运算符来比较元素，它们还时用一个 hash&lt;key_type&gt;类型的对象来生成每个元素的哈希值。标准库为内置类型（包括指针）提供了 <b>hash</b> 模板。还为一些标准库类型，包括 string 和我们将要在第 12 章介绍的智能指针类型定义了 hash。因此，我们可以直接定义关键字时内置类型（包括指针类型）、string 还是智能指针类型的无序容器。
+</p>
+
+<p>
+但是，我们不能直接定义关键字类型为自定义类类型的无序容器。与容器不同，不能直接使用哈希模板，而必须提供我们自己的 hash 模板版本。我们将在 16.5 节中介绍如何做到这一点。
+</p>
+
+<p>
+我们不使用默认的 hash，而是使用另一种方法，类似于有序容器重载关键字类型的默认比较操作。我们需要提供函数来替代==和哈希值计算函数。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org46eaed4" class="outline-2">
+<h2 id="org46eaed4">第 12 章 动态内存</h2>
+<div class="outline-text-2" id="text-org46eaed4">
+<p>
+我们的程序到目前为止只使用过静态内存或栈内存。静态内存用来保存局部 static 对象、类 static 数据成员以及定义在任何函数之外的变量。栈内存用来保存定义在函数内的非 static 对象。分配在静态或栈内存中的对象由编译器自动创建和销毁。对于栈对象，仅在其定义的程序块运行时才存在；static 对象在使用之前分配，在程序结束时销毁。
+</p>
+
+<p>
+除了静态内存和栈内存，每个程序还拥有一个内存池。这部分内存被称为 <b>自由空间</b> 或 <b>堆</b> 。程序用堆来存储 <b>动态分配</b> 的对象——即那些程序运行时分配的对象。动态对象的生存期由程序来控制，也就是说，当动态对象不再使用时，我们的代码必须显式地销毁它们。
+</p>
+</div>
+<div id="outline-container-org694b049" class="outline-3">
+<h3 id="org694b049">12.1 动态内存与智能指针</h3>
+<div class="outline-text-3" id="text-org694b049">
+<p>
+在 C++中，动态内存的管理是通过一对运算符来完成的： <b>new</b> ，在动态内存中为对象分配空间并返回一个指向该对象的指针，我们可以选择对对象进行初始化； <b>delete</b> ，接受一个动态对象的指针，销毁该对象，并释放与之关联的内存。
+</p>
+
+<p>
+为了更容器（同时也更安全）地使用动态内存，新的标准库提供了两种 <b>智能指针</b> 类型来管理动态对象。智能指针的行为类似常规指针，重要的区别是它负责自动释放所指向的对象。新标准库提供的这两种智能指针的区别在于管理底层指针的方式： <b>shared_ptr</b> 允许多个指针指向同一个对象； <b>unique_ptr</b> 则“独占”所指向的对象。标准库还定义了一个名为 <b>weak_ptr</b> 的伴随类，它是一种弱引用，指向 shared_ptr 所管理的对象。这三种类型都定义在 memory 头文件中。
+</p>
+</div>
+<div id="outline-container-org0a70a59" class="outline-4">
+<h4 id="org0a70a59">12.1.1 shared_ptr 类</h4>
+<div class="outline-text-4" id="text-org0a70a59">
+<table id="org23ab458">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt; sp</td>
+<td class="org-left">空智能指针，可以指向类型为 T 的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">unique_ptr&lt;T&gt; upper_bound</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">p</td>
+<td class="org-left">将 p 用作一个条件判断，若 p 指向一个对象，则为 true</td>
+</tr>
+
+<tr>
+<td class="org-left">*P</td>
+<td class="org-left">解引用 p，获得它指向的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">p-&gt;mem</td>
+<td class="org-left">等价于(*p).mem</td>
+</tr>
+
+<tr>
+<td class="org-left">p.get()</td>
+<td class="org-left">返回 p 中保存的指针，要小心使用，若智能指针释放了其对象，返回的指针所指向的对象也就消失了</td>
+</tr>
+
+<tr>
+<td class="org-left">swap(p, q)</td>
+<td class="org-left">交换 p 和 q 中的指针</td>
+</tr>
+
+<tr>
+<td class="org-left">p.swap(q)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<table id="orgecafd2e">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">make_shared&lt;T&gt;(args)</td>
+<td class="org-left">返回一个 shared_ptr，指向一个动态分配的类型为 T 的对象。使用 args 初始化此对象</td>
+</tr>
+
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt;p(q)</td>
+<td class="org-left">p 是 shared_ptr q 的拷贝；此操作会递增 q 中的计数器。q中的指针必须能转换为 T×</td>
+</tr>
+
+<tr>
+<td class="org-left">p = q</td>
+<td class="org-left">p 和 q 都是 shared_ptr，所保存的指针必须能相互转换。此操作会递减 p 的引用计数，递增 q 的引用计数；若 p 的引用计数变为 0，则将其管理的原内存释放</td>
+</tr>
+
+<tr>
+<td class="org-left">p.unique()</td>
+<td class="org-left">若 p.use_count()为 1，返回 true；否则返回 false</td>
+</tr>
+
+<tr>
+<td class="org-left">p.use_count()</td>
+<td class="org-left">返回与 p 共享对象的智能指针数量；可能很慢，主要用于调试</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org3ac401d" class="outline-5">
+<h5 id="org3ac401d">make_shared 函数</h5>
+<div class="outline-text-5" id="text-org3ac401d">
+<p>
+最安全的分配和使用动态内存的方法是调用一个名为 make_shared 的标准库函数。此函数在动态内存中分配一个对象并初始化它，返回指向此对象的 shared_ptr。与智能指针一样，make_shared 也定义在头文件 memory 中。
+</p>
+</div>
+</div>
+<div id="outline-container-org868fd8b" class="outline-5">
+<h5 id="org868fd8b">shared_ptr 的拷贝和赋值</h5>
+<div class="outline-text-5" id="text-org868fd8b">
+<p>
+当进行拷贝或赋值操作时，每个 shared_ptr 都会记录有多少个其他 shared_Ptr 指向相同的对象。
+</p>
+
+<p>
+我们可以认为每个 shared_ptr 都有一个关联的计数器，通常称其为 <b>引用计数</b> 。无论何时我们拷贝一个 shared_ptr，计数器都会递增。例如，当用一个 shared_ptr 初始化一个另一个 shared_ptr，或将它作为参数传递给一个函数以及作为函数的返回值时，它所关联的计数器就会递增。当我们给 shared_ptr 赋予一个新值或是 shared_ptr 被销毁（例如一个局部的 shared_ptr 离开作用域）时，计数器就会递减。
+</p>
+
+<p>
+一旦一个 shared_ptr 的计数器变为 0，它就自动释放自己所管理的对象：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">r</span> = make_shared&lt;<span style="color: #ECBE7B;">int</span>&gt;(<span style="color: #da8548; font-weight: bold;">42</span>);  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">r&#25351;&#21521;&#30340;int&#21482;&#26377;&#19968;&#20010;&#24341;&#29992;&#32773;</span>
+r = q;  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#32473;r&#36171;&#20540;&#65292;&#20196;&#23427;&#25351;&#21521;&#21478;&#19968;&#20010;&#22320;&#22336;</span>
+        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36882;&#22686;q&#25351;&#21521;&#30340;&#23545;&#35937;&#30340;&#24341;&#29992;&#25216;&#26415;</span>
+        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36882;&#20943;r&#21407;&#26469;&#25351;&#21521;&#30340;&#23545;&#35937;&#30340;&#24341;&#29992;&#35745;&#25968;</span>
+        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">r&#21407;&#26469;&#25351;&#21521;&#30340;&#23545;&#35937;&#24050;&#32463;&#27809;&#26377;&#24341;&#29992;&#32773;&#65292;&#20250;&#33258;&#21160;&#37322;&#25918;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ebe766" class="outline-5">
+<h5 id="org3ebe766">shared_ptr 自动销毁所管理的对象……</h5>
+<div class="outline-text-5" id="text-org3ebe766">
+<p>
+当指向一个对象的最后一个 shared_ptr 被销毁时，shared_ptr 类会自动销毁此对象。它是通过另一个特殊的成员函数—— <b>析构函数</b> 完成销毁工作的。类似于构造函数，每个类都有一个析构函数。就像构造函数控制初始化一样，析构函数控制此类型的对象销毁时做什么操作。
+</p>
+
+<p>
+shared_ptr 的析构函数会递减它所指向的对象的引用计数。如果引用计数变为 0，shared_ptr 的析构函数将会销毁对象，并释放它占用的内存。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb6928f8" class="outline-5">
+<h5 id="orgb6928f8">……shared_ptr 还会自动释放相关联的内存</h5>
+<div class="outline-text-5" id="text-orgb6928f8">
+<blockquote>
+<p>
+Note：
+</p>
+
+<p>
+如果你将 shared_ptr 存放于一个容器中，而后不再需要全部元素，而只使用其中一部分，要记得用 erase 删除不再需要的那些元素。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org40c26c9" class="outline-5">
+<h5 id="org40c26c9">使用了动态生存期的资源的类</h5>
+<div class="outline-text-5" id="text-org40c26c9">
+<p>
+程序使用动态内存出于以下三种原因之一：
+</p>
+<ol class="org-ol">
+<li>程序不知道自己需要使用多少对象</li>
+<li>程序不知道所需要对象的类型</li>
+<li>程序需要在多个对象间共享数据</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc8c2fec" class="outline-4">
+<h4 id="orgc8c2fec">12.1.2 直接管理内存</h4>
+<div class="outline-text-4" id="text-orgc8c2fec">
+</div>
+<div id="outline-container-org9ed193b" class="outline-5">
+<h5 id="org9ed193b">使用 new 动态分配和初始化对象</h5>
+<div class="outline-text-5" id="text-org9ed193b">
+<p>
+默认情况下，动态分配的对象是默认初始化的，这意味着内置类型或组合类型的对象的值将是未定义的，而类类型对象将用默认构造函数进行初始化。
+</p>
+
+<p>
+我们可以使用直接初始方式来初始化一个动态分配的对象。我们可以使用传统的构造方式（使用圆括号），在新标准下，也可以使用列表初始化（使用花括号）。
+</p>
+
+<p>
+也可以对动态分配的对象进行值初始化，只需在类型名之后跟一对空括号即可。
+</p>
+
+<p>
+对于定义了自己的构造函数的类类型来说，要求值初始化时没有意义的：不管采用什么形式，对象都会通过默认构造函数来初始化。但对于内置类型，两种形式的差别就很大了；值初始化的内置类型对象有着良好定义的值，而默认初始化的对象的值则未定义的。类似的，对于类中那些依赖于编译器合成的默认构造函数的内置类型成员，如果它们未在类内被初始化，那么它们的值也是未定义的。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+出于与变量初始化相同的原因，对动态分配的对象进行初始化通常个好主意。
+</p>
+</blockquote>
+
+<p>
+如果我们提供了一个括号包围的初始化器，就可以使用 auto 从此初始化器来推断我们想要分配的对象的类型。但时，由于编译器要用初始化器的类型来推断要分配的类型，只有当括号中仅有单一初始化器才可以使用 auto：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">p1</span> = <span style="color: #51afef;">new</span> <span style="color: #51afef;">auto</span>(obj);      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">p&#25351;&#21521;&#19968;&#20010;&#19982;obj&#31867;&#22411;&#30456;&#21516;&#30340;&#23545;&#35937;</span>
+                              <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35813;&#23545;&#35937;&#29992;obj&#36827;&#34892;&#21021;&#22987;&#21270;</span>
+<span style="color: #51afef;">auto</span> <span style="color: #dcaeea;">p2</span> = <span style="color: #51afef;">new</span> <span style="color: #51afef;">auto</span>{a, b, c};  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#25324;&#21495;&#20013;&#26234;&#33021;&#26377;&#21333;&#20010;&#21021;&#22987;&#21270;&#22120;</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2ac0a8f" class="outline-5">
+<h5 id="org2ac0a8f">动态分配 const 对象</h5>
+<div class="outline-text-5" id="text-org2ac0a8f">
+<p>
+类似其他任何 const 对象，一个动态分配的 const 对象必须进行初始化。对于一个定义了默认构造函数的类类型，其 const 动态对象可以隐式初始化，而其他类型的对象就必须显式初始化。由于分配的对象是 const 的，new 返回的指针是一个指向 const 的指针。
+</p>
+</div>
+</div>
+<div id="outline-container-org0671978" class="outline-5">
+<h5 id="org0671978">内存耗尽</h5>
+<div class="outline-text-5" id="text-org0671978">
+<p>
+一个一个程序用光了它所有可用的内存，new 表达式就会失败。默认情况下，如果 new 不能分配所要求的内存空间，它会抛出一个类型未 bad_alloc 的异常。我们可以改变 new 的方式来阻止它抛出异常：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;&#20998;&#37197;&#22833;&#36133;&#65292;new&#36820;&#22238;&#19968;&#20010;&#31354;&#25351;&#38024;</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p1</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;&#20998;&#37197;&#22833;&#36133;&#65292;new&#25243;&#20986;std::bad_alloc</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">p2</span> = <span style="color: #51afef;">new</span> (nothrow) <span style="color: #ECBE7B;">int</span>;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;&#20998;&#37197;&#22833;&#36133;&#65292;new&#36820;&#22238;&#19968;&#20010;&#31354;&#25351;&#38024;</span>
+</pre>
+</div>
+
+<p>
+我们称这种形式的 new 为 <b>定位 new</b> ，其原因我们将在 19.1.2 节中解释。定位 new 表达式允许我们向 new 传递额外的参数。在此例中，我们传递给它一个由标准库定义的名为 nothrow 的对象。如果 nothrow 传递给 new，我们的意图是告诉它不能抛出异常。如果这种形式的 new 不能分配所需内存，它会返回一个指针。bad_alloc 和 nothrow 都定义在头文件 new 中。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb35f27a" class="outline-5">
+<h5 id="orgb35f27a">指针值和 delete</h5>
+<div class="outline-text-5" id="text-orgb35f27a">
+<p>
+我们传递给 delete 的指针必须指向动态分配的内存，或者是一个空指针。释放一块并非 new 分配的内存，或者将相同的指针值释放多次，其行为是未定义的。
+</p>
+
+<p>
+虽然一个 const 对象的值不能被改变，但它本身是可以销毁的，如同任何其他动态对象一样，想要释放一个 const 动态对象，只要 delete 指向它的指针即可。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb6a44b5" class="outline-5">
+<h5 id="orgb6a44b5">delete 之后重值指针值……</h5>
+<div class="outline-text-5" id="text-orgb6a44b5">
+<p>
+在 delete 之后，指针就变成了人们所说的 <b>空悬指针</b> ，即，指向一块曾经保存数据对象但现在已经无效的内存指针。
+</p>
+
+<p>
+未初始化指针的所有缺点空悬指针也都有。有一种方法可以避免空悬指针问题：在指针即将要离开其作用域之前释放掉它所关联的内存。这样，在指针关联的内存被释放掉之后，就没有机会继续使用指针了。如果我们需要保留指针，可以在 delete 之后将 nullptr 赋予指针，这样就清楚地指出指针不指向任何对象。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org45bbd59" class="outline-4">
+<h4 id="org45bbd59">12.1.3 shared_ptr 和 new 结合使用</h4>
+<div class="outline-text-4" id="text-org45bbd59">
+<p>
+如前所述，如果我们不初始化一个智能指针，它就会被初始化未一个空指针。
+</p>
+
+<p>
+接受指针参数的智能指针构造函数是 explicit。因此我们不能将一个内置指针隐式转换为一个智能指针，必须使用直接初始化形式来初始化一个智能指针：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">shared_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">p1</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>(<span style="color: #da8548; font-weight: bold;">1024</span>);        <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38169;&#35823;&#65306;&#24517;&#39035;&#20351;&#29992;&#30452;&#25509;&#21021;&#22987;&#21270;&#24418;&#24335;</span>
+<span style="color: #ECBE7B;">shared_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">p2</span>(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>(<span style="color: #da8548; font-weight: bold;">1024</span>));         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#20351;&#29992;&#20102;&#30452;&#25509;&#21021;&#22987;&#21270;&#24418;&#24335;</span>
+</pre>
+</div>
+
+<table id="org5e50693">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt; p(q)</td>
+<td class="org-left">p 管理内置指针 q 所指向的对象；q必须指向 new 分配的内存，且能够转换为 T*类型</td>
+</tr>
+
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt; p(u)</td>
+<td class="org-left">p 从 unique_ptr u 那里接管了对象的所有权；将 u 置位空</td>
+</tr>
+
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt; p(q, d)</td>
+<td class="org-left">p 接管了内置指针 q 所指向的对象的所有权。q必须能转换成 T*类型。p将使用可调用对象 d 来代替 delete</td>
+</tr>
+
+<tr>
+<td class="org-left">shared_ptr&lt;T&gt; p(p2, d)</td>
+<td class="org-left">p 是 shared_ptr p2 的拷贝，唯一的区别是 p 将可调用对象 d 来代替 delete</td>
+</tr>
+
+<tr>
+<td class="org-left">p.reset()</td>
+<td class="org-left">若 p 是唯一指向其对象的 shared_ptr，reset 会释放此对象。</td>
+</tr>
+
+<tr>
+<td class="org-left">p.reset(q)</td>
+<td class="org-left">若传递了可选的参数内置指针 q，会令 p 指向 q，否则会将 p 置为空。</td>
+</tr>
+
+<tr>
+<td class="org-left">p.reset(q, d)</td>
+<td class="org-left">若还传递了参数 d，将会调用 d 而不是 delete 来释放 q</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgde35f93" class="outline-5">
+<h5 id="orgde35f93">不要混合使用普通指针和智能指针……</h5>
+<div class="outline-text-5" id="text-orgde35f93">
+<p>
+shared_ptr 可以协调对象的析构，但这仅限于其自身的拷贝（也是 shared_ptr）之间。这也是为什么我们推荐使用 make_shared 而不是 new 的原因。这样，我们就能在分配对象的同时就将 shared_ptr 与之绑定，从而避免了无意中将同一块内存绑定到多个独立创建的 shared_ptr 上。
+</p>
+
+<p>
+当将一个 shared_ptr 绑定到一个普通指针时，我们就将内存的管理责任交给了这个 shared_ptr。一旦这样做了，我们就不应该再使用内置指针来访问 shared_ptr 所指向的内存了。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+使用一个内置指针来访问一个智能指针所负责的对象是很危险的，因为我们无法直到对象何时被销毁。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org9f3926a" class="outline-5">
+<h5 id="org9f3926a">……也不要使用 get 初始化另一个智能指针或为智能指针赋值</h5>
+<div class="outline-text-5" id="text-org9f3926a">
+<p>
+智能指针类型定义了一个名为 get 的函数，它返回一个内置指针，指向智能指针管理的对象。此函数是为了这样一种情况而设计的：我们需要向不使用智能指针的代码传递一个内置指针。使用 get 返回的指针的代码不能 delete 此指针。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+get 用来将指针的访问权限传递给代码，你只有在确定代码不会 delete 指针的情况下，才能使用 get。特别是，永远不要用 get 初始化另一个智能指针或为另一个智能指针赋值。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org227a72e" class="outline-5">
+<h5 id="org227a72e">其他 shared_ptr 操作</h5>
+<div class="outline-text-5" id="text-org227a72e">
+<p>
+我们可以用 reset 来将一个新的指针赋予一个 shared_ptr。与赋值类似，reset 会更新引用计数，如果需要的话，会释放 p 所指向的对象。reset 成员经常与 unique 一起使用，来控制多个 shared_ptr 共享的对象。在改变底层对象之前，我们检查自己是否是当前对象仅有的用户。如果不是，在改变之前要制作一份新的拷贝。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd069a6e" class="outline-4">
+<h4 id="orgd069a6e">12.1.4 智能指针和异常</h4>
+<div class="outline-text-4" id="text-orgd069a6e">
+<p>
+如果使用智能指针，即是程序块过早结束，智能指针类也能确保在内存不再需要时将其释放：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">f</span>() {
+  <span style="color: #ECBE7B;">shared_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">sp</span>(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>(<span style="color: #da8548; font-weight: bold;">42</span>));   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20998;&#37197;&#19968;&#20010;&#26032;&#23545;&#35937;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36825;&#27573;&#20195;&#30721;&#25243;&#20986;&#19968;&#20010;&#24322;&#24120;&#65292;&#19988;&#22312;f&#20013;&#26410;&#34987;&#25429;&#33719;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22312;&#20989;&#25968;&#32467;&#26463;&#26102;shared_ptr&#33258;&#21160;&#37322;&#25918;&#20869;&#23384;</span>
+}
+</pre>
+</div>
+
+<p>
+与之相对的，当发生异常时，我们直接管理的内存是不会自动释放的。如果使用内置指针管理内存，且在 new 之后在对应的 delete 之前发生了异常，则内存不会被释放：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">f</span>() {
+  <span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">ip</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>(<span style="color: #da8548; font-weight: bold;">42</span>);
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36825;&#27573;&#20195;&#30721;&#25243;&#20986;&#19968;&#20010;&#24322;&#24120;&#65292;&#19988;&#22312;f&#20013;&#26410;&#34987;&#25429;&#33719;</span>
+  <span style="color: #51afef;">delete</span> ip;
+}
+</pre>
+</div>
+
+<p>
+如果在 new 和 delete 之间发生异常，且异常未在 f 中被捕获，则内存就永远不会被释放了。在函数 f 之外没有指针指向这块内存，因此就无法释放它了。
+</p>
+
+<blockquote>
+<p>
+注意：智能指针先经
+</p>
+
+<p>
+智能指针可以提供对动态分配的内存安全而又方便的管理，但这建立在正确使用的前提下。为了正确使用智能指针，我们必须坚持一些基本规范：
+</p>
+
+<ul class="org-ul">
+<li>不使用相同的内置指针值初始化（或 reset）多个智能指针</li>
+<li>不 delete get()返回的指针</li>
+<li>不使用 get()初始化或 reset 另一个智能指针</li>
+<li>如果你使用 get()返回的指针，记住当最后一个对应的智能指针销毁后，你的指针就变为无效了。</li>
+<li>如果你使用智能指针管理的资源不是 new 分配的内存，记住传递给他一个删除器。</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org629ddda" class="outline-4">
+<h4 id="org629ddda">12.1.5 unique_ptr</h4>
+<div class="outline-text-4" id="text-org629ddda">
+<p>
+一个 unique_ptr“拥有”它所指向的对象。与 shared_ptr 不同，某个时刻智能有一个 unique_ptr 指向一个给定对象。当 unique_ptr 被销毁时，它所指向的对象也被销毁。
+</p>
+
+<p>
+与 shared_ptr 不同，没有类似 make_shared 的标准库函数返回一个 unique_ptr。当我们定义一个 unique_ptr 时，需要将其绑定到一个 new 返回的指针上。类似 shared_ptr，初始化 unique_ptr 必须采用直接初始化形式。
+</p>
+
+<p>
+由于一个 unique_ptr 拥有它指向的对象，因此 unique_ptr 不支持普通的拷贝或赋值操作。
+</p>
+
+<table id="orgca06428">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">unique_ptr&lt;T&gt; u1</td>
+<td class="org-left">空 unique_ptr，可以指向类型为 T 的对象。u1 会使用 delete 来释放它的指针；</td>
+</tr>
+
+<tr>
+<td class="org-left">unique_ptr&lt;T, D&gt; u2</td>
+<td class="org-left">u2 会使用一个类型为 D 的可调用对象来释放它的指针。</td>
+</tr>
+
+<tr>
+<td class="org-left">unique_ptr&lt;T, D&gt; u(d)</td>
+<td class="org-left">空 unique_ptr，指向类型为 T 的对象，用类型为 D 的对象 d 代替 delete</td>
+</tr>
+
+<tr>
+<td class="org-left">u = nullptr</td>
+<td class="org-left">释放 u 指向的对象，将 u 置为空</td>
+</tr>
+
+<tr>
+<td class="org-left">u.release()</td>
+<td class="org-left">u 放弃对指针的控制区，返回指针，并将 u 置为空</td>
+</tr>
+
+<tr>
+<td class="org-left">u.reset()</td>
+<td class="org-left">释放 u 指向的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">u.reset(q)</td>
+<td class="org-left">如果提供了内置指针 q，令 u 指向这个对象；否则将 u 置为空</td>
+</tr>
+
+<tr>
+<td class="org-left">u.reset(nullptr)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+虽然我们不能拷贝或赋值 unique_ptr，但可以通过调用 release 或 reset 将指针的所有权从一个（非 const）unique_ptr 转移给另一个 unique：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;&#25152;&#26377;&#26435;&#20174;p1&#65288;&#25351;&#21521;string Stegosaurus&#65289;&#36716;&#31227;&#32473;p2</span>
+<span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #c678dd;">p2</span>(p1.release());     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">release&#23558;p1&#32622;&#20026;&#31354;</span>
+<span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">string</span>&gt; <span style="color: #dcaeea;">p3</span>(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">string</span>(<span style="color: #98be65;">"Trex"</span>));
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23558;&#25152;&#26377;&#26435;&#20174;&#29255;&#36716;&#31227;&#32473;p2</span>
+p2.reset(p3.release());  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">reset &#37322;&#25918;&#20102;p2&#21407;&#26469;&#25351;&#21521;&#30340;&#20869;&#23384;</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org0eca5f0" class="outline-5">
+<h5 id="org0eca5f0">传递 unique_ptr 参数和返回 unique_ptr</h5>
+<div class="outline-text-5" id="text-org0eca5f0">
+<p>
+不能拷贝 unique_ptr 的规则有一个例外：我们可以拷贝或赋值一个将要被销毁的 unique_ptr。最常见的例子就是从函数返回一个 unique_ptr：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #c678dd;">clone</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">p</span>) {
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#27491;&#30830;&#65306;&#20174;int*&#21019;&#24314;&#19968;&#20010;unique_ptr&lt;int&gt;</span>
+  <span style="color: #51afef;">return</span> unique_ptr&lt;<span style="color: #ECBE7B;">int</span>&gt;(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>(p));
+}
+</pre>
+</div>
+
+<p>
+还可以返回一个局部对象的拷贝：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #c678dd;">clone</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">p</span>) {
+  <span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">ret</span>(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span> (p));
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">...</span>
+  <span style="color: #51afef;">return</span> ret;
+}
+</pre>
+</div>
+
+<p>
+对于两段代码，编译器都知道要返回的对象将要被销毁。在此情况下，编译器执行一种特殊的“拷贝”，我们将在 13.6.2 节中介绍它。
+</p>
+
+<blockquote>
+<p>
+向后兼容：auto_ptr
+</p>
+
+<p>
+标准库的较早版本包含了一个名为 auto_ptr 的类，它具有 unique_ptr 的部分特定，但不是全部。特别是，我们不能在容器中保存 auto_ptr，也不能从函数中返回 auto_ptr。
+</p>
+
+<p>
+虽然 auto_ptr 是仍是标准库的一部分，但编写程序时应该使用 unique_ptr。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org8acfbde" class="outline-4">
+<h4 id="org8acfbde">12.1.6 weak_ptr</h4>
+<div class="outline-text-4" id="text-org8acfbde">
+<p>
+weak_ptr 是一种不控制所指向对象生存期的智能指针，它指向由一个 shared_ptr 管理的对象。讲一个 weak_ptr 绑定到一个 shared_ptr 不会改变 shared_ptr 的引用计数。一旦最后一个指向对象的 shared_ptr 被销毁，对象就会被释放。即使有 weak_ptr 指向对象，对象也还是会被释放，因此，weak_ptr 的名字抓住了这种智能指针“弱”共享对象的特点。
+</p>
+
+<table id="org8751199">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">weak_ptr&lt;T&gt; w</td>
+<td class="org-left">空 weak_ptr 可以指向类型为 T 的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">weak_ptr&lt;T&gt; w(sp)</td>
+<td class="org-left">与 shared_ptr sp 指向相同对象的 weak_ptr。T 必须能转换为 sp 指向的类型</td>
+</tr>
+
+<tr>
+<td class="org-left">w = p</td>
+<td class="org-left">p 可以是一个 shared_ptr 或一个 weak_ptr。赋值后 w 与 p 共享对象</td>
+</tr>
+
+<tr>
+<td class="org-left">w.reset()</td>
+<td class="org-left">将 w 置为空</td>
+</tr>
+
+<tr>
+<td class="org-left">w.use_count()</td>
+<td class="org-left">与 w 共享对象的 shared_ptr 的数量</td>
+</tr>
+
+<tr>
+<td class="org-left">w.expired()</td>
+<td class="org-left">若 w.use_count()为 0,返回 true，否则返回 false</td>
+</tr>
+
+<tr>
+<td class="org-left">w.lock()</td>
+<td class="org-left">如果 expired 为 true，返回一个空 shared_ptr；否则返回一个指向 w 的对象的 shared_ptr</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+由于对象可能不存在，我们不能使用 weak_ptr 直接访问对象，而必须调用 lock。此函数检查 weak_ptr 指向的对象是否仍存在。如果存在，lock 返回一个指向共享对象的 shared_ptr。与任何其他 shrad_ptr 类似，只要此 shared_ptr 存在，它所指向的底层对象也就会一直存在。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">if</span> (<span style="color: #ECBE7B;">shared_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>&gt; <span style="color: #dcaeea;">np</span> = wp.lock()) {   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#26524;np&#19981;&#20026;&#31354;&#21017;&#26465;&#20214;&#25104;&#31435;</span>
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22312;if&#20013;&#65292;np&#19982;p&#20849;&#20139;&#23545;&#35937;</span>
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga57de89" class="outline-3">
+<h3 id="orga57de89">12.2 动态数组</h3>
+<div class="outline-text-3" id="text-orga57de89">
+<p>
+new 和 delete 运算符一次分配/释放一个对象，但某些应用需要一次为很多对象分配内存的功能。例如，vector 和 string 都是在连续内存中保存它们的元素，因此，当容器需要重新分配内存时，必须一次行为很多元素分配内存。
+</p>
+
+<p>
+为了支持这种需求，C++语言和标准库提供了两种一次分配一个对象数组的方法。C++语言定义了另一种 new 表达式语法，可以分配并初始化一个对象数组。标准库中包含一个名为 allocator 的类，允许我们将分配和初始化分离。使用 allocator 通常会提供更好的性能和更灵活的内存管理能力。
+</p>
+
+<blockquote>
+<p>
+Best Practices：
+</p>
+
+<p>
+大多数应用应该使用标准库容器而不是动态分配的数组。使用容器更为简单、更不容器出现内存管理错误并且可能有更好的性能。
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org3d4b0e3" class="outline-3">
+<h3 id="org3d4b0e3">12.2.1 new 和数组</h3>
+<div class="outline-text-3" id="text-org3d4b0e3">
+<p>
+为了让 new 分配一个对象数组，我们要在类型名之后跟一对方括号，在其中指明要分配的对象的数目。在下例中，new 分配要求数量的对象并（假定分配成功后）返回指向第一个对象的指针：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#35843;&#29992;get_size&#30830;&#23450;&#20998;&#37197;&#22810;&#23569;&#20010;int</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">pia</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>[get_size()];  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">pia&#25351;&#21521;&#31532;&#19968;&#20010;int</span>
+</pre>
+</div>
+
+<p>
+方括号中的大小必须是整型，但不必是常量。
+</p>
+</div>
+<div id="outline-container-org39c4471" class="outline-4">
+<h4 id="org39c4471">初始化动态分配对象的数组</h4>
+<div class="outline-text-4" id="text-org39c4471">
+<p>
+默认情况下，new 分配的对象，不管是单个分配的还是数组中的。都是默认初始化的。可以对数组中的元素进行值初始化，方法是在大小之后跟一对空括号。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">pia</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>];         <span style="color: #5B6268;">// </span><span style="color: #5B6268;">10&#20010;&#26410;&#21021;&#22987;&#21270;&#30340;int</span>
+<span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">pia2</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>]();      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">10&#20010;&#20540;&#21021;&#22987;&#21270;&#20026;0&#30340;int</span>
+<span style="color: #ECBE7B;">string</span> *<span style="color: #dcaeea;">psa</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">string</span>[<span style="color: #da8548; font-weight: bold;">10</span>];   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">10&#20010;&#31354;string</span>
+<span style="color: #ECBE7B;">string</span> *<span style="color: #dcaeea;">psa2</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">string</span>[<span style="color: #da8548; font-weight: bold;">10</span>](); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">10&#20010;&#31354;string</span>
+</pre>
+</div>
+
+<p>
+在新标准中，我们还可以提供一个元素初始化器的花括号列表：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">int</span> *<span style="color: #dcaeea;">pia3</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>]{<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">9</span>};
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">10&#20010;string&#65292;&#21069;4&#20010;&#29992;&#32473;&#23450;&#30340;&#21021;&#22987;&#21270;&#22120;&#21021;&#22987;&#21270;&#65292;&#21097;&#20313;&#30340;&#36827;&#34892;&#20540;&#21021;&#22987;&#21270;</span>
+<span style="color: #ECBE7B;">string</span> *<span style="color: #dcaeea;">psa3</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">string</span>[<span style="color: #da8548; font-weight: bold;">10</span>]{<span style="color: #98be65;">"a"</span>, <span style="color: #98be65;">"an"</span>, <span style="color: #98be65;">"the"</span>, string(<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #98be65;">'x'</span>)};
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1bdf644" class="outline-4">
+<h4 id="org1bdf644">释放动态数组</h4>
+<div class="outline-text-4" id="text-org1bdf644">
+<p>
+为了释放动态数组，我们使用一种特殊形式的 delete——在指针前加上一个空方括号对：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">delete</span> p;     <span style="color: #5B6268;">// </span><span style="color: #5B6268;">p&#24517;&#39035;&#25351;&#21521;&#19968;&#20010;&#21160;&#24577;&#20998;&#37197;&#30340;&#23545;&#35937;&#25110;&#20026;&#31354;</span>
+<span style="color: #51afef;">delete</span> [] pa;   <span style="color: #5B6268;">// </span><span style="color: #5B6268;">pa&#24517;&#39035;&#25351;&#21521;&#19968;&#20010;&#21160;&#24577;&#20998;&#37197;&#30340;&#25968;&#32452;&#25110;&#20026;&#31354;</span>
+</pre>
+</div>
+
+<p>
+第二条语句销毁 pa 指向的数组中的元素，并释放对应的内存。数组中的元素按逆序销毁，即，最后一个元素首先被销毁，然后是倒数第二个，依次类推。
+</p>
+
+<p>
+当我们释放一个指向数组的指针时，空方括号对是必须的：它指示编译器此指针指向一个对象数组的第一个元素。如果我们在 delete 一个指向数组的指针时中忽略了方括号（或者在 delete 一个指向单一对象的指针时使用了方括号），其行为是未定义的。
+</p>
+</div>
+</div>
+<div id="outline-container-org6e8c11e" class="outline-4">
+<h4 id="org6e8c11e">智能指针和动态数组</h4>
+<div class="outline-text-4" id="text-org6e8c11e">
+<p>
+标准库提供了一个可以管理 new 分配的数组的 unique_ptr 版本。为了用一个 unique_ptr 管理动态数组，我们必须在对象类型后面跟一对空方括号：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">up&#25351;&#21521;&#19968;&#20010;&#21253;&#21547;10&#20010;&#26410;&#21021;&#22987;&#21270;int&#30340;&#25968;&#32452;</span>
+<span style="color: #ECBE7B;">unique_ptr</span>&lt;<span style="color: #ECBE7B;">int</span>[]&gt; <span style="color: #dcaeea;">up</span>(<span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">int</span>[<span style="color: #da8548; font-weight: bold;">10</span>]);
+up.release();  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#33258;&#21160;&#29992;delete[]&#38144;&#27585;&#20854;&#25351;&#38024;</span>
+</pre>
+</div>
+
+<p>
+类型说明符中的方括号（&lt;int[]&gt;）指出 up 指向一个 int 数组而不是一个 int。由于 up 指向一个数组，当 up 销毁它管理的指针时，会自动使用 delete[]。
+</p>
+
+<table id="org16ebf0c">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">指向数组的 unique_ptr 不支持成员访问运算符（点和箭头运算符）。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">其他 unique_ptr 操作不变。</td>
+</tr>
+
+<tr>
+<td class="org-left">unique_ptr&lt;T[]&gt; u</td>
+<td class="org-left">u 可以指向一个动态分配的数组，数组元素类型为 T</td>
+</tr>
+
+<tr>
+<td class="org-left">unique_ptr&lt;T[]&gt; u(p)</td>
+<td class="org-left">u 指向内置指针 p 所指向的动态分配的数组。p必须能转换为类型 T*</td>
+</tr>
+
+<tr>
+<td class="org-left">u[i]</td>
+<td class="org-left">返回 u 拥有的数组中位置 i 处的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">u 必须指向一个数组中位置 i 处的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">u 必须指向一个数组</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+与 unique_ptr 不同，shared_ptr 不直接支持管理动态数组。如果希望使用 shared_ptr 管理一个动态数组，必须提供自己定义的删除器。
+</p>
+
+<p>
+shared_ptr 未定义下标运算符，而且智能指针类型不支持指针算术运算。因此，为了访问数组中的元素，必须用 get 获取一个内置指针，然后用它来访问数组元素。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e81f3e" class="outline-3">
+<h3 id="org7e81f3e">12.2.2 allocator 类</h3>
+<div class="outline-text-3" id="text-org7e81f3e">
+<p>
+new 有一些灵活性上的局限，其中一方面表现在它将内存分配的对象构造组合在了一起。类似的，delete 将对象析构和内存释放组合在了一起。我们分配单个对象时，通常希望将内存分配与对象初始化组合在一起。因为在这种情况下，我们几乎肯定直到对象应有什么值。
+</p>
+
+<p>
+当分配一大块内存时，我们通常计数在这块内存上按需构造对象。在此情况下，我们希望将内存分配和对象构造分离。这意味着我们可以分配大块内存，但只在真正需要时才真正执行对象创建操作（同时付出一定开销）。
+</p>
+
+<p>
+更重要的是，那些没有默认构造函数的类就不能动态分配数组了。
+</p>
+</div>
+<div id="outline-container-orga5173ee" class="outline-5">
+<h5 id="orga5173ee">allocator</h5>
+<div class="outline-text-5" id="text-orga5173ee">
+<p>
+标准库 <b>allocator</b> 类定义在头文件 memory 中，它帮助我们将内存分配和对象构造分离开来。它以提供一个类型感觉的内存分配方法，它分配的内存是原始的、未构造的。
+</p>
+
+<table id="orgd423c60">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">allocator&lt;T&gt; a</td>
+<td class="org-left">定义了一个名为 a 的 allocator 对象，它可以为类型为 T 的对象分配内存</td>
+</tr>
+
+<tr>
+<td class="org-left">a.allocate(n)</td>
+<td class="org-left">分配一段原始的、未构造的内存，保存 n 个类型为 T 的对象</td>
+</tr>
+
+<tr>
+<td class="org-left">a.deallocate(p, n)</td>
+<td class="org-left">释放从 T*指针 p 中地是开始的内存，这块内存保存了 n 个类型为 T 的对象；p必须是一个先前由 allocate 返回的指针，且 n 必须是 p 创建时所要求的大小。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在调用 deallocate 之前，用户必须对每个在这块内存中创建的对象调用 destroy</td>
+</tr>
+
+<tr>
+<td class="org-left">a.construct(p, args)</td>
+<td class="org-left">p 必须是一个类型为 T*的指针，指向一块原始内存；arg 被传递给类型为 T 的构造函数，用来在 p 指向的内存中构造一个对象</td>
+</tr>
+
+<tr>
+<td class="org-left">a.destroy(p)</td>
+<td class="org-left">p 为 T*类型的指针，此算法对 p 所指向的对象执行析构函数</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgf359a75" class="outline-5">
+<h5 id="orgf359a75">allocator 分配未构造的内存</h5>
+<div class="outline-text-5" id="text-orgf359a75">
+<p>
+allocator 分配的内存是未构造的。我们按需要在此内存中构造对象。在新标准库中，construct 成员函数接受一个指针和零个或多个额外参数，在给定位置构造一个元素。额外参数用来初始化构造的对象。
+</p>
+
+<blockquote>
+<p>
+WARNING：
+</p>
+
+<p>
+为了使用 allocate 返回的内存，我们必须用 construct 构造对象。使用未构造的内存，其行为是未定义的。
+</p>
+</blockquote>
+
+<p>
+当我们用完对象后，必须对每个构造的元素调用 destory 来销毁它们。函数 destory 接受一个指针，对指向的对象执行析构函数。
+</p>
+
+<p>
+我们传递给 deallocate 的指针不能为空，它必须指向由 allocate 分配的内存。而且，传递给 deallocate 的大小参数必须与调用 allocated 分配内存时提供的大小参数具有一样的值。
+</p>
+</div>
+</div>
+<div id="outline-container-org2f024c1" class="outline-5">
+<h5 id="org2f024c1">拷贝和填充未初始化内存的算法</h5>
+<div class="outline-text-5" id="text-org2f024c1">
+<p>
+标准库还为 allocator 类定义了两个伴随算法，可以在未初始化内存中创建对象。下表描述了这些函数，它们都定义在头文件 memory 中。
+</p>
+
+<table id="org1359171">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">这些函数在给定目的位置创建元素，而不是由系统分配内存给它们。</td>
+</tr>
+
+<tr>
+<td class="org-left">uninitialized_copy(b,e,b2)</td>
+<td class="org-left">从迭代器 b 和 e 指出的输入范围中拷贝元素到迭代器 b2 指定的未构造的原始内存中。b2 指向的内存必须足够大，能容纳输入序列中元素的拷贝</td>
+</tr>
+
+<tr>
+<td class="org-left">uninitialized_copy_n(b,n,b2)</td>
+<td class="org-left">从迭代器 b 指向的元素开始，拷贝 n 个元素到 b2 开始的内存中</td>
+</tr>
+
+<tr>
+<td class="org-left">uninitialized_fill(b,e,t)</td>
+<td class="org-left">在迭代器 b 和 e 指定的原始内存范围中创建对象，对象的值均为 t 的拷贝</td>
+</tr>
+
+<tr>
+<td class="org-left">uninitialized_fill_n(b,n,t)</td>
+<td class="org-left">从迭代器 b 指向的内存地址开始创建 n 个对象，b必须指向足够大的未构造的原始内存，能够容器给定数量的对象</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+传递给 uninitialized_copy 的目的位置迭代器必须指向未构造的内存。与 copy 不同 uninitialized_copy 在给定目的位置构造函数。
+</p>
+
+<p>
+类似 copy，uninitialized_copy 返回（递增后）目的位置迭代器。因此，依次 uninitialized_copy 调用会返回一个指针，指向最后一个构造的元素之后的位置。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-06-12 Fri 13:37</p>
+</div>
+</body>
+</html>

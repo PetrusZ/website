@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-05-28 Thu 17:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数组与指针</title>
@@ -251,10 +251,11 @@
 当定义为数组，并且以数组的方式引用时，实际上是这样的：
 </p>
 
-<p>
-<a href="http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174406%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">[[http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174406的屏幕截图.png</a>]]
-(图片丢失)
+
+<div class="figure">
+<p><img src="../pics/Blog/array.png" alt="array.png">
 </p>
+</div>
 
 <p>
 每个符号的地址在编译时可知，所以直接取得 a 的地址，然后再将这个地址加上 i 得到所需下标的地址，最后根据计算出的地址取得数组下标 i 指向的内容。
@@ -266,10 +267,11 @@
 而当定义为指针时，是这样：
 </p>
 
-<p>
-<a href="http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174452%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">[[http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174452的屏幕截图.png</a>]]
-(图片丢失)
+
+<div class="figure">
+<p><img src="../pics/Blog/point.png" alt="point.png">
 </p>
+</div>
 
 <p>
 而指针必须首先在运行时取得其存储的地址，再根据这个地址取得实际存储的内容。由此可知虽然指针要灵活的多，但需要增加一次额外的提取。
@@ -281,10 +283,11 @@
 因此，当定义为指针，但却以数组的方式引用时，实际上是这样的：
 </p>
 
-<p>
-<a href="http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174504%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">[[http://codeplayer.org/wp-content/uploads/2014/02/2014-02-03-174504的屏幕截图.png</a>]]
-(图片丢失)
+
+<div class="figure">
+<p><img src="../pics/Blog/array_as_point.png" alt="array_as_point.png">
 </p>
+</div>
 
 <p>
 这是编译器所执行的是间接引用，因为我们告诉编译器我们拥有的实际是一个指针。正式的来说，编译器会：
@@ -379,7 +382,7 @@ C 语言标准对此作了如下说明：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-05-28 Thu 17:04</p>
 </div>
 </body>
 </html>
