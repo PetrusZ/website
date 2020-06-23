@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-23 Tue 13:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>安装Gentoo</title>
@@ -249,7 +249,7 @@
 <li><a href="#orgea51b22">Sync ebuild repos</a></li>
 <li><a href="#org15a5dfa">安装/更新</a></li>
 <li><a href="#orgf7e4ea0">配置杂项</a></li>
-<li><a href="#配置安装内核">配置/安装内核</a></li>
+<li><a href="#org29d18f5">配置/安装内核</a></li>
 <li><a href="#orged919a2">配置系统</a></li>
 <li><a href="#orgb9337f8">配置 bootloader</a></li>
 <li><a href="#org599a9c1">User configura</a></li>
@@ -491,9 +491,9 @@ Use custom profile which restored/installed by Backup4Config
 </div>
 </div>
 
-<div id="outline-container-配置安装内核" class="outline-3">
-<h3 id="配置安装内核">配置/安装内核</h3>
-<div class="outline-text-3" id="text-配置安装内核">
+<div id="outline-container-org29d18f5" class="outline-3">
+<h3 id="org29d18f5">配置/安装内核</h3>
+<div class="outline-text-3" id="text-org29d18f5">
 <p>
 <code>eselect kernel</code>, and use <code>genkernall all</code> for now.
 </p>
@@ -538,9 +538,6 @@ Or just install gentoo-kernel-bin
     mkswap /swapfile
     swapon /swapfile
 
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">set hostname</span>
-    hostnamectl set-hostname &lt;hostname&gt;
-
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">ssh root&#30331;&#38470;</span>
     <span style="color: #ECBE7B;">sudo</span> vim /etc/ssh/sshd_config
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">comment `PermitRootLogin prohibit-password`</span>
@@ -576,10 +573,6 @@ Or just install gentoo-kernel-bin
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config restore/install user configura files</span>
     <span style="color: #ECBE7B;">cd</span> Backup4config
     ./restore_config.sh user
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config install vim, zsh and tmux plugin</span>
-    ./install user
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open vim and type `:PlugInstall`</span>
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open tmux and press prefix + I (capital i, as in Install) to fetch the plugin.</span>
 </pre>
 </div>
 </div>
@@ -599,18 +592,30 @@ Reboot 前先检查系统：
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #ECBE7B;">rm</span> /stage3-*.tar.*
+<pre class="src src-sh"><span style="color: #ECBE7B;">rm</span> /stage3-*.tar.*
 
-    umount -l /mnt/gentoo/dev<span style="color: #51afef;">{</span>/shm,/pts,<span style="color: #51afef;">}</span>
-    umount -R /mnt/gentoo
+umount -l /mnt/gentoo/dev<span style="color: #51afef;">{</span>/shm,/pts,<span style="color: #51afef;">}</span>
+umount -R /mnt/gentoo
 
-    reboot
+reboot
 
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20877;&#27425;&#26816;&#26597;&#31995;&#32479;&#26159;&#21542;&#27491;&#24120;</span>
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;wifi&#21015;&#34920;</span>
-    nmcli device wifi list
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36830;&#25509;wifi</span>
-    nmcli device wifi connect &lt;SSID&gt; passworld &lt;password&gt;
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">set hostname</span>
+hostnamectl set-hostname &lt;hostname&gt;
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">set ntp &amp; timezone</span>
+timedatectl set-ntp true
+timedatectl set-timezone Asia/Shanghai
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4Config install vim, zsh and tmux plugin</span>
+<span style="color: #ECBE7B;">cd</span> Backup4config
+./install user
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open vim and type `:PlugInstall`</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">Open tmux and press prefix + I (capital i, as in Install) to fetch the plugin.</span>
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20877;&#27425;&#26816;&#26597;&#31995;&#32479;&#26159;&#21542;&#27491;&#24120;</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;wifi&#21015;&#34920;</span>
+nmcli device wifi list
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36830;&#25509;wifi</span>
+nmcli device wifi connect &lt;SSID&gt; passworld &lt;password&gt;
 </pre>
 </div>
 </div>
@@ -619,7 +624,7 @@ Reboot 前先检查系统：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-23 Tue 13:00</p>
 </div>
 </body>
 </html>
