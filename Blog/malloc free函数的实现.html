@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-27 Wed 18:16 -->
+<!-- 2020-06-26 Fri 11:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>malloc free函数的实现</title>
@@ -234,17 +234,17 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge46871e">基础信息</a></li>
-<li><a href="#orgd23c2e7">malloc 函数</a></li>
-<li><a href="#orgc96c2b5">morecore 函数</a></li>
-<li><a href="#orgf832f64">free 函数</a></li>
+<li><a href="#orgb410656">基础信息</a></li>
+<li><a href="#org7b2de4a">malloc 函数</a></li>
+<li><a href="#org5a75b31">morecore 函数</a></li>
+<li><a href="#orgfe16460">free 函数</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge46871e" class="outline-2">
-<h2 id="orge46871e">基础信息</h2>
-<div class="outline-text-2" id="text-orge46871e">
+<div id="outline-container-orgb410656" class="outline-2">
+<h2 id="orgb410656">基础信息</h2>
+<div class="outline-text-2" id="text-orgb410656">
 <p>
 malloc 管理的空间不一定是连续的，因为程序中的某些地方可能不通过 malloc 调用申请空间。所以空闲存储空间是以空闲块链表的方式组织的，每个块包含一个长度、一个指向下一块的指针以及一个指向自身存储空间的指针。并且按张存储地址的升序组织，最后一块指向第一块，形成一个循环链表。(K&amp;R 第二版的中文版居然将“in use, owned by malloc”译为不是由 malloc 控制的空间，将“not owned by malloc”译为空闲链表，译者是四级没过吗？)
 </p>
@@ -298,9 +298,9 @@ malloc 管理的空间不一定是连续的，因为程序中的某些地方可�
 </div>
 </div>
 
-<div id="outline-container-orgd23c2e7" class="outline-2">
-<h2 id="orgd23c2e7">malloc 函数</h2>
-<div class="outline-text-2" id="text-orgd23c2e7">
+<div id="outline-container-org7b2de4a" class="outline-2">
+<h2 id="org7b2de4a">malloc 函数</h2>
+<div class="outline-text-2" id="text-org7b2de4a">
 <p>
 变量 base 表示空闲块的头部。第一次调用 malloc 函数时，freep 为 NULL，系统创建一个退化的空闲块链表。每次搜索空闲链表时都从上一次找到空闲块的地方(freep)开始，该策略可以保证链表是均匀的。如果找到的块太大，则将其尾部返回给用户，这样初始空闲块的头部只需要修改 size 即可。在任何情况下，返回给用户的指针都指向块内的空闲存储空间，即比指向头部的指针大一个单元。
 </p>
@@ -352,9 +352,9 @@ malloc 管理的空间不一定是连续的，因为程序中的某些地方可�
 </div>
 </div>
 
-<div id="outline-container-orgc96c2b5" class="outline-2">
-<h2 id="orgc96c2b5">morecore 函数</h2>
-<div class="outline-text-2" id="text-orgc96c2b5">
+<div id="outline-container-org5a75b31" class="outline-2">
+<h2 id="org5a75b31">morecore 函数</h2>
+<div class="outline-text-2" id="text-org5a75b31">
 <p>
 函数 morecore 用于向操作系统请求存储空间，其实现细节因操作系统不同而不同。因为向操作系统请求存储空间是一个很大的开销，所以我们不希望每次调用 malloc 都执行该操作，而是一次至少申请 NALLOC 个单元。在设置完 size 字段后，morecore 调用 free 函数把申请的存储空间插入到空闲块链表中。
 </p>
@@ -390,9 +390,9 @@ malloc 管理的空间不一定是连续的，因为程序中的某些地方可�
 </div>
 </div>
 
-<div id="outline-container-orgf832f64" class="outline-2">
-<h2 id="orgf832f64">free 函数</h2>
-<div class="outline-text-2" id="text-orgf832f64">
+<div id="outline-container-orgfe16460" class="outline-2">
+<h2 id="orgfe16460">free 函数</h2>
+<div class="outline-text-2" id="text-orgfe16460">
 <p>
 free 函数从 freep 指向的地址开始，逐个扫描空闲块链表，寻找可以插入空闲块的地方。该位置可能在两个空闲块之间，也可能在链表的开头或末尾。如果被释放的块与另一个空闲块相邻，则我们将这两个空闲块合并起来。合并操作很简单，只需要设置指针指向正确的位置并更新块大小。
 </p>
@@ -439,7 +439,7 @@ free 函数从 freep 指向的地址开始，逐个扫描空闲块链表，寻�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-27 Wed 18:16</p>
+<p class="date">Created: 2020-06-26 Fri 11:33</p>
 </div>
 </body>
 </html>

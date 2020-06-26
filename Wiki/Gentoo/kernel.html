@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kernel</title>
@@ -234,28 +234,28 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0c84b37">How upgrade kernel</a></li>
-<li><a href="#org2e890f8">Configure kernel</a>
+<li><a href="#org2fea7e6">How upgrade kernel</a></li>
+<li><a href="#org303c9d7">Configure kernel</a>
 <ul>
-<li><a href="#org25d24a3">将 intel wifi 固件编译进内核</a></li>
-<li><a href="#orgf286e1c">将 Intel microcode 编译进内核</a></li>
+<li><a href="#org03e2699">将 intel wifi 固件编译进内核</a></li>
+<li><a href="#org5d90a44">将 Intel microcode 编译进内核</a></li>
 <li><a href="#其他配置">其他配置</a>
 <ul>
 <li><a href="#开启 zswap">开启 zswap</a></li>
-<li><a href="#org868b301">CPU Frequency scaling</a></li>
-<li><a href="#org4481ad2">I/O Schedulers</a></li>
+<li><a href="#org441ffaa">CPU Frequency scaling</a></li>
+<li><a href="#org642b64a">I/O Schedulers</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org078bd65">参考</a></li>
+<li><a href="#org0f9d9e9">参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0c84b37" class="outline-2">
-<h2 id="org0c84b37">How upgrade kernel</h2>
-<div class="outline-text-2" id="text-org0c84b37">
+<div id="outline-container-org2fea7e6" class="outline-2">
+<h2 id="org2fea7e6">How upgrade kernel</h2>
+<div class="outline-text-2" id="text-org2fea7e6">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/bash</span>
 
@@ -282,13 +282,13 @@
 </div>
 </div>
 
-<div id="outline-container-org2e890f8" class="outline-2">
-<h2 id="org2e890f8">Configure kernel</h2>
-<div class="outline-text-2" id="text-org2e890f8">
+<div id="outline-container-org303c9d7" class="outline-2">
+<h2 id="org303c9d7">Configure kernel</h2>
+<div class="outline-text-2" id="text-org303c9d7">
 </div>
-<div id="outline-container-org25d24a3" class="outline-3">
-<h3 id="org25d24a3">将 intel wifi 固件编译进内核</h3>
-<div class="outline-text-3" id="text-org25d24a3">
+<div id="outline-container-org03e2699" class="outline-3">
+<h3 id="org03e2699">将 intel wifi 固件编译进内核</h3>
+<div class="outline-text-3" id="text-org03e2699">
 <ol class="org-ol">
 <li>Enable <code>CONFIG_IWLWIFI</code> and <code>CONFIG_IWLMVM</code></li>
 
@@ -310,9 +310,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf286e1c" class="outline-3">
-<h3 id="orgf286e1c">将 Intel microcode 编译进内核</h3>
-<div class="outline-text-3" id="text-orgf286e1c">
+<div id="outline-container-org5d90a44" class="outline-3">
+<h3 id="org5d90a44">将 Intel microcode 编译进内核</h3>
+<div class="outline-text-3" id="text-org5d90a44">
 <ol class="org-ol">
 <li>Enable <code>CONFIG_MICROCODE</code>, and <code>CONFIG_MICROCODE_INTEL</code></li>
 </ol>
@@ -362,18 +362,18 @@
 </div>
 </div>
 
-<div id="outline-container-org868b301" class="outline-4">
-<h4 id="org868b301">CPU Frequency scaling</h4>
-<div class="outline-text-4" id="text-org868b301">
+<div id="outline-container-org441ffaa" class="outline-4">
+<h4 id="org441ffaa">CPU Frequency scaling</h4>
+<div class="outline-text-4" id="text-org441ffaa">
 <p>
 <code>CONFIG_CPU_FREQ_GOV_POWERSAVE</code> 配合 <code>CONFIG_X86_INTEL_PSTATE</code> 使用，效果与 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 差异不大。 甚至可以获得比 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 更优秀的"性能/瓦特"比。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4481ad2" class="outline-4">
-<h4 id="org4481ad2">I/O Schedulers</h4>
-<div class="outline-text-4" id="text-org4481ad2">
+<div id="outline-container-org642b64a" class="outline-4">
+<h4 id="org642b64a">I/O Schedulers</h4>
+<div class="outline-text-4" id="text-org642b64a">
 <p>
 TODO
 </p>
@@ -390,9 +390,9 @@ TODO
 </div>
 </div>
 
-<div id="outline-container-org078bd65" class="outline-2">
-<h2 id="org078bd65">参考</h2>
-<div class="outline-text-2" id="text-org078bd65">
+<div id="outline-container-org0f9d9e9" class="outline-2">
+<h2 id="org0f9d9e9">参考</h2>
+<div class="outline-text-2" id="text-org0f9d9e9">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/Kernel/Upgrade/en">https://wiki.gentoo.org/wiki/Kernel/Upgrade/en</a></li>
 <li><a href="http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html">http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html</a></li>
@@ -402,7 +402,7 @@ TODO
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:33</p>
 </div>
 </body>
 </html>

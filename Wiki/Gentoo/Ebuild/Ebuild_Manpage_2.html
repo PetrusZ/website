@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ebuild_Manpage_2</title>
@@ -256,25 +256,25 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org01f5289">PORTAGE DECLARATIONS</a></li>
-<li><a href="#org04bb038">PHASE FUNCTIONS</a></li>
-<li><a href="#orgea6dd7e">HELPER FUNCTIONS</a>
+<li><a href="#org080d6d9">PORTAGE DECLARATIONS</a></li>
+<li><a href="#org9156386">PHASE FUNCTIONS</a></li>
+<li><a href="#orgb5fb469">HELPER FUNCTIONS</a>
 <ul>
-<li><a href="#orge9cf4ad">Phase:</a></li>
-<li><a href="#org5c54f50">General:</a></li>
-<li><a href="#orga66bb64">Output:</a></li>
-<li><a href="#org9a14da0">Unpack</a></li>
-<li><a href="#org7610bb6">Compile:</a></li>
-<li><a href="#orgb22caa8">Install:</a></li>
+<li><a href="#orga340944">Phase:</a></li>
+<li><a href="#org7655dcc">General:</a></li>
+<li><a href="#orgc92e60a">Output:</a></li>
+<li><a href="#org11e932e">Unpack</a></li>
+<li><a href="#org19ef537">Compile:</a></li>
+<li><a href="#org537dd16">Install:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org01f5289" class="outline-2">
-<h2 id="org01f5289">PORTAGE DECLARATIONS</h2>
-<div class="outline-text-2" id="text-org01f5289">
+<div id="outline-container-org080d6d9" class="outline-2">
+<h2 id="org080d6d9">PORTAGE DECLARATIONS</h2>
+<div class="outline-text-2" id="text-org080d6d9">
 <ul class="org-ul">
 <li><p>
 inherit
@@ -287,9 +287,9 @@ inherit 是 portage 对 ebuild 外部的额外 class 的维护的函数并且作
 </div>
 </div>
 
-<div id="outline-container-org04bb038" class="outline-2">
-<h2 id="org04bb038">PHASE FUNCTIONS</h2>
-<div class="outline-text-2" id="text-org04bb038">
+<div id="outline-container-org9156386" class="outline-2">
+<h2 id="org9156386">PHASE FUNCTIONS</h2>
+<div class="outline-text-2" id="text-org9156386">
 <ul class="org-ul">
 <li><p>
 pkg_pretend
@@ -455,13 +455,13 @@ pkg_config
 </div>
 </div>
 
-<div id="outline-container-orgea6dd7e" class="outline-2">
-<h2 id="orgea6dd7e">HELPER FUNCTIONS</h2>
-<div class="outline-text-2" id="text-orgea6dd7e">
+<div id="outline-container-orgb5fb469" class="outline-2">
+<h2 id="orgb5fb469">HELPER FUNCTIONS</h2>
+<div class="outline-text-2" id="text-orgb5fb469">
 </div>
-<div id="outline-container-orge9cf4ad" class="outline-3">
-<h3 id="orge9cf4ad">Phase:</h3>
-<div class="outline-text-3" id="text-orge9cf4ad">
+<div id="outline-container-orga340944" class="outline-3">
+<h3 id="orga340944">Phase:</h3>
+<div class="outline-text-3" id="text-orga340944">
 <ul class="org-ul">
 <li><p>
 defualt
@@ -516,9 +516,9 @@ defualt_*
 </div>
 </div>
 
-<div id="outline-container-org5c54f50" class="outline-3">
-<h3 id="org5c54f50">General:</h3>
-<div class="outline-text-3" id="text-org5c54f50">
+<div id="outline-container-org7655dcc" class="outline-3">
+<h3 id="org7655dcc">General:</h3>
+<div class="outline-text-3" id="text-org7655dcc">
 <ul class="org-ul">
 <li><p>
 assert [reason]
@@ -660,9 +660,9 @@ item list 由 IFS 变量分隔。该变量的默认值为' '或空格。这是�
 </div>
 </div>
 
-<div id="outline-container-orga66bb64" class="outline-3">
-<h3 id="orga66bb64">Output:</h3>
-<div class="outline-text-3" id="text-orga66bb64">
+<div id="outline-container-orgc92e60a" class="outline-3">
+<h3 id="orgc92e60a">Output:</h3>
+<div class="outline-text-3" id="text-orgc92e60a">
 <ul class="org-ul">
 <li><p>
 einfo disposable message
@@ -723,9 +723,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org9a14da0" class="outline-3">
-<h3 id="org9a14da0">Unpack</h3>
-<div class="outline-text-3" id="text-org9a14da0">
+<div id="outline-container-org11e932e" class="outline-3">
+<h3 id="org11e932e">Unpack</h3>
+<div class="outline-text-3" id="text-org11e932e">
 <ul class="org-ul">
 <li><p>
 <code>unpack &lt;source&gt; [list of more sources]</code>
@@ -738,9 +738,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org7610bb6" class="outline-3">
-<h3 id="org7610bb6">Compile:</h3>
-<div class="outline-text-3" id="text-org7610bb6">
+<div id="outline-container-org19ef537" class="outline-3">
+<h3 id="org19ef537">Compile:</h3>
+<div class="outline-text-3" id="text-org19ef537">
 <ul class="org-ul">
 <li><p>
 econf [configure options]
@@ -793,9 +793,9 @@ EXTRA_EMAKE knob 是 portage 的特性，所以开发者可以在调试 ebuild �
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb22caa8" class="outline-3">
-<h3 id="orgb22caa8">Install:</h3>
-<div class="outline-text-3" id="text-orgb22caa8">
+<div id="outline-container-org537dd16" class="outline-3">
+<h3 id="org537dd16">Install:</h3>
+<div class="outline-text-3" id="text-org537dd16">
 <ul class="org-ul">
 <li><p>
 einstall [make options] 这用来代替 make install。执行：
@@ -1124,7 +1124,7 @@ docinto [path]
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:33</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C语言复杂声明分析</title>
@@ -234,16 +234,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6fc1eea">const 与指针</a></li>
-<li><a href="#org79cd957">优先级规则</a></li>
-<li><a href="#orgf54bb63">typedef 声明</a></li>
+<li><a href="#org8396cdd">const 与指针</a></li>
+<li><a href="#orgb3c1b1c">优先级规则</a></li>
+<li><a href="#org232e297">typedef 声明</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6fc1eea" class="outline-2">
-<h2 id="org6fc1eea">const 与指针</h2>
-<div class="outline-text-2" id="text-org6fc1eea">
+<div id="outline-container-org8396cdd" class="outline-2">
+<h2 id="org8396cdd">const 与指针</h2>
+<div class="outline-text-2" id="text-org8396cdd">
 <p>
 C 语言中的声明可能会带来严重的问题，尤其是当声明又长又晦涩的时候，很容易就会把新手程序员搞的不知东南西北。虽然说 C 语言的声明语法对编译器来说并不是什么复杂的事，但是对于一般的程序员来说却是晦涩难懂、难以理解。C语言的声明所存在的一个最大的问题是你无法以一种人们所习惯的从左到右的自然方式来阅读一个声明。
 </p>
@@ -277,9 +277,9 @@ C 语言中的声明可能会带来严重的问题，尤其是当声明又长又
 </div>
 </div>
 
-<div id="outline-container-org79cd957" class="outline-2">
-<h2 id="org79cd957">优先级规则</h2>
-<div class="outline-text-2" id="text-org79cd957">
+<div id="outline-container-orgb3c1b1c" class="outline-2">
+<h2 id="orgb3c1b1c">优先级规则</h2>
+<div class="outline-text-2" id="text-orgb3c1b1c">
 <p>
 但是当声明特别复杂的时候，比如 char <b>(</b> c[10])(int **p)，该怎么办呢？由于我们无法从左到右以一种自然的方式来解读声明，所以就需要用到声明的优先级规则了：
 </p>
@@ -305,9 +305,9 @@ C 语言中的声明可能会带来严重的问题，尤其是当声明又长又
 </div>
 </div>
 
-<div id="outline-container-orgf54bb63" class="outline-2">
-<h2 id="orgf54bb63">typedef 声明</h2>
-<div class="outline-text-2" id="text-orgf54bb63">
+<div id="outline-container-org232e297" class="outline-2">
+<h2 id="org232e297">typedef 声明</h2>
+<div class="outline-text-2" id="text-org232e297">
 <p>
 如果声明中包含 typedef 定义的名字，我们可以使复杂的声明稍作简化。比如，我们来分析一下 signal()函数，其声明如下：
 </p>
@@ -345,7 +345,7 @@ C 语言中的声明可能会带来严重的问题，尤其是当声明又长又
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:33</p>
 </div>
 </body>
 </html>

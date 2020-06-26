@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>最长公共子序列</title>
@@ -234,11 +234,11 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0df5f10">步骤 1：刻画最长公共子序列</a></li>
-<li><a href="#org3949683">步骤 2：一个递归解</a></li>
-<li><a href="#org2c606de">步骤 3：计算 LCS 的长度</a></li>
-<li><a href="#org67db910">步骤 4：构造 LCS</a></li>
-<li><a href="#org8a56540">C 语言实现</a></li>
+<li><a href="#org78e49e1">步骤 1：刻画最长公共子序列</a></li>
+<li><a href="#org0ed8148">步骤 2：一个递归解</a></li>
+<li><a href="#org00a17f5">步骤 3：计算 LCS 的长度</a></li>
+<li><a href="#orge3afc25">步骤 4：构造 LCS</a></li>
+<li><a href="#org812ccd8">C 语言实现</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +252,9 @@
 
 <hr>
 
-<div id="outline-container-org0df5f10" class="outline-2">
-<h2 id="org0df5f10">步骤 1：刻画最长公共子序列</h2>
-<div class="outline-text-2" id="text-org0df5f10">
+<div id="outline-container-org78e49e1" class="outline-2">
+<h2 id="org78e49e1">步骤 1：刻画最长公共子序列</h2>
+<div class="outline-text-2" id="text-org78e49e1">
 <p>
 暴力求解的穷举法绝对是一个坏主意，因为其运行时间为指数阶。所以我们要来寻找 LCS 的最优子结构。最优子结构如下：
 </p>
@@ -271,9 +271,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3949683" class="outline-2">
-<h2 id="org3949683">步骤 2：一个递归解</h2>
-<div class="outline-text-2" id="text-org3949683">
+<div id="outline-container-org0ed8148" class="outline-2">
+<h2 id="org0ed8148">步骤 2：一个递归解</h2>
+<div class="outline-text-2" id="text-org0ed8148">
 <p>
 如步骤 1 所述，如果 xm = yn，我们应该求解 X(m-1)和 Y(n-1)的一个 LCS，然后将 xm = yn 添加到这个 LCS 的末尾，就得到了 X 和 Y 的 LCS。如果 xm != yn，我必须求解两个子问题，X(m-1)和 Y 的 LCS 与 X 和 Y(n-1)的 LCS，然后将其中较长的作为 X 和 Y 的 LCS。因为这些情况覆盖了所有的可能，所以必然有一个最优解出现在 X 和 Y 的 LCS 中。另外 LCS 的重叠子问题性质也很明显，在求解 X 和 Y 的 LCS 时，我们会需要 X 和 Y(n-1)的 LCS 及 X(m-1)和 Y 的 LCS，也需要求解 X(m-1)和 Y(n-1)的子问题。
 </p>
@@ -291,9 +291,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2c606de" class="outline-2">
-<h2 id="org2c606de">步骤 3：计算 LCS 的长度</h2>
-<div class="outline-text-2" id="text-org2c606de">
+<div id="outline-container-org00a17f5" class="outline-2">
+<h2 id="org00a17f5">步骤 3：计算 LCS 的长度</h2>
+<div class="outline-text-2" id="text-org00a17f5">
 <p>
 采用自底向上的方法，用表 c 存储 LCS 长度，用表 b[i, j]存储对应计算 c[i, j]时所选择的子问题最优解，然后按行主次序计算表项。具体计算方法见下文的完整 C 语言代码。
 </p>
@@ -311,9 +311,9 @@
 </div>
 </div>
 
-<div id="outline-container-org67db910" class="outline-2">
-<h2 id="org67db910">步骤 4：构造 LCS</h2>
-<div class="outline-text-2" id="text-org67db910">
+<div id="outline-container-orge3afc25" class="outline-2">
+<h2 id="orge3afc25">步骤 4：构造 LCS</h2>
+<div class="outline-text-2" id="text-orge3afc25">
 <p>
 利用表 b，将其递归展开，就可以得到一个 LCS。简单地从 b[m ,n]开始，然后按箭头的方向追踪下去即可，当遇到一个”↖”时，就意味着 xi = yj 是 LCS 的一个元素。同样，具体实现见下本的 C 语言代码。
 </p>
@@ -322,9 +322,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8a56540" class="outline-2">
-<h2 id="org8a56540">C 语言实现</h2>
-<div class="outline-text-2" id="text-org8a56540">
+<div id="outline-container-org812ccd8" class="outline-2">
+<h2 id="org812ccd8">C 语言实现</h2>
+<div class="outline-text-2" id="text-org812ccd8">
 <p>
 动态规划法解 LCS 问题的 C 语言实现如下，其中包含了两个例子，一个是上文中的 ABCD 的例子，又一个是算法导论中求 DNS 串相似度的例子：
 </p>
@@ -497,7 +497,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:32</p>
 </div>
 </body>
 </html>

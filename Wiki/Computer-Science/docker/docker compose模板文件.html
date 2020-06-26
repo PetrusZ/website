@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>docker compose模板文件</title>
@@ -234,39 +234,39 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga35cddc">build</a></li>
-<li><a href="#orgb0ae9f3">cap_add, cap_drop</a></li>
-<li><a href="#orgdb41483">command</a></li>
-<li><a href="#org2a430bf">configs</a></li>
-<li><a href="#org334aeb7">cgroup_parent</a></li>
-<li><a href="#org533112a">container_name</a></li>
-<li><a href="#orga2fa86d">deploy</a></li>
-<li><a href="#orgf2b78e7">devices</a></li>
-<li><a href="#orgd159b51">depends_on</a></li>
-<li><a href="#org79be259">dns</a></li>
-<li><a href="#org0401d84">dns_search</a></li>
-<li><a href="#org04de4ef">tmpfs</a></li>
-<li><a href="#org0d07400">env_file</a></li>
-<li><a href="#org98115bc">environment</a></li>
-<li><a href="#orgb65d326">expose</a></li>
-<li><a href="#orgdbf99cc">external_links</a></li>
-<li><a href="#org7c0a592">extra_hosts</a></li>
-<li><a href="#org555c9c1">healthcheck</a></li>
-<li><a href="#org357b138">image</a></li>
-<li><a href="#org6323c84">labels</a></li>
-<li><a href="#orga9cbced">logging</a></li>
-<li><a href="#orgf66060a">network_mode</a></li>
-<li><a href="#org93709ed">networks</a></li>
-<li><a href="#orgc0fe8c2">pid</a></li>
-<li><a href="#orgba63495">ports</a></li>
-<li><a href="#org1ce2cfe">secrets</a></li>
-<li><a href="#org0e55e6e">security\_opt</a></li>
-<li><a href="#orgf986f3c">stop_signal</a></li>
-<li><a href="#org502c09c">sysctls</a></li>
-<li><a href="#orgf34e7b9">ulimits</a></li>
-<li><a href="#org1c0d933">volumes</a></li>
-<li><a href="#org8bce513">其它指令</a></li>
-<li><a href="#org93e2852">读取变量</a></li>
+<li><a href="#orgd25abeb">build</a></li>
+<li><a href="#org2281f80">cap_add, cap_drop</a></li>
+<li><a href="#org5eef590">command</a></li>
+<li><a href="#org60cdac4">configs</a></li>
+<li><a href="#org2562a41">cgroup_parent</a></li>
+<li><a href="#org754d62a">container_name</a></li>
+<li><a href="#orgc1daefc">deploy</a></li>
+<li><a href="#orgc8dc03d">devices</a></li>
+<li><a href="#org90d84b1">depends_on</a></li>
+<li><a href="#org95fae33">dns</a></li>
+<li><a href="#org65851bd">dns_search</a></li>
+<li><a href="#org9b5de68">tmpfs</a></li>
+<li><a href="#org6f17d62">env_file</a></li>
+<li><a href="#org9cbb0ea">environment</a></li>
+<li><a href="#org93aaa3c">expose</a></li>
+<li><a href="#org833ee9b">external_links</a></li>
+<li><a href="#org0c2f20f">extra_hosts</a></li>
+<li><a href="#org583384c">healthcheck</a></li>
+<li><a href="#org7e73bc6">image</a></li>
+<li><a href="#org7da618c">labels</a></li>
+<li><a href="#orgddda16e">logging</a></li>
+<li><a href="#orgc1b4785">network_mode</a></li>
+<li><a href="#orgfcf0e93">networks</a></li>
+<li><a href="#org93686da">pid</a></li>
+<li><a href="#org1c695e3">ports</a></li>
+<li><a href="#org9fe33e3">secrets</a></li>
+<li><a href="#orga6a5492">security\_opt</a></li>
+<li><a href="#orge06cf20">stop_signal</a></li>
+<li><a href="#orgba5acaf">sysctls</a></li>
+<li><a href="#org788576c">ulimits</a></li>
+<li><a href="#orgf5a357a">volumes</a></li>
+<li><a href="#org369cabb">其它指令</a></li>
+<li><a href="#org382100e">读取变量</a></li>
 </ul>
 </div>
 </div>
@@ -298,9 +298,9 @@
 如果使用 build 指令，在 Dockerfile 中设置的选项(例如：CMD, EXPOSE, VOLUME, ENV 等) 将会自动被获取，无需在 docker-compose.yml 中重复设置。
 </p>
 
-<div id="outline-container-orga35cddc" class="outline-2">
-<h2 id="orga35cddc">build</h2>
-<div class="outline-text-2" id="text-orga35cddc">
+<div id="outline-container-orgd25abeb" class="outline-2">
+<h2 id="orgd25abeb">build</h2>
+<div class="outline-text-2" id="text-orgd25abeb">
 <p>
 指定 Dockerfile 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 Compose 将会利用它自动构建这个镜像，然后使用这个镜像。
 </p>
@@ -351,9 +351,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb0ae9f3" class="outline-2">
-<h2 id="orgb0ae9f3">cap_add, cap_drop</h2>
-<div class="outline-text-2" id="text-orgb0ae9f3">
+<div id="outline-container-org2281f80" class="outline-2">
+<h2 id="org2281f80">cap_add, cap_drop</h2>
+<div class="outline-text-2" id="text-org2281f80">
 <p>
 指定容器的内核能力（capacity）分配。
 </p>
@@ -378,9 +378,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdb41483" class="outline-2">
-<h2 id="orgdb41483">command</h2>
-<div class="outline-text-2" id="text-orgdb41483">
+<div id="outline-container-org5eef590" class="outline-2">
+<h2 id="org5eef590">command</h2>
+<div class="outline-text-2" id="text-org5eef590">
 <p>
 覆盖容器启动后默认执行的命令。
 </p>
@@ -391,18 +391,18 @@
 </div>
 </div>
 
-<div id="outline-container-org2a430bf" class="outline-2">
-<h2 id="org2a430bf">configs</h2>
-<div class="outline-text-2" id="text-org2a430bf">
+<div id="outline-container-org60cdac4" class="outline-2">
+<h2 id="org60cdac4">configs</h2>
+<div class="outline-text-2" id="text-org60cdac4">
 <p>
 仅用于 Swarm mode
 </p>
 </div>
 </div>
 
-<div id="outline-container-org334aeb7" class="outline-2">
-<h2 id="org334aeb7">cgroup_parent</h2>
-<div class="outline-text-2" id="text-org334aeb7">
+<div id="outline-container-org2562a41" class="outline-2">
+<h2 id="org2562a41">cgroup_parent</h2>
+<div class="outline-text-2" id="text-org2562a41">
 <p>
 指定父 cgroup 组，意味着将继承该组的资源限制。
 </p>
@@ -417,9 +417,9 @@
 </div>
 </div>
 
-<div id="outline-container-org533112a" class="outline-2">
-<h2 id="org533112a">container_name</h2>
-<div class="outline-text-2" id="text-org533112a">
+<div id="outline-container-org754d62a" class="outline-2">
+<h2 id="org754d62a">container_name</h2>
+<div class="outline-text-2" id="text-org754d62a">
 <p>
 指定容器名称。默认将会使用 <code>项目名称_服务名称_序号</code> 这样的格式。
 </p>
@@ -437,18 +437,18 @@
 </div>
 </div>
 
-<div id="outline-container-orga2fa86d" class="outline-2">
-<h2 id="orga2fa86d">deploy</h2>
-<div class="outline-text-2" id="text-orga2fa86d">
+<div id="outline-container-orgc1daefc" class="outline-2">
+<h2 id="orgc1daefc">deploy</h2>
+<div class="outline-text-2" id="text-orgc1daefc">
 <p>
 仅用于 Swarm mode
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf2b78e7" class="outline-2">
-<h2 id="orgf2b78e7">devices</h2>
-<div class="outline-text-2" id="text-orgf2b78e7">
+<div id="outline-container-orgc8dc03d" class="outline-2">
+<h2 id="orgc8dc03d">devices</h2>
+<div class="outline-text-2" id="text-orgc8dc03d">
 <p>
 指定设备映射关系。
 </p>
@@ -460,9 +460,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd159b51" class="outline-2">
-<h2 id="orgd159b51">depends_on</h2>
-<div class="outline-text-2" id="text-orgd159b51">
+<div id="outline-container-org90d84b1" class="outline-2">
+<h2 id="org90d84b1">depends_on</h2>
+<div class="outline-text-2" id="text-org90d84b1">
 <p>
 解决容器的依赖、启动先后的问题。以下例子中会先启动 redis db 再启动 web
 </p>
@@ -492,9 +492,9 @@
 </div>
 </div>
 
-<div id="outline-container-org79be259" class="outline-2">
-<h2 id="org79be259">dns</h2>
-<div class="outline-text-2" id="text-org79be259">
+<div id="outline-container-org95fae33" class="outline-2">
+<h2 id="org95fae33">dns</h2>
+<div class="outline-text-2" id="text-org95fae33">
 <p>
 自定义 DNS 服务器。可以是一个值，也可以是一个列表。
 </p>
@@ -509,9 +509,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0401d84" class="outline-2">
-<h2 id="org0401d84">dns_search</h2>
-<div class="outline-text-2" id="text-org0401d84">
+<div id="outline-container-org65851bd" class="outline-2">
+<h2 id="org65851bd">dns_search</h2>
+<div class="outline-text-2" id="text-org65851bd">
 <pre class="example">
     配置 DNS 搜索域。可以是一个值，也可以是一个列表。
 
@@ -524,9 +524,9 @@
 </div>
 </div>
 
-<div id="outline-container-org04de4ef" class="outline-2">
-<h2 id="org04de4ef">tmpfs</h2>
-<div class="outline-text-2" id="text-org04de4ef">
+<div id="outline-container-org9b5de68" class="outline-2">
+<h2 id="org9b5de68">tmpfs</h2>
+<div class="outline-text-2" id="text-org9b5de68">
 <p>
 挂载一个 tmpfs 文件系统到容器。
 </p>
@@ -540,9 +540,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0d07400" class="outline-2">
-<h2 id="org0d07400">env_file</h2>
-<div class="outline-text-2" id="text-org0d07400">
+<div id="outline-container-org6f17d62" class="outline-2">
+<h2 id="org6f17d62">env_file</h2>
+<div class="outline-text-2" id="text-org6f17d62">
 <p>
 从文件中获取环境变量，可以为单独的文件路径或列表。
 </p>
@@ -575,9 +575,9 @@
 </div>
 </div>
 
-<div id="outline-container-org98115bc" class="outline-2">
-<h2 id="org98115bc">environment</h2>
-<div class="outline-text-2" id="text-org98115bc">
+<div id="outline-container-org9cbb0ea" class="outline-2">
+<h2 id="org9cbb0ea">environment</h2>
+<div class="outline-text-2" id="text-org9cbb0ea">
 <p>
 设置环境变量。你可以使用数组或字典两种格式。
 </p>
@@ -606,9 +606,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb65d326" class="outline-2">
-<h2 id="orgb65d326">expose</h2>
-<div class="outline-text-2" id="text-orgb65d326">
+<div id="outline-container-org93aaa3c" class="outline-2">
+<h2 id="org93aaa3c">expose</h2>
+<div class="outline-text-2" id="text-org93aaa3c">
 <p>
 暴露端口，但不映射到宿主机，只被连接的服务访问。
 </p>
@@ -625,9 +625,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdbf99cc" class="outline-2">
-<h2 id="orgdbf99cc">external_links</h2>
-<div class="outline-text-2" id="text-orgdbf99cc">
+<div id="outline-container-org833ee9b" class="outline-2">
+<h2 id="org833ee9b">external_links</h2>
+<div class="outline-text-2" id="text-org833ee9b">
 <blockquote>
 <p>
 注意：不建议使用该指令。
@@ -647,9 +647,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7c0a592" class="outline-2">
-<h2 id="org7c0a592">extra_hosts</h2>
-<div class="outline-text-2" id="text-org7c0a592">
+<div id="outline-container-org0c2f20f" class="outline-2">
+<h2 id="org0c2f20f">extra_hosts</h2>
+<div class="outline-text-2" id="text-org0c2f20f">
 <p>
 类似 Docker 中的 <code>--add-host</code> 参数，指定额外的 host 名称映射信息。
 </p>
@@ -671,9 +671,9 @@
 </div>
 </div>
 
-<div id="outline-container-org555c9c1" class="outline-2">
-<h2 id="org555c9c1">healthcheck</h2>
-<div class="outline-text-2" id="text-org555c9c1">
+<div id="outline-container-org583384c" class="outline-2">
+<h2 id="org583384c">healthcheck</h2>
+<div class="outline-text-2" id="text-org583384c">
 <p>
 通过命令检查容器是否健康运行。
 </p>
@@ -688,9 +688,9 @@
 </div>
 </div>
 
-<div id="outline-container-org357b138" class="outline-2">
-<h2 id="org357b138">image</h2>
-<div class="outline-text-2" id="text-org357b138">
+<div id="outline-container-org7e73bc6" class="outline-2">
+<h2 id="org7e73bc6">image</h2>
+<div class="outline-text-2" id="text-org7e73bc6">
 <p>
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，Compose 将会尝试拉取这个镜像。
 </p>
@@ -703,9 +703,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6323c84" class="outline-2">
-<h2 id="org6323c84">labels</h2>
-<div class="outline-text-2" id="text-org6323c84">
+<div id="outline-container-org7da618c" class="outline-2">
+<h2 id="org7da618c">labels</h2>
+<div class="outline-text-2" id="text-org7da618c">
 <p>
 为容器添加 Docker 元数据（metadata）信息。例如可以为容器添加辅助说明信息。
 </p>
@@ -719,9 +719,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga9cbced" class="outline-2">
-<h2 id="orga9cbced">logging</h2>
-<div class="outline-text-2" id="text-orga9cbced">
+<div id="outline-container-orgddda16e" class="outline-2">
+<h2 id="orgddda16e">logging</h2>
+<div class="outline-text-2" id="text-orgddda16e">
 <p>
 配置日志选项。
 </p>
@@ -755,9 +755,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-orgf66060a" class="outline-2">
-<h2 id="orgf66060a">network_mode</h2>
-<div class="outline-text-2" id="text-orgf66060a">
+<div id="outline-container-orgc1b4785" class="outline-2">
+<h2 id="orgc1b4785">network_mode</h2>
+<div class="outline-text-2" id="text-orgc1b4785">
 <p>
 设置网络模式。使用和 <code>docker run</code> 的 <code>--network</code> 参数一样的值。
 </p>
@@ -772,9 +772,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org93709ed" class="outline-2">
-<h2 id="org93709ed">networks</h2>
-<div class="outline-text-2" id="text-org93709ed">
+<div id="outline-container-orgfcf0e93" class="outline-2">
+<h2 id="orgfcf0e93">networks</h2>
+<div class="outline-text-2" id="text-orgfcf0e93">
 <p>
 配置容器连接的网络。
 </p>
@@ -794,9 +794,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-orgc0fe8c2" class="outline-2">
-<h2 id="orgc0fe8c2">pid</h2>
-<div class="outline-text-2" id="text-orgc0fe8c2">
+<div id="outline-container-org93686da" class="outline-2">
+<h2 id="org93686da">pid</h2>
+<div class="outline-text-2" id="text-org93686da">
 <p>
 跟主机系统共享进程命名空间。打开该选项的容器之间，以及容器和宿主机系统之间可以通过进程 ID 来相互访问和操作。
 </p>
@@ -807,9 +807,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-orgba63495" class="outline-2">
-<h2 id="orgba63495">ports</h2>
-<div class="outline-text-2" id="text-orgba63495">
+<div id="outline-container-org1c695e3" class="outline-2">
+<h2 id="org1c695e3">ports</h2>
+<div class="outline-text-2" id="text-org1c695e3">
 <p>
 暴露端口信息。
 </p>
@@ -837,9 +837,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org1ce2cfe" class="outline-2">
-<h2 id="org1ce2cfe">secrets</h2>
-<div class="outline-text-2" id="text-org1ce2cfe">
+<div id="outline-container-org9fe33e3" class="outline-2">
+<h2 id="org9fe33e3">secrets</h2>
+<div class="outline-text-2" id="text-org9fe33e3">
 <p>
 存储敏感数据，例如 mysql 服务密码。
 </p>
@@ -865,9 +865,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org0e55e6e" class="outline-2">
-<h2 id="org0e55e6e">security\_opt</h2>
-<div class="outline-text-2" id="text-org0e55e6e">
+<div id="outline-container-orga6a5492" class="outline-2">
+<h2 id="orga6a5492">security\_opt</h2>
+<div class="outline-text-2" id="text-orga6a5492">
 <p>
 指定容器模板标签（label）机制的默认属性（用户、角色、类型、级别等）。例如配置标签的用户名和角色名。
 </p>
@@ -880,9 +880,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-orgf986f3c" class="outline-2">
-<h2 id="orgf986f3c">stop_signal</h2>
-<div class="outline-text-2" id="text-orgf986f3c">
+<div id="outline-container-orge06cf20" class="outline-2">
+<h2 id="orge06cf20">stop_signal</h2>
+<div class="outline-text-2" id="text-orge06cf20">
 <p>
 设置另一个信号来停止容器。在默认情况下使用的是 SIGTERM 停止容器。
 </p>
@@ -893,9 +893,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org502c09c" class="outline-2">
-<h2 id="org502c09c">sysctls</h2>
-<div class="outline-text-2" id="text-org502c09c">
+<div id="outline-container-orgba5acaf" class="outline-2">
+<h2 id="orgba5acaf">sysctls</h2>
+<div class="outline-text-2" id="text-orgba5acaf">
 <p>
 配置容器内核参数。
 </p>
@@ -912,9 +912,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-orgf34e7b9" class="outline-2">
-<h2 id="orgf34e7b9">ulimits</h2>
-<div class="outline-text-2" id="text-orgf34e7b9">
+<div id="outline-container-org788576c" class="outline-2">
+<h2 id="org788576c">ulimits</h2>
+<div class="outline-text-2" id="text-org788576c">
 <p>
 指定容器的 ulimits 限制值。
 </p>
@@ -933,9 +933,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org1c0d933" class="outline-2">
-<h2 id="org1c0d933">volumes</h2>
-<div class="outline-text-2" id="text-org1c0d933">
+<div id="outline-container-orgf5a357a" class="outline-2">
+<h2 id="orgf5a357a">volumes</h2>
+<div class="outline-text-2" id="text-orgf5a357a">
 <p>
 数据卷所挂载路径设置。可以设置为宿主机路径(HOST:CONTAINER)或者数据卷名称(VOLUME:CONTAINER)，并且可以设置访问模式 （HOST:CONTAINER:ro）。
 </p>
@@ -970,9 +970,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org8bce513" class="outline-2">
-<h2 id="org8bce513">其它指令</h2>
-<div class="outline-text-2" id="text-org8bce513">
+<div id="outline-container-org369cabb" class="outline-2">
+<h2 id="org369cabb">其它指令</h2>
+<div class="outline-text-2" id="text-org369cabb">
 <p>
 此外，还有包括 domainname, entrypoint, hostname, ipc, mac_address, privileged, read_only, shm_size, restart, stdin_open, tty, user, working_dir 等指令，基本跟 docker run 中对应参数的功能一致。
 </p>
@@ -1053,9 +1053,9 @@ options 配置日志驱动的相关参数。
 </div>
 </div>
 
-<div id="outline-container-org93e2852" class="outline-2">
-<h2 id="org93e2852">读取变量</h2>
-<div class="outline-text-2" id="text-org93e2852">
+<div id="outline-container-org382100e" class="outline-2">
+<h2 id="org382100e">读取变量</h2>
+<div class="outline-text-2" id="text-org382100e">
 <p>
 Compose 模板文件支持动态读取主机的系统环境变量和当前目录下的 .env 文件中的变量。
 </p>
@@ -1097,7 +1097,7 @@ Compose 模板文件支持动态读取主机的系统环境变量和当前目录
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:33</p>
 </div>
 </body>
 </html>

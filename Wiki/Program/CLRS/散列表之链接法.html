@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>散列表之链接法</title>
@@ -234,14 +234,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8a43d41">直接寻址表</a></li>
-<li><a href="#orgb0a96b1">散列表</a></li>
-<li><a href="#org5ec6fb6">链接法</a></li>
-<li><a href="#orgba7171c">4.散列函数</a>
+<li><a href="#org8583f3f">直接寻址表</a></li>
+<li><a href="#org2ab7416">散列表</a></li>
+<li><a href="#org8568e25">链接法</a></li>
+<li><a href="#orgcb6b8c5">4.散列函数</a>
 <ul>
-<li><a href="#org99f8c51">(1)除法散列法</a></li>
-<li><a href="#org9ae1054">(2)乘法散列法</a></li>
-<li><a href="#org6eeede8">(3)全域散列法</a></li>
+<li><a href="#org02a83e7">(1)除法散列法</a></li>
+<li><a href="#orgd11b23c">(2)乘法散列法</a></li>
+<li><a href="#org69e129b">(3)全域散列法</a></li>
 </ul>
 </li>
 </ul>
@@ -251,18 +251,18 @@
 许多应用都需要一种数据结构，至少支持 INSERT、SEARCH 和 DELETE 字典操作。例如，用于程序语言编译的编译器维护了一个符号表，其中元素的关键字为任意字符串，它与程序中的标识符相对应。散列表(hash table)是实现字典操作的一种有效数据结构。尽管最坏情况下，散列表中欧给你查找一个元素的时候与链表中查找的时间相同，达到了Θ(n)。然后在实际应用中，散列查找的性能是非常好的。
 </p>
 
-<div id="outline-container-org8a43d41" class="outline-2">
-<h2 id="org8a43d41">直接寻址表</h2>
-<div class="outline-text-2" id="text-org8a43d41">
+<div id="outline-container-org8583f3f" class="outline-2">
+<h2 id="org8583f3f">直接寻址表</h2>
+<div class="outline-text-2" id="text-org8583f3f">
 <p>
 当关键字的全域 U 比较小时，直接寻址是一种简单而有效的技术。一般可以采用数组实现直接寻址表，数组下标对应的就是关键字的值，即具有关键字 k 的元素被放在直接寻址表的槽 k 中。直接寻址表的字典操作实现比较简单，直接操作数组即可，只需 O(1)的时间。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb0a96b1" class="outline-2">
-<h2 id="orgb0a96b1">散列表</h2>
-<div class="outline-text-2" id="text-orgb0a96b1">
+<div id="outline-container-org2ab7416" class="outline-2">
+<h2 id="org2ab7416">散列表</h2>
+<div class="outline-text-2" id="text-org2ab7416">
 <p>
 直接寻址技术的缺点也非常明显：如果全域 U 很大，则在一台标准的计算机可用内存容量中，要存储大小为|U|的一张表 T 也许不实际。还有，实际存储的关键字集合 K 相对 U 来说可能很小，使得分配给 T 的大部分空间都浪费掉。 所以我们需要将散列表的存储需求降至Θ(|k|)，同时散列表中查找一个元素的优势仍得到保持（O(1)时间）。所以在散列方式下，利用散列函数(hash function)h，由关键字 k 计算出槽的位置 h(k)。这里函数 h 将关键字的全域 U 映射到散列表 T[0..m-1]的槽位上。
 </p>
@@ -284,9 +284,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5ec6fb6" class="outline-2">
-<h2 id="org5ec6fb6">链接法</h2>
-<div class="outline-text-2" id="text-org5ec6fb6">
+<div id="outline-container-org8568e25" class="outline-2">
+<h2 id="org8568e25">链接法</h2>
+<div class="outline-text-2" id="text-org8568e25">
 <p>
 在链接法中，把散列到同一槽中的所有元素都放在一个链表中。槽中有一个指针，它指向存储所有散列到该槽的元素的链表的表头，如果不存在这样的元素，则该槽中为 NIL。其插入操作、删除操作的最坏情况运行时间为 O(1)，而搜索操作的最坏情况运行时间为 O(n)，如果所有的元素都散列到同一槽中。
 </p>
@@ -304,17 +304,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgba7171c" class="outline-2">
-<h2 id="orgba7171c">4.散列函数</h2>
-<div class="outline-text-2" id="text-orgba7171c">
+<div id="outline-container-orgcb6b8c5" class="outline-2">
+<h2 id="orgcb6b8c5">4.散列函数</h2>
+<div class="outline-text-2" id="text-orgcb6b8c5">
 <p>
 一个好的散列函数应近似的满足简单均匀假设：每一个关键字都被等可能的散列到 m 个槽位中的任何一个，并与其他关键字已散列到哪个槽位无关。另外如果关键字的全域不是自然数集，我们需要找到一种方法将它转换为自然数。散列函数可以说是散列表性能最关键的一部分。
 </p>
 </div>
 
-<div id="outline-container-org99f8c51" class="outline-3">
-<h3 id="org99f8c51">(1)除法散列法</h3>
-<div class="outline-text-3" id="text-org99f8c51">
+<div id="outline-container-org02a83e7" class="outline-3">
+<h3 id="org02a83e7">(1)除法散列法</h3>
+<div class="outline-text-3" id="text-org02a83e7">
 <p>
 通过取 k 除以 m 的余数，将关键字 k 映射到 m 个槽中的某一个上：
 </p>
@@ -329,9 +329,9 @@ h(k) = k mod m
 </div>
 </div>
 
-<div id="outline-container-org9ae1054" class="outline-3">
-<h3 id="org9ae1054">(2)乘法散列法</h3>
-<div class="outline-text-3" id="text-org9ae1054">
+<div id="outline-container-orgd11b23c" class="outline-3">
+<h3 id="orgd11b23c">(2)乘法散列法</h3>
+<div class="outline-text-3" id="text-orgd11b23c">
 <p>
 第一步：用关键字 k 乘上常熟 A(0 &lt; A &lt;1)，并提取 kA 的小数部分。第二步：用 m 乘以这个值，再向下取整。总之，散列函数为：h(k) = m(kA mod 1)。
 </p>
@@ -342,9 +342,9 @@ h(k) = k mod m
 </div>
 </div>
 
-<div id="outline-container-org6eeede8" class="outline-3">
-<h3 id="org6eeede8">(3)全域散列法</h3>
-<div class="outline-text-3" id="text-org6eeede8">
+<div id="outline-container-org69e129b" class="outline-3">
+<h3 id="org69e129b">(3)全域散列法</h3>
+<div class="outline-text-3" id="text-org69e129b">
 <p>
 给定一组散列函数 H，每次进行散列时候从 H 中随机的选择一个散列函数 h，使得 h 独立于要存储的关键字。全域散列函数类的平均性能是比较好的。 
 在网上搜索过不少散列表的实现，不知道为什么都是比较复杂，在这里给出一种比较简单的使用链表数组的实现。
@@ -566,7 +566,7 @@ h(k) = k mod m
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:32</p>
 </div>
 </body>
 </html>

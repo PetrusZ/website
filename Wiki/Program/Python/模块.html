@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-05-25 Mon 14:08 -->
+<!-- 2020-06-26 Fri 11:32 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>模块</title>
@@ -234,16 +234,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdc874fb">有关模块的更多信息</a></li>
-<li><a href="#org7a58ee8">以脚本的方式执行模块</a></li>
-<li><a href="#org3a534bb">模块搜索路径</a></li>
-<li><a href="#org0218853">“编译过的”Python 文件</a></li>
-<li><a href="#orge110a87">标准模块</a></li>
-<li><a href="#orgf234951">dir() 函数</a></li>
-<li><a href="#org09579e1">包</a></li>
-<li><a href="#org5eb2381">从包中导入 *</a></li>
-<li><a href="#org52944c3">子包参考</a></li>
-<li><a href="#orgc08252e">多个目录中的包</a></li>
+<li><a href="#orge184d73">有关模块的更多信息</a></li>
+<li><a href="#orgeff9198">以脚本的方式执行模块</a></li>
+<li><a href="#org4760b39">模块搜索路径</a></li>
+<li><a href="#org1bd62c5">“编译过的”Python 文件</a></li>
+<li><a href="#org3b247fd">标准模块</a></li>
+<li><a href="#org9ffd089">dir() 函数</a></li>
+<li><a href="#org4253d34">包</a></li>
+<li><a href="#org23ef81f">从包中导入 *</a></li>
+<li><a href="#org7c5562a">子包参考</a></li>
+<li><a href="#org8d97fce">多个目录中的包</a></li>
 </ul>
 </div>
 </div>
@@ -297,9 +297,9 @@ Python 有一种方法可以把定义放在一个文件里，并在脚本或解�
 </pre>
 </div>
 
-<div id="outline-container-orgdc874fb" class="outline-2">
-<h2 id="orgdc874fb">有关模块的更多信息</h2>
-<div class="outline-text-2" id="text-orgdc874fb">
+<div id="outline-container-orge184d73" class="outline-2">
+<h2 id="orge184d73">有关模块的更多信息</h2>
+<div class="outline-text-2" id="text-orge184d73">
 <p>
 模块可以包含可执行的语句以及函数定义。这些语句用于初始化模块。它们仅在模块 第一次 在 import 语句中被导入时才执行。 (当文件被当作脚本运行时，它们也会执行。)
 </p>
@@ -381,9 +381,9 @@ import 语句有一个变体，它可以把名字从一个被调模块内直接�
 </div>
 </div>
 
-<div id="outline-container-org7a58ee8" class="outline-2">
-<h2 id="org7a58ee8">以脚本的方式执行模块</h2>
-<div class="outline-text-2" id="text-org7a58ee8">
+<div id="outline-container-orgeff9198" class="outline-2">
+<h2 id="orgeff9198">以脚本的方式执行模块</h2>
+<div class="outline-text-2" id="text-orgeff9198">
 <p>
 当你用下面方式运行一个 Python 模块:
 </p>
@@ -423,9 +423,9 @@ import 语句有一个变体，它可以把名字从一个被调模块内直接�
 </div>
 </div>
 
-<div id="outline-container-org3a534bb" class="outline-2">
-<h2 id="org3a534bb">模块搜索路径</h2>
-<div class="outline-text-2" id="text-org3a534bb">
+<div id="outline-container-org4760b39" class="outline-2">
+<h2 id="org4760b39">模块搜索路径</h2>
+<div class="outline-text-2" id="text-org4760b39">
 <p>
 当一个名为 spam 的模块被导入的时候，解释器首先寻找具有该名称的内置模块。如果没有找到，然后解释器从 sys.path 变量给出的目录列表里寻找名为 spam.py 的文件。sys.path 初始有这些目录地址:
 </p>
@@ -449,9 +449,9 @@ import 语句有一个变体，它可以把名字从一个被调模块内直接�
 </div>
 </div>
 
-<div id="outline-container-org0218853" class="outline-2">
-<h2 id="org0218853">“编译过的”Python 文件</h2>
-<div class="outline-text-2" id="text-org0218853">
+<div id="outline-container-org1bd62c5" class="outline-2">
+<h2 id="org1bd62c5">“编译过的”Python 文件</h2>
+<div class="outline-text-2" id="text-org1bd62c5">
 <p>
 为了加速模块载入，Python 在 <code>__pycache__</code> 目录里缓存了每个模块的编译后版本，名称为 <code>module.version.pyc</code> ，其中名称中的版本字段对编译文件的格式进行编码； 它一般使用 Python 版本号。例如，在 CPython 版本 3.3 中，spam.py 的编译版本将被缓存为 <code>__pycache__/spam.cpython-33.pyc</code> 。此命名约定允许来自不同发行版和不同版本的 Python 的已编译模块共存。
 </p>
@@ -477,9 +477,9 @@ Python 在两种情况下不会检查缓存。首先，对于从命令行直接�
 </div>
 </div>
 
-<div id="outline-container-orge110a87" class="outline-2">
-<h2 id="orge110a87">标准模块</h2>
-<div class="outline-text-2" id="text-orge110a87">
+<div id="outline-container-org3b247fd" class="outline-2">
+<h2 id="org3b247fd">标准模块</h2>
+<div class="outline-text-2" id="text-org3b247fd">
 <p>
 Python 附带了一个标准模块库，在单独的文档 Python 库参考（以下称为“库参考”）中进行了描述。一些模块内置于解释器中；它们提供对不属于语言核心但仍然内置的操作的访问，以提高效率或提供对系统调用等操作系统原语的访问。这些模块的集合是一个配置选项，它也取决于底层平台。例如，=winreg= 模块只在 Windows 操作系统上提供。一个特别值得注意的模块 sys，它被内嵌到每一个 Python 解释器中。变量 <code>sys.ps1</code> 和 <code>sys.ps2</code> 定义用作主要和辅助提示的字符串:
 </p>
@@ -513,9 +513,9 @@ Python 附带了一个标准模块库，在单独的文档 Python 库参考（�
 </div>
 </div>
 
-<div id="outline-container-orgf234951" class="outline-2">
-<h2 id="orgf234951">dir() 函数</h2>
-<div class="outline-text-2" id="text-orgf234951">
+<div id="outline-container-org9ffd089" class="outline-2">
+<h2 id="org9ffd089">dir() 函数</h2>
+<div class="outline-text-2" id="text-org9ffd089">
 <p>
 内置函数 dir() 用于查找模块定义的名称。 它返回一个排序过的字符串列表:
 </p>
@@ -556,9 +556,9 @@ dir() 不会列出内置函数和变量的名称。如果你想要这些，它�
 </div>
 </div>
 
-<div id="outline-container-org09579e1" class="outline-2">
-<h2 id="org09579e1">包</h2>
-<div class="outline-text-2" id="text-org09579e1">
+<div id="outline-container-org4253d34" class="outline-2">
+<h2 id="org4253d34">包</h2>
+<div class="outline-text-2" id="text-org4253d34">
 <p>
 包是一种通过用“带点号的模块名”来构造 Python 模块命名空间的方法。 例如，模块名 A.B 表示 A 包中名为 B 的子模块。正如模块的使用使得不同模块的作者不必担心彼此的全局变量名称一样，使用加点的模块名可以使得 NumPy 或 Pillow 等多模块软件包的作者不必担心彼此的模块名称一样。
 </p>
@@ -659,9 +659,9 @@ dir() 不会列出内置函数和变量的名称。如果你想要这些，它�
 </div>
 </div>
 
-<div id="outline-container-org5eb2381" class="outline-2">
-<h2 id="org5eb2381">从包中导入 *</h2>
-<div class="outline-text-2" id="text-org5eb2381">
+<div id="outline-container-org23ef81f" class="outline-2">
+<h2 id="org23ef81f">从包中导入 *</h2>
+<div class="outline-text-2" id="text-org23ef81f">
 <p>
 当用户写 =from sound.effects import *=会发生什么？理想情况下，人们希望这会以某种方式传递给文件系统，找到包中存在哪些子模块，并将它们全部导入。这可能需要很长时间，导入子模块可能会产生不必要的副作用，这种副作用只有在显式导入子模块时才会发生。
 </p>
@@ -692,9 +692,9 @@ dir() 不会列出内置函数和变量的名称。如果你想要这些，它�
 </div>
 </div>
 
-<div id="outline-container-org52944c3" class="outline-2">
-<h2 id="org52944c3">子包参考</h2>
-<div class="outline-text-2" id="text-org52944c3">
+<div id="outline-container-org7c5562a" class="outline-2">
+<h2 id="org7c5562a">子包参考</h2>
+<div class="outline-text-2" id="text-org7c5562a">
 <p>
 当包被构造成子包时（与示例中的 sound 包一样），你可以使用绝对导入来引用兄弟包的子模块。例如，如果模块 sound.filters.vocoder 需要在 sound.effects 包中使用 echo 模块，它可以使用 <code>from sound.effects import echo</code> 。
 </p>
@@ -717,9 +717,9 @@ dir() 不会列出内置函数和变量的名称。如果你想要这些，它�
 </div>
 </div>
 
-<div id="outline-container-orgc08252e" class="outline-2">
-<h2 id="orgc08252e">多个目录中的包</h2>
-<div class="outline-text-2" id="text-orgc08252e">
+<div id="outline-container-org8d97fce" class="outline-2">
+<h2 id="org8d97fce">多个目录中的包</h2>
+<div class="outline-text-2" id="text-org8d97fce">
 <p>
 包支持另一个特殊属性， <code>__path__</code> 。它被初始化为一个列表，其中包含在执行该文件中的代码之前保存包的文件 <code>__init__.py</code> 的目录的名称。这个变量可以修改；这样做会影响将来对包中包含的模块和子包的搜索。
 </p>
@@ -732,7 +732,7 @@ dir() 不会列出内置函数和变量的名称。如果你想要这些，它�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-05-25 Mon 14:08</p>
+<p class="date">Created: 2020-06-26 Fri 11:32</p>
 </div>
 </body>
 </html>
