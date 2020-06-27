@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dependencies</title>
@@ -234,16 +234,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf1c7414">CHOST vs CBUILD</a></li>
-<li><a href="#org19b9177">Build Dependencies</a></li>
-<li><a href="#org5f590a2">Runtime Dependencies</a></li>
-<li><a href="#org48cf565">Post Dependencies</a></li>
-<li><a href="#orgfead58c">Implicit System Dependency</a></li>
-<li><a href="#orgd528f70">Blockers</a></li>
-<li><a href="#org0fff907">SLot Operators</a></li>
-<li><a href="#orgd3d9542">Built with USE Dependencies</a>
+<li><a href="#orge5d0d77">CHOST vs CBUILD</a></li>
+<li><a href="#org2924fb4">Build Dependencies</a></li>
+<li><a href="#org123a83b">Runtime Dependencies</a></li>
+<li><a href="#org3d55e00">Post Dependencies</a></li>
+<li><a href="#org8926f85">Implicit System Dependency</a></li>
+<li><a href="#org9163a08">Blockers</a></li>
+<li><a href="#org9d81b46">SLot Operators</a></li>
+<li><a href="#org1607487">Built with USE Dependencies</a>
 <ul>
-<li><a href="#org704dfb9">Use dependency defaults</a></li>
+<li><a href="#org48714f4">Use dependency defaults</a></li>
 </ul>
 </li>
 </ul>
@@ -253,9 +253,9 @@
 自动依赖解析是 <code>emerge</code> 提供的最有用的功能之一。
 </p>
 
-<div id="outline-container-orgf1c7414" class="outline-2">
-<h2 id="orgf1c7414">CHOST vs CBUILD</h2>
-<div class="outline-text-2" id="text-orgf1c7414">
+<div id="outline-container-orge5d0d77" class="outline-2">
+<h2 id="orge5d0d77">CHOST vs CBUILD</h2>
+<div class="outline-text-2" id="text-orge5d0d77">
 <p>
 为了避免歧义，在交叉编译时，我们使用以下术语来表示不同的系统：
 </p>
@@ -282,9 +282,9 @@
 </div>
 </div>
 
-<div id="outline-container-org19b9177" class="outline-2">
-<h2 id="org19b9177">Build Dependencies</h2>
-<div class="outline-text-2" id="text-org19b9177">
+<div id="outline-container-org2924fb4" class="outline-2">
+<h2 id="org2924fb4">Build Dependencies</h2>
+<div class="outline-text-2" id="text-org2924fb4">
 <p>
 构建依赖时用于指定 unpack、patch、compile、test 或 install 软件包的任何依赖（有关豁免请见 Implicit System Dependency ）。
 </p>
@@ -299,9 +299,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5f590a2" class="outline-2">
-<h2 id="org5f590a2">Runtime Dependencies</h2>
-<div class="outline-text-2" id="text-org5f590a2">
+<div id="outline-container-org123a83b" class="outline-2">
+<h2 id="org123a83b">Runtime Dependencies</h2>
+<div class="outline-text-2" id="text-org123a83b">
 <p>
 <code>RDEPEND</code> ebuild 变量应该指定任何在运行时必要的依赖。这包括库（动态链接时），任何数据包和相关解释器（为了解释语言）。
 </p>
@@ -316,27 +316,27 @@
 </div>
 </div>
 
-<div id="outline-container-org48cf565" class="outline-2">
-<h2 id="org48cf565">Post Dependencies</h2>
-<div class="outline-text-2" id="text-org48cf565">
+<div id="outline-container-org3d55e00" class="outline-2">
+<h2 id="org3d55e00">Post Dependencies</h2>
+<div class="outline-text-2" id="text-org3d55e00">
 <p>
 <code>PDENPED</code> 变量指定不严格要求满足的运行时依赖。它们可以在软件包之后 merge。该变量仅用于解决循环依赖问题，而在一般情况下应用 <code>RDEPEND</code> 替代。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfead58c" class="outline-2">
-<h2 id="orgfead58c">Implicit System Dependency</h2>
-<div class="outline-text-2" id="text-orgfead58c">
+<div id="outline-container-org8926f85" class="outline-2">
+<h2 id="org8926f85">Implicit System Dependency</h2>
+<div class="outline-text-2" id="text-org8926f85">
 <p>
 所有软件包都对整个 <code>@system</code> set 有隐式的编译时和运行时依赖。指定对像 <code>gcc</code> 、 <code>libc</code> 等 toolchain 软件包的依赖既不是必须的，也不是建议的，除了需要指定版本或软件包（例如使用 <code>glibc</code> 而不是 <code>uclibc</code> ）例外。注意，这条规则同样需要考虑像 <code>flex</code> 、 <code>zlib</code> 和 <code>libtool</code> 软件包，它们不在每个 profile 的 <code>@system</code> set 中。例如，嵌入式 profile 在 <code>@system</code> 中没有 <code>zlib</code> ，在未来 <code>libtool</code> 的 ABI 可能改变并且破坏构建顺序 ， <code>flex</code> 可能会从 <code>@system</code> 中移除。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd528f70" class="outline-2">
-<h2 id="orgd528f70">Blockers</h2>
-<div class="outline-text-2" id="text-orgd528f70">
+<div id="outline-container-org9163a08" class="outline-2">
+<h2 id="org9163a08">Blockers</h2>
+<div class="outline-text-2" id="text-org9163a08">
 <p>
 当两个软件包（包 slots，版本）不能同时安装时，blockers 可用于将这种冲突暴露给包管理器。
 </p>
@@ -399,9 +399,9 @@ Note：当 weak 和 strong blockers 同时匹配了一个给定的软件包，st
 </div>
 </div>
 
-<div id="outline-container-org0fff907" class="outline-2">
-<h2 id="org0fff907">SLot Operators</h2>
-<div class="outline-text-2" id="text-org0fff907">
+<div id="outline-container-org9d81b46" class="outline-2">
+<h2 id="org9d81b46">SLot Operators</h2>
+<div class="outline-text-2" id="text-org9d81b46">
 <p>
 在 EAPI 5 和更高中，你可以使用附加在软件包名称后的 slot 操作符来声明在满足其运行时依赖的版本更新为具有不同 slot 和 sub-slot 的版本之后是否应该重建软件包：
 </p>
@@ -416,9 +416,9 @@ Note：当 weak 和 strong blockers 同时匹配了一个给定的软件包，st
 </div>
 </div>
 
-<div id="outline-container-orgd3d9542" class="outline-2">
-<h2 id="orgd3d9542">Built with USE Dependencies</h2>
-<div class="outline-text-2" id="text-orgd3d9542">
+<div id="outline-container-org1607487" class="outline-2">
+<h2 id="org1607487">Built with USE Dependencies</h2>
+<div class="outline-text-2" id="text-org1607487">
 <p>
 Available specifiers are:
 </p>
@@ -497,9 +497,9 @@ There are also shortcuts for conditional situations:
 </table>
 </div>
 
-<div id="outline-container-org704dfb9" class="outline-3">
-<h3 id="org704dfb9">Use dependency defaults</h3>
-<div class="outline-text-3" id="text-org704dfb9">
+<div id="outline-container-org48714f4" class="outline-3">
+<h3 id="org48714f4">Use dependency defaults</h3>
+<div class="outline-text-3" id="text-org48714f4">
 <p>
 如果在新软件包的版本中，依赖被引进或移除 <code>USE</code> flag。 <code>(+)</code> 或 <code>(-)</code> 可能被添加到 use-dependency 规范来定义默认值，以防止 flag 在目标软件包中不存在。 <code>(+)</code> 假定启用缺失的 flag， <code>(-)</code> 则相反。
 </p>
@@ -516,7 +516,7 @@ There are also shortcuts for conditional situations:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

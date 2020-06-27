@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>docker-compose</title>
@@ -234,34 +234,34 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2457b9c">Compose 简介</a></li>
-<li><a href="#org4fa7be3">命令说明</a>
+<li><a href="#orgd3ff192">Compose 简介</a></li>
+<li><a href="#org2bb5800">命令说明</a>
 <ul>
-<li><a href="#orgaa26c34">命令对象与格式</a></li>
-<li><a href="#orged0f93f">命令使用说明</a>
+<li><a href="#org4581ef2">命令对象与格式</a></li>
+<li><a href="#org81ee507">命令使用说明</a>
 <ul>
-<li><a href="#org5f6c716">build</a></li>
-<li><a href="#org7bb93bb">config</a></li>
-<li><a href="#orgc303b91">exec</a></li>
-<li><a href="#orgc0c6d55">images</a></li>
-<li><a href="#org4d8cf1a">kill</a></li>
-<li><a href="#org66bd4c7">logs</a></li>
-<li><a href="#org2ee9d5b">pause</a></li>
-<li><a href="#orgcdaf73d">unpause</a></li>
-<li><a href="#org1e34c76">port</a></li>
-<li><a href="#org017309b">ps</a></li>
-<li><a href="#org0326b47">pull</a></li>
-<li><a href="#org5826b76">push</a></li>
-<li><a href="#org57f0bbb">restart</a></li>
-<li><a href="#orgc272c72">rm</a></li>
-<li><a href="#org236fcdf">run</a></li>
-<li><a href="#org8fb5d59">scale</a></li>
-<li><a href="#orgc64704c">start</a></li>
-<li><a href="#orgb39cd6a">stop</a></li>
-<li><a href="#org3f043d1">top</a></li>
-<li><a href="#org2928f6f">up</a></li>
-<li><a href="#orga1ebe3a">down</a></li>
-<li><a href="#orge903e88">version</a></li>
+<li><a href="#orgae6755e">build</a></li>
+<li><a href="#orgcaa4273">config</a></li>
+<li><a href="#orgb1e010c">exec</a></li>
+<li><a href="#org8001a0e">images</a></li>
+<li><a href="#org5923146">kill</a></li>
+<li><a href="#org4f44bbe">logs</a></li>
+<li><a href="#org7c7d63d">pause</a></li>
+<li><a href="#org96445a9">unpause</a></li>
+<li><a href="#org9dabdc9">port</a></li>
+<li><a href="#org4775f6c">ps</a></li>
+<li><a href="#org55d2281">pull</a></li>
+<li><a href="#org35448c6">push</a></li>
+<li><a href="#org5bddde0">restart</a></li>
+<li><a href="#org4e91a23">rm</a></li>
+<li><a href="#orgc73550a">run</a></li>
+<li><a href="#org8efcd45">scale</a></li>
+<li><a href="#org4f6d916">start</a></li>
+<li><a href="#orgb2fb921">stop</a></li>
+<li><a href="#org19a2f4a">top</a></li>
+<li><a href="#orgb740732">up</a></li>
+<li><a href="#org3f44c27">down</a></li>
+<li><a href="#orgeee6ab9">version</a></li>
 </ul>
 </li>
 </ul>
@@ -270,9 +270,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2457b9c" class="outline-2">
-<h2 id="org2457b9c">Compose 简介</h2>
-<div class="outline-text-2" id="text-org2457b9c">
+<div id="outline-container-orgd3ff192" class="outline-2">
+<h2 id="orgd3ff192">Compose 简介</h2>
+<div class="outline-text-2" id="text-orgd3ff192">
 <p>
 Compose 项目是 Docker 官方的开源项目，负责实现对 Docker 容器集群的快速编排。 从功能上看，跟 OpenStack 中的 Heat 十分类似。
 </p>
@@ -308,13 +308,13 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org4fa7be3" class="outline-2">
-<h2 id="org4fa7be3">命令说明</h2>
-<div class="outline-text-2" id="text-org4fa7be3">
+<div id="outline-container-org2bb5800" class="outline-2">
+<h2 id="org2bb5800">命令说明</h2>
+<div class="outline-text-2" id="text-org2bb5800">
 </div>
-<div id="outline-container-orgaa26c34" class="outline-3">
-<h3 id="orgaa26c34">命令对象与格式</h3>
-<div class="outline-text-3" id="text-orgaa26c34">
+<div id="outline-container-org4581ef2" class="outline-3">
+<h3 id="org4581ef2">命令对象与格式</h3>
+<div class="outline-text-3" id="text-org4581ef2">
 <p>
 对于 Compose 来说，大部分命令的对象既可以是项目本身，也可以指定为项目中的服务或者容器。 如果没有特别的说明，命令对象将是项目，这意味着项目中所有的服务都会受到命令影响。
 </p>
@@ -346,13 +346,13 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orged0f93f" class="outline-3">
-<h3 id="orged0f93f">命令使用说明</h3>
-<div class="outline-text-3" id="text-orged0f93f">
+<div id="outline-container-org81ee507" class="outline-3">
+<h3 id="org81ee507">命令使用说明</h3>
+<div class="outline-text-3" id="text-org81ee507">
 </div>
-<div id="outline-container-org5f6c716" class="outline-4">
-<h4 id="org5f6c716">build</h4>
-<div class="outline-text-4" id="text-org5f6c716">
+<div id="outline-container-orgae6755e" class="outline-4">
+<h4 id="orgae6755e">build</h4>
+<div class="outline-text-4" id="text-orgae6755e">
 <p>
 格式为 <code>docker-compose build [options] [SERVICE...]</code>
 </p>
@@ -381,36 +381,36 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org7bb93bb" class="outline-4">
-<h4 id="org7bb93bb">config</h4>
-<div class="outline-text-4" id="text-org7bb93bb">
+<div id="outline-container-orgcaa4273" class="outline-4">
+<h4 id="orgcaa4273">config</h4>
+<div class="outline-text-4" id="text-orgcaa4273">
 <p>
 验证 Compose 文件格式是否正确，若正确则显示配置，若格式错误显示错误原因。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc303b91" class="outline-4">
-<h4 id="orgc303b91">exec</h4>
-<div class="outline-text-4" id="text-orgc303b91">
+<div id="outline-container-orgb1e010c" class="outline-4">
+<h4 id="orgb1e010c">exec</h4>
+<div class="outline-text-4" id="text-orgb1e010c">
 <p>
 进入指定的容器
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc0c6d55" class="outline-4">
-<h4 id="orgc0c6d55">images</h4>
-<div class="outline-text-4" id="text-orgc0c6d55">
+<div id="outline-container-org8001a0e" class="outline-4">
+<h4 id="org8001a0e">images</h4>
+<div class="outline-text-4" id="text-org8001a0e">
 <p>
 列出 Compose 文件中包含的镜像。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4d8cf1a" class="outline-4">
-<h4 id="org4d8cf1a">kill</h4>
-<div class="outline-text-4" id="text-org4d8cf1a">
+<div id="outline-container-org5923146" class="outline-4">
+<h4 id="org5923146">kill</h4>
+<div class="outline-text-4" id="text-org5923146">
 <p>
 格式为 <code>docker-compose kill [options] [SERVICE...]</code>
 </p>
@@ -421,9 +421,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org66bd4c7" class="outline-4">
-<h4 id="org66bd4c7">logs</h4>
-<div class="outline-text-4" id="text-org66bd4c7">
+<div id="outline-container-org4f44bbe" class="outline-4">
+<h4 id="org4f44bbe">logs</h4>
+<div class="outline-text-4" id="text-org4f44bbe">
 <p>
 格式为 <code>docker-compose logs [options] [SERVICE...]</code>
 </p>
@@ -438,9 +438,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org2ee9d5b" class="outline-4">
-<h4 id="org2ee9d5b">pause</h4>
-<div class="outline-text-4" id="text-org2ee9d5b">
+<div id="outline-container-org7c7d63d" class="outline-4">
+<h4 id="org7c7d63d">pause</h4>
+<div class="outline-text-4" id="text-org7c7d63d">
 <p>
 格式为 <code>docker-compose pause [SERVICE...]</code>
 </p>
@@ -451,9 +451,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orgcdaf73d" class="outline-4">
-<h4 id="orgcdaf73d">unpause</h4>
-<div class="outline-text-4" id="text-orgcdaf73d">
+<div id="outline-container-org96445a9" class="outline-4">
+<h4 id="org96445a9">unpause</h4>
+<div class="outline-text-4" id="text-org96445a9">
 <p>
 格式为 <code>docker-compose unpause [SERVICE...]</code>
 </p>
@@ -464,9 +464,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org1e34c76" class="outline-4">
-<h4 id="org1e34c76">port</h4>
-<div class="outline-text-4" id="text-org1e34c76">
+<div id="outline-container-org9dabdc9" class="outline-4">
+<h4 id="org9dabdc9">port</h4>
+<div class="outline-text-4" id="text-org9dabdc9">
 <p>
 格式为 <code>docker-compose port [options] SERVICE PRIVATE_PORT</code>
 </p>
@@ -486,9 +486,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org017309b" class="outline-4">
-<h4 id="org017309b">ps</h4>
-<div class="outline-text-4" id="text-org017309b">
+<div id="outline-container-org4775f6c" class="outline-4">
+<h4 id="org4775f6c">ps</h4>
+<div class="outline-text-4" id="text-org4775f6c">
 <p>
 格式为 <code>docker-compose ps [options] [SERVICE...]</code>
 </p>
@@ -507,9 +507,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org0326b47" class="outline-4">
-<h4 id="org0326b47">pull</h4>
-<div class="outline-text-4" id="text-org0326b47">
+<div id="outline-container-org55d2281" class="outline-4">
+<h4 id="org55d2281">pull</h4>
+<div class="outline-text-4" id="text-org55d2281">
 <p>
 格式为 <code>docker-compose pull [options] [SERVICE...]</code>
 </p>
@@ -528,18 +528,18 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org5826b76" class="outline-4">
-<h4 id="org5826b76">push</h4>
-<div class="outline-text-4" id="text-org5826b76">
+<div id="outline-container-org35448c6" class="outline-4">
+<h4 id="org35448c6">push</h4>
+<div class="outline-text-4" id="text-org35448c6">
 <p>
 推送服务依赖的镜像到 Docker 镜像仓库。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org57f0bbb" class="outline-4">
-<h4 id="org57f0bbb">restart</h4>
-<div class="outline-text-4" id="text-org57f0bbb">
+<div id="outline-container-org5bddde0" class="outline-4">
+<h4 id="org5bddde0">restart</h4>
+<div class="outline-text-4" id="text-org5bddde0">
 <p>
 格式为 <code>docker-compose restart [options] [SERVICE...]</code>
 </p>
@@ -558,9 +558,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orgc272c72" class="outline-4">
-<h4 id="orgc272c72">rm</h4>
-<div class="outline-text-4" id="text-orgc272c72">
+<div id="outline-container-org4e91a23" class="outline-4">
+<h4 id="org4e91a23">rm</h4>
+<div class="outline-text-4" id="text-org4e91a23">
 <p>
 格式为 <code>docker-compose rm [options] [SERVICE...]</code>
 </p>
@@ -581,9 +581,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org236fcdf" class="outline-4">
-<h4 id="org236fcdf">run</h4>
-<div class="outline-text-4" id="text-org236fcdf">
+<div id="outline-container-orgc73550a" class="outline-4">
+<h4 id="orgc73550a">run</h4>
+<div class="outline-text-4" id="text-orgc73550a">
 <p>
 格式为 <code>docker-compose run [options] [-p PORT...] [-e KEY=VAL...] SERVICE [COMMAND] [ARGS...]</code>
 </p>
@@ -635,9 +635,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org8fb5d59" class="outline-4">
-<h4 id="org8fb5d59">scale</h4>
-<div class="outline-text-4" id="text-org8fb5d59">
+<div id="outline-container-org8efcd45" class="outline-4">
+<h4 id="org8efcd45">scale</h4>
+<div class="outline-text-4" id="text-org8efcd45">
 <p>
 格式为 <code>docker-compose scale [options] [SERVICE=NUM...]</code>
 </p>
@@ -652,9 +652,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orgc64704c" class="outline-4">
-<h4 id="orgc64704c">start</h4>
-<div class="outline-text-4" id="text-orgc64704c">
+<div id="outline-container-org4f6d916" class="outline-4">
+<h4 id="org4f6d916">start</h4>
+<div class="outline-text-4" id="text-org4f6d916">
 <p>
 格式为 <code>docker-compose start [SERVICE...]</code>
 </p>
@@ -665,9 +665,9 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orgb39cd6a" class="outline-4">
-<h4 id="orgb39cd6a">stop</h4>
-<div class="outline-text-4" id="text-orgb39cd6a">
+<div id="outline-container-orgb2fb921" class="outline-4">
+<h4 id="orgb2fb921">stop</h4>
+<div class="outline-text-4" id="text-orgb2fb921">
 <p>
 格式为 <code>docker-compose stop [options] [SERVICE...]</code>
 </p>
@@ -679,18 +679,18 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-org3f043d1" class="outline-4">
-<h4 id="org3f043d1">top</h4>
-<div class="outline-text-4" id="text-org3f043d1">
+<div id="outline-container-org19a2f4a" class="outline-4">
+<h4 id="org19a2f4a">top</h4>
+<div class="outline-text-4" id="text-org19a2f4a">
 <p>
 查看各个服务容器内运行的进程。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2928f6f" class="outline-4">
-<h4 id="org2928f6f">up</h4>
-<div class="outline-text-4" id="text-org2928f6f">
+<div id="outline-container-orgb740732" class="outline-4">
+<h4 id="orgb740732">up</h4>
+<div class="outline-text-4" id="text-orgb740732">
 <p>
 格式为 <code>docker-compose up [options] [SERVICE...]</code>
 </p>
@@ -739,18 +739,18 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 </div>
 
-<div id="outline-container-orga1ebe3a" class="outline-4">
-<h4 id="orga1ebe3a">down</h4>
-<div class="outline-text-4" id="text-orga1ebe3a">
+<div id="outline-container-org3f44c27" class="outline-4">
+<h4 id="org3f44c27">down</h4>
+<div class="outline-text-4" id="text-org3f44c27">
 <p>
 此命令将会停止 <code>up</code> 命令所启动的容器，并移除网络
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge903e88" class="outline-4">
-<h4 id="orge903e88">version</h4>
-<div class="outline-text-4" id="text-orge903e88">
+<div id="outline-container-orgeee6ab9" class="outline-4">
+<h4 id="orgeee6ab9">version</h4>
+<div class="outline-text-4" id="text-orgeee6ab9">
 <p>
 打印版本信息。
 </p>
@@ -761,7 +761,7 @@ Compose 项目由 Python 编写，实现上调用了 Docker 服务提供的 API 
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:16</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ebuild(1)</title>
@@ -256,55 +256,55 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9e51459">NAME</a></li>
-<li><a href="#org26b4a00">SYNOPSIS</a></li>
-<li><a href="#orgfac82a4">DESCRIPTION</a></li>
-<li><a href="#orge8c5e21">FILE</a></li>
-<li><a href="#orga2cb030">COMMANDS</a></li>
-<li><a href="#orgbace92d">OPTIONS</a></li>
+<li><a href="#org6b91624">NAME</a></li>
+<li><a href="#orgd438aad">SYNOPSIS</a></li>
+<li><a href="#orgc65d3d0">DESCRIPTION</a></li>
+<li><a href="#org70ae062">FILE</a></li>
+<li><a href="#org7741cbc">COMMANDS</a></li>
+<li><a href="#orgca44981">OPTIONS</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e51459" class="outline-2">
-<h2 id="org9e51459">NAME</h2>
-<div class="outline-text-2" id="text-org9e51459">
+<div id="outline-container-org6b91624" class="outline-2">
+<h2 id="org6b91624">NAME</h2>
+<div class="outline-text-2" id="text-org6b91624">
 <p>
 ebuild - Prortgae 系统的底层接口
 </p>
 </div>
 </div>
 
-<div id="outline-container-org26b4a00" class="outline-2">
-<h2 id="org26b4a00">SYNOPSIS</h2>
-<div class="outline-text-2" id="text-org26b4a00">
+<div id="outline-container-orgd438aad" class="outline-2">
+<h2 id="orgd438aad">SYNOPSIS</h2>
+<div class="outline-text-2" id="text-orgd438aad">
 <p>
 ebuild file command [command]&#x2026;
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfac82a4" class="outline-2">
-<h2 id="orgfac82a4">DESCRIPTION</h2>
-<div class="outline-text-2" id="text-orgfac82a4">
+<div id="outline-container-orgc65d3d0" class="outline-2">
+<h2 id="orgc65d3d0">DESCRIPTION</h2>
+<div class="outline-text-2" id="text-orgc65d3d0">
 <p>
 ebuild 程序时 Prtage 系统的直接接口。它允许 ebuild 直接操作特定自命令和命令组，以在特定的 build 的上下文和函数中执行。ebuild 脚本接受一个或多个命令作为参数，ebuild 程序解析 ebuild 脚本并执行这些命令。有获取源代码、解压缩源文件、安装 object 文件到临时的"image"目录，将 image 目录 merge 到本地文件系统，从 image 目录创建 bzip 压缩包等命令。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge8c5e21" class="outline-2">
-<h2 id="orge8c5e21">FILE</h2>
-<div class="outline-text-2" id="text-orge8c5e21">
+<div id="outline-container-org70ae062" class="outline-2">
+<h2 id="org70ae062">FILE</h2>
+<div class="outline-text-2" id="text-org70ae062">
 <p>
 必须时有效的 build 脚本。更多信息请阅读 ebuild(5)。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga2cb030" class="outline-2">
-<h2 id="orga2cb030">COMMANDS</h2>
-<div class="outline-text-2" id="text-orga2cb030">
+<div id="outline-container-org7741cbc" class="outline-2">
+<h2 id="org7741cbc">COMMANDS</h2>
+<div class="outline-text-2" id="text-org7741cbc">
 <p>
 默认，portage 将安装实际指定的顺序执行所有函数，除了在之前的 ebuild 调用中已经被执行的函数。例如，发出 compile 将会将会触发并运行在它之前的函数（像 setup 和 unpack），除非它们在之前的 build 调用已运行过。如果你想确保它们都运行，你需要先使用 clean 命令。如果你想仅运行指定的命令，那么你需要在 FEATURES 环境变量中使用 auto 选项。更多信息请见 make.conf(5)。
 </p>
@@ -506,9 +506,9 @@ RPM 安装包。目前，ebuild 的依赖信息尚未合并到 RPM 中。
 </div>
 </div>
 
-<div id="outline-container-orgbace92d" class="outline-2">
-<h2 id="orgbace92d">OPTIONS</h2>
-<div class="outline-text-2" id="text-orgbace92d">
+<div id="outline-container-orgca44981" class="outline-2">
+<h2 id="orgca44981">OPTIONS</h2>
+<div class="outline-text-2" id="text-orgca44981">
 <ul class="org-ul">
 <li><p>
 &#x2013;debug
@@ -555,7 +555,7 @@ RPM 安装包。目前，ebuild 的依赖信息尚未合并到 RPM 中。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

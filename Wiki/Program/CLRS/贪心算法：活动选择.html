@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:32 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>贪心算法：活动选择</title>
@@ -234,12 +234,12 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9a12636">活动选择问题</a></li>
-<li><a href="#org3093a14">活动选择问题的最优子结构</a></li>
-<li><a href="#orgab28937">贪心选择</a></li>
-<li><a href="#org14c0838">递归贪心算法</a></li>
-<li><a href="#orgfeaa9e8">迭代贪心算法</a></li>
-<li><a href="#orgbc991ba">C 语言实现代码</a></li>
+<li><a href="#org446623a">活动选择问题</a></li>
+<li><a href="#orgd844754">活动选择问题的最优子结构</a></li>
+<li><a href="#org746c9d8">贪心选择</a></li>
+<li><a href="#org16f6880">递归贪心算法</a></li>
+<li><a href="#org5c99519">迭代贪心算法</a></li>
+<li><a href="#orgc56ae1a">C 语言实现代码</a></li>
 </ul>
 </div>
 </div>
@@ -249,9 +249,9 @@
 
 <hr>
 
-<div id="outline-container-org9a12636" class="outline-2">
-<h2 id="org9a12636">活动选择问题</h2>
-<div class="outline-text-2" id="text-org9a12636">
+<div id="outline-container-org446623a" class="outline-2">
+<h2 id="org446623a">活动选择问题</h2>
+<div class="outline-text-2" id="text-org446623a">
 <p>
 假设有一个包含 n 个活动的集合 S = {a1, a2, &#x2026;, an}，这些活动使用同一个资源（如同一个教室），而这个资源在同一时刻只能由一个活动使用。每个活动 ai 都有一个开始时间 s1 和结束时间 f1，也就是说一个活动的半开时间为[si, fi)。如果两个活动 ai 和 aj 的半开时间区间是不重叠的，则称它们是兼容的。*活动选择问题*就是希望选出一个最大兼容活动集。假设活动已按结束时间单调递增顺序排序。则一个活动集合 S 如下：<br>
 </p>
@@ -265,9 +265,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3093a14" class="outline-2">
-<h2 id="org3093a14">活动选择问题的最优子结构</h2>
-<div class="outline-text-2" id="text-org3093a14">
+<div id="outline-container-orgd844754" class="outline-2">
+<h2 id="orgd844754">活动选择问题的最优子结构</h2>
+<div class="outline-text-2" id="text-orgd844754">
 <p>
 令 S(ij)表示在 ai 结束之后开始，且在 aj 开始之前结束的活动集合。我们需要求 S(ij)的一个最大互相兼容的活动子集，假设 A(ij)就是这样的子集，包含活动 ak。由于最优解包含活动 ak，我们得到两个子问题：寻找 S(ik)中的兼容活动和寻找 S(kj)中的兼容活动。因此，有 A(ij) = A(ik) ∪ {ak} ∪ A(kj)，S(ij)中最大兼容活动子集 A(ij)包含|A(ik)|+|A(kj)|+1 个活动。
 </p>
@@ -285,9 +285,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgab28937" class="outline-2">
-<h2 id="orgab28937">贪心选择</h2>
-<div class="outline-text-2" id="text-orgab28937">
+<div id="outline-container-org746c9d8" class="outline-2">
+<h2 id="org746c9d8">贪心选择</h2>
+<div class="outline-text-2" id="text-org746c9d8">
 <p>
 其实，对于活动选择问题，我们不必考察所有可能的选择就可解决问题，即只考虑一个选择：贪心选择。
 </p>
@@ -300,9 +300,9 @@
 </div>
 </div>
 
-<div id="outline-container-org14c0838" class="outline-2">
-<h2 id="org14c0838">递归贪心算法</h2>
-<div class="outline-text-2" id="text-org14c0838">
+<div id="outline-container-org16f6880" class="outline-2">
+<h2 id="org16f6880">递归贪心算法</h2>
+<div class="outline-text-2" id="text-org16f6880">
 <p>
 过程 recursive_activity_selector 的输入为两个数组 s 和 f，分别是活动的开始和结束时间，k指出要求解的子问题 Sk，n 为问题规模，它返回 Sk 的一个最大兼容活动子集并保存在 a 中。为了方便求解，假设输入的 n 个活动都已经按结束时间的单调递增顺序排列好，如果没有排好序，我们也可以在Ο(nlgn)时间内对其进行排序。另外为了方便算法初始化，还添加了一个虚拟活动 a0，其结束时间为 f0 =
 </p>
@@ -320,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgfeaa9e8" class="outline-2">
-<h2 id="orgfeaa9e8">迭代贪心算法</h2>
-<div class="outline-text-2" id="text-orgfeaa9e8">
+<div id="outline-container-org5c99519" class="outline-2">
+<h2 id="org5c99519">迭代贪心算法</h2>
+<div class="outline-text-2" id="text-org5c99519">
 <p>
 很好理解，没有什么好说的，详细信息见下文代码。
 </p>
@@ -331,9 +331,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgbc991ba" class="outline-2">
-<h2 id="orgbc991ba">C 语言实现代码</h2>
-<div class="outline-text-2" id="text-orgbc991ba">
+<div id="outline-container-orgc56ae1a" class="outline-2">
+<h2 id="orgc56ae1a">C 语言实现代码</h2>
+<div class="outline-text-2" id="text-orgc56ae1a">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
 <span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
@@ -405,7 +405,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:32</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

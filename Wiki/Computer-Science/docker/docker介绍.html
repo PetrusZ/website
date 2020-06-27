@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:16 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>docker介绍</title>
@@ -236,59 +236,59 @@
 <ul>
 <li><a href="#基本概念">基本概念</a>
 <ul>
-<li><a href="#orgba3e3a2">虚悬镜像</a></li>
-<li><a href="#org9339cec">中间层镜像</a></li>
-<li><a href="#orgc03726f">容器与镜像</a></li>
-<li><a href="#orgcea210e">容器与虚拟机</a></li>
-<li><a href="#org5d035c0">使用容器需要避免的一些做法</a></li>
-<li><a href="#orgcf60272">镜像的内容</a></li>
-<li><a href="#org67555f3">Doker 平台的基本构成</a></li>
+<li><a href="#org835f8f6">虚悬镜像</a></li>
+<li><a href="#org1e68c79">中间层镜像</a></li>
+<li><a href="#org85586a4">容器与镜像</a></li>
+<li><a href="#orgc9b510d">容器与虚拟机</a></li>
+<li><a href="#org8dbc6ef">使用容器需要避免的一些做法</a></li>
+<li><a href="#orga86aba4">镜像的内容</a></li>
+<li><a href="#org7fa0b58">Doker 平台的基本构成</a></li>
 </ul>
 </li>
-<li><a href="#org0ff52be">Docker 主机：从 Docker registry 上下载镜像并启动容器 * Docker</a>
+<li><a href="#org1ef7fda">Docker 主机：从 Docker registry 上下载镜像并启动容器 * Docker</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org9b7d64a">docker 仓库</a></li>
+<li><a href="#org1d26990">docker 仓库</a></li>
 </ul>
 </li>
-<li><a href="#org21de1f7">docker 数据管理</a>
+<li><a href="#orge990b47">docker 数据管理</a>
 <ul>
-<li><a href="#orgaa63101">数据卷</a>
+<li><a href="#orgc135bee">数据卷</a>
 <ul>
-<li><a href="#org2b8dbc7">创建一个数据卷</a></li>
-<li><a href="#org9300f1b">启动一个挂载数据卷的容器</a></li>
-<li><a href="#org5014431">其他</a></li>
+<li><a href="#org133bf00">创建一个数据卷</a></li>
+<li><a href="#org739a786">启动一个挂载数据卷的容器</a></li>
+<li><a href="#orga0e9b86">其他</a></li>
 </ul>
 </li>
-<li><a href="#orgd5a45cf">挂载主机目录</a>
+<li><a href="#org8b483d9">挂载主机目录</a>
 <ul>
-<li><a href="#org54a0545">挂载一个主机目录作为数据卷</a></li>
-<li><a href="#org388f9f9">挂载一个本地主机文件作为数据卷</a></li>
+<li><a href="#org89677dc">挂载一个主机目录作为数据卷</a></li>
+<li><a href="#orge44cb34">挂载一个本地主机文件作为数据卷</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3ba948b">使用网络</a>
+<li><a href="#org7888b73">使用网络</a>
 <ul>
-<li><a href="#org5366885">外部访问容器</a>
+<li><a href="#org045612b">外部访问容器</a>
 <ul>
-<li><a href="#org2b108a6">查看映射端口配置</a></li>
+<li><a href="#orgab38fca">查看映射端口配置</a></li>
 </ul>
 </li>
-<li><a href="#org28ffd8b">容器互联</a>
+<li><a href="#org8e2969e">容器互联</a>
 <ul>
-<li><a href="#org09b849e">新建网络</a></li>
-<li><a href="#org67f48a6">连接容器</a></li>
-<li><a href="#orga4b7b1a">配置 DNS</a></li>
+<li><a href="#orge7fe580">新建网络</a></li>
+<li><a href="#org9cda2ad">连接容器</a></li>
+<li><a href="#org48a3a85">配置 DNS</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6cda574">高级网络配置</a></li>
+<li><a href="#org9c01c36">高级网络配置</a></li>
 </ul>
 </li>
-<li><a href="#orgb67d326">参考资料</a></li>
+<li><a href="#orgf52e1d5">参考资料</a></li>
 </ul>
 </div>
 </div>
@@ -305,9 +305,9 @@ Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 
 <div class="outline-text-2" id="text-基本概念">
 </div>
 
-<div id="outline-container-orgba3e3a2" class="outline-3">
-<h3 id="orgba3e3a2">虚悬镜像</h3>
-<div class="outline-text-3" id="text-orgba3e3a2">
+<div id="outline-container-org835f8f6" class="outline-3">
+<h3 id="org835f8f6">虚悬镜像</h3>
+<div class="outline-text-3" id="text-org835f8f6">
 <p>
 在镜像列表中，还可以看到一个特殊的镜像，这个镜像既没有仓库名，也没有标签，均为 <none>。：
 </p>
@@ -326,9 +326,9 @@ Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 
 </div>
 </div>
 
-<div id="outline-container-org9339cec" class="outline-3">
-<h3 id="org9339cec">中间层镜像</h3>
-<div class="outline-text-3" id="text-org9339cec">
+<div id="outline-container-org1e68c79" class="outline-3">
+<h3 id="org1e68c79">中间层镜像</h3>
+<div class="outline-text-3" id="text-org1e68c79">
 <p>
 为了加速镜像构建、重复利用资源，Docker 会利用 中间层镜像。所以在使用一段时间后，可能会看到一些依赖的中间层镜像。
 </p>
@@ -344,9 +344,9 @@ Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 
 </div>
 </div>
 
-<div id="outline-container-orgc03726f" class="outline-3">
-<h3 id="orgc03726f">容器与镜像</h3>
-<div class="outline-text-3" id="text-orgc03726f">
+<div id="outline-container-org85586a4" class="outline-3">
+<h3 id="org85586a4">容器与镜像</h3>
+<div class="outline-text-3" id="text-org85586a4">
 <p>
 镜像(image)是一种静态的结构，可以看成面向对象里面的类，而容器(container)是镜像的一个实例。
 </p>
@@ -368,9 +368,9 @@ Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 
 </div>
 </div>
 
-<div id="outline-container-orgcea210e" class="outline-3">
-<h3 id="orgcea210e">容器与虚拟机</h3>
-<div class="outline-text-3" id="text-orgcea210e">
+<div id="outline-container-orgc9b510d" class="outline-3">
+<h3 id="orgc9b510d">容器与虚拟机</h3>
+<div class="outline-text-3" id="text-orgc9b510d">
 <p>
 比如，一台主机安装的是 Centos 操作系统，现在在上面跑一个 Ubuntu 容器。此时，Host OS 是 Centos，Guest OS 是 Ubuntu。Guest OS 也被成为容器的 Base Image。
 </p>
@@ -381,9 +381,9 @@ Docker CE 分为 <code>stable</code> <code>test</code> 和 <code>nightly</code> 
 </div>
 </div>
 
-<div id="outline-container-org5d035c0" class="outline-3">
-<h3 id="org5d035c0">使用容器需要避免的一些做法</h3>
-<div class="outline-text-3" id="text-org5d035c0">
+<div id="outline-container-org8dbc6ef" class="outline-3">
+<h3 id="org8dbc6ef">使用容器需要避免的一些做法</h3>
+<div class="outline-text-3" id="text-org8dbc6ef">
 <ul class="org-ul">
 <li>不要在容器中保存数据（Don't store data in containers）</li>
 <li>将应用打包到镜像再部署而不是更新到已有容器（Don't ship your
@@ -404,9 +404,9 @@ addresses ）</li>
 </div>
 </div>
 
-<div id="outline-container-orgcf60272" class="outline-3">
-<h3 id="orgcf60272">镜像的内容</h3>
-<div class="outline-text-3" id="text-orgcf60272">
+<div id="outline-container-orga86aba4" class="outline-3">
+<h3 id="orga86aba4">镜像的内容</h3>
+<div class="outline-text-3" id="text-orga86aba4">
 <ul class="org-ul">
 <li>docker 镜像中主要就是 tar 文件包和元数据 json 文件</li>
 <li>docker 镜像的打包过程，其实就是将每一层对应的文件打包过程，最后组成一个单一的 tar 文件</li>
@@ -415,26 +415,26 @@ addresses ）</li>
 </div>
 </div>
 
-<div id="outline-container-org67555f3" class="outline-3">
-<h3 id="org67555f3">Doker 平台的基本构成</h3>
-<div class="outline-text-3" id="text-org67555f3">
+<div id="outline-container-org7fa0b58" class="outline-3">
+<h3 id="org7fa0b58">Doker 平台的基本构成</h3>
+<div class="outline-text-3" id="text-org7fa0b58">
 <p>
 Docker 平台基本上由三部分组成： * 客户端：用户使用 Docker 提供的工具（CLI 以及 API 等）来构建，上传镜像并发布命令来创建和启动容器
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0ff52be" class="outline-2">
-<h2 id="org0ff52be">Docker 主机：从 Docker registry 上下载镜像并启动容器 * Docker</h2>
-<div class="outline-text-2" id="text-org0ff52be">
+<div id="outline-container-org1ef7fda" class="outline-2">
+<h2 id="org1ef7fda">Docker 主机：从 Docker registry 上下载镜像并启动容器 * Docker</h2>
+<div class="outline-text-2" id="text-org1ef7fda">
 <p>
 registry：Docker 镜像仓库，用于保存镜像，并提供镜像上传和下载
 </p>
 </div>
 
-<div id="outline-container-org9b7d64a" class="outline-4">
-<h4 id="org9b7d64a">docker 仓库</h4>
-<div class="outline-text-4" id="text-org9b7d64a">
+<div id="outline-container-org1d26990" class="outline-4">
+<h4 id="org1d26990">docker 仓库</h4>
+<div class="outline-text-4" id="text-org1d26990">
 <p>
 仓库（Repository）是集中存放镜像的地方。
 </p>
@@ -457,9 +457,9 @@ registry：Docker 镜像仓库，用于保存镜像，并提供镜像上传和�
 </div>
 </div>
 
-<div id="outline-container-org21de1f7" class="outline-3">
-<h3 id="org21de1f7">docker 数据管理</h3>
-<div class="outline-text-3" id="text-org21de1f7">
+<div id="outline-container-orge990b47" class="outline-3">
+<h3 id="orge990b47">docker 数据管理</h3>
+<div class="outline-text-3" id="text-orge990b47">
 <p>
 在容器中管理数据主要有两种方式：
 </p>
@@ -477,9 +477,9 @@ registry：Docker 镜像仓库，用于保存镜像，并提供镜像上传和�
 </div>
 </div>
 
-<div id="outline-container-orgaa63101" class="outline-4">
-<h4 id="orgaa63101">数据卷</h4>
-<div class="outline-text-4" id="text-orgaa63101">
+<div id="outline-container-orgc135bee" class="outline-4">
+<h4 id="orgc135bee">数据卷</h4>
+<div class="outline-text-4" id="text-orgc135bee">
 <p>
 数据卷 是一个可供一个或多个容器使用的特殊目录，它绕过
 UFS，可以提供很多有用的特性：
@@ -500,18 +500,18 @@ mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能
 </blockquote>
 </div>
 
-<div id="outline-container-org2b8dbc7" class="outline-5">
-<h5 id="org2b8dbc7">创建一个数据卷</h5>
-<div class="outline-text-5" id="text-org2b8dbc7">
+<div id="outline-container-org133bf00" class="outline-5">
+<h5 id="org133bf00">创建一个数据卷</h5>
+<div class="outline-text-5" id="text-org133bf00">
 <p>
 <code>$ docker volume create my-vol</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9300f1b" class="outline-5">
-<h5 id="org9300f1b">启动一个挂载数据卷的容器</h5>
-<div class="outline-text-5" id="text-org9300f1b">
+<div id="outline-container-org739a786" class="outline-5">
+<h5 id="org739a786">启动一个挂载数据卷的容器</h5>
+<div class="outline-text-5" id="text-org739a786">
 <p>
 在用 docker run 命令的时候，使用 &#x2013;mount 标记来将 数据卷 挂载到容器里。 在一次 docker run 中可以挂载多个 数据卷。
 </p>
@@ -528,9 +528,9 @@ mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能
 </div>
 </div>
 
-<div id="outline-container-org5014431" class="outline-5">
-<h5 id="org5014431">其他</h5>
-<div class="outline-text-5" id="text-org5014431">
+<div id="outline-container-orga0e9b86" class="outline-5">
+<h5 id="orga0e9b86">其他</h5>
+<div class="outline-text-5" id="text-orga0e9b86">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;&#25968;&#25454;&#21367;&#30340;&#20855;&#20307;&#20449;&#24687;</span>
     $ docker inspect web
@@ -546,13 +546,13 @@ mount，镜像中的被指定为挂载点的目录中的文件会隐藏掉，能
 </div>
 </div>
 
-<div id="outline-container-orgd5a45cf" class="outline-4">
-<h4 id="orgd5a45cf">挂载主机目录</h4>
-<div class="outline-text-4" id="text-orgd5a45cf">
+<div id="outline-container-org8b483d9" class="outline-4">
+<h4 id="org8b483d9">挂载主机目录</h4>
+<div class="outline-text-4" id="text-org8b483d9">
 </div>
-<div id="outline-container-org54a0545" class="outline-5">
-<h5 id="org54a0545">挂载一个主机目录作为数据卷</h5>
-<div class="outline-text-5" id="text-org54a0545">
+<div id="outline-container-org89677dc" class="outline-5">
+<h5 id="org89677dc">挂载一个主机目录作为数据卷</h5>
+<div class="outline-text-5" id="text-org89677dc">
 <p>
 使用 <code>--mount type=bind</code> 标记可以指定挂载一个本地主机的目录到容器中去。
 </p>
@@ -572,9 +572,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org388f9f9" class="outline-5">
-<h5 id="org388f9f9">挂载一个本地主机文件作为数据卷</h5>
-<div class="outline-text-5" id="text-org388f9f9">
+<div id="outline-container-orge44cb34" class="outline-5">
+<h5 id="orge44cb34">挂载一个本地主机文件作为数据卷</h5>
+<div class="outline-text-5" id="text-orge44cb34">
 <p>
 <code>--mount</code> 标记也可以从主机挂载单个文件到容器中
 </p>
@@ -591,13 +591,13 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org3ba948b" class="outline-3">
-<h3 id="org3ba948b">使用网络</h3>
-<div class="outline-text-3" id="text-org3ba948b">
+<div id="outline-container-org7888b73" class="outline-3">
+<h3 id="org7888b73">使用网络</h3>
+<div class="outline-text-3" id="text-org7888b73">
 </div>
-<div id="outline-container-org5366885" class="outline-4">
-<h4 id="org5366885">外部访问容器</h4>
-<div class="outline-text-4" id="text-org5366885">
+<div id="outline-container-org045612b" class="outline-4">
+<h4 id="org045612b">外部访问容器</h4>
+<div class="outline-text-4" id="text-org045612b">
 <p>
 容器中可以运行一些网络应用，要让外部也可以访问这些应用，可以通过 <code>-P</code> 或 <code>-p</code> 参数来指定端口映射。
 </p>
@@ -623,9 +623,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org2b108a6" class="outline-5">
-<h5 id="org2b108a6">查看映射端口配置</h5>
-<div class="outline-text-5" id="text-org2b108a6">
+<div id="outline-container-orgab38fca" class="outline-5">
+<h5 id="orgab38fca">查看映射端口配置</h5>
+<div class="outline-text-5" id="text-orgab38fca">
 <p>
 使用 <code>docker port</code> 来查看当前映射的端口配置，也可以查看到绑定的地址
 </p>
@@ -643,13 +643,13 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org28ffd8b" class="outline-4">
-<h4 id="org28ffd8b">容器互联</h4>
-<div class="outline-text-4" id="text-org28ffd8b">
+<div id="outline-container-org8e2969e" class="outline-4">
+<h4 id="org8e2969e">容器互联</h4>
+<div class="outline-text-4" id="text-org8e2969e">
 </div>
-<div id="outline-container-org09b849e" class="outline-5">
-<h5 id="org09b849e">新建网络</h5>
-<div class="outline-text-5" id="text-org09b849e">
+<div id="outline-container-orge7fe580" class="outline-5">
+<h5 id="orge7fe580">新建网络</h5>
+<div class="outline-text-5" id="text-orge7fe580">
 <p>
 先创建一个新的 Docker 网络。
 </p>
@@ -664,9 +664,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org67f48a6" class="outline-5">
-<h5 id="org67f48a6">连接容器</h5>
-<div class="outline-text-5" id="text-org67f48a6">
+<div id="outline-container-org9cda2ad" class="outline-5">
+<h5 id="org9cda2ad">连接容器</h5>
+<div class="outline-text-5" id="text-org9cda2ad">
 <p>
 运行一个容器并连接到新建的 my-net 网络
 </p>
@@ -689,9 +689,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-orga4b7b1a" class="outline-5">
-<h5 id="orga4b7b1a">配置 DNS</h5>
-<div class="outline-text-5" id="text-orga4b7b1a">
+<div id="outline-container-org48a3a85" class="outline-5">
+<h5 id="org48a3a85">配置 DNS</h5>
+<div class="outline-text-5" id="text-org48a3a85">
 <p>
 如何自定义配置容器的主机名和 DNS 呢？秘诀就是 Docker 利用虚拟文件来挂载容器的 3 个相关主机名和 DNS 的配置文件。
 </p>
@@ -740,9 +740,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-org6cda574" class="outline-3">
-<h3 id="org6cda574">高级网络配置</h3>
-<div class="outline-text-3" id="text-org6cda574">
+<div id="outline-container-org9c01c36" class="outline-3">
+<h3 id="org9c01c36">高级网络配置</h3>
+<div class="outline-text-3" id="text-org9c01c36">
 <p>
 当 Docker 启动时，会自动在主机上创建一个 docker0 虚拟网桥，实际上是 Linux 的一个 bridge，可以理解为一个软件交换机。它会在挂载到它的网口之间进行转发。
 </p>
@@ -765,9 +765,9 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 </div>
 
-<div id="outline-container-orgb67d326" class="outline-2">
-<h2 id="orgb67d326">参考资料</h2>
-<div class="outline-text-2" id="text-orgb67d326">
+<div id="outline-container-orgf52e1d5" class="outline-2">
+<h2 id="orgf52e1d5">参考资料</h2>
+<div class="outline-text-2" id="text-orgf52e1d5">
 <ol class="org-ol">
 <li><a href="https://yeasy.gitbooks.io/docker_practice/content/">Docker &#x2014; 从入门到实践</a></li>
 <li><a href="https://www.cnblogs.com/sammyliu/p/5875470.html">理解Docker</a></li>
@@ -777,7 +777,7 @@ Docker 挂载主机目录的默认权限是 读写，用户也可以通过增加
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:16</p>
 </div>
 </body>
 </html>

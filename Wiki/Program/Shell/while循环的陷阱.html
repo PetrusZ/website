@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>while循环的陷阱</title>
@@ -234,20 +234,20 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf5c2254">while 循环的陷阱</a>
+<li><a href="#org4fd87ca">while 循环的陷阱</a>
 <ul>
-<li><a href="#orgc43567f">陷阱一：</a></li>
-<li><a href="#org4dd0a58">陷阱二：</a></li>
+<li><a href="#org420cd6c">陷阱一：</a></li>
+<li><a href="#org9439b55">陷阱二：</a></li>
 </ul>
 </li>
-<li><a href="#orga2734db">Link</a></li>
+<li><a href="#org75cb928">Link</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf5c2254" class="outline-2">
-<h2 id="orgf5c2254">while 循环的陷阱</h2>
-<div class="outline-text-2" id="text-orgf5c2254">
+<div id="outline-container-org4fd87ca" class="outline-2">
+<h2 id="org4fd87ca">while 循环的陷阱</h2>
+<div class="outline-text-2" id="text-org4fd87ca">
 <p>
 在写 while 循环的时候，发现了一个问题，在 while 循环内部对变量赋值、定义变量、数组定义等等环境，在循环外面失效。
 </p>
@@ -348,9 +348,9 @@ while 循环的写法有好几种，它的语法结构为：
 </p>
 </div>
 
-<div id="outline-container-orgc43567f" class="outline-3">
-<h3 id="orgc43567f">陷阱一：</h3>
-<div class="outline-text-3" id="text-orgc43567f">
+<div id="outline-container-org420cd6c" class="outline-3">
+<h3 id="org420cd6c">陷阱一：</h3>
+<div class="outline-text-3" id="text-org420cd6c">
 <p>
 <b>方法一中使用的是管道符号，这使得 while 语句在子 shell 中执行，这意味着 while 语句内部设置的变量、数组、函数等在循环外部都不再生效。</b> 这正是文章开头所说的陷阱。更简单的：echo haha | a=5，在命令执行结束后，变量 a 的值也不再是 5。其余 4 种写法，while 语句都不在子 shell 中执行，因此都不会出现文章开头所说的问题。
 </p>
@@ -385,9 +385,9 @@ while 循环的写法有好几种，它的语法结构为：
 </div>
 </div>
 
-<div id="outline-container-org4dd0a58" class="outline-3">
-<h3 id="org4dd0a58">陷阱二：</h3>
-<div class="outline-text-3" id="text-org4dd0a58">
+<div id="outline-container-org9439b55" class="outline-3">
+<h3 id="org9439b55">陷阱二：</h3>
+<div class="outline-text-3" id="text-org9439b55">
 <p>
 关于这几种 while 循环的写法，还有一点要注意：写法一和写法四传递数据的源都是一个单独的进程，它们传递的数据一被 while 循环读取，所有数据就丢弃了，而以实体文件作为重定向传递的数据，while 读取了之后并不会丢弃。更标准一些的说法是，当标准输入是非实体文件时(如管道传递的、独立进程产生的)只供一次读取；当标准输入是直接重定向实体文件时，可供多次读取，但只要某一次读取了该文件的全部内容就无法再提供读取。
 </p>
@@ -491,9 +491,9 @@ while 循环的写法有好几种，它的语法结构为：
 </div>
 </div>
 
-<div id="outline-container-orga2734db" class="outline-2">
-<h2 id="orga2734db">Link</h2>
-<div class="outline-text-2" id="text-orga2734db">
+<div id="outline-container-org75cb928" class="outline-2">
+<h2 id="org75cb928">Link</h2>
+<div class="outline-text-2" id="text-org75cb928">
 <ol class="org-ol">
 <li><a href="https://www.cnblogs.com/f-ck-need-u/p/7431578.html">https://www.cnblogs.com/f-ck-need-u/p/7431578.html</a></li>
 </ol>
@@ -502,7 +502,7 @@ while 循环的写法有好几种，它的语法结构为：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

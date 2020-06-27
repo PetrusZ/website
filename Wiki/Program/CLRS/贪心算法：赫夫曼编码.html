@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:32 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>贪心算法：赫夫曼编码</title>
@@ -234,9 +234,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd34ae02">前缀码</a></li>
-<li><a href="#org2621f17">构造赫夫曼编码</a></li>
-<li><a href="#org736e6ae">实现</a></li>
+<li><a href="#org25cddb6">前缀码</a></li>
+<li><a href="#org7e82539">构造赫夫曼编码</a></li>
+<li><a href="#org4c27508">实现</a></li>
 </ul>
 </div>
 </div>
@@ -269,9 +269,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 
 <hr>
 
-<div id="outline-container-orgd34ae02" class="outline-2">
-<h2 id="orgd34ae02">前缀码</h2>
-<div class="outline-text-2" id="text-orgd34ae02">
+<div id="outline-container-org25cddb6" class="outline-2">
+<h2 id="org25cddb6">前缀码</h2>
+<div class="outline-text-2" id="text-org25cddb6">
 <p>
 <b>前缀码</b> ，即没有任何码字是其他码字的前缀。且前缀码确实可以保证达到最优数据压缩率。
 </p>
@@ -293,9 +293,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 </div>
 
-<div id="outline-container-org2621f17" class="outline-2">
-<h2 id="org2621f17">构造赫夫曼编码</h2>
-<div class="outline-text-2" id="text-org2621f17">
+<div id="outline-container-org7e82539" class="outline-2">
+<h2 id="org7e82539">构造赫夫曼编码</h2>
+<div class="outline-text-2" id="text-org7e82539">
 <p>
 赫夫曼设计了一个贪心算法来构造最优前缀码，被成为*赫夫曼编码*。
 </p>
@@ -329,9 +329,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 </div>
 
-<div id="outline-container-org736e6ae" class="outline-2">
-<h2 id="org736e6ae">实现</h2>
-<div class="outline-text-2" id="text-org736e6ae">
+<div id="outline-container-org4c27508" class="outline-2">
+<h2 id="org4c27508">实现</h2>
+<div class="outline-text-2" id="text-org4c27508">
 <p>
 赫夫曼编码算法本身倒不算复杂，但是实现起来就有些麻烦了，因为使用混合使用了两种数据结构-&#x2013;&#x2014;优先队列和二叉树。用 C 语言使用<a href="堆排序和优先队列.html">算法导论第六章</a>中用数组实现的优先队列很难将赫夫曼编码实现。这一点亲身体验&#x2026;&#x2026;不过找到了一篇外国的关于<a href="http://nerdaholyc.com/a-simple-example-of-huffman-coding-on-a-string/">赫夫曼编码的文章</a>。
 </p>
@@ -366,7 +366,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:32</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

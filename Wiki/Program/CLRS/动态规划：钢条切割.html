@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:32 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>动态规划：钢铁切割</title>
@@ -234,14 +234,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6e70d3a">钢铁切割</a></li>
-<li><a href="#orgb59c924">自顶向下的递归实现</a>
+<li><a href="#org11c688b">钢铁切割</a></li>
+<li><a href="#orgc4f40e7">自顶向下的递归实现</a>
 <ul>
-<li><a href="#orgd44e85c">动态规划方法求解问题</a></li>
+<li><a href="#orgf6c3726">动态规划方法求解问题</a></li>
 </ul>
 </li>
-<li><a href="#org57b7a3a">子问题图</a></li>
-<li><a href="#org2d56632">重构解</a></li>
+<li><a href="#org407433a">子问题图</a></li>
+<li><a href="#org47a49fe">重构解</a></li>
 </ul>
 </div>
 </div>
@@ -263,9 +263,9 @@
 
 <hr>
 
-<div id="outline-container-org6e70d3a" class="outline-2">
-<h2 id="org6e70d3a">钢铁切割</h2>
-<div class="outline-text-2" id="text-org6e70d3a">
+<div id="outline-container-org11c688b" class="outline-2">
+<h2 id="org11c688b">钢铁切割</h2>
+<div class="outline-text-2" id="text-org11c688b">
 <p>
 先通过一个例子来直观的学习一下动态规划。
 </p>
@@ -307,9 +307,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-orgb59c924" class="outline-2">
-<h2 id="orgb59c924">自顶向下的递归实现</h2>
-<div class="outline-text-2" id="text-orgb59c924">
+<div id="outline-container-orgc4f40e7" class="outline-2">
+<h2 id="orgc4f40e7">自顶向下的递归实现</h2>
+<div class="outline-text-2" id="text-orgc4f40e7">
 <p>
 有了上面的公式，我们就可以使用 C 语言递归求解钢条切割问题了：
 </p>
@@ -366,9 +366,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 <hr>
 </div>
 
-<div id="outline-container-orgd44e85c" class="outline-3">
-<h3 id="orgd44e85c">动态规划方法求解问题</h3>
-<div class="outline-text-3" id="text-orgd44e85c">
+<div id="outline-container-orgf6c3726" class="outline-3">
+<h3 id="orgf6c3726">动态规划方法求解问题</h3>
+<div class="outline-text-3" id="text-orgf6c3726">
 <p>
 与一开始说的一样，动态规划方法仔细安排求解的顺序，对每个子问题只求解一次，并将结果保存下来。如果之后再次遇到此子问题，只需查找保存的结构，而不必重新计算。所以，动态规划是付出额外的内存空间来节省计算时间，典型的时空权衡的例子，而且时间上的节省可能是非常巨大的。
 </p>
@@ -495,9 +495,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-org57b7a3a" class="outline-2">
-<h2 id="org57b7a3a">子问题图</h2>
-<div class="outline-text-2" id="text-org57b7a3a">
+<div id="outline-container-org407433a" class="outline-2">
+<h2 id="org407433a">子问题图</h2>
+<div class="outline-text-2" id="text-org407433a">
 <p>
 当思考一个动态规划问题时，我们应该弄清所涉及的子问题及子问题之间的依赖关系。
 </p>
@@ -519,9 +519,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-org2d56632" class="outline-2">
-<h2 id="org2d56632">重构解</h2>
-<div class="outline-text-2" id="text-org2d56632">
+<div id="outline-container-org47a49fe" class="outline-2">
+<h2 id="org47a49fe">重构解</h2>
+<div class="outline-text-2" id="text-org47a49fe">
 <p>
 前面给出的算法的 C 语言实现只给出了问题的最优解的收益值，但是并没有返回最优解本身。我们可以扩展动态规划算法，使之对每个子问题不仅保存收益值，还保存对应的切割方案。利用这些信息，就可以输出最优解。下面的 C 语言代码将最优解对应的第一段钢条切割长度保存在数组 s 中，然后重构并输出最优解：
 </p>
@@ -575,7 +575,7 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:32</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>

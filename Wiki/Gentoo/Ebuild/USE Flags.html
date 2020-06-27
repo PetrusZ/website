@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-26 Fri 11:33 -->
+<!-- 2020-06-27 Sat 12:17 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>USE Flags</title>
@@ -234,13 +234,13 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9b9c985">When not to use USE flags?</a></li>
-<li><a href="#org0c315d0"><code>noblah</code> USE Flags</a></li>
-<li><a href="#orgb82fe19">IUSE defaults</a></li>
-<li><a href="#org3469a49">Local and Global USE Flags</a></li>
-<li><a href="#orgf33a3db">USE Flag Descriptions</a></li>
-<li><a href="#org2227ee0">Conflicting USE Flags</a></li>
-<li><a href="#orgb3376eb">USE_EXPAND and ARCH USE Flags</a></li>
+<li><a href="#org50ce1ff">When not to use USE flags?</a></li>
+<li><a href="#org16dd88c"><code>noblah</code> USE Flags</a></li>
+<li><a href="#org09da896">IUSE defaults</a></li>
+<li><a href="#org7ecb67f">Local and Global USE Flags</a></li>
+<li><a href="#org919c061">USE Flag Descriptions</a></li>
+<li><a href="#orgf4619aa">Conflicting USE Flags</a></li>
+<li><a href="#orga286b34">USE_EXPAND and ARCH USE Flags</a></li>
 </ul>
 </div>
 </div>
@@ -266,9 +266,9 @@ Note: USE flag 的状态保存在 VDB 中，并且它们在 <code>pkg_prerm</cod
 </p>
 </blockquote>
 
-<div id="outline-container-org9b9c985" class="outline-2">
-<h2 id="org9b9c985">When not to use USE flags?</h2>
-<div class="outline-text-2" id="text-org9b9c985">
+<div id="outline-container-org50ce1ff" class="outline-2">
+<h2 id="org50ce1ff">When not to use USE flags?</h2>
+<div class="outline-text-2" id="text-org50ce1ff">
 <p>
 尽管通常认为 <code>USE</code> flag 对用户有利，但也有一些避免使用它们的有效用例。当写 ebuild 时的，考虑是否为一个特定功能添加 flag，或探索以下描述的替代方案之一。
 </p>
@@ -301,9 +301,9 @@ Note: USE flag 的状态保存在 VDB 中，并且它们在 <code>pkg_prerm</cod
 </div>
 </div>
 
-<div id="outline-container-org0c315d0" class="outline-2">
-<h2 id="org0c315d0"><code>noblah</code> USE Flags</h2>
-<div class="outline-text-2" id="text-org0c315d0">
+<div id="outline-container-org16dd88c" class="outline-2">
+<h2 id="org16dd88c"><code>noblah</code> USE Flags</h2>
+<div class="outline-text-2" id="text-org16dd88c">
 <p>
 避免 <code>noblah</code> 风格的 <code>use</code> flag。它们会破坏 <code>use.mask</code> 并且对架构开发者造成各种复杂问题。原因如下：
 </p>
@@ -358,9 +358,9 @@ vplayer 的可选功能之一是提供对'fakemdia'的解码支持，不幸的�
 </div>
 </div>
 
-<div id="outline-container-orgb82fe19" class="outline-2">
-<h2 id="orgb82fe19">IUSE defaults</h2>
-<div class="outline-text-2" id="text-orgb82fe19">
+<div id="outline-container-org09da896" class="outline-2">
+<h2 id="org09da896">IUSE defaults</h2>
+<div class="outline-text-2" id="text-org09da896">
 <p>
 在 <code>IUSE</code> 中 use flag 的名称前添加 <code>+</code> 或 <code>-</code> 以默认将其打开或关闭。
 </p>
@@ -373,9 +373,9 @@ Important：在 <code>IUSE</code> 中添加 <code>-</code> 到 flag 之前时非
 </div>
 </div>
 
-<div id="outline-container-org3469a49" class="outline-2">
-<h2 id="org3469a49">Local and Global USE Flags</h2>
-<div class="outline-text-2" id="text-org3469a49">
+<div id="outline-container-org7ecb67f" class="outline-2">
+<h2 id="org7ecb67f">Local and Global USE Flags</h2>
+<div class="outline-text-2" id="text-org7ecb67f">
 <p>
 USE flag 可分为本地或全局。一个全局 USE flag 必须满足几个标准：
 </p>
@@ -395,9 +395,9 @@ USE flag 可分为本地或全局。一个全局 USE flag 必须满足几个标�
 </div>
 </div>
 
-<div id="outline-container-orgf33a3db" class="outline-2">
-<h2 id="orgf33a3db">USE Flag Descriptions</h2>
-<div class="outline-text-2" id="text-orgf33a3db">
+<div id="outline-container-org919c061" class="outline-2">
+<h2 id="org919c061">USE Flag Descriptions</h2>
+<div class="outline-text-2" id="text-org919c061">
 <p>
 必须在 <code>profile/</code> 目录的 <code>use.desc</code> 或软件包目录的 <code>metadata.xml</code> 中描述所有 USE flag。见 <code>man portage</code> 或这些文件中的注释以获取格式说明。 记得保持这些文件的排序。 <code>use.local.desc</code> 文件自动从软件包的 <code>metadata.xml</code> 生成的，并且可以由解析树的工具使用。因为 <code>use.local.desc</code> 是自动生成的，因此绝对不能在树中进行手动编辑。更多信息见<a href="https://www.gentoo.org/glep/glep-0056.html">GLEP 56</a>。
 </p>
@@ -408,9 +408,9 @@ USE flag 可分为本地或全局。一个全局 USE flag 必须满足几个标�
 </div>
 </div>
 
-<div id="outline-container-org2227ee0" class="outline-2">
-<h2 id="org2227ee0">Conflicting USE Flags</h2>
-<div class="outline-text-2" id="text-org2227ee0">
+<div id="outline-container-orgf4619aa" class="outline-2">
+<h2 id="orgf4619aa">Conflicting USE Flags</h2>
+<div class="outline-text-2" id="text-orgf4619aa">
 <p>
 偶尔 ebuild 的 USE 会因为功能性产生冲突。检查它们并返回一个错误不是一个可行的方法。相反，你必须在冲突中选择一个青睐的 USE flag，并应警告用户使用了特定的 flag。
 </p>
@@ -456,9 +456,9 @@ NOTE: 为了避免迫使用户过多的 micro-manage falg，应谨慎的使用 <
 </div>
 </div>
 
-<div id="outline-container-orgb3376eb" class="outline-2">
-<h2 id="orgb3376eb">USE_EXPAND and ARCH USE Flags</h2>
-<div class="outline-text-2" id="text-orgb3376eb">
+<div id="outline-container-orga286b34" class="outline-2">
+<h2 id="orga286b34">USE_EXPAND and ARCH USE Flags</h2>
+<div class="outline-text-2" id="text-orga286b34">
 <p>
 <code>VIDEO_CARDS</code> 、 <code>INPUT_DEVICES</code> 和 <code>L10N</code> 变量会自动扩展为 USE flag。这些称为 <code>USE_EXPAND</code> 变量。例如，如果用户在 <code>make.conf</code> 中有 <code>L10N="en fr"</code> ，那么 <code>USE="l10n_en l10n_fr"</code> 会自动被 portage 设置。会自动被 portage 设置。会自动被 portage 设置。会自动被 portage 设置。
 </p>
@@ -481,7 +481,7 @@ Warning：架构变量与 <code>ACCEPT_KEYWORDS</code> 有某种联系是一个�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-26 Fri 11:33</p>
+<p class="date">Created: 2020-06-27 Sat 12:17</p>
 </div>
 </body>
 </html>
