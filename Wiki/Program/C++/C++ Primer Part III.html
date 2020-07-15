@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-03 Fri 13:22 -->
+<!-- 2020-07-11 Sat 14:18 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ Primer 第 III部分 类设计者的工具</title>
@@ -453,7 +453,7 @@
 </li>
 <li><a href="#org7ec1ed3">15.2.2 定义派生类</a>
 <ul>
-<li><a href="#orgda5d15c">派生类中的虚函数</a></li>
+<li><a href="#orgf94079a">派生类中的虚函数</a></li>
 <li><a href="#org8e32a75">派生类对象及派生类向基类的类型转换</a></li>
 <li><a href="#org810c10c">派生类构造函数</a></li>
 <li><a href="#org7fa2da2">继承与静态函数</a></li>
@@ -475,7 +475,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#orgf94079a">派生类中的虚函数</a></li>
+<li><a href="#orgc6c6451">派生类中的虚函数</a></li>
 <li><a href="#org6c15a9d">final 和 override 说明符</a></li>
 <li><a href="#org5dc9e73">虚函数与默认实参</a></li>
 <li><a href="#org92bba56">回避虚函数的机制</a></li>
@@ -2204,8 +2204,8 @@ lambda 表达式产生的类不含默认构造函数、赋值运算符及默认�
 下表所列的类型定义在 functional 头文件中。
 </p>
 
-<table id="org5a229e6">
-
+<table>
+<caption class="t-above"><span class="table-number">&#34920;1&nbsp;</span> 标准库函数对象</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2350,8 +2350,8 @@ C++语言中有几种可调用的对象：函数、函数指针、lambda 表达�
 function 定义在 functional 头文件中。
 </p>
 
-<table id="org04686ee">
-
+<table>
+<caption class="t-above"><span class="table-number">&#34920;2&nbsp;</span> function 的操作</caption>
 
 <colgroup>
 <col  class="org-left">
@@ -2863,9 +2863,9 @@ Note：
 派生类必须通过使用 <b>类派生列表</b> 明确指出它时从哪个（哪些）基类继承而来的。类派生列表的形式时：首先时一个冒号，后面紧跟以逗号分隔的基类列表，其中每个基类前面可以有以下三种访问说明符中的一个：public、protected 或者 private。
 </p>
 </div>
-<div id="outline-container-orgda5d15c" class="outline-5">
-<h5 id="orgda5d15c">派生类中的虚函数</h5>
-<div class="outline-text-5" id="text-orgda5d15c">
+<div id="outline-container-orgf94079a" class="outline-5">
+<h5 id="orgf94079a">派生类中的虚函数</h5>
+<div class="outline-text-5" id="text-orgf94079a">
 <p>
 派生类经常（但不总是）覆盖它继承的虚函数。如果派生类没有覆盖起基类中的某个虚函数，则虚函数的行为类似于其他的普通成员，派生类会直接继承其在基类中的版本。
 </p>
@@ -3083,9 +3083,9 @@ WARNING：
 如前所述，在 C++语言中，当我们使用基类的引用或指针调用一个虚成员函数时会执行动态绑定。因为我们直到运行时才能直到到底调用了哪个版本的虚函数，所以所有虚函数都必须有定义。通常情况下，如果我们不使用某个函数，则无须为该函数提供定义。但是我们必须为每一个虚函数都提供定义，而不管它是否用到了，这是因此连编译器也无法确定奥迪会使用哪个虚函数。
 </p>
 </div>
-<div id="outline-container-orgf94079a" class="outline-5">
-<h5 id="orgf94079a">派生类中的虚函数</h5>
-<div class="outline-text-5" id="text-orgf94079a">
+<div id="outline-container-orgc6c6451" class="outline-5">
+<h5 id="orgc6c6451">派生类中的虚函数</h5>
+<div class="outline-text-5" id="text-orgc6c6451">
 <p>
 当我们在派生类中覆盖了某个虚函数时，可以再一次使用 vitual 关键字指出该函数的性质。然而这么做并非必须，因此一旦某个函数被声明成虚函数，则在所有派生类中它都是虚函数。
 </p>
@@ -5390,7 +5390,7 @@ fi.Bar();            <span style="color: #5B6268;">// </span><span style="color:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-03 Fri 13:22</p>
+<p class="date">Created: 2020-07-11 Sat 14:18</p>
 </div>
 </body>
 </html>
