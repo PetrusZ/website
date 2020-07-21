@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-21 Tue 15:23 -->
+<!-- 2020-07-21 Tue 15:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>红黑书</title>
+<title>红黑树</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,7 +229,7 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">红黑书</h1>
+<h1 class="title">红黑树</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
@@ -654,11 +654,11 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 <h3 id="org9e14c2d">情况 4：x 的兄弟结点 w 为黑色，且 w 的右孩子为红色</h3>
 <div class="outline-text-3" id="text-org9e14c2d">
 <p>
-通过进行某些颜色修改并对 x.parent 做一次左旋，可以去掉 x 的额外黑色，从而使它变为单重黑色，而不破坏红黑性质。之后再将 x 设置为根，退出 while循环。
+通过进行某些颜色修改并对 x.parent 做一次左旋，可以去掉 x 的额外黑色，从而使它变为单重黑色，而不破坏红黑性质。之后再将 x 设置为根，退出 while 循环。
 </p>
 
 <p>
-通过以上4中情况的循环，我们可以将x的额外黑色消除，从而在不违背任何红黑性质的情况下删除一个结点。
+通过以上 4 中情况的循环，我们可以将 x 的额外黑色消除，从而在不违背任何红黑性质的情况下删除一个结点。
 </p>
 </div>
 </div>
@@ -666,7 +666,7 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-21 Tue 15:23</p>
+<p class="date">Created: 2020-07-21 Tue 15:25</p>
 </div>
 </body>
 </html>
