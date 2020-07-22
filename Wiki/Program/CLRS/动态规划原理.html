@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-27 Sat 12:17 -->
+<!-- 2020-07-22 Wed 14:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>动态规划原理</title>
@@ -234,11 +234,11 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org63b3616">最优子结构</a></li>
-<li><a href="#org58fb5a8">重叠子问题</a></li>
-<li><a href="#org519771e">重构最优解</a></li>
-<li><a href="#org1ce9289">备忘</a></li>
-<li><a href="#org7582ef5">总结</a></li>
+<li><a href="#orgdaaa83e">最优子结构</a></li>
+<li><a href="#org36621bb">重叠子问题</a></li>
+<li><a href="#orge9331f8">重构最优解</a></li>
+<li><a href="#orgb6eebab">备忘</a></li>
+<li><a href="#org4d69d14">总结</a></li>
 </ul>
 </div>
 </div>
@@ -256,9 +256,9 @@
 
 <hr>
 
-<div id="outline-container-org63b3616" class="outline-2">
-<h2 id="org63b3616">最优子结构</h2>
-<div class="outline-text-2" id="text-org63b3616">
+<div id="outline-container-orgdaaa83e" class="outline-2">
+<h2 id="orgdaaa83e">最优子结构</h2>
+<div class="outline-text-2" id="text-orgdaaa83e">
 <p>
 如果一个问题的最优解包含其子问题的最优解，我们就称此问题具有 <b>最优子结构</b> 性质。一个问题是否能够应用动态规划算法，考察它是否具有最优子结构性质是一个好线索。但是要注意的是，在用子问题最优解构造原问题最优解事，我们必须保证考察了所有可能的子问题。
 </p>
@@ -294,9 +294,9 @@
 </div>
 </div>
 
-<div id="outline-container-org58fb5a8" class="outline-2">
-<h2 id="org58fb5a8">重叠子问题</h2>
-<div class="outline-text-2" id="text-org58fb5a8">
+<div id="outline-container-org36621bb" class="outline-2">
+<h2 id="org36621bb">重叠子问题</h2>
+<div class="outline-text-2" id="text-org36621bb">
 <p>
 动态规划方法求解的最优化问题应该具备的第二个性质是重叠子问题性质。即在递归算法中会反复地求解相同的子问题，而不是一直生成新的子问题。如果递归算法反复求解相同的子问题，我们就称最优化问题具有*重叠子问题*性质。
 </p>
@@ -309,9 +309,9 @@
 </div>
 </div>
 
-<div id="outline-container-org519771e" class="outline-2">
-<h2 id="org519771e">重构最优解</h2>
-<div class="outline-text-2" id="text-org519771e">
+<div id="outline-container-orge9331f8" class="outline-2">
+<h2 id="orge9331f8">重构最优解</h2>
+<div class="outline-text-2" id="text-orge9331f8">
 <p>
 从实际考虑，通常将每个子问题所做的选择存在一个表中，这样能通过将其递归展开来重构最优解。
 </p>
@@ -320,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1ce9289" class="outline-2">
-<h2 id="org1ce9289">备忘</h2>
-<div class="outline-text-2" id="text-org1ce9289">
+<div id="outline-container-orgb6eebab" class="outline-2">
+<h2 id="orgb6eebab">备忘</h2>
+<div class="outline-text-2" id="text-orgb6eebab">
 <p>
 除了自底向上，还可以是使用自顶向下的策略，能够达到和自底向上相似的效率。思路就是对自然但低效的递归算法加入备忘机制。当递归调用过程中第一次遇到子问题时，计算其解并存入备忘表。之后每次再遇到相同的问题，只是简单的查表并返回。
 </p>
@@ -335,9 +335,9 @@
 </div>
 </div>
 
-<div id="outline-container-org7582ef5" class="outline-2">
-<h2 id="org7582ef5">总结</h2>
-<div class="outline-text-2" id="text-org7582ef5">
+<div id="outline-container-org4d69d14" class="outline-2">
+<h2 id="org4d69d14">总结</h2>
+<div class="outline-text-2" id="text-org4d69d14">
 <p>
 综上所述，动态规划的关键是先考察一个问题是否适合用动态规划算法求解，也就是说是否具有*最优子结构*和*重叠子问题*性质。如果适合，那么就根据最优子结构来定义一个递归的求最优解的方法，并使用自顶向下或自底向上的方法对其求解、保存最优解的选择，最后根据保存的最优选择来重构最优解。
 </p>
@@ -346,7 +346,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-27 Sat 12:17</p>
+<p class="date">Created: 2020-07-22 Wed 14:44</p>
 </div>
 </body>
 </html>

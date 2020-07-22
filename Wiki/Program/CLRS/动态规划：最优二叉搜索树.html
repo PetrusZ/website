@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-27 Sat 12:17 -->
+<!-- 2020-07-22 Wed 14:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>动态规划：最优二叉搜索树</title>
@@ -234,11 +234,11 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga2f5eb5">步骤 1：最优二叉搜索树的结构</a></li>
-<li><a href="#org92c1300">步骤 2：一个递归算法</a></li>
-<li><a href="#org0081645">步骤 3：计算最优二叉搜索树的期望搜索代价</a></li>
-<li><a href="#orgc4edbb3">步骤 4：重构最优二叉搜索树</a></li>
-<li><a href="#orgc4e5961">C 语言实现代码</a></li>
+<li><a href="#orgb0f1f35">步骤 1：最优二叉搜索树的结构</a></li>
+<li><a href="#orgc0cc3d1">步骤 2：一个递归算法</a></li>
+<li><a href="#orgda1f670">步骤 3：计算最优二叉搜索树的期望搜索代价</a></li>
+<li><a href="#orgebebe2c">步骤 4：重构最优二叉搜索树</a></li>
+<li><a href="#org1518f3c">C 语言实现代码</a></li>
 </ul>
 </div>
 </div>
@@ -288,9 +288,9 @@
 
 <hr>
 
-<div id="outline-container-orga2f5eb5" class="outline-2">
-<h2 id="orga2f5eb5">步骤 1：最优二叉搜索树的结构</h2>
-<div class="outline-text-2" id="text-orga2f5eb5">
+<div id="outline-container-orgb0f1f35" class="outline-2">
+<h2 id="orgb0f1f35">步骤 1：最优二叉搜索树的结构</h2>
+<div class="outline-text-2" id="text-orgb0f1f35">
 <p>
 二叉搜索树的最优子结构为：如果一棵最优二叉搜索树 T 有一棵包含关键字 ki, &#x2026;, kj 的子树 T'，那么 T'必然是包含关键字 ki, &#x2026;, kj 和伪关键字 di-1, &#x2026;, dj 的子问题最优解。由最优解子结构，我们可以用子问题的最优解构造原问题的最优解。给定关键字序列 ki, &#x2026;, kj，其中某个关键字 kr 是这些关键字的最优子树的根节点，其左子树包含 ki, &#x2026;, kr-1 和伪关键字 di-1, &#x2026;dr-1，右子树包含 kr+1, &#x2026;, kj 和伪关键字 dr, &#x2026;, dj。只要我们检查 kr 的所有可能(i &lt;= r &lt;= j)，并对每种情况求解最优二叉搜索树，就能保证得到原问题的最优解。
 </p>
@@ -303,9 +303,9 @@
 </div>
 </div>
 
-<div id="outline-container-org92c1300" class="outline-2">
-<h2 id="org92c1300">步骤 2：一个递归算法</h2>
-<div class="outline-text-2" id="text-org92c1300">
+<div id="outline-container-orgc0cc3d1" class="outline-2">
+<h2 id="orgc0cc3d1">步骤 2：一个递归算法</h2>
+<div class="outline-text-2" id="text-orgc0cc3d1">
 <p>
 定义 e[i, j]为在包含 ki, &#x2026;, kj 的最优二叉搜索树中进行一次搜索的期望代价。当 j = i &#x2013; 1 时，只关键字 di-1，所以 e[i, i-1] = qi-1。当 j &gt;= i 时，我们就需要从中选择一个根结点还构造二叉搜索树。当一棵子树成为一个结点的子树时，期望搜索代价应如何变化呢？由于每个结点的深度都增加了 1,所以根据公式 15.11,这棵子树的期望搜索代价的增加值应为所有概率之和：
 </p>
@@ -337,9 +337,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0081645" class="outline-2">
-<h2 id="org0081645">步骤 3：计算最优二叉搜索树的期望搜索代价</h2>
-<div class="outline-text-2" id="text-org0081645">
+<div id="outline-container-orgda1f670" class="outline-2">
+<h2 id="orgda1f670">步骤 3：计算最优二叉搜索树的期望搜索代价</h2>
+<div class="outline-text-2" id="text-orgda1f670">
 <p>
 使用自底向上的方法，用表 e 保存最优期望搜索代价，表 root 保存选择的根结点 kr 的下标 r，同时为了避免每次计算 e[i, j]时都要重新计算 w(i, j)，所以还用一个表 w 来保存这些值。对于基本情况 w[i, i-1] = qi-1，对于 j &gt;= i 的情况 w[i, j] = w[i, j-1] + pj, +qj（公式 15.15）。然后基于上面的递归公式来计算最优二叉搜索树的期望搜索代价，具体实现见下文的 C 语言代码。注意其算法与矩阵链相乘问题的算法非常相似，所以不在这里过多叙述了。
 </p>
@@ -348,9 +348,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc4edbb3" class="outline-2">
-<h2 id="orgc4edbb3">步骤 4：重构最优二叉搜索树</h2>
-<div class="outline-text-2" id="text-orgc4edbb3">
+<div id="outline-container-orgebebe2c" class="outline-2">
+<h2 id="orgebebe2c">步骤 4：重构最优二叉搜索树</h2>
+<div class="outline-text-2" id="text-orgebebe2c">
 <p>
 这一步书上并没有，参考了<a href="http://www.cnblogs.com/Anker/archive/2013/03/13/2958488.html">这里</a>的代码。
 </p>
@@ -359,9 +359,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc4e5961" class="outline-2">
-<h2 id="orgc4e5961">C 语言实现代码</h2>
-<div class="outline-text-2" id="text-orgc4e5961">
+<div id="outline-container-org1518f3c" class="outline-2">
+<h2 id="org1518f3c">C 语言实现代码</h2>
+<div class="outline-text-2" id="text-org1518f3c">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdlib.h&gt;</span>
 <span style="color: #51afef; font-weight: bold;">    #include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
@@ -447,7 +447,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-27 Sat 12:17</p>
+<p class="date">Created: 2020-07-22 Wed 14:44</p>
 </div>
 </body>
 </html>

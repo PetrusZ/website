@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-27 Sat 12:16 -->
+<!-- 2020-07-22 Wed 14:46 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C语言之过</title>
@@ -234,9 +234,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5d262d2">错误的优先级</a></li>
-<li><a href="#orgb3e81a8">结合性</a></li>
-<li><a href="#orgc32743a">最大一口策略</a></li>
+<li><a href="#org98d963b">错误的优先级</a></li>
+<li><a href="#org68b8d59">结合性</a></li>
+<li><a href="#org66d597f">最大一口策略</a></li>
 </ul>
 </div>
 </div>
@@ -244,9 +244,9 @@
 挑了一些 C 语言中的容易被人忽略的细微之处，C语言的新手常常在这些问题上想当然，其结果自然是 BUG。
 </p>
 
-<div id="outline-container-org5d262d2" class="outline-2">
-<h2 id="org5d262d2">错误的优先级</h2>
-<div class="outline-text-2" id="text-org5d262d2">
+<div id="outline-container-org98d963b" class="outline-2">
+<h2 id="org98d963b">错误的优先级</h2>
+<div class="outline-text-2" id="text-org98d963b">
 <table>
 
 
@@ -353,9 +353,9 @@ i 赋值为 1 接着执行常量 2 的运算，计算结果被丢弃。最终，
 </div>
 </div>
 
-<div id="outline-container-orgb3e81a8" class="outline-2">
-<h2 id="orgb3e81a8">结合性</h2>
-<div class="outline-text-2" id="text-orgb3e81a8">
+<div id="outline-container-org68b8d59" class="outline-2">
+<h2 id="org68b8d59">结合性</h2>
+<div class="outline-text-2" id="text-org68b8d59">
 <p>
 操作符的优先级已经够让人心烦的了，许多人对操作符的结合性同样感到困惑。在标准 C 语言的文档里，对操作符的结合性并没有作出非常清楚的解释。
 </p>
@@ -368,9 +368,9 @@ i 赋值为 1 接着执行常量 2 的运算，计算结果被丢弃。最终，
 </div>
 </div>
 
-<div id="outline-container-orgc32743a" class="outline-2">
-<h2 id="orgc32743a">最大一口策略</h2>
-<div class="outline-text-2" id="text-orgc32743a">
+<div id="outline-container-org66d597f" class="outline-2">
+<h2 id="org66d597f">最大一口策略</h2>
+<div class="outline-text-2" id="text-org66d597f">
 <p>
 ANSI C 规定了一种逐渐为人所熟知的“maximal munch strategy（最大一口策略）”。这种策略表示如果下一个标记有超过一种的解释方案，编译器将选取能组成最长字符序列的方案。如：
 </p>
@@ -397,7 +397,7 @@ ANSI C 规定了一种逐渐为人所熟知的“maximal munch strategy（最大
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-27 Sat 12:16</p>
+<p class="date">Created: 2020-07-22 Wed 14:46</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-27 Sat 12:17 -->
+<!-- 2020-07-22 Wed 14:44 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>数据结构的扩张</title>
@@ -234,20 +234,20 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78423ae">1.动态顺序统计</a>
+<li><a href="#orgfa465ce">1.动态顺序统计</a>
 <ul>
-<li><a href="#orgda8cfd7">查找具有给定秩的元素</a></li>
-<li><a href="#org1131485">确定一个元素的秩</a></li>
-<li><a href="#orge47e1a3">对子树规模的维护</a></li>
+<li><a href="#orgec2e191">查找具有给定秩的元素</a></li>
+<li><a href="#org63e04a6">确定一个元素的秩</a></li>
+<li><a href="#org1eb4f15">对子树规模的维护</a></li>
 </ul>
 </li>
-<li><a href="#org0a43be7">2.如果扩张数据结构</a></li>
-<li><a href="#org542176c">3.区间树</a>
+<li><a href="#orgb70cfbb">2.如果扩张数据结构</a></li>
+<li><a href="#org8191cd9">3.区间树</a>
 <ul>
-<li><a href="#orgb7de22d">步骤 1：数据数据结构</a></li>
-<li><a href="#org06c1b22">步骤 2：附加信息</a></li>
-<li><a href="#org0f58f0e">步骤 3：对信息的维护</a></li>
-<li><a href="#org643ccf4">步骤 4：设计新的操作</a></li>
+<li><a href="#org5bee968">步骤 1：数据数据结构</a></li>
+<li><a href="#org5b3d353">步骤 2：附加信息</a></li>
+<li><a href="#org4ecad25">步骤 3：对信息的维护</a></li>
+<li><a href="#org5b255fb">步骤 4：设计新的操作</a></li>
 </ul>
 </li>
 </ul>
@@ -263,9 +263,9 @@
 
 <hr>
 
-<div id="outline-container-org78423ae" class="outline-2">
-<h2 id="org78423ae">1.动态顺序统计</h2>
-<div class="outline-text-2" id="text-org78423ae">
+<div id="outline-container-orgfa465ce" class="outline-2">
+<h2 id="orgfa465ce">1.动态顺序统计</h2>
+<div class="outline-text-2" id="text-orgfa465ce">
 <p>
 顺序统计树是一种支持快速顺序统计的数据结构，它只是简单地在每个结点上存储附加信息的一颗红黑树。在结点 x 中除了一般的结点属性之外还包括一个 x.size 属性，它包含了以 x 为根的子树还有 x 本书的结点数，即这颗子树的大小。（哨兵的 size 属性为 0）
 </p>
@@ -280,9 +280,9 @@ x.size = x.left.size + y.right.size + 1
 </p>
 </div>
 
-<div id="outline-container-orgda8cfd7" class="outline-3">
-<h3 id="orgda8cfd7">查找具有给定秩的元素</h3>
-<div class="outline-text-3" id="text-orgda8cfd7">
+<div id="outline-container-orgec2e191" class="outline-3">
+<h3 id="orgec2e191">查找具有给定秩的元素</h3>
+<div class="outline-text-3" id="text-orgec2e191">
 <p>
 在说明如何在插入和删除中维护 size 属性前，我们先来看看可以利用 size 属性实现的功能。第一是查找具有给定秩的元素。我们定义一个元素的秩为在中序遍历时其输出的位置。
 </p>
@@ -321,9 +321,9 @@ x.size = x.left.size + y.right.size + 1
 </div>
 </div>
 
-<div id="outline-container-org1131485" class="outline-3">
-<h3 id="org1131485">确定一个元素的秩</h3>
-<div class="outline-text-3" id="text-org1131485">
+<div id="outline-container-org63e04a6" class="outline-3">
+<h3 id="org63e04a6">确定一个元素的秩</h3>
+<div class="outline-text-3" id="text-org63e04a6">
 <p>
 给定一个元素，过程 os_rank 返回这个元素的秩。
 </p>
@@ -358,9 +358,9 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </div>
 </div>
 
-<div id="outline-container-orge47e1a3" class="outline-3">
-<h3 id="orge47e1a3">对子树规模的维护</h3>
-<div class="outline-text-3" id="text-orge47e1a3">
+<div id="outline-container-org1eb4f15" class="outline-3">
+<h3 id="org1eb4f15">对子树规模的维护</h3>
+<div class="outline-text-3" id="text-org1eb4f15">
 <p>
 下面我们来看看如何对修改后的红黑树进行维护。
 </p>
@@ -426,9 +426,9 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </div>
 </div>
 
-<div id="outline-container-org0a43be7" class="outline-2">
-<h2 id="org0a43be7">2.如果扩张数据结构</h2>
-<div class="outline-text-2" id="text-org0a43be7">
+<div id="outline-container-orgb70cfbb" class="outline-2">
+<h2 id="orgb70cfbb">2.如果扩张数据结构</h2>
+<div class="outline-text-2" id="text-orgb70cfbb">
 <p>
 对基本的数据结构进行扩张以支持一些附加功能，在算法设计过程中是相当常见的。
 </p>
@@ -470,9 +470,9 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </div>
 </div>
 
-<div id="outline-container-org542176c" class="outline-2">
-<h2 id="org542176c">3.区间树</h2>
-<div class="outline-text-2" id="text-org542176c">
+<div id="outline-container-org8191cd9" class="outline-2">
+<h2 id="org8191cd9">3.区间树</h2>
+<div class="outline-text-2" id="text-org8191cd9">
 <p>
 区间便于表示占用一连续时间段的一些事件。例如，查询一个由时间区间数据构成的数据库，去找出给定时间区间内发生了什么时间。
 </p>
@@ -510,27 +510,27 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </p>
 </div>
 
-<div id="outline-container-orgb7de22d" class="outline-3">
-<h3 id="orgb7de22d">步骤 1：数据数据结构</h3>
-<div class="outline-text-3" id="text-orgb7de22d">
+<div id="outline-container-org5bee968" class="outline-3">
+<h3 id="org5bee968">步骤 1：数据数据结构</h3>
+<div class="outline-text-3" id="text-org5bee968">
 <p>
 选择一颗红黑树，其每个结点 x 包含一个区间属性 x.int，且 x 的关键字为区间的低端见 x.int.low。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org06c1b22" class="outline-3">
-<h3 id="org06c1b22">步骤 2：附加信息</h3>
-<div class="outline-text-3" id="text-org06c1b22">
+<div id="outline-container-org5b3d353" class="outline-3">
+<h3 id="org5b3d353">步骤 2：附加信息</h3>
+<div class="outline-text-3" id="text-org5b3d353">
 <p>
 每个结点除了区间属性外，还包含一个值 x.max，它是以 x 为根的子树中所有区间的端点的最大值。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0f58f0e" class="outline-3">
-<h3 id="org0f58f0e">步骤 3：对信息的维护</h3>
-<div class="outline-text-3" id="text-org0f58f0e">
+<div id="outline-container-org4ecad25" class="outline-3">
+<h3 id="org4ecad25">步骤 3：对信息的维护</h3>
+<div class="outline-text-3" id="text-org4ecad25">
 <p>
 验证 n 个结点的区间树上的插入和删除操作能否在Ο(lgn)内完成。通过给定的区间和子结点的 max 值，可以确定该结点的 max 值。
 </p>
@@ -545,9 +545,9 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </div>
 </div>
 
-<div id="outline-container-org643ccf4" class="outline-3">
-<h3 id="org643ccf4">步骤 4：设计新的操作</h3>
-<div class="outline-text-3" id="text-org643ccf4">
+<div id="outline-container-org5b255fb" class="outline-3">
+<h3 id="org5b255fb">步骤 4：设计新的操作</h3>
+<div class="outline-text-3" id="text-org5b255fb">
 <p>
 interval_search 用来找出树 T 中与区间 i 重叠的那个结点。
 </p>
@@ -589,7 +589,7 @@ interval_search 用来找出树 T 中与区间 i 重叠的那个结点。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-27 Sat 12:17</p>
+<p class="date">Created: 2020-07-22 Wed 14:44</p>
 </div>
 </body>
 </html>

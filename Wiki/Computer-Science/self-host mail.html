@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-06-27 Sat 12:17 -->
+<!-- 2020-07-22 Wed 14:45 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>self-host mail</title>
@@ -234,26 +234,26 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc573e6c">DNS record</a>
+<li><a href="#org3233b95">DNS record</a>
 <ul>
-<li><a href="#orgb8dc619">SPF</a></li>
-<li><a href="#org583c68a">DKIM</a></li>
-<li><a href="#org0dc1271">DMARC</a></li>
+<li><a href="#org38f2728">SPF</a></li>
+<li><a href="#org05f86b8">DKIM</a></li>
+<li><a href="#orgabd767f">DMARC</a></li>
 </ul>
 </li>
-<li><a href="#orgdf4908d">self-host service</a></li>
-<li><a href="#org99b5e25">Links</a></li>
+<li><a href="#orgff47f63">self-host service</a></li>
+<li><a href="#org88c8ce7">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc573e6c" class="outline-2">
-<h2 id="orgc573e6c">DNS record</h2>
-<div class="outline-text-2" id="text-orgc573e6c">
+<div id="outline-container-org3233b95" class="outline-2">
+<h2 id="org3233b95">DNS record</h2>
+<div class="outline-text-2" id="text-org3233b95">
 </div>
-<div id="outline-container-orgb8dc619" class="outline-3">
-<h3 id="orgb8dc619">SPF</h3>
-<div class="outline-text-3" id="text-orgb8dc619">
+<div id="outline-container-org38f2728" class="outline-3">
+<h3 id="org38f2728">SPF</h3>
+<div class="outline-text-3" id="text-org38f2728">
 <p>
 全名 Sender Policy Framework，用来鉴别发送邮件的服务器或者 IP，是否为该域允许的范围。 这需要在发送邮件的域名下添加一条 TXT 记录，举个例子： <code>example.net. TXT "v=spf1 mx a:pluto.example.net include:aspmx.googlemail.com -all" v=spf1</code> 做开头为必须，spf1 说明这是第一版 spf 协议 SPF 规定有 6 种机制：
 </p>
@@ -317,9 +317,9 @@
 </div>
 </div>
 
-<div id="outline-container-org583c68a" class="outline-3">
-<h3 id="org583c68a">DKIM</h3>
-<div class="outline-text-3" id="text-org583c68a">
+<div id="outline-container-org05f86b8" class="outline-3">
+<h3 id="org05f86b8">DKIM</h3>
+<div class="outline-text-3" id="text-org05f86b8">
 <p>
 由于 SPF 天生只验证是否可以发信, 不保证这个发信人是验证的,因此,SPF 验证通过的仍然可能是伪造的邮件. 这就需要 DKIM 来进一步保证这封邮件不是伪造的. 在特殊的子域名”\_domainkey”(例如:\_domainkey.example.com)的 TXT 记录中插入一对 RSA 密钥中的公钥, 而 RSA 的私钥用来加密邮件的部分字段. 收到邮件的服务器发现有 DKIM-SIGNATURE 字段时,会自动校验 DKIM 的公钥, 按照匹配程度进行处理. 这样就完成了验证.
 </p>
@@ -356,9 +356,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0dc1271" class="outline-3">
-<h3 id="org0dc1271">DMARC</h3>
-<div class="outline-text-3" id="text-org0dc1271">
+<div id="outline-container-orgabd767f" class="outline-3">
+<h3 id="orgabd767f">DMARC</h3>
+<div class="outline-text-3" id="text-orgabd767f">
 <p>
 该验证的都验证了,还有个 DMARC 是干吗的呢? 这是为了给域名邮件的拥有者报告垃圾邮件的状况而设定的规则. 和之前的方法一样,在\_dmarc.example.com 下面设定自己的 DMARC 规则, 具体就参考 Google 提供的文档吧.
 </p>
@@ -370,9 +370,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdf4908d" class="outline-2">
-<h2 id="orgdf4908d">self-host service</h2>
-<div class="outline-text-2" id="text-orgdf4908d">
+<div id="outline-container-orgff47f63" class="outline-2">
+<h2 id="orgff47f63">self-host service</h2>
+<div class="outline-text-2" id="text-orgff47f63">
 <ul class="org-ul">
 <li>Poste.io
 
@@ -427,9 +427,9 @@
 </div>
 </div>
 
-<div id="outline-container-org99b5e25" class="outline-2">
-<h2 id="org99b5e25">Links</h2>
-<div class="outline-text-2" id="text-org99b5e25">
+<div id="outline-container-org88c8ce7" class="outline-2">
+<h2 id="org88c8ce7">Links</h2>
+<div class="outline-text-2" id="text-org88c8ce7">
 <ol class="org-ol">
 <li><a href="https://wiki.archlinux.org/index.php/Mail_server">Mail server/archwiki</a></li>
 <li><a href="https://newpants.top/2019/11/14/%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8Poste%E4%BA%94%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA/">邮件服务器 Poste 五分钟搭建</a></li>
@@ -439,7 +439,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-06-27 Sat 12:17</p>
+<p class="date">Created: 2020-07-22 Wed 14:45</p>
 </div>
 </body>
 </html>
