@@ -4,7 +4,7 @@
 <!-- 2020-07-27 Mon 15:27 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Linux</title>
+<title>Pacman常用命令</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,32 +229,82 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Linux</h1>
+<h1 class="title">Pacman常用命令</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9ed5b4b">Linux</a></li>
+<li><a href="#orga59418f">介绍</a></li>
+<li><a href="#orgbbfe066">更新系统</a></li>
+<li><a href="#org192b9c0">安装包</a></li>
+<li><a href="#org4dbce68">删除包</a></li>
+<li><a href="#orgedfaa2c">搜索包</a></li>
+<li><a href="#orga3ac893">其他用法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9ed5b4b" class="outline-2">
-<h2 id="org9ed5b4b">Linux</h2>
-<div class="outline-text-2" id="text-org9ed5b4b">
+<div id="outline-container-orga59418f" class="outline-2">
+<h2 id="orga59418f">介绍</h2>
+<div class="outline-text-2" id="text-orga59418f">
+<p>
+Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式和易用的构建系统结合了起来。不管软件包是来自官方的 Arch 库还是用户自己创建，Pacman 都能方便得管理。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbbfe066" class="outline-2">
+<h2 id="orgbbfe066">更新系统</h2>
+<div class="outline-text-2" id="text-orgbbfe066">
+<p>
+在 Archlinux 中，使用一条命令即可对整个系统进行更新： <code>pacman -Syu</code>
+</p>
+
+<p>
+如果你已经使用 <code>pacman -Sy</code> 将本地的包数据库与远程的仓库进行了同步，也可以只执行： <code>pacman -Su</code>
+</p>
+</div>
+</div>
+<div id="outline-container-org192b9c0" class="outline-2">
+<h2 id="org192b9c0">安装包</h2>
+<div class="outline-text-2" id="text-org192b9c0">
 <ul class="org-ul">
-<li><a href="鸟哥私房菜学习笔记.html">鸟哥私房菜学习笔记</a></li>
-<li><a href="Linux配置文件.html">Linux配置文件</a></li>
-<li><a href="进程与线程.html">进程与线程</a></li>
-<li><a href="内核.html">内核</a></li>
-<li><a href="文件系统.html">文件系统</a></li>
-<li><a href="备份.html">备份</a></li>
-<li><a href="UNXI缩写风格.html">UNXI缩写风格</a></li>
-<li><a href="终端快捷键列表.html">终端快捷键列表</a></li>
-<li><a href="修改键盘映射交换Caps和RControl.html">修改键盘映射交换Caps和RControl</a></li>
-<li><a href="系统资源查看命令.html">系统资源查看命令</a></li>
-<li><a href="解压命令.html">解压命令</a></li>
-<li><a href="pacman常用命令.html">pacman常用命令</a></li>
+<li>pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，只需以空格分隔包名即可。</li>
+<li>pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。</li>
+<li>pacman -Sv 包名：在显示一些操作信息后执行安装。</li>
+<li>pacman -U：安装本地包，其扩展名为 pkg.tar.gz。</li>
+<li>pacman -U <a href="http://www.example.com/repo/example.pkg.tar.xz">http://www.example.com/repo/example.pkg.tar.xz</a> 安装一个远程包（不在 pacman 配置的源里面）</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4dbce68" class="outline-2">
+<h2 id="org4dbce68">删除包</h2>
+<div class="outline-text-2" id="text-org4dbce68">
+<ul class="org-ul">
+<li>pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系</li>
+<li>pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系</li>
+<li>pacman -Rsc 包名：在删除包的同时，删除所有依赖这个软件包的程序</li>
+<li>pacman -Rd 包名：在删除包时不检查依赖。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgedfaa2c" class="outline-2">
+<h2 id="orgedfaa2c">搜索包</h2>
+<div class="outline-text-2" id="text-orgedfaa2c">
+<ul class="org-ul">
+<li>pacman -Ss 关键字：在仓库中搜索含关键字的包。</li>
+<li>pacman -Qs 关键字： 搜索已安装的包。</li>
+<li>pacman -Qi 包名：查看有关包的详尽信息。</li>
+<li>pacman -Ql 包名：列出该包的文件。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga3ac893" class="outline-2">
+<h2 id="orga3ac893">其他用法</h2>
+<div class="outline-text-2" id="text-orga3ac893">
+<ul class="org-ul">
+<li>pacman -Sw 包名：只下载包，不安装。</li>
+<li>pacman -Sc：清理未安装的包文件，包文件位于 <i>var/cache/pacman/pkg</i> 目录。</li>
+<li>pacman -Scc：清理所有的缓存文件。</li>
 </ul>
 </div>
 </div>
