@@ -4,7 +4,7 @@
 <!-- 2020-08-19 三 17:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>docker命令详解</title>
+<title>使用GetText本地化编程</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,156 +229,266 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">docker命令详解</h1>
+<h1 class="title">使用GetText本地化编程</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78031da">docker pull</a></li>
-<li><a href="#org96562f6">docker run</a></li>
-<li><a href="#orgb0f4331">后台运行</a></li>
-<li><a href="#org1a679c8">进入容器</a>
+<li><a href="#orgdf33290">介绍</a></li>
+<li><a href="#orgf0f0d02">例子</a>
 <ul>
-<li><a href="#org86108f7">attach 命令</a></li>
-<li><a href="#org9edae29">exec 命令</a></li>
+<li><a href="#org569afe6">使用 gettext 的流程</a></li>
+<li><a href="#org863058a">细节</a>
+<ul>
+<li><a href="#org9389590">setlocale()</a></li>
+<li><a href="#orgd4fa09c">xgettext</a></li>
 </ul>
 </li>
-<li><a href="#org6206f55">导出和导入容器</a>
-<ul>
-<li><a href="#orgd818360">导出容器</a></li>
-<li><a href="#org01c8ee2">导入容器快照</a></li>
 </ul>
 </li>
-<li><a href="#org1b7580b">清理所有处于终止状态的容器</a></li>
+<li><a href="#org8896d5b">多文件的 PO</a></li>
+<li><a href="#org6ac2ad0">参考链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org78031da" class="outline-2">
-<h2 id="org78031da">docker pull</h2>
-<div class="outline-text-2" id="text-org78031da">
+<div id="outline-container-orgdf33290" class="outline-2">
+<h2 id="orgdf33290">介绍</h2>
+<div class="outline-text-2" id="text-orgdf33290">
 <p>
-<code>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</code>
+GetText 是 GNU 的一个项目，GetText 主页有最丰富的信息。下面大致翻 译一下 GetText 主页的介绍 :
+</p>
+
+<blockquote>
+<p>
+“通常，程序及其文档信息都是用英语语言写的，程序运行时同用户交 互的信息也是英语。这是一个事实，不仅仅 GNU 的软件是这样，其他大 部分私有软件或自由软件也是这样。一方面，对于来自所有国家的开 发者、维护者和用户来说，相互沟通中使用一种通用的语言非常的方 便。另一方面，相对于母语来说大多数人并不适应使用英语，而且他 们的日常工作都是尽可能的使用他们自己的母语。多数人都会喜欢他 们的计算机屏幕显示的英语更少，显示的母语更多。"
 </p>
 
 <p>
-具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。
+" GNU 的 'gettext' 是 GNU 翻译项目的一个重要步骤，我们依赖于它 来作很多其他的步骤。这个软件包给程序员、翻译者，或者用户提供 了一套集成工具和文档。详细地说，GNU gettext 提供了一套工具， 能让其他 GNU 软件创建多语言信息。&#x2026;"
 </p>
+</blockquote>
 
 <p>
-Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:端口号]</code> 。默认地址是 Docker Hub。 仓库名：如之前所说，这里的仓库名是两段式名称，即 =&lt;用户名&gt;/&lt;软件名&gt;=。对于 Docker Hub，如果不给出用户名，则默认为 library，也就是官方镜像。
+gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 printf 等输 出信息都是 English 的。如果我们在程序中加入 gettext 支持，在需要交 互的字符串上用 gettext 函数，程序运行是就可以先调用 gettext 函数处 理字符串，替换当前的字符串了。注意是运行时替换。
 </p>
 </div>
 </div>
+<div id="outline-container-orgf0f0d02" class="outline-2">
+<h2 id="orgf0f0d02">例子</h2>
+<div class="outline-text-2" id="text-orgf0f0d02">
+<div class="org-src-container">
+<pre class="src src-C"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;locale.h&gt;</span>
+<span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;libintl.h&gt;</span>
 
-<div id="outline-container-org96562f6" class="outline-2">
-<h2 id="org96562f6">docker run</h2>
-<div class="outline-text-2" id="text-org96562f6">
+<span style="color: #5B6268;">/*</span><span style="color: #5B6268;">&#20351;&#29992;gettext&#36890;&#24120;&#20351;&#29992;&#31867;&#20284;&#19979;&#38754;&#30340;&#19968;&#20010;&#24102;&#20989;&#25968;&#30340;&#23439;&#23450;&#20041;</span>
+<span style="color: #5B6268;">  *&#20320;&#23436;&#20840;&#21487;&#20197;&#19981;&#29992;&#65292;&#30452;&#25509;&#20351;&#29992; gettext(&#23383;&#31526;&#20018;)</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #51afef; font-weight: bold;">#define</span> <span style="color: #c678dd;">_</span>(<span style="color: #dcaeea;">S</span>) gettext(S)
+
+<span style="color: #5B6268;">/*</span><span style="color: #5B6268;">PACKAGE&#26159;&#26412;&#31243;&#24207;&#26368;&#32456;&#30340;&#21517;&#23383;&#65288;&#36816;&#34892;&#26102;&#36755;&#20837;&#30340;&#21629;&#20196;&#65289;</span><span style="color: #5B6268;">*/</span>
+<span style="color: #51afef; font-weight: bold;">#define</span> <span style="color: #dcaeea;">PACKAGE</span> <span style="color: #98be65;">"jian_gettext"</span>
+
+<span style="color: #ECBE7B;">int</span> <span style="color: #c678dd;">main</span>(<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">argc</span>, <span style="color: #ECBE7B;">char</span> **<span style="color: #dcaeea;">argv</span>)
+{
+<span style="color: #5B6268;">/* </span><span style="color: #5B6268;">&#19979;&#38754;&#19977;&#20010;&#21442;&#25968;&#37117;&#26159;&#20351;&#29992;gettext&#26102;&#20505;&#38656;&#35201;&#20351;&#29992;&#30340;</span>
+<span style="color: #5B6268;">  * setlocale</span>
+<span style="color: #5B6268;">  * bindtextdomain</span>
+<span style="color: #5B6268;">  * textdomain</span>
+<span style="color: #5B6268;">*/</span>
+  setlocale(LC_ALL,<span style="color: #98be65;">""</span>);
+  bindtextdomain(PACKAGE, <span style="color: #98be65;">"locale"</span>);
+  textdomain(PACKAGE);
+
+  printf(_(<span style="color: #98be65;">"Hello,GetText!\n"</span>));
+  <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+}
+</pre>
+</div>
+</div>
+<div id="outline-container-org569afe6" class="outline-3">
+<h3 id="org569afe6">使用 gettext 的流程</h3>
+<div class="outline-text-3" id="text-org569afe6">
+<ol class="org-ol">
+<li>头文件包含：</li>
+</ol>
+
 <p>
-当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：
+<code>#include &lt;locale.h&gt; #include &lt;libintl.h&gt;</code>
+</p>
+
+<ol class="org-ol">
+<li>定义宏定义(完全是为了方便，而且几乎所有程序都这样)</li>
+</ol>
+
+<p>
+<code>#define _(S) gettext(S)</code>
+</p>
+
+<ol class="org-ol">
+<li>设置 locale 和 mo 文件将要存放的路径，关联程序</li>
+</ol>
+
+<p>
+<code>setlocale(LC_ALL,""); bindtextdomain(PACKAGE, "locale"); textdomain(PACKAGE);</code>
+</p>
+
+<ol class="org-ol">
+<li>制作 po 文件（示例程序是：jian_gettext.c）</li>
+</ol>
+
+<p>
+<code>xgettext -a jian_gettext.c -o jian_gettext.po --from-code=utf-8</code>
+</p>
+
+<ol class="org-ol">
+<li>修改生成的 jian_gettext.po 文件，将下面行中的 CHARSET 换成 UTF-8</li>
+</ol>
+
+<p>
+<code>"Content-Type: text/plain; charset=CHARSET\n"</code>
+</p>
+
+<p>
+再翻译其中的 string(其他的 string 不要改)：
+</p>
+
+<p>
+<code>#: jian_gettext.c:14 #, c-format msgid "Hello,GetText!\n" msgstr "你好，GetText！\n"</code>
+</p>
+
+<ol class="org-ol">
+<li>生成 mo 文件，</li>
+</ol>
+
+<p>
+<code>msgfmt jian_gettext.po -o jian_gettext.mo</code>
+</p>
+
+<ol class="org-ol">
+<li>创建存放 mo 文件的目录，（例子使用./locale）</li>
+</ol>
+
+<p>
+<code>mkdir -pv locale/zh_CN/LC_MESSAGES/ cp -v jian_gettext.mo locale/zh_CN/LC_MESSAGES/</code>
+</p>
+
+<ol class="org-ol">
+<li>运行程序，你的程序应该是这样编译好的：</li>
+</ol>
+
+<p>
+<code>gcc -Wall -o jian_gettext jian_gettext.c</code>
+</p>
+
+<p>
+如果没有错误，上面的程序运行结果如下：
+</p>
+
+<p>
+<code># ./jian_gettext 你好，GetText！</code>
+</p>
+</div>
+</div>
+<div id="outline-container-org863058a" class="outline-3">
+<h3 id="org863058a">细节</h3>
+<div class="outline-text-3" id="text-org863058a">
+</div>
+<div id="outline-container-org9389590" class="outline-4">
+<h4 id="org9389590">setlocale()</h4>
+<div class="outline-text-4" id="text-org9389590">
+<p>
+setlocale(LC_ALL,"") 的意思是使用环境变量(系统当前的值)
+</p>
+</div>
+</div>
+<div id="outline-container-orgd4fa09c" class="outline-4">
+<h4 id="orgd4fa09c">xgettext</h4>
+<div class="outline-text-4" id="text-orgd4fa09c">
+<ul class="org-ul">
+<li>-k 参数 可以只搜索某些字符串，没有用的信息省略。</li>
+</ul>
+
+<p>
+<code>xgettext jian_gettext.c -k_ -o jian_gettext.po</code>
 </p>
 
 <ul class="org-ul">
-<li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li>
-<li>利用镜像创建并启动一个容器</li>
-<li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li>
-<li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li>
-<li>从地址池配置一个 ip 地址给容器</li>
-<li>执行用户指定的应用程序</li>
-<li>执行完毕后容器被终止</li>
+<li>-l 参数 可以针对某一语言生成 po 文件，中文为例：</li>
 </ul>
-</div>
-</div>
 
-<div id="outline-container-orgb0f4331" class="outline-2">
-<h2 id="orgb0f4331">后台运行</h2>
-<div class="outline-text-2" id="text-orgb0f4331">
 <p>
-通过在=run=后添加 <code>-d</code> 参数来实现让 Docker 在后台运行而不是直接把执行命令的结果输出在当前宿主机下。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org1a679c8" class="outline-2">
-<h2 id="org1a679c8">进入容器</h2>
-<div class="outline-text-2" id="text-org1a679c8">
-<p>
-在使用 <code>-d</code> 参数时，容器启动后会进入后台。
+<code>msginit -l zh_CN -i jian_gettext.po</code>
 </p>
 
 <p>
-某些时候需要进入容器进行操作，包括使用 <code>docker attach</code> 命令或 <code>docker exec</code> 命令，推荐大家使用 <code>docker exec</code> 命令，原因会在下面说明。
-</p>
-</div>
-
-<div id="outline-container-org86108f7" class="outline-3">
-<h3 id="org86108f7">attach 命令</h3>
-<div class="outline-text-3" id="text-org86108f7">
-<p>
-如果从 <code>attach</code> 的 <code>stdin</code> 中 <code>exit</code> ，会导致容器的停止。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org9edae29" class="outline-3">
-<h3 id="org9edae29">exec 命令</h3>
-<div class="outline-text-3" id="text-org9edae29">
-<p>
-<code>docker exec</code> 后边可以跟多个参数，这里主要说明 <code>-i</code> <code>-t</code> 参数。
-</p>
-
-<p>
-只用 <code>-i</code> 参数时，由于没有分配伪终端，界面没有我们熟悉的 Linux
-命令提示符，但命令执行结果仍然可以返回。
-</p>
-
-<p>
-当 <code>-i</code> <code>-t</code> 参数一起使用时，则可以看到我们熟悉的 Linux 命令提示符。
-</p>
-
-<p>
-如果从这个 <code>stdin</code> 中 <code>exit</code> ，不会导致容器的停止。这就是为什么推荐大家使用 <code>docker exec</code> 的原因。
+上面命令会生成 zh_CN.po 文件,可由此修改生成 mo 文件
 </p>
 </div>
 </div>
 </div>
-
-<div id="outline-container-org6206f55" class="outline-2">
-<h2 id="org6206f55">导出和导入容器</h2>
-<div class="outline-text-2" id="text-org6206f55">
 </div>
-<div id="outline-container-orgd818360" class="outline-3">
-<h3 id="orgd818360">导出容器</h3>
-<div class="outline-text-3" id="text-orgd818360">
+<div id="outline-container-org8896d5b" class="outline-2">
+<h2 id="org8896d5b">多文件的 PO</h2>
+<div class="outline-text-2" id="text-org8896d5b">
 <p>
-如果要导出本地某个容器，可以使用 <code>docker export</code> 命令。这样将导出容器快照到本地文件。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org01c8ee2" class="outline-3">
-<h3 id="org01c8ee2">导入容器快照</h3>
-<div class="outline-text-3" id="text-org01c8ee2">
-<p>
-可以使用 <code>docker import</code> 从容器快照文件中再导入为镜像。此外，也可以通过指定 URL 或者某个目录来导入。
+一个开源项目中，通常有很多源文件，我们都需要翻译其中的字符串。通常步骤 如下：
 </p>
 
 <p>
-用户既可以使用 <code>docker load</code> 来导入镜像存储文件到本地镜像库，也可以使用 <code>docker import</code> 来导入一个容器快照到本地镜像库。 这两者的区别在于容器快照文件将丢弃所有的历史记录和元数据信息（即仅保存容器当时的快照状态），而镜像存储文件将保存完整记录，体积也要大。 此外，从容器快照文件导入时可以重新指定标签等元数据信息。
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org1b7580b" class="outline-2">
-<h2 id="org1b7580b">清理所有处于终止状态的容器</h2>
-<div class="outline-text-2" id="text-org1b7580b">
-<p>
-用 <code>docker container ls -a</code> 命令可以查看所有已经创建的包括终止状态的容器，如果数量太多要一个个删除可能会很麻烦，用下面的命令可以清理掉所有处于终止状态的容器。
+进入 PO 目录执行（一定要是 PO 目录）:
 </p>
 
 <p>
-<code>$ docker container prune</code>
+<code>intltool-update -m</code>
+</p>
+
+<p>
+得到一个文件列表告诉我应该把它们加入 POTFILES.in 文件.
+</p>
+
+<p>
+跳到 PO 目录的父目录，使用新的 POTFILES.in 生成 POT 文件：：
+</p>
+
+<p>
+<code>xgettext -a -f po/POTFILES.in -o po/xxx.pot</code>
+</p>
+
+<p>
+我使用的一个示例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">xgettext -k_ -f po/POTFILES.in -o po/mutter-moblin.pot --from-code=<span style="color: #98be65;">"utf-8"</span>
+intltool-update &#8212;pot             <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29983;&#25104; pot &#25991;&#20214;</span>
+intltool-update &#8212;maintain
+</pre>
+</div>
+
+<p>
+创建 po 文件
+</p>
+
+<p>
+创建并进入/po 目录，创建 POTFILES.in，内容为你需要提取源码中有需要翻译的 字符串的源文件列表，每行一个文件，然后执行 <code>intltool-update —pot</code> 产生 pot 文件，如果将来你在维护代码中代码有变化或者在 POTFILES.in 中新增了源文件， 可用 intltool-update —maintain 更新。
+</p>
+
+<p>
+有了 pot 文件，现在需要产生各种语言的 po 文件，如 <code>msginit —locale=zh_CN</code> 产生 中文 po 文件，如将来源文件有变化可以 <code>intltool-update zh_CN</code> 更新 zh_CN.po，接 下来翻译的工作就是你自己来做了。
+</p>
+
+<p>
+要生成特定语言的 mo 文件，需要维护 configure.ac 中的 ALL_LINGUAS，以空格分隔 就可以了
+</p>
+</div>
+</div>
+<div id="outline-container-org6ac2ad0" class="outline-2">
+<h2 id="org6ac2ad0">参考链接</h2>
+<div class="outline-text-2" id="text-org6ac2ad0">
+<p>
+<a href="http://qiuxing2005.blog.sohu.com/163110064.html">http://qiuxing2005.blog.sohu.com/163110064.html</a>
 </p>
 </div>
 </div>

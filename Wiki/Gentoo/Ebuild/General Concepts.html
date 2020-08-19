@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:45 -->
+<!-- 2020-08-19 三 17:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>General Concepts</title>
@@ -234,36 +234,36 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8799cf1">Emerge and Ebuild Relationships</a></li>
-<li><a href="#org25b3368">FEATURES</a></li>
-<li><a href="#org6442ea1">Git to RSYNC</a></li>
-<li><a href="#orge3a5f2f">Mirrors</a>
+<li><a href="#org9326353">Emerge and Ebuild Relationships</a></li>
+<li><a href="#orgfc461b2">FEATURES</a></li>
+<li><a href="#org8881852">Git to RSYNC</a></li>
+<li><a href="#org19927c5">Mirrors</a>
 <ul>
-<li><a href="#orgfe8384d">Mirroring</a></li>
-<li><a href="#org5d2747a">Restricting Automatic Mirroring</a></li>
+<li><a href="#org59ede85">Mirroring</a></li>
+<li><a href="#orgd6a7554">Restricting Automatic Mirroring</a></li>
 </ul>
 </li>
-<li><a href="#org2fd3c7f">Sandbox</a></li>
-<li><a href="#org99c16c9">Slotting</a>
+<li><a href="#org6d42a36">Sandbox</a></li>
+<li><a href="#org4312680">Slotting</a>
 <ul>
-<li><a href="#orgeade06e">Sub-Slots</a></li>
-<li><a href="#orgfd076d0">SLot Names</a></li>
+<li><a href="#org53cf728">Sub-Slots</a></li>
+<li><a href="#org5d1f1c1">SLot Names</a></li>
 </ul>
 </li>
-<li><a href="#orge3a416b">User Environment</a>
+<li><a href="#org957c157">User Environment</a>
 <ul>
-<li><a href="#orga5f21ab">Filtering Variables</a></li>
-<li><a href="#org405c795">Not Filtering Variables</a></li>
+<li><a href="#orgfd5df8c">Filtering Variables</a></li>
+<li><a href="#orgcd61081">Not Filtering Variables</a></li>
 </ul>
 </li>
-<li><a href="#orgfc8b0de">Links</a></li>
+<li><a href="#org60691a0">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8799cf1" class="outline-2">
-<h2 id="org8799cf1">Emerge and Ebuild Relationships</h2>
-<div class="outline-text-2" id="text-org8799cf1">
+<div id="outline-container-org9326353" class="outline-2">
+<h2 id="org9326353">Emerge and Ebuild Relationships</h2>
+<div class="outline-text-2" id="text-org9326353">
 
 <div class="figure">
 <p><img src="../../../pics/Gentoo/relationship-diagram.png" alt="relationship-diagram.png">
@@ -277,9 +277,9 @@
 </div>
 </div>
 
-<div id="outline-container-org25b3368" class="outline-2">
-<h2 id="org25b3368">FEATURES</h2>
-<div class="outline-text-2" id="text-org25b3368">
+<div id="outline-container-orgfc461b2" class="outline-2">
+<h2 id="orgfc461b2">FEATURES</h2>
+<div class="outline-text-2" id="text-orgfc461b2">
 <p>
 <code>FEATURES</code> 变量指定影响 portage 操作和软件包编译的选项。它不用于对生成的软件包产生实质性影响的设置。
 </p>
@@ -347,9 +347,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6442ea1" class="outline-2">
-<h2 id="org6442ea1">Git to RSYNC</h2>
-<div class="outline-text-2" id="text-org6442ea1">
+<div id="outline-container-org8881852" class="outline-2">
+<h2 id="org8881852">Git to RSYNC</h2>
+<div class="outline-text-2" id="text-org8881852">
 <p>
 对 tree 所做的更改将分阶段传播给用户：
 </p>
@@ -379,13 +379,13 @@
 </div>
 </div>
 
-<div id="outline-container-orge3a5f2f" class="outline-2">
-<h2 id="orge3a5f2f">Mirrors</h2>
-<div class="outline-text-2" id="text-orge3a5f2f">
+<div id="outline-container-org19927c5" class="outline-2">
+<h2 id="org19927c5">Mirrors</h2>
+<div class="outline-text-2" id="text-org19927c5">
 </div>
-<div id="outline-container-orgfe8384d" class="outline-3">
-<h3 id="orgfe8384d">Mirroring</h3>
-<div class="outline-text-3" id="text-orgfe8384d">
+<div id="outline-container-org59ede85" class="outline-3">
+<h3 id="org59ede85">Mirroring</h3>
+<div class="outline-text-3" id="text-org59ede85">
 <p>
 软件包会自动将其在=SRC_URI=中的组件镜像到 Gentoo mirrors 上，包括托管在官方 Gentoo 基础设施上的那些（即 <code>dev.gentoo.org</code> 中的开发者空间）。当拉取的，包管理器会在尝试从原始上游位置之前先检查 Gentoo mirrors。
 </p>
@@ -396,9 +396,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5d2747a" class="outline-3">
-<h3 id="org5d2747a">Restricting Automatic Mirroring</h3>
-<div class="outline-text-3" id="text-org5d2747a">
+<div id="outline-container-orgd6a7554" class="outline-3">
+<h3 id="orgd6a7554">Restricting Automatic Mirroring</h3>
+<div class="outline-text-3" id="text-orgd6a7554">
 <p>
 三个 <code>RESTRICT</code> 关键字可以用于控制镜像过程。
 </p>
@@ -418,9 +418,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2fd3c7f" class="outline-2">
-<h2 id="org2fd3c7f">Sandbox</h2>
-<div class="outline-text-2" id="text-org2fd3c7f">
+<div id="outline-container-org6d42a36" class="outline-2">
+<h2 id="org6d42a36">Sandbox</h2>
+<div class="outline-text-2" id="text-org6d42a36">
 <p>
 在 <code>src_unpack</code> 、 <code>src_compile</code> 、 <code>src_test</code> 和 <code>src_install</code> 阶段， <code>ebuild.sh</code> 运行在 sandbox 中。这是一个特殊的环境，它帮助防止错误编写的 ebuild（或与错误编写的构建系统一起工作的 ebuild）意外写在允许的位置之外。
 </p>
@@ -439,9 +439,9 @@ sandbox 可以保证二进制软件包正常工作，而且写得不好的 Makef
 </div>
 </div>
 
-<div id="outline-container-org99c16c9" class="outline-2">
-<h2 id="org99c16c9">Slotting</h2>
-<div class="outline-text-2" id="text-org99c16c9">
+<div id="outline-container-org4312680" class="outline-2">
+<h2 id="org4312680">Slotting</h2>
+<div class="outline-text-2" id="text-org4312680">
 <p>
 软件包可以支同时安装多个版本。这对于在不同版本之间可能会改变接口的库很有用
 </p>
@@ -480,9 +480,9 @@ portage 允许每个 SLOT 值最多一个软件包安装实例。例如，说我
 </p>
 </div>
 
-<div id="outline-container-orgeade06e" class="outline-3">
-<h3 id="orgeade06e">Sub-Slots</h3>
-<div class="outline-text-3" id="text-orgeade06e">
+<div id="outline-container-org53cf728" class="outline-3">
+<h3 id="org53cf728">Sub-Slots</h3>
+<div class="outline-text-3" id="text-org53cf728">
 <p>
 有时候软件包安装在不同版本之间改变接口的库，但是又不希望或不方便允许同时安装其中一些版本。在 EAPI 5 或更高中，这种情况可以使用 sub-slot 处理，其通过 <code>/</code> 字符于常规 slot 分隔，像 <code>SLOT="slot/subslot"</code> 。当 subslot 的运行时依赖改变时，软件包可以<a href="https://devmanual.gentoo.org/general-concepts/dependencies/index.html#slot-operators">要求自动重新构建</a>。
 </p>
@@ -514,9 +514,9 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 </div>
 
-<div id="outline-container-orgfd076d0" class="outline-3">
-<h3 id="orgfd076d0">SLot Names</h3>
-<div class="outline-text-3" id="text-orgfd076d0">
+<div id="outline-container-org5d1f1c1" class="outline-3">
+<h3 id="org5d1f1c1">SLot Names</h3>
+<div class="outline-text-3" id="text-org5d1f1c1">
 <p>
 当前版本的 portage 接受以字母数字字符或 <code>-</code> 开始，并且包含字符数字和 <code>_</code> 、 <code>-</code> 、 <code>.</code> 和 <code>+</code> 字符。
 </p>
@@ -524,17 +524,17 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 </div>
 
-<div id="outline-container-orge3a416b" class="outline-2">
-<h2 id="orge3a416b">User Environment</h2>
-<div class="outline-text-2" id="text-orge3a416b">
+<div id="outline-container-org957c157" class="outline-2">
+<h2 id="org957c157">User Environment</h2>
+<div class="outline-text-2" id="text-org957c157">
 <p>
 用户环境变量和 <code>make.conf</code> 的设置可以传递给 ebuild。这很有用 —— 例如 <code>CFLAGS</code> 和其朋友们的工作方式 —— 但是它也会导致肮脏的 build-breaking 变量（像 <code>LANG</code> 和 <code>LC_ALL</code> ）通过。当前没有对环境进行消毒。
 </p>
 </div>
 
-<div id="outline-container-orga5f21ab" class="outline-3">
-<h3 id="orga5f21ab">Filtering Variables</h3>
-<div class="outline-text-3" id="text-orga5f21ab">
+<div id="outline-container-orgfd5df8c" class="outline-3">
+<h3 id="orgfd5df8c">Filtering Variables</h3>
+<div class="outline-text-3" id="text-orgfd5df8c">
 <p>
 某些变量会使某些构建系统非常非常受挫。一个好的例子是 locale 变量（ <code>LC_ALL</code> 等），如果将其设置为某些值，则会导致涉及 <code>[A-Z]</code> 之类的 sed 或 grep 表达式失败。此处最简单的方法是取消设置或在 <code>pkg_setup</code> 中清理有害变量。
 </p>
@@ -555,9 +555,9 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 </div>
 
-<div id="outline-container-org405c795" class="outline-3">
-<h3 id="org405c795">Not Filtering Variables</h3>
-<div class="outline-text-3" id="text-org405c795">
+<div id="outline-container-orgcd61081" class="outline-3">
+<h3 id="orgcd61081">Not Filtering Variables</h3>
+<div class="outline-text-3" id="text-orgcd61081">
 <p>
 在另一方面，尽可能尊重某些用户的偏好是非常重要的。一个好的例子是 <code>CFLAGS</code> ，必须予以尊重（选择行过滤是可以的，但是不能完全忽略）。当编译时忽略 <code>CFLAGS</code> 会造成严重的问题：
 </p>
@@ -576,9 +576,9 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 </div>
 
-<div id="outline-container-orgfc8b0de" class="outline-2">
-<h2 id="orgfc8b0de">Links</h2>
-<div class="outline-text-2" id="text-orgfc8b0de">
+<div id="outline-container-org60691a0" class="outline-2">
+<h2 id="org60691a0">Links</h2>
+<div class="outline-text-2" id="text-org60691a0">
 <ol class="org-ol">
 <li><a href="https://devmanual.gentoo.org/general-concepts/filesystem/index.html">Filesystem</a></li>
 <li><a href="https://devmanual.gentoo.org/general-concepts/tree/index.html">The Gentoo Repository</a></li>
@@ -589,7 +589,7 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:45</p>
+<p class="date">Created: 2020-08-19 三 17:42</p>
 </div>
 </body>
 </html>

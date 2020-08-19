@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-23 Thu 22:03 -->
+<!-- 2020-08-19 三 17:42 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ebuild_Manpage</title>
@@ -256,70 +256,70 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb17468c">NAME</a></li>
-<li><a href="#org11ea2e8">DESCRIPTION</a></li>
-<li><a href="#org76aae60">Dependencies</a>
+<li><a href="#org5ac257f">NAME</a></li>
+<li><a href="#org0e3e28c">DESCRIPTION</a></li>
+<li><a href="#orgedaf615">Dependencies</a>
 <ul>
-<li><a href="#orga33524b">Atom Base</a></li>
-<li><a href="#org9ebc159">Atom Versions</a></li>
-<li><a href="#org648d95e">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</a></li>
-<li><a href="#org9b3dcca">Extended Atom Prefixes [!~] and Postfixes [*]</a></li>
-<li><a href="#orgf0d7326">Atom Slots</a></li>
-<li><a href="#org3bfbb1d">Sub Slots</a></li>
-<li><a href="#orgb5e0893">Atom Slot Operators</a></li>
-<li><a href="#org4dc64f6">Atom USE</a></li>
-<li><a href="#org71810b1">Atom USE defualts</a></li>
-<li><a href="#org2f35362">Dynamic Dependencies</a></li>
+<li><a href="#org0c0a852">Atom Base</a></li>
+<li><a href="#org4b6af54">Atom Versions</a></li>
+<li><a href="#org058688d">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</a></li>
+<li><a href="#org6d114eb">Extended Atom Prefixes [!~] and Postfixes [*]</a></li>
+<li><a href="#org4e6f8a0">Atom Slots</a></li>
+<li><a href="#orgb1cb016">Sub Slots</a></li>
+<li><a href="#orgc98d382">Atom Slot Operators</a></li>
+<li><a href="#org8efbd9d">Atom USE</a></li>
+<li><a href="#orgcd8a9c2">Atom USE defualts</a></li>
+<li><a href="#org4a4ac5d">Dynamic Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#orgd0766df">Variable Usage Notes</a></li>
-<li><a href="#org5a9ce8e">Variables Used In Ebuilds</a></li>
-<li><a href="#org88f9a77">QA Control Variables:</a></li>
-<li><a href="#orgc843502">PORTAGE DECLARATIONS</a></li>
-<li><a href="#orgdcebdf8">PHASE FUNCTIONS</a></li>
-<li><a href="#orga886bfa">HELPER FUNCTIONS</a>
+<li><a href="#orgc55ffa8">Variable Usage Notes</a></li>
+<li><a href="#org4136508">Variables Used In Ebuilds</a></li>
+<li><a href="#org78d3ed3">QA Control Variables:</a></li>
+<li><a href="#orgcb6ca59">PORTAGE DECLARATIONS</a></li>
+<li><a href="#orgf218b68">PHASE FUNCTIONS</a></li>
+<li><a href="#org1f93e70">HELPER FUNCTIONS</a>
 <ul>
-<li><a href="#org6dd2ad4">Phase:</a></li>
-<li><a href="#orgfc793a7">General:</a></li>
-<li><a href="#org62538c4">Output:</a></li>
-<li><a href="#org4143f79">Unpack</a></li>
-<li><a href="#org89d3078">Compile:</a></li>
-<li><a href="#org1e6115b">Install:</a></li>
+<li><a href="#org524242e">Phase:</a></li>
+<li><a href="#orgc667d24">General:</a></li>
+<li><a href="#org98499bc">Output:</a></li>
+<li><a href="#orgb94127a">Unpack</a></li>
+<li><a href="#orgacafd03">Compile:</a></li>
+<li><a href="#org9e716e6">Install:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb17468c" class="outline-2">
-<h2 id="orgb17468c">NAME</h2>
-<div class="outline-text-2" id="text-orgb17468c">
+<div id="outline-container-org5ac257f" class="outline-2">
+<h2 id="org5ac257f">NAME</h2>
+<div class="outline-text-2" id="text-org5ac257f">
 <p>
 ebuild - 含有内部格式、变量和函数的 ebuild 脚本
 </p>
 </div>
 </div>
 
-<div id="outline-container-org11ea2e8" class="outline-2">
-<h2 id="org11ea2e8">DESCRIPTION</h2>
-<div class="outline-text-2" id="text-org11ea2e8">
+<div id="outline-container-org0e3e28c" class="outline-2">
+<h2 id="org0e3e28c">DESCRIPTION</h2>
+<div class="outline-text-2" id="text-org0e3e28c">
 <p>
 ebuld 程序接受一个 ebuild 脚本作为参数。该脚本包含变量和指明如何从一个特别的软件源代码进行 download、unpack、patch、complile、install 和 merge 的命令。除了所有这些，ebuild 脚本还包含按要求进行 pre/post install/remove 命令。所有的 ebuild 脚本均以 bash 编写。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org76aae60" class="outline-2">
-<h2 id="org76aae60">Dependencies</h2>
-<div class="outline-text-2" id="text-org76aae60">
+<div id="outline-container-orgedaf615" class="outline-2">
+<h2 id="orgedaf615">Dependencies</h2>
+<div class="outline-text-2" id="text-orgedaf615">
 <p>
 一个依赖 <code>Atom</code> 是 portage 计算包之间关系的依赖基础。请注意，如果 atom 还没有被 merge，那么将匹配最新可用的版本。
 </p>
 </div>
 
-<div id="outline-container-orga33524b" class="outline-3">
-<h3 id="orga33524b">Atom Base</h3>
-<div class="outline-text-3" id="text-orga33524b">
+<div id="outline-container-org0c0a852" class="outline-3">
+<h3 id="org0c0a852">Atom Base</h3>
+<div class="outline-text-3" id="text-org0c0a852">
 <p>
 Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catpkg"。
 </p>
@@ -332,9 +332,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org9ebc159" class="outline-3">
-<h3 id="org9ebc159">Atom Versions</h3>
-<div class="outline-text-3" id="text-org9ebc159">
+<div id="outline-container-org4b6af54" class="outline-3">
+<h3 id="org4b6af54">Atom Versions</h3>
+<div class="outline-text-3" id="text-org4b6af54">
 <p>
 更具体一点，使用包含特定版本的 atom 也是可以接受的。版本必须和前缀一起使用，所以可以将版本号作为后缀添加到 base 上。
 </p>
@@ -351,9 +351,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org648d95e" class="outline-3">
-<h3 id="org648d95e">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</h3>
-<div class="outline-text-3" id="text-org648d95e">
+<div id="outline-container-org058688d" class="outline-3">
+<h3 id="org058688d">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</h3>
+<div class="outline-text-3" id="text-org058688d">
 <p>
 有时你可能希望依赖于一个大致的版本，而不是一直指定特定的版本。所以，这里还提供了标准的布尔运算符：
 </p>
@@ -368,9 +368,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org9b3dcca" class="outline-3">
-<h3 id="org9b3dcca">Extended Atom Prefixes [!~] and Postfixes [*]</h3>
-<div class="outline-text-3" id="text-org9b3dcca">
+<div id="outline-container-org6d114eb" class="outline-3">
+<h3 id="org6d114eb">Extended Atom Prefixes [!~] and Postfixes [*]</h3>
+<div class="outline-text-3" id="text-org6d114eb">
 <p>
 现在为了更加精巧，ebuild 还提供了定义屏蔽包和版本范围匹配的功能。另外，这些扩展的前缀和后缀可以和上面提到的 atom 类型以各种方式组合。
 </p>
@@ -430,9 +430,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgf0d7326" class="outline-3">
-<h3 id="orgf0d7326">Atom Slots</h3>
-<div class="outline-text-3" id="text-orgf0d7326">
+<div id="outline-container-org4e6f8a0" class="outline-3">
+<h3 id="org4e6f8a0">Atom Slots</h3>
+<div class="outline-text-3" id="text-org4e6f8a0">
 <p>
 从 EAPI 1 开始，可以限制 atom 匹配特定的 SLOT。这通过在冒号后面加上一个 SLOT 来实现
 </p>
@@ -446,9 +446,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org3bfbb1d" class="outline-3">
-<h3 id="org3bfbb1d">Sub Slots</h3>
-<div class="outline-text-3" id="text-org3bfbb1d">
+<div id="outline-container-orgb1cb016" class="outline-3">
+<h3 id="orgb1cb016">Sub Slots</h3>
+<div class="outline-text-3" id="text-orgb1cb016">
 <p>
 从 EAPI 5 开始，一个 slot 依赖可能包含一个可选的 sub-slot，该部分位于常规 slot 之后，并且以=/=字符分隔。
 </p>
@@ -462,9 +462,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgb5e0893" class="outline-3">
-<h3 id="orgb5e0893">Atom Slot Operators</h3>
-<div class="outline-text-3" id="text-orgb5e0893">
+<div id="outline-container-orgc98d382" class="outline-3">
+<h3 id="orgc98d382">Atom Slot Operators</h3>
+<div class="outline-text-3" id="text-orgc98d382">
 <p>
 从 EAPI 5 开始，slot 操作符包含一个冒号，后面跟着以下操作符之一：
 </p>
@@ -526,9 +526,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org4dc64f6" class="outline-3">
-<h3 id="org4dc64f6">Atom USE</h3>
-<div class="outline-text-3" id="text-org4dc64f6">
+<div id="outline-container-org8efbd9d" class="outline-3">
+<h3 id="org8efbd9d">Atom USE</h3>
+<div class="outline-text-3" id="text-org8efbd9d">
 <p>
 从 EAPI 2 开始，任何 atom 可以被匹配的特定 USE flag 设置限制。当和 SLOT 依赖一起使用时，USE 依赖出现在 SLOT 依赖的右手侧。
 </p>
@@ -602,9 +602,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org71810b1" class="outline-3">
-<h3 id="org71810b1">Atom USE defualts</h3>
-<div class="outline-text-3" id="text-org71810b1">
+<div id="outline-container-orgcd8a9c2" class="outline-3">
+<h3 id="orgcd8a9c2">Atom USE defualts</h3>
+<div class="outline-text-3" id="text-orgcd8a9c2">
 <p>
 USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 flag 值为默认假设。这种默认值被通过在 flag 后紧接(<del>)或(-)指定。使用(</del>)表现为好像一个缺少的 flag 存在并且被启用，或(-)表现为好像 flag 存在并且被禁用。
 </p>
@@ -616,9 +616,9 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 </div>
 </div>
 
-<div id="outline-container-org2f35362" class="outline-3">
-<h3 id="org2f35362">Dynamic Dependencies</h3>
-<div class="outline-text-3" id="text-org2f35362">
+<div id="outline-container-org4a4ac5d" class="outline-3">
+<h3 id="org4a4ac5d">Dynamic Dependencies</h3>
+<div class="outline-text-3" id="text-org4a4ac5d">
 <p>
 有时程序或许会根据 USE 变量依赖不同的东西。Portage 提供了一些选项来处理这种情况。注意当使用下面的语法时，每个情况都被认为是在它出现的范围内的的一个 Atom。这意味着每一个 Atom 都有条件的包含多个 Atom 并且可以被嵌套到无限深度。
 </p>
@@ -711,9 +711,9 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 </div>
 </div>
 
-<div id="outline-container-orgd0766df" class="outline-2">
-<h2 id="orgd0766df">Variable Usage Notes</h2>
-<div class="outline-text-2" id="text-orgd0766df">
+<div id="outline-container-orgc55ffa8" class="outline-2">
+<h2 id="orgc55ffa8">Variable Usage Notes</h2>
+<div class="outline-text-2" id="text-orgc55ffa8">
 <ul class="org-ul">
 <li>定义在 <code>make.conf</code> 中的变量可以在 ebuild 中使用（除了 Portage 特定的变量，其他的包管理器可能不支持）。</li>
 <li>当在 ebuild 中分配变量时，变量名和等好之间不能有空格（与 bash 语法类似）</li>
@@ -722,9 +722,9 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 </div>
 </div>
 
-<div id="outline-container-org5a9ce8e" class="outline-2">
-<h2 id="org5a9ce8e">Variables Used In Ebuilds</h2>
-<div class="outline-text-2" id="text-org5a9ce8e">
+<div id="outline-container-org4136508" class="outline-2">
+<h2 id="org4136508">Variables Used In Ebuilds</h2>
+<div class="outline-text-2" id="text-org4136508">
 <ul class="org-ul">
 <li><p>
 ARCH
@@ -1358,9 +1358,9 @@ DOCS
 </div>
 </div>
 
-<div id="outline-container-org88f9a77" class="outline-2">
-<h2 id="org88f9a77">QA Control Variables:</h2>
-<div class="outline-text-2" id="text-org88f9a77">
+<div id="outline-container-org78d3ed3" class="outline-2">
+<h2 id="org78d3ed3">QA Control Variables:</h2>
+<div class="outline-text-2" id="text-org78d3ed3">
 <ul class="org-ul">
 <li><p>
 Usage Notes
@@ -1489,9 +1489,9 @@ QA_DESKTOP_FILE
 </div>
 </div>
 
-<div id="outline-container-orgc843502" class="outline-2">
-<h2 id="orgc843502">PORTAGE DECLARATIONS</h2>
-<div class="outline-text-2" id="text-orgc843502">
+<div id="outline-container-orgcb6ca59" class="outline-2">
+<h2 id="orgcb6ca59">PORTAGE DECLARATIONS</h2>
+<div class="outline-text-2" id="text-orgcb6ca59">
 <ul class="org-ul">
 <li><p>
 inherit
@@ -1504,9 +1504,9 @@ inherit 是 portage 对 ebuild 外部的额外 class 的维护的函数并且作
 </div>
 </div>
 
-<div id="outline-container-orgdcebdf8" class="outline-2">
-<h2 id="orgdcebdf8">PHASE FUNCTIONS</h2>
-<div class="outline-text-2" id="text-orgdcebdf8">
+<div id="outline-container-orgf218b68" class="outline-2">
+<h2 id="orgf218b68">PHASE FUNCTIONS</h2>
+<div class="outline-text-2" id="text-orgf218b68">
 <ul class="org-ul">
 <li><p>
 pkg_pretend
@@ -1672,13 +1672,13 @@ pkg_config
 </div>
 </div>
 
-<div id="outline-container-orga886bfa" class="outline-2">
-<h2 id="orga886bfa">HELPER FUNCTIONS</h2>
-<div class="outline-text-2" id="text-orga886bfa">
+<div id="outline-container-org1f93e70" class="outline-2">
+<h2 id="org1f93e70">HELPER FUNCTIONS</h2>
+<div class="outline-text-2" id="text-org1f93e70">
 </div>
-<div id="outline-container-org6dd2ad4" class="outline-3">
-<h3 id="org6dd2ad4">Phase:</h3>
-<div class="outline-text-3" id="text-org6dd2ad4">
+<div id="outline-container-org524242e" class="outline-3">
+<h3 id="org524242e">Phase:</h3>
+<div class="outline-text-3" id="text-org524242e">
 <ul class="org-ul">
 <li><p>
 defualt
@@ -1733,9 +1733,9 @@ defualt_*
 </div>
 </div>
 
-<div id="outline-container-orgfc793a7" class="outline-3">
-<h3 id="orgfc793a7">General:</h3>
-<div class="outline-text-3" id="text-orgfc793a7">
+<div id="outline-container-orgc667d24" class="outline-3">
+<h3 id="orgc667d24">General:</h3>
+<div class="outline-text-3" id="text-orgc667d24">
 <ul class="org-ul">
 <li><p>
 assert [reason]
@@ -1877,9 +1877,9 @@ item list 由 IFS 变量分隔。该变量的默认值为' '或空格。这是�
 </div>
 </div>
 
-<div id="outline-container-org62538c4" class="outline-3">
-<h3 id="org62538c4">Output:</h3>
-<div class="outline-text-3" id="text-org62538c4">
+<div id="outline-container-org98499bc" class="outline-3">
+<h3 id="org98499bc">Output:</h3>
+<div class="outline-text-3" id="text-org98499bc">
 <ul class="org-ul">
 <li><p>
 einfo disposable message
@@ -1940,9 +1940,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org4143f79" class="outline-3">
-<h3 id="org4143f79">Unpack</h3>
-<div class="outline-text-3" id="text-org4143f79">
+<div id="outline-container-orgb94127a" class="outline-3">
+<h3 id="orgb94127a">Unpack</h3>
+<div class="outline-text-3" id="text-orgb94127a">
 <ul class="org-ul">
 <li><p>
 <code>unpack &lt;source&gt; [list of more sources]</code>
@@ -1955,9 +1955,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org89d3078" class="outline-3">
-<h3 id="org89d3078">Compile:</h3>
-<div class="outline-text-3" id="text-org89d3078">
+<div id="outline-container-orgacafd03" class="outline-3">
+<h3 id="orgacafd03">Compile:</h3>
+<div class="outline-text-3" id="text-orgacafd03">
 <ul class="org-ul">
 <li><p>
 econf [configure options]
@@ -2010,9 +2010,9 @@ EXTRA_EMAKE knob 是 portage 的特性，所以开发者可以在调试 ebuild �
 </ul>
 </div>
 </div>
-<div id="outline-container-org1e6115b" class="outline-3">
-<h3 id="org1e6115b">Install:</h3>
-<div class="outline-text-3" id="text-org1e6115b">
+<div id="outline-container-org9e716e6" class="outline-3">
+<h3 id="org9e716e6">Install:</h3>
+<div class="outline-text-3" id="text-org9e716e6">
 <ul class="org-ul">
 <li><p>
 einstall [make options] 这用来代替 make install。执行：
@@ -2341,7 +2341,7 @@ docinto [path]
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-23 Thu 22:03</p>
+<p class="date">Created: 2020-08-19 三 17:42</p>
 </div>
 </body>
 </html>
