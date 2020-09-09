@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:45 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ Primer 第 IV 部分 高级主题</title>
@@ -234,327 +234,327 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6a1a7e2">第 17 章 标准库特殊设施</a>
+<li><a href="#orge32c2ba">第 17 章 标准库特殊设施</a>
 <ul>
-<li><a href="#orgee97fce">17.1 tuple 类型</a>
+<li><a href="#org3002204">17.1 tuple 类型</a>
 <ul>
-<li><a href="#org7b92647">17.1.1 定义和初始化 tuple</a>
+<li><a href="#org76a9624">17.1.1 定义和初始化 tuple</a>
 <ul>
-<li><a href="#org48279cf">关系和相等运算符</a></li>
+<li><a href="#orgdba8ef2">关系和相等运算符</a></li>
 </ul>
 </li>
-<li><a href="#orgbb35026">17.1.2 使用 tuple 返回多个值</a></li>
+<li><a href="#orgba67282">17.1.2 使用 tuple 返回多个值</a></li>
 </ul>
 </li>
-<li><a href="#org4fa0fe2">17.2 bitset 类型</a>
+<li><a href="#org4e60bea">17.2 bitset 类型</a>
 <ul>
-<li><a href="#orgf864195">17.2.1 定义和初始化 bitset</a>
+<li><a href="#orgb561d11">17.2.1 定义和初始化 bitset</a>
 <ul>
-<li><a href="#org592c574">用 unsigned 值初始化 bitset</a></li>
-<li><a href="#org880bea7">从一个 string 初始化 bitset</a></li>
+<li><a href="#org5ae9813">用 unsigned 值初始化 bitset</a></li>
+<li><a href="#orgb710937">从一个 string 初始化 bitset</a></li>
 </ul>
 </li>
-<li><a href="#orgd436ac4">17.2.2 bitset 操作</a>
+<li><a href="#orgd3e1a6d">17.2.2 bitset 操作</a>
 <ul>
-<li><a href="#org3feccbd">提取 bitset 的值</a></li>
-<li><a href="#org4fdbe3b">bitset 的 IO 运算符</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org6257458">17.3 正则表达式</a>
-<ul>
-<li><a href="#orgfb1f8e8">17.3.1 使用正则表达式库</a>
-<ul>
-<li><a href="#org9843907">指定 regex 对象的选项</a></li>
-<li><a href="#orgdde0dc0">指定或使用正则表达式时的错误</a></li>
-<li><a href="#org047330f">正则表达式和输入序列类型</a></li>
-</ul>
-</li>
-<li><a href="#org94b2751">17.3.2 匹配与 Regex 迭代器类型</a>
-<ul>
-<li><a href="#org7296861">使用匹配数据</a></li>
-</ul>
-</li>
-<li><a href="#orgc5768eb">17.3.3 使用子表达式</a>
-<ul>
-<li><a href="#org74b2838">使用子匹配操作</a></li>
-</ul>
-</li>
-<li><a href="#org2599d00">17.3.4 使用 regex_replace</a>
-<ul>
-<li><a href="#orgaffedcc">用来控制匹配的格式的标志</a></li>
+<li><a href="#orgcb96be6">提取 bitset 的值</a></li>
+<li><a href="#org49262ff">bitset 的 IO 运算符</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9167305">17.4 随机数</a>
+<li><a href="#org5b4577f">17.3 正则表达式</a>
 <ul>
-<li><a href="#orgcf9f507">17.4.1 随机数引擎和分布</a>
+<li><a href="#orge3df8d7">17.3.1 使用正则表达式库</a>
 <ul>
-<li><a href="#orgf22629b">分布类型和引擎</a></li>
-<li><a href="#org8d4e4c6">引擎生成一个数值序列</a></li>
-<li><a href="#org23477f8">设计随机数发生器种子</a></li>
+<li><a href="#org34023ff">指定 regex 对象的选项</a></li>
+<li><a href="#org01b12e6">指定或使用正则表达式时的错误</a></li>
+<li><a href="#org8ed6c23">正则表达式和输入序列类型</a></li>
 </ul>
 </li>
-<li><a href="#orgf093237">17.4.2 其他随机数分布</a>
+<li><a href="#org421cab0">17.3.2 匹配与 Regex 迭代器类型</a>
 <ul>
-<li><a href="#orgd10bf6c">生成随机实数</a></li>
-<li><a href="#org759ccc9">bernoulli_distribution 类</a></li>
+<li><a href="#orgb280e75">使用匹配数据</a></li>
 </ul>
 </li>
+<li><a href="#orgfd29434">17.3.3 使用子表达式</a>
+<ul>
+<li><a href="#org8e87fea">使用子匹配操作</a></li>
 </ul>
 </li>
-<li><a href="#org22cfa26">17.5 IO 库再探</a>
+<li><a href="#orgd153c26">17.3.4 使用 regex_replace</a>
 <ul>
-<li><a href="#org051f6e4">17.5.1 格式化输入与输出</a>
-<ul>
-<li><a href="#org4ba3e93">很多操纵符改变格式状态</a></li>
-<li><a href="#orgc57bb9c">指定整型值的进制</a></li>
-<li><a href="#org4f1cec4">指定浮点数记数法</a></li>
-<li><a href="#org171eb00">输出补白</a></li>
-</ul>
-</li>
-<li><a href="#orgf4a2de1">17.5.2 未格式化的输入/输出操作</a>
-<ul>
-<li><a href="#org5523111">单字节操作</a></li>
-<li><a href="#orgbeef41c">将字符放回输入流</a></li>
-<li><a href="#orgfa950e4">从输入操作返回的 int 值</a></li>
-<li><a href="#org757e164">多字节操作</a></li>
-<li><a href="#orgf57f351">确定读取了多少个字符</a></li>
-</ul>
-</li>
-<li><a href="#org73edac9">17.5.3 流随机访问</a>
-<ul>
-<li><a href="#org1eed75f">seek 和 tell 函数</a></li>
-<li><a href="#orgba843d8">只有一个标记</a></li>
+<li><a href="#org975aca3">用来控制匹配的格式的标志</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><a href="#orgc05bb12">17.4 随机数</a>
+<ul>
+<li><a href="#org4a44624">17.4.1 随机数引擎和分布</a>
+<ul>
+<li><a href="#org74eea2e">分布类型和引擎</a></li>
+<li><a href="#orgedf9e47">引擎生成一个数值序列</a></li>
+<li><a href="#org973fca9">设计随机数发生器种子</a></li>
 </ul>
 </li>
-<li><a href="#org51ca6f9">第 18 章 用于大型程序的工具</a>
+<li><a href="#org6a97575">17.4.2 其他随机数分布</a>
 <ul>
-<li><a href="#org38cd4fb">18.1 异常处理</a>
-<ul>
-<li><a href="#org63f9788">18.1.1 抛出异常</a>
-<ul>
-<li><a href="#org06638d0">栈展开</a></li>
-<li><a href="#org96dd706">栈展开过程中对象被自动销毁</a></li>
-<li><a href="#org1426700">析构函数与异常</a></li>
-<li><a href="#org86ae31d">异常对象</a></li>
-</ul>
-</li>
-<li><a href="#org8eaeddb">18.1.2 捕获异常</a>
-<ul>
-<li><a href="#org3bafce3">查找匹配的处理代码</a></li>
-<li><a href="#orgd803b8b">重新抛出</a></li>
-<li><a href="#orgf6358da">捕获所有异常的处理代码</a></li>
-</ul>
-</li>
-<li><a href="#orgab36254">18.1.3 函数 try 语句块和构造函数</a></li>
-<li><a href="#org53e7814">18.1.4 noexcept 异常说明</a>
-<ul>
-<li><a href="#org8a771b7">违反异常说明</a></li>
-<li><a href="#org5937331">异常说明的实参</a></li>
-<li><a href="#org69d30a2">noexcept 运算符</a></li>
-<li><a href="#org5b21a0d">异常说明与指针、虚函数和拷贝控制</a></li>
-</ul>
-</li>
-<li><a href="#org5100551">18.1.5 异常类层次</a></li>
-</ul>
-</li>
-<li><a href="#org29b44c9">18.2 命名空间</a>
-<ul>
-<li><a href="#org437b94b">18.2.1 命名空间定义</a>
-<ul>
-<li><a href="#org3ef73f0">每个命名空间都是一个作用域</a></li>
-<li><a href="#orgf78c114">命名空间可以不是连续的</a></li>
-<li><a href="#org3af5e36">定义命名空间成员</a></li>
-<li><a href="#orgc084187">模板特例化</a></li>
-<li><a href="#orgd07dd2f">全局命名空间</a></li>
-<li><a href="#org08169c7">内联命名空间</a></li>
-<li><a href="#org0ccc240">未命名的命名空间</a></li>
-</ul>
-</li>
-<li><a href="#orgd73e8f8">18.2.2 使用命名空间成员</a>
-<ul>
-<li><a href="#orgbcd34ee">命名空间的别名</a></li>
-<li><a href="#orgfc96461">using 声明：扼要概述</a></li>
-<li><a href="#org2d853b3">using 指示</a></li>
-<li><a href="#org17cd172">头文件与 using 声明或指示</a></li>
-</ul>
-</li>
-<li><a href="#org2d0da8a">18.2.3 类、命名空间与作用域</a>
-<ul>
-<li><a href="#org11de3f6">实参相关的查找与类类型参数</a></li>
-<li><a href="#org7c21fb4">友元声明与实参相关的查找</a></li>
-</ul>
-</li>
-<li><a href="#org223924a">18.2.4 重载与命名空间</a>
-<ul>
-<li><a href="#orgd7abe0e">与实参相关的查找与重载</a></li>
-<li><a href="#orgebfa60a">重载与 using 声明</a></li>
-<li><a href="#org3d711ad">重载与 using 指示</a></li>
-<li><a href="#org6617355">跨越多个 using 指针的重载</a></li>
+<li><a href="#org09876d3">生成随机实数</a></li>
+<li><a href="#org824ec65">bernoulli_distribution 类</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org7c1f867">18.3 多重继承与虚继承</a>
+<li><a href="#orge662cb2">17.5 IO 库再探</a>
 <ul>
-<li><a href="#org95949fe">18.3.1 多重继承</a>
+<li><a href="#orga5efd9a">17.5.1 格式化输入与输出</a>
 <ul>
-<li><a href="#orgdf907ef">多重继承的派生类从每个基类中继承状态</a></li>
-<li><a href="#org6f283b9">派生类初始化所有基类</a></li>
-<li><a href="#org8f355da">继承的构造函数与多重继承</a></li>
-<li><a href="#orge523444">析构函数与多重继承</a></li>
-<li><a href="#org296f90b">多重继承和派生类的拷贝与移动操作</a></li>
+<li><a href="#org544ebc6">很多操纵符改变格式状态</a></li>
+<li><a href="#org97934f3">指定整型值的进制</a></li>
+<li><a href="#orgf18d9be">指定浮点数记数法</a></li>
+<li><a href="#orgf449f08">输出补白</a></li>
 </ul>
 </li>
-<li><a href="#org90d4834">18.3.2 类型转换与多个基类</a>
+<li><a href="#org559d636">17.5.2 未格式化的输入/输出操作</a>
 <ul>
-<li><a href="#org8bf2d0a">基类指针类型或引用类型的查找</a></li>
+<li><a href="#orgbc038d4">单字节操作</a></li>
+<li><a href="#orge047d25">将字符放回输入流</a></li>
+<li><a href="#orga69b58e">从输入操作返回的 int 值</a></li>
+<li><a href="#org1818289">多字节操作</a></li>
+<li><a href="#org95aa527">确定读取了多少个字符</a></li>
 </ul>
 </li>
-<li><a href="#orgb7cc0d9">18.3.3 多重继承下的类作用域</a></li>
-<li><a href="#orgabbd47e">18.3.4 虚继承</a>
+<li><a href="#org262dd52">17.5.3 流随机访问</a>
 <ul>
-<li><a href="#org5678e8f">使用虚基类</a></li>
-<li><a href="#org7e34cd7">支持向基类的常规类型转换</a></li>
-<li><a href="#org4cbde9e">虚基类成员的可见行</a></li>
-</ul>
-</li>
-<li><a href="#orgc129afb">18.3.5 构造函数与虚继承</a>
-<ul>
-<li><a href="#org1f97602">虚继承的对象的构造方式</a></li>
-<li><a href="#org980705d">构造函数与析构函数的次序</a></li>
+<li><a href="#org2a5af93">seek 和 tell 函数</a></li>
+<li><a href="#org8f09a66">只有一个标记</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb191e12">第 19 章 特殊工具与技术</a>
+<li><a href="#orgdbe1dd7">第 18 章 用于大型程序的工具</a>
 <ul>
-<li><a href="#orgafb68d4">19.1 控制内存分配</a>
+<li><a href="#org9cc074e">18.1 异常处理</a>
 <ul>
-<li><a href="#orgb578856">19.1.1 重载 new 和 delete</a>
+<li><a href="#orgb879785">18.1.1 抛出异常</a>
 <ul>
-<li><a href="#orgdd2a27e">operator new 接口和 operator delete 接口</a></li>
+<li><a href="#org127ca03">栈展开</a></li>
+<li><a href="#org3e7991b">栈展开过程中对象被自动销毁</a></li>
+<li><a href="#org1e41187">析构函数与异常</a></li>
+<li><a href="#org38bbdf1">异常对象</a></li>
 </ul>
 </li>
-<li><a href="#org03c0b37">19.1.2 定位 new 表达式</a>
+<li><a href="#orgd51b263">18.1.2 捕获异常</a>
 <ul>
-<li><a href="#org3796e1c">显示的析构函数调用</a></li>
+<li><a href="#orgac0831d">查找匹配的处理代码</a></li>
+<li><a href="#org9bb0dca">重新抛出</a></li>
+<li><a href="#org9491107">捕获所有异常的处理代码</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#org8f5c18c">19.2 运行时类型识别</a>
+<li><a href="#org1512981">18.1.3 函数 try 语句块和构造函数</a></li>
+<li><a href="#org8524cc0">18.1.4 noexcept 异常说明</a>
 <ul>
-<li><a href="#org204b194">19.2.1 dynamic_cast 运算符</a>
+<li><a href="#orgc339f1d">违反异常说明</a></li>
+<li><a href="#org807fb86">异常说明的实参</a></li>
+<li><a href="#org1d11789">noexcept 运算符</a></li>
+<li><a href="#orge5c9772">异常说明与指针、虚函数和拷贝控制</a></li>
+</ul>
+</li>
+<li><a href="#orga71046f">18.1.5 异常类层次</a></li>
+</ul>
+</li>
+<li><a href="#org8003ad3">18.2 命名空间</a>
 <ul>
-<li><a href="#orgf4693e1">指针类型的 dynamic_cast</a></li>
-<li><a href="#org891330f">引用类型的 dynamic_cast</a></li>
-</ul>
-</li>
-<li><a href="#org5d7db00">19.2.2 typeid 运算符</a>
+<li><a href="#org04fc7aa">18.2.1 命名空间定义</a>
 <ul>
-<li><a href="#org18e62cc">使用 typeid 运算符</a></li>
+<li><a href="#org7b616db">每个命名空间都是一个作用域</a></li>
+<li><a href="#org00d5359">命名空间可以不是连续的</a></li>
+<li><a href="#orgd47d623">定义命名空间成员</a></li>
+<li><a href="#orgc8569fd">模板特例化</a></li>
+<li><a href="#org0301c07">全局命名空间</a></li>
+<li><a href="#org443fbd0">内联命名空间</a></li>
+<li><a href="#orga6c743a">未命名的命名空间</a></li>
 </ul>
 </li>
-<li><a href="#org39b0973">19.2.4 type_info 类</a></li>
+<li><a href="#orgf19440b">18.2.2 使用命名空间成员</a>
+<ul>
+<li><a href="#org4c5e35a">命名空间的别名</a></li>
+<li><a href="#org441905d">using 声明：扼要概述</a></li>
+<li><a href="#org12f39be">using 指示</a></li>
+<li><a href="#orgdfc869a">头文件与 using 声明或指示</a></li>
 </ul>
 </li>
-<li><a href="#orgeb7e4af">19.3 枚举类型</a>
+<li><a href="#orgc7b05da">18.2.3 类、命名空间与作用域</a>
+<ul>
+<li><a href="#org79917d2">实参相关的查找与类类型参数</a></li>
+<li><a href="#org15c1d7b">友元声明与实参相关的查找</a></li>
+</ul>
+</li>
+<li><a href="#org04a9196">18.2.4 重载与命名空间</a>
+<ul>
+<li><a href="#orgb184047">与实参相关的查找与重载</a></li>
+<li><a href="#org00597fa">重载与 using 声明</a></li>
+<li><a href="#orga998913">重载与 using 指示</a></li>
+<li><a href="#org4c5b532">跨越多个 using 指针的重载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc49242e">18.3 多重继承与虚继承</a>
+<ul>
+<li><a href="#org5eb1c0f">18.3.1 多重继承</a>
+<ul>
+<li><a href="#org5ec663b">多重继承的派生类从每个基类中继承状态</a></li>
+<li><a href="#org9b45c6c">派生类初始化所有基类</a></li>
+<li><a href="#org3a4489a">继承的构造函数与多重继承</a></li>
+<li><a href="#org8a49d6a">析构函数与多重继承</a></li>
+<li><a href="#org81f3ed1">多重继承和派生类的拷贝与移动操作</a></li>
+</ul>
+</li>
+<li><a href="#org4de0d3e">18.3.2 类型转换与多个基类</a>
+<ul>
+<li><a href="#org0f3891e">基类指针类型或引用类型的查找</a></li>
+</ul>
+</li>
+<li><a href="#org2b72f42">18.3.3 多重继承下的类作用域</a></li>
+<li><a href="#org5ec5612">18.3.4 虚继承</a>
+<ul>
+<li><a href="#orga55b234">使用虚基类</a></li>
+<li><a href="#org5c0fcbb">支持向基类的常规类型转换</a></li>
+<li><a href="#org6179efd">虚基类成员的可见行</a></li>
+</ul>
+</li>
+<li><a href="#orgf5edcdd">18.3.5 构造函数与虚继承</a>
+<ul>
+<li><a href="#orgcb7ce22">虚继承的对象的构造方式</a></li>
+<li><a href="#orgac16f57">构造函数与析构函数的次序</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org029fdef">第 19 章 特殊工具与技术</a>
+<ul>
+<li><a href="#org29a5b4d">19.1 控制内存分配</a>
+<ul>
+<li><a href="#org960b0c4">19.1.1 重载 new 和 delete</a>
+<ul>
+<li><a href="#orga10b138">operator new 接口和 operator delete 接口</a></li>
+</ul>
+</li>
+<li><a href="#orgd3ba628">19.1.2 定位 new 表达式</a>
+<ul>
+<li><a href="#orgbb17ac1">显示的析构函数调用</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgca60bd1">19.2 运行时类型识别</a>
+<ul>
+<li><a href="#orge4e348c">19.2.1 dynamic_cast 运算符</a>
+<ul>
+<li><a href="#orga262467">指针类型的 dynamic_cast</a></li>
+<li><a href="#orgbe2083a">引用类型的 dynamic_cast</a></li>
+</ul>
+</li>
+<li><a href="#orga3802c0">19.2.2 typeid 运算符</a>
+<ul>
+<li><a href="#orgc4b0546">使用 typeid 运算符</a></li>
+</ul>
+</li>
+<li><a href="#orga706d46">19.2.4 type_info 类</a></li>
+</ul>
+</li>
+<li><a href="#org2198f02">19.3 枚举类型</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgaeccb1a">枚举成员</a></li>
-<li><a href="#orgf4855ca">和类一样，枚举也定义新的类型</a></li>
-<li><a href="#org20a0a18">指定 enum 的大小</a></li>
-<li><a href="#org5aa641b">枚举类型的前置声明</a></li>
-<li><a href="#org1123749">形参匹配与枚举类型</a></li>
+<li><a href="#org898f92d">枚举成员</a></li>
+<li><a href="#orgc5f70de">和类一样，枚举也定义新的类型</a></li>
+<li><a href="#org9c1a71f">指定 enum 的大小</a></li>
+<li><a href="#org38e71ee">枚举类型的前置声明</a></li>
+<li><a href="#org5719b77">形参匹配与枚举类型</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5512630">19.4 类成员指针</a>
+<li><a href="#org4c1863b">19.4 类成员指针</a>
 <ul>
-<li><a href="#org2938721">19.4.1 数据成员指针</a>
+<li><a href="#orgc660363">19.4.1 数据成员指针</a>
 <ul>
-<li><a href="#orgdeb2e34">使用数据成员指针</a></li>
-<li><a href="#orgf74d8c4">返回数据成员指针的函数</a></li>
+<li><a href="#org73ec9eb">使用数据成员指针</a></li>
+<li><a href="#orgc64fb5d">返回数据成员指针的函数</a></li>
 </ul>
 </li>
-<li><a href="#org96f2934">19.4.2 成员函数指针</a>
+<li><a href="#orgd279c91">19.4.2 成员函数指针</a>
 <ul>
-<li><a href="#orgea00105">使用成员函数指针</a></li>
-<li><a href="#org1e582ec">使用成员指针的类型别名</a></li>
-<li><a href="#orgaa529c8">成员指针函数表</a></li>
+<li><a href="#orgaa71ce0">使用成员函数指针</a></li>
+<li><a href="#org494c911">使用成员指针的类型别名</a></li>
+<li><a href="#org0ab2ac9">成员指针函数表</a></li>
 </ul>
 </li>
-<li><a href="#org2e848b1">19.4.3 将成员函数用作可调用对象</a>
+<li><a href="#orga8caca9">19.4.3 将成员函数用作可调用对象</a>
 <ul>
-<li><a href="#orgca8182e">使用 function 生成一个可调用对象</a></li>
-<li><a href="#orgacb97e2">使用 mem_fn 生成一个可调用对象</a></li>
-<li><a href="#org97c23e1">使用 bind 生成一个可调用对象</a></li>
+<li><a href="#orgf16a023">使用 function 生成一个可调用对象</a></li>
+<li><a href="#org683d498">使用 mem_fn 生成一个可调用对象</a></li>
+<li><a href="#orgfa47c7e">使用 bind 生成一个可调用对象</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org747fef3">19.5 嵌套类</a>
-<ul>
-<li>
-<ul>
-<li><a href="#orgfefd10f">在外层类之外定义一个嵌套类</a></li>
-<li><a href="#org1efd71a">嵌套类作用域中的名字查找</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgbaed7f2">19.6 union：一种节省空间的类</a>
+<li><a href="#org20c4726">19.5 嵌套类</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org9300ea4">定义 union</a></li>
-<li><a href="#orgc572f83">使用 union 类型</a></li>
-<li><a href="#org1e21d90">匿名 union</a></li>
-<li><a href="#org08e47c0">含有类类型成员的 union</a></li>
+<li><a href="#orgd07ea83">在外层类之外定义一个嵌套类</a></li>
+<li><a href="#org0393ff1">嵌套类作用域中的名字查找</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgdc801eb">19.7 局部类</a>
+<li><a href="#orgc5844ba">19.6 union：一种节省空间的类</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgbb8cb10">局部类不能使用函数作用域中的变量</a></li>
-<li><a href="#org83eb9cb">常规的访问保护规则对局部类同样适用</a></li>
-<li><a href="#orgb8b6af5">局部类中的名字查找</a></li>
-<li><a href="#org9de65f0">嵌套的局部类</a></li>
+<li><a href="#org3f12765">定义 union</a></li>
+<li><a href="#orgd1a34e3">使用 union 类型</a></li>
+<li><a href="#org0b249af">匿名 union</a></li>
+<li><a href="#orgabf4c2a">含有类类型成员的 union</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org65d8cf0">19.8 固有的不移植的特性</a>
+<li><a href="#orgcf0e399">19.7 局部类</a>
 <ul>
-<li><a href="#orgf8190e6">19.8.1 位域</a></li>
-<li><a href="#orgc310be6">19.8.2 volatile 限定符</a>
+<li>
 <ul>
-<li><a href="#orge99c429">合成的拷贝对 volatile 对象无效</a></li>
+<li><a href="#org31f4e63">局部类不能使用函数作用域中的变量</a></li>
+<li><a href="#org5abc9ad">常规的访问保护规则对局部类同样适用</a></li>
+<li><a href="#orga80d450">局部类中的名字查找</a></li>
+<li><a href="#orgab7341d">嵌套的局部类</a></li>
 </ul>
 </li>
-<li><a href="#org8fb6056">19.8.3 链接指示：extern "C"</a>
+</ul>
+</li>
+<li><a href="#orgcf72d49">19.8 固有的不移植的特性</a>
 <ul>
-<li><a href="#org07a86b2">声明一个非 C++的函数</a></li>
-<li><a href="#org7df40b7">链接指示与头文件</a></li>
-<li><a href="#orgcf25d72">指向 extern "C"函数的指针</a></li>
-<li><a href="#orgfc48595">链接指示对整个声明都有效</a></li>
-<li><a href="#org458e276">导出 C++函数到其他语言</a></li>
-<li><a href="#org5a8d54b">重载函数与链接指示</a></li>
+<li><a href="#org0523f36">19.8.1 位域</a></li>
+<li><a href="#org93f93af">19.8.2 volatile 限定符</a>
+<ul>
+<li><a href="#org1e67342">合成的拷贝对 volatile 对象无效</a></li>
+</ul>
+</li>
+<li><a href="#orgadc55cd">19.8.3 链接指示：extern "C"</a>
+<ul>
+<li><a href="#orge21dd2e">声明一个非 C++的函数</a></li>
+<li><a href="#org5ce813d">链接指示与头文件</a></li>
+<li><a href="#org68adff6">指向 extern "C"函数的指针</a></li>
+<li><a href="#orgfff78b9">链接指示对整个声明都有效</a></li>
+<li><a href="#org203ec94">导出 C++函数到其他语言</a></li>
+<li><a href="#orgf3a9977">重载函数与链接指示</a></li>
 </ul>
 </li>
 </ul>
@@ -565,13 +565,13 @@
 </div>
 </div>
 
-<div id="outline-container-org6a1a7e2" class="outline-2">
-<h2 id="org6a1a7e2">第 17 章 标准库特殊设施</h2>
-<div class="outline-text-2" id="text-org6a1a7e2">
+<div id="outline-container-orge32c2ba" class="outline-2">
+<h2 id="orge32c2ba">第 17 章 标准库特殊设施</h2>
+<div class="outline-text-2" id="text-orge32c2ba">
 </div>
-<div id="outline-container-orgee97fce" class="outline-3">
-<h3 id="orgee97fce">17.1 tuple 类型</h3>
-<div class="outline-text-3" id="text-orgee97fce">
+<div id="outline-container-org3002204" class="outline-3">
+<h3 id="org3002204">17.1 tuple 类型</h3>
+<div class="outline-text-3" id="text-org3002204">
 <p>
 <b>tuple</b> 是类似 pair 的模板。每个 pair 的成员类型都不相同，但每个 pair 都恰好有两个成员。不同 tuple 类型的成员类型也不相同，但一个 tuple 可以有任意数量的成员。每个确定的 tuple 类型的成员数目是固定的，但一个 tuple 类型的成员数目可以于另一个 tuple 类型不同。下表列出了 tuple 支持的操作。tuple 类型及其伴随类型和函数都定义在 tuple 头文件中
 </p>
@@ -642,13 +642,13 @@ Note：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org7b92647" class="outline-4">
-<h4 id="org7b92647">17.1.1 定义和初始化 tuple</h4>
-<div class="outline-text-4" id="text-org7b92647">
+<div id="outline-container-org76a9624" class="outline-4">
+<h4 id="org76a9624">17.1.1 定义和初始化 tuple</h4>
+<div class="outline-text-4" id="text-org76a9624">
 </div>
-<div id="outline-container-org48279cf" class="outline-5">
-<h5 id="org48279cf">关系和相等运算符</h5>
-<div class="outline-text-5" id="text-org48279cf">
+<div id="outline-container-orgdba8ef2" class="outline-5">
+<h5 id="orgdba8ef2">关系和相等运算符</h5>
+<div class="outline-text-5" id="text-orgdba8ef2">
 <blockquote>
 <p>
 Note：
@@ -661,25 +661,25 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb35026" class="outline-4">
-<h4 id="orgbb35026">17.1.2 使用 tuple 返回多个值</h4>
-<div class="outline-text-4" id="text-orgbb35026">
+<div id="outline-container-orgba67282" class="outline-4">
+<h4 id="orgba67282">17.1.2 使用 tuple 返回多个值</h4>
+<div class="outline-text-4" id="text-orgba67282">
 <p>
 tuple 的一个常见用途时从一个函数返回多个值。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4fa0fe2" class="outline-3">
-<h3 id="org4fa0fe2">17.2 bitset 类型</h3>
-<div class="outline-text-3" id="text-org4fa0fe2">
+<div id="outline-container-org4e60bea" class="outline-3">
+<h3 id="org4e60bea">17.2 bitset 类型</h3>
+<div class="outline-text-3" id="text-org4e60bea">
 <p>
 在 4.8 节中我们介绍了将整型运算对象当作二进制位集合处理的一些内置运算符。标准库还定义了 <b>bitset</b> 类，使得位运算符的使用更加容易，并且能够处理超过最长整型类型大小的位集合。bitset 类定义在头文件 bitset 中。
 </p>
 </div>
-<div id="outline-container-orgf864195" class="outline-4">
-<h4 id="orgf864195">17.2.1 定义和初始化 bitset</h4>
-<div class="outline-text-4" id="text-orgf864195">
+<div id="outline-container-orgb561d11" class="outline-4">
+<h4 id="orgb561d11">17.2.1 定义和初始化 bitset</h4>
+<div class="outline-text-4" id="text-orgb561d11">
 <p>
 下表列出了 bitset 的构造函数。bitset 类时一个类模板，他类似 array 类，具有固定的大小。当我们定义个 bitset 时，需要声明它包含多少个二进制位：
 </p>
@@ -732,9 +732,9 @@ tuple 的一个常见用途时从一个函数返回多个值。
 接受一个 string 或一个字符指针的构造函数是 explicit 的。在新标准中增加了为 0 和 1 执行其他字符的功能。
 </p>
 </div>
-<div id="outline-container-org592c574" class="outline-5">
-<h5 id="org592c574">用 unsigned 值初始化 bitset</h5>
-<div class="outline-text-5" id="text-org592c574">
+<div id="outline-container-org5ae9813" class="outline-5">
+<h5 id="org5ae9813">用 unsigned 值初始化 bitset</h5>
+<div class="outline-text-5" id="text-org5ae9813">
 <p>
 当我们使用一个整型值来初始化 bitset 时，此值将被转换为 unsigned long long 类型并被当作位模式来处理。bitset 中的二进制位将是此模式的一个副本。如果 bitset 的大小大于一个 unsigned long long 中的二进制位数，则剩余的高位被置位 0。如果 bitset 的大小小于一个 unsigned long long 中的二进制位数，则只使用给定值中的低位，超出 bitset 大小的高位被丢弃：
 </p>
@@ -750,9 +750,9 @@ tuple 的一个常见用途时从一个函数返回多个值。
 </div>
 </div>
 </div>
-<div id="outline-container-org880bea7" class="outline-5">
-<h5 id="org880bea7">从一个 string 初始化 bitset</h5>
-<div class="outline-text-5" id="text-org880bea7">
+<div id="outline-container-orgb710937" class="outline-5">
+<h5 id="orgb710937">从一个 string 初始化 bitset</h5>
+<div class="outline-text-5" id="text-orgb710937">
 <p>
 我们可以从一个 string 或字符数组指针来初始化 bitset。两种情况下，字符都直接表示位模式。与往常一样，当我们使用字符串表示数时，字符串中下标最小的字符对应高位，反之亦然：
 </p>
@@ -777,9 +777,9 @@ string 的下标编号习惯与 bitset 恰好相反；string 中下标最大的�
 </div>
 </div>
 </div>
-<div id="outline-container-orgd436ac4" class="outline-4">
-<h4 id="orgd436ac4">17.2.2 bitset 操作</h4>
-<div class="outline-text-4" id="text-orgd436ac4">
+<div id="outline-container-orgd3e1a6d" class="outline-4">
+<h4 id="orgd3e1a6d">17.2.2 bitset 操作</h4>
+<div class="outline-text-4" id="text-orgd3e1a6d">
 <p>
 bitset 操作定义了多种检测或设置一个或多个二进制位的方法。bitset 类还支持我们在 4.8 节中介绍过的位运算符。这些运算符用于 bitset 对象的含义与内置运算符用于 unsigned 运算对象相同。
 </p>
@@ -902,9 +902,9 @@ bitvec[<span style="color: #da8548; font-weight: bold;">0</span>].flip();       
 </pre>
 </div>
 </div>
-<div id="outline-container-org3feccbd" class="outline-5">
-<h5 id="org3feccbd">提取 bitset 的值</h5>
-<div class="outline-text-5" id="text-org3feccbd">
+<div id="outline-container-orgcb96be6" class="outline-5">
+<h5 id="orgcb96be6">提取 bitset 的值</h5>
+<div class="outline-text-5" id="text-orgcb96be6">
 <p>
 to_ulong 和 to_ullong 操作都返回一个值，保存了与 bitset 对象相同的位模式。只有当 bitset 的大小小于等于对应的大小（to_ulong 为 unsigned long，to_ullong 为 unsigned long long）时，我们才能使用这两个操作。
 </p>
@@ -920,9 +920,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org4fdbe3b" class="outline-5">
-<h5 id="org4fdbe3b">bitset 的 IO 运算符</h5>
-<div class="outline-text-5" id="text-org4fdbe3b">
+<div id="outline-container-org49262ff" class="outline-5">
+<h5 id="org49262ff">bitset 的 IO 运算符</h5>
+<div class="outline-text-5" id="text-org49262ff">
 <p>
 输入运算符从一个输入流读取字符，保存到一个临时的 string 对象中。直接读取的字符数达到对应 bitset 的大小时，或是遇到不是 1 或 0 的字符时，或是遇到文件尾或输入错误时，读取过程才对停止。随即用临时 string 对象来初始化 bitset。如果读取的字符小于 bitset 的大小，则与往常一样，高位将被置位 0.
 </p>
@@ -930,9 +930,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-org6257458" class="outline-3">
-<h3 id="org6257458">17.3 正则表达式</h3>
-<div class="outline-text-3" id="text-org6257458">
+<div id="outline-container-org5b4577f" class="outline-3">
+<h3 id="org5b4577f">17.3 正则表达式</h3>
+<div class="outline-text-3" id="text-org5b4577f">
 <p>
 我们重点介绍如果使用 C++正则表达式库（RE 库），它是新标准库的一部分。RE 库定义在头文件 regex 中，它包含多个组件。
 </p>
@@ -1026,13 +1026,13 @@ Note：
 </tbody>
 </table>
 </div>
-<div id="outline-container-orgfb1f8e8" class="outline-4">
-<h4 id="orgfb1f8e8">17.3.1 使用正则表达式库</h4>
-<div class="outline-text-4" id="text-orgfb1f8e8">
+<div id="outline-container-orge3df8d7" class="outline-4">
+<h4 id="orge3df8d7">17.3.1 使用正则表达式库</h4>
+<div class="outline-text-4" id="text-orge3df8d7">
 </div>
-<div id="outline-container-org9843907" class="outline-5">
-<h5 id="org9843907">指定 regex 对象的选项</h5>
-<div class="outline-text-5" id="text-org9843907">
+<div id="outline-container-org34023ff" class="outline-5">
+<h5 id="org34023ff">指定 regex 对象的选项</h5>
+<div class="outline-text-5" id="text-org34023ff">
 <p>
 当我们定义一个 regex 或是对一个 regex 调用 assign 为其赋予新值时，可以指定一些标志来影响 regex 如何操作。这些标志控制 regex 对象的处理过程。下标列出的最后 6 个标志指出编写正则表达式所用的语言。对这 6 个标志，我们必须设置其中之一，且只能设置一个。默认情况下，ECMAScript 标志被设置，从而 regex 会使用 ECMA-262 规范，这也是很多 Web 浏览器所使用的正则表达式语言。
 </p>
@@ -1144,9 +1144,9 @@ Note：
 </table>
 </div>
 </div>
-<div id="outline-container-orgdde0dc0" class="outline-5">
-<h5 id="orgdde0dc0">指定或使用正则表达式时的错误</h5>
-<div class="outline-text-5" id="text-orgdde0dc0">
+<div id="outline-container-org01b12e6" class="outline-5">
+<h5 id="org01b12e6">指定或使用正则表达式时的错误</h5>
+<div class="outline-text-5" id="text-org01b12e6">
 <p>
 我们可以将正则表达式本身看作用一种简单程序设计语言编写的“程序”。这种语言不是由 C++编译器解释的。正则表达式是在运行时，当一个 regex 对象被初始化或被赋予一个新模式时，才被“编译”的。与任何其他程序设计语言一样，当我们用这种语言编写正则表达式也可能有错误。
 </p>
@@ -1270,9 +1270,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org047330f" class="outline-5">
-<h5 id="org047330f">正则表达式和输入序列类型</h5>
-<div class="outline-text-5" id="text-org047330f">
+<div id="outline-container-org8ed6c23" class="outline-5">
+<h5 id="org8ed6c23">正则表达式和输入序列类型</h5>
+<div class="outline-text-5" id="text-org8ed6c23">
 <p>
 我们可以搜索多种类型的输入序列。输入可以是普通 char 数据或 wchar_t 数据，字符可以保存在标准库 string 中或是 char 数组中（或是宽字符版本，wstring 或 wchat_t 数组中。RE 为这些不同的输入序列类型都定义了对应的类型。
 </p>
@@ -1328,9 +1328,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-org94b2751" class="outline-4">
-<h4 id="org94b2751">17.3.2 匹配与 Regex 迭代器类型</h4>
-<div class="outline-text-4" id="text-org94b2751">
+<div id="outline-container-org421cab0" class="outline-4">
+<h4 id="org421cab0">17.3.2 匹配与 Regex 迭代器类型</h4>
+<div class="outline-text-4" id="text-org421cab0">
 <p>
 regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一个输入序列和一个 regex 对象上。如上表所述，每种不同的输入序列类型都有对应的特殊 regex 迭代器类型。迭代器操作如下表所述。
 </p>
@@ -1395,9 +1395,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 当我们将一个 sregex_iterator 绑定到一个 string 和一个 regex 对象时，迭代器自动定位到给定 string 中第一个匹配尾值。即，sregex_iterator 构造函数对给定 string 和 regex 调用 regex_search。当我们解引用迭代器时，会得到一个对应最近一次搜索结果的 smatch 对象。当我们递增迭代器时，它调用 regex_search 在输入 string 中查找下一个匹配。
 </p>
 </div>
-<div id="outline-container-org7296861" class="outline-5">
-<h5 id="org7296861">使用匹配数据</h5>
-<div class="outline-text-5" id="text-org7296861">
+<div id="outline-container-orgb280e75" class="outline-5">
+<h5 id="orgb280e75">使用匹配数据</h5>
+<div class="outline-text-5" id="text-orgb280e75">
 <table>
 <caption class="t-above"><span class="table-number">&#34920;10&nbsp;</span> smatch 操作</caption>
 
@@ -1486,9 +1486,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5768eb" class="outline-4">
-<h4 id="orgc5768eb">17.3.3 使用子表达式</h4>
-<div class="outline-text-4" id="text-orgc5768eb">
+<div id="outline-container-orgfd29434" class="outline-4">
+<h4 id="orgfd29434">17.3.3 使用子表达式</h4>
+<div class="outline-text-4" id="text-orgfd29434">
 <p>
 正则表达式的模式通常包含一个或多个 <b>子表达式</b> 。一个子表达式时模式的一部分，本身也具有意义。正则表达式语法通常用括号表示子表达式。
 </p>
@@ -1515,9 +1515,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 例如，如果文件名为 foo.cpp，则 results.str(0)将保存 foo.cpp；results.str(1)将保存 foo；而 results.str(2)将保存 cpp。
 </p>
 </div>
-<div id="outline-container-org74b2838" class="outline-5">
-<h5 id="org74b2838">使用子匹配操作</h5>
-<div class="outline-text-5" id="text-org74b2838">
+<div id="outline-container-org8e87fea" class="outline-5">
+<h5 id="org8e87fea">使用子匹配操作</h5>
+<div class="outline-text-5" id="text-org8e87fea">
 <table>
 <caption class="t-above"><span class="table-number">&#34920;11&nbsp;</span> 子匹配操作</caption>
 
@@ -1566,9 +1566,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 </div>
 </div>
 </div>
-<div id="outline-container-org2599d00" class="outline-4">
-<h4 id="org2599d00">17.3.4 使用 regex_replace</h4>
-<div class="outline-text-4" id="text-org2599d00">
+<div id="outline-container-orgd153c26" class="outline-4">
+<h4 id="orgd153c26">17.3.4 使用 regex_replace</h4>
+<div class="outline-text-4" id="text-orgd153c26">
 <p>
 正则表达式不仅用在我们希望查找一个给定序列的时候，还用在当我们想将找到的序列替换为另一个序列的时候。
 </p>
@@ -1621,9 +1621,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 <code>string fmt = "$2.$5.$7";   // 将号码格式改为ddd.ddd.dddd</code>
 </p>
 </div>
-<div id="outline-container-orgaffedcc" class="outline-5">
-<h5 id="orgaffedcc">用来控制匹配的格式的标志</h5>
-<div class="outline-text-5" id="text-orgaffedcc">
+<div id="outline-container-org975aca3" class="outline-5">
+<h5 id="org975aca3">用来控制匹配的格式的标志</h5>
+<div class="outline-text-5" id="text-org975aca3">
 <p>
 就像标准库定义标志来指导如何处理正则表达式一样，标准库还定义了用来在替换过程中控制匹配或格式的标志。下表列出了这些值。这些标志可以传递给函数 regex_search 或 regex_match 或是类 smatch 的 format 成员。
 </p>
@@ -1720,9 +1720,9 @@ regex 迭代器是一种迭代器适配器（参见 9.6 节），被绑定到一
 </div>
 </div>
 </div>
-<div id="outline-container-org9167305" class="outline-3">
-<h3 id="org9167305">17.4 随机数</h3>
-<div class="outline-text-3" id="text-org9167305">
+<div id="outline-container-orgc05bb12" class="outline-3">
+<h3 id="orgc05bb12">17.4 随机数</h3>
+<div class="outline-text-3" id="text-orgc05bb12">
 <p>
 程序通常需要一个随机数源。在新标准出现之前，C和 C++都依赖于一个简单的 C 库函数 rand 来生成随机数。此函数生成均匀分布的伪随机数整数，每个随机数的范围在 0 和一个系统相关的最大值（至少为 32767）之间。
 </p>
@@ -1766,9 +1766,9 @@ C++程序不应该使用库函数 rand，而而应使用 default_random_engine �
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgcf9f507" class="outline-4">
-<h4 id="orgcf9f507">17.4.1 随机数引擎和分布</h4>
-<div class="outline-text-4" id="text-orgcf9f507">
+<div id="outline-container-org4a44624" class="outline-4">
+<h4 id="org4a44624">17.4.1 随机数引擎和分布</h4>
+<div class="outline-text-4" id="text-org4a44624">
 <p>
 随机数引擎是函数对象类（参见 14.8），它们定义了一个调用运算符，运算符不接受参数并返回并返回一个随机 unsigned 整数.我们可以通过调用一个随机数引擎对象来生成原始随机数。
 </p>
@@ -1831,9 +1831,9 @@ C++程序不应该使用库函数 rand，而而应使用 default_random_engine �
 </tbody>
 </table>
 </div>
-<div id="outline-container-orgf22629b" class="outline-5">
-<h5 id="orgf22629b">分布类型和引擎</h5>
-<div class="outline-text-5" id="text-orgf22629b">
+<div id="outline-container-org74eea2e" class="outline-5">
+<h5 id="org74eea2e">分布类型和引擎</h5>
+<div class="outline-text-5" id="text-org74eea2e">
 <p>
 为了得到在一个指定范围内的数，我们使用一个分布类型的对象：
 </p>
@@ -1872,9 +1872,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org8d4e4c6" class="outline-5">
-<h5 id="org8d4e4c6">引擎生成一个数值序列</h5>
-<div class="outline-text-5" id="text-org8d4e4c6">
+<div id="outline-container-orgedf9e47" class="outline-5">
+<h5 id="orgedf9e47">引擎生成一个数值序列</h5>
+<div class="outline-text-5" id="text-orgedf9e47">
 <p>
 随机数发生器有一个特性经常会使新手迷惑：即使生成的数看起来像是随机的，但对一个给定的发生器，每次运行程序它都会返回相同的数值序列。序列不变这一事实在调试时非常有用。但另一方面，使用随机数发生器的程序也必须考虑这一特性。
 </p>
@@ -1890,9 +1890,9 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org23477f8" class="outline-5">
-<h5 id="org23477f8">设计随机数发生器种子</h5>
-<div class="outline-text-5" id="text-org23477f8">
+<div id="outline-container-org973fca9" class="outline-5">
+<h5 id="org973fca9">设计随机数发生器种子</h5>
+<div class="outline-text-5" id="text-org973fca9">
 <p>
 随机数发生器会生成相同的随机数序列这一特性在调试中很有用。但是，一旦我们的程序调试完毕，我们通常希望每次运行程序都会生成不同的随机结果，可以通过提供一个 <b>种子</b> 来达到这一目的。种子就是一个数值，引擎可以利用它从序列中一个新位置重新开始生成随机数。
 </p>
@@ -1925,13 +1925,13 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-orgf093237" class="outline-4">
-<h4 id="orgf093237">17.4.2 其他随机数分布</h4>
-<div class="outline-text-4" id="text-orgf093237">
+<div id="outline-container-org6a97575" class="outline-4">
+<h4 id="org6a97575">17.4.2 其他随机数分布</h4>
+<div class="outline-text-4" id="text-org6a97575">
 </div>
-<div id="outline-container-orgd10bf6c" class="outline-5">
-<h5 id="orgd10bf6c">生成随机实数</h5>
-<div class="outline-text-5" id="text-orgd10bf6c">
+<div id="outline-container-org09876d3" class="outline-5">
+<h5 id="org09876d3">生成随机实数</h5>
+<div class="outline-text-5" id="text-org09876d3">
 <p>
 程序常需要一个随机浮点数的源。特别是，程序经常需要 0 到 1 之间的随机数。
 </p>
@@ -1991,9 +1991,9 @@ WARNING：
 </table>
 </div>
 </div>
-<div id="outline-container-org759ccc9" class="outline-5">
-<h5 id="org759ccc9">bernoulli_distribution 类</h5>
-<div class="outline-text-5" id="text-org759ccc9">
+<div id="outline-container-org824ec65" class="outline-5">
+<h5 id="org824ec65">bernoulli_distribution 类</h5>
+<div class="outline-text-5" id="text-org824ec65">
 <blockquote>
 <p>
 WARNING：
@@ -2007,16 +2007,16 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-org22cfa26" class="outline-3">
-<h3 id="org22cfa26">17.5 IO 库再探</h3>
-<div class="outline-text-3" id="text-org22cfa26">
+<div id="outline-container-orge662cb2" class="outline-3">
+<h3 id="orge662cb2">17.5 IO 库再探</h3>
+<div class="outline-text-3" id="text-orge662cb2">
 <p>
 在第 8 章中我们介绍了 IO 库的基本结构及其最常用的部分。在本节中，我们将介绍三个更特殊的 IO 库特性：格式控制、未格式化 IO 和随机访问。
 </p>
 </div>
-<div id="outline-container-org051f6e4" class="outline-4">
-<h4 id="org051f6e4">17.5.1 格式化输入与输出</h4>
-<div class="outline-text-4" id="text-org051f6e4">
+<div id="outline-container-orga5efd9a" class="outline-4">
+<h4 id="orga5efd9a">17.5.1 格式化输入与输出</h4>
+<div class="outline-text-4" id="text-orga5efd9a">
 <p>
 除了条件状态外（参见 8.1.2 节），每个 iostream 对象还维护一个格式状态来控制 IO 如何格式化的细节。格式状态控制格式化的某些方面，如整型是几进制、浮点值的精度、一个输出元素的宽断等。
 </p>
@@ -2029,9 +2029,9 @@ WARNING：
 我们已经在程序使用过一个操纵符——endl，我们将它“写”到输出流，就像它是一个值一样。但 endl 不是一个普通值，而是一个操作：它输出一个换行符并刷新缓冲区。
 </p>
 </div>
-<div id="outline-container-org4ba3e93" class="outline-5">
-<h5 id="org4ba3e93">很多操纵符改变格式状态</h5>
-<div class="outline-text-5" id="text-org4ba3e93">
+<div id="outline-container-org544ebc6" class="outline-5">
+<h5 id="org544ebc6">很多操纵符改变格式状态</h5>
+<div class="outline-text-5" id="text-org544ebc6">
 <p>
 草丛服用于两大类输出控制：控制数值的输出形式以及控制补白的数量和位置。大多数改变格式状态的操纵符都是设置/复原成对的；一个操纵符用来将格式状态设置成新值，而另一个用来将其复原，恢复为正常的默认格式。
 </p>
@@ -2055,9 +2055,9 @@ WARNING：
 </p>
 </div>
 </div>
-<div id="outline-container-orgc57bb9c" class="outline-5">
-<h5 id="orgc57bb9c">指定整型值的进制</h5>
-<div class="outline-text-5" id="text-orgc57bb9c">
+<div id="outline-container-org97934f3" class="outline-5">
+<h5 id="org97934f3">指定整型值的进制</h5>
+<div class="outline-text-5" id="text-org97934f3">
 <blockquote>
 <p>
 Note：
@@ -2220,9 +2220,9 @@ Note：
 </table>
 </div>
 </div>
-<div id="outline-container-org4f1cec4" class="outline-5">
-<h5 id="org4f1cec4">指定浮点数记数法</h5>
-<div class="outline-text-5" id="text-org4f1cec4">
+<div id="outline-container-orgf18d9be" class="outline-5">
+<h5 id="orgf18d9be">指定浮点数记数法</h5>
+<div class="outline-text-5" id="text-orgf18d9be">
 <blockquote>
 <p>
 Best Practies：
@@ -2234,9 +2234,9 @@ Best Practies：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org171eb00" class="outline-5">
-<h5 id="org171eb00">输出补白</h5>
-<div class="outline-text-5" id="text-org171eb00">
+<div id="outline-container-orgf449f08" class="outline-5">
+<h5 id="orgf449f08">输出补白</h5>
+<div class="outline-text-5" id="text-orgf449f08">
 <p>
 当按列打印数据时，我们常常需要非常精细地控制数据格式。标准库提供了一些操纵符帮助我们完成所需的控制：
 </p>
@@ -2291,9 +2291,9 @@ setw 类似 endl，不改变输出流的内部状态。它只决定了下一个�
 </div>
 </div>
 </div>
-<div id="outline-container-orgf4a2de1" class="outline-4">
-<h4 id="orgf4a2de1">17.5.2 未格式化的输入/输出操作</h4>
-<div class="outline-text-4" id="text-orgf4a2de1">
+<div id="outline-container-org559d636" class="outline-4">
+<h4 id="org559d636">17.5.2 未格式化的输入/输出操作</h4>
+<div class="outline-text-4" id="text-org559d636">
 <p>
 到目前为止，我们的程序只使用过 <b>格式化 IO</b> 操作。输入和输出运算符（ <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> ）根据读取或写入的数据类型来格式化它们。输入运算符忽略空白符，输出运算符应用补白、精度等规则。
 </p>
@@ -2302,9 +2302,9 @@ setw 类似 endl，不改变输出流的内部状态。它只决定了下一个�
 标准库还提供了一组低层操作，支持 <b>未格式化 IO</b> 。这些操作允许我们将一个流当当作一个无解释的字节序列来处理。
 </p>
 </div>
-<div id="outline-container-org5523111" class="outline-5">
-<h5 id="org5523111">单字节操作</h5>
-<div class="outline-text-5" id="text-org5523111">
+<div id="outline-container-orgbc038d4" class="outline-5">
+<h5 id="orgbc038d4">单字节操作</h5>
+<div class="outline-text-5" id="text-orgbc038d4">
 <p>
 有几个未格式化操作每次一个字节地处理流。这些操作列在下表中，它们会读取而不是忽略空白符。
 </p>
@@ -2351,9 +2351,9 @@ setw 类似 endl，不改变输出流的内部状态。它只决定了下一个�
 </table>
 </div>
 </div>
-<div id="outline-container-orgbeef41c" class="outline-5">
-<h5 id="orgbeef41c">将字符放回输入流</h5>
-<div class="outline-text-5" id="text-orgbeef41c">
+<div id="outline-container-orge047d25" class="outline-5">
+<h5 id="orge047d25">将字符放回输入流</h5>
+<div class="outline-text-5" id="text-orge047d25">
 <p>
 有时我们需要读取一个字符才能知道还未准备好处理它。在这种情况下，我们希望将字符放回流中。标准库提供了三种方法退会字符，它们有着细微的差别：
 </p>
@@ -2368,9 +2368,9 @@ setw 类似 endl，不改变输出流的内部状态。它只决定了下一个�
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa950e4" class="outline-5">
-<h5 id="orgfa950e4">从输入操作返回的 int 值</h5>
-<div class="outline-text-5" id="text-orgfa950e4">
+<div id="outline-container-orga69b58e" class="outline-5">
+<h5 id="orga69b58e">从输入操作返回的 int 值</h5>
+<div class="outline-text-5" id="text-orga69b58e">
 <p>
 函数 peek 和无参的 get 版本都以 int 类型从输入流返回一个字符。这有些令人吃惊，可能这些函数返回一个 char 看起来会更自然。
 </p>
@@ -2384,9 +2384,9 @@ setw 类似 endl，不改变输出流的内部状态。它只决定了下一个�
 </p>
 </div>
 </div>
-<div id="outline-container-org757e164" class="outline-5">
-<h5 id="org757e164">多字节操作</h5>
-<div class="outline-text-5" id="text-org757e164">
+<div id="outline-container-org1818289" class="outline-5">
+<h5 id="org1818289">多字节操作</h5>
+<div class="outline-text-5" id="text-org1818289">
 <p>
 一些未格式化 IO 操作一次处理大块数据。如果速度是要考虑的重点问题的话，这些操作是很重要的，但类似其他低层操作，这些操作也容易出错。特别是，这些操作要求我们自己分配并管理用来保存和提取数据的字符数组。下表列出了多字节操作。
 </p>
@@ -2461,18 +2461,18 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgf57f351" class="outline-5">
-<h5 id="orgf57f351">确定读取了多少个字符</h5>
-<div class="outline-text-5" id="text-orgf57f351">
+<div id="outline-container-org95aa527" class="outline-5">
+<h5 id="org95aa527">确定读取了多少个字符</h5>
+<div class="outline-text-5" id="text-org95aa527">
 <p>
 某些操作从输入读取未知个数的字节。我们可以调用 gcount 来确定最后一个未格式化输入操作读取了多少个字符。应该在任何后续未格式化输入操作之前调用 gcount。特别是，将字符退回流的单字符操作也属于位格式化输入操作。如果在调用 gcount 之前调用了 peek、unget 或 puback，则 gcount 的返回值为 0。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org73edac9" class="outline-4">
-<h4 id="org73edac9">17.5.3 流随机访问</h4>
-<div class="outline-text-4" id="text-org73edac9">
+<div id="outline-container-org262dd52" class="outline-4">
+<h4 id="org262dd52">17.5.3 流随机访问</h4>
+<div class="outline-text-4" id="text-org262dd52">
 <p>
 虽然标准库为所有流类型都定义了 seek 和 tell 函数，单它们是否会做有意义的事情依赖于流绑定到哪个设备。在大多数系统中，绑定到 cin、cout、cerr 和 clog 的流不支持随机访问——毕竟，当我们向 cout 直接输出数据时，类似向回跳十个尾值这种操作是没有意义的。对这些流我们可以调用 seek 和 tell 函数，单在运行时会出错，将流置于一个无效状态。
 </p>
@@ -2487,9 +2487,9 @@ WARNING：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org1eed75f" class="outline-5">
-<h5 id="org1eed75f">seek 和 tell 函数</h5>
-<div class="outline-text-5" id="text-org1eed75f">
+<div id="outline-container-org2a5af93" class="outline-5">
+<h5 id="org2a5af93">seek 和 tell 函数</h5>
+<div class="outline-text-5" id="text-org2a5af93">
 <p>
 为了支持随机访问，IO 类型维护一个标记来确定下一个读写操作要在哪里进行。它们还提供了两个函数：一个函数通过将标记 seek 到一个给定位置来重新定位它；另一个函数 tell 我们标记的当前位置。标准库实际上定义了两对 seek 和 tell 函数，如下表所示。一对用于输入流，另一对用于输出流。输入和输出版本的差别在于名字的后缀是 g 还是 p。g 版本表示我们正在“获取”（读取）数据，而 p 版本表示我们正在“放置”（写入）数据。
 </p>
@@ -2546,9 +2546,9 @@ WARNING：
 </table>
 </div>
 </div>
-<div id="outline-container-orgba843d8" class="outline-5">
-<h5 id="orgba843d8">只有一个标记</h5>
-<div class="outline-text-5" id="text-orgba843d8">
+<div id="outline-container-org8f09a66" class="outline-5">
+<h5 id="org8f09a66">只有一个标记</h5>
+<div class="outline-text-5" id="text-org8f09a66">
 <p>
 标准库区分 seek 和 tell 函数的“放置”和“获得”版本这一特性可能会导致误解，即使标准库进行了区分，但它在一个流中只维护单一的标记——并不存在独立的读标记和写标记。
 </p>
@@ -2567,9 +2567,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-org51ca6f9" class="outline-2">
-<h2 id="org51ca6f9">第 18 章 用于大型程序的工具</h2>
-<div class="outline-text-2" id="text-org51ca6f9">
+<div id="outline-container-orgdbe1dd7" class="outline-2">
+<h2 id="orgdbe1dd7">第 18 章 用于大型程序的工具</h2>
+<div class="outline-text-2" id="text-orgdbe1dd7">
 <p>
 与仅需几个程序员就能开发完成的系统相比，大规模编程对程序设计语言的要求更高。大规模应用程序的特殊要求包括：
 </p>
@@ -2583,16 +2583,16 @@ Note：
 本章介绍的三种 C++语言特性正好满足上述要求，它们是：异常处理、命名空间和多重继承。
 </p>
 </div>
-<div id="outline-container-org38cd4fb" class="outline-3">
-<h3 id="org38cd4fb">18.1 异常处理</h3>
-<div class="outline-text-3" id="text-org38cd4fb">
+<div id="outline-container-org9cc074e" class="outline-3">
+<h3 id="org9cc074e">18.1 异常处理</h3>
+<div class="outline-text-3" id="text-org9cc074e">
 <p>
 <b>异常处理</b> 机制允许程序中独立开发的部分能够在运行时就出现的问题进行通信并做出相应的处理。异常时的我们能够将问题的检测与解决过程分离开来。程序的一部分负责检测问题的出现，然后解决该问题的任务传递给程序的另一部分。检测环节无序知道问题处理模板的所以细节，反之亦然。
 </p>
 </div>
-<div id="outline-container-org63f9788" class="outline-4">
-<h4 id="org63f9788">18.1.1 抛出异常</h4>
-<div class="outline-text-4" id="text-org63f9788">
+<div id="outline-container-orgb879785" class="outline-4">
+<h4 id="orgb879785">18.1.1 抛出异常</h4>
+<div class="outline-text-4" id="text-orgb879785">
 <p>
 在 C++语言中，我们通过 <b>抛出</b> 一条表达式来 <b>引发</b> 一个异常。被抛出的表达式的类型以及当前的调用链共同决定了哪段 <b>处理代码</b> 将被用来处理该异常。被选中的处理代码是在调用链中 与抛出对象类型匹配的最近的处理代码。其中，根据抛出对象的类型和内容，程序的异常抛出部分将会告知异常处理部分到底发生了什么错误。
 </p>
@@ -2609,9 +2609,9 @@ Note：
 因为跟在 throw 后面的语句将不再被执行，所以 throw 语句的用法有点类型于 return 语句：它通常作为条件语句的一部分或者作为某个函数的最后（或者唯一）一条语句。
 </p>
 </div>
-<div id="outline-container-org06638d0" class="outline-5">
-<h5 id="org06638d0">栈展开</h5>
-<div class="outline-text-5" id="text-org06638d0">
+<div id="outline-container-org127ca03" class="outline-5">
+<h5 id="org127ca03">栈展开</h5>
+<div class="outline-text-5" id="text-org127ca03">
 <p>
 当抛出一个异常后，程序暂停当前函数的执行过程并立即开始寻找与异常匹配的 catch 子句。当 throw 出现在一个 <b>try 语句块</b> 内时，检查与该 try 块关联的 catch 子句。如果找到了匹配的 catch，就使用该 catch 处理异常。如果这一步没找到匹配的 catch 且该 try 语句嵌套在其他 try 块中，则继续检查与外层 try 匹配的 catch 语句。如果还是找不到匹配的 catch，则退出当前的函数，在调用当前函数的外层函数中继续寻找。
 </p>
@@ -2639,9 +2639,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org96dd706" class="outline-5">
-<h5 id="org96dd706">栈展开过程中对象被自动销毁</h5>
-<div class="outline-text-5" id="text-org96dd706">
+<div id="outline-container-org3e7991b" class="outline-5">
+<h5 id="org3e7991b">栈展开过程中对象被自动销毁</h5>
+<div class="outline-text-5" id="text-org3e7991b">
 <p>
 在栈展开过程中，位于调用链上的语句块可能会提前退出。通常情况下， 程序在这些块中创建了一些局部对象。我们已经知道，块退出后它的局部对象也随之销毁，这条规则对于栈展开过程同样适用。如果在栈展开过程中退出了某个块，编译器将负责确保在这个块中创建的对象能被正确地销毁。如果某个局部对象的类型是类类型，则该对象的析构函数函数被自动调用。与往常一样，编译器在销毁内置类型时不需要做任何事情。
 </p>
@@ -2655,9 +2655,9 @@ Note：
 </p>
 </div>
 </div>
-<div id="outline-container-org1426700" class="outline-5">
-<h5 id="org1426700">析构函数与异常</h5>
-<div class="outline-text-5" id="text-org1426700">
+<div id="outline-container-org1e41187" class="outline-5">
+<h5 id="org1e41187">析构函数与异常</h5>
+<div class="outline-text-5" id="text-org1e41187">
 <p>
 析构函数总是会被执行的，但是函数中负责释放资源的代码却可能被跳过，这一特点对于我们如何组织程序结构有重要影响。如我们在 12.1.4 节介绍过的，如果一个块分配资源，并且在负责释放这些资源的代码前面发生了异常，则释放资源的代码将不会被执行。另一方面，类对象分配的资源将由类的析构函数负责释放。因此，如果我们适用类来控制资源的分配，就能确保无论函数正常结束还是遭遇异常，资源都能被正确地释放。
 </p>
@@ -2681,9 +2681,9 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org86ae31d" class="outline-5">
-<h5 id="org86ae31d">异常对象</h5>
-<div class="outline-text-5" id="text-org86ae31d">
+<div id="outline-container-org38bbdf1" class="outline-5">
+<h5 id="org38bbdf1">异常对象</h5>
+<div class="outline-text-5" id="text-org38bbdf1">
 <p>
 <b>异常对象</b> 是一种特殊的对象，编译器使用异常抛出表达式来对异常对象进行拷贝初始化。因此，throw 语句中的表达式必须拥有完全类型（参见 7.3.3 节）。而且如果该表达式是类类型的话，则相应的类必须含有一个可访问的析构函数和一个可访问的拷贝或移动构造函数。如果该表达式是数组类型或函数类型，则表达式将被转换成与之对象的指针类型。
 </p>
@@ -2712,9 +2712,9 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-org8eaeddb" class="outline-4">
-<h4 id="org8eaeddb">18.1.2 捕获异常</h4>
-<div class="outline-text-4" id="text-org8eaeddb">
+<div id="outline-container-orgd51b263" class="outline-4">
+<h4 id="orgd51b263">18.1.2 捕获异常</h4>
+<div class="outline-text-4" id="text-orgd51b263">
 <p>
 <b>catch 子句</b> 中的 <b>异常声明</b> 看起来像是只包含一个形参的函数形参列表。像在形参列表中，如果 catch 无须访问抛出的表达式的话，则我们可以忽略捕获形参的名字。
 </p>
@@ -2745,9 +2745,9 @@ Best Practies：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3bafce3" class="outline-5">
-<h5 id="org3bafce3">查找匹配的处理代码</h5>
-<div class="outline-text-5" id="text-org3bafce3">
+<div id="outline-container-orgac0831d" class="outline-5">
+<h5 id="orgac0831d">查找匹配的处理代码</h5>
+<div class="outline-text-5" id="text-orgac0831d">
 <p>
 在搜寻 catch 语句的过程中，我们最终找到的 catch 未毕是异常的最佳匹配。相反，挑选出来的应该是第一个与异常匹配的 catch 语句。因此，越是专门的 catch 越应该置于整个 catch 列表的前端。
 </p>
@@ -2780,9 +2780,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgd803b8b" class="outline-5">
-<h5 id="orgd803b8b">重新抛出</h5>
-<div class="outline-text-5" id="text-orgd803b8b">
+<div id="outline-container-org9bb0dca" class="outline-5">
+<h5 id="org9bb0dca">重新抛出</h5>
+<div class="outline-text-5" id="text-org9bb0dca">
 <p>
 有时，一个断读的 catch 语句不能完整地处理某个异常。在执行了某些校正操作之后，当前的 catch 可能会决定由调用链更上一层的函数接着处理异常。一条 catch 语句通过 <b>重新抛出</b> 的操作将异常传递给另外一个 catch 语句。这里的重新抛出仍然是一条 throw 语句，只不过不包含任何表达式：
 </p>
@@ -2804,9 +2804,9 @@ Note：
 </p>
 </div>
 </div>
-<div id="outline-container-orgf6358da" class="outline-5">
-<h5 id="orgf6358da">捕获所有异常的处理代码</h5>
-<div class="outline-text-5" id="text-orgf6358da">
+<div id="outline-container-org9491107" class="outline-5">
+<h5 id="org9491107">捕获所有异常的处理代码</h5>
+<div class="outline-text-5" id="text-org9491107">
 <p>
 有时我们希望不论抛出的异常时什么类型，程序都能统一捕获它们。要想捕获所有可能的异常时比较有难度的，毕竟有些情况下我们也不知道异常的类型到底是什么。即使我们知道所有的异常类型，也很难为所有类型提供唯一一个 catch 语句。为了一次性捕获所有异常，我们使用省略号作为异常声明，这样的处理代码称为 <b>捕获所有异常</b> 的代码，行如 catch(&#x2026;)。一条捕获所有异常的语句可以与任意类型的异常匹配。
 </p>
@@ -2831,9 +2831,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-orgab36254" class="outline-4">
-<h4 id="orgab36254">18.1.3 函数 try 语句块和构造函数</h4>
-<div class="outline-text-4" id="text-orgab36254">
+<div id="outline-container-org1512981" class="outline-4">
+<h4 id="org1512981">18.1.3 函数 try 语句块和构造函数</h4>
+<div class="outline-text-4" id="text-org1512981">
 <p>
 通常情况下，程序执行的任何时刻都可能发生异常，特别时异常可能发生在处理构造函数初始值的过程中。构造函数在进入其函数体之前首先执行初始值列表。因为在初始值列表抛出异常时构造函数体内的 try 语句块还未生效，所以构造函数体内的 catch 语句无法处构造函数初始值列表抛出的异常。
 </p>
@@ -2870,9 +2870,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org53e7814" class="outline-4">
-<h4 id="org53e7814">18.1.4 noexcept 异常说明</h4>
-<div class="outline-text-4" id="text-org53e7814">
+<div id="outline-container-org8524cc0" class="outline-4">
+<h4 id="org8524cc0">18.1.4 noexcept 异常说明</h4>
+<div class="outline-text-4" id="text-org8524cc0">
 <p>
 对于用户及编译器来说，预先知道某个函数不会抛出异常显然大有裨益。首先，知道函数不会抛出异常有助于简化调用该函数的代码；其次，如果编译器确认函数不会抛出异常，它就能执行某些特殊的优化操作，而这些优化操作并不适用于可能出错的代码。
 </p>
@@ -2891,9 +2891,9 @@ Note：
 对于一个函数来说，noexcept 说明要么出现在该函数的所有声明语句和定义语句中，要么一次也不出现。该说明应该在函数的尾置返回类型（参见 6.3.3 节）之前。我们也可以在函数指针的声明和定义中指定 noexcept。在 typedef 或类型别名中则不能出现 noexcept。在成员函数中，noexcept 说明符需要跟在 const 及引用限定符之后，而在 final、override 或虚函数的=0 之前。
 </p>
 </div>
-<div id="outline-container-org8a771b7" class="outline-5">
-<h5 id="org8a771b7">违反异常说明</h5>
-<div class="outline-text-5" id="text-org8a771b7">
+<div id="outline-container-orgc339f1d" class="outline-5">
+<h5 id="orgc339f1d">违反异常说明</h5>
+<div class="outline-text-5" id="text-orgc339f1d">
 <p>
 读者需要清楚的一个事实是编译器并不会在编译时检查 noexcept 说明。实际上，如果一个函数在说明了 noexcept 的同时又含有 throw 语句或者调用了可能抛出异常的其他函数，编译器将瞬息编译通过，并不会因为这种违反异常说明的情况而报错（不排除个别编译器会对这种用法提出警告）。
 </p>
@@ -2917,9 +2917,9 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org5937331" class="outline-5">
-<h5 id="org5937331">异常说明的实参</h5>
-<div class="outline-text-5" id="text-org5937331">
+<div id="outline-container-org807fb86" class="outline-5">
+<h5 id="org807fb86">异常说明的实参</h5>
+<div class="outline-text-5" id="text-org807fb86">
 <p>
 noexcept 说明符接受一个可选的实参，该实参必须能转换为 bool 类型；如果实参是 true，则函数不会抛出异常；如果实参是 false，则函数可能抛出异常：
 </p>
@@ -2931,9 +2931,9 @@ noexcept 说明符接受一个可选的实参，该实参必须能转换为 bool
 </div>
 </div>
 </div>
-<div id="outline-container-org69d30a2" class="outline-5">
-<h5 id="org69d30a2">noexcept 运算符</h5>
-<div class="outline-text-5" id="text-org69d30a2">
+<div id="outline-container-org1d11789" class="outline-5">
+<h5 id="org1d11789">noexcept 运算符</h5>
+<div class="outline-text-5" id="text-org1d11789">
 <p>
 noexcept 说符命的实参常常与 <b>noexcept 运算符</b> 混合使用。noexcept 运算符是一个一元运算符，它的返回值是一个 bool 类型的右值常量表达式，用于表示给定的表达式是否会抛出异常。和 sizeof 类型，noexcept 也不会求其运算对象的值。
 </p>
@@ -2969,9 +2969,9 @@ noexcept 有两层含义：当跟在函数参数列表后面时它是异常说�
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org5b21a0d" class="outline-5">
-<h5 id="org5b21a0d">异常说明与指针、虚函数和拷贝控制</h5>
-<div class="outline-text-5" id="text-org5b21a0d">
+<div id="outline-container-orge5c9772" class="outline-5">
+<h5 id="orge5c9772">异常说明与指针、虚函数和拷贝控制</h5>
+<div class="outline-text-5" id="text-orge5c9772">
 <p>
 尽管 noexcept 说明符不属于函数类型的一部分，但是函数的异常说明仍然会影响函数的使用。
 </p>
@@ -3001,9 +3001,9 @@ pf2 = alloc;   <span style="color: #5B6268;">// </span><span style="color: #5B62
 </div>
 </div>
 </div>
-<div id="outline-container-org5100551" class="outline-4">
-<h4 id="org5100551">18.1.5 异常类层次</h4>
-<div class="outline-text-4" id="text-org5100551">
+<div id="outline-container-orga71046f" class="outline-4">
+<h4 id="orga71046f">18.1.5 异常类层次</h4>
+<div class="outline-text-4" id="text-orga71046f">
 <p>
 标准库异常类（参见 5.6.3 节）构成了图的继承体系。
 </p>
@@ -3025,9 +3025,9 @@ pf2 = alloc;   <span style="color: #5B6268;">// </span><span style="color: #5B62
 </div>
 </div>
 </div>
-<div id="outline-container-org29b44c9" class="outline-3">
-<h3 id="org29b44c9">18.2 命名空间</h3>
-<div class="outline-text-3" id="text-org29b44c9">
+<div id="outline-container-org8003ad3" class="outline-3">
+<h3 id="org8003ad3">18.2 命名空间</h3>
+<div class="outline-text-3" id="text-org8003ad3">
 <p>
 大型程序往往会使用多个独立开发的库，这些库又会定义大量的全局名字，如类、函数和模板等。当应用程序用到多个供应商提供的库时，不可避免地会发生某些名字相互冲突地情况。多个库将名字放置在全局命名空间将引发 <b>命名空间污染</b> 。
 </p>
@@ -3036,9 +3036,9 @@ pf2 = alloc;   <span style="color: #5B6268;">// </span><span style="color: #5B62
 <b>命名空间</b> 为防止名字冲突提供了更加可控地机制。命名空间分割了全局命名空间，其中每个命名空间是一个作用域。通过在某搞个命名空间中定义库地名字，库的作者（以及用户）可以避免全局名字固有地限制。
 </p>
 </div>
-<div id="outline-container-org437b94b" class="outline-4">
-<h4 id="org437b94b">18.2.1 命名空间定义</h4>
-<div class="outline-text-4" id="text-org437b94b">
+<div id="outline-container-org04fc7aa" class="outline-4">
+<h4 id="org04fc7aa">18.2.1 命名空间定义</h4>
+<div class="outline-text-4" id="text-org04fc7aa">
 <p>
 一个命名空间地定义包含两部分：首先是关键字 namespace，随后是命名空间名字。在命名空间名字后面是一系列由花括号括起来的声明和定义。只要能出现在全局作用域中地声明就能置于命名空间内，主要包括：类、变量（及其初始化操作）、函数（及其定义）、模板和其他命名空间。
 </p>
@@ -3057,9 +3057,9 @@ Note：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org3ef73f0" class="outline-5">
-<h5 id="org3ef73f0">每个命名空间都是一个作用域</h5>
-<div class="outline-text-5" id="text-org3ef73f0">
+<div id="outline-container-org7b616db" class="outline-5">
+<h5 id="org7b616db">每个命名空间都是一个作用域</h5>
+<div class="outline-text-5" id="text-org7b616db">
 <p>
 和其他作用域类似，命名空间中的每个名字都必须表示该空间内的唯一实体。因为不同命名空间的作用域不同，所以在不同命名空间内可以有相同名字的成员。
 </p>
@@ -3069,9 +3069,9 @@ Note：
 </p>
 </div>
 </div>
-<div id="outline-container-orgf78c114" class="outline-5">
-<h5 id="orgf78c114">命名空间可以不是连续的</h5>
-<div class="outline-text-5" id="text-orgf78c114">
+<div id="outline-container-org00d5359" class="outline-5">
+<h5 id="org00d5359">命名空间可以不是连续的</h5>
+<div class="outline-text-5" id="text-org00d5359">
 <p>
 如我们在 16.5 节介绍过的，命名空间可以定义在几个不同的部分，这一点与其他作用域不太一样。编写如下的命名空间定义：
 </p>
@@ -3110,9 +3110,9 @@ Best Practies：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org3af5e36" class="outline-5">
-<h5 id="org3af5e36">定义命名空间成员</h5>
-<div class="outline-text-5" id="text-org3af5e36">
+<div id="outline-container-orgd47d623" class="outline-5">
+<h5 id="orgd47d623">定义命名空间成员</h5>
+<div class="outline-text-5" id="text-orgd47d623">
 <div class="org-src-container">
 <pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">"Sales_data.h"</span>
 <span style="color: #51afef;">namespace</span> <span style="color: #a9a1e1;">cplusplus_primer</span> {  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#37325;&#26032;&#25171;&#24320;&#21629;&#21517;&#31354;&#38388;cplusplus_primer</span>
@@ -3145,9 +3145,9 @@ Best Practies：
 </p>
 </div>
 </div>
-<div id="outline-container-orgc084187" class="outline-5">
-<h5 id="orgc084187">模板特例化</h5>
-<div class="outline-text-5" id="text-orgc084187">
+<div id="outline-container-orgc8569fd" class="outline-5">
+<h5 id="orgc8569fd">模板特例化</h5>
+<div class="outline-text-5" id="text-orgc8569fd">
 <p>
 模板特例化必须定义在原始模板所属的命名空间中（参见 16.5 节）。和其他其命名空间名字类似，只要我们在命名空间中声明了特例化，就能在命名空间外部定义它了：
 </p>
@@ -3171,9 +3171,9 @@ Best Practies：
 </div>
 </div>
 </div>
-<div id="outline-container-orgd07dd2f" class="outline-5">
-<h5 id="orgd07dd2f">全局命名空间</h5>
-<div class="outline-text-5" id="text-orgd07dd2f">
+<div id="outline-container-org0301c07" class="outline-5">
+<h5 id="org0301c07">全局命名空间</h5>
+<div class="outline-text-5" id="text-org0301c07">
 <p>
 全局作用域中定义的名字（即在所有类、函数及命名空间之外定义的名字）也就是定义在 <b>全局命名空间</b> 中。全局命名空间以隐式的方式声明，并且在所有程序中都存在。全局作用域中定义的名字被隐式地添加到全局命名空间中。
 </p>
@@ -3191,9 +3191,9 @@ Best Practies：
 </p>
 </div>
 </div>
-<div id="outline-container-org08169c7" class="outline-5">
-<h5 id="org08169c7">内联命名空间</h5>
-<div class="outline-text-5" id="text-org08169c7">
+<div id="outline-container-org443fbd0" class="outline-5">
+<h5 id="org443fbd0">内联命名空间</h5>
+<div class="outline-text-5" id="text-org443fbd0">
 <p>
 C++11 新标准引入了一种新的嵌套命名空间，称为 <b>内联命名空间</b> 和普通的嵌套命名空间不同。内联命名空间中的名字可以被外层命名空间直接使用。
 </p>
@@ -3236,9 +3236,9 @@ C++11 新标准引入了一种新的嵌套命名空间，称为 <b>内联命名�
 </p>
 </div>
 </div>
-<div id="outline-container-org0ccc240" class="outline-5">
-<h5 id="org0ccc240">未命名的命名空间</h5>
-<div class="outline-text-5" id="text-org0ccc240">
+<div id="outline-container-orga6c743a" class="outline-5">
+<h5 id="orga6c743a">未命名的命名空间</h5>
+<div class="outline-text-5" id="text-orga6c743a">
 <p>
 <b>未命名的命名空间</b> 是指关键字 namespace 后紧跟花括号括起来的一些列 g 神明语句。未命名的命名空间中定义的变量拥有静态声明周期：它们在第一次使用前创建，并且直到程序结束才销毁。
 </p>
@@ -3312,13 +3312,13 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-orgd73e8f8" class="outline-4">
-<h4 id="orgd73e8f8">18.2.2 使用命名空间成员</h4>
-<div class="outline-text-4" id="text-orgd73e8f8">
+<div id="outline-container-orgf19440b" class="outline-4">
+<h4 id="orgf19440b">18.2.2 使用命名空间成员</h4>
+<div class="outline-text-4" id="text-orgf19440b">
 </div>
-<div id="outline-container-orgbcd34ee" class="outline-5">
-<h5 id="orgbcd34ee">命名空间的别名</h5>
-<div class="outline-text-5" id="text-orgbcd34ee">
+<div id="outline-container-org4c5e35a" class="outline-5">
+<h5 id="org4c5e35a">命名空间的别名</h5>
+<div class="outline-text-5" id="text-org4c5e35a">
 <p>
 <b>命名空间的别名</b> 使得我们可以为命名空间的名字设定一个短得多的同义词。例如，一个很多的命名空间的名字形如
 </p>
@@ -3360,9 +3360,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgfc96461" class="outline-5">
-<h5 id="orgfc96461">using 声明：扼要概述</h5>
-<div class="outline-text-5" id="text-orgfc96461">
+<div id="outline-container-org441905d" class="outline-5">
+<h5 id="org441905d">using 声明：扼要概述</h5>
+<div class="outline-text-5" id="text-org441905d">
 <p>
 一条 <b>using 声明</b> 语句一次只引入命名空间的一个成员。它使得我们可以清楚地直到程序中所用的到底是哪个名字。
 </p>
@@ -3376,9 +3376,9 @@ using 声明引入的名字遵守与过去一样的作用域规则：它的有�
 </p>
 </div>
 </div>
-<div id="outline-container-org2d853b3" class="outline-5">
-<h5 id="org2d853b3">using 指示</h5>
-<div class="outline-text-5" id="text-org2d853b3">
+<div id="outline-container-org12f39be" class="outline-5">
+<h5 id="org12f39be">using 指示</h5>
+<div class="outline-text-5" id="text-org12f39be">
 <p>
 <b>using 指示</b> 和 using 声明类似的地方是，我们可以使用命名空间名字的简写形式：和 using 声明不同的地方是，我们无法控制哪些名字是可见的，因为所有名字都是可见的。
 </p>
@@ -3392,9 +3392,9 @@ using 指示使得某个特定的命名空间中所有的名字都可见，这�
 </p>
 </div>
 </div>
-<div id="outline-container-org17cd172" class="outline-5">
-<h5 id="org17cd172">头文件与 using 声明或指示</h5>
-<div class="outline-text-5" id="text-org17cd172">
+<div id="outline-container-orgdfc869a" class="outline-5">
+<h5 id="orgdfc869a">头文件与 using 声明或指示</h5>
+<div class="outline-text-5" id="text-orgdfc869a">
 <p>
 头文件如果在其顶层作用域中含有 using 指示或 using 声明，则会将名字注入到所有包含了该头文件的文件中。通常情况下，头文件应该只负责定义接口部分的名字，而不定义实现部分的名字。因此，头文件最多只能在它的函数或命名空间内使用 using 指示或 using 声明（参见 3.1 节）。
 </p>
@@ -3411,13 +3411,13 @@ using 指示也并非一无是处，例如在命名空间本身的实现文件�
 </div>
 </div>
 </div>
-<div id="outline-container-org2d0da8a" class="outline-4">
-<h4 id="org2d0da8a">18.2.3 类、命名空间与作用域</h4>
-<div class="outline-text-4" id="text-org2d0da8a">
+<div id="outline-container-orgc7b05da" class="outline-4">
+<h4 id="orgc7b05da">18.2.3 类、命名空间与作用域</h4>
+<div class="outline-text-4" id="text-orgc7b05da">
 </div>
-<div id="outline-container-org11de3f6" class="outline-5">
-<h5 id="org11de3f6">实参相关的查找与类类型参数</h5>
-<div class="outline-text-5" id="text-org11de3f6">
+<div id="outline-container-org79917d2" class="outline-5">
+<h5 id="org79917d2">实参相关的查找与类类型参数</h5>
+<div class="outline-text-5" id="text-org79917d2">
 <p>
 考虑西面这个简单的程序：
 </p>
@@ -3453,9 +3453,9 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </p>
 </div>
 </div>
-<div id="outline-container-org7c21fb4" class="outline-5">
-<h5 id="org7c21fb4">友元声明与实参相关的查找</h5>
-<div class="outline-text-5" id="text-org7c21fb4">
+<div id="outline-container-org15c1d7b" class="outline-5">
+<h5 id="org15c1d7b">友元声明与实参相关的查找</h5>
+<div class="outline-text-5" id="text-org15c1d7b">
 <p>
 回顾我们曾经讨论过的，当类声明了一个友元时，该有友元声明并没有使得友元本身可见（参见 7.2.1 节）。然而，一个另外的未声明的类或函数如果第一次出现在友元声明中，则我们认为它是最近的外层命名空间的成员。这条规则与实参相关的查找规则结合在一起将产生意想不到的效果：
 </p>
@@ -3490,13 +3490,13 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </div>
 </div>
 </div>
-<div id="outline-container-org223924a" class="outline-4">
-<h4 id="org223924a">18.2.4 重载与命名空间</h4>
-<div class="outline-text-4" id="text-org223924a">
+<div id="outline-container-org04a9196" class="outline-4">
+<h4 id="org04a9196">18.2.4 重载与命名空间</h4>
+<div class="outline-text-4" id="text-org04a9196">
 </div>
-<div id="outline-container-orgd7abe0e" class="outline-5">
-<h5 id="orgd7abe0e">与实参相关的查找与重载</h5>
-<div class="outline-text-5" id="text-orgd7abe0e">
+<div id="outline-container-orgb184047" class="outline-5">
+<h5 id="orgb184047">与实参相关的查找与重载</h5>
+<div class="outline-text-5" id="text-orgb184047">
 <p>
 在上一节中我们了解到，对于接受类类型实参的函数来说，其名字查找将在实参类所属的命名空间中进行。这条规则对于我们如何确定候选函数集同样也有影响。我们将在每个实参类（以及实参类的基类）所属的命名空间中搜寻候选函数。在这些命名空间中所有被与调用函数同名的函数都将被添加到候选集中，即使其中某些函数在调用语句处不可见也是如此：
 </p>
@@ -3521,9 +3521,9 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </p>
 </div>
 </div>
-<div id="outline-container-orgebfa60a" class="outline-5">
-<h5 id="orgebfa60a">重载与 using 声明</h5>
-<div class="outline-text-5" id="text-orgebfa60a">
+<div id="outline-container-org00597fa" class="outline-5">
+<h5 id="org00597fa">重载与 using 声明</h5>
+<div class="outline-text-5" id="text-org00597fa">
 <p>
 要想理解 using 声明与重载之间的交互关系，必须首先明确一条：using 声明语句声明的是一个名字，而非一个特定的函数：
 </p>
@@ -3543,17 +3543,17 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </p>
 </div>
 </div>
-<div id="outline-container-org3d711ad" class="outline-5">
-<h5 id="org3d711ad">重载与 using 指示</h5>
-<div class="outline-text-5" id="text-org3d711ad">
+<div id="outline-container-orga998913" class="outline-5">
+<h5 id="orga998913">重载与 using 指示</h5>
+<div class="outline-text-5" id="text-orga998913">
 <p>
 与 using 声明不同的时，对于 using 指示，引入一个已有函数形参列表完全相同的函数并不会产生错误。此时，只要我们指明调用的是命名空间中的函数版本还是当前作用域的版本即可。
 </p>
 </div>
 </div>
-<div id="outline-container-org6617355" class="outline-5">
-<h5 id="org6617355">跨越多个 using 指针的重载</h5>
-<div class="outline-text-5" id="text-org6617355">
+<div id="outline-container-org4c5b532" class="outline-5">
+<h5 id="org4c5b532">跨越多个 using 指针的重载</h5>
+<div class="outline-text-5" id="text-org4c5b532">
 <p>
 如果存在多个 using 指示，则来自每个命名空间的名字都会称为候选函数集的一部分。
 </p>
@@ -3561,20 +3561,20 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </div>
 </div>
 </div>
-<div id="outline-container-org7c1f867" class="outline-3">
-<h3 id="org7c1f867">18.3 多重继承与虚继承</h3>
-<div class="outline-text-3" id="text-org7c1f867">
+<div id="outline-container-orgc49242e" class="outline-3">
+<h3 id="orgc49242e">18.3 多重继承与虚继承</h3>
+<div class="outline-text-3" id="text-orgc49242e">
 <p>
 <b>多重继承</b> 是指从多个直接基类中产生派生类的能力。多重继承的派生类继承了所有父类的属性。
 </p>
 </div>
-<div id="outline-container-org95949fe" class="outline-4">
-<h4 id="org95949fe">18.3.1 多重继承</h4>
-<div class="outline-text-4" id="text-org95949fe">
+<div id="outline-container-org5eb1c0f" class="outline-4">
+<h4 id="org5eb1c0f">18.3.1 多重继承</h4>
+<div class="outline-text-4" id="text-org5eb1c0f">
 </div>
-<div id="outline-container-orgdf907ef" class="outline-5">
-<h5 id="orgdf907ef">多重继承的派生类从每个基类中继承状态</h5>
-<div class="outline-text-5" id="text-orgdf907ef">
+<div id="outline-container-org5ec663b" class="outline-5">
+<h5 id="org5ec663b">多重继承的派生类从每个基类中继承状态</h5>
+<div class="outline-text-5" id="text-org5ec663b">
 
 <div class="figure">
 <p><img src="pics/C++/panda.png" alt="panda.png">
@@ -3583,9 +3583,9 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </div>
 </div>
 </div>
-<div id="outline-container-org6f283b9" class="outline-5">
-<h5 id="org6f283b9">派生类初始化所有基类</h5>
-<div class="outline-text-5" id="text-org6f283b9">
+<div id="outline-container-org9b45c6c" class="outline-5">
+<h5 id="org9b45c6c">派生类初始化所有基类</h5>
+<div class="outline-text-5" id="text-org9b45c6c">
 <p>
 构造一个派生类的对象将同时构造并初始化它的所有基类子对象。与从一个基类进行派生一样，多重继承的派生类的构造函数初始值也只能初始化它的直接基类。
 </p>
@@ -3601,9 +3601,9 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </ul>
 </div>
 </div>
-<div id="outline-container-org8f355da" class="outline-5">
-<h5 id="org8f355da">继承的构造函数与多重继承</h5>
-<div class="outline-text-5" id="text-org8f355da">
+<div id="outline-container-org3a4489a" class="outline-5">
+<h5 id="org3a4489a">继承的构造函数与多重继承</h5>
+<div class="outline-text-5" id="text-org3a4489a">
 <p>
 在 C++11 新标准中，允许派生类从它的一个或几个基类中继承构造函数（参见 15.7.4 节）。但是如果从多个基类中继承了相同的构造函数（即形参列表完全相同（），则程序产生错误：
 </p>
@@ -3643,9 +3643,9 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </div>
 </div>
 </div>
-<div id="outline-container-orge523444" class="outline-5">
-<h5 id="orge523444">析构函数与多重继承</h5>
-<div class="outline-text-5" id="text-orge523444">
+<div id="outline-container-org8a49d6a" class="outline-5">
+<h5 id="org8a49d6a">析构函数与多重继承</h5>
+<div class="outline-text-5" id="text-org8a49d6a">
 <p>
 和往常一样，派生类的析构函数只负责清楚派生类本身分配的资源，派生类的成员及基类都是自动销毁的。合成的析构函数体为空。
 </p>
@@ -3655,18 +3655,18 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 </p>
 </div>
 </div>
-<div id="outline-container-org296f90b" class="outline-5">
-<h5 id="org296f90b">多重继承和派生类的拷贝与移动操作</h5>
-<div class="outline-text-5" id="text-org296f90b">
+<div id="outline-container-org81f3ed1" class="outline-5">
+<h5 id="org81f3ed1">多重继承和派生类的拷贝与移动操作</h5>
+<div class="outline-text-5" id="text-org81f3ed1">
 <p>
 与只有一个基类的继承一样，多重继承的派生类如果定义了自己的拷贝/赋值构造函数和赋值运算符，则必须在完整的对象上执行拷贝、移动或赋值操作（参见 15.7.2 节）。只有当派生类使用的是合成版本的拷贝、移动或赋值成员时，才会自动对其基类部分执行这些操作。在合成的拷贝控制成员中，买个基类分别使用自己的对应成员隐式地完成构造、赋值或销毁等工作。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org90d4834" class="outline-4">
-<h4 id="org90d4834">18.3.2 类型转换与多个基类</h4>
-<div class="outline-text-4" id="text-org90d4834">
+<div id="outline-container-org4de0d3e" class="outline-4">
+<h4 id="org4de0d3e">18.3.2 类型转换与多个基类</h4>
+<div class="outline-text-4" id="text-org4de0d3e">
 <p>
 在只有一个基类的情况下，派生类的指针或引用能自动转换成一个可访问基类的指针或引用。多个基类的情况与之类似。我们可以令某个可访问基类的指针或引用直接指向一个派生类对象。
 </p>
@@ -3675,18 +3675,18 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 编译器不会在派生类向基类的几种转换中进行比较和选择，因为在它看来转换到任何一种基类都一样好。
 </p>
 </div>
-<div id="outline-container-org8bf2d0a" class="outline-5">
-<h5 id="org8bf2d0a">基类指针类型或引用类型的查找</h5>
-<div class="outline-text-5" id="text-org8bf2d0a">
+<div id="outline-container-org0f3891e" class="outline-5">
+<h5 id="org0f3891e">基类指针类型或引用类型的查找</h5>
+<div class="outline-text-5" id="text-org0f3891e">
 <p>
 与只有一个基类的继承一样，对象、指针和引用的静态类型决定我们能够使用哪些成员。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7cc0d9" class="outline-4">
-<h4 id="orgb7cc0d9">18.3.3 多重继承下的类作用域</h4>
-<div class="outline-text-4" id="text-orgb7cc0d9">
+<div id="outline-container-org2b72f42" class="outline-4">
+<h4 id="org2b72f42">18.3.3 多重继承下的类作用域</h4>
+<div class="outline-text-4" id="text-org2b72f42">
 <p>
 在只有一个基类的情况下，派生类的作用域嵌套在直接基类和间接基类的作用域中（参见 15.6 节）。查找过程沿着继承体系自底向上进行，直到找到所需的名字。派生类的名字将隐藏基类的同名成员。
 </p>
@@ -3710,9 +3710,9 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgabbd47e" class="outline-4">
-<h4 id="orgabbd47e">18.3.4 虚继承</h4>
-<div class="outline-text-4" id="text-orgabbd47e">
+<div id="outline-container-org5ec5612" class="outline-4">
+<h4 id="org5ec5612">18.3.4 虚继承</h4>
+<div class="outline-text-4" id="text-org5ec5612">
 <p>
 尽管在派生类列表中同一个基类只能出现一次，但实际上派生类可以多次继承同一个类。派生类可以通过在它的两个直接基类分别继承同一个间接基类，也可以直接继承某个基类，然后通过另一个基类再一次间接继承该类。
 </p>
@@ -3735,9 +3735,9 @@ Note：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org5678e8f" class="outline-5">
-<h5 id="org5678e8f">使用虚基类</h5>
-<div class="outline-text-5" id="text-org5678e8f">
+<div id="outline-container-orga55b234" class="outline-5">
+<h5 id="orga55b234">使用虚基类</h5>
+<div class="outline-text-5" id="text-orga55b234">
 <p>
 我们指定虚基类的方式是在派生列表中添加关键字 virtual：
 </p>
@@ -3773,17 +3773,17 @@ Panda 通过 Raccoon 和 Bear 继承了 ZooAnimal，因为 Raccoon 和 Bear 继�
 </p>
 </div>
 </div>
-<div id="outline-container-org7e34cd7" class="outline-5">
-<h5 id="org7e34cd7">支持向基类的常规类型转换</h5>
-<div class="outline-text-5" id="text-org7e34cd7">
+<div id="outline-container-org5c0fcbb" class="outline-5">
+<h5 id="org5c0fcbb">支持向基类的常规类型转换</h5>
+<div class="outline-text-5" id="text-org5c0fcbb">
 <p>
 不论基类是不是虚基类，派生类对象都能被可访问基类的指针或引用操作。
 </p>
 </div>
 </div>
-<div id="outline-container-org4cbde9e" class="outline-5">
-<h5 id="org4cbde9e">虚基类成员的可见行</h5>
-<div class="outline-text-5" id="text-org4cbde9e">
+<div id="outline-container-org6179efd" class="outline-5">
+<h5 id="org6179efd">虚基类成员的可见行</h5>
+<div class="outline-text-5" id="text-org6179efd">
 <p>
 因为在每个共享的虚基类中只有唯一一个共享的子对象，所以该基类的成员可以被直接访问，并不会产生二义性。此外，如果虚基类的成员只被一条派生路径负该，则我们仍然可以直接访问这个被覆盖的成员。但是如果成员被多余一个虚类覆盖，则一半情况下派生类必须为该成员自定义一个新的版本。
 </p>
@@ -3803,9 +3803,9 @@ Panda 通过 Raccoon 和 Bear 继承了 ZooAnimal，因为 Raccoon 和 Bear 继�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc129afb" class="outline-4">
-<h4 id="orgc129afb">18.3.5 构造函数与虚继承</h4>
-<div class="outline-text-4" id="text-orgc129afb">
+<div id="outline-container-orgf5edcdd" class="outline-4">
+<h4 id="orgf5edcdd">18.3.5 构造函数与虚继承</h4>
+<div class="outline-text-4" id="text-orgf5edcdd">
 <p>
 在虚派生中，虚基类是由最低层的派生类初始化的。以我们的程序为例，当创建 Panda 对象时，由 Panda 的构造函数独自控制 ZooAnimal 的初始化过程。
 </p>
@@ -3818,9 +3818,9 @@ Panda 通过 Raccoon 和 Bear 继承了 ZooAnimal，因为 Raccoon 和 Bear 继�
 当然，继承体系中的每个类都可能在某个时刻称为“最低层的派生类”。只要我们能创建虚基类的派生类对象，该派生类的构造函数就必须初始化它的虚基类。
 </p>
 </div>
-<div id="outline-container-org1f97602" class="outline-5">
-<h5 id="org1f97602">虚继承的对象的构造方式</h5>
-<div class="outline-text-5" id="text-org1f97602">
+<div id="outline-container-orgcb7ce22" class="outline-5">
+<h5 id="orgcb7ce22">虚继承的对象的构造方式</h5>
+<div class="outline-text-5" id="text-orgcb7ce22">
 <p>
 含有虚基类的对象的构造顺序与一般的顺序稍有区别：首先使用提供给最低层派生类构造函数的初始值初始化该对象的虚基类子部分，接下来按照直接虚类在派生列表中出现的次序一次对其进行初始化。
 </p>
@@ -3851,9 +3851,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org980705d" class="outline-5">
-<h5 id="org980705d">构造函数与析构函数的次序</h5>
-<div class="outline-text-5" id="text-org980705d">
+<div id="outline-container-orgac16f57" class="outline-5">
+<h5 id="orgac16f57">构造函数与析构函数的次序</h5>
+<div class="outline-text-5" id="text-orgac16f57">
 <p>
 一个类可以有多个虚基类。此时，这些虚的子对象按照它们在派生列表中出现的顺序从左向右依次构造。
 </p>
@@ -3870,17 +3870,17 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-orgb191e12" class="outline-2">
-<h2 id="orgb191e12">第 19 章 特殊工具与技术</h2>
-<div class="outline-text-2" id="text-orgb191e12">
+<div id="outline-container-org029fdef" class="outline-2">
+<h2 id="org029fdef">第 19 章 特殊工具与技术</h2>
+<div class="outline-text-2" id="text-org029fdef">
 </div>
-<div id="outline-container-orgafb68d4" class="outline-3">
-<h3 id="orgafb68d4">19.1 控制内存分配</h3>
-<div class="outline-text-3" id="text-orgafb68d4">
+<div id="outline-container-org29a5b4d" class="outline-3">
+<h3 id="org29a5b4d">19.1 控制内存分配</h3>
+<div class="outline-text-3" id="text-org29a5b4d">
 </div>
-<div id="outline-container-orgb578856" class="outline-4">
-<h4 id="orgb578856">19.1.1 重载 new 和 delete</h4>
-<div class="outline-text-4" id="text-orgb578856">
+<div id="outline-container-org960b0c4" class="outline-4">
+<h4 id="org960b0c4">19.1.1 重载 new 和 delete</h4>
+<div class="outline-text-4" id="text-org960b0c4">
 <p>
 要想真正掌握 new 和 delete 的方法，首先要对 new 表达式和 delete 表达式的工作机理有更多了解。
 </p>
@@ -3917,9 +3917,9 @@ WARNING：
 应用程序可以在全局作用域中定义 operator new 函数和 operator delete 函数，也可以将他们定义为成员函数。当编译器发现一条 new 表达式或 delete 表达式后，将在程序中查找可供调用了 operator 函数。如果被分配（释放）的对象是类类型，则编译器首先在类及其基类的作用域中查找。此时如果该类含有 operator new 成员或 operator delete 成员，则相应的表达式将调用这些成员。否则，编译器在全局作用域查找匹配的函数。此时如果编译器找到了用户自定义的版本，则使用该版本执行 new 表达式或 delete 表达式；如果没有找到，则使用标准库函数定义的版本。
 </p>
 </div>
-<div id="outline-container-orgdd2a27e" class="outline-5">
-<h5 id="orgdd2a27e">operator new 接口和 operator delete 接口</h5>
-<div class="outline-text-5" id="text-orgdd2a27e">
+<div id="outline-container-orga10b138" class="outline-5">
+<h5 id="orga10b138">operator new 接口和 operator delete 接口</h5>
+<div class="outline-text-5" id="text-orga10b138">
 <p>
 标准库定义了 operator new 函数和 operator delete 函数的 8 个重载版本。其中前 4 个版本可能抛出 bad_alloc 异常，后 4 个版本则不会抛出异常：
 </p>
@@ -3965,9 +3965,9 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-org03c0b37" class="outline-4">
-<h4 id="org03c0b37">19.1.2 定位 new 表达式</h4>
-<div class="outline-text-4" id="text-org03c0b37">
+<div id="outline-container-orgd3ba628" class="outline-4">
+<h4 id="orgd3ba628">19.1.2 定位 new 表达式</h4>
+<div class="outline-text-4" id="text-orgd3ba628">
 <p>
 尽管 operator new 函数和 operator delete 函数一般用于 new 表达式，然而它们毕竟是标准库的两个普通函数，因此普通的代码也可以直接调用它们。
 </p>
@@ -4009,9 +4009,9 @@ Note：
 尽管在很多时候使用定位 new 与 allocator 的 construct 成员非常相似，但在它们之间也有一个重要的区别。我们传给 construct 的指针必须指向同一个 allocator 对象分配的空间，但是传给定位 new 的指针无须指向 operator new 分配的内存。实际上如我们将在 19.6 节介绍的，传给定位 new 表达式的指针甚至不需要指向动态内存。
 </p>
 </div>
-<div id="outline-container-org3796e1c" class="outline-5">
-<h5 id="org3796e1c">显示的析构函数调用</h5>
-<div class="outline-text-5" id="text-org3796e1c">
+<div id="outline-container-orgbb17ac1" class="outline-5">
+<h5 id="orgbb17ac1">显示的析构函数调用</h5>
+<div class="outline-text-5" id="text-orgbb17ac1">
 <p>
 和调用 destroy 类似，调用析构函数可以清楚给定的对象但是不会释放该对象所在的空间。如果需要的话，我们可以重新使用该空间。
 </p>
@@ -4029,9 +4029,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-org8f5c18c" class="outline-3">
-<h3 id="org8f5c18c">19.2 运行时类型识别</h3>
-<div class="outline-text-3" id="text-org8f5c18c">
+<div id="outline-container-orgca60bd1" class="outline-3">
+<h3 id="orgca60bd1">19.2 运行时类型识别</h3>
+<div class="outline-text-3" id="text-orgca60bd1">
 <p>
 <b>运行时类型识别（run-time type identification，RTTI）</b> 的功能由两个运算符实现：
 </p>
@@ -4048,9 +4048,9 @@ Note：
 然而，并非任何时候都能定义一个虚函数。假设我们无法使用虚函数，则可以使用一个 RTTI 运算符。另一方面，与虚成员函数相比，使用 RTTI 运算符蕴含着更多潜在的风险：程序员必须清楚地直到转换的目标类型并且检查类型转换是否被成功执行。
 </p>
 </div>
-<div id="outline-container-org204b194" class="outline-4">
-<h4 id="org204b194">19.2.1 dynamic_cast 运算符</h4>
-<div class="outline-text-4" id="text-org204b194">
+<div id="outline-container-orge4e348c" class="outline-4">
+<h4 id="orge4e348c">19.2.1 dynamic_cast 运算符</h4>
+<div class="outline-text-4" id="text-orge4e348c">
 <p>
 <b>dynamic_cast 运算符</b> 的使用形式如下所示：
 </p>
@@ -4069,9 +4069,9 @@ dynamic_cast&lt;type&amp;&amp;&gt;(e)
 在上面的所有形式中，e的类型必须符合以下三个条件中的任意一个：e的类型是目标 type 的公有派生类、e的目标类型是 type 的公有基类或者 e 的类型就是目标 type 的类型。如果符合，则类型转换可以成功。否则，转换失败。如果一条 dynamic_cast 语句的转换目标是指针类型并且失败了，则结果为 0。如果转换目标是引用类型并且失败了，则 dynamic_cast 运算符将抛出一个 bad_cast 异常。
 </p>
 </div>
-<div id="outline-container-orgf4693e1" class="outline-5">
-<h5 id="orgf4693e1">指针类型的 dynamic_cast</h5>
-<div class="outline-text-5" id="text-orgf4693e1">
+<div id="outline-container-orga262467" class="outline-5">
+<h5 id="orga262467">指针类型的 dynamic_cast</h5>
+<div class="outline-text-5" id="text-orga262467">
 <blockquote>
 <p>
 Note：
@@ -4093,18 +4093,18 @@ Best Practies：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org891330f" class="outline-5">
-<h5 id="org891330f">引用类型的 dynamic_cast</h5>
-<div class="outline-text-5" id="text-org891330f">
+<div id="outline-container-orgbe2083a" class="outline-5">
+<h5 id="orgbe2083a">引用类型的 dynamic_cast</h5>
+<div class="outline-text-5" id="text-orgbe2083a">
 <p>
 引用类型的 dynamic_cast 与指针类型的 dynamic_cast 在表示错误发生的地方上略有不同。因为不存在所谓的空引用，所以对于引用类型来说无法使用与指针类型完全相同的错误报告策略。当对引用的类型转换失败时，程序抛出一个名为 std::bad_cast 的异常，该异常定义在 typeinfo 标准库头文件中。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5d7db00" class="outline-4">
-<h4 id="org5d7db00">19.2.2 typeid 运算符</h4>
-<div class="outline-text-4" id="text-org5d7db00">
+<div id="outline-container-orga3802c0" class="outline-4">
+<h4 id="orga3802c0">19.2.2 typeid 运算符</h4>
+<div class="outline-text-4" id="text-orga3802c0">
 <p>
 为 RTTI 提供的第二个运算符是 <b>typeid 运算符</b> ，它允许程序向表达式问：你的对象是什么类型？
 </p>
@@ -4121,9 +4121,9 @@ typeid 运算符可以作用于任意类型的表达式。和往常一样，顶�
 当运算符对象不属于类类型或者是一个不包含任何虚函数的类时，typeid 运算符指示的是运算对象的静态类型。而当运算对象是定义了至少一个虚函数的类的左值时，typeid 的结果直到运行时才会求得。
 </p>
 </div>
-<div id="outline-container-org18e62cc" class="outline-5">
-<h5 id="org18e62cc">使用 typeid 运算符</h5>
-<div class="outline-text-5" id="text-org18e62cc">
+<div id="outline-container-orgc4b0546" class="outline-5">
+<h5 id="orgc4b0546">使用 typeid 运算符</h5>
+<div class="outline-text-5" id="text-orgc4b0546">
 <blockquote>
 <p>
 WARNING：
@@ -4144,9 +4144,9 @@ typeid 是否需要运行时检查决定了表达式是否会被求值。只有�
 </div>
 </div>
 </div>
-<div id="outline-container-org39b0973" class="outline-4">
-<h4 id="org39b0973">19.2.4 type_info 类</h4>
-<div class="outline-text-4" id="text-org39b0973">
+<div id="outline-container-orga706d46" class="outline-4">
+<h4 id="orga706d46">19.2.4 type_info 类</h4>
+<div class="outline-text-4" id="text-orga706d46">
 <p>
 <b>type_info</b> 类的精确定义随着编译器的不同而略有差异。不过，C++标准规定 type_info 类必须定义在 typeinfo 头文件中，并且至少提供下表所列的操作。
 </p>
@@ -4196,9 +4196,9 @@ type_info 类的 name 成员函数返回一个 C 风格字符串，表示对象�
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb7e4af" class="outline-3">
-<h3 id="orgeb7e4af">19.3 枚举类型</h3>
-<div class="outline-text-3" id="text-orgeb7e4af">
+<div id="outline-container-org2198f02" class="outline-3">
+<h3 id="org2198f02">19.3 枚举类型</h3>
+<div class="outline-text-3" id="text-org2198f02">
 <p>
 <b>枚举类型</b> 使我们可以将一组整型常量组织在一起。和类一样，每个枚举类型定义了一种新的类型。枚举隶属于字面值常量类型（参见 7.5.6 节）。
 </p>
@@ -4226,9 +4226,9 @@ C++包括两种枚举：限定作用域和不限定作用域的。C++11 新标�
 如果 enum 是未命名的，则我们只能在定义该 enum 时定义它的对象。和类的定义类似，我们需要在 enum 定义的右侧花括号和最后的分号之间提供逗号分隔的声明列表（参见 2.6.1 节）。
 </p>
 </div>
-<div id="outline-container-orgaeccb1a" class="outline-5">
-<h5 id="orgaeccb1a">枚举成员</h5>
-<div class="outline-text-5" id="text-orgaeccb1a">
+<div id="outline-container-org898f92d" class="outline-5">
+<h5 id="org898f92d">枚举成员</h5>
+<div class="outline-text-5" id="text-org898f92d">
 <p>
 在限定作用域的枚举类型中，枚举成员的名字遵循常规的作用域准则，并且在枚举类的作用域外是不可访问的。与之相反，在不限定作用域的枚举类型中，枚举成员的作用域于枚举本身的作用域相同：
 </p>
@@ -4274,9 +4274,9 @@ C++包括两种枚举：限定作用域和不限定作用域的。C++11 新标�
 </div>
 </div>
 
-<div id="outline-container-orgf4855ca" class="outline-5">
-<h5 id="orgf4855ca">和类一样，枚举也定义新的类型</h5>
-<div class="outline-text-5" id="text-orgf4855ca">
+<div id="outline-container-orgc5f70de" class="outline-5">
+<h5 id="orgc5f70de">和类一样，枚举也定义新的类型</h5>
+<div class="outline-text-5" id="text-orgc5f70de">
 <p>
 只要 enum 有名字，我们就能定义并初始化该类型的成员。要想初始化 enum 对象或者未 enum 对象赋值，必须使用该了西 ingde 一个枚举成员或者该类型的另一个对象：
 </p>
@@ -4298,9 +4298,9 @@ om = <span style="color: #a9a1e1;">open_modes</span>::input;  <span style="color
 </div>
 </div>
 </div>
-<div id="outline-container-org20a0a18" class="outline-5">
-<h5 id="org20a0a18">指定 enum 的大小</h5>
-<div class="outline-text-5" id="text-org20a0a18">
+<div id="outline-container-org9c1a71f" class="outline-5">
+<h5 id="org9c1a71f">指定 enum 的大小</h5>
+<div class="outline-text-5" id="text-org9c1a71f">
 <p>
 尽管每个 enum 都定义了唯一的类型，但实际上 enum 是由某种整数类型表示的。在 C++11 新标准中，我们可以在 enum 的名字后面加上冒号以及我们想在该 enum 中使用的类型：
 </p>
@@ -4323,9 +4323,9 @@ om = <span style="color: #a9a1e1;">open_modes</span>::input;  <span style="color
 </p>
 </div>
 </div>
-<div id="outline-container-org5aa641b" class="outline-5">
-<h5 id="org5aa641b">枚举类型的前置声明</h5>
-<div class="outline-text-5" id="text-org5aa641b">
+<div id="outline-container-org38e71ee" class="outline-5">
+<h5 id="org38e71ee">枚举类型的前置声明</h5>
+<div class="outline-text-5" id="text-org38e71ee">
 <p>
 在 C++11 新标准中，我们可以提前声明 enum。enum 的前置声明（无论隐式地还是显示地）必须指定其成员的大小：
 </p>
@@ -4346,18 +4346,18 @@ om = <span style="color: #a9a1e1;">open_modes</span>::input;  <span style="color
 </p>
 </div>
 </div>
-<div id="outline-container-org1123749" class="outline-5">
-<h5 id="org1123749">形参匹配与枚举类型</h5>
-<div class="outline-text-5" id="text-org1123749">
+<div id="outline-container-org5719b77" class="outline-5">
+<h5 id="org5719b77">形参匹配与枚举类型</h5>
+<div class="outline-text-5" id="text-org5719b77">
 <p>
 要想初始化一个 enum 对象，必须使用该 enum 类型的另一个对象或者它的一个枚举成员。因此，即使某个整型值恰好与枚举成员的值相等，它也不能作为函数的 enum 实参使用。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5512630" class="outline-3">
-<h3 id="org5512630">19.4 类成员指针</h3>
-<div class="outline-text-3" id="text-org5512630">
+<div id="outline-container-org4c1863b" class="outline-3">
+<h3 id="org4c1863b">19.4 类成员指针</h3>
+<div class="outline-text-3" id="text-org4c1863b">
 <p>
 <b>成员指针</b> 是指可以指向类的非静态成员的指针。一般情况下，指针指向一个对象，但是成员指针指示的是类的成员，而非类的对象。类的静态成员不属于任何对象，因此无须特殊的指向静态成员的指针，指向静态成员的指针与普通指针没有什么区别。
 </p>
@@ -4385,9 +4385,9 @@ om = <span style="color: #a9a1e1;">open_modes</span>::input;  <span style="color
 </pre>
 </div>
 </div>
-<div id="outline-container-org2938721" class="outline-4">
-<h4 id="org2938721">19.4.1 数据成员指针</h4>
-<div class="outline-text-4" id="text-org2938721">
+<div id="outline-container-orgc660363" class="outline-4">
+<h4 id="orgc660363">19.4.1 数据成员指针</h4>
+<div class="outline-text-4" id="text-orgc660363">
 <p>
 和其他指针一样，在声明成员指针时我们也使用*来表示当前声明的名字是一个指针。与普通指针不同的是，成员指针还必须包括成员所属的类。因此，我们必须在*之前添加 classname::以表示当前定义的指针可以指向 classname 的成员。例如：
 </p>
@@ -4422,9 +4422,9 @@ om = <span style="color: #a9a1e1;">open_modes</span>::input;  <span style="color
 <code>auto pdata = &amp;Screen::contents;</code>
 </p>
 </div>
-<div id="outline-container-orgdeb2e34" class="outline-5">
-<h5 id="orgdeb2e34">使用数据成员指针</h5>
-<div class="outline-text-5" id="text-orgdeb2e34">
+<div id="outline-container-org73ec9eb" class="outline-5">
+<h5 id="org73ec9eb">使用数据成员指针</h5>
+<div class="outline-text-5" id="text-org73ec9eb">
 <p>
 读者必须清楚的一点是，当我们初始化一个成员指针或为成员指针赋值时，该指针并没有指向任何数据。成员指针制定了成员而非该成员所属的对象，只有当解引用成员指针时我们才提供对象的信息。
 </p>
@@ -4443,9 +4443,9 @@ s = pScreen-&gt;*pdata;
 </p>
 </div>
 </div>
-<div id="outline-container-orgf74d8c4" class="outline-5">
-<h5 id="orgf74d8c4">返回数据成员指针的函数</h5>
-<div class="outline-text-5" id="text-orgf74d8c4">
+<div id="outline-container-orgc64fb5d" class="outline-5">
+<h5 id="orgc64fb5d">返回数据成员指针的函数</h5>
+<div class="outline-text-5" id="text-orgc64fb5d">
 <p>
 常规的访问控制规则对成员指针同样有效。例如，Screen 的 contents 成员是私有的，因此之前对于 pdata 的使用必须位于 Screen 类的成员或友元内部，否则程序将发生错误。
 </p>
@@ -4466,9 +4466,9 @@ s = pScreen-&gt;*pdata;
 </div>
 </div>
 </div>
-<div id="outline-container-org96f2934" class="outline-4">
-<h4 id="org96f2934">19.4.2 成员函数指针</h4>
-<div class="outline-text-4" id="text-org96f2934">
+<div id="outline-container-orgd279c91" class="outline-4">
+<h4 id="orgd279c91">19.4.2 成员函数指针</h4>
+<div class="outline-text-4" id="text-orgd279c91">
 <p>
 我们也可以定义指向类的成员函数的指针。与指向数据成员的指针类似 ，对于我们来说要想创建一个指向成员函数的指针，最简单的方法是使用 auto 来推断类型：
 </p>
@@ -4509,9 +4509,9 @@ pmf = <span style="color: #a9a1e1;">Screen</span>::get;   <span style="color: #5
 </pre>
 </div>
 </div>
-<div id="outline-container-orgea00105" class="outline-5">
-<h5 id="orgea00105">使用成员函数指针</h5>
-<div class="outline-text-5" id="text-orgea00105">
+<div id="outline-container-orgaa71ce0" class="outline-5">
+<h5 id="orgaa71ce0">使用成员函数指针</h5>
+<div class="outline-text-5" id="text-orgaa71ce0">
 <p>
 和使用指向数据成员的指针一样，我们使用.*或者-&gt;*运算符作用于指向成员函数的指针，以调用类的成员函数：
 </p>
@@ -4536,9 +4536,9 @@ Note：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org1e582ec" class="outline-5">
-<h5 id="org1e582ec">使用成员指针的类型别名</h5>
-<div class="outline-text-5" id="text-org1e582ec">
+<div id="outline-container-org494c911" class="outline-5">
+<h5 id="org494c911">使用成员指针的类型别名</h5>
+<div class="outline-text-5" id="text-org494c911">
 <p>
 使用类型别名或 typedef 可以让成员指针更容易理解。例如，下面的类型别名将 Action 定义为两参数 get 函数的同义词：
 </p>
@@ -4553,9 +4553,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa529c8" class="outline-5">
-<h5 id="orgaa529c8">成员指针函数表</h5>
-<div class="outline-text-5" id="text-orgaa529c8">
+<div id="outline-container-org0ab2ac9" class="outline-5">
+<h5 id="org0ab2ac9">成员指针函数表</h5>
+<div class="outline-text-5" id="text-org0ab2ac9">
 <p>
 对于普通函数指针和指向成员函数的指针来说，一种常用的用法是将其存入一个函数表当中（参见 14.8.3 节）。如果一个类含有几个相同类型的成员，则这样一张函数表可以帮助我们从这些成员中选择一个。假定 Screen 类含有几个成员函数，每个函数负责将光标指向的方向移动：
 </p>
@@ -4639,9 +4639,9 @@ myScreen.move(<span style="color: #a9a1e1;">Screen</span>::DOWN);  <span style="
 </div>
 </div>
 </div>
-<div id="outline-container-org2e848b1" class="outline-4">
-<h4 id="org2e848b1">19.4.3 将成员函数用作可调用对象</h4>
-<div class="outline-text-4" id="text-org2e848b1">
+<div id="outline-container-orga8caca9" class="outline-4">
+<h4 id="orga8caca9">19.4.3 将成员函数用作可调用对象</h4>
+<div class="outline-text-4" id="text-orga8caca9">
 <p>
 如我们所知，要想通过一个指向成员函数的指针进行函数调用，必须首先利用.*运算符或-&gt;*运算符将该指针绑定到特定的对象上。因此与普通的函数指针不同，成员指针不是一个可调用对象，这样的指针不支持函数调用运算符（参见 10.3.2 节）。
 </p>
@@ -4650,9 +4650,9 @@ myScreen.move(<span style="color: #a9a1e1;">Screen</span>::DOWN);  <span style="
 因为成员指针不是可调用对象，所以我们不能直接将一个指向成员函数的指针传递给算符。
 </p>
 </div>
-<div id="outline-container-orgca8182e" class="outline-5">
-<h5 id="orgca8182e">使用 function 生成一个可调用对象</h5>
-<div class="outline-text-5" id="text-orgca8182e">
+<div id="outline-container-orgf16a023" class="outline-5">
+<h5 id="orgf16a023">使用 function 生成一个可调用对象</h5>
+<div class="outline-text-5" id="text-orgf16a023">
 <p>
 从指向成员函数的指针获取可调用对象的一种方式是使用标准库模板 function（参见 14.8.3 节）：
 </p>
@@ -4692,9 +4692,9 @@ find_id(svec.begin(), svec,end(), fcn);
 </p>
 </div>
 </div>
-<div id="outline-container-orgacb97e2" class="outline-5">
-<h5 id="orgacb97e2">使用 mem_fn 生成一个可调用对象</h5>
-<div class="outline-text-5" id="text-orgacb97e2">
+<div id="outline-container-org683d498" class="outline-5">
+<h5 id="org683d498">使用 mem_fn 生成一个可调用对象</h5>
+<div class="outline-text-5" id="text-org683d498">
 <p>
 可以采取另一种方法，通过使用标准库功能 <b>mem_fn</b> 来让编译器负责推断成员的类型。和 function 一样，mem_fn 也定在 functional 头文件中，并且可以从成员指针生成一个可调用对象；和 function 不同的是，mem_fn 可以根据成员指针的类型推断可调用对象的类型，而无须用户显示指定：
 </p>
@@ -4723,9 +4723,9 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 </p>
 </div>
 </div>
-<div id="outline-container-org97c23e1" class="outline-5">
-<h5 id="org97c23e1">使用 bind 生成一个可调用对象</h5>
-<div class="outline-text-5" id="text-org97c23e1">
+<div id="outline-container-orgfa47c7e" class="outline-5">
+<h5 id="orgfa47c7e">使用 bind 生成一个可调用对象</h5>
+<div class="outline-text-5" id="text-orgfa47c7e">
 <p>
 出于完整性的考虑，我们还可以使用 bind（参见 10.3.4 节）从成员函数生成一个可调用对象：
 </p>
@@ -4743,9 +4743,9 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 </div>
 </div>
 </div>
-<div id="outline-container-org747fef3" class="outline-3">
-<h3 id="org747fef3">19.5 嵌套类</h3>
-<div class="outline-text-3" id="text-org747fef3">
+<div id="outline-container-org20c4726" class="outline-3">
+<h3 id="org20c4726">19.5 嵌套类</h3>
+<div class="outline-text-3" id="text-org20c4726">
 <p>
 一个类可以定义在另一个类的内部，前着称为 <b>嵌套类</b> 或 <b>嵌套类型</b> 。嵌套类常用于定义作为实现部分的类。
 </p>
@@ -4766,9 +4766,9 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 嵌套类在其外层类中定义了一个类型成员。和其他成员类似，该类型的访问权限由外层类决定。位于外层类 public 部分的嵌套类实际上定义了一种可以随处访问的类型：位于外层类 protected 部分的嵌套类定义的只能被外层类及其友元和派生类访问；位于外层类 private 部分的嵌套类定义的类型只能被外层的成员和友元访问。
 </p>
 </div>
-<div id="outline-container-orgfefd10f" class="outline-5">
-<h5 id="orgfefd10f">在外层类之外定义一个嵌套类</h5>
-<div class="outline-text-5" id="text-orgfefd10f">
+<div id="outline-container-orgd07ea83" class="outline-5">
+<h5 id="orgd07ea83">在外层类之外定义一个嵌套类</h5>
+<div class="outline-text-5" id="text-orgd07ea83">
 <p>
 和成员函数一样，嵌套类必须声明在类的内部，但是可以定义在类的内部或者外部。
 </p>
@@ -4778,9 +4778,9 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 </p>
 </div>
 </div>
-<div id="outline-container-org1efd71a" class="outline-5">
-<h5 id="org1efd71a">嵌套类作用域中的名字查找</h5>
-<div class="outline-text-5" id="text-org1efd71a">
+<div id="outline-container-org0393ff1" class="outline-5">
+<h5 id="org0393ff1">嵌套类作用域中的名字查找</h5>
+<div class="outline-text-5" id="text-org0393ff1">
 <p>
 名字查找的一般规则（参见 7.4.1 节）在嵌套类中同样使用。当然，因为嵌套类本身是一个嵌套组作用域，所以还必须查找嵌套类外层作用域。
 </p>
@@ -4791,9 +4791,9 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 </div>
 </div>
 </div>
-<div id="outline-container-orgbaed7f2" class="outline-3">
-<h3 id="orgbaed7f2">19.6 union：一种节省空间的类</h3>
-<div class="outline-text-3" id="text-orgbaed7f2">
+<div id="outline-container-orgc5844ba" class="outline-3">
+<h3 id="orgc5844ba">19.6 union：一种节省空间的类</h3>
+<div class="outline-text-3" id="text-orgc5844ba">
 <p>
 <b>联合（union）</b> 是一种特殊的类。一个 union 可以有多个数据成员，但是在任意时刻只有一个数据成员可以有值。当我们给 union 的某个成员赋值之后，该 union 的其他成员就变成未定义的状态了。分配给一个 union 对象的存储空间至少要能容纳它的最大数据成员。和其他类一样，一个 union 定义了一种新类型。
 </p>
@@ -4806,17 +4806,17 @@ f(&amp;sev[<span style="color: #da8548; font-weight: bold;">0</span>]);         
 union 可以定义包括构造函数和析构函数在内的成员函数。但是由于 union 既不能继承自其他类，也不能作为基类使用，所以在 union 中不能含有虚函数。
 </p>
 </div>
-<div id="outline-container-org9300ea4" class="outline-5">
-<h5 id="org9300ea4">定义 union</h5>
-<div class="outline-text-5" id="text-org9300ea4">
+<div id="outline-container-org3f12765" class="outline-5">
+<h5 id="org3f12765">定义 union</h5>
+<div class="outline-text-5" id="text-org3f12765">
 <p>
 在定义一个 union 时，首先是关键字 union，随后是该 union 的（可选的）名字以及花括号内的一组成员声明。
 </p>
 </div>
 </div>
-<div id="outline-container-orgc572f83" class="outline-5">
-<h5 id="orgc572f83">使用 union 类型</h5>
-<div class="outline-text-5" id="text-orgc572f83">
+<div id="outline-container-orgd1a34e3" class="outline-5">
+<h5 id="orgd1a34e3">使用 union 类型</h5>
+<div class="outline-text-5" id="text-orgd1a34e3">
 <p>
 union 的名字是一个类型名。和其他内置类型一样，默认情况下 union 是未初始化的。我们可以像显式的初始化聚合类（参见 7.5.5 节）一样使用一对花括号内的初始值显示地初始化一个 union：
 </p>
@@ -4847,9 +4847,9 @@ pt-&gt;ival = <span style="color: #da8548; font-weight: bold;">42</span>;
 </p>
 </div>
 </div>
-<div id="outline-container-org1e21d90" class="outline-5">
-<h5 id="org1e21d90">匿名 union</h5>
-<div class="outline-text-5" id="text-org1e21d90">
+<div id="outline-container-org0b249af" class="outline-5">
+<h5 id="org0b249af">匿名 union</h5>
+<div class="outline-text-5" id="text-org0b249af">
 <p>
 <b>匿名 union</b> 时一个未命名的 union，并且在右花括号和分号之间没有任何声明（参见 2.6.1 节）。一个我们定义了一个匿名 union，编译器就自动地未该 union 创建一个未命名对象：
 </p>
@@ -4875,9 +4875,9 @@ ival = <span style="color: #da8548; font-weight: bold;">42</span>;     <span sty
 </div>
 </div>
 </div>
-<div id="outline-container-org08e47c0" class="outline-5">
-<h5 id="org08e47c0">含有类类型成员的 union</h5>
-<div class="outline-text-5" id="text-org08e47c0">
+<div id="outline-container-orgabf4c2a" class="outline-5">
+<h5 id="orgabf4c2a">含有类类型成员的 union</h5>
+<div class="outline-text-5" id="text-orgabf4c2a">
 <p>
 C++早期版本规定，在 union 中不能含有定义了构造函数或拷贝控制成员的类类型成员。C++11 新标准取消了这一限制。不过，如果 union 的成员类型定义了自己的构造函数和/或空呗控制成员，则该 union 的用法要比只含有内置类型成员的 union 复杂的多。
 </p>
@@ -4892,9 +4892,9 @@ C++早期版本规定，在 union 中不能含有定义了构造函数或拷贝�
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc801eb" class="outline-3">
-<h3 id="orgdc801eb">19.7 局部类</h3>
-<div class="outline-text-3" id="text-orgdc801eb">
+<div id="outline-container-orgcf0e399" class="outline-3">
+<h3 id="orgcf0e399">19.7 局部类</h3>
+<div class="outline-text-3" id="text-orgcf0e399">
 <p>
 类可以定义在某个函数的内部，我们称这样的类为 <b>局部类</b> 。局部类定义的类型只在定义它的作用域内可见。和嵌套类不同，局部类的成员受到严格限制。
 </p>
@@ -4917,33 +4917,33 @@ Note：
 类似的，在局部类也不允许声明静态数据成员，因为我们没法定义这样的成员。
 </p>
 </div>
-<div id="outline-container-orgbb8cb10" class="outline-5">
-<h5 id="orgbb8cb10">局部类不能使用函数作用域中的变量</h5>
-<div class="outline-text-5" id="text-orgbb8cb10">
+<div id="outline-container-org31f4e63" class="outline-5">
+<h5 id="org31f4e63">局部类不能使用函数作用域中的变量</h5>
+<div class="outline-text-5" id="text-org31f4e63">
 <p>
 局部类对其外层作用域中名字的访问权限受到很多限制，局部类只能访问外层作用域定义的类型名、静态变量以及枚举成员。如果局部类定义在某个函数内部，则该函数的普通局部变量不能被改局部类使用。
 </p>
 </div>
 </div>
-<div id="outline-container-org83eb9cb" class="outline-5">
-<h5 id="org83eb9cb">常规的访问保护规则对局部类同样适用</h5>
-<div class="outline-text-5" id="text-org83eb9cb">
+<div id="outline-container-org5abc9ad" class="outline-5">
+<h5 id="org5abc9ad">常规的访问保护规则对局部类同样适用</h5>
+<div class="outline-text-5" id="text-org5abc9ad">
 <p>
 外层函数对局部类的私有成员没有任何访问权限。当然，局部类可以将外层函数声明为友元；或者更常见的情况是局部类将其成员声明成公有的。在程序中有权访问局部类的代码非常有限。局部类已经封装在函数的作用域中，通过信息隐藏进一步封装就显得没什么必须了。
 </p>
 </div>
 </div>
-<div id="outline-container-orgb8b6af5" class="outline-5">
-<h5 id="orgb8b6af5">局部类中的名字查找</h5>
-<div class="outline-text-5" id="text-orgb8b6af5">
+<div id="outline-container-orga80d450" class="outline-5">
+<h5 id="orga80d450">局部类中的名字查找</h5>
+<div class="outline-text-5" id="text-orga80d450">
 <p>
 局部类内部的名字查照次序与其他类相似。在声明类的成员时，必须显确保用到的名字位于作用域中，然后再使用该名字。定义成员时用到的名字可以出现在类的任意位置。如果某个名字不是局部类的成员，则继续在外层函数作用域中查找；如果还没有找到，则在外层函数所在的作用域中查找。
 </p>
 </div>
 </div>
-<div id="outline-container-org9de65f0" class="outline-5">
-<h5 id="org9de65f0">嵌套的局部类</h5>
-<div class="outline-text-5" id="text-org9de65f0">
+<div id="outline-container-orgab7341d" class="outline-5">
+<h5 id="orgab7341d">嵌套的局部类</h5>
+<div class="outline-text-5" id="text-orgab7341d">
 <p>
 可以在局部类的内部再嵌套一个类。此时，嵌套类的定义可以出现在局部类之外。不过，嵌套类必须定义在与局部类相同的作用域中。
 </p>
@@ -4954,16 +4954,16 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-org65d8cf0" class="outline-3">
-<h3 id="org65d8cf0">19.8 固有的不移植的特性</h3>
-<div class="outline-text-3" id="text-org65d8cf0">
+<div id="outline-container-orgcf72d49" class="outline-3">
+<h3 id="orgcf72d49">19.8 固有的不移植的特性</h3>
+<div class="outline-text-3" id="text-orgcf72d49">
 <p>
 为了支持低层编程，C++定义了一些固有的 <b>不可移植</b> 的特性。所谓不可移植的特性是指因机器而已的特性，当我们将含有不可移植特性的程序从一台及其转移到另一台机器上时，通常需要重新编写该程序。
 </p>
 </div>
-<div id="outline-container-orgf8190e6" class="outline-4">
-<h4 id="orgf8190e6">19.8.1 位域</h4>
-<div class="outline-text-4" id="text-orgf8190e6">
+<div id="outline-container-org0523f36" class="outline-4">
+<h4 id="org0523f36">19.8.1 位域</h4>
+<div class="outline-text-4" id="text-org0523f36">
 <p>
 类可以将其（非静态）数据成员定义成 <b>位域</b> ，在一个位域中含有一定数量的二进制位。当一个程序需要像其他程序或硬件设备传递二进制数据时，通常会使用到位域。
 </p>
@@ -5004,9 +5004,9 @@ Note：
 </div>
 </div>
 </div>
-<div id="outline-container-orgc310be6" class="outline-4">
-<h4 id="orgc310be6">19.8.2 volatile 限定符</h4>
-<div class="outline-text-4" id="text-orgc310be6">
+<div id="outline-container-org93f93af" class="outline-4">
+<h4 id="org93f93af">19.8.2 volatile 限定符</h4>
+<div class="outline-text-4" id="text-org93f93af">
 <blockquote>
 <p>
 WARNING：
@@ -5033,9 +5033,9 @@ volatile 的确切含义与机器有关，只能通过阅读编译器文档来�
 和 const 一样，我们只能将一个 volatile 对象的地址（或者拷贝一个指向 vloatile 类型的指针）赋给一个指向 volatile 的指针。同时，也只有当某个引用时 volatile 的时，我们才能使用一个 volatile 对象初始化给引用。
 </p>
 </div>
-<div id="outline-container-orge99c429" class="outline-5">
-<h5 id="orge99c429">合成的拷贝对 volatile 对象无效</h5>
-<div class="outline-text-5" id="text-orge99c429">
+<div id="outline-container-org1e67342" class="outline-5">
+<h5 id="org1e67342">合成的拷贝对 volatile 对象无效</h5>
+<div class="outline-text-5" id="text-org1e67342">
 <p>
 const 和 volatile 的一个重要区别是我们不能使用合成的拷贝/移动构造函数及赋值运算符初始化 volatile 对象或从 volatile 对象赋值。合成的成员接受的形参列表是（非 volatile）常量引用，显然我们不能把一个非 volatile 引用绑定到一个 vloatile 对象上。
 </p>
@@ -5050,9 +5050,9 @@ const 和 volatile 的一个重要区别是我们不能使用合成的拷贝/移
 </div>
 </div>
 </div>
-<div id="outline-container-org8fb6056" class="outline-4">
-<h4 id="org8fb6056">19.8.3 链接指示：extern "C"</h4>
-<div class="outline-text-4" id="text-org8fb6056">
+<div id="outline-container-orgadc55cd" class="outline-4">
+<h4 id="orgadc55cd">19.8.3 链接指示：extern "C"</h4>
+<div class="outline-text-4" id="text-orgadc55cd">
 <p>
 C++程序有时需要调用其他语言编写的函数，最常见的是调用 C 语言编写的函数，像所有其他名字一样，其他语言中的函数名字也必须在 C++中进行声明，并且该声明必须指定返回类型和形参列表。对于其他语言编写的函数来说，编译器检查其调用的方式与处理普通 C++函数相同，但是生成的代码有所区别。C++使用 <b>链接指示</b> 指出任意非 C++函数所用的语言。
 </p>
@@ -5067,9 +5067,9 @@ Note：
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org07a86b2" class="outline-5">
-<h5 id="org07a86b2">声明一个非 C++的函数</h5>
-<div class="outline-text-5" id="text-org07a86b2">
+<div id="outline-container-orge21dd2e" class="outline-5">
+<h5 id="orge21dd2e">声明一个非 C++的函数</h5>
+<div class="outline-text-5" id="text-orge21dd2e">
 <p>
 链接指示可以有两种方式：单个的或复合的。链接指示不能出现在类定义或函数定义的内部。同样的链接指示必须在函数的每个声明中都出现。
 </p>
@@ -5099,9 +5099,9 @@ Note：
 </p>
 </div>
 </div>
-<div id="outline-container-org7df40b7" class="outline-5">
-<h5 id="org7df40b7">链接指示与头文件</h5>
-<div class="outline-text-5" id="text-org7df40b7">
+<div id="outline-container-org5ce813d" class="outline-5">
+<h5 id="org5ce813d">链接指示与头文件</h5>
+<div class="outline-text-5" id="text-org5ce813d">
 <p>
 当一个#include 指示被放置在复合链接指示的花括号中时，头文件中的所有普通函数声明都被认为是由链接指示的语言编写的。链接指示可以嵌套，因此如果头文件包含带自带链接指示的函数，则该函数的链接不受影响。
 </p>
@@ -5118,9 +5118,9 @@ C++从 C 语言继承的标准库函数可以定成 C 函数，但并非必须�
 </div>
 </div>
 
-<div id="outline-container-orgcf25d72" class="outline-5">
-<h5 id="orgcf25d72">指向 extern "C"函数的指针</h5>
-<div class="outline-text-5" id="text-orgcf25d72">
+<div id="outline-container-org68adff6" class="outline-5">
+<h5 id="org68adff6">指向 extern "C"函数的指针</h5>
+<div class="outline-text-5" id="text-org68adff6">
 <p>
 编写函数所用的语言是函数类型的一部分。因此，对于使用链接指示定义的函数来说，它的每个声明都必须使用相同的链接指示。而且，指向其他语言编写的函数的指针必须与函数本身使用相同的链接指示：
 </p>
@@ -5150,9 +5150,9 @@ WARNING：
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgfc48595" class="outline-5">
-<h5 id="orgfc48595">链接指示对整个声明都有效</h5>
-<div class="outline-text-5" id="text-orgfc48595">
+<div id="outline-container-orgfff78b9" class="outline-5">
+<h5 id="orgfff78b9">链接指示对整个声明都有效</h5>
+<div class="outline-text-5" id="text-orgfff78b9">
 <p>
 当我们使用链接指示时，它不仅对函数有效，而且对作为返回类型或形参类型的函数指针也有效。
 </p>
@@ -5170,9 +5170,9 @@ WARNING：
 </div>
 </div>
 </div>
-<div id="outline-container-org458e276" class="outline-5">
-<h5 id="org458e276">导出 C++函数到其他语言</h5>
-<div class="outline-text-5" id="text-org458e276">
+<div id="outline-container-org203ec94" class="outline-5">
+<h5 id="org203ec94">导出 C++函数到其他语言</h5>
+<div class="outline-text-5" id="text-org203ec94">
 <p>
 通过使用链接指示对函数进行定义，我们可以令一个 C++函数在其他语言编写的程序中可用：
 </p>
@@ -5210,9 +5210,9 @@ int strcmp(const char*, const char*);
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org5a8d54b" class="outline-5">
-<h5 id="org5a8d54b">重载函数与链接指示</h5>
-<div class="outline-text-5" id="text-org5a8d54b">
+<div id="outline-container-orgf3a9977" class="outline-5">
+<h5 id="orgf3a9977">重载函数与链接指示</h5>
+<div class="outline-text-5" id="text-orgf3a9977">
 <p>
 链接指示与重载函数的互相作用依赖于目标语言。如果目标语言支持重载函数，则为该语言实现链接指示的编译器很可能也支持重载这些C++的函数。
 </p>
@@ -5228,7 +5228,7 @@ C语言不支持函数重载，因此也就不难理解为什么一个C链接指
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:45</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>

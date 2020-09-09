@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-08-19 三 17:42 -->
+<!-- 2020-09-09 Wed 21:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>docker命令详解</title>
@@ -234,29 +234,29 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org78031da">docker pull</a></li>
-<li><a href="#org96562f6">docker run</a></li>
-<li><a href="#orgb0f4331">后台运行</a></li>
-<li><a href="#org1a679c8">进入容器</a>
+<li><a href="#org95da4c6">docker pull</a></li>
+<li><a href="#org7bb57f6">docker run</a></li>
+<li><a href="#orga5a6ff7">后台运行</a></li>
+<li><a href="#org525b2c8">进入容器</a>
 <ul>
-<li><a href="#org86108f7">attach 命令</a></li>
-<li><a href="#org9edae29">exec 命令</a></li>
+<li><a href="#orgb6ecc93">attach 命令</a></li>
+<li><a href="#orgd89c05b">exec 命令</a></li>
 </ul>
 </li>
-<li><a href="#org6206f55">导出和导入容器</a>
+<li><a href="#org1f6de5c">导出和导入容器</a>
 <ul>
-<li><a href="#orgd818360">导出容器</a></li>
-<li><a href="#org01c8ee2">导入容器快照</a></li>
+<li><a href="#orgb02c4b3">导出容器</a></li>
+<li><a href="#org1caf0c2">导入容器快照</a></li>
 </ul>
 </li>
-<li><a href="#org1b7580b">清理所有处于终止状态的容器</a></li>
+<li><a href="#org6c38a59">清理所有处于终止状态的容器</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org78031da" class="outline-2">
-<h2 id="org78031da">docker pull</h2>
-<div class="outline-text-2" id="text-org78031da">
+<div id="outline-container-org95da4c6" class="outline-2">
+<h2 id="org95da4c6">docker pull</h2>
+<div class="outline-text-2" id="text-org95da4c6">
 <p>
 <code>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</code>
 </p>
@@ -271,9 +271,9 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </div>
 </div>
 
-<div id="outline-container-org96562f6" class="outline-2">
-<h2 id="org96562f6">docker run</h2>
-<div class="outline-text-2" id="text-org96562f6">
+<div id="outline-container-org7bb57f6" class="outline-2">
+<h2 id="org7bb57f6">docker run</h2>
+<div class="outline-text-2" id="text-org7bb57f6">
 <p>
 当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：
 </p>
@@ -290,18 +290,18 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </div>
 </div>
 
-<div id="outline-container-orgb0f4331" class="outline-2">
-<h2 id="orgb0f4331">后台运行</h2>
-<div class="outline-text-2" id="text-orgb0f4331">
+<div id="outline-container-orga5a6ff7" class="outline-2">
+<h2 id="orga5a6ff7">后台运行</h2>
+<div class="outline-text-2" id="text-orga5a6ff7">
 <p>
 通过在=run=后添加 <code>-d</code> 参数来实现让 Docker 在后台运行而不是直接把执行命令的结果输出在当前宿主机下。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1a679c8" class="outline-2">
-<h2 id="org1a679c8">进入容器</h2>
-<div class="outline-text-2" id="text-org1a679c8">
+<div id="outline-container-org525b2c8" class="outline-2">
+<h2 id="org525b2c8">进入容器</h2>
+<div class="outline-text-2" id="text-org525b2c8">
 <p>
 在使用 <code>-d</code> 参数时，容器启动后会进入后台。
 </p>
@@ -311,18 +311,18 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </p>
 </div>
 
-<div id="outline-container-org86108f7" class="outline-3">
-<h3 id="org86108f7">attach 命令</h3>
-<div class="outline-text-3" id="text-org86108f7">
+<div id="outline-container-orgb6ecc93" class="outline-3">
+<h3 id="orgb6ecc93">attach 命令</h3>
+<div class="outline-text-3" id="text-orgb6ecc93">
 <p>
 如果从 <code>attach</code> 的 <code>stdin</code> 中 <code>exit</code> ，会导致容器的停止。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9edae29" class="outline-3">
-<h3 id="org9edae29">exec 命令</h3>
-<div class="outline-text-3" id="text-org9edae29">
+<div id="outline-container-orgd89c05b" class="outline-3">
+<h3 id="orgd89c05b">exec 命令</h3>
+<div class="outline-text-3" id="text-orgd89c05b">
 <p>
 <code>docker exec</code> 后边可以跟多个参数，这里主要说明 <code>-i</code> <code>-t</code> 参数。
 </p>
@@ -343,22 +343,22 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </div>
 </div>
 
-<div id="outline-container-org6206f55" class="outline-2">
-<h2 id="org6206f55">导出和导入容器</h2>
-<div class="outline-text-2" id="text-org6206f55">
+<div id="outline-container-org1f6de5c" class="outline-2">
+<h2 id="org1f6de5c">导出和导入容器</h2>
+<div class="outline-text-2" id="text-org1f6de5c">
 </div>
-<div id="outline-container-orgd818360" class="outline-3">
-<h3 id="orgd818360">导出容器</h3>
-<div class="outline-text-3" id="text-orgd818360">
+<div id="outline-container-orgb02c4b3" class="outline-3">
+<h3 id="orgb02c4b3">导出容器</h3>
+<div class="outline-text-3" id="text-orgb02c4b3">
 <p>
 如果要导出本地某个容器，可以使用 <code>docker export</code> 命令。这样将导出容器快照到本地文件。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org01c8ee2" class="outline-3">
-<h3 id="org01c8ee2">导入容器快照</h3>
-<div class="outline-text-3" id="text-org01c8ee2">
+<div id="outline-container-org1caf0c2" class="outline-3">
+<h3 id="org1caf0c2">导入容器快照</h3>
+<div class="outline-text-3" id="text-org1caf0c2">
 <p>
 可以使用 <code>docker import</code> 从容器快照文件中再导入为镜像。此外，也可以通过指定 URL 或者某个目录来导入。
 </p>
@@ -370,9 +370,9 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </div>
 </div>
 
-<div id="outline-container-org1b7580b" class="outline-2">
-<h2 id="org1b7580b">清理所有处于终止状态的容器</h2>
-<div class="outline-text-2" id="text-org1b7580b">
+<div id="outline-container-org6c38a59" class="outline-2">
+<h2 id="org6c38a59">清理所有处于终止状态的容器</h2>
+<div class="outline-text-2" id="text-org6c38a59">
 <p>
 用 <code>docker container ls -a</code> 命令可以查看所有已经创建的包括终止状态的容器，如果数量太多要一个个删除可能会很麻烦，用下面的命令可以清理掉所有处于终止状态的容器。
 </p>
@@ -385,7 +385,7 @@ Docker 镜像仓库地址：地址的格式一般是 <code>&lt;域名/IP&gt;[:�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-08-19 三 17:42</p>
+<p class="date">Created: 2020-09-09 Wed 21:00</p>
 </div>
 </body>
 </html>

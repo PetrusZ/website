@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:44 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>散列表之开放寻址法</title>
@@ -234,9 +234,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org97041fa">线性探查</a></li>
-<li><a href="#org072c83e">二次探查</a></li>
-<li><a href="#org096d9c9">3.双重散列</a></li>
+<li><a href="#orgcdadd38">线性探查</a></li>
+<li><a href="#orgcb2999e">二次探查</a></li>
+<li><a href="#org8e856e5">3.双重散列</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +252,9 @@
 为了使用开放寻址法插入一个元素，需要连续地检查散列表，或称为探查（probe），直到找到一个空槽来存放待插入的关键字为止。
 </p>
 
-<div id="outline-container-org97041fa" class="outline-2">
-<h2 id="org97041fa">线性探查</h2>
-<div class="outline-text-2" id="text-org97041fa">
+<div id="outline-container-orgcdadd38" class="outline-2">
+<h2 id="orgcdadd38">线性探查</h2>
+<div class="outline-text-2" id="text-orgcdadd38">
 <p>
 给定一个普通的散列函数 h‘: U‘→{0, 1, &#x2026;, m &#x2013; 1}，称之为辅助散列函数，线性探查方法采用的散列函数为：
 </p>
@@ -269,9 +269,9 @@ h(k, i) = (h'(k) + i) mod m,  i = 0, 1, &#x2026;, m &#x2013; 1
 </div>
 </div>
 
-<div id="outline-container-org072c83e" class="outline-2">
-<h2 id="org072c83e">二次探查</h2>
-<div class="outline-text-2" id="text-org072c83e">
+<div id="outline-container-orgcb2999e" class="outline-2">
+<h2 id="orgcb2999e">二次探查</h2>
+<div class="outline-text-2" id="text-orgcb2999e">
 <p>
 二次探查采用如下形式的散列函数：
 </p>
@@ -290,9 +290,9 @@ h(k, i) = (h'(k) + c1* i + c2 * i * i) mod m
 </div>
 </div>
 
-<div id="outline-container-org096d9c9" class="outline-2">
-<h2 id="org096d9c9">3.双重散列</h2>
-<div class="outline-text-2" id="text-org096d9c9">
+<div id="outline-container-org8e856e5" class="outline-2">
+<h2 id="org8e856e5">3.双重散列</h2>
+<div class="outline-text-2" id="text-org8e856e5">
 <p>
 双重散列是用于开放寻址法的最好的方法之一，因为它所产生的排序具有随机选择排列的许多特性。双重散列采用如下形式的散列函数：
 </p>
@@ -474,7 +474,7 @@ h1(k) = k mod m，h2(k) = 1 + ( k mod m')
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:44</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>

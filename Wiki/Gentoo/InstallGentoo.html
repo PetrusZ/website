@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-08-19 三 17:42 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>安装Gentoo</title>
@@ -234,26 +234,26 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc57b6b9">准备工作</a></li>
-<li><a href="#org1531fb7">分区</a>
+<li><a href="#org2b561a8">准备工作</a></li>
+<li><a href="#org4b0e085">分区</a>
 <ul>
-<li><a href="#orgc908ed1">分区列表</a></li>
-<li><a href="#orgf0f51d2">分区操作</a></li>
+<li><a href="#org2811034">分区列表</a></li>
+<li><a href="#org587d0f6">分区操作</a></li>
 </ul>
 </li>
-<li><a href="#org3c03844">安装</a></li>
-<li><a href="#org95a31ac">配置 gentoo</a>
+<li><a href="#orgd179351">安装</a></li>
+<li><a href="#org3ac5d2e">配置 gentoo</a>
 <ul>
-<li><a href="#org59c00ee">配置 make.conf</a></li>
-<li><a href="#org9760dd1">Choose profile</a></li>
-<li><a href="#orga5ed32d">Sync ebuild repos</a></li>
-<li><a href="#org388e10b">安装/更新</a></li>
-<li><a href="#org1baba93">配置杂项</a></li>
-<li><a href="#org8508031">配置/安装内核</a></li>
-<li><a href="#org205522d">配置系统</a></li>
-<li><a href="#org074d1e4">配置 bootloader</a></li>
-<li><a href="#orgbd9713b">User configura</a></li>
-<li><a href="#org8f068e9">Reboot</a></li>
+<li><a href="#org5ed485b">配置 make.conf</a></li>
+<li><a href="#org52a0dab">Choose profile</a></li>
+<li><a href="#orgccf20ca">Sync ebuild repos</a></li>
+<li><a href="#orge5e3333">安装/更新</a></li>
+<li><a href="#orga093854">配置杂项</a></li>
+<li><a href="#orgdbf697a">配置/安装内核</a></li>
+<li><a href="#org3d5ee46">配置系统</a></li>
+<li><a href="#orga3bc492">配置 bootloader</a></li>
+<li><a href="#org6da51c6">User configura</a></li>
+<li><a href="#orgc1afab8">Reboot</a></li>
 </ul>
 </li>
 </ul>
@@ -271,9 +271,9 @@ Gentoo 官方安装手册：<a href="https://wiki.gentoo.org/wiki/Handbook:AMD64
 Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooConfig</a>
 </p>
 
-<div id="outline-container-orgc57b6b9" class="outline-2">
-<h2 id="orgc57b6b9">准备工作</h2>
-<div class="outline-text-2" id="text-orgc57b6b9">
+<div id="outline-container-org2b561a8" class="outline-2">
+<h2 id="org2b561a8">准备工作</h2>
+<div class="outline-text-2" id="text-org2b561a8">
 <ol class="org-ol">
 <li>准备一个 U 盘</li>
 <li>下载 ubuntu 或其他发行版最新版本的 livcd/installmedia <a href="https://ubuntu.com/download/desktop">https://ubuntu.com/download/desktop</a></li>
@@ -283,13 +283,13 @@ Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooCo
 </div>
 </div>
 
-<div id="outline-container-org1531fb7" class="outline-2">
-<h2 id="org1531fb7">分区</h2>
-<div class="outline-text-2" id="text-org1531fb7">
+<div id="outline-container-org4b0e085" class="outline-2">
+<h2 id="org4b0e085">分区</h2>
+<div class="outline-text-2" id="text-org4b0e085">
 </div>
-<div id="outline-container-orgc908ed1" class="outline-3">
-<h3 id="orgc908ed1">分区列表</h3>
-<div class="outline-text-3" id="text-orgc908ed1">
+<div id="outline-container-org2811034" class="outline-3">
+<h3 id="org2811034">分区列表</h3>
+<div class="outline-text-3" id="text-org2811034">
 <div class="org-src-container">
 <pre class="src src-sh">    sda1    /boot      vfat                         &gt;=256M          <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#27880;&#24847;&#20998;&#21306;&#35774;&#32622;flags&#20026;esp</span>
     sda2    /          ext4,btrfs,xfs,jfs.etc       remaining space
@@ -298,9 +298,9 @@ Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooCo
 </div>
 </div>
 
-<div id="outline-container-orgf0f51d2" class="outline-3">
-<h3 id="orgf0f51d2">分区操作</h3>
-<div class="outline-text-3" id="text-orgf0f51d2">
+<div id="outline-container-org587d0f6" class="outline-3">
+<h3 id="org587d0f6">分区操作</h3>
+<div class="outline-text-3" id="text-org587d0f6">
 <div class="org-src-container">
 <pre class="src src-sh">    parted -a optimal /dev/sdx
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35774;&#32622;gpt label</span>
@@ -328,9 +328,9 @@ Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooCo
 </div>
 </div>
 
-<div id="outline-container-org3c03844" class="outline-2">
-<h2 id="org3c03844">安装</h2>
-<div class="outline-text-2" id="text-org3c03844">
+<div id="outline-container-orgd179351" class="outline-2">
+<h2 id="orgd179351">安装</h2>
+<div class="outline-text-2" id="text-orgd179351">
 <ol class="org-ol">
 <li>下载 stage3 并解压</li>
 </ol>
@@ -402,13 +402,13 @@ Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooCo
 </div>
 </div>
 
-<div id="outline-container-org95a31ac" class="outline-2">
-<h2 id="org95a31ac">配置 gentoo</h2>
-<div class="outline-text-2" id="text-org95a31ac">
+<div id="outline-container-org3ac5d2e" class="outline-2">
+<h2 id="org3ac5d2e">配置 gentoo</h2>
+<div class="outline-text-2" id="text-org3ac5d2e">
 </div>
-<div id="outline-container-org59c00ee" class="outline-3">
-<h3 id="org59c00ee">配置 make.conf</h3>
-<div class="outline-text-3" id="text-org59c00ee">
+<div id="outline-container-org5ed485b" class="outline-3">
+<h3 id="org5ed485b">配置 make.conf</h3>
+<div class="outline-text-3" id="text-org5ed485b">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #ECBE7B;">git</span> clone <span style="color: #ECBE7B;">git</span>@github.com:PetrusZ/AutoBackup.git
 
@@ -419,9 +419,9 @@ Gentoo 配置备份：<a href="https://github.com/PetrusZ/GentooConfig">GentooCo
 </div>
 </div>
 
-<div id="outline-container-org9760dd1" class="outline-3">
-<h3 id="org9760dd1">Choose profile</h3>
-<div class="outline-text-3" id="text-org9760dd1">
+<div id="outline-container-org52a0dab" class="outline-3">
+<h3 id="org52a0dab">Choose profile</h3>
+<div class="outline-text-3" id="text-org52a0dab">
 <p>
 Use custom profile which restored/installed by Backup4Config
 </p>
@@ -440,18 +440,18 @@ Use custom profile which restored/installed by Backup4Config
 </div>
 </div>
 
-<div id="outline-container-orga5ed32d" class="outline-3">
-<h3 id="orga5ed32d">Sync ebuild repos</h3>
-<div class="outline-text-3" id="text-orga5ed32d">
+<div id="outline-container-orgccf20ca" class="outline-3">
+<h3 id="orgccf20ca">Sync ebuild repos</h3>
+<div class="outline-text-3" id="text-orgccf20ca">
 <p>
 <code>emerge-websync</code>
 </p>
 </div>
 </div>
 
-<div id="outline-container-org388e10b" class="outline-3">
-<h3 id="org388e10b">安装/更新</h3>
-<div class="outline-text-3" id="text-org388e10b">
+<div id="outline-container-orge5e3333" class="outline-3">
+<h3 id="orge5e3333">安装/更新</h3>
+<div class="outline-text-3" id="text-orge5e3333">
 <div class="org-src-container">
 <pre class="src src-sh">    emerge -avt dev-vcs/git
     emerge -avt vim
@@ -469,9 +469,9 @@ Use custom profile which restored/installed by Backup4Config
 </div>
 </div>
 
-<div id="outline-container-org1baba93" class="outline-3">
-<h3 id="org1baba93">配置杂项</h3>
-<div class="outline-text-3" id="text-org1baba93">
+<div id="outline-container-orga093854" class="outline-3">
+<h3 id="orga093854">配置杂项</h3>
+<div class="outline-text-3" id="text-orga093854">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Timezone</span>
     <span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"Asia/Shanghai"</span> &gt; /etc/timezone
@@ -491,9 +491,9 @@ Use custom profile which restored/installed by Backup4Config
 </div>
 </div>
 
-<div id="outline-container-org8508031" class="outline-3">
-<h3 id="org8508031">配置/安装内核</h3>
-<div class="outline-text-3" id="text-org8508031">
+<div id="outline-container-orgdbf697a" class="outline-3">
+<h3 id="orgdbf697a">配置/安装内核</h3>
+<div class="outline-text-3" id="text-orgdbf697a">
 <p>
 <code>eselect kernel</code>, and use <code>genkernall all</code> for now.
 </p>
@@ -504,9 +504,9 @@ Or just install gentoo-kernel-bin
 </div>
 </div>
 
-<div id="outline-container-org205522d" class="outline-3">
-<h3 id="org205522d">配置系统</h3>
-<div class="outline-text-3" id="text-org205522d">
+<div id="outline-container-org3d5ee46" class="outline-3">
+<h3 id="org3d5ee46">配置系统</h3>
+<div class="outline-text-3" id="text-org3d5ee46">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">/etc/fstab</span>
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35814;&#32454;&#20449;&#24687;&#21487;&#26597;&#30475;fstab&#25991;&#20214;&#20013;&#30340;&#27880;&#37322;&#21644;wiki https://wiki.gentoo.org/wiki/Fstab</span>
@@ -551,9 +551,9 @@ Or just install gentoo-kernel-bin
 </div>
 </div>
 
-<div id="outline-container-org074d1e4" class="outline-3">
-<h3 id="org074d1e4">配置 bootloader</h3>
-<div class="outline-text-3" id="text-org074d1e4">
+<div id="outline-container-orga3bc492" class="outline-3">
+<h3 id="orga3bc492">配置 bootloader</h3>
+<div class="outline-text-3" id="text-orga3bc492">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">Use Backup4config to edit /etc/default/grub</span>
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">bootloader&#20351;&#29992;grub:# bootloader&#20351;&#29992;grub:2</span>
@@ -564,9 +564,9 @@ Or just install gentoo-kernel-bin
 </div>
 </div>
 
-<div id="outline-container-orgbd9713b" class="outline-3">
-<h3 id="orgbd9713b">User configura</h3>
-<div class="outline-text-3" id="text-orgbd9713b">
+<div id="outline-container-org6da51c6" class="outline-3">
+<h3 id="org6da51c6">User configura</h3>
+<div class="outline-text-3" id="text-org6da51c6">
 <div class="org-src-container">
 <pre class="src src-sh">    su petrus
     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">run below commands as user</span>
@@ -578,9 +578,9 @@ Or just install gentoo-kernel-bin
 </div>
 </div>
 
-<div id="outline-container-org8f068e9" class="outline-3">
-<h3 id="org8f068e9">Reboot</h3>
-<div class="outline-text-3" id="text-org8f068e9">
+<div id="outline-container-orgc1afab8" class="outline-3">
+<h3 id="orgc1afab8">Reboot</h3>
+<div class="outline-text-3" id="text-orgc1afab8">
 <p>
 Reboot 前先检查系统：
 </p>
@@ -626,7 +626,7 @@ nmcli device wifi connect &lt;SSID&gt; passworld &lt;password&gt;
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-08-19 三 17:42</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-08-19 三 17:42 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>qemu</title>
@@ -234,19 +234,19 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org932e5af">创建 VM</a></li>
-<li><a href="#org90c3c05">选项介绍</a></li>
-<li><a href="#orgb751eda">网络策略</a></li>
-<li><a href="#org22739d4">桥接网络</a></li>
-<li><a href="#org4a143e3">Windows</a></li>
-<li><a href="#orge9f0f2b">Links</a></li>
+<li><a href="#orgf9393e6">创建 VM</a></li>
+<li><a href="#org389a4b1">选项介绍</a></li>
+<li><a href="#orga08c075">网络策略</a></li>
+<li><a href="#orga4e0f88">桥接网络</a></li>
+<li><a href="#org8ef2103">Windows</a></li>
+<li><a href="#org0db05b1">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org932e5af" class="outline-2">
-<h2 id="org932e5af">创建 VM</h2>
-<div class="outline-text-2" id="text-org932e5af">
+<div id="outline-container-orgf9393e6" class="outline-2">
+<h2 id="orgf9393e6">创建 VM</h2>
+<div class="outline-text-2" id="text-orgf9393e6">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;&#30913;&#30424;</span>
     qemu-img create -f qcow2 &lt;name&gt;.img &lt;size&gt;G
@@ -264,9 +264,9 @@
 </div>
 </div>
 
-<div id="outline-container-org90c3c05" class="outline-2">
-<h2 id="org90c3c05">选项介绍</h2>
-<div class="outline-text-2" id="text-org90c3c05">
+<div id="outline-container-org389a4b1" class="outline-2">
+<h2 id="org389a4b1">选项介绍</h2>
+<div class="outline-text-2" id="text-org389a4b1">
 <ul class="org-ul">
 <li><p>
 -display vnc:<x>
@@ -315,9 +315,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb751eda" class="outline-2">
-<h2 id="orgb751eda">网络策略</h2>
-<div class="outline-text-2" id="text-orgb751eda">
+<div id="outline-container-orga08c075" class="outline-2">
+<h2 id="orga08c075">网络策略</h2>
+<div class="outline-text-2" id="text-orga08c075">
 <p>
 QEMU 提供 4 种网络通信方法，它们分别是：
 </p>
@@ -343,9 +343,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-org22739d4" class="outline-2">
-<h2 id="org22739d4">桥接网络</h2>
-<div class="outline-text-2" id="text-org22739d4">
+<div id="outline-container-orga4e0f88" class="outline-2">
+<h2 id="orga4e0f88">桥接网络</h2>
+<div class="outline-text-2" id="text-orga4e0f88">
 <p>
 由于是使用 ssh 连接到远程机器，所以必须要求在设置桥接时不会使网络中断
 </p>
@@ -384,9 +384,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-org4a143e3" class="outline-2">
-<h2 id="org4a143e3">Windows</h2>
-<div class="outline-text-2" id="text-org4a143e3">
+<div id="outline-container-org8ef2103" class="outline-2">
+<h2 id="org8ef2103">Windows</h2>
+<div class="outline-text-2" id="text-org8ef2103">
 <ol class="org-ol">
 <li><a href="https://pdf.us/2019/01/21/2642.html">Windows Thin PC-微软官方精简版Windows7系统</a></li>
 <li><a href="https://www.spice-space.org/download.html">https://www.spice-space.org/download.html</a></li>
@@ -394,9 +394,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-orge9f0f2b" class="outline-2">
-<h2 id="orge9f0f2b">Links</h2>
-<div class="outline-text-2" id="text-orge9f0f2b">
+<div id="outline-container-org0db05b1" class="outline-2">
+<h2 id="org0db05b1">Links</h2>
+<div class="outline-text-2" id="text-org0db05b1">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/QEMU">https://wiki.gentoo.org/wiki/QEMU</a></li>
 <li><a href="https://wiki.gentoo.org/wiki/QEMU/Options">https://wiki.gentoo.org/wiki/QEMU/Options</a></li>
@@ -414,7 +414,7 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-08-19 三 17:42</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>

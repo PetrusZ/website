@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:44 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>贪心算法原理</title>
@@ -234,9 +234,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2ea0203">贪心选择性质</a></li>
-<li><a href="#org1b0bc32">最优子结构</a></li>
-<li><a href="#org3c6c621">贪心对动态规划</a></li>
+<li><a href="#org3aaa6b0">贪心选择性质</a></li>
+<li><a href="#org9ac9c4c">最优子结构</a></li>
+<li><a href="#org8797c8a">贪心对动态规划</a></li>
 </ul>
 </div>
 </div>
@@ -260,9 +260,9 @@
 
 <hr>
 
-<div id="outline-container-org2ea0203" class="outline-2">
-<h2 id="org2ea0203">贪心选择性质</h2>
-<div class="outline-text-2" id="text-org2ea0203">
+<div id="outline-container-org3aaa6b0" class="outline-2">
+<h2 id="org3aaa6b0">贪心选择性质</h2>
+<div class="outline-text-2" id="text-org3aaa6b0">
 <p>
 第一个关键要素是 <b>贪心选择性质</b> ：我们可以通过做出局部最优选择来构造全局最优解。换句话说，在进行选择的时候，直接做出在当前问题中看起来最优的选择，而不必考虑子问题的解。
 </p>
@@ -275,9 +275,9 @@
 </div>
 </div>
 
-<div id="outline-container-org1b0bc32" class="outline-2">
-<h2 id="org1b0bc32">最优子结构</h2>
-<div class="outline-text-2" id="text-org1b0bc32">
+<div id="outline-container-org9ac9c4c" class="outline-2">
+<h2 id="org9ac9c4c">最优子结构</h2>
+<div class="outline-text-2" id="text-org9ac9c4c">
 <p>
 <b>最优子结构</b> 性质是能否应用动态规划和贪心算法的关键要素。比起动态规划而言，贪心算法通常使用更为直接的最优子结构。假定通过对原问题进行贪心选择就可以得到子问题。我们真正要做的全部工作就是论证：将子问题的最优解与贪心选择组合在一起能生成原问题的最优解。这种方法隐含地对子问题使用了数学归纳法，证明了在每个步骤进行贪心选择会生成原问题的最优解。
 </p>
@@ -286,9 +286,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3c6c621" class="outline-2">
-<h2 id="org3c6c621">贪心对动态规划</h2>
-<div class="outline-text-2" id="text-org3c6c621">
+<div id="outline-container-org8797c8a" class="outline-2">
+<h2 id="org8797c8a">贪心对动态规划</h2>
+<div class="outline-text-2" id="text-org8797c8a">
 <p>
 由于贪心算法和动态规划都使用了最优子结构性质，你可能会对一个可用贪心算法求解的问题使用动态规划，或者相反。为了说明这两种方法之间的微妙差别，我们研究一个经典最优化问题的两个变形。
 </p>
@@ -322,7 +322,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:44</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>

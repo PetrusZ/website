@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-09-09 Wed 21:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kernel</title>
+<title>vnc的搭建和连接</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,180 +229,57 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Kernel</h1>
+<h1 class="title">vnc的搭建和连接</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org907fe08">How upgrade kernel</a></li>
-<li><a href="#orgb6a587a">Configure kernel</a>
+<li><a href="#org23bc585">vnc 的搭建和连接</a>
 <ul>
-<li><a href="#orgccb7577">将 intel wifi 固件编译进内核</a></li>
-<li><a href="#org2312240">将 Intel microcode 编译进内核</a></li>
-<li><a href="#其他配置">其他配置</a>
-<ul>
-<li><a href="#开启 zswap">开启 zswap</a></li>
-<li><a href="#org6e5f161">CPU Frequency scaling</a></li>
-<li><a href="#orgbcc7950">I/O Schedulers</a></li>
+<li><a href="#org9370919">服务端</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><a href="#org115977c">参考</a></li>
-</ul>
 </div>
 </div>
 
-<div id="outline-container-org907fe08" class="outline-2">
-<h2 id="org907fe08">How upgrade kernel</h2>
-<div class="outline-text-2" id="text-org907fe08">
-<div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/bash</span>
-
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">1.select the kernel will use</span>
-    eselect kernel list
-    eselect kernel set &lt;No.&gt;
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">2.configure the kernel with old config (and diff with previous config)</span>
-    zcat /proc/config.gz &gt; /usr/src/linux/.config
-    diff .config ../linux-x.xx.x-gentoo/.config
-    <span style="color: #ECBE7B;">make</span> silentoldconfig/syncconfig/oldconfig
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">3.compile&amp;install kernel/modules</span>
-    <span style="color: #ECBE7B;">make</span> -j9
-    <span style="color: #ECBE7B;">make</span> install
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">compile&amp;install out-of-tree module(s)</span>
-    <span style="color: #ECBE7B;">make</span> modules_prepare
-    emerge --ask @module-rebuild
-    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">install initramfs</span>
-    genkernel --install initramfs
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">4.clean up old kernel files</span>
-    eclean-kernel
-    grub-mkconfig -o /boot/grub/grub.cfg
-</pre>
+<div id="outline-container-org23bc585" class="outline-2">
+<h2 id="org23bc585">vnc 的搭建和连接</h2>
+<div class="outline-text-2" id="text-org23bc585">
 </div>
-</div>
-</div>
-
-<div id="outline-container-orgb6a587a" class="outline-2">
-<h2 id="orgb6a587a">Configure kernel</h2>
-<div class="outline-text-2" id="text-orgb6a587a">
-</div>
-<div id="outline-container-orgccb7577" class="outline-3">
-<h3 id="orgccb7577">将 intel wifi 固件编译进内核</h3>
-<div class="outline-text-3" id="text-orgccb7577">
-<ol class="org-ol">
-<li>Enable <code>CONFIG_IWLWIFI</code> and <code>CONFIG_IWLMVM</code></li>
-
-<li>固件与网卡之间的对应关系可参考<a href="https://wireless.wiki.kernel.org/en/users/Drivers/iwlwifi">iwlwifi驱动的wiki文档</a></li>
-
-<li>将在上面找到的与网卡对应的的二进制固件名称填入 <code>EXTRA_FIRMWARE</code> 选项中。 此选项的值是一个空格分隔的固件文件名字符串，这些文件必须位于 <code>CONFIG_EXTRA_FIRMWARE_DIR</code> 目录中(其默认值为 <code>/lib/firmware</code> ).</li>
-</ol>
-
-<pre class="example">
-    Symbol: EXTRA_FIRMWARE
-    Type  : string
-    Prompt: Build named firmware blobs into the kernel binary
-      Location:
-        -&gt; Device Drivers
-          -&gt; Generic Driver Options
-            -&gt; Firmware loader
-              -&gt; Firmware loading facility (FW_LOADER [=y])
-</pre>
-</div>
-</div>
-
-<div id="outline-container-org2312240" class="outline-3">
-<h3 id="org2312240">将 Intel microcode 编译进内核</h3>
-<div class="outline-text-3" id="text-org2312240">
-<ol class="org-ol">
-<li>Enable <code>CONFIG_MICROCODE</code>, and <code>CONFIG_MICROCODE_INTEL</code></li>
-</ol>
-
-<pre class="example">
-    Processor type and features  ---&gt;
-        &lt;*&gt; CPU microcode loading support
-        [*]   Intel microcode loading support
-</pre>
-
-<ol class="org-ol">
-<li>查找 CPU 和 microcode 的对应关系</li>
-</ol>
-
-<div class="org-src-container">
-<pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#26597;&#30475;microcode&#30340;sig&#20540;:</span>
-    dmesg | <span style="color: #ECBE7B;">grep</span> microcode
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20363;&#22914;sig=0x306c3</span>
-
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#28982;&#21518;&#26597;&#30475;intel-ucode&#30446;&#24405;:</span>
-    <span style="color: #ECBE7B;">ls</span> /lib/firmware/intel-ucode
-    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#22312;&#30446;&#24405;&#20013;&#25214;&#21040;&#19982;sig&#20540;&#23545;&#24212;&#20026;06-3c-03&#30340;microcode</span>
-</pre>
-</div>
-
-<ol class="org-ol">
-<li>将在上面找到 microcode 名称填入 <code>EXTRA_FIRMWARE</code> 选项中</li>
-</ol>
-</div>
-</div>
-
-<div id="outline-container-其他配置" class="outline-3">
-<h3 id="其他配置">其他配置</h3>
-<div class="outline-text-3" id="text-其他配置">
-</div>
-
-<div id="outline-container-开启 zswap" class="outline-4">
-<h4 id="开启 zswap">开启 zswap</h4>
-<div class="outline-text-4" id="text-开启 zswap">
+<div id="outline-container-org9370919" class="outline-3">
+<h3 id="org9370919">服务端</h3>
+<div class="outline-text-3" id="text-org9370919">
 <p>
-在内核中选中 zswap 对应的选项后，在=CONFIG_CMDLINE=中添加对应选项开启：
+服务器上安装 x11vnc，构建 vnc 的服务端：
 </p>
 
 <p>
-<code>CONFIG_CMDLINE="zswap.enabled=1 zswap.compressor=lz4 zswap.max_pool_percent=20 zswap.zpool=z3fold"</code>
-</p>
-</div>
-</div>
-
-<div id="outline-container-org6e5f161" class="outline-4">
-<h4 id="org6e5f161">CPU Frequency scaling</h4>
-<div class="outline-text-4" id="text-org6e5f161">
-<p>
-<code>CONFIG_CPU_FREQ_GOV_POWERSAVE</code> 配合 <code>CONFIG_X86_INTEL_PSTATE</code> 使用，效果与 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 差异不大。 甚至可以获得比 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 更优秀的"性能/瓦特"比。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgbcc7950" class="outline-4">
-<h4 id="orgbcc7950">I/O Schedulers</h4>
-<div class="outline-text-4" id="text-orgbcc7950">
-<p>
-TODO
+<code>sudo apt-get install x11vnc</code>
 </p>
 
 <p>
-创建 udev 使得 lightdm 反复重启，最终导致退出
+设置并存储 vnc 连接密码
 </p>
 
 <p>
-<a href="https://blog.justforlxz.com/2019/10/24/%E7%BB%99Archlinux%E5%BC%80%E5%90%AFBFQ%E5%92%8CMuQSS/">https://blog.justforlxz.com/2019/10/24/%E7%BB%99Archlinux%E5%BC%80%E5%90%AFBFQ%E5%92%8CMuQSS/</a>
+<code>sudo x11vnc -storepasswd &lt;password&gt; /etc/x11vnc.pass</code>
+</p>
+
+<p>
+启动 x11vnc 服务端
+</p>
+
+<p>
+<code>sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -shared -noxdamage -xrandr "resize" -rfbport 5900</code>
 </p>
 </div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org115977c" class="outline-2">
-<h2 id="org115977c">参考</h2>
-<div class="outline-text-2" id="text-org115977c">
-<ol class="org-ol">
-<li><a href="https://wiki.gentoo.org/wiki/Kernel/Upgrade/en">https://wiki.gentoo.org/wiki/Kernel/Upgrade/en</a></li>
-<li><a href="http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html">http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html</a></li>
-</ol>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-09-09 Wed 21:00</p>
 </div>
 </body>
 </html>

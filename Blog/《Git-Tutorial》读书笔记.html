@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:46 -->
+<!-- 2020-09-09 Wed 21:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>《Git Tutorial》读书笔记</title>
@@ -234,54 +234,54 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5cd0876">前言</a></li>
-<li><a href="#org3ed65d6">创建版本库</a></li>
-<li><a href="#org8ed78ae">时光机穿梭</a>
+<li><a href="#org9fa9228">前言</a></li>
+<li><a href="#org12654cd">创建版本库</a></li>
+<li><a href="#org263c093">时光机穿梭</a>
 <ul>
-<li><a href="#orgba4f691">版本回退</a></li>
-<li><a href="#org59a0ce5">工作区和暂存区</a></li>
-<li><a href="#orgdc80d3f">管理修改</a></li>
-<li><a href="#org2fcb5fc">撤销修改</a></li>
-<li><a href="#orga0ee536">删除文件</a></li>
+<li><a href="#org41e4f11">版本回退</a></li>
+<li><a href="#orgd3f6d12">工作区和暂存区</a></li>
+<li><a href="#orgff425aa">管理修改</a></li>
+<li><a href="#org123d0e9">撤销修改</a></li>
+<li><a href="#orgf2b86ac">删除文件</a></li>
 </ul>
 </li>
-<li><a href="#orgac23319">远程仓库</a>
+<li><a href="#org61fb6aa">远程仓库</a>
 <ul>
-<li><a href="#org9a3d8ca">添加远程库</a></li>
-<li><a href="#orgd07c6bc">从远程库克隆</a></li>
+<li><a href="#org5004b73">添加远程库</a></li>
+<li><a href="#orgac4ffaa">从远程库克隆</a></li>
 </ul>
 </li>
-<li><a href="#orga879cb9">分支管理</a>
+<li><a href="#orgd53d02d">分支管理</a>
 <ul>
-<li><a href="#orgbde052f">创建与合并分支</a></li>
-<li><a href="#orgb58f414">解决冲突</a></li>
-<li><a href="#org1c75c2a">分支管理策略</a></li>
-<li><a href="#orgdc5535b">Bug 分支</a></li>
-<li><a href="#org56226b4">Feature 分支</a></li>
-<li><a href="#org21ee50f">多人协作</a></li>
+<li><a href="#org7279ba0">创建与合并分支</a></li>
+<li><a href="#org8672498">解决冲突</a></li>
+<li><a href="#org838a902">分支管理策略</a></li>
+<li><a href="#org84fed9b">Bug 分支</a></li>
+<li><a href="#org0e3018e">Feature 分支</a></li>
+<li><a href="#org75f96e9">多人协作</a></li>
 </ul>
 </li>
-<li><a href="#org6ab7c0f">标签管理</a>
+<li><a href="#org19c77cb">标签管理</a>
 <ul>
-<li><a href="#org3422ced">创建标签</a></li>
-<li><a href="#org233070c">操作标签</a></li>
+<li><a href="#org0019145">创建标签</a></li>
+<li><a href="#org1f88d03">操作标签</a></li>
 </ul>
 </li>
-<li><a href="#org0078f35">使用 GitHub</a></li>
-<li><a href="#org4b16182">自定义 Git</a>
+<li><a href="#orge8c7dad">使用 GitHub</a></li>
+<li><a href="#org0414df6">自定义 Git</a>
 <ul>
-<li><a href="#org7b2e6c8">忽略特殊文件</a></li>
-<li><a href="#org9737891">配置别名</a></li>
+<li><a href="#org77ce60f">忽略特殊文件</a></li>
+<li><a href="#orgd4f4bf6">配置别名</a></li>
 </ul>
 </li>
-<li><a href="#orge5d40f4">参考文章</a></li>
+<li><a href="#orga2e5e9f">参考文章</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5cd0876" class="outline-2">
-<h2 id="org5cd0876">前言</h2>
-<div class="outline-text-2" id="text-org5cd0876">
+<div id="outline-container-org9fa9228" class="outline-2">
+<h2 id="org9fa9228">前言</h2>
+<div class="outline-text-2" id="text-org9fa9228">
 <p>
 虽然说以前就学过一些 git，并且也用了一阵子 GitHub 了，但是还是有很多地方模糊不清，一旦遇到问题总是有一种恐惧&#x2026;&#x2026;因为我不知道该怎么解决它。
 </p>
@@ -294,9 +294,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3ed65d6" class="outline-2">
-<h2 id="org3ed65d6">创建版本库</h2>
-<div class="outline-text-2" id="text-org3ed65d6">
+<div id="outline-container-org12654cd" class="outline-2">
+<h2 id="org12654cd">创建版本库</h2>
+<div class="outline-text-2" id="text-org12654cd">
 <p>
 初始化一个 Git 仓库，使用=git init=命令。
 </p>
@@ -317,9 +317,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8ed78ae" class="outline-2">
-<h2 id="org8ed78ae">时光机穿梭</h2>
-<div class="outline-text-2" id="text-org8ed78ae">
+<div id="outline-container-org263c093" class="outline-2">
+<h2 id="org263c093">时光机穿梭</h2>
+<div class="outline-text-2" id="text-org263c093">
 <p>
 要随时掌握工作区的状态，使用 <code>git status</code> 命令。
 </p>
@@ -329,9 +329,9 @@
 </p>
 </div>
 
-<div id="outline-container-orgba4f691" class="outline-3">
-<h3 id="orgba4f691">版本回退</h3>
-<div class="outline-text-3" id="text-orgba4f691">
+<div id="outline-container-org41e4f11" class="outline-3">
+<h3 id="org41e4f11">版本回退</h3>
+<div class="outline-text-3" id="text-org41e4f11">
 <p>
 <code>HEAD</code> 指向的版本就是当前版本，因此，Git 允许我们在版本的历史之间穿梭，使用命令 <code>git reset --hard commit_id</code> 。
 </p>
@@ -346,9 +346,9 @@
 </div>
 </div>
 
-<div id="outline-container-org59a0ce5" class="outline-3">
-<h3 id="org59a0ce5">工作区和暂存区</h3>
-<div class="outline-text-3" id="text-org59a0ce5">
+<div id="outline-container-orgd3f6d12" class="outline-3">
+<h3 id="orgd3f6d12">工作区和暂存区</h3>
+<div class="outline-text-3" id="text-orgd3f6d12">
 <p>
 <code>git add</code> 命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行 <code>git commit</code> 就可以一次性把暂存区的所有修改提交到分支。
 </p>
@@ -359,18 +359,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgdc80d3f" class="outline-3">
-<h3 id="orgdc80d3f">管理修改</h3>
-<div class="outline-text-3" id="text-orgdc80d3f">
+<div id="outline-container-orgff425aa" class="outline-3">
+<h3 id="orgff425aa">管理修改</h3>
+<div class="outline-text-3" id="text-orgff425aa">
 <p>
 Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add 到暂存区，那就不会加入到 commit 中。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2fcb5fc" class="outline-3">
-<h3 id="org2fcb5fc">撤销修改</h3>
-<div class="outline-text-3" id="text-org2fcb5fc">
+<div id="outline-container-org123d0e9" class="outline-3">
+<h3 id="org123d0e9">撤销修改</h3>
+<div class="outline-text-3" id="text-org123d0e9">
 <p>
 场景 1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令 <code>git checkout -- file</code> 。
 </p>
@@ -385,9 +385,9 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-orga0ee536" class="outline-3">
-<h3 id="orga0ee536">删除文件</h3>
-<div class="outline-text-3" id="text-orga0ee536">
+<div id="outline-container-orgf2b86ac" class="outline-3">
+<h3 id="orgf2b86ac">删除文件</h3>
+<div class="outline-text-3" id="text-orgf2b86ac">
 <p>
 <code>git checkout</code> 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
 </p>
@@ -401,13 +401,13 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-orgac23319" class="outline-2">
-<h2 id="orgac23319">远程仓库</h2>
-<div class="outline-text-2" id="text-orgac23319">
+<div id="outline-container-org61fb6aa" class="outline-2">
+<h2 id="org61fb6aa">远程仓库</h2>
+<div class="outline-text-2" id="text-org61fb6aa">
 </div>
-<div id="outline-container-org9a3d8ca" class="outline-3">
-<h3 id="org9a3d8ca">添加远程库</h3>
-<div class="outline-text-3" id="text-org9a3d8ca">
+<div id="outline-container-org5004b73" class="outline-3">
+<h3 id="org5004b73">添加远程库</h3>
+<div class="outline-text-3" id="text-org5004b73">
 <p>
 要关联一个远程库，使用命令 <code>git remote add origin git@server-name:path/repo-name.git</code> ；
 </p>
@@ -422,9 +422,9 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-orgd07c6bc" class="outline-3">
-<h3 id="orgd07c6bc">从远程库克隆</h3>
-<div class="outline-text-3" id="text-orgd07c6bc">
+<div id="outline-container-orgac4ffaa" class="outline-3">
+<h3 id="orgac4ffaa">从远程库克隆</h3>
+<div class="outline-text-3" id="text-orgac4ffaa">
 <p>
 这个好像没什么好说的，git 最基础的命令 <code>git clone</code> 。
 </p>
@@ -434,13 +434,13 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-orga879cb9" class="outline-2">
-<h2 id="orga879cb9">分支管理</h2>
-<div class="outline-text-2" id="text-orga879cb9">
+<div id="outline-container-orgd53d02d" class="outline-2">
+<h2 id="orgd53d02d">分支管理</h2>
+<div class="outline-text-2" id="text-orgd53d02d">
 </div>
-<div id="outline-container-orgbde052f" class="outline-3">
-<h3 id="orgbde052f">创建与合并分支</h3>
-<div class="outline-text-3" id="text-orgbde052f">
+<div id="outline-container-org7279ba0" class="outline-3">
+<h3 id="org7279ba0">创建与合并分支</h3>
+<div class="outline-text-3" id="text-org7279ba0">
 <p>
 查看分支： <code>git branch</code>
 </p>
@@ -467,9 +467,9 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-orgb58f414" class="outline-3">
-<h3 id="orgb58f414">解决冲突</h3>
-<div class="outline-text-3" id="text-orgb58f414">
+<div id="outline-container-org8672498" class="outline-3">
+<h3 id="org8672498">解决冲突</h3>
+<div class="outline-text-3" id="text-org8672498">
 <p>
 当 Git 无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
 </p>
@@ -480,9 +480,9 @@ Git 跟踪并管理的是修改，而非文件。每次修改，如果不 add �
 </div>
 </div>
 
-<div id="outline-container-org1c75c2a" class="outline-3">
-<h3 id="org1c75c2a">分支管理策略</h3>
-<div class="outline-text-3" id="text-org1c75c2a">
+<div id="outline-container-org838a902" class="outline-3">
+<h3 id="org838a902">分支管理策略</h3>
+<div class="outline-text-3" id="text-org838a902">
 <p>
 Git 分支十分强大，在团队开发中应该充分应用。
 </p>
@@ -493,9 +493,9 @@ Git 分支十分强大，在团队开发中应该充分应用。
 </div>
 </div>
 
-<div id="outline-container-orgdc5535b" class="outline-3">
-<h3 id="orgdc5535b">Bug 分支</h3>
-<div class="outline-text-3" id="text-orgdc5535b">
+<div id="outline-container-org84fed9b" class="outline-3">
+<h3 id="org84fed9b">Bug 分支</h3>
+<div class="outline-text-3" id="text-org84fed9b">
 <p>
 修复 bug 时，我们会通过创建新的 bug 分支进行修复，然后合并，最后删除；
 </p>
@@ -522,9 +522,9 @@ Git 分支十分强大，在团队开发中应该充分应用。
 </div>
 </div>
 
-<div id="outline-container-org56226b4" class="outline-3">
-<h3 id="org56226b4">Feature 分支</h3>
-<div class="outline-text-3" id="text-org56226b4">
+<div id="outline-container-org0e3018e" class="outline-3">
+<h3 id="org0e3018e">Feature 分支</h3>
+<div class="outline-text-3" id="text-org0e3018e">
 <p>
 开发一个新 feature，最好新建一个分支；
 </p>
@@ -535,9 +535,9 @@ Git 分支十分强大，在团队开发中应该充分应用。
 </div>
 </div>
 
-<div id="outline-container-org21ee50f" class="outline-3">
-<h3 id="org21ee50f">多人协作</h3>
-<div class="outline-text-3" id="text-org21ee50f">
+<div id="outline-container-org75f96e9" class="outline-3">
+<h3 id="org75f96e9">多人协作</h3>
+<div class="outline-text-3" id="text-org75f96e9">
 <p>
 查看远程库信息，使用 <code>git remote -v</code> ；
 </p>
@@ -567,17 +567,17 @@ Git 分支十分强大，在团队开发中应该充分应用。
 </div>
 </div>
 
-<div id="outline-container-org6ab7c0f" class="outline-2">
-<h2 id="org6ab7c0f">标签管理</h2>
-<div class="outline-text-2" id="text-org6ab7c0f">
+<div id="outline-container-org19c77cb" class="outline-2">
+<h2 id="org19c77cb">标签管理</h2>
+<div class="outline-text-2" id="text-org19c77cb">
 <p>
 Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit 的指针。
 </p>
 </div>
 
-<div id="outline-container-org3422ced" class="outline-3">
-<h3 id="org3422ced">创建标签</h3>
-<div class="outline-text-3" id="text-org3422ced">
+<div id="outline-container-org0019145" class="outline-3">
+<h3 id="org0019145">创建标签</h3>
+<div class="outline-text-3" id="text-org0019145">
 <p>
 命令 <code>git tag name</code> 用于新建一个标签，默认为 <code>HEAD</code> ，也可以指定一个 commit id；
 </p>
@@ -596,9 +596,9 @@ Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit
 </div>
 </div>
 
-<div id="outline-container-org233070c" class="outline-3">
-<h3 id="org233070c">操作标签</h3>
-<div class="outline-text-3" id="text-org233070c">
+<div id="outline-container-org1f88d03" class="outline-3">
+<h3 id="org1f88d03">操作标签</h3>
+<div class="outline-text-3" id="text-org1f88d03">
 <p>
 命令 <code>git push origin tagname</code> 可以推送一个本地标签；
 </p>
@@ -620,9 +620,9 @@ Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit
 </div>
 </div>
 
-<div id="outline-container-org0078f35" class="outline-2">
-<h2 id="org0078f35">使用 GitHub</h2>
-<div class="outline-text-2" id="text-org0078f35">
+<div id="outline-container-orge8c7dad" class="outline-2">
+<h2 id="orge8c7dad">使用 GitHub</h2>
+<div class="outline-text-2" id="text-orge8c7dad">
 <p>
 在 GitHub 上，可以任意 Fork 开源仓库；
 </p>
@@ -639,22 +639,22 @@ Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit
 </div>
 </div>
 
-<div id="outline-container-org4b16182" class="outline-2">
-<h2 id="org4b16182">自定义 Git</h2>
-<div class="outline-text-2" id="text-org4b16182">
+<div id="outline-container-org0414df6" class="outline-2">
+<h2 id="org0414df6">自定义 Git</h2>
+<div class="outline-text-2" id="text-org0414df6">
 </div>
-<div id="outline-container-org7b2e6c8" class="outline-3">
-<h3 id="org7b2e6c8">忽略特殊文件</h3>
-<div class="outline-text-3" id="text-org7b2e6c8">
+<div id="outline-container-org77ce60f" class="outline-3">
+<h3 id="org77ce60f">忽略特殊文件</h3>
+<div class="outline-text-3" id="text-org77ce60f">
 <p>
 忽略某些文件时，需要编写.gitignore。.gitignore 文件本身要放到版本库里，并且可以对.gitignore 做版本管理！
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9737891" class="outline-3">
-<h3 id="org9737891">配置别名</h3>
-<div class="outline-text-3" id="text-org9737891">
+<div id="outline-container-orgd4f4bf6" class="outline-3">
+<h3 id="orgd4f4bf6">配置别名</h3>
+<div class="outline-text-3" id="text-orgd4f4bf6">
 <div class="org-src-container">
 <pre class="src src-sh">    $ <span style="color: #ECBE7B;">git</span> config --global alias.st status
     $ <span style="color: #ECBE7B;">git</span> config --global alias.co checkout
@@ -671,9 +671,9 @@ Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit
 </div>
 </div>
 
-<div id="outline-container-orge5d40f4" class="outline-2">
-<h2 id="orge5d40f4">参考文章</h2>
-<div class="outline-text-2" id="text-orge5d40f4">
+<div id="outline-container-orga2e5e9f" class="outline-2">
+<h2 id="orga2e5e9f">参考文章</h2>
+<div class="outline-text-2" id="text-orga2e5e9f">
 <p>
 Git-Tutorial 全文：<a href="http://lvwzhen.gitbooks.io/git-tutorial/">http://lvwzhen.gitbooks.io/git-tutorial/</a>
 </p>
@@ -682,7 +682,7 @@ Git-Tutorial 全文：<a href="http://lvwzhen.gitbooks.io/git-tutorial/">http://
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:46</p>
+<p class="date">Created: 2020-09-09 Wed 21:00</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-07-22 Wed 14:44 -->
+<!-- 2020-09-09 Wed 21:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shell变量的作用域</title>
@@ -234,11 +234,11 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdd2c3e7">Shell 局部变量</a></li>
-<li><a href="#org6213275">Shell 全局变量</a></li>
-<li><a href="#orgce427c5">Shell 环境变量</a>
+<li><a href="#orgfe664b7">Shell 局部变量</a></li>
+<li><a href="#org3dd1f30">Shell 全局变量</a></li>
+<li><a href="#org634edd8">Shell 环境变量</a>
 <ul>
-<li><a href="#orgc38617b">环境变量也是临时的</a></li>
+<li><a href="#org954dfa6">环境变量也是临时的</a></li>
 </ul>
 </li>
 </ul>
@@ -256,9 +256,9 @@ variable）</li>
 variable）</li>
 </ul>
 
-<div id="outline-container-orgdd2c3e7" class="outline-2">
-<h2 id="orgdd2c3e7">Shell 局部变量</h2>
-<div class="outline-text-2" id="text-orgdd2c3e7">
+<div id="outline-container-orgfe664b7" class="outline-2">
+<h2 id="orgfe664b7">Shell 局部变量</h2>
+<div class="outline-text-2" id="text-orgfe664b7">
 <p>
 Shell 也支持自定义函数，但是 Shell 函数和 C++、Java、C# 等其他编程语言函数的一个不同点就是： 在 Shell 函数中定义的变量默认也是全局变量，它和在函数外部定义变量拥有一样的效果。
 </p>
@@ -269,9 +269,9 @@ Shell 也支持自定义函数，但是 Shell 函数和 C++、Java、C# 等其�
 </div>
 </div>
 
-<div id="outline-container-org6213275" class="outline-2">
-<h2 id="org6213275">Shell 全局变量</h2>
-<div class="outline-text-2" id="text-org6213275">
+<div id="outline-container-org3dd1f30" class="outline-2">
+<h2 id="org3dd1f30">Shell 全局变量</h2>
+<div class="outline-text-2" id="text-org3dd1f30">
 <p>
 所谓全局变量，就是指变量在当前的整个 Shell 进程中都有效。 每个 Shell 进程都有自己的作用域，彼此之间互不影响。在 Shell 中定义的变量，默认就是全局变量。
 </p>
@@ -282,9 +282,9 @@ Shell 也支持自定义函数，但是 Shell 函数和 C++、Java、C# 等其�
 </div>
 </div>
 
-<div id="outline-container-orgce427c5" class="outline-2">
-<h2 id="orgce427c5">Shell 环境变量</h2>
-<div class="outline-text-2" id="text-orgce427c5">
+<div id="outline-container-org634edd8" class="outline-2">
+<h2 id="org634edd8">Shell 环境变量</h2>
+<div class="outline-text-2" id="text-org634edd8">
 <p>
 全局变量只在当前 Shell 进程中有效，对其它 Shell 进程和子进程都无效。 如果使用=export=命令将全局变量导出，那么它就在所有的子进程中也有效了，这称为“环境变量”。
 </p>
@@ -298,9 +298,9 @@ Shell 也支持自定义函数，但是 Shell 函数和 C++、Java、C# 等其�
 </p>
 </div>
 
-<div id="outline-container-orgc38617b" class="outline-3">
-<h3 id="orgc38617b">环境变量也是临时的</h3>
-<div class="outline-text-3" id="text-orgc38617b">
+<div id="outline-container-org954dfa6" class="outline-3">
+<h3 id="org954dfa6">环境变量也是临时的</h3>
+<div class="outline-text-3" id="text-org954dfa6">
 <p>
 通过 <code>export</code> 导出的环境变量只对当前 Shell
 进程以及所有的子进程有效，如果最顶层的父进程被关闭了，那么环境变量也就随之消失了，其它的进程也就无法使用了，所以说环境变量也是临时的。
@@ -311,7 +311,7 @@ Shell 也支持自定义函数，但是 Shell 函数和 C++、Java、C# 等其�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-07-22 Wed 14:44</p>
+<p class="date">Created: 2020-09-09 Wed 21:01</p>
 </div>
 </body>
 </html>
