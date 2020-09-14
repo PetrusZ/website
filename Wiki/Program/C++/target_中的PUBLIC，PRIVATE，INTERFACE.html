@@ -4,7 +4,7 @@
 <!-- 2020-09-14 Mon 20:33 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Linux</title>
+<title>target_中的public Private Interface</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,34 +229,188 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Linux</h1>
+<h1 class="title">target_中的public Private Interface</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2bb7b03">Linux</a></li>
+<li><a href="#org6eb5c8e">指令说明</a></li>
+<li><a href="#org74cd2f8">指令讲解</a>
+<ul>
+<li><a href="#org1af154b">测试工程目录结构</a></li>
+<li><a href="#orge4c582d">调用关系</a></li>
+<li><a href="#org32a79c2">关键字用法说明</a></li>
+</ul>
+</li>
+<li><a href="#org328bd84">include_directories(dir)</a></li>
+<li><a href="#org55931cf">目录划分</a></li>
+<li><a href="#org237aed5">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2bb7b03" class="outline-2">
-<h2 id="org2bb7b03">Linux</h2>
-<div class="outline-text-2" id="text-org2bb7b03">
-<ul class="org-ul">
-<li><a href="鸟哥私房菜学习笔记.html">鸟哥私房菜学习笔记</a></li>
-<li><a href="Linux配置文件.html">Linux配置文件</a></li>
-<li><a href="进程与线程.html">进程与线程</a></li>
-<li><a href="内核.html">内核</a></li>
-<li><a href="文件系统.html">文件系统</a></li>
-<li><a href="备份.html">备份</a></li>
-<li><a href="UNXI缩写风格.html">UNXI缩写风格</a></li>
-<li><a href="终端快捷键列表.html">终端快捷键列表</a></li>
-<li><a href="修改键盘映射交换Caps和RControl.html">修改键盘映射交换Caps和RControl</a></li>
-<li><a href="系统资源查看命令.html">系统资源查看命令</a></li>
-<li><a href="解压命令.html">解压命令</a></li>
-<li><a href="pacman常用命令.html">pacman常用命令</a></li>
-<li><a href="搭建VNC服务器.html">搭建VNC服务器</a></li>
-</ul>
+<div id="outline-container-org6eb5c8e" class="outline-2">
+<h2 id="org6eb5c8e">指令说明</h2>
+<div class="outline-text-2" id="text-org6eb5c8e">
+<p>
+<code>target_include_directories()</code> ：指定 <b>目标</b> 包含的头文件路径。<a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html?highlight=target_include_directories">官方文档</a>
+</p>
+
+<p>
+<code>target_link_libraries()</code> ：指定 <b>目标</b> 链接的库。<a href="https://cmake.org/cmake/help/latest/command/target_link_libraries.html?highlight=target_link_libraries">官方文档</a>
+</p>
+
+<p>
+<code>target_compile_options()</code> ：指定 <b>目标</b> 的编译选项。<a href="https://cmake.org/cmake/help/latest/command/target_compile_options.html#command:target_compile_options">官方文档</a>
+</p>
+
+<p>
+<b>目标</b> 由 <code>add_library()</code> 或 <code>add_executable()</code> 生成。
+</p>
+
+<p>
+这三个指令类似，这里以 <code>target_include_directories()</code> 为例进行讲解。
+</p>
+</div>
+</div>
+<div id="outline-container-org74cd2f8" class="outline-2">
+<h2 id="org74cd2f8">指令讲解</h2>
+<div class="outline-text-2" id="text-org74cd2f8">
+</div>
+<div id="outline-container-org1af154b" class="outline-3">
+<h3 id="org1af154b">测试工程目录结构</h3>
+<div class="outline-text-3" id="text-org1af154b">
+<pre class="example">
+cmake-test/                 工程主目录，main.c 调用 libhello-world.so
+├── CMakeLists.txt
+├── hello-world             生成 libhello-world.so，调用 libhello.so 和 libworld.so
+│   ├── CMakeLists.txt
+│   ├── hello               生成 libhello.so
+│   │   ├── CMakeLists.txt
+│   │   ├── hello.c
+│   │   └── hello.h         libhello.so 对外的头文件
+│   ├── hello_world.c
+│   ├── hello_world.h       libhello-world.so 对外的头文件
+│   └── world               生成 libworld.so
+│       ├── CMakeLists.txt
+│       ├── world.c
+│       └── world.h         libworld.so 对外的头文件
+└── main.c
+</pre>
+</div>
+</div>
+<div id="outline-container-orge4c582d" class="outline-3">
+<h3 id="orge4c582d">调用关系</h3>
+<div class="outline-text-3" id="text-orge4c582d">
+<pre class="example">
+                                 ├────libhello.so
+可执行文件────libhello-world.so
+                                 ├────libworld.so
+</pre>
+</div>
+</div>
+<div id="outline-container-org32a79c2" class="outline-3">
+<h3 id="org32a79c2">关键字用法说明</h3>
+<div class="outline-text-3" id="text-org32a79c2">
+<p>
+<b>PRIVATE</b> ：私有的。生成 libhello-world.so 时，只在 hello_world.c 中包含了 hello.h，libhello-world.so <b>对外</b> 的头文件——hello_world.h 中不包含 hello.h。而且 main.c 不会调用 hello.c 中的函数，或者说 main.c 不知道 hello.c 的存在，那么在 hello-world/CMakeLists.txt 中应该写入：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world PRIVATE hello)
+<span style="color: #c678dd;">target_include_directories</span>(hello-world PRIVATE hello)
+</pre>
+</div>
+
+<p>
+<b>INTERFACE</b> ：接口。生成 libhello-world.so 时，只在 libhello-world.so <b>对外</b> 的头文件——hello_world.h 中包含 了 hello.h， hello_world.c 中不包含 hello.h，即 libhello-world.so 不使用 libhello.so 提供的功能，只使用 hello.h 中的某些信息，比如结构体。但是 main.c 需要使用 libhello.so 中的功能。那么在 hello-world/CMakeLists.txt 中应该写入：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world INTERFACE hello)
+<span style="color: #c678dd;">target_include_directories</span>(hello-world INTERFACE hello)
+</pre>
+</div>
+
+<p>
+<b>PUBLIC</b> ：公开的。 <b>PUBLIC = PRIVATE + INTERFACE</b> 。生成 libhello-world.so 时，在 hello_world.c 和 hello_world.h 中都包含了 hello.h。并且 main.c 中也需要使用 libhello.so 提供的功能。那么在 hello-world/CMakeLists.txt 中应该写入：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world PUBLIC hello)
+<span style="color: #c678dd;">target_include_directories</span>(hello-world PUBLIC hello)
+</pre>
+</div>
+
+<p>
+实际上，这三个关键字指定的是目标文件依赖项的使用 <b>范围（scope）</b> 或者一种 <b>传递（propagate）</b> 。<a href="https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#transitive-usage-requirements">官方说明</a>
+</p>
+
+<p>
+可执行文件依赖 libhello-world.so， libhello-world.so 依赖 libhello.so 和 libworld.so。
+</p>
+
+<ol class="org-ol">
+<li>main.c 不使用 libhello.so 的任何功能，因此 libhello-world.so 不需要将其依赖—— libhello.so 传递给 main.c，hello-world/CMakeLists.txt 中使用 PRIVATE 关键字；</li>
+<li>main.c 使用 libhello.so 的功能，但是 libhello-world.so 不使用，hello-world/CMakeLists.txt 中使用 INTERFACE 关键字；</li>
+<li>main.c 和 libhello-world.so 都使用 libhello.so 的功能，hello-world/CMakeLists.txt 中使用 PUBLIC 关键字；</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org328bd84" class="outline-2">
+<h2 id="org328bd84">include_directories(dir)</h2>
+<div class="outline-text-2" id="text-org328bd84">
+<p>
+<code>target_include_directories()</code> 的功能完全可以使用 <code>include_directories()</code> 实现。但是我还是建议使用 <code>target_include_directories()</code> 。为什么？保持清晰！
+</p>
+
+<p>
+<code>include_directories(header-dir)</code> 是一个全局包含，向下传递。什么意思呢？就是说如果某个目录的 CMakeLists.txt 中使用了该指令，其下所有的子目录默认也包含了 <code>header-dir</code> 目录。
+</p>
+
+<p>
+上述例子中，如果在顶层的 cmake-test/CMakeLists.txt 中加入：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">include_directories</span>(hello-world)
+<span style="color: #c678dd;">include_directories</span>(hello-world/hello)
+<span style="color: #c678dd;">include_directories</span>(hello-world/world)
+</pre>
+</div>
+
+<p>
+那么整个工程的源文件在编译时 <b>都</b> 会增加：
+</p>
+
+<pre class="example">
+-I hello-world -I hello-world/hello -I hello-world/world ...
+</pre>
+
+<p>
+各级子目录中无需使用 <code>target_include_directories()</code> 或者 <code>include_directories()</code> 了。如果此时查看详细的编译过程（ <code>make VERBOSE=1</code> ）就会发现编译过程是一大坨，很不舒服。
+</p>
+
+<p>
+当然了，在 <b>最终子目录</b> 的 CMakeLists.txt 文件中，使用 <code>include_directories()</code> 和 <code>target_include_directories()</code> 的效果是相同的。
+</p>
+</div>
+</div>
+<div id="outline-container-org55931cf" class="outline-2">
+<h2 id="org55931cf">目录划分</h2>
+<div class="outline-text-2" id="text-org55931cf">
+<p>
+每一个目录都是一个模块，目录内部应将对外和对内的头文件进行区分，由模块的调用者决定模块是否被传递（PRIVATE，INTERFACE，PUBLIC）。
+</p>
+</div>
+</div>
+<div id="outline-container-org237aed5" class="outline-2">
+<h2 id="org237aed5">Links</h2>
+<div class="outline-text-2" id="text-org237aed5">
+<ol class="org-ol">
+<li><a href="https://zhuanlan.zhihu.com/p/82244559">https://zhuanlan.zhihu.com/p/82244559</a></li>
+</ol>
 </div>
 </div>
 </div>

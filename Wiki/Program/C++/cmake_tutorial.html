@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-09-14 Mon 20:33 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMake Tutorial</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">CMake Tutorial</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf57beb0">CMake 教程</a>
+<ul>
+<li><a href="#org312a995">基本起点（步骤 1）</a>
+<ul>
+<li><a href="#org9d725a2">添加版本号和配置的头文件</a></li>
+<li><a href="#org1c15f5d">指定 C++标准</a></li>
+<li><a href="#org52e5030">构建和测试</a></li>
+</ul>
+</li>
+<li><a href="#org6e2096f">添加库（Step2）</a></li>
+<li><a href="#org65fecbf">添加库的使用要求（Step 3）</a></li>
+<li><a href="#orgcd1dd10">安装和测试（Step 4）</a>
+<ul>
+<li><a href="#orge3e05fc">安装规则</a></li>
+<li><a href="#orgef05839">测试支持</a></li>
+</ul>
+</li>
+<li><a href="#org2a4bbb4">添加系统自检（Step 5）</a>
+<ul>
+<li><a href="#org18d9804">指定编译定义</a></li>
+</ul>
+</li>
+<li><a href="#org55716fa">添加自定义命令和生成的文件（Step 6）</a></li>
+<li><a href="#org3033f02">构建安装器（Step 7）</a></li>
+<li><a href="#orgfaed58d">添加对 Dashboard 的支持（Step 8）</a></li>
+<li><a href="#org7a665ca">混合 Static 和 Shared(Step 9)</a></li>
+<li><a href="#org03afe9a">添加生成器表达式（Step 10）</a></li>
+<li><a href="#orgbca949d">添加导出配置（Step 11）</a></li>
+<li><a href="#orgc36f61b">打包 Debug 和 Release（Step 12）</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf57beb0" class="outline-2">
+<h2 id="orgf57beb0">CMake 教程</h2>
+<div class="outline-text-2" id="text-orgf57beb0">
+</div>
+<div id="outline-container-org312a995" class="outline-3">
+<h3 id="org312a995">基本起点（步骤 1）</h3>
+<div class="outline-text-3" id="text-org312a995">
+<p>
+最基本的项目是从源代码文件构建的可执行文件。对于简单的项目，只需要 3 行 CMakeLists.txt。这将会是我们教程的起点。在 Step1 目录中创建一个 CMakeLists.txt 文件，如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+
+<span style="color: #5B6268;"># set the project name</span>
+<span style="color: #c678dd;">project</span>(Tutorial)
+
+<span style="color: #5B6268;"># add the executable</span>
+<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+</pre>
+</div>
+
+<p>
+注意，此示例在 CMakeLists.txt 文件中使用小写命令。CMake 支持大写，小写和大小写混合命令。Step1 目录中提供了的 tutorial.cxx 源代码，并可用于计算数字平方根。
+</p>
+</div>
+<div id="outline-container-org9d725a2" class="outline-4">
+<h4 id="org9d725a2">添加版本号和配置的头文件</h4>
+<div class="outline-text-4" id="text-org9d725a2">
+<p>
+我们将添加的第一个特性是给我们的执行文件和项目提供一个版本号。虽然我们可以仅在与源代码中执行此操作，但是使用 CMakeLists.txt 可以提供更大的灵活性。
+</p>
+
+<p>
+首先，修改 CMakeLists.txt 文件以使用 project()命令设置项目名称和版本号。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+
+<span style="color: #5B6268;"># set the project name and version</span>
+<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+</pre>
+</div>
+
+<p>
+然后，配置一个头文件来传递版本号到源代码：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">configure_file</span>(TutorialConfig.h.in TutorialConfig.h)
+</pre>
+</div>
+
+<p>
+由于配置文件将被写入 binary 树，我们必须将该目录添加到搜索路径列表中来包含文件。添加下述行到 CMakeLists.txt 文件末尾：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+                           <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
+                           )
+</pre>
+</div>
+
+<p>
+使用你最喜欢的编辑器，在源目录中使用以下内容创建 TutorialConfig.h.in：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">the configured options and settings for Tutorial</span>
+<span style="color: #51afef; font-weight: bold;">#define</span> <span style="color: #dcaeea;">Tutorial_VERSION_MAJOR</span> @Tutorial_VERSION_MAJOR@
+<span style="color: #51afef; font-weight: bold;">#define</span> <span style="color: #dcaeea;">Tutorial_VERSION_MINOR</span> @Tutorial_VERSION_MINOR@
+</pre>
+</div>
+
+<p>
+当 CMake 配置此头文件时，@Tutorial_VERSION_MAJOR@和@Tutorial_VERSION_MINOR@的值将会被替换。
+</p>
+
+<p>
+接下来修改 tutorial.cxx 来包括配置的头文件 TutorialConfig.h。
+</p>
+
+<p>
+最后，通过使用如下内容来更新 tutorial.cxx 以打印出版本号：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-c++">  <span style="color: #51afef;">if</span> (argc &lt; <span style="color: #da8548; font-weight: bold;">2</span>) {
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">report version</span>
+    <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; argv[<span style="color: #da8548; font-weight: bold;">0</span>] &lt;&lt; <span style="color: #98be65;">" Version "</span> &lt;&lt; Tutorial_VERSION_MAJOR &lt;&lt; <span style="color: #98be65;">"."</span>
+              &lt;&lt; Tutorial_VERSION_MINOR &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+    <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Usage: "</span> &lt;&lt; argv[<span style="color: #da8548; font-weight: bold;">0</span>] &lt;&lt; <span style="color: #98be65;">" number"</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">1</span>;
+  }
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1c15f5d" class="outline-4">
+<h4 id="org1c15f5d">指定 C++标准</h4>
+<div class="outline-text-4" id="text-org1c15f5d">
+<p>
+接下来，我们通过在 tutorial.cxx 中用 std::stod 替换 atof 来添加一些 C++11 特性到我们的项目中。同时，我们移除 <code>#include &lt;cstdlib&gt;</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">inputValue</span> = <span style="color: #a9a1e1;">std</span>::stod(argv[<span style="color: #da8548; font-weight: bold;">1</span>]);
+</pre>
+</div>
+
+<p>
+我们需要在 CMake 代码中明确声明应该使用正确的 flags。最简单的办法是通过使用 <code>CMAKE_CXX_STANDARD</code> 变量来在 CMake 中开启指定的 C++标准支持。对本教程来说，在 CMakeLists.txt 文件中设置 <code>CMAKE_CXX_STANDARD</code> 变量为 11 并设置 <code>CMAKE_CXX_STANDARD_REQUIRED</code> 为 True。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+
+<span style="color: #5B6268;"># set the project name and version</span>
+<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+
+<span style="color: #5B6268;"># specify the C++ standard</span>
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org52e5030" class="outline-4">
+<h4 id="org52e5030">构建和测试</h4>
+<div class="outline-text-4" id="text-org52e5030">
+<p>
+运行 cmake 可执行文件或 cmake-gui 来配置项目，然后使用你选中的构建工具构建。
+</p>
+
+<p>
+例如，从命令行我们可以导航到 CMake 源代码树的 <code>Help/guide/tutorial</code> 目录，然后运行以下命令：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #ECBE7B;">mkdir</span> Step1_build
+<span style="color: #ECBE7B;">cd</span> Step1_build
+cmake ../Step1
+cmake --build .
+</pre>
+</div>
+
+<p>
+导航到教程的构建目录（可能是 make 目录或 Debug 目录或 Release 构建配置子目录）并运行这些命令：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">Tutorial <span style="color: #da8548; font-weight: bold;">4294967296</span>
+Tutorial <span style="color: #da8548; font-weight: bold;">10</span>
+Tutorial
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e2096f" class="outline-3">
+<h3 id="org6e2096f">添加库（Step2）</h3>
+<div class="outline-text-3" id="text-org6e2096f">
+<p>
+现在我们添加库到我们的项目。该库将包含我们自己的计算数字的平方根的实现。然后可执行文件使用此库而不是编译器提供的标准平方根函数。在本教程中，我们将库放入名为 <code>MathFunctions</code> 的子目录中。该目录已经包含一个头文件， <code>MathFunctions.h</code> ，和源文件 <code>mysqrt.cxx</code>
+。源文件有一个名为 <code>mysqrt</code> 的函数，该函数提供与编译器的 <code>sqrt</code> 函数类似的功能。
+</p>
+
+<p>
+添加以下一行 CMakeLists.txt 文件到 <code>MatchFunctions</code> 目录中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(MathFunctions mysqrt.cxx)
+</pre>
+</div>
+
+<p>
+为了使用新库，我们将在顶层 CMakeLists.txt 文件中添加一个 <code>add_subdirectory()</code> 以便构建该库。我们将新库添加到可执行文件，并将 <code>MathFunctions</code> 添加到 include 目录，以便可以找到 mysqrt.h 头文件。顶层 <code>CMakeLists.txt</code> 文件的最后几行应该如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;"># add the MathFunctions library</span>
+<span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
+
+<span style="color: #5B6268;"># add the executable</span>
+<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+
+<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+
+<span style="color: #5B6268;"># add the binary tree to the search path for include files</span>
+<span style="color: #5B6268;"># so that we will find TutorialConfig.h</span>
+<span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+                          <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
+                          <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_SOURCE_DIR</span><span style="color: #98be65;">}/MathFunctions"</span>
+                          )
+</pre>
+</div>
+
+<p>
+现在让我们将 MathFunctions 库设为可选的。虽然本教程确实不需要这样做，然而对于较大的项目这是常见的情况。第一步是添加一个选项到顶层的 <code>CMakeLists.txt</code> 文件中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">option</span>(USE_MYMATH <span style="color: #98be65;">"Use tutorial provided math implementation"</span> ON)
+
+<span style="color: #5B6268;"># configure a header file to pass some of the CMake settings</span>
+<span style="color: #5B6268;"># to the source code</span>
+<span style="color: #c678dd;">configure_file</span>(TutorialConfig.h.in TutorialConfig.h)
+</pre>
+</div>
+
+<p>
+此选项将显示在 cmake-gui 和 ccmake 中，默认值为 ON 且可由用户修改。该设置将存储在缓存中，因此用户无需每次在构建目录运行 CMake 时都设置该值。
+</p>
+
+<p>
+下一个更改是使构建和链接 MathFunctions 库成为条件的。为此，我们将顶层 <code>CMakeLists.txt</code> 文件的结尾改为如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #51afef;">if</span>(USE_MYMATH)
+  <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
+  <span style="color: #c678dd;">list</span>(APPEND EXTRA_LIBS MathFunctions)
+  <span style="color: #c678dd;">list</span>(APPEND EXTRA_INCLUDES <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_SOURCE_DIR</span><span style="color: #98be65;">}/MathFunctions"</span>)
+<span style="color: #51afef;">endif</span>()
+
+<span style="color: #5B6268;"># add the executable</span>
+<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+
+<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC ${<span style="color: #dcaeea;">EXTRA_LIBS</span>})
+
+<span style="color: #5B6268;"># add the binary tree to the search path for include files</span>
+<span style="color: #5B6268;"># so that we will find TutorialConfig.h</span>
+<span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+                           <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
+                           ${<span style="color: #dcaeea;">EXTRA_INCLUDES</span>}
+                           )
+</pre>
+</div>
+
+<p>
+注意，使用变量 <code>EXTRA_LIBS</code> 来收集所有可选库，以在之后链接到可执行文件中。变量 <code>EXTRA_INCLUDES</code> 类似地用于可选的头文件。在处理多个可选组件时，这是一种经典做法，我们将在下一步介绍现代做法。
+</p>
+
+<p>
+源代码的对应修改非常直接。首先，在 <code>tutorial.cxx</code> ，如果我们需要它则 include <code>MatchFunctions.h</code> 头文件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#ifdef</span> USE_MYMATH
+<span style="color: #51afef; font-weight: bold;">#  include</span> <span style="color: #98be65;">"MathFunctions.h"</span>
+<span style="color: #51afef; font-weight: bold;">#endif</span>
+</pre>
+</div>
+
+<p>
+然后，在同样的文件中，使用 <code>USE_MYMATH</code> 来控制使用哪个平方根函数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#ifdef</span> USE_MYMATH
+  <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">outputValue</span> = mysqrt(inputValue);
+<span style="color: #51afef; font-weight: bold;">#else</span>
+  <span style="color: #51afef;">const</span> <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">outputValue</span> = sqrt(inputValue);
+<span style="color: #51afef; font-weight: bold;">#endif</span>
+</pre>
+</div>
+
+<p>
+由于源代码现在需要 <code>USE_MYMATH</code> ，因此我们可以添加以下行到 <code>TutorialConfig.h.in</code> 中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;">#cmakedefine USE_MYMATH</span>
+</pre>
+</div>
+
+<p>
+<b>练习</b> ：为什么在 <code>USE_MYMATH</code> 选项之后配置 <code>TutorialConfig.h.in</code> 如此重要？如果我们将两者倒置会怎么样？
+</p>
+
+<p>
+运行 cmake 可执行文件 cmake-gui 来配置项目并在之后使用所选的构建工具构建它。然后运行构建的 Tutorial 可执行文件。
+</p>
+
+<p>
+使用 ccmake 可执行文件或 cmake-gui 来更新 <code>USE_MYMATH</code> 的值。重新构建并再次运行教程。哪个函数提供更好的结果，sqrt 或 mysqrt？
+</p>
+</div>
+</div>
+<div id="outline-container-org65fecbf" class="outline-3">
+<h3 id="org65fecbf">添加库的使用要求（Step 3）</h3>
+<div class="outline-text-3" id="text-org65fecbf">
+<p>
+使用要求可以更好的控制库或可执行文件的链接，同时 include 行还可以更好的控制 CMake 内部目标的传递属性。利用使用要求的主要命令是：
+</p>
+
+<ul class="org-ul">
+<li>target_compile_definitions()</li>
+<li>target_compile_options()</li>
+<li>target_include_directories()</li>
+<li>target_link_libraries()</li>
+</ul>
+
+<p>
+让我们使用现代 CMake 的使用要求方法来重构 <a href="#org6e2096f">添加库（Step2）</a>中的代码。我们首先声明链接到 MathFunctions 的任何人都需要 include 当前源目录，而 MathFunctions 本身不需要。所以，这可以成为一个 <code>INTERFACE</code> 使用要求。
+</p>
+
+<p>
+记住 <code>INTERFACE</code> 表示消费者需要而生产者不需要的东西。添加下列行到 <code>MathFunctions/CMakeLists.txt</code> 结尾：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
+          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+          )
+</pre>
+</div>
+
+<p>
+现在，我们已经指定了 MathFunctions 的使用要求，我们可以安全的从顶层 <code>CMakeLists.txt</code> 中删除对 <code>EXTRA_INCLUDES</code> 变量的使用，这里：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #51afef;">if</span>(USE_MYMATH)
+  <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
+  <span style="color: #c678dd;">list</span>(APPEND EXTRA_LIBS MathFunctions)
+<span style="color: #51afef;">endif</span>()
+</pre>
+</div>
+
+<p>
+和这里：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+                           <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
+                           )
+</pre>
+</div>
+
+<p>
+完成后，运行 cmake 可执行文件或 cmake-gui 来配置项目，然后使用所选的构建工具或通过在构建目录使用 <code>cmake --build .</code> 。
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd1dd10" class="outline-3">
+<h3 id="orgcd1dd10">安装和测试（Step 4）</h3>
+<div class="outline-text-3" id="text-orgcd1dd10">
+<p>
+现在我们开始向项目添加安装规则和测试支持。
+</p>
+</div>
+<div id="outline-container-orge3e05fc" class="outline-4">
+<h4 id="orge3e05fc">安装规则</h4>
+<div class="outline-text-4" id="text-orge3e05fc">
+<p>
+安装规则非常简单：对于 MathFunctions 我们想要安装库和头文件，对于应用程序我们想要安装可执行文件和已配置的头文件。
+</p>
+
+<p>
+所以我们在 <code>MathFunctions/CMakeLists.txt</code> 结尾添加：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS MathFunctions DESTINATION lib)
+<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+</pre>
+</div>
+
+<p>
+在顶层 <code>CMakeLists.txt</code> 结尾我们添加：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS Tutorial DESTINATION bin)
+<span style="color: #c678dd;">install</span>(FILES <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}/TutorialConfig.h"</span>
+  DESTINATION include
+  )
+</pre>
+</div>
+
+<p>
+这是创建本教程的基本本地安装所需的全部。
+</p>
+
+<p>
+运行 cmake 可执行文件或 cmake-gui 来配置项目，然后使用所选的构建工具对其进行构建。通过从命令行使用 cmake 命令的 <code>install</code> 选项（在 3.15 中引入，较早版本的 CMake 必须使用 <code>make install</code> ）运行安装步骤，或者从 IDE 构建 <code>INSTALL</code> 目标。这将会安装适当的头文件，库和可执行文件。
+</p>
+
+<p>
+CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果使用 <code>cmake --install</code> ，则可以通过 <code>--prefix</code> 参数指定自定义安装目录。对于多配置文件工具，使用 <code>--config</code> 参数指定配置文件。
+</p>
+
+<p>
+确认已安装的 Tutorial 运行。
+</p>
+</div>
+</div>
+<div id="outline-container-orgef05839" class="outline-4">
+<h4 id="orgef05839">测试支持</h4>
+<div class="outline-text-4" id="text-orgef05839">
+<p>
+接下来让我们测试我们的应用。在顶层 <code>CMakeLists.txt</code> 的结尾我们开启测试，然后添加一些基本测试以验证应用程序是否正常运行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">enable_testing</span>()
+
+<span style="color: #5B6268;"># does the application run</span>
+<span style="color: #c678dd;">add_test</span>(NAME Runs COMMAND Tutorial <span style="color: #da8548; font-weight: bold;">25</span>)
+
+<span style="color: #5B6268;"># does the usage message work?</span>
+<span style="color: #c678dd;">add_test</span>(NAME Usage COMMAND Tutorial)
+<span style="color: #c678dd;">set_tests_properties</span>(Usage
+  PROPERTIES PASS_REGULAR_EXPRESSION <span style="color: #98be65;">"Usage:.*number"</span>
+  )
+
+<span style="color: #5B6268;"># define a function to simplify adding tests</span>
+<span style="color: #51afef;">function</span>(do_test target arg result)
+  <span style="color: #c678dd;">add_test</span>(NAME Comp${<span style="color: #dcaeea;">arg</span>} COMMAND ${<span style="color: #dcaeea;">target</span>} ${<span style="color: #dcaeea;">arg</span>})
+  <span style="color: #c678dd;">set_tests_properties</span>(Comp${<span style="color: #dcaeea;">arg</span>}
+    PROPERTIES PASS_REGULAR_EXPRESSION ${<span style="color: #dcaeea;">result</span>}
+    )
+<span style="color: #51afef;">endfunction</span>(do_test)
+
+<span style="color: #5B6268;"># do a bunch of result based tests</span>
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #98be65;">"4 is 2"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">9</span> <span style="color: #98be65;">"9 is 3"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">5</span> <span style="color: #98be65;">"5 is 2.236"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">7</span> <span style="color: #98be65;">"7 is 2.645"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">25</span> <span style="color: #98be65;">"25 is 5"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial -25 <span style="color: #98be65;">"-25 is [-nan|nan|0]"</span>)
+<span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">0.0001</span> <span style="color: #98be65;">"0.0001 is 0.01"</span>)
+</pre>
+</div>
+
+<p>
+第一个测试只是简单地验证程序运行，没有段错误或其他崩溃，并且返回值为 0。这是 CTest 的基本形式。
+</p>
+
+<p>
+下一个测试使用 <code>PASS_REGULAR_EXPRESSION</code> 测试属性来验证测试输出包含特定的字符串。在这种情况下，验证在提供了错误数量的参数时是否打印了 usage 信息。
+</p>
+
+<p>
+最后，我们有一个名为 <code>do_test</code> 的函数，该函数运行应用并且验证给定输入的计算平方根的结果是否正确。对于 do_test 的每次调用，都会根据传递的参数将另一个带有名称、输入和预期结果的测试添加项目中。
+</p>
+
+<p>
+重新构建应用程序，然后切换到二进制目录并运行 ctest 可执行文件： <code>ctest -N</code> 和 <code>ctest -VV</code> 。对于多配置生成器（例如 Visual Studio），必须指定配置类型。例如，要在调试模式下运行测试，在构建目录（而不是 Debug 子目录）使用 <code>ctest -C Debug -VV</code> 。或者，从 IDE 构建 RUN_TEST 目标。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a4bbb4" class="outline-3">
+<h3 id="org2a4bbb4">添加系统自检（Step 5）</h3>
+<div class="outline-text-3" id="text-org2a4bbb4">
+<p>
+让我们考虑添加一些取决于目标平台可能不具有的特性的代码到项目中。例如，我们添加一些取决于目标平台是否具有 <code>log</code> 和 <code>exp</code> 函数的代码。当然几乎所有的平台都有这些函数，但是本教程他们并不常见。
+</p>
+
+<p>
+如果平台有 <code>log</code> 和 <code>exp</code> ，那么我们将在 <code>mysqrt</code> 函数中使用它们来计算平方根。我们首先在顶层 <code>CMakeLists.txt</code> 中使用 CheckSymbolExists 模块测试这些函数是否可用。在一些平台，我们需要链接到 m 库。如果最初没有找到 <code>log</code> 和 <code>exp</code> ，则 require m 库并且重试。
+</p>
+
+<p>
+我们将在 <code>TutorialConfig.h.in</code> 中使用新定义，因此确保在文件被配置之前设置它们。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(CheckSymbolExists)
+<span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
+<span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
+<span style="color: #51afef;">if</span>(<span style="color: #c678dd;">NOT</span> (HAVE_LOG AND HAVE_EXP))
+  <span style="color: #c678dd;">unset</span>(HAVE_LOG CACHE)
+  <span style="color: #c678dd;">unset</span>(HAVE_EXP CACHE)
+  <span style="color: #c678dd;">set</span>(CMAKE_REQUIRED_LIBRARIES <span style="color: #98be65;">"m"</span>)
+  <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
+  <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
+  <span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
+    <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE m)
+  <span style="color: #51afef;">endif</span>()
+<span style="color: #51afef;">endif</span>()
+</pre>
+</div>
+
+<p>
+现在让我们添加这些定义到 <code>TutorialConfig.h.in</code> 以便在 <code>mysqrt.cxx</code> 中使用它们。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">does the platform provide exp and log functions?</span>
+<span style="color: #51afef; font-weight: bold;">#cmakedefine</span> HAVE_LOG
+<span style="color: #51afef; font-weight: bold;">#cmakedefine</span> HAVE_EXP
+</pre>
+</div>
+
+<p>
+如果 <code>log</code> 和 <code>exp</code> 在系统上可用，那么我们将使用它们在 <code>mysqrt</code> 函数中计算平方根。添加下列代码到 <code>MatchFunctions/mysqrt.cxx</code> 中的 <code>mysqrt</code> 函数中（不要忘记返回结果之前的 <code>#endif</code> ！）。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#if</span> <span style="color: #51afef; font-weight: bold;">defined</span>(HAVE_LOG) &amp;&amp; <span style="color: #51afef; font-weight: bold;">defined</span>(HAVE_EXP)
+  <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">result</span> = exp(log(x) * <span style="color: #da8548; font-weight: bold;">0.5</span>);
+  <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Computing sqrt of "</span> &lt;&lt; x &lt;&lt; <span style="color: #98be65;">" to be "</span> &lt;&lt; result
+            &lt;&lt; <span style="color: #98be65;">" using log and exp"</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+<span style="color: #51afef; font-weight: bold;">#else</span>
+  <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">result</span> = x;
+</pre>
+</div>
+
+<p>
+我们还需要修改 <code>mysqrt.cxx</code> 来 include <code>cmath</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;cmath&gt;</span>
+</pre>
+</div>
+
+<p>
+运行 cmkae 可执行文件或 cmake-gui 配置项目，然后使用所选的构建工具对其进行构建并运行 Tutorial 可执行文件。
+</p>
+
+<p>
+你会发现我们没有使用 <code>log</code> 和 <code>exp</code> ，即使我们认为它们应该可用。我们应该很快发现，我们忘记在 <code>mysqrt.cxx</code> 中 include <code>TutorialConfig.h</code> 了。
+</p>
+
+<p>
+我们还需要更新 <code>MatchFunctions/CMakeLists.txt</code> 以便 <code>mysqrt.cxx</code> 知道此文件的位置：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
+          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+          PRIVATE ${<span style="color: #dcaeea;">CMAKE_BINARY_DIR</span>}
+          )
+</pre>
+</div>
+
+<p>
+进行此次更新之后，继续并再次构建项目，然后运行构建的 TuTorial 可执行文件。如果 <code>log</code> 和 <code>exp</code> 仍旧不能被使用，从构建目录中打开生成的 <code>TutorialConfig.h</code> 。或许它们在当前系统不可用？
+</p>
+
+<p>
+现在哪个函数给你更好的结果，sqrt 或 mysqrt？
+</p>
+</div>
+<div id="outline-container-org18d9804" class="outline-4">
+<h4 id="org18d9804">指定编译定义</h4>
+<div class="outline-text-4" id="text-org18d9804">
+<p>
+除了在 <code>TutorialConfig.h</code> 中保存 <code>HAVE_LOG</code> 和 <code>HAVE_EXP</code> 值，我们还有更好的地方吗？让我们试试使用 target_compile_definitions()。首先，从 <code>TutorialConfig.h.in</code> 中删除定义。我们不再需要在 <code>mysqrt.cxx</code> 中 include <code>TutorialConfig.h</code> 或在 <code>MatchFunctions/CMakeLists.txt</code> 中 extra include 了。
+</p>
+
+<p>
+接下来，我们可以将 <code>HAVE_LOG</code> 和 <code>HAVE_EXP</code> 的检查移至 <code>MathFunctions/CMakeLists.txt</code> ，然后将这些值指定为 <code>PRIVATE</code> 编译定义。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(CheckSymbolExists)
+<span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
+<span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
+<span style="color: #51afef;">if</span>(<span style="color: #c678dd;">NOT</span> (HAVE_LOG AND HAVE_EXP))
+  <span style="color: #c678dd;">unset</span>(HAVE_LOG CACHE)
+  <span style="color: #c678dd;">unset</span>(HAVE_EXP CACHE)
+  <span style="color: #c678dd;">set</span>(CMAKE_REQUIRED_LIBRARIES <span style="color: #98be65;">"m"</span>)
+  <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
+  <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
+  <span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
+    <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE m)
+  <span style="color: #51afef;">endif</span>()
+<span style="color: #51afef;">endif</span>()
+
+<span style="color: #5B6268;"># add compile definitions</span>
+<span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
+  <span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions
+                             PRIVATE <span style="color: #98be65;">"HAVE_LOG"</span> <span style="color: #98be65;">"HAVE_EXP"</span>)
+<span style="color: #51afef;">endif</span>()
+</pre>
+</div>
+
+<p>
+完成这些更新后，继续并重新构建项目。运行构建的 Tutorial 可执行文件并像本步骤之前的那样验证结果。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org55716fa" class="outline-3">
+<h3 id="org55716fa">添加自定义命令和生成的文件（Step 6）</h3>
+<div class="outline-text-3" id="text-org55716fa">
+<p>
+假设，出于本教程的目的，我们决定不再使用 <code>log</code> 和 <code>exp</code> 函数，而是希望生成一个可在 mysqrt 函数中使用的预计算值表。在本节中，我们将在构建过程中创建表，然后将该表编译到我们的应用程序中。
+</p>
+
+<p>
+首先，我们从 <code>MathFunctions/CMakeLists.txt</code> 中移除 <code>log</code> 和 <code>exp</code> 函数的检查。然后从 <code>mysqrt.cxx</code> 中移除 <code>HAVE_LOG</code> 和 <code>HAVE_EXP</code> 的检查。同时，我们还可以移除 <code>#include &lt;math&gt;</code> 。
+</p>
+
+<p>
+在 <code>MathFunctions</code> 子目录中，提供了一个名为 <code>MakeTable.cxx</code> 的新源文件来生成表。
+</p>
+
+<p>
+查看完文件后，我们可以看到该表是使用有效的 C++代码生成的，并且输出文件名作为参数传入。
+</p>
+
+<p>
+下一个步骤是将适当的命令添加到 <code>MathFunctions/CMakeLists.txt</code> 中，以构建 MakeTable 可执行文件，然后在构建过程中运行它。需要一些命令来完成此操作。
+</p>
+
+<p>
+首先，在 <code>MathFunctions/CMakeLists.txt</code> 的顶部，就像添加其他可执行文件一样添加 MakeTable 为可执行文件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(MakeTable MakeTable.cxx)
+</pre>
+</div>
+
+<p>
+然后我们添加一个自定义命令来指定如果通过运行 MakeTable 来产生 <code>Table.h</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_custom_command</span>(
+  OUTPUT ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+  COMMAND MakeTable ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+  DEPENDS MakeTable
+  )
+</pre>
+</div>
+
+<p>
+接下来，我们必须让 CMake 知道 <code>mysqrt.cxx</code> 依赖于生成的文件 <code>Table.h</code> 。这可以通过将生成的 <code>Table.h</code> 添加到库 MathFunctions 的源列表中来完成。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(MathFunctions
+            mysqrt.cxx
+            ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+            )
+</pre>
+</div>
+
+<p>
+我们还必须将当前 binary 目录添加到 include 目录列表中，以便 <code>mysqrt.cxx</code> 可以找到并 include <code>Table.h</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
+          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+          PRIVATE ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}
+          )
+</pre>
+</div>
+
+<p>
+现在，让我们来生成表。首先，修改 <code>mysqrt.cxx</code> 来 include <code>Table.h</code> 。接下来，我们可以重写 mysqrt 函数来使用该表：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #ECBE7B;">double</span> <span style="color: #c678dd;">mysqrt</span>(<span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">x</span>)
+{
+  <span style="color: #51afef;">if</span> (x &lt;= <span style="color: #da8548; font-weight: bold;">0</span>) {
+    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+  }
+
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">use the table to help find an initial value</span>
+  <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">result</span> = x;
+  <span style="color: #51afef;">if</span> (x &gt;= <span style="color: #da8548; font-weight: bold;">1</span> &amp;&amp; x &lt; <span style="color: #da8548; font-weight: bold;">10</span>) {
+    <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Use the table to help find an initial value "</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+    result = sqrtTable[<span style="color: #51afef;">static_cast</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;(x)];
+  }
+
+  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">do ten iterations</span>
+  <span style="color: #51afef;">for</span> (<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; <span style="color: #da8548; font-weight: bold;">10</span>; ++i) {
+    <span style="color: #51afef;">if</span> (result &lt;= <span style="color: #da8548; font-weight: bold;">0</span>) {
+      result = <span style="color: #da8548; font-weight: bold;">0.1</span>;
+    }
+    <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">delta</span> = x - (result * result);
+    result = result + <span style="color: #da8548; font-weight: bold;">0.5</span> * delta / result;
+    <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Computing sqrt of "</span> &lt;&lt; x &lt;&lt; <span style="color: #98be65;">" to be "</span> &lt;&lt; result &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+  }
+
+  <span style="color: #51afef;">return</span> result;
+}
+</pre>
+</div>
+
+<p>
+运行 cmake 可执行文件或 cmake-gui 配置项目，然后使用所选的构建工具对其进行构建。
+</p>
+
+<p>
+构建此项目时，它将首先构建 MakeTable 可执行文件。然后它将运行 <code>MakeTable</code> 生成 <code>Table.h</code> 。最后，它将编译 include <code>Table.h</code> 的 <code>mysqrt.cxx</code> 来生成 MathFunctions 库。
+</p>
+
+<p>
+运行 Tutorial 可执行文件并验证它正在使用该表。
+</p>
+</div>
+</div>
+<div id="outline-container-org3033f02" class="outline-3">
+<h3 id="org3033f02">构建安装器（Step 7）</h3>
+<div class="outline-text-3" id="text-org3033f02">
+<p>
+接下来，假设我们想将项目分发给其他人，以便他们可以使用它。我们希望在各种平台上提供二进制和源码的分发。这与我们之前在<a href="#orgcd1dd10">安装和测试（Step 4）</a>中所做的安装有些不同，在其中我们安装从源代码构建的二进制文件。在此例中，我们将构建支持二进制程序安装和包管理功能的安装包。为此，我们将使用 CPack 创建特定平台的安装器。具体来说，我们需要在顶层 <code>CMakeLists.txt</code> 文件的底部添加几行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(InstallRequiredSystemLibraries)
+<span style="color: #c678dd;">set</span>(CPACK_RESOURCE_FILE_LICENSE <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #98be65;">}/License.txt"</span>)
+<span style="color: #c678dd;">set</span>(CPACK_PACKAGE_VERSION_MAJOR <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MAJOR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(CPACK_PACKAGE_VERSION_MINOR <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MINOR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">include</span>(CPack)
+</pre>
+</div>
+
+<p>
+这就是全部。我从 include InstallRequiredSystemLibraries 开始。该模块将包括项目目前平台所需的任何运行时库。接下来，我们将一些 CPack 变量设置为我们已存储的该项目的许可证和版本信息。版本信息是在本教程前面设置的， <code>liscense.txt</code> 在此步骤已被包含在顶层源目录中。
+</p>
+
+<p>
+最后，我们 include CPack 模块，它将使用这些变量和当前系统的一些其他属性来设置安装器。
+</p>
+
+<p>
+下一步是按照通常的方法构建项目，然后运行 cpack 可执行文件。要构建二进制发行版，从二进制目录运行：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cpack
+</pre>
+</div>
+
+<p>
+要指定生成器，使用 <code>-G</code> 选项。对于多配置构建，使用 <code>-C</code> 指定配置，例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cpack -G ZIP -C Debug
+</pre>
+</div>
+
+<p>
+要创建源分发，你可以输入：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cpack --config CPackSourceConfig.cmake
+</pre>
+</div>
+
+<p>
+或者，运行 <code>make package</code> 或从 IDE 中右击 <code>Package</code> 目标和 <code>Build Project</code> 。
+</p>
+
+<p>
+运行二进制目录中找到的安装器。然后运行安装的可执行文件并验证它是否工作。
+</p>
+</div>
+</div>
+<div id="outline-container-orgfaed58d" class="outline-3">
+<h3 id="orgfaed58d">添加对 Dashboard 的支持（Step 8）</h3>
+<div class="outline-text-3" id="text-orgfaed58d">
+<p>
+对将测试结果提交到 Dashboard 的支持非常简单。我们已经在<a href="#orgef05839">测试支持</a>中为我们的项目添加了许多测试。现在我们只要运行这些测试并将其提交到 Dashboard 即可。为了包含对 Dashboard 的支持，我们在顶层 <code>CMakeLists.txt</code> 中 include <code>CTest</code> 模块。
+</p>
+
+<p>
+替换：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;"># enable testing</span>
+<span style="color: #c678dd;">enable_testing</span>()
+</pre>
+</div>
+
+<p>
+为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;"># enable dashboard scripting</span>
+<span style="color: #c678dd;">include</span>(CTest)
+</pre>
+</div>
+
+<p>
+cTest 模块将会自动调用 <code>enable_testing()</code> ，所以可以从 CMake 文件移除它。
+</p>
+
+<p>
+我们还需要在顶层目录中创建一个 <code>CTestConfig.cmake</code> 文件，在该文件中我们可以指定项目的名称和提交仪表盘的位置。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CTEST_PROJECT_NAME <span style="color: #98be65;">"CMakeTutorial"</span>)
+<span style="color: #c678dd;">set</span>(CTEST_NIGHTLY_START_TIME <span style="color: #98be65;">"00:00:00 EST"</span>)
+
+<span style="color: #c678dd;">set</span>(CTEST_DROP_METHOD <span style="color: #98be65;">"http"</span>)
+<span style="color: #c678dd;">set</span>(CTEST_DROP_SITE <span style="color: #98be65;">"my.cdash.org"</span>)
+<span style="color: #c678dd;">set</span>(CTEST_DROP_LOCATION <span style="color: #98be65;">"/submit.php?project=CMakeTutorial"</span>)
+<span style="color: #c678dd;">set</span>(CTEST_DROP_SITE_CDASH TRUE)
+</pre>
+</div>
+
+<p>
+ctest 可执行文件将会在它运行时读取该文件。要创建一个简单的 Dashboard 你可以运行 cmake 可执行文件或 cmake-gui 来配置项目，但暂时不要构建它。而是切换目录到二进制树，然后运行：
+</p>
+
+<p>
+<code>ctest [-VV] -D Experimental</code>
+</p>
+
+<p>
+记住，对于多配置生成器（例如 Visual Studio），必须指定配置类型：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">ctest <span style="color: #51afef;">[</span>-VV<span style="color: #51afef;">]</span> -C Debug -D Experimental
+</pre>
+</div>
+
+<p>
+或，从 IDE，构建 <code>Experimental</code> 目标。
+</p>
+
+<p>
+ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 dashboard：<a href="https://my.cdash.org/index.php?project=CMakeTutorial">https://my.cdash.org/index.php?project=CMakeTutorial</a>。
+</p>
+</div>
+</div>
+<div id="outline-container-org7a665ca" class="outline-3">
+<h3 id="org7a665ca">混合 Static 和 Shared(Step 9)</h3>
+<div class="outline-text-3" id="text-org7a665ca">
+<p>
+在本节中，我们将展示如何使用 <code>BUILD_SHARED_LIBS</code> 变量来控制 add_library()的默认行为，并允许控制如何构建没有显式类型（ <code>STATIC</code> ， <code>SHARED</code> ， <code>MODULE</code> 或 <code>OBJECT</code> ）的库。
+</p>
+
+<p>
+为此，我们需要将 <code>BUILD_SHARED_LIBS</code> 添加到顶层 <code>CMakeLists.txt</code> 。我们使用 option()命令，因为它允许用户有选择选择该值应为 ON 还是 OFF。
+</p>
+
+<p>
+接下来，我们将重构 MathFunctions 使其成为使用 mysqrt 或 sqrt 封装的真实库，而不是要求调用代码执行此逻辑。这也意味着 <code>USE_MYMATH</code> 将不会再控制构建 MathFunctions，而是将控制此库的行为。
+</p>
+
+<p>
+第一步是将顶层 <code>CMakeLists.txt</code> 的开始部分更新为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+
+<span style="color: #5B6268;"># set the project name and version</span>
+<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+
+<span style="color: #5B6268;"># specify the C++ standard</span>
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+
+<span style="color: #5B6268;"># control where the static and shared libraries are built so that on windows</span>
+<span style="color: #5B6268;"># we don't need to tinker with the path to run the executable</span>
+<span style="color: #c678dd;">set</span>(CMAKE_ARCHIVE_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_LIBRARY_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_RUNTIME_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+
+<span style="color: #c678dd;">option</span>(BUILD_SHARED_LIBS <span style="color: #98be65;">"Build using shared libraries"</span> ON)
+
+<span style="color: #5B6268;"># configure a header file to pass the version number only</span>
+<span style="color: #c678dd;">configure_file</span>(TutorialConfig.h.in TutorialConfig.h)
+
+<span style="color: #5B6268;"># add the MathFunctions library</span>
+<span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
+
+<span style="color: #5B6268;"># add the executable</span>
+<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+</pre>
+</div>
+
+<p>
+既然我们已经使 MathFunctions 始终被使用，我们将需要更新该库的逻辑。因此，在 <code>MatchFunctions/CMakeLists.txt</code> 中，我们需要创建一个 SqrtLibrary，当启用 <code>USE_MYMATH</code> 时将有条件的对其进行构建。现在，由于这是一个教程，我们明确的要求静态的构建 SqrtLibrary。
+</p>
+
+<p>
+<code>MathFunctions/CMakeLists.txt</code> 的最终结果应该如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;"># add the library that runs</span>
+<span style="color: #c678dd;">add_library</span>(MathFunctions MathFunctions.cxx)
+
+<span style="color: #5B6268;"># state that anybody linking to us needs to include the current source dir</span>
+<span style="color: #5B6268;"># to find MathFunctions.h, while we don't.</span>
+<span style="color: #c678dd;">target_include_directories</span>(MathFunctions
+                           INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+                           )
+
+<span style="color: #5B6268;"># should we use our own math functions</span>
+<span style="color: #c678dd;">option</span>(USE_MYMATH <span style="color: #98be65;">"Use tutorial provided math implementation"</span> ON)
+<span style="color: #51afef;">if</span>(USE_MYMATH)
+
+  <span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions PRIVATE <span style="color: #98be65;">"USE_MYMATH"</span>)
+
+  <span style="color: #5B6268;"># first we add the executable that generates the table</span>
+  <span style="color: #c678dd;">add_executable</span>(MakeTable MakeTable.cxx)
+
+  <span style="color: #5B6268;"># add the command to generate the source code</span>
+  <span style="color: #c678dd;">add_custom_command</span>(
+    OUTPUT ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+    COMMAND MakeTable ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+    DEPENDS MakeTable
+    )
+
+  <span style="color: #5B6268;"># library that just does sqrt</span>
+  <span style="color: #c678dd;">add_library</span>(SqrtLibrary STATIC
+              mysqrt.cxx
+              ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+              )
+
+  <span style="color: #5B6268;"># state that we depend on our binary dir to find Table.h</span>
+  <span style="color: #c678dd;">target_include_directories</span>(SqrtLibrary PRIVATE
+                             ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}
+                             )
+
+  <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE SqrtLibrary)
+<span style="color: #51afef;">endif</span>()
+
+<span style="color: #5B6268;"># define the symbol stating we are using the declspec(dllexport) when</span>
+<span style="color: #5B6268;"># building on windows</span>
+<span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions PRIVATE <span style="color: #98be65;">"EXPORTING_MYMATH"</span>)
+
+<span style="color: #5B6268;"># install rules</span>
+<span style="color: #c678dd;">install</span>(TARGETS MathFunctions DESTINATION lib)
+<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+</pre>
+</div>
+
+<p>
+接下来，更新 <code>MathFunctions/mysqrt.cxx</code> 以使用 <code>mathfunctions</code> 和 <code>detail</code> 命名空间：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;iostream&gt;</span>
+
+<span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">"MathFunctions.h"</span>
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">include the generated table</span>
+<span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">"Table.h"</span>
+
+<span style="color: #51afef;">namespace</span> <span style="color: #a9a1e1;">mathfunctions</span> {
+  <span style="color: #51afef;">namespace</span> <span style="color: #a9a1e1;">detail</span> {
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">a hack square root calculation using simple operations</span>
+    <span style="color: #ECBE7B;">double</span> <span style="color: #c678dd;">mysqrt</span>(<span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">x</span>)
+    {
+      <span style="color: #51afef;">if</span> (x &lt;= <span style="color: #da8548; font-weight: bold;">0</span>) {
+        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">0</span>;
+      }
+
+      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">use the table to help find an initial value</span>
+      <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">result</span> = x;
+      <span style="color: #51afef;">if</span> (x &gt;= <span style="color: #da8548; font-weight: bold;">1</span> &amp;&amp; x &lt; <span style="color: #da8548; font-weight: bold;">10</span>) {
+        <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Use the table to help find an initial value "</span> &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+        result = sqrtTable[<span style="color: #51afef;">static_cast</span>&lt;<span style="color: #ECBE7B;">int</span>&gt;(x)];
+      }
+
+      <span style="color: #5B6268;">// </span><span style="color: #5B6268;">do ten iterations</span>
+      <span style="color: #51afef;">for</span> (<span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">i</span> = <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; <span style="color: #da8548; font-weight: bold;">10</span>; ++i) {
+        <span style="color: #51afef;">if</span> (result &lt;= <span style="color: #da8548; font-weight: bold;">0</span>) {
+          result = <span style="color: #da8548; font-weight: bold;">0.1</span>;
+        }
+        <span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">delta</span> = x - (result * result);
+        result = result + <span style="color: #da8548; font-weight: bold;">0.5</span> * delta / result;
+        <span style="color: #a9a1e1;">std</span>::cout &lt;&lt; <span style="color: #98be65;">"Computing sqrt of "</span> &lt;&lt; x &lt;&lt; <span style="color: #98be65;">" to be "</span> &lt;&lt; result &lt;&lt; <span style="color: #a9a1e1;">std</span>::endl;
+      }
+
+      <span style="color: #51afef;">return</span> result;
+    }
+  }
+}
+</pre>
+</div>
+
+<p>
+我们还需要在 <code>tutorial.cxx</code> 中进行一些更改，以使其不再使用 <code>USE_MYMATH</code> ：
+</p>
+
+<ol class="org-ol">
+<li>总是 include <code>MathFunctions.h</code></li>
+<li>总是使用 <code>mathfunctions::sqrt</code></li>
+<li>不要 include cmath</li>
+</ol>
+
+<p>
+最后，更新 <code>MathFunctions/MathFunctions.h</code> 以使用 dll 导出定义：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #51afef; font-weight: bold;">#if</span> <span style="color: #51afef; font-weight: bold;">defined</span>(_WIN32)
+<span style="color: #51afef; font-weight: bold;">#  if</span> <span style="color: #51afef; font-weight: bold;">defined</span>(EXPORTING_MYMATH)
+<span style="color: #51afef; font-weight: bold;">#    define</span> <span style="color: #dcaeea;">DECLSPEC</span> <span style="color: #51afef;">__declspec</span>(dllexport)
+<span style="color: #51afef; font-weight: bold;">#  else</span>
+<span style="color: #51afef; font-weight: bold;">#    define</span> <span style="color: #dcaeea;">DECLSPEC</span> <span style="color: #51afef;">__declspec</span>(dllimport)
+<span style="color: #51afef; font-weight: bold;">#  endif</span>
+<span style="color: #51afef; font-weight: bold;">#else</span> <span style="color: #5B6268;">// </span><span style="color: #5B6268;">non windows</span>
+<span style="color: #51afef; font-weight: bold;">#  define</span> <span style="color: #dcaeea;">DECLSPEC</span>
+<span style="color: #51afef; font-weight: bold;">#endif</span>
+
+<span style="color: #51afef;">namespace</span> <span style="color: #a9a1e1;">mathfunctions</span> {
+<span style="color: #ECBE7B;">double</span> <span style="color: #c678dd;">DECLSPEC</span> sqrt(<span style="color: #ECBE7B;">double</span> <span style="color: #dcaeea;">x</span>);
+}
+</pre>
+</div>
+
+<p>
+此时，如果你构建了所有内容，你会链接失败，因为我们将没有位置的独立代码的静态库和具有位置独立代码的库组合在一起。解决方案使无论构建类型如何，都将 SqrtLibrary 的 <code>POSITION_INDEPENDENT_CODE</code> 目标属性显式设置为 True。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #5B6268;"># state that SqrtLibrary need PIC when the default is shared libraries</span>
+<span style="color: #c678dd;">set_target_properties</span>(SqrtLibrary PROPERTIES
+                      POSITION_INDEPENDENT_CODE ${<span style="color: #dcaeea;">BUILD_SHARED_LIBS</span>}
+                      )
+
+<span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE SqrtLibrary)
+</pre>
+</div>
+
+<p>
+<b>练习</b> ：我们修改了 <code>MathFunctions.h</code> 以使用 dll 导出定义。使用 CMake 文档，你可以找到一个帮助模块来简化此过程吗？
+</p>
+</div>
+</div>
+<div id="outline-container-org03afe9a" class="outline-3">
+<h3 id="org03afe9a">添加生成器表达式（Step 10）</h3>
+<div class="outline-text-3" id="text-org03afe9a">
+<p>
+在构建系统生成期间会评估生成器表达式，以生成特定于每个构建配置的信息。
+</p>
+
+<p>
+生成器表达式在许多目标属性的上下文中被允许，例如 <code>LINK_LIBRARIES</code> ， <code>INCLUDE_DIRECTORIES</code> ， <code>COMPILE_DEFINITIONS</code> 等等。在使用命令填充这些属性时，也可以使用它们，例如 <code>target_link_libraries()</code> ， <code>target_include_directories()</code> ， <code>target_compile_definitions()</code> 等等。
+</p>
+
+<p>
+生成器表达式可用于启用条件链接，编译时使用的条件定义，条件目录包含等。条件可以基于构建配置，目标属性，平台信息或任何其他可查询信息。
+</p>
+
+<p>
+生成器表达式有不同类型，包括逻辑，信息和输出表达式。
+</p>
+
+<p>
+逻辑表达式用于创建条件输出。基本表达式是 0 和 1 的表达式。 <code>A$&lt;0:...&gt;</code> 结果是空字符串， <code>&lt;1:...&gt;</code> 导致内容“&#x2026;”。他们也可以被嵌套。
+</p>
+
+<p>
+生成表达式的常见用法是有条件地添加编译 flags，例如用于语言级别或警告。一个不错的模式是将该信息与一个 <code>INTERFACE</code> 目标关联，以允许该信息传播。让我们从构造一个 <code>INTERFACE</code> 目标并指定所需的 C++标准 11 开始，而不是使用 <code>CMAKE_CXX_STANDARD</code> 。
+</p>
+
+<p>
+所以下面的代码：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+</pre>
+</div>
+
+<p>
+将被替换为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(tutorial_compiler_flags INTERFACE)
+<span style="color: #c678dd;">target_compile_features</span>(tutorial_compiler_flags INTERFACE cxx_std_11)
+</pre>
+</div>
+
+<p>
+接下来，我们为项目添加所需的编译器警告 flags。由于警告 flags 因编译器而异，因此我们使用 <code>COMPILE_LANG_AND_ID</code> 生成器表达式来控制在给定一种语言和一组编译 ID 的情况下应应用的 flags，如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(gcc_like_cxx <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU&gt;"</span>)
+<span style="color: #c678dd;">set</span>(msvc_cxx <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,MSVC&gt;"</span>)
+<span style="color: #c678dd;">target_compile_options</span>(tutorial_compiler_flags INTERFACE
+  <span style="color: #98be65;">"$&lt;${</span><span style="color: #dcaeea;">gcc_like_cxx</span><span style="color: #98be65;">}:$&lt;BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused&gt;&gt;"</span>
+  <span style="color: #98be65;">"$&lt;${</span><span style="color: #dcaeea;">msvc_cxx</span><span style="color: #98be65;">}:$&lt;BUILD_INTERFACE:-W3&gt;&gt;"</span>
+)
+</pre>
+</div>
+
+<p>
+查看此内容，我们看到警告 flags 封装在 <code>BUILD_INTERFACE</code> 条件内。这样做是为了使我们已安装项目的使用者不会继承我们的警告 flags。
+</p>
+
+<p>
+<b>练习</b> ：修改 <code>MathFunctions/CMakeLists.txt</code> ，使所有有 <code>target_link_libraries</code> 的目标调用 <code>tutorial_compiler_flags</code> 。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbca949d" class="outline-3">
+<h3 id="orgbca949d">添加导出配置（Step 11）</h3>
+<div class="outline-text-3" id="text-orgbca949d">
+<p>
+在教程的<a href="#orgcd1dd10">安装和测试（Step 4）</a>中，我们添加了 CMake 的安装项目的库和头文件的功能。在<a href="#org3033f02">构建安装器（Step 7）</a>中，我们添加了打包此信息的功能，以便可以分发给其他人。
+</p>
+
+<p>
+下一步是添加必要的信息，以便让其他 CMake 项目可以使用我们的项目，无论它是来自构建目录，本地安装还是打包时。
+</p>
+
+<p>
+第一步是更新我们的 <code>install(TARGETS)</code> 命令，不仅要指定 <code>DESTINATION</code> ，还要指定 <code>EXPORT</code> 。 <code>EXPORT</code> 关键字生成并安装一个 CMake 文件，该文件包含从安装树目录中导入 install 命令中列出的所有目标的代码。所以让我们继续并通过更新 <code>MathFunctions/CMakeLists.txt</code> 中的 <code>install</code> 命令，来显式 <code>EXPORT</code> MathFunctions 库，如下所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS MathFunctions tutorial_compiler_flags
+        DESTINATION lib
+        EXPORT MathFunctionsTargets)
+<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+</pre>
+</div>
+
+<p>
+现在我们已经导出了 MathFunctions，我们还需要显式的安装生成的 <code>MathFunctionsTargets.cmake</code> 文件。这可以通过将以下内容添加到顶层 <code>CMakeLists.txt</code> 的底部来完成：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(EXPORT MathFunctionsTargets
+  FILE MathFunctionsTargets.cmake
+  DESTINATION lib/cmake/MathFunctions
+)
+</pre>
+</div>
+
+<p>
+此时你应该尝试运行 CMake。如果一切设置正确，你会看到 CMake 将生成如下错误：
+</p>
+
+<pre class="example">
+Target "MathFunctions" INTERFACE_INCLUDE_DIRECTORIES property contains
+path:
+
+  "/Users/robert/Documents/CMakeClass/Tutorial/Step11/MathFunctions"
+
+which is prefixed in the source directory.
+</pre>
+
+<p>
+CMake 试图说的是，在生成导出信息的过程中，它将导出与本机固有联系的路径，并且在其他机器上无效。
+</p>
+
+<p>
+解决方案是更新 MathFunctions 的 <code>target_include_directories()</code> ，以了解从构建目录和安装/打包中使用它时需要不同的 <code>INTERFACE</code> 位置。这意味着 MathFunctions 的 <code>target_include_directories()</code> 调用转换为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
+                           INTERFACE
+                            $&lt;BUILD_INTERFACE:${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}&gt;
+                            $&lt;INSTALL_INTERFACE:include&gt;
+                           )
+</pre>
+</div>
+
+<p>
+至此，我们已经正确地打包了 CMake 所需的目标信息，但仍需要生成 <code>MathFunctionsConfig.cmake</code> ，以便 CMake 的 <code>find_package()</code> 命令可以找到我们的项目。所以，让我们继续添加名为 <code>Config.cmake.in</code> 的新文件到项目的顶层，其内容如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake">@PACKAGE_INIT@
+
+<span style="color: #c678dd;">include</span> ( <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span> )
+</pre>
+</div>
+
+<p>
+然后，正确的配置和安装该文件，将以下内容添加到顶层 <code>CMakeLists.txt</code> 的底部：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(EXPORT MathFunctionsTargets
+  FILE MathFunctionsTargets.cmake
+  DESTINATION lib/cmake/MathFunctions
+)
+
+<span style="color: #c678dd;">include</span>(CMakePackageConfigHelpers)
+<span style="color: #5B6268;"># generate the config file that is includes the exports</span>
+<span style="color: #c678dd;">configure_package_config_file</span>(${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}/Config.cmake.in
+  <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsConfig.cmake"</span>
+  INSTALL_DESTINATION <span style="color: #98be65;">"lib/cmake/example"</span>
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  )
+<span style="color: #5B6268;"># generate the version file for the config file</span>
+<span style="color: #c678dd;">write_basic_package_version_file</span>(
+  <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsConfigVersion.cmake"</span>
+  VERSION <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MAJOR</span><span style="color: #98be65;">}.${</span><span style="color: #dcaeea;">Tutorial_VERSION_MINOR</span><span style="color: #98be65;">}"</span>
+  COMPATIBILITY AnyNewerVersion
+)
+
+<span style="color: #5B6268;"># install the configuration file</span>
+<span style="color: #c678dd;">install</span>(FILES
+  ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/MathFunctionsConfig.cmake
+  DESTINATION lib/cmake/MathFunctions
+  )
+</pre>
+</div>
+
+<p>
+至此，我们为项目生成了可重定位的 CMake 配置，可以在安装或打包项目后使用它。如果我们也希望从构建目录中使用我们的项目，则只需将以下内容添加到顶层 <code>CMakeLists.txt</code> 的底部：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">export</span>(EXPORT MathFunctionsTargets
+  FILE <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span>
+)
+</pre>
+</div>
+
+<p>
+通过此导出调用，我们现在生成一个 <code>Targets.cmake</code> ，允许在构建目录中配置的 MathFunctionsConfig.cmake 由其他项目使用，而无需安装它。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc36f61b" class="outline-3">
+<h3 id="orgc36f61b">打包 Debug 和 Release（Step 12）</h3>
+<div class="outline-text-3" id="text-orgc36f61b">
+<p>
+<b>注意</b> ：此示例对单配置生成器有效，不适用于多配置生成器（例如 Visual Studio）。
+</p>
+
+<p>
+默认情况下，CMake 的模型是构建目录仅包含单个配置，可以是 Debug，Release，MinSizeRel 或 RelWithDebugInfo。但是，可以将 CPack 设置为捆绑多个构建目录，并构建一个包含同一项目的多个配置的包。
+</p>
+
+<p>
+首先，我们要确保 debug 版本和 release 版对要安装的可执行文件和库使用不同的名称。让我们使用 d 作为可知性文件和库的后缀。
+</p>
+
+<p>
+在顶层 <code>CMakeLists.txt</code> 文件的开头附近设置 <code>CMAKE_DEBUG_POSTFIX</code> ：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_DEBUG_POSTFIX d)
+
+<span style="color: #c678dd;">add_library</span>(tutorial_compiler_flags INTERFACE)
+</pre>
+</div>
+
+<p>
+以及 tutorial 可执行文件的 <code>DEBUG_POSTFIX</code> 属性：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+<span style="color: #c678dd;">set_target_properties</span>(Tutorial PROPERTIES DEBUG_POSTFIX ${<span style="color: #dcaeea;">CMAKE_DEBUG_POSTFIX</span>})
+
+<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+</pre>
+</div>
+
+<p>
+让我们也添加将版本编号添加到 MathFunctions 库中。在 <code>MathFunctions/CMakeLists.txt</code> 中，设置 <code>VERSION</code> 和 <code>SOVERSION</code> 属性：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set_property</span>(TARGET MathFunctions PROPERTY VERSION <span style="color: #98be65;">"1.0.0"</span>)
+<span style="color: #c678dd;">set_property</span>(TARGET MathFunctions PROPERTY SOVERSION <span style="color: #98be65;">"1"</span>)
+</pre>
+</div>
+
+<p>
+在 Step 12 目录中，创建 <code>debug</code> 和 <code>release</code> 子目录。布局如下所示：
+</p>
+
+<pre class="example">
+- Step12
+   - debug
+   - release
+</pre>
+
+<p>
+现在我们需要设置 debug 和 release 构建。我们使用 <code>CMAKE_BUILD_TYPE</code> 来设置配置类型：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash"><span style="color: #ECBE7B;">cd</span> debug
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake --build .
+<span style="color: #ECBE7B;">cd</span> ../release
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+</pre>
+</div>
+
+<p>
+现在 debug 和 release 构建都已完成，我们可以使用自定义配置文件将两个版本打包到单一 release 中。在 Step 12 目录，创建一个名为 <code>MultiCPackConfig.cmake</code> 的文件。在该文件中，首先 include 由 cmake 可执行文件创建的默认配置文件。
+</p>
+
+<p>
+接下来，使用 <code>CPACK_INSTALL_CMAKE_PROJECTS</code> 变量指定要安装的项目。在此例中，我们想要安装 debug 和 release。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(<span style="color: #98be65;">"release/CPackConfig.cmake"</span>)
+
+<span style="color: #c678dd;">set</span>(CPACK_INSTALL_CMAKE_PROJECTS
+    <span style="color: #98be65;">"debug;Tutorial;ALL;/"</span>
+    <span style="color: #98be65;">"release;Tutorial;ALL;/"</span>
+    )
+</pre>
+</div>
+
+<p>
+从 <code>Step 12</code> 目录，运行 cpack 使用 <code>config</code> 选项指定我们自定义的配置文件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">cpack --config MultiCPackConfig.cmake
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-09-14 Mon 20:33</p>
+</div>
+</body>
+</html>
