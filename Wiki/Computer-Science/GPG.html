@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-11-02 Mon 17:02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GPG</title>
@@ -234,33 +234,33 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6b53b76">概念</a>
+<li><a href="#orgddb3d39">概念</a>
 <ul>
-<li><a href="#orge710d76">“主”（认证）密钥</a></li>
+<li><a href="#org0b67653">“主”（认证）密钥</a></li>
 </ul>
 </li>
-<li><a href="#orgfacd310">Command</a>
+<li><a href="#org6ef7d7c">Command</a>
 <ul>
-<li><a href="#orgdbecce9">常用命令</a></li>
-<li><a href="#org0898bd8">添加 SSH keys</a></li>
-<li><a href="#org0b8521d">导入他人公钥</a></li>
-<li><a href="#org3ebd916">文件加密解密、签名与验签</a></li>
+<li><a href="#org9faebea">常用命令</a></li>
+<li><a href="#orge11f03d">添加 SSH keys</a></li>
+<li><a href="#org673de17">导入他人公钥</a></li>
+<li><a href="#orga44da15">文件加密解密、签名与验签</a></li>
 </ul>
 </li>
-<li><a href="#org77625d7">密钥分离思想</a></li>
-<li><a href="#org97c21e5">gpg-agent</a></li>
-<li><a href="#org369e30b">Links</a></li>
+<li><a href="#org01ff9b2">密钥分离思想</a></li>
+<li><a href="#orgd88645f">gpg-agent</a></li>
+<li><a href="#org05db826">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6b53b76" class="outline-2">
-<h2 id="org6b53b76">概念</h2>
-<div class="outline-text-2" id="text-org6b53b76">
+<div id="outline-container-orgddb3d39" class="outline-2">
+<h2 id="orgddb3d39">概念</h2>
+<div class="outline-text-2" id="text-orgddb3d39">
 </div>
-<div id="outline-container-orge710d76" class="outline-3">
-<h3 id="orge710d76">“主”（认证）密钥</h3>
-<div class="outline-text-3" id="text-orge710d76">
+<div id="outline-container-org0b67653" class="outline-3">
+<h3 id="org0b67653">“主”（认证）密钥</h3>
+<div class="outline-text-3" id="text-org0b67653">
 <ol class="org-ol">
 <li>在“主密钥”和“子密钥”之间没有技术上的区别。</li>
 <li>在创建时，我们赋予每个密钥特定的能力来分配功能限制。</li>
@@ -294,13 +294,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgfacd310" class="outline-2">
-<h2 id="orgfacd310">Command</h2>
-<div class="outline-text-2" id="text-orgfacd310">
+<div id="outline-container-org6ef7d7c" class="outline-2">
+<h2 id="org6ef7d7c">Command</h2>
+<div class="outline-text-2" id="text-org6ef7d7c">
 </div>
-<div id="outline-container-orgdbecce9" class="outline-3">
-<h3 id="orgdbecce9">常用命令</h3>
-<div class="outline-text-3" id="text-orgdbecce9">
+<div id="outline-container-org9faebea" class="outline-3">
+<h3 id="org9faebea">常用命令</h3>
+<div class="outline-text-3" id="text-org9faebea">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29983;&#25104;&#23494;&#38053;</span>
     gpg --expert --full-gen-key
@@ -335,9 +335,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0898bd8" class="outline-3">
-<h3 id="org0898bd8">添加 SSH keys</h3>
-<div class="outline-text-3" id="text-org0898bd8">
+<div id="outline-container-orge11f03d" class="outline-3">
+<h3 id="orge11f03d">添加 SSH keys</h3>
+<div class="outline-text-3" id="text-orge11f03d">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. &#23548;&#20986;authentication&#23376;&#23494;&#38053;&#20026;ssh&#20844;&#38053;</span>
     gpg --export-ssh-key &lt;keyid&gt;
@@ -353,9 +353,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0b8521d" class="outline-3">
-<h3 id="org0b8521d">导入他人公钥</h3>
-<div class="outline-text-3" id="text-org0b8521d">
+<div id="outline-container-org673de17" class="outline-3">
+<h3 id="org673de17">导入他人公钥</h3>
+<div class="outline-text-3" id="text-org673de17">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20808;&#33719;&#21462;&#26576;&#20154;&#30340;&#20844;&#38053;&#65288;&#20174;&#20844;&#38053;&#26381;&#21153;&#22120;&#19978;&#65289;&#65306;</span>
     gpg --recv-keys &lt;keyid/uid&gt;
@@ -370,9 +370,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3ebd916" class="outline-3">
-<h3 id="org3ebd916">文件加密解密、签名与验签</h3>
-<div class="outline-text-3" id="text-org3ebd916">
+<div id="outline-container-orga44da15" class="outline-3">
+<h3 id="orga44da15">文件加密解密、签名与验签</h3>
+<div class="outline-text-3" id="text-orga44da15">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. GPG&#21152;&#23494;&#25805;&#20316;&#65292;&#30001;&#21457;&#36865;&#26041;&#36827;&#34892;&#65292;&#39318;&#20808;&#33719;&#21462;&#25509;&#25910;&#26041;&#20844;&#38053;&#65292;&#20351;&#29992;&#20844;&#38053;&#21152;&#23494;&#25991;&#20214;</span>
     gpg --output &#21152;&#23494;&#36755;&#20986;&#25991;&#20214; --recipient &lt;uid&gt;  --encrypt &#24453;&#21152;&#23494;&#25991;&#20214;
@@ -417,9 +417,9 @@
 </div>
 </div>
 
-<div id="outline-container-org77625d7" class="outline-2">
-<h2 id="org77625d7">密钥分离思想</h2>
-<div class="outline-text-2" id="text-org77625d7">
+<div id="outline-container-org01ff9b2" class="outline-2">
+<h2 id="org01ff9b2">密钥分离思想</h2>
+<div class="outline-text-2" id="text-org01ff9b2">
 <p>
 该使用且只使用子密钥，主密钥应该放在一个绝对安全的地方。
 </p>
@@ -509,13 +509,13 @@
 </div>
 </div>
 
-<div id="outline-container-org97c21e5" class="outline-2">
-<h2 id="org97c21e5">gpg-agent</h2>
+<div id="outline-container-orgd88645f" class="outline-2">
+<h2 id="orgd88645f">gpg-agent</h2>
 </div>
 
-<div id="outline-container-org369e30b" class="outline-2">
-<h2 id="org369e30b">Links</h2>
-<div class="outline-text-2" id="text-org369e30b">
+<div id="outline-container-org05db826" class="outline-2">
+<h2 id="org05db826">Links</h2>
+<div class="outline-text-2" id="text-org05db826">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/Project:Infrastructure/Generating_GLEP_63_based_OpenPGP_keys">Generating GLEP 63 based OpenPGP keys</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/GnuPG">archwiki GnuPG</a></li>
@@ -529,7 +529,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-11-02 Mon 17:02</p>
 </div>
 </body>
 </html>

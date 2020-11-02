@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-14 Mon 20:33 -->
+<!-- 2020-11-02 Mon 17:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>target_中的public Private Interface</title>
@@ -234,24 +234,24 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6eb5c8e">指令说明</a></li>
-<li><a href="#org74cd2f8">指令讲解</a>
+<li><a href="#orgf057a3d">指令说明</a></li>
+<li><a href="#orga45f294">指令讲解</a>
 <ul>
-<li><a href="#org1af154b">测试工程目录结构</a></li>
-<li><a href="#orge4c582d">调用关系</a></li>
-<li><a href="#org32a79c2">关键字用法说明</a></li>
+<li><a href="#org3172306">测试工程目录结构</a></li>
+<li><a href="#org3f6bc85">调用关系</a></li>
+<li><a href="#orgf1318b8">关键字用法说明</a></li>
 </ul>
 </li>
-<li><a href="#org328bd84">include_directories(dir)</a></li>
-<li><a href="#org55931cf">目录划分</a></li>
-<li><a href="#org237aed5">Links</a></li>
+<li><a href="#org205a873">include_directories(dir)</a></li>
+<li><a href="#org98335ab">目录划分</a></li>
+<li><a href="#org73b8dd2">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6eb5c8e" class="outline-2">
-<h2 id="org6eb5c8e">指令说明</h2>
-<div class="outline-text-2" id="text-org6eb5c8e">
+<div id="outline-container-orgf057a3d" class="outline-2">
+<h2 id="orgf057a3d">指令说明</h2>
+<div class="outline-text-2" id="text-orgf057a3d">
 <p>
 <code>target_include_directories()</code> ：指定 <b>目标</b> 包含的头文件路径。<a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html?highlight=target_include_directories">官方文档</a>
 </p>
@@ -273,13 +273,13 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org74cd2f8" class="outline-2">
-<h2 id="org74cd2f8">指令讲解</h2>
-<div class="outline-text-2" id="text-org74cd2f8">
+<div id="outline-container-orga45f294" class="outline-2">
+<h2 id="orga45f294">指令讲解</h2>
+<div class="outline-text-2" id="text-orga45f294">
 </div>
-<div id="outline-container-org1af154b" class="outline-3">
-<h3 id="org1af154b">测试工程目录结构</h3>
-<div class="outline-text-3" id="text-org1af154b">
+<div id="outline-container-org3172306" class="outline-3">
+<h3 id="org3172306">测试工程目录结构</h3>
+<div class="outline-text-3" id="text-org3172306">
 <pre class="example">
 cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 ├── CMakeLists.txt
@@ -299,9 +299,9 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </pre>
 </div>
 </div>
-<div id="outline-container-orge4c582d" class="outline-3">
-<h3 id="orge4c582d">调用关系</h3>
-<div class="outline-text-3" id="text-orge4c582d">
+<div id="outline-container-org3f6bc85" class="outline-3">
+<h3 id="org3f6bc85">调用关系</h3>
+<div class="outline-text-3" id="text-org3f6bc85">
 <pre class="example">
                                  ├────libhello.so
 可执行文件────libhello-world.so
@@ -309,16 +309,16 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </pre>
 </div>
 </div>
-<div id="outline-container-org32a79c2" class="outline-3">
-<h3 id="org32a79c2">关键字用法说明</h3>
-<div class="outline-text-3" id="text-org32a79c2">
+<div id="outline-container-orgf1318b8" class="outline-3">
+<h3 id="orgf1318b8">关键字用法说明</h3>
+<div class="outline-text-3" id="text-orgf1318b8">
 <p>
 <b>PRIVATE</b> ：私有的。生成 libhello-world.so 时，只在 hello_world.c 中包含了 hello.h，libhello-world.so <b>对外</b> 的头文件——hello_world.h 中不包含 hello.h。而且 main.c 不会调用 hello.c 中的函数，或者说 main.c 不知道 hello.c 的存在，那么在 hello-world/CMakeLists.txt 中应该写入：
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world PRIVATE hello)
-<span style="color: #c678dd;">target_include_directories</span>(hello-world PRIVATE hello)
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">PRIVATE</span> hello)
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">PRIVATE</span> hello)
 </pre>
 </div>
 
@@ -327,8 +327,8 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world INTERFACE hello)
-<span style="color: #c678dd;">target_include_directories</span>(hello-world INTERFACE hello)
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">INTERFACE</span> hello)
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">INTERFACE</span> hello)
 </pre>
 </div>
 
@@ -337,8 +337,8 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(hello-world PUBLIC hello)
-<span style="color: #c678dd;">target_include_directories</span>(hello-world PUBLIC hello)
+<pre class="src src-cmake"><span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">PUBLIC</span> hello)
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">hello-world</span> <span style="color: #ECBE7B;">PUBLIC</span> hello)
 </pre>
 </div>
 
@@ -358,9 +358,9 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </div>
 </div>
 </div>
-<div id="outline-container-org328bd84" class="outline-2">
-<h2 id="org328bd84">include_directories(dir)</h2>
-<div class="outline-text-2" id="text-org328bd84">
+<div id="outline-container-org205a873" class="outline-2">
+<h2 id="org205a873">include_directories(dir)</h2>
+<div class="outline-text-2" id="text-org205a873">
 <p>
 <code>target_include_directories()</code> 的功能完全可以使用 <code>include_directories()</code> 实现。但是我还是建议使用 <code>target_include_directories()</code> 。为什么？保持清晰！
 </p>
@@ -397,17 +397,17 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </p>
 </div>
 </div>
-<div id="outline-container-org55931cf" class="outline-2">
-<h2 id="org55931cf">目录划分</h2>
-<div class="outline-text-2" id="text-org55931cf">
+<div id="outline-container-org98335ab" class="outline-2">
+<h2 id="org98335ab">目录划分</h2>
+<div class="outline-text-2" id="text-org98335ab">
 <p>
 每一个目录都是一个模块，目录内部应将对外和对内的头文件进行区分，由模块的调用者决定模块是否被传递（PRIVATE，INTERFACE，PUBLIC）。
 </p>
 </div>
 </div>
-<div id="outline-container-org237aed5" class="outline-2">
-<h2 id="org237aed5">Links</h2>
-<div class="outline-text-2" id="text-org237aed5">
+<div id="outline-container-org73b8dd2" class="outline-2">
+<h2 id="org73b8dd2">Links</h2>
+<div class="outline-text-2" id="text-org73b8dd2">
 <ol class="org-ol">
 <li><a href="https://zhuanlan.zhihu.com/p/82244559">https://zhuanlan.zhihu.com/p/82244559</a></li>
 </ol>
@@ -416,7 +416,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-14 Mon 20:33</p>
+<p class="date">Created: 2020-11-02 Mon 17:01</p>
 </div>
 </body>
 </html>

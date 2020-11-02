@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-11-02 Mon 17:02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elisp Tutorial</title>
@@ -234,54 +234,54 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc50d83c">基础</a></li>
-<li><a href="#org151dd7a">操作符前置</a></li>
-<li><a href="#orge4af2a8">数据结构</a></li>
-<li><a href="#orgb35ef20">返回机制</a></li>
-<li><a href="#org7e37ab0">常见关键字</a>
+<li><a href="#orgd755205">基础</a></li>
+<li><a href="#org08e37e4">操作符前置</a></li>
+<li><a href="#org8b73ee3">数据结构</a></li>
+<li><a href="#orgc4fe008">返回机制</a></li>
+<li><a href="#org236f87b">常见关键字</a>
 <ul>
-<li><a href="#org6a61a45"><code>nil</code> 和 <code>t</code></a></li>
-<li><a href="#org4e1f25a"><code>require</code></a></li>
-<li><a href="#orgec7ddd9"><code>setq</code></a></li>
-<li><a href="#orgf1e5b3e"><code>add-to-list</code></a></li>
-<li><a href="#org6aedb0e"><code>add-hook</code></a></li>
-<li><a href="#org1e1fbd1"><code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></a></li>
+<li><a href="#org6a1cc5a"><code>nil</code> 和 <code>t</code></a></li>
+<li><a href="#org2d1ffd2"><code>require</code></a></li>
+<li><a href="#orge6d5421"><code>setq</code></a></li>
+<li><a href="#org783ce3c"><code>add-to-list</code></a></li>
+<li><a href="#orge627074"><code>add-hook</code></a></li>
+<li><a href="#org215fdf4"><code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></a></li>
 </ul>
 </li>
-<li><a href="#org2bee0f0">setq/setq-default</a></li>
-<li><a href="#org218e303">require</a></li>
-<li><a href="#org6b40ea6">quote</a></li>
-<li><a href="#org4b9bc0d">auto-mode-alist(major mode)</a></li>
-<li><a href="#org70fd132">命名规则</a></li>
-<li><a href="#org2fb16ef">Major 与 Minor Mode</a></li>
-<li><a href="#orgb943401">模块化</a></li>
-<li><a href="#orgb0317b4">Dired Mode</a></li>
-<li><a href="#orga700078">宏</a>
+<li><a href="#org18c3182">setq/setq-default</a></li>
+<li><a href="#org7a1cefd">require</a></li>
+<li><a href="#org066bb15">quote</a></li>
+<li><a href="#orged2f7bd">auto-mode-alist(major mode)</a></li>
+<li><a href="#org8a15fe8">命名规则</a></li>
+<li><a href="#org2b230d8">Major 与 Minor Mode</a></li>
+<li><a href="#orgddd6383">模块化</a></li>
+<li><a href="#org9381607">Dired Mode</a></li>
+<li><a href="#org200b658">宏</a>
 <ul>
-<li><a href="#org5a6e15f">backquote</a></li>
+<li><a href="#org368597f">backquote</a></li>
 </ul>
 </li>
-<li><a href="#org02f7ae8">use-package</a>
+<li><a href="#orge485f93">use-package</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org00cd5a2">更安全的 require</a></li>
-<li><a href="#org6b26048">将配置集中</a></li>
-<li><a href="#org9dfb443">autoload</a></li>
-<li><a href="#org16f5dc6">键绑定</a></li>
-<li><a href="#orgf410ef1">为什么使用 Use-package</a></li>
+<li><a href="#org245ef81">更安全的 require</a></li>
+<li><a href="#org11e00ff">将配置集中</a></li>
+<li><a href="#orge83a061">autoload</a></li>
+<li><a href="#org6361677">键绑定</a></li>
+<li><a href="#org4084881">为什么使用 Use-package</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc1fe2b6">org-babel-load-file</a></li>
+<li><a href="#orgeef4fe9">org-babel-load-file</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc50d83c" class="outline-2">
-<h2 id="orgc50d83c">基础</h2>
-<div class="outline-text-2" id="text-orgc50d83c">
+<div id="outline-container-orgd755205" class="outline-2">
+<h2 id="orgd755205">基础</h2>
+<div class="outline-text-2" id="text-orgd755205">
 <ul class="org-ul">
 <li>分号是注释开始的标志。</li>
 
@@ -347,99 +347,99 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org151dd7a" class="outline-2">
-<h2 id="org151dd7a">操作符前置</h2>
-<div class="outline-text-2" id="text-org151dd7a">
+<div id="outline-container-org08e37e4" class="outline-2">
+<h2 id="org08e37e4">操作符前置</h2>
+<div class="outline-text-2" id="text-org08e37e4">
 <p>
 程序的本质是什么，无非是数据本身和操作数据过程。lisp 把操作数据的“操作符”前置了，比如平常计算多个数加法的时候用 <code>1+2+3+4+5</code> ，lisp 这样做： <code>(+ 1 2 3 4 5)</code> ，括号是 lisp 的特性，左括号的往右的第一个字符就是所谓的“操作符”，用空格来区别不同的参数。这样做有什么好处？现代语言因为更偏向自然语言，操作符的位置更加灵活，比如调用一个方法的时候： <code>object.method(args)</code> ，方法需要一个对象支撑，自己变成了附庸品，后置了；几乎所有连接字符串都可以这么操作： <code>"HE"+"LLO"+"WORLD"</code> ，操作符+位于中间；还有最后一种情况，常见的 <code>Assert statement</code> 或者内置函数调用 <code>ABS(num)</code> 又把操作符前置了，在操作符使用过程中混乱不协调，容易迷惑然后出错，所以灵活也有它的弊端。括号和操作符前置两个特性让 lisp 独特而优雅，组成了为人称道的 S-expression(S 表达式)，以后还会提及它的好处。
 </p>
 </div>
 </div>
-<div id="outline-container-orge4af2a8" class="outline-2">
-<h2 id="orge4af2a8">数据结构</h2>
-<div class="outline-text-2" id="text-orge4af2a8">
+<div id="outline-container-org8b73ee3" class="outline-2">
+<h2 id="org8b73ee3">数据结构</h2>
+<div class="outline-text-2" id="text-org8b73ee3">
 <p>
 将操作符前置是高度统一又美好理想的理念，因为纯数据的存在导致不可能所有括号里面的最左边都是操作符。lisp 其实叫做列表处理语言，这里就引出了 lisp 里面最基础的数据结构——list，还有它的组成元素 atom(原子)。其实我们已经见过了 list 就是 <code>(+ 1 2 3 4 5)</code> ，只有在括号括起来的表达式就叫做一个 list，里面的元素只要不是另外一个 list 就叫做原子(atom)，意为不能再分解的意思。那么纯数据该怎么表示？像这样 <code>(1 2 3 4 5 )</code> ，显然不符合操作符前置的原则，会报错说找不到名为 1 的函数，于是考虑再三就把操作符扩充到了括号之外，变成 <code>'(1 2 3 4 5)</code> 表示整个括号里面不执行，直接返回整个 list。像 <code>(+ 1 2 3 4 5)</code> 这样的 list 会执行，返回值为 15；而 <code>'(+ 1 2 3 4 5)</code> 会直接返回 <code>(+ 1 2 3 4 5)</code> 本身。
 </p>
 </div>
 </div>
-<div id="outline-container-orgb35ef20" class="outline-2">
-<h2 id="orgb35ef20">返回机制</h2>
-<div class="outline-text-2" id="text-orgb35ef20">
+<div id="outline-container-orgc4fe008" class="outline-2">
+<h2 id="orgc4fe008">返回机制</h2>
+<div class="outline-text-2" id="text-orgc4fe008">
 <p>
 上面提到了返回，在其他大部分的语言里需要一个关键字 return 来实现，而 lisp 只要遇到括号就代表自动返回值，可以执行括号内容后返回，也可以根据括号前面的'单引号只返回括号本身。这时候就有人想在返回的时候部分内容能够执行就好了，比如 <code>(5 (* 2 5) 15 20)</code> ，如果返回的时候里面的表达式 <code>(* 2 5)</code> 能直接执行的话整个表达式就能返回 <code>(5 10 15 20)</code> 这样的数列。于是就有人想出了用外层的括号来控制内层的括号，变成 <code>`(5 ,(* 2 5) 15 20)，</code> 外层加个反引号内层加个逗号就能返回以 5 为倍数的数列了。
 </p>
 </div>
 </div>
-<div id="outline-container-org7e37ab0" class="outline-2">
-<h2 id="org7e37ab0">常见关键字</h2>
-<div class="outline-text-2" id="text-org7e37ab0">
+<div id="outline-container-org236f87b" class="outline-2">
+<h2 id="org236f87b">常见关键字</h2>
+<div class="outline-text-2" id="text-org236f87b">
 </div>
-<div id="outline-container-org6a61a45" class="outline-3">
-<h3 id="org6a61a45"><code>nil</code> 和 <code>t</code></h3>
-<div class="outline-text-3" id="text-org6a61a45">
+<div id="outline-container-org6a1cc5a" class="outline-3">
+<h3 id="org6a1cc5a"><code>nil</code> 和 <code>t</code></h3>
+<div class="outline-text-3" id="text-org6a1cc5a">
 <p>
 nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code>t</code> 来代表 true 让人措手不及。和其他语言一样，正整数也表示 true，负整数表示 false。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4e1f25a" class="outline-3">
-<h3 id="org4e1f25a"><code>require</code></h3>
-<div class="outline-text-3" id="text-org4e1f25a">
+<div id="outline-container-org2d1ffd2" class="outline-3">
+<h3 id="org2d1ffd2"><code>require</code></h3>
+<div class="outline-text-3" id="text-org2d1ffd2">
 <p>
 顾名思义它的作用就是引用包，后面一般加着包名，至于具体的设置和用法会在下一篇文章详细分析，只要知道它和其他语言中的 import，require 一样把其他模块或者包的上下文空间引入当前文件下。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgec7ddd9" class="outline-3">
-<h3 id="orgec7ddd9"><code>setq</code></h3>
-<div class="outline-text-3" id="text-orgec7ddd9">
+<div id="outline-container-orge6d5421" class="outline-3">
+<h3 id="orge6d5421"><code>setq</code></h3>
+<div class="outline-text-3" id="text-orge6d5421">
 <p>
 <code>setq</code> 作用是赋值，一般这么用 <code>(setq variable value)</code> ，比如 <code>(setq kill-ring-max 200)</code> 让 emacs 剪切板存放的条目数上限为 200。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf1e5b3e" class="outline-3">
-<h3 id="orgf1e5b3e"><code>add-to-list</code></h3>
-<div class="outline-text-3" id="text-orgf1e5b3e">
+<div id="outline-container-org783ce3c" class="outline-3">
+<h3 id="org783ce3c"><code>add-to-list</code></h3>
+<div class="outline-text-3" id="text-org783ce3c">
 <p>
 添加一个元素到某个 list 里面，这样用 <code>(add-to-list LIST ELEMENT)</code> 。也可以看出除了用单个变量来控制某种配置外，emacs 里面还存在各种 list 这种容器式数据结构，用来映射或者存放一组变量。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6aedb0e" class="outline-3">
-<h3 id="org6aedb0e"><code>add-hook</code></h3>
-<div class="outline-text-3" id="text-org6aedb0e">
+<div id="outline-container-orge627074" class="outline-3">
+<h3 id="orge627074"><code>add-hook</code></h3>
+<div class="outline-text-3" id="text-orge627074">
 <p>
 添加钩子，比如 <code>(add-hook ‘window-setup-hook ‘toggle-frame-maximized)</code> ，作用是当 window 启动的时候 frame 最大化。在添加钩子的时候要查看是否有以-hook 结尾的函数。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1e1fbd1" class="outline-3">
-<h3 id="org1e1fbd1"><code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></h3>
-<div class="outline-text-3" id="text-org1e1fbd1">
+<div id="outline-container-org215fdf4" class="outline-3">
+<h3 id="org215fdf4"><code>global-set-key</code> 、 <code>define-key</code> 以及 <code>kbd</code></h3>
+<div class="outline-text-3" id="text-org215fdf4">
 <p>
 <code>kbd</code> 是一个宏，至于什么是宏，我们先暂按不说，它的存在就是为简化定义一系列按键输入（键序列），比如 <code>(kbd “C-x C-f”)</code> 会返回 control+c 然后 control+f 的输入操作。 <code>global-set-key</code> 用来定义按键绑定的函数，之前提到过 emacs 里面的任何操作都是由一个或者多个函数组成，结合上面的 <code>kbd</code> 宏，emacs 这样定义的一个按键的功能—— <code>(global-set-key (kbd "C-x C-f") 'find-file)</code> 。那么 <code>define-key</code> 又是什么？ <code>global-set-key</code> 显而易见是用来定义全局的，针对于整个 emacs 而言的，污染性太大， <code>define-key</code> 则用来定义针对某个 mode 才有的按键，也就是说当我们进入到某个 mode 的时候这个按键才生效。常见用法 <code>(define-key keymap function)</code> ，keymap 保管了 key 和 function 的映射表，一般每个 mode 都会提供了一个 keymap 用于用户自定义。 如果不知道自己输入的键序列在 <code>kbd</code> 里面是怎么写的，可以使用 <code>C-h k</code> 来查看有没有此键序列的绑定，如果没有绑定任何的函数会返回这个键序列本身，就是写入 <code>kbd</code> 里面的内容。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org2bee0f0" class="outline-2">
-<h2 id="org2bee0f0">setq/setq-default</h2>
-<div class="outline-text-2" id="text-org2bee0f0">
+<div id="outline-container-org18c3182" class="outline-2">
+<h2 id="org18c3182">setq/setq-default</h2>
+<div class="outline-text-2" id="text-org18c3182">
 <p>
 我们需要区分 <code>setq</code> 与 <code>setq-default</code> ： <code>setq</code> 设置当前缓冲区（Buffer）中的变量值 ， <code>setq-default</code> 设 置的为全局的变量的值（具体内容可以在<a href="http://stackoverflow.com/questions/18172728/the-difference-between-setq-and-setq-default-in-emacs-lisp">StackOverflow 找到</a>）
 </p>
 </div>
 </div>
-<div id="outline-container-org218e303" class="outline-2">
-<h2 id="org218e303">require</h2>
-<div class="outline-text-2" id="text-org218e303">
+<div id="outline-container-org7a1cefd" class="outline-2">
+<h2 id="org7a1cefd">require</h2>
+<div class="outline-text-2" id="text-org7a1cefd">
 <p>
 <code>require</code> 的意思为从文件中加载特性，你可以在杀哥的网站读到关于 Emacs Lisp 库系统 的更多内容，文章在<a href="http://ergoemacs.org/emacs/elisp_library_system.html">这里</a>。
 </p>
@@ -449,9 +449,9 @@ nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code
 </p>
 </div>
 </div>
-<div id="outline-container-org6b40ea6" class="outline-2">
-<h2 id="org6b40ea6">quote</h2>
-<div class="outline-text-2" id="text-org6b40ea6">
+<div id="outline-container-org066bb15" class="outline-2">
+<h2 id="org066bb15">quote</h2>
+<div class="outline-text-2" id="text-org066bb15">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#19979;&#38754;&#20004;&#34892;&#30340;&#25928;&#26524;&#23436;&#20840;&#30456;&#21516;&#30340;</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">quote</span> foo<span style="color: #51afef;">)</span>
@@ -489,9 +489,9 @@ nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code
 </p>
 </div>
 </div>
-<div id="outline-container-org4b9bc0d" class="outline-2">
-<h2 id="org4b9bc0d">auto-mode-alist(major mode)</h2>
-<div class="outline-text-2" id="text-org4b9bc0d">
+<div id="outline-container-orged2f7bd" class="outline-2">
+<h2 id="orged2f7bd">auto-mode-alist(major mode)</h2>
+<div class="outline-text-2" id="text-orged2f7bd">
 <p>
 你可以在<a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Auto-Major-Mode.html">这里</a>（How Emacs Chooses a Major Mode）找到 Emacs 是如何选择何时该选用何 种 Major Mode 的方法。
 </p>
@@ -529,9 +529,9 @@ nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code
 </div>
 </div>
 </div>
-<div id="outline-container-org70fd132" class="outline-2">
-<h2 id="org70fd132">命名规则</h2>
-<div class="outline-text-2" id="text-org70fd132">
+<div id="outline-container-org8a15fe8" class="outline-2">
+<h2 id="org8a15fe8">命名规则</h2>
+<div class="outline-text-2" id="text-org8a15fe8">
 <p>
 Elisp 中并没有命名空间（Namespace），换句话说就是所有的变量均为全局变量，所以其 命名方法就变的非常重要。下面是一个简单的命名规则，
 </p>
@@ -550,9 +550,9 @@ ModeName-VariableName
 </div>
 </div>
 </div>
-<div id="outline-container-org2fb16ef" class="outline-2">
-<h2 id="org2fb16ef">Major 与 Minor Mode</h2>
-<div class="outline-text-2" id="text-org2fb16ef">
+<div id="outline-container-org2b230d8" class="outline-2">
+<h2 id="org2b230d8">Major 与 Minor Mode</h2>
+<div class="outline-text-2" id="text-org2b230d8">
 <p>
 每一个文件类型都对应一个 Major Mode，它提供语法高亮以及缩进等基本的编辑支持功能，然后而 Minor Mode 则提供 其余的增强性的功能（例如 linum-mode ）。
 </p>
@@ -572,9 +572,9 @@ ModeName-VariableName
 </p>
 </div>
 </div>
-<div id="outline-container-orgb943401" class="outline-2">
-<h2 id="orgb943401">模块化</h2>
-<div class="outline-text-2" id="text-orgb943401">
+<div id="outline-container-orgddd6383" class="outline-2">
+<h2 id="orgddd6383">模块化</h2>
+<div class="outline-text-2" id="text-orgddd6383">
 <p>
 在这一部分我们首先需要知道的是什么是 <code>features</code> 。在 Emacs 中每一个 <code>feature</code> 都 是一个 Elisp 符号，用于代表一个 Lisp 插件（Package）。
 </p>
@@ -604,9 +604,9 @@ ModeName-VariableName
 </p>
 </div>
 </div>
-<div id="outline-container-orgb0317b4" class="outline-2">
-<h2 id="orgb0317b4">Dired Mode</h2>
-<div class="outline-text-2" id="text-orgb0317b4">
+<div id="outline-container-org9381607" class="outline-2">
+<h2 id="org9381607">Dired Mode</h2>
+<div class="outline-text-2" id="text-org9381607">
 <p>
 使用 C-x d 就可以进入 Dired Mode
 </p>
@@ -627,9 +627,9 @@ ModeName-VariableName
 </p>
 </div>
 </div>
-<div id="outline-container-orga700078" class="outline-2">
-<h2 id="orga700078">宏</h2>
-<div class="outline-text-2" id="text-orga700078">
+<div id="outline-container-org200b658" class="outline-2">
+<h2 id="org200b658">宏</h2>
+<div class="outline-text-2" id="text-org200b658">
 <p>
 Lisp 的宏（Macro）类似于 C++ 中的模板，并可以生产新的代码（你可以在<a href="http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">这里</a>找到更多 关于宏的讨论）。使用它，我们可以增强某个函数的功能而不去更改这个函数的代码。
 </p>
@@ -668,9 +668,9 @@ Lisp 的宏（Macro）类似于 C++ 中的模板，并可以生产新的代码�
 <li>宏的执行结果是一个表达式, 该表达式会立即被解释器执行; 而函数的结果是一个值</li>
 </ol>
 </div>
-<div id="outline-container-org5a6e15f" class="outline-3">
-<h3 id="org5a6e15f">backquote</h3>
-<div class="outline-text-3" id="text-org5a6e15f">
+<div id="outline-container-org368597f" class="outline-3">
+<h3 id="org368597f">backquote</h3>
+<div class="outline-text-3" id="text-org368597f">
 <p>
 backquote 的作用与 quote 相似, 同样不对后面的表达式求值, 但是当 backquote 在宏中 与逗号(,)一起使用时, 用逗号修饰的变量将进行求值.
 </p>
@@ -720,9 +720,9 @@ backquote 的作用与 quote 相似, 同样不对后面的表达式求值, 但�
 </div>
 </div>
 </div>
-<div id="outline-container-org02f7ae8" class="outline-2">
-<h2 id="org02f7ae8">use-package</h2>
-<div class="outline-text-2" id="text-org02f7ae8">
+<div id="outline-container-orge485f93" class="outline-2">
+<h2 id="orge485f93">use-package</h2>
+<div class="outline-text-2" id="text-orge485f93">
 <p>
 use-package 是一个宏, 它能让你将一个包的 require 和它的相关的初始化等配置组织 在一起, 避免对同一个包的配置代码散落在不同的文件中.
 </p>
@@ -732,9 +732,9 @@ use-package 的更多信息参见以下地址: <a href="https://github.com/jwieg
 </p>
 </div>
 
-<div id="outline-container-org00cd5a2" class="outline-4">
-<h4 id="org00cd5a2">更安全的 require</h4>
-<div class="outline-text-4" id="text-org00cd5a2">
+<div id="outline-container-org245ef81" class="outline-4">
+<h4 id="org245ef81">更安全的 require</h4>
+<div class="outline-text-4" id="text-org245ef81">
 <p>
 在 Emacs 中, 当我们要引入一个包时, 通常会使用以下代码:
 </p>
@@ -771,9 +771,9 @@ use-package 的更多信息参见以下地址: <a href="https://github.com/jwieg
 </div>
 </div>
 
-<div id="outline-container-org6b26048" class="outline-4">
-<h4 id="org6b26048">将配置集中</h4>
-<div class="outline-text-4" id="text-org6b26048">
+<div id="outline-container-org11e00ff" class="outline-4">
+<h4 id="org11e00ff">将配置集中</h4>
+<div class="outline-text-4" id="text-org11e00ff">
 <p>
 当我们引入某个包时, 有可能需要定义一些与这个包相关的变量, 使用 Use-package 实 现这个需求如下:
 </p>
@@ -805,9 +805,9 @@ init 与 config 之后只能接单个表达式语句, 如果需要执行多个�
 </div>
 </div>
 
-<div id="outline-container-org9dfb443" class="outline-4">
-<h4 id="org9dfb443">autoload</h4>
-<div class="outline-text-4" id="text-org9dfb443">
+<div id="outline-container-orge83a061" class="outline-4">
+<h4 id="orge83a061">autoload</h4>
+<div class="outline-text-4" id="text-orge83a061">
 <p>
 使用 require 时会引入这个包, 但是当你的包很多时会影响启动速度. 而使用 autoload 则可以在真正需要这个包时再 require, 提高启动速度, 避免无谓的 require.
 </p>
@@ -831,9 +831,9 @@ init 与 config 之后只能接单个表达式语句, 如果需要执行多个�
 </div>
 </div>
 
-<div id="outline-container-org16f5dc6" class="outline-4">
-<h4 id="org16f5dc6">键绑定</h4>
-<div class="outline-text-4" id="text-org16f5dc6">
+<div id="outline-container-org6361677" class="outline-4">
+<h4 id="org6361677">键绑定</h4>
+<div class="outline-text-4" id="text-org6361677">
 <p>
 在之前的代码中, 如果我们需要绑定一个键, 需要使用 global-key-bind 或 define-key 实现, 而使用*Use-package* 实现更简单:
 </p>
@@ -854,9 +854,9 @@ init 与 config 之后只能接单个表达式语句, 如果需要执行多个�
 </div>
 </div>
 
-<div id="outline-container-orgf410ef1" class="outline-4">
-<h4 id="orgf410ef1">为什么使用 Use-package</h4>
-<div class="outline-text-4" id="text-orgf410ef1">
+<div id="outline-container-org4084881" class="outline-4">
+<h4 id="org4084881">为什么使用 Use-package</h4>
+<div class="outline-text-4" id="text-org4084881">
 <ol class="org-ol">
 <li>Use-package 能让相关的配置更为集中, 避免配置分散带来的维护困难</li>
 <li>Use-package 有完善的错误处理, 使配置代码更为健壮</li>
@@ -864,9 +864,9 @@ init 与 config 之后只能接单个表达式语句, 如果需要执行多个�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc1fe2b6" class="outline-2">
-<h2 id="orgc1fe2b6">org-babel-load-file</h2>
-<div class="outline-text-2" id="text-orgc1fe2b6">
+<div id="outline-container-orgeef4fe9" class="outline-2">
+<h2 id="orgeef4fe9">org-babel-load-file</h2>
+<div class="outline-text-2" id="text-orgeef4fe9">
 <p>
 org 是和 markdown 一样是一种格式标记文本形式，可以用来编写文档的，但它比 markdown 厉害得多，提供功能更齐全，其中一种功能是将 org 里面编写的程序放到 org-babel（org 文件的某个块区域）里面，和 markdown 仅仅用来展示程序不同，org-babel 里面的程序可以用 <code>org-babel-load-file</code> 来执行。
 </p>
@@ -884,7 +884,7 @@ org 是和 markdown 一样是一种格式标记文本形式，可以用来编写
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-11-02 Mon 17:02</p>
 </div>
 </body>
 </html>

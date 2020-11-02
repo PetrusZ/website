@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-11-02 Mon 17:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>分治策略和寻找最大子数组</title>
@@ -256,21 +256,21 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb46c668">分治策略</a></li>
-<li><a href="#org1722944">2.最大子数组问题</a>
+<li><a href="#orge6a061e">分治策略</a></li>
+<li><a href="#org8bf5848">2.最大子数组问题</a>
 <ul>
-<li><a href="#org6743e7c">情形一</a></li>
-<li><a href="#orgd218378">情形二</a></li>
-<li><a href="#orgfb4624d">情形三</a></li>
+<li><a href="#org28804c4">情形一</a></li>
+<li><a href="#org36f2edc">情形二</a></li>
+<li><a href="#org9b549a2">情形三</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb46c668" class="outline-2">
-<h2 id="orgb46c668">分治策略</h2>
-<div class="outline-text-2" id="text-orgb46c668">
+<div id="outline-container-orge6a061e" class="outline-2">
+<h2 id="orge6a061e">分治策略</h2>
+<div class="outline-text-2" id="text-orge6a061e">
 <p>
 许多有用的算法在结构上是递归的：为了解决一个给定的问题，算法一次或多次递归的调用其自身以解决紧密相关的若干子问题。这些算法典型地遵循分治法的思想：将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。
 </p>
@@ -309,9 +309,9 @@ T(n) = aT(n/b) + f(n)
 </div>
 </div>
 
-<div id="outline-container-org1722944" class="outline-2">
-<h2 id="org1722944">2.最大子数组问题</h2>
-<div class="outline-text-2" id="text-org1722944">
+<div id="outline-container-org8bf5848" class="outline-2">
+<h2 id="org8bf5848">2.最大子数组问题</h2>
+<div class="outline-text-2" id="text-org8bf5848">
 <p>
 寻找 A 的和最大的非空连续子数组。我们称这样的连续子数组为 <b>最大子数组</b> 。
 </p>
@@ -507,9 +507,9 @@ C 语言求解最大子数组问题代码：
 </p>
 </div>
 
-<div id="outline-container-org6743e7c" class="outline-3">
-<h3 id="org6743e7c">情形一</h3>
-<div class="outline-text-3" id="text-org6743e7c">
+<div id="outline-container-org28804c4" class="outline-3">
+<h3 id="org28804c4">情形一</h3>
+<div class="outline-text-3" id="text-org28804c4">
 <p>
 如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有<img src="../../../pics/CLRS/79a7ecad7f97f19240be140f505ddbed.png" alt="79a7ecad7f97f19240be140f505ddbed.png">，并且是多项式的小于 那么
 </p>
@@ -523,9 +523,9 @@ C 语言求解最大子数组问题代码：
 </div>
 </div>
 
-<div id="outline-container-orgd218378" class="outline-3">
-<h3 id="orgd218378">情形二</h3>
-<div class="outline-text-3" id="text-orgd218378">
+<div id="outline-container-org36f2edc" class="outline-3">
+<h3 id="org36f2edc">情形二</h3>
+<div class="outline-text-3" id="text-org36f2edc">
 <p>
 如果存在常数 <b>k</b> ≥ 0，有
 </p>
@@ -550,9 +550,9 @@ C 语言求解最大子数组问题代码：
 </div>
 </div>
 
-<div id="outline-container-orgfb4624d" class="outline-3">
-<h3 id="orgfb4624d">情形三</h3>
-<div class="outline-text-3" id="text-orgfb4624d">
+<div id="outline-container-org9b549a2" class="outline-3">
+<h3 id="org9b549a2">情形三</h3>
+<div class="outline-text-3" id="text-org9b549a2">
 <p>
 如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有
 </p>
@@ -592,7 +592,7 @@ C 语言求解最大子数组问题代码：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-11-02 Mon 17:01</p>
 </div>
 </body>
 </html>

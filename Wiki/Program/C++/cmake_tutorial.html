@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-14 Mon 20:33 -->
+<!-- 2020-11-02 Mon 17:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CMake Tutorial</title>
@@ -234,60 +234,60 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf57beb0">CMake 教程</a>
+<li><a href="#org7233804">CMake 教程</a>
 <ul>
-<li><a href="#org312a995">基本起点（步骤 1）</a>
+<li><a href="#org5bc2582">基本起点（步骤 1）</a>
 <ul>
-<li><a href="#org9d725a2">添加版本号和配置的头文件</a></li>
-<li><a href="#org1c15f5d">指定 C++标准</a></li>
-<li><a href="#org52e5030">构建和测试</a></li>
+<li><a href="#orgdef052f">添加版本号和配置的头文件</a></li>
+<li><a href="#orgd946b80">指定 C++标准</a></li>
+<li><a href="#orgcd6770d">构建和测试</a></li>
 </ul>
 </li>
-<li><a href="#org6e2096f">添加库（Step2）</a></li>
-<li><a href="#org65fecbf">添加库的使用要求（Step 3）</a></li>
-<li><a href="#orgcd1dd10">安装和测试（Step 4）</a>
+<li><a href="#org959392f">添加库（Step2）</a></li>
+<li><a href="#org759e13e">添加库的使用要求（Step 3）</a></li>
+<li><a href="#org9b2e1fc">安装和测试（Step 4）</a>
 <ul>
-<li><a href="#orge3e05fc">安装规则</a></li>
-<li><a href="#orgef05839">测试支持</a></li>
+<li><a href="#org664087a">安装规则</a></li>
+<li><a href="#orgf613520">测试支持</a></li>
 </ul>
 </li>
-<li><a href="#org2a4bbb4">添加系统自检（Step 5）</a>
+<li><a href="#org967e3b5">添加系统自检（Step 5）</a>
 <ul>
-<li><a href="#org18d9804">指定编译定义</a></li>
+<li><a href="#org6a9c3db">指定编译定义</a></li>
 </ul>
 </li>
-<li><a href="#org55716fa">添加自定义命令和生成的文件（Step 6）</a></li>
-<li><a href="#org3033f02">构建安装器（Step 7）</a></li>
-<li><a href="#orgfaed58d">添加对 Dashboard 的支持（Step 8）</a></li>
-<li><a href="#org7a665ca">混合 Static 和 Shared(Step 9)</a></li>
-<li><a href="#org03afe9a">添加生成器表达式（Step 10）</a></li>
-<li><a href="#orgbca949d">添加导出配置（Step 11）</a></li>
-<li><a href="#orgc36f61b">打包 Debug 和 Release（Step 12）</a></li>
+<li><a href="#orgd922767">添加自定义命令和生成的文件（Step 6）</a></li>
+<li><a href="#org687c4a2">构建安装器（Step 7）</a></li>
+<li><a href="#orgf608f42">添加对 Dashboard 的支持（Step 8）</a></li>
+<li><a href="#org4a97e52">混合 Static 和 Shared(Step 9)</a></li>
+<li><a href="#org676f10c">添加生成器表达式（Step 10）</a></li>
+<li><a href="#org6f39008">添加导出配置（Step 11）</a></li>
+<li><a href="#org4e40dd8">打包 Debug 和 Release（Step 12）</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf57beb0" class="outline-2">
-<h2 id="orgf57beb0">CMake 教程</h2>
-<div class="outline-text-2" id="text-orgf57beb0">
+<div id="outline-container-org7233804" class="outline-2">
+<h2 id="org7233804">CMake 教程</h2>
+<div class="outline-text-2" id="text-org7233804">
 </div>
-<div id="outline-container-org312a995" class="outline-3">
-<h3 id="org312a995">基本起点（步骤 1）</h3>
-<div class="outline-text-3" id="text-org312a995">
+<div id="outline-container-org5bc2582" class="outline-3">
+<h3 id="org5bc2582">基本起点（步骤 1）</h3>
+<div class="outline-text-3" id="text-org5bc2582">
 <p>
 最基本的项目是从源代码文件构建的可执行文件。对于简单的项目，只需要 3 行 CMakeLists.txt。这将会是我们教程的起点。在 Step1 目录中创建一个 CMakeLists.txt 文件，如下所示：
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(<span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">3.10</span>)
 
 <span style="color: #5B6268;"># set the project name</span>
 <span style="color: #c678dd;">project</span>(Tutorial)
 
 <span style="color: #5B6268;"># add the executable</span>
-<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+<span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">Tutorial</span> tutorial.cxx)
 </pre>
 </div>
 
@@ -295,9 +295,9 @@
 注意，此示例在 CMakeLists.txt 文件中使用小写命令。CMake 支持大写，小写和大小写混合命令。Step1 目录中提供了的 tutorial.cxx 源代码，并可用于计算数字平方根。
 </p>
 </div>
-<div id="outline-container-org9d725a2" class="outline-4">
-<h4 id="org9d725a2">添加版本号和配置的头文件</h4>
-<div class="outline-text-4" id="text-org9d725a2">
+<div id="outline-container-orgdef052f" class="outline-4">
+<h4 id="orgdef052f">添加版本号和配置的头文件</h4>
+<div class="outline-text-4" id="text-orgdef052f">
 <p>
 我们将添加的第一个特性是给我们的执行文件和项目提供一个版本号。虽然我们可以仅在与源代码中执行此操作，但是使用 CMakeLists.txt 可以提供更大的灵活性。
 </p>
@@ -307,10 +307,10 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(<span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">3.10</span>)
 
 <span style="color: #5B6268;"># set the project name and version</span>
-<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+<span style="color: #c678dd;">project</span>(Tutorial <span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">1.0</span>)
 </pre>
 </div>
 
@@ -328,7 +328,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span>
                            <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
                            )
 </pre>
@@ -369,9 +369,9 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org1c15f5d" class="outline-4">
-<h4 id="org1c15f5d">指定 C++标准</h4>
-<div class="outline-text-4" id="text-org1c15f5d">
+<div id="outline-container-orgd946b80" class="outline-4">
+<h4 id="orgd946b80">指定 C++标准</h4>
+<div class="outline-text-4" id="text-orgd946b80">
 <p>
 接下来，我们通过在 tutorial.cxx 中用 std::stod 替换 atof 来添加一些 C++11 特性到我们的项目中。同时，我们移除 <code>#include &lt;cstdlib&gt;</code> 。
 </p>
@@ -386,21 +386,21 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(<span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">3.10</span>)
 
 <span style="color: #5B6268;"># set the project name and version</span>
-<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+<span style="color: #c678dd;">project</span>(Tutorial <span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">1.0</span>)
 
 <span style="color: #5B6268;"># specify the C++ standard</span>
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD</span> <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD_REQUIRED</span> <span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org52e5030" class="outline-4">
-<h4 id="org52e5030">构建和测试</h4>
-<div class="outline-text-4" id="text-org52e5030">
+<div id="outline-container-orgcd6770d" class="outline-4">
+<h4 id="orgcd6770d">构建和测试</h4>
+<div class="outline-text-4" id="text-orgcd6770d">
 <p>
 运行 cmake 可执行文件或 cmake-gui 来配置项目，然后使用你选中的构建工具构建。
 </p>
@@ -430,9 +430,9 @@ Tutorial
 </div>
 </div>
 </div>
-<div id="outline-container-org6e2096f" class="outline-3">
-<h3 id="org6e2096f">添加库（Step2）</h3>
-<div class="outline-text-3" id="text-org6e2096f">
+<div id="outline-container-org959392f" class="outline-3">
+<h3 id="org959392f">添加库（Step2）</h3>
+<div class="outline-text-3" id="text-org959392f">
 <p>
 现在我们添加库到我们的项目。该库将包含我们自己的计算数字的平方根的实现。然后可执行文件使用此库而不是编译器提供的标准平方根函数。在本教程中，我们将库放入名为 <code>MathFunctions</code> 的子目录中。该目录已经包含一个头文件， <code>MathFunctions.h</code> ，和源文件 <code>mysqrt.cxx</code>
 。源文件有一个名为 <code>mysqrt</code> 的函数，该函数提供与编译器的 <code>sqrt</code> 函数类似的功能。
@@ -443,7 +443,7 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(MathFunctions mysqrt.cxx)
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">MathFunctions</span> mysqrt.cxx)
 </pre>
 </div>
 
@@ -456,13 +456,13 @@ Tutorial
 <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
 
 <span style="color: #5B6268;"># add the executable</span>
-<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+<span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">Tutorial</span> tutorial.cxx)
 
-<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+<span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span> MathFunctions)
 
 <span style="color: #5B6268;"># add the binary tree to the search path for include files</span>
 <span style="color: #5B6268;"># so that we will find TutorialConfig.h</span>
-<span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span>
                           <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
                           <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_SOURCE_DIR</span><span style="color: #98be65;">}/MathFunctions"</span>
                           )
@@ -474,7 +474,7 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">option</span>(USE_MYMATH <span style="color: #98be65;">"Use tutorial provided math implementation"</span> ON)
+<pre class="src src-cmake"><span style="color: #c678dd;">option</span>(<span style="color: #dcaeea;">USE_MYMATH</span> <span style="color: #98be65;">"Use tutorial provided math implementation"</span> <span style="color: #a9a1e1;">ON</span>)
 
 <span style="color: #5B6268;"># configure a header file to pass some of the CMake settings</span>
 <span style="color: #5B6268;"># to the source code</span>
@@ -491,22 +491,22 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #51afef;">if</span>(USE_MYMATH)
+<pre class="src src-cmake"><span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">USE_MYMATH</span>)
   <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
-  <span style="color: #c678dd;">list</span>(APPEND EXTRA_LIBS MathFunctions)
-  <span style="color: #c678dd;">list</span>(APPEND EXTRA_INCLUDES <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_SOURCE_DIR</span><span style="color: #98be65;">}/MathFunctions"</span>)
+  <span style="color: #c678dd;">list</span>(<span style="color: #ECBE7B;">APPEND</span> <span style="color: #dcaeea;">EXTRA_LIBS</span> MathFunctions)
+  <span style="color: #c678dd;">list</span>(<span style="color: #ECBE7B;">APPEND</span> <span style="color: #dcaeea;">EXTRA_INCLUDES</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_SOURCE_DIR</span><span style="color: #98be65;">}/MathFunctions"</span>)
 <span style="color: #51afef;">endif</span>()
 
 <span style="color: #5B6268;"># add the executable</span>
-<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
+<span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">Tutorial</span> tutorial.cxx)
 
-<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC ${<span style="color: #dcaeea;">EXTRA_LIBS</span>})
+<span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">EXTRA_LIBS</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>)
 
 <span style="color: #5B6268;"># add the binary tree to the search path for include files</span>
 <span style="color: #5B6268;"># so that we will find TutorialConfig.h</span>
-<span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span>
                            <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
-                           ${<span style="color: #dcaeea;">EXTRA_INCLUDES</span>}
+                           <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">EXTRA_INCLUDES</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
                            )
 </pre>
 </div>
@@ -561,9 +561,9 @@ Tutorial
 </p>
 </div>
 </div>
-<div id="outline-container-org65fecbf" class="outline-3">
-<h3 id="org65fecbf">添加库的使用要求（Step 3）</h3>
-<div class="outline-text-3" id="text-org65fecbf">
+<div id="outline-container-org759e13e" class="outline-3">
+<h3 id="org759e13e">添加库的使用要求（Step 3）</h3>
+<div class="outline-text-3" id="text-org759e13e">
 <p>
 使用要求可以更好的控制库或可执行文件的链接，同时 include 行还可以更好的控制 CMake 内部目标的传递属性。利用使用要求的主要命令是：
 </p>
@@ -576,7 +576,7 @@ Tutorial
 </ul>
 
 <p>
-让我们使用现代 CMake 的使用要求方法来重构 <a href="#org6e2096f">添加库（Step2）</a>中的代码。我们首先声明链接到 MathFunctions 的任何人都需要 include 当前源目录，而 MathFunctions 本身不需要。所以，这可以成为一个 <code>INTERFACE</code> 使用要求。
+让我们使用现代 CMake 的使用要求方法来重构 <a href="#org959392f">添加库（Step2）</a>中的代码。我们首先声明链接到 MathFunctions 的任何人都需要 include 当前源目录，而 MathFunctions 本身不需要。所以，这可以成为一个 <code>INTERFACE</code> 使用要求。
 </p>
 
 <p>
@@ -584,8 +584,8 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
-          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+          <span style="color: #ECBE7B;">INTERFACE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
           )
 </pre>
 </div>
@@ -595,9 +595,9 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #51afef;">if</span>(USE_MYMATH)
+<pre class="src src-cmake"><span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">USE_MYMATH</span>)
   <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
-  <span style="color: #c678dd;">list</span>(APPEND EXTRA_LIBS MathFunctions)
+  <span style="color: #c678dd;">list</span>(<span style="color: #ECBE7B;">APPEND</span> <span style="color: #dcaeea;">EXTRA_LIBS</span> MathFunctions)
 <span style="color: #51afef;">endif</span>()
 </pre>
 </div>
@@ -607,7 +607,7 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(Tutorial PUBLIC
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span>
                            <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>
                            )
 </pre>
@@ -618,16 +618,16 @@ Tutorial
 </p>
 </div>
 </div>
-<div id="outline-container-orgcd1dd10" class="outline-3">
-<h3 id="orgcd1dd10">安装和测试（Step 4）</h3>
-<div class="outline-text-3" id="text-orgcd1dd10">
+<div id="outline-container-org9b2e1fc" class="outline-3">
+<h3 id="org9b2e1fc">安装和测试（Step 4）</h3>
+<div class="outline-text-3" id="text-org9b2e1fc">
 <p>
 现在我们开始向项目添加安装规则和测试支持。
 </p>
 </div>
-<div id="outline-container-orge3e05fc" class="outline-4">
-<h4 id="orge3e05fc">安装规则</h4>
-<div class="outline-text-4" id="text-orge3e05fc">
+<div id="outline-container-org664087a" class="outline-4">
+<h4 id="org664087a">安装规则</h4>
+<div class="outline-text-4" id="text-org664087a">
 <p>
 安装规则非常简单：对于 MathFunctions 我们想要安装库和头文件，对于应用程序我们想要安装可执行文件和已配置的头文件。
 </p>
@@ -637,8 +637,8 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS MathFunctions DESTINATION lib)
-<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">TARGETS</span> <span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">DESTINATION</span> lib)
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">FILES</span> MathFunctions.h <span style="color: #ECBE7B;">DESTINATION</span> include)
 </pre>
 </div>
 
@@ -647,9 +647,9 @@ Tutorial
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS Tutorial DESTINATION bin)
-<span style="color: #c678dd;">install</span>(FILES <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}/TutorialConfig.h"</span>
-  DESTINATION include
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">TARGETS</span> <span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">DESTINATION</span> bin)
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">FILES</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}/TutorialConfig.h"</span>
+  <span style="color: #ECBE7B;">DESTINATION</span> include
   )
 </pre>
 </div>
@@ -671,9 +671,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 </div>
 </div>
-<div id="outline-container-orgef05839" class="outline-4">
-<h4 id="orgef05839">测试支持</h4>
-<div class="outline-text-4" id="text-orgef05839">
+<div id="outline-container-orgf613520" class="outline-4">
+<h4 id="orgf613520">测试支持</h4>
+<div class="outline-text-4" id="text-orgf613520">
 <p>
 接下来让我们测试我们的应用。在顶层 <code>CMakeLists.txt</code> 的结尾我们开启测试，然后添加一些基本测试以验证应用程序是否正常运行。
 </p>
@@ -682,21 +682,21 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 <pre class="src src-cmake"><span style="color: #c678dd;">enable_testing</span>()
 
 <span style="color: #5B6268;"># does the application run</span>
-<span style="color: #c678dd;">add_test</span>(NAME Runs COMMAND Tutorial <span style="color: #da8548; font-weight: bold;">25</span>)
+<span style="color: #c678dd;">add_test</span>(<span style="color: #ECBE7B;">NAME</span> Runs <span style="color: #ECBE7B;">COMMAND</span> Tutorial <span style="color: #da8548; font-weight: bold;">25</span>)
 
 <span style="color: #5B6268;"># does the usage message work?</span>
-<span style="color: #c678dd;">add_test</span>(NAME Usage COMMAND Tutorial)
+<span style="color: #c678dd;">add_test</span>(<span style="color: #ECBE7B;">NAME</span> Usage <span style="color: #ECBE7B;">COMMAND</span> Tutorial)
 <span style="color: #c678dd;">set_tests_properties</span>(Usage
-  PROPERTIES PASS_REGULAR_EXPRESSION <span style="color: #98be65;">"Usage:.*number"</span>
+  <span style="color: #ECBE7B;">PROPERTIES</span> PASS_REGULAR_EXPRESSION <span style="color: #98be65;">"Usage:.*number"</span>
   )
 
 <span style="color: #5B6268;"># define a function to simplify adding tests</span>
-<span style="color: #51afef;">function</span>(do_test target arg result)
-  <span style="color: #c678dd;">add_test</span>(NAME Comp${<span style="color: #dcaeea;">arg</span>} COMMAND ${<span style="color: #dcaeea;">target</span>} ${<span style="color: #dcaeea;">arg</span>})
-  <span style="color: #c678dd;">set_tests_properties</span>(Comp${<span style="color: #dcaeea;">arg</span>}
-    PROPERTIES PASS_REGULAR_EXPRESSION ${<span style="color: #dcaeea;">result</span>}
+<span style="color: #51afef;">function</span>(<span style="color: #c678dd;">do_test</span> <span style="color: #dcaeea;">target</span> <span style="color: #dcaeea;">arg</span> <span style="color: #dcaeea;">result</span>)
+  <span style="color: #c678dd;">add_test</span>(<span style="color: #ECBE7B;">NAME</span> Comp<span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">arg</span><span style="color: #bbc2cf; background-color: #21242b;">}</span> <span style="color: #ECBE7B;">COMMAND</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">target</span><span style="color: #bbc2cf; background-color: #21242b;">}</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">arg</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>)
+  <span style="color: #c678dd;">set_tests_properties</span>(Comp<span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">arg</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
+    <span style="color: #ECBE7B;">PROPERTIES</span> PASS_REGULAR_EXPRESSION <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">result</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
     )
-<span style="color: #51afef;">endfunction</span>(do_test)
+<span style="color: #51afef;">endfunction</span>(<span style="color: #c678dd;">do_test</span>)
 
 <span style="color: #5B6268;"># do a bunch of result based tests</span>
 <span style="color: #c678dd;">do_test</span>(Tutorial <span style="color: #da8548; font-weight: bold;">4</span> <span style="color: #98be65;">"4 is 2"</span>)
@@ -727,11 +727,11 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </div>
 </div>
 </div>
-<div id="outline-container-org2a4bbb4" class="outline-3">
-<h3 id="org2a4bbb4">添加系统自检（Step 5）</h3>
-<div class="outline-text-3" id="text-org2a4bbb4">
+<div id="outline-container-org967e3b5" class="outline-3">
+<h3 id="org967e3b5">添加系统自检（Step 5）</h3>
+<div class="outline-text-3" id="text-org967e3b5">
 <p>
-让我们考虑添加一些取决于目标平台可能不具有的特性的代码到项目中。例如，我们添加一些取决于目标平台是否具有 <code>log</code> 和 <code>exp</code> 函数的代码。当然几乎所有的平台都有这些函数，但是本教程他们并不常见。
+让我们考虑添加一些取决于目标平台可能不具有的特性的代码到项目中。例如，我们添加一些取决于目标平台是否具有 <code>log</code> 和 <code>exp</code> 函数的代码。当然几乎所有的平台都有这些函数，但是假设本教程中他们并不常见。
 </p>
 
 <p>
@@ -743,17 +743,17 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(CheckSymbolExists)
+<pre class="src src-cmake"><span style="color: #51afef;">include</span>(CheckSymbolExists)
 <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
 <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
-<span style="color: #51afef;">if</span>(<span style="color: #c678dd;">NOT</span> (HAVE_LOG AND HAVE_EXP))
-  <span style="color: #c678dd;">unset</span>(HAVE_LOG CACHE)
-  <span style="color: #c678dd;">unset</span>(HAVE_EXP CACHE)
-  <span style="color: #c678dd;">set</span>(CMAKE_REQUIRED_LIBRARIES <span style="color: #98be65;">"m"</span>)
+<span style="color: #51afef;">if</span>(<span style="color: #ECBE7B;">NOT</span> (<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">AND</span> <span style="color: #dcaeea;">HAVE_EXP</span>))
+  <span style="color: #c678dd;">unset</span>(<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">CACHE</span>)
+  <span style="color: #c678dd;">unset</span>(<span style="color: #dcaeea;">HAVE_EXP</span> <span style="color: #ECBE7B;">CACHE</span>)
+  <span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_REQUIRED_LIBRARIES</span> <span style="color: #98be65;">"m"</span>)
   <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
   <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
-  <span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
-    <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE m)
+  <span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">AND</span> <span style="color: #dcaeea;">HAVE_EXP</span>)
+    <span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> m)
   <span style="color: #51afef;">endif</span>()
 <span style="color: #51afef;">endif</span>()
 </pre>
@@ -806,9 +806,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
-          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
-          PRIVATE ${<span style="color: #dcaeea;">CMAKE_BINARY_DIR</span>}
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+          <span style="color: #ECBE7B;">INTERFACE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
+          <span style="color: #ECBE7B;">PRIVATE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
           )
 </pre>
 </div>
@@ -821,9 +821,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 现在哪个函数给你更好的结果，sqrt 或 mysqrt？
 </p>
 </div>
-<div id="outline-container-org18d9804" class="outline-4">
-<h4 id="org18d9804">指定编译定义</h4>
-<div class="outline-text-4" id="text-org18d9804">
+<div id="outline-container-org6a9c3db" class="outline-4">
+<h4 id="org6a9c3db">指定编译定义</h4>
+<div class="outline-text-4" id="text-org6a9c3db">
 <p>
 除了在 <code>TutorialConfig.h</code> 中保存 <code>HAVE_LOG</code> 和 <code>HAVE_EXP</code> 值，我们还有更好的地方吗？让我们试试使用 target_compile_definitions()。首先，从 <code>TutorialConfig.h.in</code> 中删除定义。我们不再需要在 <code>mysqrt.cxx</code> 中 include <code>TutorialConfig.h</code> 或在 <code>MatchFunctions/CMakeLists.txt</code> 中 extra include 了。
 </p>
@@ -833,24 +833,24 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(CheckSymbolExists)
+<pre class="src src-cmake"><span style="color: #51afef;">include</span>(CheckSymbolExists)
 <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
 <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
-<span style="color: #51afef;">if</span>(<span style="color: #c678dd;">NOT</span> (HAVE_LOG AND HAVE_EXP))
-  <span style="color: #c678dd;">unset</span>(HAVE_LOG CACHE)
-  <span style="color: #c678dd;">unset</span>(HAVE_EXP CACHE)
-  <span style="color: #c678dd;">set</span>(CMAKE_REQUIRED_LIBRARIES <span style="color: #98be65;">"m"</span>)
+<span style="color: #51afef;">if</span>(<span style="color: #ECBE7B;">NOT</span> (<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">AND</span> <span style="color: #dcaeea;">HAVE_EXP</span>))
+  <span style="color: #c678dd;">unset</span>(<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">CACHE</span>)
+  <span style="color: #c678dd;">unset</span>(<span style="color: #dcaeea;">HAVE_EXP</span> <span style="color: #ECBE7B;">CACHE</span>)
+  <span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_REQUIRED_LIBRARIES</span> <span style="color: #98be65;">"m"</span>)
   <span style="color: #c678dd;">check_symbol_exists</span>(log <span style="color: #98be65;">"math.h"</span> HAVE_LOG)
   <span style="color: #c678dd;">check_symbol_exists</span>(exp <span style="color: #98be65;">"math.h"</span> HAVE_EXP)
-  <span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
-    <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE m)
+  <span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">AND</span> <span style="color: #dcaeea;">HAVE_EXP</span>)
+    <span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> m)
   <span style="color: #51afef;">endif</span>()
 <span style="color: #51afef;">endif</span>()
 
 <span style="color: #5B6268;"># add compile definitions</span>
-<span style="color: #51afef;">if</span>(HAVE_LOG AND HAVE_EXP)
-  <span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions
-                             PRIVATE <span style="color: #98be65;">"HAVE_LOG"</span> <span style="color: #98be65;">"HAVE_EXP"</span>)
+<span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">HAVE_LOG</span> <span style="color: #ECBE7B;">AND</span> <span style="color: #dcaeea;">HAVE_EXP</span>)
+  <span style="color: #c678dd;">target_compile_definitions</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+                             <span style="color: #ECBE7B;">PRIVATE</span> <span style="color: #98be65;">"HAVE_LOG"</span> <span style="color: #98be65;">"HAVE_EXP"</span>)
 <span style="color: #51afef;">endif</span>()
 </pre>
 </div>
@@ -861,9 +861,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </div>
 </div>
 </div>
-<div id="outline-container-org55716fa" class="outline-3">
-<h3 id="org55716fa">添加自定义命令和生成的文件（Step 6）</h3>
-<div class="outline-text-3" id="text-org55716fa">
+<div id="outline-container-orgd922767" class="outline-3">
+<h3 id="orgd922767">添加自定义命令和生成的文件（Step 6）</h3>
+<div class="outline-text-3" id="text-orgd922767">
 <p>
 假设，出于本教程的目的，我们决定不再使用 <code>log</code> 和 <code>exp</code> 函数，而是希望生成一个可在 mysqrt 函数中使用的预计算值表。在本节中，我们将在构建过程中创建表，然后将该表编译到我们的应用程序中。
 </p>
@@ -889,7 +889,7 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(MakeTable MakeTable.cxx)
+<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">MakeTable</span> MakeTable.cxx)
 </pre>
 </div>
 
@@ -899,9 +899,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 
 <div class="org-src-container">
 <pre class="src src-cmake"><span style="color: #c678dd;">add_custom_command</span>(
-  OUTPUT ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
-  COMMAND MakeTable ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
-  DEPENDS MakeTable
+  <span style="color: #ECBE7B;">OUTPUT</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
+  <span style="color: #ECBE7B;">COMMAND</span> MakeTable <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
+  <span style="color: #ECBE7B;">DEPENDS</span> MakeTable
   )
 </pre>
 </div>
@@ -911,9 +911,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(MathFunctions
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">MathFunctions</span>
             mysqrt.cxx
-            ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+            <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
             )
 </pre>
 </div>
@@ -923,9 +923,9 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
-          INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
-          PRIVATE ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+          <span style="color: #ECBE7B;">INTERFACE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
+          <span style="color: #ECBE7B;">PRIVATE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
           )
 </pre>
 </div>
@@ -976,19 +976,19 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 </div>
 </div>
-<div id="outline-container-org3033f02" class="outline-3">
-<h3 id="org3033f02">构建安装器（Step 7）</h3>
-<div class="outline-text-3" id="text-org3033f02">
+<div id="outline-container-org687c4a2" class="outline-3">
+<h3 id="org687c4a2">构建安装器（Step 7）</h3>
+<div class="outline-text-3" id="text-org687c4a2">
 <p>
-接下来，假设我们想将项目分发给其他人，以便他们可以使用它。我们希望在各种平台上提供二进制和源码的分发。这与我们之前在<a href="#orgcd1dd10">安装和测试（Step 4）</a>中所做的安装有些不同，在其中我们安装从源代码构建的二进制文件。在此例中，我们将构建支持二进制程序安装和包管理功能的安装包。为此，我们将使用 CPack 创建特定平台的安装器。具体来说，我们需要在顶层 <code>CMakeLists.txt</code> 文件的底部添加几行。
+接下来，假设我们想将项目分发给其他人，以便他们可以使用它。我们希望在各种平台上提供二进制和源码的分发。这与我们之前在<a href="#org9b2e1fc">安装和测试（Step 4）</a>中所做的安装有些不同，在其中我们安装从源代码构建的二进制文件。在此例中，我们将构建支持二进制程序安装和包管理功能的安装包。为此，我们将使用 CPack 创建特定平台的安装器。具体来说，我们需要在顶层 <code>CMakeLists.txt</code> 文件的底部添加几行。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(InstallRequiredSystemLibraries)
-<span style="color: #c678dd;">set</span>(CPACK_RESOURCE_FILE_LICENSE <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #98be65;">}/License.txt"</span>)
-<span style="color: #c678dd;">set</span>(CPACK_PACKAGE_VERSION_MAJOR <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MAJOR</span><span style="color: #98be65;">}"</span>)
-<span style="color: #c678dd;">set</span>(CPACK_PACKAGE_VERSION_MINOR <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MINOR</span><span style="color: #98be65;">}"</span>)
-<span style="color: #c678dd;">include</span>(CPack)
+<pre class="src src-cmake"><span style="color: #51afef;">include</span>(InstallRequiredSystemLibraries)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CPACK_RESOURCE_FILE_LICENSE</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #98be65;">}/License.txt"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CPACK_PACKAGE_VERSION_MAJOR</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MAJOR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CPACK_PACKAGE_VERSION_MINOR</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">Tutorial_VERSION_MINOR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #51afef;">include</span>(CPack)
 </pre>
 </div>
 
@@ -1036,11 +1036,11 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 </p>
 </div>
 </div>
-<div id="outline-container-orgfaed58d" class="outline-3">
-<h3 id="orgfaed58d">添加对 Dashboard 的支持（Step 8）</h3>
-<div class="outline-text-3" id="text-orgfaed58d">
+<div id="outline-container-orgf608f42" class="outline-3">
+<h3 id="orgf608f42">添加对 Dashboard 的支持（Step 8）</h3>
+<div class="outline-text-3" id="text-orgf608f42">
 <p>
-对将测试结果提交到 Dashboard 的支持非常简单。我们已经在<a href="#orgef05839">测试支持</a>中为我们的项目添加了许多测试。现在我们只要运行这些测试并将其提交到 Dashboard 即可。为了包含对 Dashboard 的支持，我们在顶层 <code>CMakeLists.txt</code> 中 include <code>CTest</code> 模块。
+对将测试结果提交到 Dashboard 的支持非常简单。我们已经在<a href="#orgf613520">测试支持</a>中为我们的项目添加了许多测试。现在我们只要运行这些测试并将其提交到 Dashboard 即可。为了包含对 Dashboard 的支持，我们在顶层 <code>CMakeLists.txt</code> 中 include <code>CTest</code> 模块。
 </p>
 
 <p>
@@ -1059,7 +1059,7 @@ CMake 变量 CMAKE_INSTALL_PREFIX 用于确定文件的安装根目录。如果�
 
 <div class="org-src-container">
 <pre class="src src-cmake"><span style="color: #5B6268;"># enable dashboard scripting</span>
-<span style="color: #c678dd;">include</span>(CTest)
+<span style="color: #51afef;">include</span>(CTest)
 </pre>
 </div>
 
@@ -1072,13 +1072,13 @@ cTest 模块将会自动调用 <code>enable_testing()</code> ，所以可以从 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CTEST_PROJECT_NAME <span style="color: #98be65;">"CMakeTutorial"</span>)
-<span style="color: #c678dd;">set</span>(CTEST_NIGHTLY_START_TIME <span style="color: #98be65;">"00:00:00 EST"</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_PROJECT_NAME</span> <span style="color: #98be65;">"CMakeTutorial"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_NIGHTLY_START_TIME</span> <span style="color: #98be65;">"00:00:00 EST"</span>)
 
-<span style="color: #c678dd;">set</span>(CTEST_DROP_METHOD <span style="color: #98be65;">"http"</span>)
-<span style="color: #c678dd;">set</span>(CTEST_DROP_SITE <span style="color: #98be65;">"my.cdash.org"</span>)
-<span style="color: #c678dd;">set</span>(CTEST_DROP_LOCATION <span style="color: #98be65;">"/submit.php?project=CMakeTutorial"</span>)
-<span style="color: #c678dd;">set</span>(CTEST_DROP_SITE_CDASH TRUE)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_DROP_METHOD</span> <span style="color: #98be65;">"http"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_DROP_SITE</span> <span style="color: #98be65;">"my.cdash.org"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_DROP_LOCATION</span> <span style="color: #98be65;">"/submit.php?project=CMakeTutorial"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CTEST_DROP_SITE_CDASH</span> <span style="color: #a9a1e1;">TRUE</span>)
 </pre>
 </div>
 
@@ -1108,9 +1108,9 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 </div>
 </div>
-<div id="outline-container-org7a665ca" class="outline-3">
-<h3 id="org7a665ca">混合 Static 和 Shared(Step 9)</h3>
-<div class="outline-text-3" id="text-org7a665ca">
+<div id="outline-container-org4a97e52" class="outline-3">
+<h3 id="org4a97e52">混合 Static 和 Shared(Step 9)</h3>
+<div class="outline-text-3" id="text-org4a97e52">
 <p>
 在本节中，我们将展示如何使用 <code>BUILD_SHARED_LIBS</code> 变量来控制 add_library()的默认行为，并允许控制如何构建没有显式类型（ <code>STATIC</code> ， <code>SHARED</code> ， <code>MODULE</code> 或 <code>OBJECT</code> ）的库。
 </p>
@@ -1128,22 +1128,22 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(VERSION <span style="color: #da8548; font-weight: bold;">3.10</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">cmake_minimum_required</span>(<span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">3.10</span>)
 
 <span style="color: #5B6268;"># set the project name and version</span>
-<span style="color: #c678dd;">project</span>(Tutorial VERSION <span style="color: #da8548; font-weight: bold;">1.0</span>)
+<span style="color: #c678dd;">project</span>(Tutorial <span style="color: #ECBE7B;">VERSION</span> <span style="color: #da8548; font-weight: bold;">1.0</span>)
 
 <span style="color: #5B6268;"># specify the C++ standard</span>
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD</span> <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD_REQUIRED</span> <span style="color: #a9a1e1;">True</span>)
 
 <span style="color: #5B6268;"># control where the static and shared libraries are built so that on windows</span>
 <span style="color: #5B6268;"># we don't need to tinker with the path to run the executable</span>
-<span style="color: #c678dd;">set</span>(CMAKE_ARCHIVE_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_LIBRARY_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_RUNTIME_OUTPUT_DIRECTORY <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_ARCHIVE_OUTPUT_DIRECTORY</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_LIBRARY_OUTPUT_DIRECTORY</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_RUNTIME_OUTPUT_DIRECTORY</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">PROJECT_BINARY_DIR</span><span style="color: #98be65;">}"</span>)
 
-<span style="color: #c678dd;">option</span>(BUILD_SHARED_LIBS <span style="color: #98be65;">"Build using shared libraries"</span> ON)
+<span style="color: #c678dd;">option</span>(<span style="color: #dcaeea;">BUILD_SHARED_LIBS</span> <span style="color: #98be65;">"Build using shared libraries"</span> <span style="color: #a9a1e1;">ON</span>)
 
 <span style="color: #5B6268;"># configure a header file to pass the version number only</span>
 <span style="color: #c678dd;">configure_file</span>(TutorialConfig.h.in TutorialConfig.h)
@@ -1152,8 +1152,8 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 <span style="color: #c678dd;">add_subdirectory</span>(MathFunctions)
 
 <span style="color: #5B6268;"># add the executable</span>
-<span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
-<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+<span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">Tutorial</span> tutorial.cxx)
+<span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span> MathFunctions)
 </pre>
 </div>
 
@@ -1167,51 +1167,51 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 
 <div class="org-src-container">
 <pre class="src src-cmake"><span style="color: #5B6268;"># add the library that runs</span>
-<span style="color: #c678dd;">add_library</span>(MathFunctions MathFunctions.cxx)
+<span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">MathFunctions</span> MathFunctions.cxx)
 
 <span style="color: #5B6268;"># state that anybody linking to us needs to include the current source dir</span>
 <span style="color: #5B6268;"># to find MathFunctions.h, while we don't.</span>
-<span style="color: #c678dd;">target_include_directories</span>(MathFunctions
-                           INTERFACE ${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}
+<span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+                           <span style="color: #ECBE7B;">INTERFACE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
                            )
 
 <span style="color: #5B6268;"># should we use our own math functions</span>
-<span style="color: #c678dd;">option</span>(USE_MYMATH <span style="color: #98be65;">"Use tutorial provided math implementation"</span> ON)
-<span style="color: #51afef;">if</span>(USE_MYMATH)
+<span style="color: #c678dd;">option</span>(<span style="color: #dcaeea;">USE_MYMATH</span> <span style="color: #98be65;">"Use tutorial provided math implementation"</span> <span style="color: #a9a1e1;">ON</span>)
+<span style="color: #51afef;">if</span>(<span style="color: #dcaeea;">USE_MYMATH</span>)
 
-  <span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions PRIVATE <span style="color: #98be65;">"USE_MYMATH"</span>)
+  <span style="color: #c678dd;">target_compile_definitions</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> <span style="color: #98be65;">"USE_MYMATH"</span>)
 
   <span style="color: #5B6268;"># first we add the executable that generates the table</span>
-  <span style="color: #c678dd;">add_executable</span>(MakeTable MakeTable.cxx)
+  <span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">MakeTable</span> MakeTable.cxx)
 
   <span style="color: #5B6268;"># add the command to generate the source code</span>
   <span style="color: #c678dd;">add_custom_command</span>(
-    OUTPUT ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
-    COMMAND MakeTable ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
-    DEPENDS MakeTable
+    <span style="color: #ECBE7B;">OUTPUT</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
+    <span style="color: #ECBE7B;">COMMAND</span> MakeTable <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
+    <span style="color: #ECBE7B;">DEPENDS</span> MakeTable
     )
 
   <span style="color: #5B6268;"># library that just does sqrt</span>
-  <span style="color: #c678dd;">add_library</span>(SqrtLibrary STATIC
+  <span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">SqrtLibrary</span> <span style="color: #ECBE7B;">STATIC</span>
               mysqrt.cxx
-              ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/Table.h
+              <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Table.h
               )
 
   <span style="color: #5B6268;"># state that we depend on our binary dir to find Table.h</span>
-  <span style="color: #c678dd;">target_include_directories</span>(SqrtLibrary PRIVATE
-                             ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}
+  <span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">SqrtLibrary</span> <span style="color: #ECBE7B;">PRIVATE</span>
+                             <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
                              )
 
-  <span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE SqrtLibrary)
+  <span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> SqrtLibrary)
 <span style="color: #51afef;">endif</span>()
 
 <span style="color: #5B6268;"># define the symbol stating we are using the declspec(dllexport) when</span>
 <span style="color: #5B6268;"># building on windows</span>
-<span style="color: #c678dd;">target_compile_definitions</span>(MathFunctions PRIVATE <span style="color: #98be65;">"EXPORTING_MYMATH"</span>)
+<span style="color: #c678dd;">target_compile_definitions</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> <span style="color: #98be65;">"EXPORTING_MYMATH"</span>)
 
 <span style="color: #5B6268;"># install rules</span>
-<span style="color: #c678dd;">install</span>(TARGETS MathFunctions DESTINATION lib)
-<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">TARGETS</span> <span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">DESTINATION</span> lib)
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">FILES</span> MathFunctions.h <span style="color: #ECBE7B;">DESTINATION</span> include)
 </pre>
 </div>
 
@@ -1297,11 +1297,11 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 
 <div class="org-src-container">
 <pre class="src src-cmake"><span style="color: #5B6268;"># state that SqrtLibrary need PIC when the default is shared libraries</span>
-<span style="color: #c678dd;">set_target_properties</span>(SqrtLibrary PROPERTIES
-                      POSITION_INDEPENDENT_CODE ${<span style="color: #dcaeea;">BUILD_SHARED_LIBS</span>}
+<span style="color: #c678dd;">set_target_properties</span>(<span style="color: #a9a1e1;">SqrtLibrary</span> <span style="color: #ECBE7B;">PROPERTIES</span>
+                      <span style="color: #a9a1e1;">POSITION_INDEPENDENT_CODE</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">BUILD_SHARED_LIBS</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>
                       )
 
-<span style="color: #c678dd;">target_link_libraries</span>(MathFunctions PRIVATE SqrtLibrary)
+<span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PRIVATE</span> SqrtLibrary)
 </pre>
 </div>
 
@@ -1310,9 +1310,9 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 </div>
 </div>
-<div id="outline-container-org03afe9a" class="outline-3">
-<h3 id="org03afe9a">添加生成器表达式（Step 10）</h3>
-<div class="outline-text-3" id="text-org03afe9a">
+<div id="outline-container-org676f10c" class="outline-3">
+<h3 id="org676f10c">添加生成器表达式（Step 10）</h3>
+<div class="outline-text-3" id="text-org676f10c">
 <p>
 在构建系统生成期间会评估生成器表达式，以生成特定于每个构建配置的信息。
 </p>
@@ -1342,8 +1342,8 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD <span style="color: #da8548; font-weight: bold;">11</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_STANDARD_REQUIRED True)
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD</span> <span style="color: #da8548; font-weight: bold;">11</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_STANDARD_REQUIRED</span> <span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
@@ -1352,8 +1352,8 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(tutorial_compiler_flags INTERFACE)
-<span style="color: #c678dd;">target_compile_features</span>(tutorial_compiler_flags INTERFACE cxx_std_11)
+<pre class="src src-cmake"><span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">tutorial_compiler_flags</span> <span style="color: #ECBE7B;">INTERFACE</span>)
+<span style="color: #c678dd;">target_compile_features</span>(<span style="color: #a9a1e1;">tutorial_compiler_flags</span> <span style="color: #ECBE7B;">INTERFACE</span> cxx_std_11)
 </pre>
 </div>
 
@@ -1362,9 +1362,9 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(gcc_like_cxx <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU&gt;"</span>)
-<span style="color: #c678dd;">set</span>(msvc_cxx <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,MSVC&gt;"</span>)
-<span style="color: #c678dd;">target_compile_options</span>(tutorial_compiler_flags INTERFACE
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">gcc_like_cxx</span> <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU&gt;"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">msvc_cxx</span> <span style="color: #98be65;">"$&lt;COMPILE_LANG_AND_ID:CXX,MSVC&gt;"</span>)
+<span style="color: #c678dd;">target_compile_options</span>(<span style="color: #a9a1e1;">tutorial_compiler_flags</span> <span style="color: #ECBE7B;">INTERFACE</span>
   <span style="color: #98be65;">"$&lt;${</span><span style="color: #dcaeea;">gcc_like_cxx</span><span style="color: #98be65;">}:$&lt;BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused&gt;&gt;"</span>
   <span style="color: #98be65;">"$&lt;${</span><span style="color: #dcaeea;">msvc_cxx</span><span style="color: #98be65;">}:$&lt;BUILD_INTERFACE:-W3&gt;&gt;"</span>
 )
@@ -1380,11 +1380,11 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 </div>
 </div>
-<div id="outline-container-orgbca949d" class="outline-3">
-<h3 id="orgbca949d">添加导出配置（Step 11）</h3>
-<div class="outline-text-3" id="text-orgbca949d">
+<div id="outline-container-org6f39008" class="outline-3">
+<h3 id="org6f39008">添加导出配置（Step 11）</h3>
+<div class="outline-text-3" id="text-org6f39008">
 <p>
-在教程的<a href="#orgcd1dd10">安装和测试（Step 4）</a>中，我们添加了 CMake 的安装项目的库和头文件的功能。在<a href="#org3033f02">构建安装器（Step 7）</a>中，我们添加了打包此信息的功能，以便可以分发给其他人。
+在教程的<a href="#org9b2e1fc">安装和测试（Step 4）</a>中，我们添加了 CMake 的安装项目的库和头文件的功能。在<a href="#org687c4a2">构建安装器（Step 7）</a>中，我们添加了打包此信息的功能，以便可以分发给其他人。
 </p>
 
 <p>
@@ -1396,10 +1396,10 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(TARGETS MathFunctions tutorial_compiler_flags
-        DESTINATION lib
-        EXPORT MathFunctionsTargets)
-<span style="color: #c678dd;">install</span>(FILES MathFunctions.h DESTINATION include)
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">TARGETS</span> <span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #a9a1e1;">tutorial_compiler_flags</span>
+        <span style="color: #ECBE7B;">DESTINATION</span> lib
+        <span style="color: #ECBE7B;">EXPORT</span> MathFunctionsTargets)
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">FILES</span> MathFunctions.h <span style="color: #ECBE7B;">DESTINATION</span> include)
 </pre>
 </div>
 
@@ -1408,9 +1408,9 @@ ctest 可执行文件将会构建、测试并提交结果到 Kitware 的公共 d
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(EXPORT MathFunctionsTargets
-  FILE MathFunctionsTargets.cmake
-  DESTINATION lib/cmake/MathFunctions
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">EXPORT</span> MathFunctionsTargets
+  <span style="color: #ECBE7B;">FILE</span> MathFunctionsTargets.cmake
+  <span style="color: #ECBE7B;">DESTINATION</span> lib/cmake/MathFunctions
 )
 </pre>
 </div>
@@ -1437,10 +1437,10 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(MathFunctions
-                           INTERFACE
-                            $&lt;BUILD_INTERFACE:${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}&gt;
-                            $&lt;INSTALL_INTERFACE:include&gt;
+<pre class="src src-cmake"><span style="color: #c678dd;">target_include_directories</span>(<span style="color: #a9a1e1;">MathFunctions</span>
+                           <span style="color: #ECBE7B;">INTERFACE</span>
+                            $&lt;<span style="color: #51afef; font-weight: bold;">BUILD_INTERFACE</span>:<span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>&gt;
+                            $&lt;<span style="color: #51afef; font-weight: bold;">INSTALL_INTERFACE</span>:include&gt;
                            )
 </pre>
 </div>
@@ -1452,7 +1452,7 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 <div class="org-src-container">
 <pre class="src src-cmake">@PACKAGE_INIT@
 
-<span style="color: #c678dd;">include</span> ( <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span> )
+<span style="color: #51afef;">include</span> ( <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_LIST_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span> )
 </pre>
 </div>
 
@@ -1461,14 +1461,14 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(EXPORT MathFunctionsTargets
-  FILE MathFunctionsTargets.cmake
-  DESTINATION lib/cmake/MathFunctions
+<pre class="src src-cmake"><span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">EXPORT</span> MathFunctionsTargets
+  <span style="color: #ECBE7B;">FILE</span> MathFunctionsTargets.cmake
+  <span style="color: #ECBE7B;">DESTINATION</span> lib/cmake/MathFunctions
 )
 
-<span style="color: #c678dd;">include</span>(CMakePackageConfigHelpers)
+<span style="color: #51afef;">include</span>(CMakePackageConfigHelpers)
 <span style="color: #5B6268;"># generate the config file that is includes the exports</span>
-<span style="color: #c678dd;">configure_package_config_file</span>(${<span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span>}/Config.cmake.in
+<span style="color: #c678dd;">configure_package_config_file</span>(<span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_SOURCE_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/Config.cmake.in
   <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsConfig.cmake"</span>
   INSTALL_DESTINATION <span style="color: #98be65;">"lib/cmake/example"</span>
   NO_SET_AND_CHECK_MACRO
@@ -1482,9 +1482,9 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 )
 
 <span style="color: #5B6268;"># install the configuration file</span>
-<span style="color: #c678dd;">install</span>(FILES
-  ${<span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span>}/MathFunctionsConfig.cmake
-  DESTINATION lib/cmake/MathFunctions
+<span style="color: #c678dd;">install</span>(<span style="color: #ECBE7B;">FILES</span>
+  <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>/MathFunctionsConfig.cmake
+  <span style="color: #ECBE7B;">DESTINATION</span> lib/cmake/MathFunctions
   )
 </pre>
 </div>
@@ -1494,8 +1494,8 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">export</span>(EXPORT MathFunctionsTargets
-  FILE <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span>
+<pre class="src src-cmake"><span style="color: #c678dd;">export</span>(<span style="color: #ECBE7B;">EXPORT</span> MathFunctionsTargets
+  <span style="color: #ECBE7B;">FILE</span> <span style="color: #98be65;">"${</span><span style="color: #dcaeea;">CMAKE_CURRENT_BINARY_DIR</span><span style="color: #98be65;">}/MathFunctionsTargets.cmake"</span>
 )
 </pre>
 </div>
@@ -1505,9 +1505,9 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 </div>
 </div>
-<div id="outline-container-orgc36f61b" class="outline-3">
-<h3 id="orgc36f61b">打包 Debug 和 Release（Step 12）</h3>
-<div class="outline-text-3" id="text-orgc36f61b">
+<div id="outline-container-org4e40dd8" class="outline-3">
+<h3 id="org4e40dd8">打包 Debug 和 Release（Step 12）</h3>
+<div class="outline-text-3" id="text-org4e40dd8">
 <p>
 <b>注意</b> ：此示例对单配置生成器有效，不适用于多配置生成器（例如 Visual Studio）。
 </p>
@@ -1525,9 +1525,9 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_DEBUG_POSTFIX d)
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_DEBUG_POSTFIX</span> d)
 
-<span style="color: #c678dd;">add_library</span>(tutorial_compiler_flags INTERFACE)
+<span style="color: #c678dd;">add_library</span>(<span style="color: #a9a1e1;">tutorial_compiler_flags</span> <span style="color: #ECBE7B;">INTERFACE</span>)
 </pre>
 </div>
 
@@ -1536,10 +1536,10 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(Tutorial tutorial.cxx)
-<span style="color: #c678dd;">set_target_properties</span>(Tutorial PROPERTIES DEBUG_POSTFIX ${<span style="color: #dcaeea;">CMAKE_DEBUG_POSTFIX</span>})
+<pre class="src src-cmake"><span style="color: #c678dd;">add_executable</span>(<span style="color: #a9a1e1;">Tutorial</span> tutorial.cxx)
+<span style="color: #c678dd;">set_target_properties</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PROPERTIES</span> <span style="color: #a9a1e1;">DEBUG_POSTFIX</span> <span style="color: #bbc2cf; background-color: #21242b;">${</span><span style="color: #dcaeea;">CMAKE_DEBUG_POSTFIX</span><span style="color: #bbc2cf; background-color: #21242b;">}</span>)
 
-<span style="color: #c678dd;">target_link_libraries</span>(Tutorial PUBLIC MathFunctions)
+<span style="color: #c678dd;">target_link_libraries</span>(<span style="color: #a9a1e1;">Tutorial</span> <span style="color: #ECBE7B;">PUBLIC</span> MathFunctions)
 </pre>
 </div>
 
@@ -1548,8 +1548,8 @@ CMake 试图说的是，在生成导出信息的过程中，它将导出与本�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set_property</span>(TARGET MathFunctions PROPERTY VERSION <span style="color: #98be65;">"1.0.0"</span>)
-<span style="color: #c678dd;">set_property</span>(TARGET MathFunctions PROPERTY SOVERSION <span style="color: #98be65;">"1"</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">set_property</span>(<span style="color: #ECBE7B;">TARGET</span> <span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PROPERTY</span> <span style="color: #a9a1e1;">VERSION</span> <span style="color: #98be65;">"1.0.0"</span>)
+<span style="color: #c678dd;">set_property</span>(<span style="color: #ECBE7B;">TARGET</span> <span style="color: #a9a1e1;">MathFunctions</span> <span style="color: #ECBE7B;">PROPERTY</span> <span style="color: #a9a1e1;">SOVERSION</span> <span style="color: #98be65;">"1"</span>)
 </pre>
 </div>
 
@@ -1586,9 +1586,9 @@ cmake --build .
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">include</span>(<span style="color: #98be65;">"release/CPackConfig.cmake"</span>)
+<pre class="src src-cmake"><span style="color: #51afef;">include</span>(<span style="color: #98be65;">"release/CPackConfig.cmake"</span>)
 
-<span style="color: #c678dd;">set</span>(CPACK_INSTALL_CMAKE_PROJECTS
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CPACK_INSTALL_CMAKE_PROJECTS</span>
     <span style="color: #98be65;">"debug;Tutorial;ALL;/"</span>
     <span style="color: #98be65;">"release;Tutorial;ALL;/"</span>
     )
@@ -1609,7 +1609,7 @@ cmake --build .
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-14 Mon 20:33</p>
+<p class="date">Created: 2020-11-02 Mon 17:01</p>
 </div>
 </body>
 </html>

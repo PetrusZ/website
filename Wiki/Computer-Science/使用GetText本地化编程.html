@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-11-02 Mon 17:02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>使用GetText本地化编程</title>
@@ -234,27 +234,27 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4a0917b">介绍</a></li>
-<li><a href="#org6f2f2be">例子</a>
+<li><a href="#orgf7b803a">介绍</a></li>
+<li><a href="#org45a0f49">例子</a>
 <ul>
-<li><a href="#orge4e8702">使用 gettext 的流程</a></li>
-<li><a href="#org5c3db19">细节</a>
+<li><a href="#org0914369">使用 gettext 的流程</a></li>
+<li><a href="#orgcb17f41">细节</a>
 <ul>
-<li><a href="#org7c94cd9">setlocale()</a></li>
-<li><a href="#orgb9398ff">xgettext</a></li>
+<li><a href="#orgff9c8e6">setlocale()</a></li>
+<li><a href="#org954758e">xgettext</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgcd23a55">多文件的 PO</a></li>
-<li><a href="#org77f900b">参考链接</a></li>
+<li><a href="#org21a53c1">多文件的 PO</a></li>
+<li><a href="#org7e20e4f">参考链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4a0917b" class="outline-2">
-<h2 id="org4a0917b">介绍</h2>
-<div class="outline-text-2" id="text-org4a0917b">
+<div id="outline-container-orgf7b803a" class="outline-2">
+<h2 id="orgf7b803a">介绍</h2>
+<div class="outline-text-2" id="text-orgf7b803a">
 <p>
 GetText 是 GNU 的一个项目，GetText 主页有最丰富的信息。下面大致翻 译一下 GetText 主页的介绍 :
 </p>
@@ -274,9 +274,9 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </p>
 </div>
 </div>
-<div id="outline-container-org6f2f2be" class="outline-2">
-<h2 id="org6f2f2be">例子</h2>
-<div class="outline-text-2" id="text-org6f2f2be">
+<div id="outline-container-org45a0f49" class="outline-2">
+<h2 id="org45a0f49">例子</h2>
+<div class="outline-text-2" id="text-org45a0f49">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
 <span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;locale.h&gt;</span>
@@ -307,9 +307,9 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </pre>
 </div>
 </div>
-<div id="outline-container-orge4e8702" class="outline-3">
-<h3 id="orge4e8702">使用 gettext 的流程</h3>
-<div class="outline-text-3" id="text-orge4e8702">
+<div id="outline-container-org0914369" class="outline-3">
+<h3 id="org0914369">使用 gettext 的流程</h3>
+<div class="outline-text-3" id="text-org0914369">
 <ol class="org-ol">
 <li>头文件包含：</li>
 </ol>
@@ -391,21 +391,21 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </p>
 </div>
 </div>
-<div id="outline-container-org5c3db19" class="outline-3">
-<h3 id="org5c3db19">细节</h3>
-<div class="outline-text-3" id="text-org5c3db19">
+<div id="outline-container-orgcb17f41" class="outline-3">
+<h3 id="orgcb17f41">细节</h3>
+<div class="outline-text-3" id="text-orgcb17f41">
 </div>
-<div id="outline-container-org7c94cd9" class="outline-4">
-<h4 id="org7c94cd9">setlocale()</h4>
-<div class="outline-text-4" id="text-org7c94cd9">
+<div id="outline-container-orgff9c8e6" class="outline-4">
+<h4 id="orgff9c8e6">setlocale()</h4>
+<div class="outline-text-4" id="text-orgff9c8e6">
 <p>
 setlocale(LC_ALL,"") 的意思是使用环境变量(系统当前的值)
 </p>
 </div>
 </div>
-<div id="outline-container-orgb9398ff" class="outline-4">
-<h4 id="orgb9398ff">xgettext</h4>
-<div class="outline-text-4" id="text-orgb9398ff">
+<div id="outline-container-org954758e" class="outline-4">
+<h4 id="org954758e">xgettext</h4>
+<div class="outline-text-4" id="text-org954758e">
 <ul class="org-ul">
 <li>-k 参数 可以只搜索某些字符串，没有用的信息省略。</li>
 </ul>
@@ -429,9 +429,9 @@ setlocale(LC_ALL,"") 的意思是使用环境变量(系统当前的值)
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd23a55" class="outline-2">
-<h2 id="orgcd23a55">多文件的 PO</h2>
-<div class="outline-text-2" id="text-orgcd23a55">
+<div id="outline-container-org21a53c1" class="outline-2">
+<h2 id="org21a53c1">多文件的 PO</h2>
+<div class="outline-text-2" id="text-org21a53c1">
 <p>
 一个开源项目中，通常有很多源文件，我们都需要翻译其中的字符串。通常步骤 如下：
 </p>
@@ -484,9 +484,9 @@ intltool-update &#8212;maintain
 </p>
 </div>
 </div>
-<div id="outline-container-org77f900b" class="outline-2">
-<h2 id="org77f900b">参考链接</h2>
-<div class="outline-text-2" id="text-org77f900b">
+<div id="outline-container-org7e20e4f" class="outline-2">
+<h2 id="org7e20e4f">参考链接</h2>
+<div class="outline-text-2" id="text-org7e20e4f">
 <p>
 <a href="http://qiuxing2005.blog.sohu.com/163110064.html">http://qiuxing2005.blog.sohu.com/163110064.html</a>
 </p>
@@ -495,7 +495,7 @@ intltool-update &#8212;maintain
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-11-02 Mon 17:02</p>
 </div>
 </body>
 </html>

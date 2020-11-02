@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:01 -->
+<!-- 2020-11-02 Mon 17:01 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>红黑树</title>
@@ -234,21 +234,21 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge957bc5">1.红黑树的性质</a></li>
-<li><a href="#orgcaa208c">2.旋转</a></li>
-<li><a href="#orgcc8507e">3.插入</a>
+<li><a href="#orgdf01ae6">1.红黑树的性质</a></li>
+<li><a href="#orgc17c4e7">2.旋转</a></li>
+<li><a href="#org25d134b">3.插入</a>
 <ul>
-<li><a href="#org857760e">情况 1：z 的叔结点 y 是红色的</a></li>
-<li><a href="#org609cf97">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</a></li>
-<li><a href="#org1c8c1d8">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</a></li>
+<li><a href="#orgd37842b">情况 1：z 的叔结点 y 是红色的</a></li>
+<li><a href="#org6ae6a44">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</a></li>
+<li><a href="#org1e92ff0">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</a></li>
 </ul>
 </li>
-<li><a href="#org64cb116">4.删除</a>
+<li><a href="#org6db5447">4.删除</a>
 <ul>
-<li><a href="#org5a5e12e">情况 1：x 的兄弟结点 w 是红色的</a></li>
-<li><a href="#org27e7843">情况 2：x 的兄弟结点 w 为黑色，且 w 的两个子结点都是黑色</a></li>
-<li><a href="#org46172be">情况 3：x 的兄弟结点 w 为黑色，且 w 的左孩子为红色，右孩子为黑色</a></li>
-<li><a href="#org8e0af50">情况 4：x 的兄弟结点 w 为黑色，且 w 的右孩子为红色</a></li>
+<li><a href="#orgd1366a4">情况 1：x 的兄弟结点 w 是红色的</a></li>
+<li><a href="#orge9b3bd6">情况 2：x 的兄弟结点 w 为黑色，且 w 的两个子结点都是黑色</a></li>
+<li><a href="#org5e2778c">情况 3：x 的兄弟结点 w 为黑色，且 w 的左孩子为红色，右孩子为黑色</a></li>
+<li><a href="#org1ada830">情况 4：x 的兄弟结点 w 为黑色，且 w 的右孩子为红色</a></li>
 </ul>
 </li>
 </ul>
@@ -264,9 +264,9 @@
 红黑树是许多“平衡”搜索树中的一种，可以保证在最坏的情况下基本动态集合操作的时间复杂度为Ο(lgn)。
 </p>
 
-<div id="outline-container-orge957bc5" class="outline-2">
-<h2 id="orge957bc5">1.红黑树的性质</h2>
-<div class="outline-text-2" id="text-orge957bc5">
+<div id="outline-container-orgdf01ae6" class="outline-2">
+<h2 id="orgdf01ae6">1.红黑树的性质</h2>
+<div class="outline-text-2" id="text-orgdf01ae6">
 <p>
 红黑树是一颗<a href="二叉搜索树.html">二叉搜索树</a>，它在每个结点上增加了一个存储位来表示结点的颜色，可以是 RED 或 BLACK。通过任何一条从根到叶子的简单路径上各个结点的颜色进行约束，红黑树确保没有一条路径会比其他路径长出 2 倍，因而是近似于平衡的。
 </p>
@@ -298,9 +298,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgcaa208c" class="outline-2">
-<h2 id="orgcaa208c">2.旋转</h2>
-<div class="outline-text-2" id="text-orgcaa208c">
+<div id="outline-container-orgc17c4e7" class="outline-2">
+<h2 id="orgc17c4e7">2.旋转</h2>
+<div class="outline-text-2" id="text-orgc17c4e7">
 <p>
 rbtree_insert 和 rbtree_delete 这两个操作对树做了修改，结果可能违反红黑性质。为了维护这些性质，必须要改变树中某些结点的颜色以及指针结构。
 </p>
@@ -356,9 +356,9 @@ left\_rotate 和 right\_rotate 操作的代码是对称的。其运行时间为�
 </div>
 </div>
 
-<div id="outline-container-orgcc8507e" class="outline-2">
-<h2 id="orgcc8507e">3.插入</h2>
-<div class="outline-text-2" id="text-orgcc8507e">
+<div id="outline-container-org25d134b" class="outline-2">
+<h2 id="org25d134b">3.插入</h2>
+<div class="outline-text-2" id="text-org25d134b">
 <p>
 我们可以在Ο(lgn)时间内完成向一颗树含 n 个结点的红黑树中插入一个新结点。将二叉搜索树的 tree\_insert 略做修改来把结点 z 插入到红黑树中，就像红黑树是一颗普通的二叉搜索树，然后将 z 着为红色，并且调用一个辅助函数 rbinsert\_fixup 来对结点重新着色并旋转，以保证不新插入的结点不会违反红黑性质。
 </p>
@@ -446,9 +446,9 @@ rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行�
 </p>
 </div>
 
-<div id="outline-container-org857760e" class="outline-3">
-<h3 id="org857760e">情况 1：z 的叔结点 y 是红色的</h3>
-<div class="outline-text-3" id="text-org857760e">
+<div id="outline-container-orgd37842b" class="outline-3">
+<h3 id="orgd37842b">情况 1：z 的叔结点 y 是红色的</h3>
+<div class="outline-text-3" id="text-orgd37842b">
 <p>
 这种情况在 z.parent 和 y 都是红色时发生。因为 z.parent.parent 是黑色的，所以将 z.parent 和 y 都着为黑色，来解决 z 和 z.parent 都是红色的问题，将 z.parent.parent 着为红色以保持性质 5。然后，把 z.parent.parent 作为新结点 z 来重复 while 循环。指针 z 在树中上移两层。
 </p>
@@ -460,13 +460,13 @@ rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行�
 </div>
 </div>
 
-<div id="outline-container-org609cf97" class="outline-3">
-<h3 id="org609cf97">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</h3>
+<div id="outline-container-org6ae6a44" class="outline-3">
+<h3 id="org6ae6a44">情况 2：z 的叔结点 y 是黑色的且 z 是一个右孩子</h3>
 </div>
 
-<div id="outline-container-org1c8c1d8" class="outline-3">
-<h3 id="org1c8c1d8">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</h3>
-<div class="outline-text-3" id="text-org1c8c1d8">
+<div id="outline-container-org1e92ff0" class="outline-3">
+<h3 id="org1e92ff0">情况 3：z 的叔结点 y 是黑色的且 z 是一个左孩子</h3>
+<div class="outline-text-3" id="text-org1e92ff0">
 <p>
 在情况 2、3 中 z 的叔结点 y 是黑色的。通过 z 是 z.parent 的右孩子还是左孩子来区分这两种情况。在情况 2 中，可以使用一个左旋来将此情况变为情况 3，结点 z 变为左孩子。因为 z 和 z.parent 都是红色的，所以这次旋转对黑高和性质 5 都没有影响。在旋转前先将 z 上移一层，然后旋转又将 z 下移了一层，z.parent.parent 的身份保持不变。在情况 3 中，改变某些节点的颜色并做一次右旋，以保持性质 5。这样，由于在一行中不再有两个红色结点，所有的处理到此完毕。另外因为此时 z.parent 是黑色的，所以无需再执行一次 while 循环。
 </p>
@@ -479,9 +479,9 @@ rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行�
 </div>
 </div>
 
-<div id="outline-container-org64cb116" class="outline-2">
-<h2 id="org64cb116">4.删除</h2>
-<div class="outline-text-2" id="text-org64cb116">
+<div id="outline-container-org6db5447" class="outline-2">
+<h2 id="org6db5447">4.删除</h2>
+<div class="outline-text-2" id="text-org6db5447">
 <p>
 与红黑树的其他操作一样，删除一个结点要花费Ο(lgn)时间，但是与插入相比，删除要复杂一些。
 </p>
@@ -619,9 +619,9 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 </p>
 </div>
 
-<div id="outline-container-org5a5e12e" class="outline-3">
-<h3 id="org5a5e12e">情况 1：x 的兄弟结点 w 是红色的</h3>
-<div class="outline-text-3" id="text-org5a5e12e">
+<div id="outline-container-orgd1366a4" class="outline-3">
+<h3 id="orgd1366a4">情况 1：x 的兄弟结点 w 是红色的</h3>
+<div class="outline-text-3" id="text-orgd1366a4">
 <p>
 因为 w 必须有黑色子结点，所以可以改变 w 和 x.parent 的颜色，然后对 x.parent 做一次左旋而不违背红黑性质。现在，x的新兄弟结点是旋转前 w 的某个子结点，其颜色为黑色。这样就把情况 1 转换为了情况 2、3、4。
 </p>
@@ -632,27 +632,27 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 </div>
 </div>
 
-<div id="outline-container-org27e7843" class="outline-3">
-<h3 id="org27e7843">情况 2：x 的兄弟结点 w 为黑色，且 w 的两个子结点都是黑色</h3>
-<div class="outline-text-3" id="text-org27e7843">
+<div id="outline-container-orge9b3bd6" class="outline-3">
+<h3 id="orge9b3bd6">情况 2：x 的兄弟结点 w 为黑色，且 w 的两个子结点都是黑色</h3>
+<div class="outline-text-3" id="text-orge9b3bd6">
 <p>
 因为 w 也是黑色的，所以从 x 和 w 上去掉一重黑色，使得 x 只有一重黑色而 w 为红色。为了补偿从 x 和 w 中去掉的黑色，在原来的 x.parent 上新增一重额外额黑色。通过将 x.parent 作为新的 x 来重复 while 循环。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org46172be" class="outline-3">
-<h3 id="org46172be">情况 3：x 的兄弟结点 w 为黑色，且 w 的左孩子为红色，右孩子为黑色</h3>
-<div class="outline-text-3" id="text-org46172be">
+<div id="outline-container-org5e2778c" class="outline-3">
+<h3 id="org5e2778c">情况 3：x 的兄弟结点 w 为黑色，且 w 的左孩子为红色，右孩子为黑色</h3>
+<div class="outline-text-3" id="text-org5e2778c">
 <p>
 可以交换 w 和其左孩子 w.left 的颜色，然后对 w 进行右旋。现在 x 新的兄弟结点 w 是一个有红色右孩子的黑色结点，于是情况 3 就变成了情况 4。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8e0af50" class="outline-3">
-<h3 id="org8e0af50">情况 4：x 的兄弟结点 w 为黑色，且 w 的右孩子为红色</h3>
-<div class="outline-text-3" id="text-org8e0af50">
+<div id="outline-container-org1ada830" class="outline-3">
+<h3 id="org1ada830">情况 4：x 的兄弟结点 w 为黑色，且 w 的右孩子为红色</h3>
+<div class="outline-text-3" id="text-org1ada830">
 <p>
 通过进行某些颜色修改并对 x.parent 做一次左旋，可以去掉 x 的额外黑色，从而使它变为单重黑色，而不破坏红黑性质。之后再将 x 设置为根，退出 while 循环。
 </p>
@@ -666,7 +666,7 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:01</p>
+<p class="date">Created: 2020-11-02 Mon 17:01</p>
 </div>
 </body>
 </html>

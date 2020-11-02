@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-09-09 Wed 21:00 -->
+<!-- 2020-11-02 Mon 17:02 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pacman常用命令</title>
@@ -234,27 +234,27 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0e39002">介绍</a></li>
-<li><a href="#org4dc6385">更新系统</a></li>
-<li><a href="#org71cf294">安装包</a></li>
-<li><a href="#org5b18fad">删除包</a></li>
-<li><a href="#orgd5e228d">搜索包</a></li>
-<li><a href="#orge25f1f1">其他用法</a></li>
+<li><a href="#org8818e80">介绍</a></li>
+<li><a href="#orge61ca68">更新系统</a></li>
+<li><a href="#orgdc9f303">安装包</a></li>
+<li><a href="#org7c22ed0">删除包</a></li>
+<li><a href="#orgb9f3349">搜索包</a></li>
+<li><a href="#org3d21cab">其他用法</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0e39002" class="outline-2">
-<h2 id="org0e39002">介绍</h2>
-<div class="outline-text-2" id="text-org0e39002">
+<div id="outline-container-org8818e80" class="outline-2">
+<h2 id="org8818e80">介绍</h2>
+<div class="outline-text-2" id="text-org8818e80">
 <p>
 Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式和易用的构建系统结合了起来。不管软件包是来自官方的 Arch 库还是用户自己创建，Pacman 都能方便得管理。
 </p>
 </div>
 </div>
-<div id="outline-container-org4dc6385" class="outline-2">
-<h2 id="org4dc6385">更新系统</h2>
-<div class="outline-text-2" id="text-org4dc6385">
+<div id="outline-container-orge61ca68" class="outline-2">
+<h2 id="orge61ca68">更新系统</h2>
+<div class="outline-text-2" id="text-orge61ca68">
 <p>
 在 Archlinux 中，使用一条命令即可对整个系统进行更新： <code>pacman -Syu</code>
 </p>
@@ -264,9 +264,9 @@ Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式�
 </p>
 </div>
 </div>
-<div id="outline-container-org71cf294" class="outline-2">
-<h2 id="org71cf294">安装包</h2>
-<div class="outline-text-2" id="text-org71cf294">
+<div id="outline-container-orgdc9f303" class="outline-2">
+<h2 id="orgdc9f303">安装包</h2>
+<div class="outline-text-2" id="text-orgdc9f303">
 <ul class="org-ul">
 <li>pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，只需以空格分隔包名即可。</li>
 <li>pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。</li>
@@ -276,9 +276,9 @@ Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式�
 </ul>
 </div>
 </div>
-<div id="outline-container-org5b18fad" class="outline-2">
-<h2 id="org5b18fad">删除包</h2>
-<div class="outline-text-2" id="text-org5b18fad">
+<div id="outline-container-org7c22ed0" class="outline-2">
+<h2 id="org7c22ed0">删除包</h2>
+<div class="outline-text-2" id="text-org7c22ed0">
 <ul class="org-ul">
 <li>pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系</li>
 <li>pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系</li>
@@ -287,9 +287,9 @@ Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5e228d" class="outline-2">
-<h2 id="orgd5e228d">搜索包</h2>
-<div class="outline-text-2" id="text-orgd5e228d">
+<div id="outline-container-orgb9f3349" class="outline-2">
+<h2 id="orgb9f3349">搜索包</h2>
+<div class="outline-text-2" id="text-orgb9f3349">
 <ul class="org-ul">
 <li>pacman -Ss 关键字：在仓库中搜索含关键字的包。</li>
 <li>pacman -Qs 关键字： 搜索已安装的包。</li>
@@ -298,9 +298,9 @@ Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式�
 </ul>
 </div>
 </div>
-<div id="outline-container-orge25f1f1" class="outline-2">
-<h2 id="orge25f1f1">其他用法</h2>
-<div class="outline-text-2" id="text-orge25f1f1">
+<div id="outline-container-org3d21cab" class="outline-2">
+<h2 id="org3d21cab">其他用法</h2>
+<div class="outline-text-2" id="text-org3d21cab">
 <ul class="org-ul">
 <li>pacman -Sw 包名：只下载包，不安装。</li>
 <li>pacman -Sc：清理未安装的包文件，包文件位于 <i>var/cache/pacman/pkg</i> 目录。</li>
@@ -311,7 +311,7 @@ Pacman 是 Arch Linux 的包管理器。它将一个简单的二进制包格式�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-09-09 Wed 21:00</p>
+<p class="date">Created: 2020-11-02 Mon 17:02</p>
 </div>
 </body>
 </html>
