@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-02 Mon 17:01 -->
+<!-- 2020-11-03 Tue 17:22 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>C++ Primer 第 II 部分 C++标准库</title>
@@ -2933,7 +2933,7 @@ WARNING：
 </p>
 
 <p>
-其中，capture list（捕获列表）是一个 lambda 所在函数中定义的局部变量的列表（通过为空）；return type、parameter list 和 function body 与任何普通函数一样，分别表示返回类型、参数列表和函数体。但是，与普通函数不同，lambda 必须使用尾置返回来指定返回类型。
+其中，capture list（捕获列表）是一个 lambda 所在函数中定义的局部变量的列表（通常为空）；return type、parameter list 和 function body 与任何普通函数一样，分别表示返回类型、参数列表和函数体。但是，与普通函数不同，lambda 必须使用尾置返回来指定返回类型。
 </p>
 
 <p>
@@ -3073,7 +3073,7 @@ Note：
 <h5 id="org2f922b4">隐式捕获</h5>
 <div class="outline-text-5" id="text-org2f922b4">
 <p>
-除了显式列出我们希望使用的来自所在函数的变量之外，还可以让编译器根据 lambda 体种的代码来推断我们要使用哪些变量。为了指示编译器推断捕获列表，应在捕获列表种写一个&amp;或=。&amp;告诉编译器采用捕获引用方式，=则表示采用值捕获方式。
+除了显式列出我们希望使用的来自所在函数的变量之外，还可以让编译器根据 lambda 体种的代码来推断我们要使用哪些变量。为了指示编译器推断捕获列表，应在捕获列表中写一个&amp;或=。&amp;告诉编译器采用捕获引用方式，=则表示采用值捕获方式。
 </p>
 
 <p>
@@ -5565,7 +5565,7 @@ WARNING：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-02 Mon 17:01</p>
+<p class="date">Created: 2020-11-03 Tue 17:22</p>
 </div>
 </body>
 </html>
