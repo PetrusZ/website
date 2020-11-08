@@ -4,7 +4,7 @@
 <!-- 2020-11-08 Sun 19:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>C++-Index</title>
+<title>调试程序</title>
 <meta name="generator" content="Org mode">
 <meta name="author" content="Petrus.Z">
 <style type="text/css">
@@ -229,62 +229,154 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">C++-Index</h1>
+<h1 class="title">调试程序</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1b5393d">C++</a>
-<ul>
-<li><a href="#org685876b">C++ Primer</a></li>
-<li><a href="#org950ca5e">C++详解</a></li>
-<li><a href="#org6026a44">CMake</a></li>
-<li><a href="#org0ab27f7">Misc</a></li>
-</ul>
-</li>
+<li><a href="#org34833ea">开启 debug</a></li>
+<li><a href="#org2f45fed">coredump</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1b5393d" class="outline-2">
-<h2 id="org1b5393d">C++</h2>
-<div class="outline-text-2" id="text-org1b5393d">
-</div>
-<div id="outline-container-org685876b" class="outline-3">
-<h3 id="org685876b">C++ Primer</h3>
-<div class="outline-text-3" id="text-org685876b">
+<div id="outline-container-org34833ea" class="outline-2">
+<h2 id="org34833ea">开启 debug</h2>
+<div class="outline-text-2" id="text-org34833ea">
 <ul class="org-ul">
-<li><a href="C++ Primer Part I.html">C++ Primer 第 I 部分 C++基础</a></li>
-<li><a href="C++ Primer Part II.html">C++ Primer 第 II 部分 C++标准库</a></li>
-<li><a href="C++ Primer Part III.html">C++ Primer 第 III 部分 类设计者的工具</a></li>
-<li><a href="C++ Primer Part IV.html">C++ Primer 第 IV 部分 高级主题</a></li>
+<li><p>
+cmake
+debug 模式：
+<code>cmake -DCMAKE_BUILD_TYPE=Debug ..</code>
+</p>
+
+<p>
+release 模式：
+<code>cmake -DCMAKE_BUILD_TYPE=Release ..</code>
+</p>
+
+<p>
+CMAKE_BUILD_TYPE 的可能的值有 Debug, Release, RelWithDebInfo, MinSizeRel 等。
+</p>
+
+<p>
+还可以通过在 CMakeLists 中添加 <code>CMAKE_&lt;LANG&gt;_FLAGS_&lt;CONFIG&gt;_INIT</code> 来修改或添加 flags。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_CXX_FLAGS_DEBUG_INIT <span style="color: #98be65;">"-Wall"</span>)
+<span style="color: #c678dd;">set</span>(CMAKE_CXX_FLAGS_RELEASE_INIT <span style="color: #98be65;">"-Wall"</span>)
+</pre>
+</div></li>
+
+<li><p>
+qmake
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">  qmake <span style="color: #dcaeea;">CONFIG</span>+=debug $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">qmake_options</span><span style="color: #51afef;">}</span>
+  <span style="color: #ECBE7B;">make</span> $<span style="color: #51afef;">{</span><span style="color: #dcaeea;">make_options</span><span style="color: #51afef;">}</span>
+</pre>
+</div></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org950ca5e" class="outline-3">
-<h3 id="org950ca5e">C++详解</h3>
-<div class="outline-text-3" id="text-org950ca5e">
+<div id="outline-container-org2f45fed" class="outline-2">
+<h2 id="org2f45fed">coredump</h2>
+<div class="outline-text-2" id="text-org2f45fed">
+<ol class="org-ol">
+<li><p>
+查看 core 文件存储位置和名称
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">   $ <span style="color: #ECBE7B;">cat</span> /proc/sys/kernel/core_pattern
+   |/usr/share/apport/apport %p %s %c %P
+
+   $ <span style="color: #ECBE7B;">cat</span> /proc/sys/kernel/core_uses_pid
+   <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#29992;&#20110;&#25511;&#21046;&#20135;&#29983;&#30340; core &#25991;&#20214;&#30340;&#25991;&#20214;&#21517;&#20013;&#26159;&#21542;&#28155;&#21152; pid &#20316;&#20026;&#25193;&#23637;&#65292;&#22914;&#26524;&#28155;&#21152;&#21017;&#25991;&#20214;&#20869;&#23481;&#20026; 1&#65292;&#21542;&#21017;&#20026; 0</span>
+</pre>
+</div></li>
+
+<li><p>
+修改 core 位置
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">   <span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"/data/coredump/core.%e.%p"</span> &gt; /proc/sys/kernel/core_pattern
+</pre>
+</div>
+
+<p>
+在这条命令中，/data/coredump 是你自己指定的存放 coredump 文件的路径，所有产生的 coredump 文件将会存放在这里，%e 表示程序的文件名，%p 表示进程的 ID（当然还有一些其他的参数可以设置，例：%t 显示创建的时间）,但是前提要把目录/data/coredump 创建好，不然无法生成文件
+</p>
+
+<pre class="example">
+    %p - insert pid into filename 添加pid
+    %u - insert current uid into filename 添加当前uid
+    %g - insert current gid into filename 添加当前gid
+    %s - insert signal that caused the coredump into the filename 添加导致产生core的信号
+    %t - insert UNIX time that the coredump occurred into filename 添加core文件生成时的unix时间
+    %h - insert hostname where the coredump happened into filename 添加主机名
+    %e - insert coredumping executable name into filename 添加命令名
+</pre></li>
+
+<li><p>
+修改 core 文件大小
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">   <span style="color: #c678dd;">ulimit</span> -c
+   <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#35814;&#32454;&#20449;&#24687;</span>
+   <span style="color: #c678dd;">ulimit</span> -a
+
+   &#22914;&#26524;&#32467;&#26524;&#26159;0&#65292;&#25105;&#20204;&#38656;&#35201;&#20462;&#25913;&#20854;&#22823;&#23567;
+
+   <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#24403;&#21069;&#26377;&#25928;&#30340;&#20462;&#25913;</span>
+   <span style="color: #c678dd;">ulimit</span> -c <span style="color: #51afef;">[</span>size<span style="color: #51afef;">]</span>  <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#36825;&#37324;size&#19968;&#33324;&#20462;&#25913;&#20026;unlimited,&#25110;&#32773;&#26159;&#20854;&#20182;&#25968;&#23383;&#65306;2048</span>
+</pre>
+</div>
+
+<p>
+在终端通过命令 ulimit -c unlimited 只是临时修改，重启后无效 ，要想永久修改有三种方式：
+</p>
+
 <ul class="org-ul">
-<li><a href="顶层const与底层const.html">顶层const和底层const</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org6026a44" class="outline-3">
-<h3 id="org6026a44">CMake</h3>
-<div class="outline-text-3" id="text-org6026a44">
-<ul class="org-ul">
-<li><a href="cmake_tutorial.html">CMake Tutorial</a></li>
-<li><a href="target_中的PUBLIC，PRIVATE，INTERFACE.html">target_中的 PUBLIC，PRIVATE，INTERFACE</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org0ab27f7" class="outline-3">
-<h3 id="org0ab27f7">Misc</h3>
-<div class="outline-text-3" id="text-org0ab27f7">
-<ul class="org-ul">
-<li><a href="调试程序.html">调试程序</a></li>
-</ul>
-</div>
+<li>在/etc/rc.local 中增加一行 ulimit -c unlimited；</li>
+<li>在/etc/profile 中增加一行 ulimit -c unlimited；</li>
+<li><p>
+在/etc/security/limits.conf 最后增加如下两行记录：
+</p>
+<pre class="example">
+      @root soft core unlimited
+      @root hard core unlimited
+</pre></li>
+</ul></li>
+
+<li><p>
+调试 core 文件编译时添加-g 参数，加上调试信息，可以查看行号。
+</p>
+
+<p>
+启动 gdb 调试 core 文件：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">   gdb <span style="color: #51afef;">[</span>exec file<span style="color: #51afef;">]</span> <span style="color: #51afef;">[</span>core file<span style="color: #51afef;">]</span>
+</pre>
+</div></li>
+
+<li><p>
+gdb 命令
+</p>
+<pre class="example">
+   bt 查看堆栈
+
+   info threads 查看所有线程正在运行的指令信息
+
+   thread apply all bt 打开所有线程的堆栈信息
+
+   threadapply threadID bt 查看指定线程堆栈信息
+</pre></li>
+</ol>
 </div>
 </div>
 </div>

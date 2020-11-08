@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-02 Mon 17:02 -->
+<!-- 2020-11-08 Sun 19:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Qt学习笔记</title>
@@ -234,33 +234,33 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7021ea7">父子对象关系</a></li>
-<li><a href="#org3fd9fdd">内存管理</a></li>
-<li><a href="#org0d2a5b3">信号与槽</a></li>
-<li><a href="#org6f21922">事件</a></li>
+<li><a href="#orgaa46215">父子对象关系</a></li>
+<li><a href="#orgfc6b449">内存管理</a></li>
+<li><a href="#org5cc555a">信号与槽</a></li>
+<li><a href="#org277058e">事件</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7021ea7" class="outline-2">
-<h2 id="org7021ea7">父子对象关系</h2>
-<div class="outline-text-2" id="text-org7021ea7">
+<div id="outline-container-orgaa46215" class="outline-2">
+<h2 id="orgaa46215">父子对象关系</h2>
+<div class="outline-text-2" id="text-orgaa46215">
 <p>
 Qt 的父-子对象机制是在 QObject 中实现的。当利用一个父对象创建一个子对象（一个窗口部件，一个效验器，或是任意的其他类型）时，父对象会把这个子对象添加到自己的子对象列表中。当删除这个父对象时，它会便利子对象列表并且删除每一个子对象。然后，这些子对象再去删除它们自己所包含的每个子对象。如此反复递归调用，直至清空所有子对象为止。这种父-子对象机制可在很大程度上简化内存管理工作，降低内存泄露的风险。需要明确删除的对象使那些使用 new 创建的并且没有父对象的对象。并且，如果在删除一个父对象之前删除了它的子对象，Qt 会自动地从它的父对象的子对象列表中将其移除。
 </p>
 </div>
 </div>
-<div id="outline-container-org3fd9fdd" class="outline-2">
-<h2 id="org3fd9fdd">内存管理</h2>
-<div class="outline-text-2" id="text-org3fd9fdd">
+<div id="outline-container-orgfc6b449" class="outline-2">
+<h2 id="orgfc6b449">内存管理</h2>
+<div class="outline-text-2" id="text-orgfc6b449">
 <p>
 如果 QWidget 的 parent 为 NULL 或是其他值，在其加入布局管理器或者 QMainWindow 设置 widget 时，会自动将 parent 设置为相应的父 widget，在父控件销毁时这些子控件以及布局管理器对象会一并销毁。
 </p>
 </div>
 </div>
-<div id="outline-container-org0d2a5b3" class="outline-2">
-<h2 id="org0d2a5b3">信号与槽</h2>
-<div class="outline-text-2" id="text-org0d2a5b3">
+<div id="outline-container-org5cc555a" class="outline-2">
+<h2 id="org5cc555a">信号与槽</h2>
+<div class="outline-text-2" id="text-org5cc555a">
 <ol class="org-ol">
 <li><p>
 要把信号成功连接到槽（或者连接到另外一个信号），它们的参数必须具有相同的顺序和相同的类型：
@@ -348,9 +348,9 @@ QObject::connect()函数有多重参数形式，一个参数形式的函数原�
 </ol>
 </div>
 </div>
-<div id="outline-container-org6f21922" class="outline-2">
-<h2 id="org6f21922">事件</h2>
-<div class="outline-text-2" id="text-org6f21922">
+<div id="outline-container-org277058e" class="outline-2">
+<h2 id="org277058e">事件</h2>
+<div class="outline-text-2" id="text-org277058e">
 <p>
 当某个窗口第一个显式的时候，就会产生一个绘制事件，用来告知窗口需要重新绘制它本身，从而使得该窗口可见。
 </p>
@@ -359,7 +359,7 @@ QObject::connect()函数有多重参数形式，一个参数形式的函数原�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-02 Mon 17:02</p>
+<p class="date">Created: 2020-11-08 Sun 19:25</p>
 </div>
 </body>
 </html>
