@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-08 Sun 20:47 -->
+<!-- 2020-11-12 Thu 14:46 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>调试程序</title>
@@ -234,15 +234,15 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org34833ea">开启 debug</a></li>
-<li><a href="#org2f45fed">coredump</a></li>
+<li><a href="#org880ff1b">开启 debug</a></li>
+<li><a href="#orgb6cd694">coredump</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org34833ea" class="outline-2">
-<h2 id="org34833ea">开启 debug</h2>
-<div class="outline-text-2" id="text-org34833ea">
+<div id="outline-container-org880ff1b" class="outline-2">
+<h2 id="org880ff1b">开启 debug</h2>
+<div class="outline-text-2" id="text-org880ff1b">
 <ul class="org-ul">
 <li><p>
 cmake
@@ -273,8 +273,8 @@ CMAKE_BUILD_TYPE 的可能的值有 Debug, Release, RelWithDebInfo, MinSizeRel �
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(CMAKE_CXX_FLAGS_DEBUG_INIT <span style="color: #98be65;">"-Wall"</span>)
-<span style="color: #c678dd;">set</span>(CMAKE_CXX_FLAGS_RELEASE_INIT <span style="color: #98be65;">"-Wall"</span>)
+<pre class="src src-cmake"><span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_FLAGS_DEBUG_INIT</span> <span style="color: #98be65;">"-Wall"</span>)
+<span style="color: #c678dd;">set</span>(<span style="color: #dcaeea;">CMAKE_CXX_FLAGS_RELEASE_INIT</span> <span style="color: #98be65;">"-Wall"</span>)
 </pre>
 </div></li>
 
@@ -289,9 +289,9 @@ qmake
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f45fed" class="outline-2">
-<h2 id="org2f45fed">coredump</h2>
-<div class="outline-text-2" id="text-org2f45fed">
+<div id="outline-container-orgb6cd694" class="outline-2">
+<h2 id="orgb6cd694">coredump</h2>
+<div class="outline-text-2" id="text-orgb6cd694">
 <ol class="org-ol">
 <li><p>
 查看 core 文件存储位置和名称
@@ -391,7 +391,7 @@ gdb 命令
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-08 Sun 20:47</p>
+<p class="date">Created: 2020-11-12 Thu 14:46</p>
 </div>
 </body>
 </html>
