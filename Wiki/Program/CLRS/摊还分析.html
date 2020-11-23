@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-02 Mon 17:01 -->
+<!-- 2020-11-23 Mon 16:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>摊还分析</title>
@@ -191,12 +191,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
@@ -236,14 +236,14 @@
 <ul>
 <li><a href="#org7c62ab3">聚合分析</a>
 <ul>
-<li><a href="#orga9564a8">栈操作</a></li>
-<li><a href="#org6988a63">二进制计数器递增</a></li>
+<li><a href="#org4b22cd7">栈操作</a></li>
+<li><a href="#org856771f">二进制计数器递增</a></li>
 </ul>
 </li>
 <li><a href="#orgfbe6331">核算法</a>
 <ul>
-<li><a href="#org4b22cd7">栈操作</a></li>
-<li><a href="#org856771f">二进制计数器递增</a></li>
+<li><a href="#org4b1784c">栈操作</a></li>
+<li><a href="#orgc3fcbbb">二进制计数器递增</a></li>
 </ul>
 </li>
 <li><a href="#org9d593f7">势能法</a></li>
@@ -268,9 +268,9 @@
 </p>
 </div>
 
-<div id="outline-container-orga9564a8" class="outline-3">
-<h3 id="orga9564a8">栈操作</h3>
-<div class="outline-text-3" id="text-orga9564a8">
+<div id="outline-container-org4b22cd7" class="outline-3">
+<h3 id="org4b22cd7">栈操作</h3>
+<div class="outline-text-3" id="text-org4b22cd7">
 <p>
 经典的栈操作，这里不过多叙述，它支持三种操作：
 </p>
@@ -296,9 +296,9 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 </div>
 </div>
 
-<div id="outline-container-org6988a63" class="outline-3">
-<h3 id="org6988a63">二进制计数器递增</h3>
-<div class="outline-text-3" id="text-org6988a63">
+<div id="outline-container-org856771f" class="outline-3">
+<h3 id="org856771f">二进制计数器递增</h3>
+<div class="outline-text-3" id="text-org856771f">
 <p>
 一个 k 位二进制计数器递增的问题的例子。简单来说就是使用二进制来计数，并将这个二进制数放到一个数组中，可以使用一个 INCREMENT 的操作来对这个二进制数增加 1。A.length
 = k，将最低位保存在 A[0]中，最高位保存在 A[k-1]中。INCREMENT 的伪代码如下：
@@ -352,9 +352,9 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 </p>
 </div>
 
-<div id="outline-container-org4b22cd7" class="outline-3">
-<h3 id="org4b22cd7">栈操作</h3>
-<div class="outline-text-3" id="text-org4b22cd7">
+<div id="outline-container-org4b1784c" class="outline-3">
+<h3 id="org4b1784c">栈操作</h3>
+<div class="outline-text-3" id="text-org4b1784c">
 <p>
 为了说明摊还分析的核算法，再次使用栈的例子。我们赋予 PUSH、POP、MULTIPOP 如下的摊还代价：
 </p>
@@ -371,9 +371,9 @@ PUSH 时我们将 1 元的代价支付 PUSH 操作的实际代价，将剩余的
 </div>
 </div>
 
-<div id="outline-container-org856771f" class="outline-3">
-<h3 id="org856771f">二进制计数器递增</h3>
-<div class="outline-text-3" id="text-org856771f">
+<div id="outline-container-orgc3fcbbb" class="outline-3">
+<h3 id="orgc3fcbbb">二进制计数器递增</h3>
+<div class="outline-text-3" id="text-orgc3fcbbb">
 <p>
 在这个例子中，对一次置位操作，我们设其摊还代价为 2 元，用 1 元支付实际代价，1元存为信用，用来支付将来复位操作的代价。在任何时刻，计数器中任何为 1 的位都存有 1 元信用，这样在复位的时候，我们就不需要支付任何费用了。
 </p>
@@ -428,7 +428,7 @@ INCREMENT 过程一次最多置位一次，因此摊还代价最多为 2 美元�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-02 Mon 17:01</p>
+<p class="date">Created: 2020-11-23 Mon 16:49</p>
 </div>
 </body>
 </html>
