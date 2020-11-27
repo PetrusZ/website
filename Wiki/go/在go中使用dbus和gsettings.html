@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2020-11-27 Fri 17:05 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>go中使用dbus和gsettings</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">go中使用dbus和gsettings</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd279943">dbus in go</a>
+<ul>
+<li><a href="#org6a823c8">使用 dbus 包</a>
+<ul>
+<li><a href="#org21a125a">连接 dbus</a></li>
+<li><a href="#org6f52ba9">调用方法</a></li>
+<li><a href="#org3143756">获取和设置属性</a>
+<ul>
+<li><a href="#orga5ca75e">获取属性</a></li>
+<li><a href="#org6621168">设置属性</a></li>
+</ul>
+</li>
+<li><a href="#org75eabb5">监控信号</a></li>
+<li><a href="#org0cad8ab">导出对象</a>
+<ul>
+<li><a href="#org883611f">注册服务名</a></li>
+</ul>
+</li>
+<li><a href="#orgba7a044">发送信号</a></li>
+</ul>
+</li>
+<li><a href="#org447c7b6">使用 go-dbus-factory 项目</a>
+<ul>
+<li><a href="#orgbcc34e8">方法调用</a></li>
+<li><a href="#org97945c7">获取和设置属性</a>
+<ul>
+<li><a href="#org4ac373b">获取属性</a></li>
+<li><a href="#org6f59226">设置属性</a></li>
+<li><a href="#org2cf3b8e">监控信号</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge4a328e">使用 dbusutil 包</a>
+<ul>
+<li><a href="#org2af1c51">导出对象</a></li>
+<li><a href="#org2905a45">定义属性</a></li>
+<li><a href="#org1582ed9">发送信号</a></li>
+<li><a href="#orgbdc8881">发送属性改变信号</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org8da21d7">gsettings in go</a>
+<ul>
+<li><a href="#org0c02cce">简单使用</a></li>
+<li><a href="#orgb7d3b05">监听改变信号（原生）</a></li>
+<li><a href="#orgc1c79e7">监听改变信号（dbus 实现）</a></li>
+<li><a href="#org7058233">dbus 服务中作为属性</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd279943" class="outline-2">
+<h2 id="orgd279943">dbus in go</h2>
+<div class="outline-text-2" id="text-orgd279943">
+</div>
+<div id="outline-container-org6a823c8" class="outline-3">
+<h3 id="org6a823c8">使用 dbus 包</h3>
+<div class="outline-text-3" id="text-org6a823c8">
+</div>
+<div id="outline-container-org21a125a" class="outline-4">
+<h4 id="org21a125a">连接 dbus</h4>
+<div class="outline-text-4" id="text-org21a125a">
+<div class="org-src-container">
+<pre class="src src-go">dbus.<span style="color: #c678dd;">SessionBus</span>()
+dbus.<span style="color: #c678dd;">SystemBus</span>()
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f52ba9" class="outline-4">
+<h4 id="org6f52ba9">调用方法</h4>
+<div class="outline-text-4" id="text-org6f52ba9">
+<p>
+比如调用 dbus-daemon 提供的对象的一个方法，服务名： <code>org.freedesktop.DBus</code>, 路径： <code>/org/freedesktop/DBus</code> ，接口名： <code>org.freedesktop.DBus</code> ， 方法名： <code>GetNameOwner</code> , 此方法输入参数是一个字符串，返回参数也是一个字符串。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">obj</span> := sessionBus.<span style="color: #c678dd;">Object</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"/org/freedesktop/DBus"</span>)
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">ret</span> <span style="color: #ECBE7B;">string</span>
+err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;">"org.freedesktop.DBus.GetNameOwner"</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"com.deepin.dde.daemon.Dock"</span>).<span style="color: #c678dd;">Store</span>(&amp;ret)
+</pre>
+</div>
+
+<p>
+需要注意传给 <code>obj.Call</code> 方法的第一个参数 <code>method</code> 的值是接口名 + "." + 方法名。
+</p>
+
+<p>
+在处理没有返回值的方法时，可以不调用 <code>Store</code> 方法，而直接检查 <code>Err</code> 字段。
+</p>
+</div>
+</div>
+<div id="outline-container-org3143756" class="outline-4">
+<h4 id="org3143756">获取和设置属性</h4>
+<div class="outline-text-4" id="text-org3143756">
+<p>
+属性的获取和设置本质也是方法调用。
+</p>
+</div>
+<div id="outline-container-orga5ca75e" class="outline-5">
+<h5 id="orga5ca75e">获取属性</h5>
+<div class="outline-text-5" id="text-orga5ca75e">
+<p>
+获取单个属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Get</code> 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 <code>dbus.Variant</code> 。
+</p>
+
+<p>
+下面的代码是要获取 <code>org.freedesktop.DBus</code> 接口的 <code>Features</code> 属性，此属性的类型是 <code>[]string</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">obj</span> := sessionBus.<span style="color: #c678dd;">Object</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"/org/freedesktop/DBus"</span>)
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">ret</span> <span style="color: #ECBE7B;">dbus.Variant</span>
+err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;">"org.freedesktop.DBus.Properties.Get"</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"Features"</span>).<span style="color: #c678dd;">Store</span>(&amp;ret)
+<span style="color: #dcaeea;">v</span> := ret.<span style="color: #c678dd;">Value</span>().([]<span style="color: #ECBE7B;">string</span>)
+</pre>
+</div>
+
+<p>
+从 <code>ret</code> 中获取内部的值，需要调用 <code>Value</code> 方法，获取 <code>interface{}</code> 类型的内部值，再使用类型断言 <code>.([]string)</code> 。
+</p>
+
+<p>
+一次获取对象在某个接口下的全部属性，可调用 <code>Get</code> 方法旁边的 <code>GetAll</code> 方法。
+</p>
+</div>
+</div>
+<div id="outline-container-org6621168" class="outline-5">
+<h5 id="org6621168">设置属性</h5>
+<div class="outline-text-5" id="text-org6621168">
+<p>
+设置属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Set</code> 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。
+</p>
+
+<p>
+下面的代码是要设置 <code>org.freedesktop.DBus</code> 接口的 <code>Features</code> 属性。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">obj</span> := sessionBus.<span style="color: #c678dd;">Object</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"/org/freedesktop/DBus"</span>)
+<span style="color: #dcaeea;">propVal</span> := dbus.<span style="color: #c678dd;">MakeVariant</span>([]<span style="color: #ECBE7B;">string</span>{<span style="color: #98be65;">"abc"</span>})
+err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;">"org.freedesktop.DBus.Properties.Set"</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"Features"</span>, propVal).Err
+</pre>
+</div>
+
+<p>
+传入参数中属性值是 <code>dbus.Variant</code> 类型，制造这种类型可用 <code>dbus.MakeVariant</code> 方法。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org75eabb5" class="outline-4">
+<h4 id="org75eabb5">监控信号</h4>
+<div class="outline-text-4" id="text-org75eabb5">
+<p>
+调用 <code>AddMatch</code> 方法添加监控规则，如果不需要监控了，就调用 <code>RemoveMatch</code> 方法去掉监控规则。
+</p>
+
+<p>
+go 的 dbus 库提供了方便的方法：=AddMatchSignal= 和 =RemoveMatchSignal=。
+</p>
+
+<p>
+下面的代码是要监控 <code>Session Bus</code> 上的 <code>/org/freedesktop/Bus</code> 对象的 <code>org.freedesktop.DBus</code> 接口的 <code>NameOwnerChanged</code> 信号。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+err = sessionBus.<span style="color: #c678dd;">BusObject</span>().<span style="color: #c678dd;">AddMatchSignal</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"NameOwnerChanged"</span>,
+    dbus.<span style="color: #c678dd;">WithMatchObjectPath</span>(<span style="color: #98be65;">"/org/freedesktop/DBus"</span>)).Err
+
+<span style="color: #dcaeea;">signalCh</span> := <span style="color: #c678dd;">make</span>(<span style="color: #51afef;">chan</span>  *<span style="color: #ECBE7B;">dbus.Signal</span>, <span style="color: #da8548; font-weight: bold;">10</span>)
+sessionBus.<span style="color: #c678dd;">Signal</span>(signalCh)
+<span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>() {
+    <span style="color: #51afef;">for</span> {
+        <span style="color: #51afef;">select</span> {
+        <span style="color: #51afef;">case</span> <span style="color: #dcaeea;">sig</span> := &lt;-signalCh:
+            log.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"sig: %#v\n"</span>, sig)
+            <span style="color: #51afef;">if</span> sig.Path == <span style="color: #98be65;">"/org/freedesktop/DBus"</span> &amp;&amp;
+             sig.Name == <span style="color: #98be65;">"org.freedesktop.DBus.NameOwnerChanged"</span> {
+                <span style="color: #51afef;">var</span> <span style="color: #dcaeea;">name</span> <span style="color: #ECBE7B;">string</span>
+                <span style="color: #51afef;">var</span> <span style="color: #dcaeea;">oldOwner</span> <span style="color: #ECBE7B;">string</span>
+                <span style="color: #51afef;">var</span> <span style="color: #dcaeea;">newOwner</span> <span style="color: #ECBE7B;">string</span>
+                err = dbus.<span style="color: #c678dd;">Store</span>(sig.Body, &amp;name, &amp;oldOwner, &amp;newOwner)
+                log.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"%s %s %s\n"</span>, name, oldOwner, newOwner)
+            }
+        }
+    }
+}()
+
+time.<span style="color: #c678dd;">Sleep</span>(<span style="color: #da8548; font-weight: bold;">100</span>*time.Second)
+err = sessionBus.<span style="color: #c678dd;">BusObject</span>().<span style="color: #c678dd;">RemoveMatchSignal</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"NameOwnerChanged"</span>,
+    dbus.<span style="color: #c678dd;">WithMatchObjectPath</span>(<span style="color: #98be65;">"/org/freedesktop/Bus"</span>)).Err
+sessionBus.<span style="color: #c678dd;">RemoveSignal</span>(signalCh)
+</pre>
+</div>
+
+<p>
+将调用 <code>sessionBus.Signal</code> 方法注册 <code>signalCh</code> 通道，以此来通过该通道接收信号， <code>go func ()</code> 中的代码是循环接收 <code>signalCh</code> 通道传来的数据并处理。如果不需要再从这个通道接收信号了，可以调用 <code>sessionBus.RemoveSignal</code> 取消注册 <code>signalCh</code> 通道，这样信号就不会再被发送到 <code>signalCh</code> 通道中了。
+</p>
+
+<p>
+在处理信号时，可以先验证信号（ <code>*dbus.Signal</code> 类型）的 <code>Path</code> 和 <code>Name</code> 字段，不必验证 <code>Sender</code> 字段。 处理信号的 <code>Body</code> 字段，它是 <code>[]interface{}</code> 类型，就可以用 <code>dbus.Store</code> 方法了。
+</p>
+</div>
+</div>
+<div id="outline-container-org0cad8ab" class="outline-4">
+<h4 id="org0cad8ab">导出对象</h4>
+<div class="outline-text-4" id="text-org0cad8ab">
+<p>
+将自己代码中的一个变量作为对象的一个接口导出在 DBus 上，然后供其他人调用。
+</p>
+
+<p>
+下面的代码是要把类型为 <code>Obj</code> 结构的 <code>obj</code> 变量作为对象的一个接口导出，它有一个 <code>GetString</code> 方法，路径 <code>/p1/p2/p3</code> ，接口名 <code>p1.p2.p3</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetString</span>() (<span style="color: #ECBE7B;">string</span>, *<span style="color: #ECBE7B;">dbus.Error</span>) {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"object"</span>, <span style="color: #a9a1e1;">nil</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+    <span style="color: #dcaeea;">obj</span> := &amp;<span style="color: #ECBE7B;">Obj</span>{}
+    err = sessionBus.<span style="color: #c678dd;">Export</span>(obj, <span style="color: #98be65;">"/p1/p2/p3"</span>, <span style="color: #98be65;">"p1.p2.p3"</span>)
+    log.<span style="color: #c678dd;">Print</span>(<span style="color: #98be65;">"names:"</span>, sessionBus.<span style="color: #c678dd;">Names</span>())
+    <span style="color: #51afef;">select</span> {
+    }
+}
+</pre>
+</div>
+
+<p>
+程序运行后会打印类似的输出：
+</p>
+
+<p>
+<code>names:[:1.4239 :1.4239]</code>
+</p>
+
+<p>
+这是此程序目前在 DBus 上的名字，冒号 <code>:</code> 开头的是唯一名。
+</p>
+
+<p>
+导出对象接口，可以调用 <code>sessionBus.Export</code> 方法，要停止导出，并没有一个专门的的方法，依旧要使用 <code>Export</code> 方法， 但是第一个参数（之前放 <code>obj</code> 的位置）要换成 <code>nil</code> 。
+</p>
+
+<p>
+自动导出的方法有如下要求：
+</p>
+
+<ol class="org-ol">
+<li>公开的，方法名第一字母是大写的。</li>
+<li>最后一个返回值是 *dbus.Error 类型。</li>
+</ol>
+</div>
+<div id="outline-container-org883611f" class="outline-5">
+<h5 id="org883611f">注册服务名</h5>
+<div class="outline-text-5" id="text-org883611f">
+<p>
+下面的代码是要申请一个服务名 <code>p1.p2.p3</code>, 不是完整代码，可以插在前一份代码的 <code>sessionBus.Export</code> 方法调用之后。现有的各个项目里也一般是先导出主要对象，然后再申请服务名。
+</p>
+
+<p>
+<code>_, err = sessionBus.RequestName("p1.p2.p3", 0)</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba7a044" class="outline-4">
+<h4 id="orgba7a044">发送信号</h4>
+<div class="outline-text-4" id="text-orgba7a044">
+<p>
+下面的代码是要发送信号，路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code>, 信号名 <code>Signal1</code> ， 参数是字符串和数字。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #51afef;">for</span> {
+    err = sessionBus.<span style="color: #c678dd;">Emit</span>(<span style="color: #98be65;">"/p1/p2/p3"</span>, <span style="color: #98be65;">"p1.p2.p3.Signal1"</span>, <span style="color: #98be65;">"arg1"</span>, <span style="color: #da8548; font-weight: bold;">2</span>)
+    time.<span style="color: #c678dd;">Sleep</span>(<span style="color: #da8548; font-weight: bold;">2</span>*time.Second)
+}
+</pre>
+</div>
+
+<p>
+程序每 2 秒发送一次信号，发送信号时，不要求对象是否已经导出。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org447c7b6" class="outline-3">
+<h3 id="org447c7b6">使用 go-dbus-factory 项目</h3>
+<div class="outline-text-3" id="text-org447c7b6">
+<p>
+此项目实现了根据 dbus 服务的自省 XML 文件和一点配置文件，自动生成访问 dbus 服务的 go 代码。
+</p>
+
+<p>
+项目地址：<a href="https://gitlab.deepin.io/dde-v20/go-dbus-factory">https://gitlab.deepin.io/dde-v20/go-dbus-factory</a> ，可以打成 deb 包，软件包名 <code>golang-github-linuxdeepin-go-dbus-factory-dev</code> ，每个服务放在不同的包中，包名的前缀是 =github.com/linuxdeepin/go-dbus-factory/=。
+</p>
+</div>
+<div id="outline-container-orgbcc34e8" class="outline-4">
+<h4 id="orgbcc34e8">方法调用</h4>
+<div class="outline-text-4" id="text-orgbcc34e8">
+<p>
+下面的代码要调用 <code>com.deepin.dde.daemon.Dock</code> 服务的 <code>/com/deepin/dde/daemon/Dock</code> 对象的 <code>RequestDock</code> 方法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">dockObj</span> := dock.<span style="color: #c678dd;">NewDock</span>(sessionBus)
+<span style="color: #dcaeea;">ok</span>, <span style="color: #dcaeea;">err</span> := dockObj.<span style="color: #c678dd;">RequestDock</span>(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"/usr/share/applications/deepin-editor.desktop"</span>, -<span style="color: #da8548; font-weight: bold;">1</span>)
+log.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"ok:"</span>, ok)
+</pre>
+</div>
+
+<p>
+需要注意传给 <code>obj.Call</code> 方法的第一个参数 <code>method</code> 的值是接口名 + "." + 方法名。
+</p>
+
+<p>
+在处理没有返回值的方法时，可以不调用 <code>Store</code> 方法，而直接检查 <code>Err</code> 字段。
+</p>
+</div>
+</div>
+<div id="outline-container-org97945c7" class="outline-4">
+<h4 id="org97945c7">获取和设置属性</h4>
+<div class="outline-text-4" id="text-org97945c7">
+<p>
+属性的获取和设置本质也是方法调用。
+</p>
+</div>
+<div id="outline-container-org4ac373b" class="outline-5">
+<h5 id="org4ac373b">获取属性</h5>
+<div class="outline-text-5" id="text-org4ac373b">
+<p>
+获取单个属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Get</code> 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 <code>dbus.Variant</code> 。
+</p>
+
+<p>
+下面的代码是要获取 <code>org.freedesktop.DBus</code> 接口的 <code>Features</code> 属性，此属性的类型是 <code>[]string</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">obj</span> := sessionBus.<span style="color: #c678dd;">Object</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"/org/freedesktop/DBus"</span>)
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">ret</span> <span style="color: #ECBE7B;">dbus.Variant</span>
+err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;">"org.freedesktop.DBus.Properties.Get"</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"Features"</span>).<span style="color: #c678dd;">Store</span>(&amp;ret)
+<span style="color: #dcaeea;">v</span> := ret.<span style="color: #c678dd;">Value</span>().([]<span style="color: #ECBE7B;">string</span>)
+log.<span style="color: #c678dd;">Println</span>(v)
+</pre>
+</div>
+
+<p>
+从 <code>ret</code> 中获取内部的值，需要调用 <code>Value</code> 方法，获取 <code>interface{}</code> 类型的内部值，再使用类型断言 <code>.([]string)</code> 。
+</p>
+
+<p>
+一次获取对象在某个接口下的全部属性，可调用 <code>Get</code> 方法旁边的 <code>GetAll</code> 方法。
+</p>
+</div>
+</div>
+<div id="outline-container-org6f59226" class="outline-5">
+<h5 id="org6f59226">设置属性</h5>
+<div class="outline-text-5" id="text-org6f59226">
+<p>
+设置属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Set</code> 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。
+</p>
+
+<p>
+下面的代码是要设置 <code>org.freedesktop.DBus</code> 接口的 <code>Features</code> 属性。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">obj</span> := sessionBus.<span style="color: #c678dd;">Object</span>(<span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"/org/freedesktop/DBus"</span>)
+<span style="color: #dcaeea;">propVal</span> := dbus.<span style="color: #c678dd;">MakeVariant</span>([]<span style="color: #ECBE7B;">string</span>{<span style="color: #98be65;">"abc"</span>})
+err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;">"org.freedesktop.DBus.Properties.Set"</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"org.freedesktop.DBus"</span>, <span style="color: #98be65;">"Features"</span>, propVal).Err
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2cf3b8e" class="outline-5">
+<h5 id="org2cf3b8e">监控信号</h5>
+<div class="outline-text-5" id="text-org2cf3b8e">
+<p>
+下面的代码是要监控之前说过的 <code>Dock</code> 对象的 <code>EntryAdded</code> 信号。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">sessionBus</span>, <span style="color: #dcaeea;">err</span> := dbus.<span style="color: #c678dd;">SessionBus</span>()
+<span style="color: #dcaeea;">dockObj</span> := dock.<span style="color: #c678dd;">NewDock</span>(sessionBus)
+<span style="color: #dcaeea;">sigLoop</span> := dbusutil.<span style="color: #c678dd;">NewSignalLoop</span>(sessionBus, <span style="color: #da8548; font-weight: bold;">10</span>)
+sigLoop.<span style="color: #c678dd;">Start</span>()
+dockObj.<span style="color: #c678dd;">InitSignalExt</span>(sigLoop, <span style="color: #a9a1e1;">true</span>)
+<span style="color: #dcaeea;">sigHid</span>, <span style="color: #dcaeea;">err</span> := dockObj.<span style="color: #c678dd;">ConnectEntryAdded</span>(<span style="color: #51afef;">func</span>(<span style="color: #dcaeea;">entryPath</span> <span style="color: #ECBE7B;">dbus.ObjectPath</span>, <span style="color: #dcaeea;">index</span> <span style="color: #ECBE7B;">int32</span>) {
+    log.<span style="color: #c678dd;">Println</span>(entryPath, index)
+})
+
+time.<span style="color: #c678dd;">Sleep</span>(<span style="color: #da8548; font-weight: bold;">100</span>*time.Second)
+sigLoop.<span style="color: #c678dd;">Stop</span>()
+dockObj.<span style="color: #c678dd;">RemoveHandler</span>(sigHid)
+</pre>
+</div>
+
+<p>
+程序运行后，从启动器打开一个任务栏上之前没有的应用，然后程序就能收到 <code>EntryAdded</code> 信号并打印参数值出来。
+</p>
+
+<p>
+这部分代码用到了新的包 <code>pkg.deepin.io/lib/dbusutil</code> 包，使用它的 <code>SignalLoop</code> 功能来处理信号。调用 <code>dbusutil.NewSignalLoop</code> 创建一个信号循环，然后调用 <code>Start</code> 方法开始，当不需要时调用 <code>Stop</code> 结束。
+<code>dockObj</code> 默认是不支持监听信号的，直接调用 <code>dockObj.ConnectXXX</code> 方法会崩溃，必须先调用 <code>InitSignalExt</code> 方法，传入 SignalLoop。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge4a328e" class="outline-3">
+<h3 id="orge4a328e">使用 dbusutil 包</h3>
+<div class="outline-text-3" id="text-orge4a328e">
+<p>
+之前介绍了使用 dbus1 包，现在介绍使用更多的 dbusutil 包，它是对 dbus1 包的功能的一次包装，更加偏向于导出服务。
+</p>
+</div>
+
+<div id="outline-container-org2af1c51" class="outline-4">
+<h4 id="org2af1c51">导出对象</h4>
+<div class="outline-text-4" id="text-org2af1c51">
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    methods *<span style="color: #51afef;">struct</span> {
+        GetString <span style="color: #51afef;">func</span>() <span style="color: #98be65;">`out:"result"`</span>
+    }
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetString</span>() (<span style="color: #ECBE7B;">string</span>, *<span style="color: #ECBE7B;">dbus.Error</span>) {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"object"</span>, <span style="color: #a9a1e1;">nil</span>
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetInterfaceName</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"p1.p2.p3"</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">service</span>, <span style="color: #dcaeea;">err</span> := dbusutil.<span style="color: #c678dd;">NewSessionService</span>()
+    <span style="color: #dcaeea;">obj</span> := &amp;<span style="color: #ECBE7B;">Obj</span>{
+    }
+    err = service.<span style="color: #c678dd;">Export</span>(<span style="color: #98be65;">"/p1/p2/p3"</span>, obj)
+    err = service.<span style="color: #c678dd;">RequestName</span>(<span style="color: #98be65;">"p1.p2.p3"</span>)
+    service.<span style="color: #c678dd;">Wait</span>()
+}
+</pre>
+</div>
+
+<p>
+在 <code>main</code> 方法中，使用 <code>dbusutil.NewSessionService</code> 创建 <code>*dbusutil.Service</code> 类型的变量 <code>service=，然后调用 =service.Export</code> 方法导出 <code>obj</code> 变量。要导出 <code>obj =变量，就得让它的类型 =*Obj</code> 实现 <code>GetInterfaceName</code> 方法，此方法要返回接口名。
+</p>
+</div>
+</div>
+<div id="outline-container-org2905a45" class="outline-4">
+<h4 id="org2905a45">定义属性</h4>
+<div class="outline-text-4" id="text-org2905a45">
+<p>
+定义一个属性的简单方式是，给导出的结构增加公开字段，比如想要导出 <code>Obj</code> 结构，导出的接口 <code>p1.p2.p3</code> 中会有一个 <code>Name</code> 属性，类型为字符串，就要有如下定义：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    Name <span style="color: #ECBE7B;">string</span>
+}
+</pre>
+</div>
+
+<p>
+这个 <code>Name</code> 属性是只读的，如果要让它可以写、设置，就要给 <code>Name</code> 字段加上结构字段 <code>tag</code> : <code>prop:"access:rw"</code> ， 如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    Name <span style="color: #ECBE7B;">string</span> =prop:<span style="color: #98be65;">"access:rw"</span>=
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1582ed9" class="outline-4">
+<h4 id="org1582ed9">发送信号</h4>
+<div class="outline-text-4" id="text-org1582ed9">
+<p>
+下面的代码是要发送信号，路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code>, 信号名 <code>Signal1</code> ， 参数是字符串和数字。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">
+<span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    signals *<span style="color: #51afef;">struct</span> {
+        Added <span style="color: #51afef;">struct</span> {
+            arg0 <span style="color: #ECBE7B;">string</span>
+            arg1 <span style="color: #ECBE7B;">int32</span>
+        }
+    }
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetInterfaceName</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"p1.p2.p3"</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">service</span>, <span style="color: #dcaeea;">err</span> := dbusutil.<span style="color: #c678dd;">NewSessionService</span>()
+    <span style="color: #dcaeea;">obj</span> := &amp;<span style="color: #ECBE7B;">Obj</span>{
+    }
+    err = service.<span style="color: #c678dd;">Export</span>(<span style="color: #98be65;">"/p1/p2/p3"</span>, obj)
+    err = service.<span style="color: #c678dd;">RequestName</span>(<span style="color: #98be65;">"p1.p2.p3"</span>)
+    <span style="color: #51afef;">for</span> {
+        err = service.<span style="color: #c678dd;">Emit</span>(obj, <span style="color: #98be65;">"Added"</span>, <span style="color: #98be65;">"val0"</span>, <span style="color: #da8548; font-weight: bold;">11</span>)
+        time.<span style="color: #c678dd;">Sleep</span>(<span style="color: #da8548; font-weight: bold;">2</span>*time.Second)
+    }
+}
+</pre>
+</div>
+
+<p>
+要点是在定义 Obj 结构时，加上 <code>signals</code> 字段，并在 <code>signals</code> 字段类型定义结构中加上 <code>Added</code> 字段 ，然后调用 <code>service.Emit</code> 方法发送信号。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbdc8881" class="outline-4">
+<h4 id="orgbdc8881">发送属性改变信号</h4>
+<div class="outline-text-4" id="text-orgbdc8881">
+<p>
+下面的代码是要发送属性改变信号，路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code>, 属性名 <code>Name</code> ，类型字符串。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    Name <span style="color: #ECBE7B;">string</span>
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetInterfaceName</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"p1.p2.p3"</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">service</span>, <span style="color: #dcaeea;">err</span> := dbusutil.<span style="color: #c678dd;">NewSessionService</span>()
+    <span style="color: #dcaeea;">obj</span> := &amp;<span style="color: #ECBE7B;">Obj</span>{
+    }
+    err = service.<span style="color: #c678dd;">Export</span>(<span style="color: #98be65;">"/p1/p2/p3"</span>, obj)
+    err = service.<span style="color: #c678dd;">RequestName</span>(<span style="color: #98be65;">"p1.p2.p3"</span>)
+    <span style="color: #51afef;">for</span> {
+        err = service.<span style="color: #c678dd;">EmitPropertyChanged</span>(obj, <span style="color: #98be65;">"Name"</span>, <span style="color: #98be65;">"name1"</span>)
+        time.<span style="color: #c678dd;">Sleep</span>(<span style="color: #da8548; font-weight: bold;">2</span>*time.Second)
+    }
+}
+</pre>
+</div>
+
+<p>
+要点是先在 Obj 结构中定义一个属性 <code>Name</code> ，然后调用 <code>service.EmitPropertyChanged</code> 方法发送属性改变信号。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8da21d7" class="outline-2">
+<h2 id="org8da21d7">gsettings in go</h2>
+<div class="outline-text-2" id="text-org8da21d7">
+<p>
+gsettings 是 gio 提供的功能，go 语言要用就得用 cgo 包装一下，这部分代码是由 <code>go-gir-generator</code> 工具自动生成的，软件包 <code>golang-gir-gio-2.0-dev</code> 提供了源码文件，安装之后放在 <code>/usr/share/gocode/src/pkg.deepin.io/gir/gio-2.0</code> 文件夹下。
+</p>
+
+<p>
+项目地址： <a href="https://gitlab.deepin.io/github-linuxdeepin-mirror/go-gir-generator">https://gitlab.deepin.io/github-linuxdeepin-mirror/go-gir-generator</a>
+</p>
+</div>
+<div id="outline-container-org0c02cce" class="outline-3">
+<h3 id="org0c02cce">简单使用</h3>
+<div class="outline-text-3" id="text-org0c02cce">
+<p>
+下面的代码是要获取和设置 gsettings <code>ca.desrt.dconf-editor.Demo</code> 的几个设置项。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">gs</span> := gio.<span style="color: #c678dd;">NewSettings</span>(<span style="color: #98be65;">"ca.desrt.dconf-editor.Demo"</span>)
+<span style="color: #dcaeea;">str</span> := gs.<span style="color: #c678dd;">GetString</span>(<span style="color: #98be65;">"string"</span>)
+
+gs.<span style="color: #c678dd;">SetString</span>(<span style="color: #98be65;">"string"</span>, str)
+
+<span style="color: #dcaeea;">int0</span> := gs.<span style="color: #c678dd;">GetInt</span>(<span style="color: #98be65;">"integer-32-signed"</span>)
+
+gs.<span style="color: #c678dd;">SetInt</span>(<span style="color: #98be65;">"integer-32-signed"</span>, int0)
+gs.<span style="color: #c678dd;">Unref</span>()
+</pre>
+</div>
+
+<p>
+<code>NewSettings</code> 方法，创建 Settings 对象。
+<code>GetString</code> 方法获取字符串类型的设置项的值，=SetString= 方法设置字符串类型的设置项的值。
+<code>GetInt</code> 方法获取整数 int32 类型的设置项的值，=SetInt= 方法设置整数 int32 类型的设置项的值。
+<code>Unref</code> 方法，在不再需要 gs 对象时，减少引用计数的值。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb7d3b05" class="outline-3">
+<h3 id="orgb7d3b05">监听改变信号（原生）</h3>
+<div class="outline-text-3" id="text-orgb7d3b05">
+<p>
+下面的代码是要监听 gsettings <code>ca.desrt.dconf-editor.Demo</code> 的 <code>boolean</code> 设置项的值改变事件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">gs</span> := gio.<span style="color: #c678dd;">NewSettings</span>(<span style="color: #98be65;">"ca.desrt.dconf-editor.Demo"</span>)
+gs.<span style="color: #c678dd;">Connect</span>(<span style="color: #98be65;">"changed::boolean"</span>, <span style="color: #51afef;">func</span>(<span style="color: #dcaeea;">gs</span> *<span style="color: #ECBE7B;">gio.Settings</span>, <span style="color: #dcaeea;">key</span> <span style="color: #ECBE7B;">string</span>) {
+    <span style="color: #dcaeea;">boolean</span> := gs.<span style="color: #c678dd;">GetBoolean</span>(key)
+    log.<span style="color: #c678dd;">Println</span>(boolean)
+})
+glib.<span style="color: #c678dd;">StartLoop</span>()
+</pre>
+</div>
+
+<p>
+调用 <code>Connect</code> 方法注册事件监听处理函数，第一个参数为事件名，第二个参数为事件处理函数。
+</p>
+
+<p>
+<code>glib.StartLoop()</code> 开始一个 Main Loop 事件循环。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc1c79e7" class="outline-3">
+<h3 id="orgc1c79e7">监听改变信号（dbus 实现）</h3>
+<div class="outline-text-3" id="text-orgc1c79e7">
+<p>
+由于原生的信号监听方式之前在一种特殊架构上偶尔出现发生了改变事件但不触发处理函数的问题，于是写了另外一种信号监听方式，来规避这种问题。
+</p>
+
+<p>
+下面的代码使用了另外一个包 <code>pkg.deepin.io/lib/gsettings</code> 也实现了监听 <code>boolean</code> 设置项的值改变事件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">gs</span> := gio.<span style="color: #c678dd;">NewSettings</span>(<span style="color: #98be65;">"ca.desrt.dconf-editor.Demo"</span>)
+gsettings.<span style="color: #c678dd;">ConnectChanged</span>(<span style="color: #98be65;">"ca.desrt.dconf-editor.Demo"</span>, <span style="color: #98be65;">"boolean"</span>,
+ <span style="color: #51afef;">func</span>(<span style="color: #dcaeea;">key</span> <span style="color: #ECBE7B;">string</span>) {
+        <span style="color: #dcaeea;">boolean</span> := gs.<span style="color: #c678dd;">GetBoolean</span>(key)
+        log.<span style="color: #c678dd;">Println</span>(boolean)
+})
+<span style="color: #dcaeea;">err</span> := gsettings.<span style="color: #c678dd;">StartMonitor</span>()
+<span style="color: #51afef;">select</span> {
+}
+</pre>
+</div>
+
+<p>
+<code>ConnectChanged</code> 方法注册改变事件的处理函数，第一个参数是 <code>schema id</code> ， 第二个参数是设置项名，第三个参数是事件处理函数。
+</p>
+
+<p>
+<code>StartMonitor</code> 方法开始监听循环。
+</p>
+</div>
+</div>
+<div id="outline-container-org7058233" class="outline-3">
+<h3 id="org7058233">dbus 服务中作为属性</h3>
+<div class="outline-text-3" id="text-org7058233">
+<p>
+下面的代码是要导出 DBus 服务，服务名 <code>p1.p2.p3</code>, 对象路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code> ，把 gsettings <code>ca.desrt.dconf-editor.Demo</code> 的 <code>boolean</code> 设置项当作接口的属性。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
+    Boolean <span style="color: #ECBE7B;">gsprop.Bool</span> <span style="color: #98be65;">`prop:"access:rw"`</span>
+}
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">o</span> *<span style="color: #ECBE7B;">Obj</span>) <span style="color: #c678dd;">GetInterfaceName</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"p1.p2.p3"</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">gs</span> := gio.<span style="color: #c678dd;">NewSettings</span>(<span style="color: #98be65;">"ca.desrt.dconf-editor.Demo"</span>)
+
+    <span style="color: #dcaeea;">service</span>, <span style="color: #dcaeea;">err</span> := dbusutil.<span style="color: #c678dd;">NewSessionService</span>()
+
+    <span style="color: #dcaeea;">obj</span> := &amp;<span style="color: #ECBE7B;">Obj</span>{}
+    obj.Boolean.<span style="color: #c678dd;">Bind</span>(gs, <span style="color: #98be65;">"boolean"</span>)
+    log.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"get result:"</span>, obj.Boolean.<span style="color: #c678dd;">Get</span>())
+
+    err = service.<span style="color: #c678dd;">Export</span>(<span style="color: #98be65;">"/p1/p2/p3"</span>, obj)
+    err = service.<span style="color: #c678dd;">RequestName</span>(<span style="color: #98be65;">"p1.p2.p3"</span>)
+    err = gsettings.<span style="color: #c678dd;">StartMonitor</span>()
+    service.<span style="color: #c678dd;">Wait</span>()
+}
+</pre>
+</div>
+
+<p>
+这算是 gsettings 与 dbusutil 包知识相结合的内容。
+</p>
+
+<p>
+要点是 Obj 结构定义了一个公开字段 <code>Name</code> ，类型为 <code>gsprop.Bool</code> ，然后调用 <code>Bind</code> 方法绑定了 <code>gs</code> 的 <code>boolean</code> 设置项和 <code>obj</code> 的 <code>Name</code> 属性的关联，使得对 <code>Name</code> 属性的读写即是对 <code>gs</code> 的 <code>boolean</code> 设置项的读写， 如果 <code>gs</code> 的 <code>boolean</code> 设置项的值改变会自动发出 <code>Name</code> 属性改变信号。
+</p>
+
+<p>
+gsprop 包中还有其他的类型，来支持各种数据类型，比如 <code>String=，=Int=，=Uint</code> 等。
+</p>
+
+<p>
+同样要记得调用 <code>StartMonitor</code> 方法开始监听循环。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2020-11-27 Fri 17:05</p>
+</div>
+</body>
+</html>
