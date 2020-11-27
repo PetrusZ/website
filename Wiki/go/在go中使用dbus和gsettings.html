@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-27 Fri 17:05 -->
+<!-- 2020-11-27 Fri 17:37 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>go中使用dbus和gsettings</title>
@@ -240,38 +240,38 @@
 <ul>
 <li><a href="#org21a125a">连接 dbus</a></li>
 <li><a href="#org6f52ba9">调用方法</a></li>
-<li><a href="#org3143756">获取和设置属性</a>
+<li><a href="#org97945c7">获取和设置属性</a>
 <ul>
-<li><a href="#orga5ca75e">获取属性</a></li>
-<li><a href="#org6621168">设置属性</a></li>
+<li><a href="#org4ac373b">获取属性</a></li>
+<li><a href="#org6f59226">设置属性</a></li>
 </ul>
 </li>
-<li><a href="#org75eabb5">监控信号</a></li>
-<li><a href="#org0cad8ab">导出对象</a>
+<li><a href="#org2cf3b8e">监控信号</a></li>
+<li><a href="#org2af1c51">导出对象</a>
 <ul>
 <li><a href="#org883611f">注册服务名</a></li>
 </ul>
 </li>
-<li><a href="#orgba7a044">发送信号</a></li>
+<li><a href="#org1582ed9">发送信号</a></li>
 </ul>
 </li>
 <li><a href="#org447c7b6">使用 go-dbus-factory 项目</a>
 <ul>
 <li><a href="#orgbcc34e8">方法调用</a></li>
-<li><a href="#org97945c7">获取和设置属性</a>
+<li><a href="#org54901a6">获取和设置属性</a>
 <ul>
-<li><a href="#org4ac373b">获取属性</a></li>
-<li><a href="#org6f59226">设置属性</a></li>
-<li><a href="#org2cf3b8e">监控信号</a></li>
+<li><a href="#org5f18ef7">获取属性</a></li>
+<li><a href="#org1b55650">设置属性</a></li>
+<li><a href="#orgbe4036c">监控信号</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#orge4a328e">使用 dbusutil 包</a>
 <ul>
-<li><a href="#org2af1c51">导出对象</a></li>
+<li><a href="#org72b59c1">导出对象</a></li>
 <li><a href="#org2905a45">定义属性</a></li>
-<li><a href="#org1582ed9">发送信号</a></li>
+<li><a href="#org6a1603f">发送信号</a></li>
 <li><a href="#orgbdc8881">发送属性改变信号</a></li>
 </ul>
 </li>
@@ -331,16 +331,16 @@ err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;
 </p>
 </div>
 </div>
-<div id="outline-container-org3143756" class="outline-4">
-<h4 id="org3143756">获取和设置属性</h4>
-<div class="outline-text-4" id="text-org3143756">
+<div id="outline-container-org97945c7" class="outline-4">
+<h4 id="org97945c7">获取和设置属性</h4>
+<div class="outline-text-4" id="text-org97945c7">
 <p>
 属性的获取和设置本质也是方法调用。
 </p>
 </div>
-<div id="outline-container-orga5ca75e" class="outline-5">
-<h5 id="orga5ca75e">获取属性</h5>
-<div class="outline-text-5" id="text-orga5ca75e">
+<div id="outline-container-org4ac373b" class="outline-5">
+<h5 id="org4ac373b">获取属性</h5>
+<div class="outline-text-5" id="text-org4ac373b">
 <p>
 获取单个属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Get</code> 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 <code>dbus.Variant</code> 。
 </p>
@@ -367,9 +367,9 @@ err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;
 </p>
 </div>
 </div>
-<div id="outline-container-org6621168" class="outline-5">
-<h5 id="org6621168">设置属性</h5>
-<div class="outline-text-5" id="text-org6621168">
+<div id="outline-container-org6f59226" class="outline-5">
+<h5 id="org6f59226">设置属性</h5>
+<div class="outline-text-5" id="text-org6f59226">
 <p>
 设置属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Set</code> 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。
 </p>
@@ -392,9 +392,9 @@ err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;
 </div>
 </div>
 </div>
-<div id="outline-container-org75eabb5" class="outline-4">
-<h4 id="org75eabb5">监控信号</h4>
-<div class="outline-text-4" id="text-org75eabb5">
+<div id="outline-container-org2cf3b8e" class="outline-4">
+<h4 id="org2cf3b8e">监控信号</h4>
+<div class="outline-text-4" id="text-org2cf3b8e">
 <p>
 调用 <code>AddMatch</code> 方法添加监控规则，如果不需要监控了，就调用 <code>RemoveMatch</code> 方法去掉监控规则。
 </p>
@@ -447,9 +447,9 @@ sessionBus.<span style="color: #c678dd;">RemoveSignal</span>(signalCh)
 </p>
 </div>
 </div>
-<div id="outline-container-org0cad8ab" class="outline-4">
-<h4 id="org0cad8ab">导出对象</h4>
-<div class="outline-text-4" id="text-org0cad8ab">
+<div id="outline-container-org2af1c51" class="outline-4">
+<h4 id="org2af1c51">导出对象</h4>
+<div class="outline-text-4" id="text-org2af1c51">
 <p>
 将自己代码中的一个变量作为对象的一个接口导出在 DBus 上，然后供其他人调用。
 </p>
@@ -516,9 +516,9 @@ sessionBus.<span style="color: #c678dd;">RemoveSignal</span>(signalCh)
 </div>
 </div>
 
-<div id="outline-container-orgba7a044" class="outline-4">
-<h4 id="orgba7a044">发送信号</h4>
-<div class="outline-text-4" id="text-orgba7a044">
+<div id="outline-container-org1582ed9" class="outline-4">
+<h4 id="org1582ed9">发送信号</h4>
+<div class="outline-text-4" id="text-org1582ed9">
 <p>
 下面的代码是要发送信号，路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code>, 信号名 <code>Signal1</code> ， 参数是字符串和数字。
 </p>
@@ -546,7 +546,7 @@ sessionBus.<span style="color: #c678dd;">RemoveSignal</span>(signalCh)
 </p>
 
 <p>
-项目地址：<a href="https://gitlab.deepin.io/dde-v20/go-dbus-factory">https://gitlab.deepin.io/dde-v20/go-dbus-factory</a> ，可以打成 deb 包，软件包名 <code>golang-github-linuxdeepin-go-dbus-factory-dev</code> ，每个服务放在不同的包中，包名的前缀是 =github.com/linuxdeepin/go-dbus-factory/=。
+项目地址：<a href="https://gitlab.deepin.io/dde-v20/go-dbus-factory">https://gitlab.deepin.io/dde-v20/go-dbus-factory</a> ，可以打成 deb 包，软件包名 <code>golang-github-linuxdeepin-go-dbus-factory-dev</code> ，每个服务放在不同的包中，包名的前缀是 <code>github.com/linuxdeepin/go-dbus-factory/</code> 。
 </p>
 </div>
 <div id="outline-container-orgbcc34e8" class="outline-4">
@@ -573,16 +573,16 @@ log.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"
 </p>
 </div>
 </div>
-<div id="outline-container-org97945c7" class="outline-4">
-<h4 id="org97945c7">获取和设置属性</h4>
-<div class="outline-text-4" id="text-org97945c7">
+<div id="outline-container-org54901a6" class="outline-4">
+<h4 id="org54901a6">获取和设置属性</h4>
+<div class="outline-text-4" id="text-org54901a6">
 <p>
 属性的获取和设置本质也是方法调用。
 </p>
 </div>
-<div id="outline-container-org4ac373b" class="outline-5">
-<h5 id="org4ac373b">获取属性</h5>
-<div class="outline-text-5" id="text-org4ac373b">
+<div id="outline-container-org5f18ef7" class="outline-5">
+<h5 id="org5f18ef7">获取属性</h5>
+<div class="outline-text-5" id="text-org5f18ef7">
 <p>
 获取单个属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Get</code> 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 <code>dbus.Variant</code> 。
 </p>
@@ -610,9 +610,9 @@ log.<span style="color: #c678dd;">Println</span>(v)
 </p>
 </div>
 </div>
-<div id="outline-container-org6f59226" class="outline-5">
-<h5 id="org6f59226">设置属性</h5>
-<div class="outline-text-5" id="text-org6f59226">
+<div id="outline-container-org1b55650" class="outline-5">
+<h5 id="org1b55650">设置属性</h5>
+<div class="outline-text-5" id="text-org1b55650">
 <p>
 设置属性是调用对象的 <code>org.freedesktop.DBus.Properties</code> 接口的 <code>Set</code> 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。
 </p>
@@ -630,9 +630,9 @@ err = obj.<span style="color: #c678dd;">Call</span>(<span style="color: #98be65;
 </div>
 </div>
 </div>
-<div id="outline-container-org2cf3b8e" class="outline-5">
-<h5 id="org2cf3b8e">监控信号</h5>
-<div class="outline-text-5" id="text-org2cf3b8e">
+<div id="outline-container-orgbe4036c" class="outline-5">
+<h5 id="orgbe4036c">监控信号</h5>
+<div class="outline-text-5" id="text-orgbe4036c">
 <p>
 下面的代码是要监控之前说过的 <code>Dock</code> 对象的 <code>EntryAdded</code> 信号。
 </p>
@@ -673,9 +673,9 @@ dockObj.<span style="color: #c678dd;">RemoveHandler</span>(sigHid)
 </p>
 </div>
 
-<div id="outline-container-org2af1c51" class="outline-4">
-<h4 id="org2af1c51">导出对象</h4>
-<div class="outline-text-4" id="text-org2af1c51">
+<div id="outline-container-org72b59c1" class="outline-4">
+<h4 id="org72b59c1">导出对象</h4>
+<div class="outline-text-4" id="text-org72b59c1">
 <div class="org-src-container">
 <pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">Obj</span> <span style="color: #51afef;">struct</span> {
     methods *<span style="color: #51afef;">struct</span> {
@@ -733,9 +733,9 @@ dockObj.<span style="color: #c678dd;">RemoveHandler</span>(sigHid)
 </div>
 </div>
 </div>
-<div id="outline-container-org1582ed9" class="outline-4">
-<h4 id="org1582ed9">发送信号</h4>
-<div class="outline-text-4" id="text-org1582ed9">
+<div id="outline-container-org6a1603f" class="outline-4">
+<h4 id="org6a1603f">发送信号</h4>
+<div class="outline-text-4" id="text-org6a1603f">
 <p>
 下面的代码是要发送信号，路径 <code>/p1/p2/p3</code>, 接口名 <code>p1.p2.p3</code>, 信号名 <code>Signal1</code> ， 参数是字符串和数字。
 </p>
@@ -811,6 +811,7 @@ dockObj.<span style="color: #c678dd;">RemoveHandler</span>(sigHid)
 </div>
 </div>
 </div>
+
 <div id="outline-container-org8da21d7" class="outline-2">
 <h2 id="org8da21d7">gsettings in go</h2>
 <div class="outline-text-2" id="text-org8da21d7">
@@ -822,6 +823,7 @@ gsettings 是 gio 提供的功能，go 语言要用就得用 cgo 包装一下，
 项目地址： <a href="https://gitlab.deepin.io/github-linuxdeepin-mirror/go-gir-generator">https://gitlab.deepin.io/github-linuxdeepin-mirror/go-gir-generator</a>
 </p>
 </div>
+
 <div id="outline-container-org0c02cce" class="outline-3">
 <h3 id="org0c02cce">简单使用</h3>
 <div class="outline-text-3" id="text-org0c02cce">
@@ -963,7 +965,7 @@ gsprop 包中还有其他的类型，来支持各种数据类型，比如 <code>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-27 Fri 17:05</p>
+<p class="date">Created: 2020-11-27 Fri 17:37</p>
 </div>
 </body>
 </html>
