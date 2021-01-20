@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-01-20 Wed 17:18 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>酒吧圣经笔记</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Petrus.Z">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.cacheClassElem = elem.className;
+         elem.cacheClassTarget = target.className;
+         target.className = "code-highlighted";
+         elem.className   = "code-highlighted";
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(elem.cacheClassElem)
+         elem.className = elem.cacheClassElem;
+       if(elem.cacheClassTarget)
+         target.className = elem.cacheClassTarget;
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">酒吧圣经笔记</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org6fe570e">开胃酒 Aperitifs</a>
+<ul>
+<li><a href="#orgfa58ba3">苦艾酒 Absinthe</a>
+<ul>
+<li><a href="#org2e23f65">现代苦艾酒</a></li>
+</ul>
+</li>
+<li><a href="#orgad30ce8">茴香酒 Anises</a>
+<ul>
+<li><a href="#org34ad0eb">茴香酒的历史</a></li>
+<li><a href="#org2a19620">茴香酒的生产</a></li>
+</ul>
+</li>
+<li><a href="#org4b32c94">味美思 Vermouth</a>
+<ul>
+<li><a href="#orgfdb9a6f">酿造史</a></li>
+<li><a href="#org9bf1fb5">味美思的生产</a></li>
+<li><a href="#orgd3b6a68">种类</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9c5536d">威士忌 Whisky</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org23c2423">无休止的争论</a></li>
+</ul>
+</li>
+<li><a href="#org6d3f245">苏格兰威士忌 Scotch Whisky</a>
+<ul>
+<li><a href="#org1ef8b67">曲折的经历</a></li>
+<li><a href="#org701bbc8">苏格兰威士忌的种类</a></li>
+<li><a href="#orgb2f95d6">爱尔兰威士忌与苏格兰威士忌的法规</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6fe570e" class="outline-2">
+<h2 id="org6fe570e">开胃酒 Aperitifs</h2>
+<div class="outline-text-2" id="text-org6fe570e">
+<p>
+我们将苦酒、味美思、金鸡纳酒和茴香酒都归为开胃酒。开胃酒有许多共性。第一，它们有相同的起源，在黑暗时代都是用作药。这使得开胃酒同利口酒很近似；第二，开胃酒在生产中具有许多共同点；最后，开胃酒的最大相似点——每种酒都各有特色各不相同。如果这些酒的口味和颜色没有区别，那酒吧会变得非常枯燥无聊。
+</p>
+
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">苦艾酒</th>
+<th scope="col" class="org-left">茴香酒</th>
+<th scope="col" class="org-left">苦酒</th>
+<th scope="col" class="org-left">味美思</th>
+<th scope="col" class="org-left">金鸡纳酒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">酒基</td>
+<td class="org-left">酒精</td>
+<td class="org-left">酒精</td>
+<td class="org-left">酒精</td>
+<td class="org-left">白葡萄酒</td>
+<td class="org-left">葡萄酒</td>
+</tr>
+
+<tr>
+<td class="org-left">香料</td>
+<td class="org-left">艾草和</td>
+<td class="org-left">绿大茴香，</td>
+<td class="org-left">龙胆，陈皮，</td>
+<td class="org-left">艾草，</td>
+<td class="org-left">金鸡纳树皮，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">其他药草</td>
+<td class="org-left">八角，茴香&#x2026;</td>
+<td class="org-left">其他香料</td>
+<td class="org-left">金鸡纳树皮，龙胆&#x2026;</td>
+<td class="org-left">陈皮和药草</td>
+</tr>
+
+<tr>
+<td class="org-left">酒度</td>
+<td class="org-left">达 72 度</td>
+<td class="org-left">25-51 度</td>
+<td class="org-left">6-50 度</td>
+<td class="org-left">15-23 度</td>
+<td class="org-left">15-23 度</td>
+</tr>
+
+<tr>
+<td class="org-left">用途</td>
+<td class="org-left">开胃酒</td>
+<td class="org-left">开胃酒</td>
+<td class="org-left">开胃酒，消化酒</td>
+<td class="org-left">开胃酒，任何时候可饮</td>
+<td class="org-left">开胃酒</td>
+</tr>
+
+<tr>
+<td class="org-left">最好的混合用料</td>
+<td class="org-left">水和糖</td>
+<td class="org-left">水、</td>
+<td class="org-left">酒、果汁等</td>
+<td class="org-left">苏打水，柠檬，</td>
+<td class="org-left">苏打水，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">甜薄荷汁和甜柠檬汁</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">奎宁水，果汁，酒</td>
+<td class="org-left">果汁，酒</td>
+</tr>
+
+<tr>
+<td class="org-left">著名的鸡尾酒</td>
+<td class="org-left">下午死去</td>
+<td class="org-left">鹦鹉</td>
+<td class="org-left">美国佬</td>
+<td class="org-left">干马天尼</td>
+<td class="org-left">杜本内鸡尾酒</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">飞翔的荷兰人</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">尼格罗尼</td>
+<td class="org-left">曼哈顿</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgfa58ba3" class="outline-3">
+<h3 id="orgfa58ba3">苦艾酒 Absinthe</h3>
+<div class="outline-text-3" id="text-orgfa58ba3">
+<p>
+苦艾酒的历史源于瑞士。18 世界奥尔基内尔医生用当前的植物——星形大茴香及 Artemisia Absinthium（一种艾草）制成药酒，他将这种药酒用于改善自己病人的脑力活动。这种淡绿色苦味的药酒疗效显著。
+</p>
+</div>
+<div id="outline-container-org2e23f65" class="outline-4">
+<h4 id="org2e23f65">现代苦艾酒</h4>
+<div class="outline-text-4" id="text-org2e23f65">
+<p>
+不久前欧洲法律放宽了对含有艾草酒的限制，规定根据酒精浓度的高低不同每升酒含 5-10 毫升侧卜酮。此后，商标上注有 Absinthe（苦艾酒）的许多款酒问世了。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad30ce8" class="outline-3">
+<h3 id="orgad30ce8">茴香酒 Anises</h3>
+<div class="outline-text-3" id="text-orgad30ce8">
+</div>
+<div id="outline-container-org34ad0eb" class="outline-4">
+<h4 id="org34ad0eb">茴香酒的历史</h4>
+<div class="outline-text-4" id="text-org34ad0eb">
+<p>
+茴香酒源于地中海地区。这里的人们自古以来就知道大茴香可入药。茴香酒获得巨大成功还是在欧洲禁止生产苦艾酒以后。当然茴香酒的生产商达成了如下协议：
+</p>
+<ul class="org-ul">
+<li>具有迷幻成分的侧柏酮存在于艾草皮中。因此，要用艾草的根和叶来酿酒。</li>
+<li>各种大茴香和茴香可为酿酒提供必须的跟水接触能产生结晶的茴香脑。</li>
+<li>一些甘草和其他的香草叶已列入茴香酒的配方中，应保持原料成分的统一。</li>
+<li>这样酿制的酒同真正的茴香酒口味差别不大，略带苦味。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2a19620" class="outline-4">
+<h4 id="org2a19620">茴香酒的生产</h4>
+<div class="outline-text-4" id="text-org2a19620">
+<p>
+欧洲的法规规定：茴香酒的独特芬香应出自于绿色的大茴香，星形大茴香或者茴香这些香料。实际上生产中经常使用的就是这三种香料。星形大茴香，又叫八角，产于越南北部。它能使酒口味强烈，而绿色大茴香使酒口味绵长，略带甜味。再添加各种香草和少量甘草，可增酒酒的香气。将以上各种植物连根放在酒精中泡软，然后浸酒蒸馏。最后在馏出物中添加水和少量的糖。这样酿好的茴香酒的浓度在 25-51 度之间。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b32c94" class="outline-3">
+<h3 id="org4b32c94">味美思 Vermouth</h3>
+<div class="outline-text-3" id="text-org4b32c94">
+</div>
+<div id="outline-container-orgfdb9a6f" class="outline-4">
+<h4 id="orgfdb9a6f">酿造史</h4>
+<div class="outline-text-4" id="text-orgfdb9a6f">
+<p>
+味美思有着悠久的历史。公元前 4 世纪在有关希波克拉底（Hippocrat）的穿梭中最早提及到味美思的“祖先”——Vinum Absinthiatum。含有药草、松脂的有色葡萄酒在古代被广为接受。后来威尼斯的商人从世界各地往意大利带回很多种调料：豆蔻、甘菊、丁香、生姜和其他香料。这些香料为完善当时用于医学目的的葡萄酒的香型注入了新的动力。“味美思”（wermut wein）这个词本身产生于巴伐利亚的宫廷，使意大利的草药医生阿列西奥创造的。
+17 世纪味美思的生产开始真正发展起来，意大利皮埃蒙特大取的都灵市成为味美思的发展中心。这里可以生产干葡萄酒和甜白葡萄酒。这个地区的阿尔卑斯山山坡上可以采到富含香味的植物。
+</p>
+</div>
+</div>
+<div id="outline-container-org9bf1fb5" class="outline-4">
+<h4 id="org9bf1fb5">味美思的生产</h4>
+<div class="outline-text-4" id="text-org9bf1fb5">
+<p>
+每个公司都按各自的秘方生产味美思，但仍可找到一些共同点。通常是以从一些区域运来的各种白葡萄酒为基酒。有时基酒混合物要陈化一段时间，通常在大橡木桶中储存一年。主要香料有：艾草——味美思因其而得名（wermut 德语“艾草”）；金鸡纳树树皮、桂皮、龙胆、柯拉子、生姜、当归、甘菊、调料丁香、苦橘子皮、香草荚等等，有时香料数量能达到 40 种。这些植物的萃取物是通过酒精浸泡或者蒸馏获得的。再将植物萃取液、适量的糖和纯酒精加入葡萄酒中混合。红色味美思使用胭脂红和焦糖上色的。所用成分和比例决定了每种产品和类型的味美思的口味。酿制的味美思有时需陈化，再经过滤、巴氏消毒后分瓶包装。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd3b6a68" class="outline-4">
+<h4 id="orgd3b6a68">种类</h4>
+<div class="outline-text-4" id="text-orgd3b6a68">
+<ol class="org-ol">
+<li><p>
+意大利 味美思产于都灵地区。口味通常略甜些。其中最普及的是：
+</p>
+<ul class="org-ul">
+<li>Vermouth Extra Dry 干味美思，每升酒含糖量不超过 40 毫升。</li>
+<li>Vermouth Bianco 白味美思，每升含糖 100-150 毫升。</li>
+<li>Vermouth Rose 桃红味美思。</li>
+<li>Vermouth Rosso 红味美思，它的琥珀色是焦糖产生的。每升含糖 150 毫升。</li>
+</ul>
+
+<p>
+著名生产商：马天尼（Martini &amp; Rossi）、仙山路（Cinzano），卡帕诺（Carpano，Barbero），利开多诺（Riccadonna）。
+</p></li>
+<li>法国 味美思使以固定品种的葡萄酿成的干白味基酒酿造的。酒呈金黄色，口味通常更为干醇。著名生产商：诺利·普拉 Noilly Prat（最好的干型味美思），里丽 Lillet，以及萨瓦省（曾属意大利）的尚贝里地区的一些企业。</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9c5536d" class="outline-2">
+<h2 id="org9c5536d">威士忌 Whisky</h2>
+<div class="outline-text-2" id="text-org9c5536d">
+</div>
+<div id="outline-container-org23c2423" class="outline-4">
+<h4 id="org23c2423">无休止的争论</h4>
+<div class="outline-text-4" id="text-org23c2423">
+<p>
+爱尔兰人和苏格兰人一直就威士忌酒的发明权争论不休。但无论哪一方，都没有足够确凿的证据。
+</p>
+</div>
+</div>
+<div id="outline-container-org6d3f245" class="outline-3">
+<h3 id="org6d3f245">苏格兰威士忌 Scotch Whisky</h3>
+<div class="outline-text-3" id="text-org6d3f245">
+</div>
+<div id="outline-container-org1ef8b67" class="outline-4">
+<h4 id="org1ef8b67">曲折的经历</h4>
+<div class="outline-text-4" id="text-org1ef8b67">
+<p>
+早在 15 世纪，蒸馏酒在苏格兰流行起来。但在当时，蒸馏还比较原始，并且只能生产粗糙的酒。
+</p>
+
+<p>
+在 16 世纪和 17 世纪，苏格兰人在蒸馏领域进行了大胆的技术改进。第一次改进发生在修道院被关闭之后。僧侣们掌握了比任何人都多的蒸馏技术，它们把这些几个世纪秘密积累在修道院高墙之内的经验与酿酒师们分享。技术的进步表现在蒸馏中。酿酒师们逐渐学会了利用冰水来冷却蛇形管。在 16 世纪中叶，蒸馏釜就具有了今天的葱头形状。
+</p>
+</div>
+</div>
+<div id="outline-container-org701bbc8" class="outline-4">
+<h4 id="org701bbc8">苏格兰威士忌的种类</h4>
+<div class="outline-text-4" id="text-org701bbc8">
+<p>
+苏格兰威士忌在使用的原料、蒸馏和陈年的方式上各不相同。可以分成四大类：
+</p>
+
+<p>
+<b>单一麦芽威士忌（Single Malt）</b>
+以发芽的大麦为原料酿造。
+</p>
+
+<p>
+<b>纯麦芽威士忌（Pure Malt）</b>
+它使各种单一麦芽威士忌的混合物
+</p>
+
+<p>
+<b>调和型威士忌（Blend）</b>
+它使麦芽威士忌和谷物威士忌的混合物
+</p>
+
+<p>
+<b>谷物威士忌（Grain Whisky）</b>
+谷物威士忌主要用来生产调和型威士忌，偶尔也单独出售。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2f95d6" class="outline-4">
+<h4 id="orgb2f95d6">爱尔兰威士忌与苏格兰威士忌的法规</h4>
+<div class="outline-text-4" id="text-orgb2f95d6">
+<p>
+1909 年颁布的不列颠法律调节了威士忌的生产。它规定了在如下条件下，通过蒸馏混合谷物的方式获得的蒸馏酒称做威士忌 Whisky（或者为 Whiskey）。
+</p>
+
+<ul class="org-ul">
+<li>谷物中的糖通过麦芽中含有的淀粉酶分解出来，不适用管理部门禁止使用的其他种类的酶。</li>
+<li>在酵母的作用下进行发酵。</li>
+<li>为使馏出物保持有使用的原料的芬香，蒸馏结束时酒的浓度不超过 94.8%。</li>
+<li>酒在木桶中贮藏不低于 3 年。</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-01-20 Wed 17:18</p>
+</div>
+</body>
+</html>
