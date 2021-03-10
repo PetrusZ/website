@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
+<!-- 2021-03-10 Wed 14:28 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>搭建VNC服务器</title>
@@ -265,12 +265,20 @@
 <p>
 <code>sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -shared -noxdamage -xrandr "resize" -rfbport 5900</code>
 </p>
+
+<p>
+无密码启动 vnc
+</p>
+
+<p>
+<code>sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -noxdamage -xrandr "resize" -rfbport 5900</code>
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-03-10 Wed 14:28</p>
 </div>
 </body>
 </html>
