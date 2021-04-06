@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-03-10 Wed 14:28 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-04-06 Tue 09:47 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Codeplayer</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -284,6 +282,7 @@
 <li><a href="Wiki/Computer-Science/flatpak.html">flatpak</a></li>
 <li>Linux
 <ul class="org-ul">
+<li><a href="Wiki/Computer-Science/Linux/dbus-send与dbus-monitor命令的使用.html">Dbus Send与dbus Monitor命令的使用</a></li>
 <li><a href="Wiki/Computer-Science/Linux/xrandr设置双屏显示.html">xrandr设置双屏显示</a></li>
 <li><a href="Wiki/Computer-Science/Linux/搭建VNC服务器.html">搭建VNC服务器</a></li>
 <li><a href="Wiki/Computer-Science/Linux/index.html">Linux</a></li>
@@ -457,7 +456,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-03-10 Wed 14:28</p>
+<p class="date">Created: 2021-04-06 Tue 09:47</p>
 </div>
 </body>
 </html>

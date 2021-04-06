@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-04-06 Tue 09:31 -->
+<!-- 2021-04-06 Tue 09:47 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linux</title>
+<title>Dbus Send与dbus Monitor命令的使用</title>
 <meta name="author" content="Petrus.Z" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -227,42 +227,152 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Linux</h1>
+<h1 class="title">Dbus Send与dbus Monitor命令的使用</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgde622d9">Linux</a></li>
+<li><a href="#org1a69124">dbus-send</a>
+<ul>
+<li><a href="#org045461b">获取属性值</a></li>
+<li><a href="#orgae4c388">调用方法</a></li>
+<li><a href="#org4d3c171">参考</a></li>
+</ul>
+</li>
+<li><a href="#orgeb440f6">dbus-monitor</a>
+<ul>
+<li><a href="#org7d86313">使用手册</a></li>
+<li><a href="#orgf49a7b1">监视信号</a></li>
+<li><a href="#orga503f85">监视方法</a></li>
+<li><a href="#orgad6d0bd"><span class="todo TODO">TODO</span> 监视属性</a></li>
+<li><a href="#orgef142af">参考</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgde622d9" class="outline-2">
-<h2 id="orgde622d9">Linux</h2>
-<div class="outline-text-2" id="text-orgde622d9">
-<ul class="org-ul">
-<li><a href="鸟哥私房菜学习笔记.html">鸟哥私房菜学习笔记</a></li>
-<li><a href="Linux配置文件.html">Linux配置文件</a></li>
-<li><a href="进程与线程.html">进程与线程</a></li>
-<li><a href="内核.html">内核</a></li>
-<li><a href="文件系统.html">文件系统</a></li>
-<li><a href="备份.html">备份</a></li>
-<li><a href="UNXI缩写风格.html">UNXI缩写风格</a></li>
-<li><a href="终端快捷键列表.html">终端快捷键列表</a></li>
-<li><a href="修改键盘映射交换Caps和RControl.html">修改键盘映射交换Caps和RControl</a></li>
-<li><a href="系统资源查看命令.html">系统资源查看命令</a></li>
-<li><a href="解压命令.html">解压命令</a></li>
-<li><a href="pacman常用命令.html">pacman常用命令</a></li>
-<li><a href="搭建VNC服务器.html">搭建VNC服务器</a></li>
-<li><a href="xrandr设置双屏显示.html">xrandr设置双屏显示</a></li>
-<li><a href="dbus-send与dbus-monitor命令的使用.html">dbus-send 与 dbus-monitor 命令的使用</a></li>
-</ul>
+<div id="outline-container-org1a69124" class="outline-2">
+<h2 id="org1a69124">dbus-send</h2>
+<div class="outline-text-2" id="text-org1a69124">
+</div>
+<div id="outline-container-org045461b" class="outline-3">
+<h3 id="org045461b">获取属性值</h3>
+<div class="outline-text-3" id="text-org045461b">
+<p>
+<code>dbus-send --print-reply --type=method_call --session --dest=com.deepin.daemon.Display /com/deepin/daemon/Display org.freedesktop.DBus.Properties.Get string:com.deepin.daemon.Display string:Primary</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orgae4c388" class="outline-3">
+<h3 id="orgae4c388">调用方法</h3>
+<div class="outline-text-3" id="text-orgae4c388">
+<ol class="org-ol">
+<li>不带参数
+<code>dbus-send --session --print-reply --type=method_call --dest=com.deepin.daemon.Display /com/deepin/daemon/Display com.deepin.daemon.Display.CanRotate</code></li>
+<li>带参数
+<code>dbus-send --session --print-reply --type=method_call --dest=com.deepin.daemon.Display /com/deepin/daemon/Display com.deepin.daemon.Display.SetBrightness string:Virtual-1 double:1.0</code></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4d3c171" class="outline-3">
+<h3 id="org4d3c171">参考</h3>
+<div class="outline-text-3" id="text-org4d3c171">
+<ol class="org-ol">
+<li><a href="https://wikidev.uniontech.com/index.php?title=Dbus-send">https://wikidev.uniontech.com/index.php?title=Dbus-send</a></li>
+<li><a href="https://note.youdao.com/ynoteshare1/index.html?id=94b62364769faff9eb92cc82cf5aced4&amp;type=note">https://note.youdao.com/ynoteshare1/index.html?id=94b62364769faff9eb92cc82cf5aced4&amp;type=note</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeb440f6" class="outline-2">
+<h2 id="orgeb440f6">dbus-monitor</h2>
+<div class="outline-text-2" id="text-orgeb440f6">
+<p>
+<code>dbus-monitor [--system | --session | --address ADDRESS] [--profile | --monitor | --pcap | --binary] [watch expressions]</code>
+</p>
+</div>
+<div id="outline-container-org7d86313" class="outline-3">
+<h3 id="org7d86313">使用手册</h3>
+<div class="outline-text-3" id="text-org7d86313">
+<p>
+dbus-monitor 具有两种不同的文本输出模式：“经典”风格的监视模式和配置文件模式
+</p>
+
+<p>
+配置文件模式：一种紧凑格式，每条消息只有一行，并且具有微秒分辨率的定时信息
+</p>
+
+<p>
+dbus-monitor 也有两种特殊的二进制输出模式：&#x2013;binary 和&#x2013;pcap
+</p>
+<pre class="example">
+--binary：二进制模式将输出整个二进制消息流
+--pcap：将PCAP文件头添加到输出的开头，并为每个消息添加PCAP消息头
+</pre>
+
+
+<p>
+如果未指定任何模式，则 dbus-monitor 将使用监视输出格式。
+</p>
+<pre class="example">
+--system 和 --session表示系统总线和会话总线，默认为--session
+--address ADDRESS：监视在ADDRESS处给定的任意消息总线
+--profile：使用配置文件模式打印
+--monitor：使用dbus-monitor模式打印
+</pre>
+
+<p>
+输出概要：
+</p>
+<pre class="example">
+type：分为signal和method_call
+sender：消息或方法调用者
+dest：消息接收或方法拥有者
+interface：接口名
+path：服务路径
+member：方法名或属性名
+replay：方法调用的返回值
+</pre>
+
+<p>
+监视某些系统级接口时，需要加上 sudo 权限，如监视 lastore 更新模块
+<code>sudo dbus-monitor --system "interface=com.deepin.lastore.Manager"</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orgf49a7b1" class="outline-3">
+<h3 id="orgf49a7b1">监视信号</h3>
+<div class="outline-text-3" id="text-orgf49a7b1">
+<p>
+<code>dbus-monitor type='signal',sender='org.gnome.TypingMonitor',interface='org.gnome.TypingMonitor'</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orga503f85" class="outline-3">
+<h3 id="orga503f85">监视方法</h3>
+<div class="outline-text-3" id="text-orga503f85">
+<p>
+<code>dbus-monitor --session "interface=com.deepin.daemon.Display"</code>
+</p>
+</div>
+</div>
+<div id="outline-container-orgad6d0bd" class="outline-3">
+<h3 id="orgad6d0bd"><span class="todo TODO">TODO</span> 监视属性</h3>
+</div>
+<div id="outline-container-orgef142af" class="outline-3">
+<h3 id="orgef142af">参考</h3>
+<div class="outline-text-3" id="text-orgef142af">
+<ol class="org-ol">
+<li><a href="https://wikidev.uniontech.com/index.php?title=Dbus-monitor">https://wikidev.uniontech.com/index.php?title=Dbus-monitor</a></li>
+</ol>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-04-06 Tue 09:31</p>
+<p class="date">Created: 2021-04-06 Tue 09:47</p>
 </div>
 </body>
 </html>
