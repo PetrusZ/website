@@ -1,26 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 <channel>
-<title>codeplayer wiki</title>
+<title>codeplayer</title>
 <atom:link href="https://www.codeplayer.org/publish/feed.xml" rel="self" type="application/rss+xml" />
 <link>https://www.codeplayer.org</link>
-<description>www.codeplayer.org</description>
+<description>codeplayer wiki</description>
     <item>
-    <title><![CDATA[test]]></title>
-    <link>https://www.codeplayer.org/Blog/test.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Blog/test.html</guid>
-    <description><![CDATA[<p>#+TITLE: test #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<p>挑了一些 C 语言中的容易被人忽略的细微之处，C语言的新手常常在这些问题上想当然，其结果自然是 BUG。</p>
-<ul>
-<li>test testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</li>
-</ul>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>
-<p>testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest</p>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
-    </item>    <item>
     <title><![CDATA[Dbus Send与dbus Monitor命令的使用]]></title>
     <link>https://www.codeplayer.org/Wiki/Computer-Science/Linux/dbus-send%e4%b8%8edbus-monitor%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Computer-Science/Linux/dbus-send%e4%b8%8edbus-monitor%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8.html</guid>
@@ -42,7 +26,7 @@
 <p>如果未指定任何模式，则 dbus-monitor 将使用监视输出格式。 #+begin_src –system 和 –session表示系统总线和会话总线，默认为–session –address ADDRESS：监视在ADDRESS处给定的任意消息总线 –profile：使用配置文件模式打印 –monitor：使用dbus-monitor模式打印 #+end_src</p>
 <p>输出概要： #+begin_src type：分为signal和method_call sender：消息或方法调用者 dest：消息接收或方法拥有者 interface：接口名 path：服务路径 member：方法名或属性名 replay：方法调用的返回值 #+end_src</p>
 <p>监视某些系统级接口时，需要加上 sudo 权限，如监视 lastore 更新模块 ~sudo dbus-monitor –system “interface=com.deepin.lastore.Manager”~ ** 监视信号 ~dbus-monitor type=‘signal’,sender=‘org.gnome.TypingMonitor’,interface=‘org.gnome.TypingMonitor’~ ** 监视方法 ~dbus-monitor –session “interface=com.deepin.daemon.Display”~ ** TODO 监视属性 ** 参考 1. https://wikidev.uniontech.com/index.php?title=Dbus-monitor</p>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[go中使用dbus和gsettings]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/go/%e5%9c%a8go%e4%b8%ad%e4%bd%bf%e7%94%a8dbus%e5%92%8cgsettings.html</link>
@@ -155,7 +139,7 @@ service.Wait()</code></pre>
 <p>要点是 Obj 结构定义了一个公开字段 =Name= ，类型为 =gsprop.Bool= ，然后调用 =Bind= 方法绑定了 =gs= 的 =boolean= 设置项和 =obj= 的 =Name= 属性的关联，使得对 =Name= 属性的读写即是对 =gs= 的 =boolean= 设置项的读写， 如果 =gs= 的 =boolean= 设置项的值改变会自动发出 =Name= 属性改变信号。</p>
 <p>gsprop 包中还有其他的类型，来支持各种数据类型，比如 =String=，=Int=，=Uint= 等。</p>
 <p>同样要记得调用 =StartMonitor= 方法开始监听循环。</p>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[搭建VNC服务器]]></title>
     <link>https://www.codeplayer.org/Wiki/Computer-Science/Linux/%e6%90%ad%e5%bb%baVNC%e6%9c%8d%e5%8a%a1%e5%99%a8.html</link>
@@ -171,7 +155,7 @@ service.Wait()</code></pre>
 <p>~sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -shared -noxdamage -xrandr “resize” -rfbport 5900~</p>
 <p>无密码启动 vnc</p>
 <p>~sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -noxdamage -xrandr “resize” -rfbport 5900~</p>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[性能分析]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90.html</link>
@@ -211,7 +195,7 @@ service.Wait()</code></pre>
 <p>类似于 gdb，gprof 需要对待分析的程序做一些改动，因此在程序编译的时候需要加上“-pg”选项，如果程序的某个模块在编译的时候没有加上“-pg”，则该模块的函数会被排除在统计范围之外。比如想要查看库函数的 profiling，则需在链接库函数的时候用“-lc_p”代替”-lc“（gprof 是各个类 UNIX 的标准工具，系统自带的链接库通常有两个版本，它们的区别在于编译的时候是否加上了”-pg“。用-lc_p 等于告诉编译器选择加上了”-pg“的那个版本）。 加上”-pg"选项后，程序的入口会于 main()之前调用 monstartup()，主要是申请内存存储接下来获取的统计信息。</p>
 <p>在每个函数中会调用_mcount()，主要是在函数的堆栈中查询父函数和子函数的地址并保存下来。最后会在程序退出前调用_mcleanup()，将统计结果保存到 gmon.out 中，并完成清除工作。</p>
 <p>gprof 统计各个函数的运行时间是采用的抽样的方法，周期性的查看 Programcounter 指向哪一个函数的地址段，并把结果以直方图的形式保存下来。 ** 使用方法 1. 编译时添加选项 =-pg= 2. 运行程序，生成 gmonf.out 文件 3. 使用 gprof 进行分析， ~gprof <bin path> <gmonf path>~ ** 数据分析 *** Flat Profile 示例图 | 标注 | 释义 | |——————–+———————————————————–| | %time | 每个函数占用的时间比例，所有函数占比和为 100% | | cumulative seconds | 函数及其调用函数执行累计占用时间 | | self seconds | 单独函数执行累计占用时间 | | calls | 函数调用次数 | | self ms/call | 每次调用函数花费的时间,单位毫秒, 不包含调用函数运行的时间 | | total ms/call | 每次调用函数花费的时间,单位毫秒,包括调用函数运行的时间 | | name | 函数名称 | *** Call Graph 示例图 | 标注 | 释义 | |———-+————————————————————————–| | index | 每个函数第一次出现时分配一个编号，根据编号可以方便查找函数的具体分析数据 | | %time | 函数以及调用子函数所占用的总运行时间的百分比 | | self | 函数的总运行时间 | | children | 子函数执行的总时间 | | called | 函数被调用的次数，不包括递归调用 | | name | 函数名称, name 列中，可查看函数之间的调用关系 |</p>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[self-host mail]]></title>
     <link>https://www.codeplayer.org/Wiki/Computer-Science/self-host%20mail.html</link>
@@ -314,7 +298,7 @@ service.Wait()</code></pre>
 <li>[[https://wiki.archlinux.org/index.php/Mail_server][Mail server/archwiki]]</li>
 <li>[[https://newpants.top/2019/11/14/%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8Poste%E4%BA%94%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA/][邮件服务器 Poste 五分钟搭建]]</li>
 </ol>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[酒吧圣经笔记]]></title>
     <link>https://www.codeplayer.org/Wiki/Others/%e9%85%92%e5%90%a7%e5%9c%a3%e7%bb%8f%e7%ac%94%e8%ae%b0.html</link>
@@ -422,7 +406,7 @@ service.Wait()</code></pre>
 <li>为使馏出物保持有使用的原料的芬香，蒸馏结束时酒的浓度不超过 94.8%。</li>
 <li>酒在木桶中贮藏不低于 3 年。</li>
 </ul>]]></description>
-    <pubDate>Wed, 7 Apr 2021 14:34:21 +0800</pubDate>
+    <pubDate>Wed, 7 Apr 2021 14:38:48 +0800</pubDate>
     </item>
 </channel>
 </rss>
