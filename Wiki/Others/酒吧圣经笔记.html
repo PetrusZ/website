@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-01-20 Wed 17:18 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-04-14 Wed 17:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>酒吧圣经笔记</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -267,11 +265,72 @@
 <ul>
 <li><a href="#org1ef8b67">曲折的经历</a></li>
 <li><a href="#org701bbc8">苏格兰威士忌的种类</a></li>
+<li><a href="#org94bbff7">单一麦芽威士忌</a>
+<ul>
+<li><a href="#org048b7ff">原料</a></li>
+<li><a href="#org882a30d">大麦</a></li>
+<li><a href="#org4362376">泥煤</a></li>
+<li><a href="#org4241f90">水</a></li>
+</ul>
+</li>
+<li><a href="#orgd70787f">生产</a></li>
 <li><a href="#orgb2f95d6">爱尔兰威士忌与苏格兰威士忌的法规</a></li>
 </ul>
 </li>
+<li><a href="#org42c1eb3">爱尔兰威士忌</a>
+<ul>
+<li><a href="#org280c92a">历史</a></li>
+<li><a href="#org31a944c">生产</a>
+<ul>
+<li><a href="#org5eddc51">制芽和发酵</a></li>
+<li><a href="#orge261702">蒸馏</a></li>
+<li><a href="#org3d099ba">老熟</a></li>
+<li><a href="#orgd0aa7ad">调和（混合）</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orgfcbf8ab">美国威士忌</a>
+<ul>
+<li><a href="#org6bb384f">生产</a>
+<ul>
+<li><a href="#orgf1e0d09">原料</a></li>
+<li><a href="#orgcb134b3">煮沸和发酵</a></li>
+<li><a href="#orgd4bb9f4">蒸馏和老熟</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org60097b1">伏特加</a>
+<ul>
+<li><a href="#org747e0c0">伏特加的清澈历程</a></li>
+<li><a href="#org11d1075">伏特加和鸡尾酒</a></li>
+<li><a href="#org15fcc39">伏特加：工艺卡片</a></li>
+<li><a href="#org83ca0d1">生产工艺</a>
+<ul>
+<li><a href="#org2905731">酒醪的制备</a></li>
+<li><a href="#orgce62866">蒸馏</a></li>
+<li><a href="#org94facf5">精馏</a></li>
+<li><a href="#org247b2c2">稀释</a></li>
+<li><a href="#orgf44d89d">精滤和串香</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga186044">金酒</a>
+<ul>
+<li><a href="#orgf69feb0">生产</a>
+<ul>
+<li><a href="#org4f02762">配料</a></li>
+</ul>
+</li>
+<li><a href="#org4d63b13">生产方法</a></li>
+<li><a href="#org09cf1f6">金酒：工艺卡片</a></li>
+</ul>
+</li>
+<li><a href="#org13093e7"><span class="todo TODO">TODO</span> 朗姆酒</a></li>
 </ul>
 </div>
 </div>
@@ -536,6 +595,124 @@
 </p>
 </div>
 </div>
+<div id="outline-container-org94bbff7" class="outline-4">
+<h4 id="org94bbff7">单一麦芽威士忌</h4>
+<div class="outline-text-4" id="text-org94bbff7">
+<p>
+单一麦芽威士忌是一种传统的苏格兰威士忌，通常以生产这种威士忌的酒厂名命名。它是由用泥煤烘干的大麦发酵生产出来的。
+</p>
+</div>
+<div id="outline-container-org048b7ff" class="outline-5">
+<h5 id="org048b7ff">原料</h5>
+<div class="outline-text-5" id="text-org048b7ff">
+<p>
+大麦、泥煤和水是单一麦芽威士忌的原料，而蒸馏器、酒桶和储存环境决定了酒的最终口味。
+</p>
+</div>
+</div>
+<div id="outline-container-org882a30d" class="outline-5">
+<h5 id="org882a30d">大麦</h5>
+<div class="outline-text-5" id="text-org882a30d">
+<p>
+大麦非常适合制作易于发酵的酒醪。对大麦种子提出了许多严格的要求。其中有如下要求：
+</p>
+<ul class="org-ul">
+<li>种子必须大小相同以保证同时发芽。</li>
+<li>应色泽鲜黄，没有霉变迹象，散发诱人的自然的气息。</li>
+<li>含有尽可能多的淀粉。</li>
+<li>种子应该具有非常好的形状，大小均匀、颗粒饱满。</li>
+</ul>
+
+<p>
+大麦反映了它生长的土地的特点。土壤影响了大麦中的淀粉，糖、含氮化合物以及其他一些味道因素。为了追求地道的原汁原味，那些曾经喜欢进口大麦的生产者们又开始重新使用那些适应苏格兰气候和土壤的本地产大麦。
+</p>
+</div>
+</div>
+<div id="outline-container-org4362376" class="outline-5">
+<h5 id="org4362376">泥煤</h5>
+<div class="outline-text-5" id="text-org4362376">
+<p>
+泥煤使苏格兰威士忌的一大特点。它由树叶和各种植物其中包含帚石南的腐烂残渣组成，有时会混合有海水泡沫的气味。它的颜色非常暗，在北方地区甚至完全是黑色的，在南方地区呈较为明亮的褐色。泥煤用来烘干大麦。它不易燃烧，会散发具有特殊香味的烟，这些香味会渗入到麦芽中，这也是这种威士忌的特色。因此，在上好的威士忌中我们会味到各种花和植物的香气。当然，烟的香味特点取决于泥煤的成分。
+</p>
+</div>
+</div>
+<div id="outline-container-org4241f90" class="outline-5">
+<h5 id="org4241f90">水</h5>
+<div class="outline-text-5" id="text-org4241f90">
+<p>
+当然，水应当是尽可能的绿色清洁。水的意义非常重要，因为水是决定威士忌的最终口味的关键，这一奥秘至今没有被完全揭开。苏格兰威士忌用的是低矿水。经过简单的过滤和加工它酒可以使用了，在威士忌的生产过程中，至少三次要用到水。
+</p>
+<ul class="org-ul">
+<li>浸泡谷物时需要水；</li>
+<li>在酿造过程中，水溶解淀粉，分解出发酵所必须的芳香物质和元素；</li>
+<li>威士忌酒装瓶之前需要加水稀释，以降低酒度。</li>
+</ul>
+
+<p>
+一些挑剔的酒类鉴别家，甚至从威士忌酒的产地订购水，用来稀释他们的酒品。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd70787f" class="outline-4">
+<h4 id="orgd70787f">生产</h4>
+<div class="outline-text-4" id="text-orgd70787f">
+<p>
+生产单一麦芽威士忌包括几个步骤：制麦芽、煮沸、蒸馏和陈年。每一个步骤都影响酒的味道。
+</p>
+<ol class="org-ol">
+<li>制麦芽制麦芽的目的：在大麦种子中有一种淀粉糖化酶的物质。它将促进大麦中所含淀粉溶解并使其转换为糖。随后，糖在酵母的作用下转换为酒精。此外，制麦芽还可以使种子变得酥脆易碎，以利于把它淹没呈粉末。而借助于泥煤的烟，麦芽还可以获得特有的芬香。下面我们来详细了解一下制麦芽的抓哟步骤。
+<ul class="org-ul">
+<li>浸泡大麦要仔细清洗并逐个挑选种子。将它们在水中浸泡 48 小时。要注意：
+<ul class="org-ul">
+<li>大麦种子易于被手指碾碎；</li>
+<li>易被牙齿咬碎；</li>
+<li>用种子在粗糙的表面写字，会留下像粉笔一样的白色痕迹。</li>
+</ul></li>
+
+<li>发芽浸泡过的种子分层摆在育芽室的架子上。为了让种子充分和氧气接触，要定时翻晒。过一段时间，种子开始萌芽。从这时开始，发芽时间持续 10 天。在这一期间，在种子会形成下一阶段必须的淀粉糖化酶。发芽的大麦被称作”绿色麦芽“。</li>
+<li><p>
+制麦芽绿麦芽在高温影响下，发芽过程会骤然停止，这一过程发生在带顶流盖的塔形育芽室中。它们使苏格兰风景画中不可分割的部分。在火上烘干种子，并要不断朝或中撒泥煤。被烟熏透的种子可以成为”酒曲“了。
+</p>
+
+<p>
+干燥的强度、时间和烟的多少都是影响未来威士忌酒口味的重要因素。这些因素因具体酒厂的不同而有所区别。
+</p></li>
+</ul></li>
+<li>酿造这一过程使用于生产啤酒类似的方法
+
+<ul class="org-ul">
+<li>清洗和碾磨首先，去除麦芽中无用的幼芽，并且磨成细粉。</li>
+
+<li><p>
+与水混合上一步获得的粉末称作 grist，将它慢慢与热水混合。水在淀粉糖化酶的作用下溶解受热变为麦芽糖的淀粉，而麦芽糖随后又转换为糖
+</p>
+
+<p>
+过滤后就得到了麦芽汁，称作 wort，被用于发酵，而麦芽汁的剩余物（麦芽沉淀物）用作家畜的饲料。
+</p></li>
+
+<li>发酵在麦芽汁中加入酵母，发酵持续 45-48 小时。为了不使发酵停止，温度要不超过 35 摄氏度——37 摄氏度。最终，得到酒醪，称作 wash，酒度为 5%。酒醪要在壶式蒸馏器中蒸馏两次。</li>
+</ul></li>
+<li>蒸馏壶式蒸馏器是威士忌的一种象征。它由铜铸造而呈。在生产单一麦芽威士忌的时候，常常用到两个壶式蒸馏器。第一个蒸馏器称作 wash still，容量为 7000 至 23000 升。在第一个蒸馏器的馏出物称作 low wines，酒度为 25% - 30%。它流入第二个蒸馏器中。第二个蒸馏器称作 spirit still，容量为 6000 至 21000 升，在第二个蒸馏器中再进行依次蒸馏。第二次蒸馏的最终产物就是威士忌，酒度为 60% - 70%。
+
+<ul class="org-ul">
+<li>蒸馏器的形状用壶式蒸馏器生产威士忌并不便宜，由于需要大量的能量和价格昂贵的维护（在两次蒸馏之间蒸馏器必须进行刷洗，并且，蒸馏器受到高温的作用，会受到腐蚀，因此必须经常维修和更换）。斌且，蒸馏器的特征与酿酒师的技能和多变的自然条件一起，共同决定了威士忌的品质。因此，人们不断在寻找最理想的蒸馏器形状，这种形状要同时满足它在容量、液体蒸发面积、铜的厚度与蒸馏温度方面的要求。每一家酿酒厂都有自己特有的形状和容积的壶式蒸馏器。人们认为，细高的蒸馏器会生产出含糖较多的威士忌，而短粗的壶式蒸馏器生产的威士忌气味芬芳且含糖较少。在不同的部分，被蒸馏的液体的温度取决于蒸馏器的形状。通过敲打使蒸馏器变形，可以在凹陷处产生出特殊的温度和蒸发条件。有时，蒸馏师会在更新蒸馏器的时候，丝毫不差的复制出旧的蒸馏器形状。有一些更加迷信的人，害怕以后酿造出的威士忌会变味，在按照旧蒸馏器复制新的蒸馏器时，连瑕疵和维修时留下的痕迹也一并复制。</li>
+</ul></li>
+<li><p>
+老熟蒸馏后，向威士忌中加入清水，使其酒精浓度将为 55%左右。然后将其装入橡木桶中。不同的桶对酒的味道产生不同的影响。单一麦芽威士忌可使用曾经盛装过波本酒，雪利酒或波特酒的橡木桶中进行陈酿。这些橡木桶被酒浸透了，使威士忌具有了芬芳的气味。因此，一些著名的单一麦芽威士忌都具有酒或香草的香味，以及杏仁和干果的色泽。
+</p>
+
+<p>
+陈酿使生产威士忌酒的重要阶段。在陈酿的过程中，酒会通过木桶上的微孔蒸发，称作”天使的一份“。这种作用能促进威士忌避免一些不理想物质的影响，使酒中的成分充分混合，并产生所期望的混合芬香。此外，酒精的挥发比水快，这样，威士忌的酒度会慢慢降低，达到通常市场上销售的 40%。如果在陈酿期间威士忌没有自然达到需要的度数，那么，需要用水来进行勾兑。按规定，威士忌的陈酿不用少于 3 年。但实际上陈酿时间要长很多。据计算，理想的单一麦芽威士忌的陈酿时间为 12 年，但是，一些生产者非常由把握的把自己的酒保存 25 年甚至于 50 年。
+</p>
+
+<p>
+苏格兰潮湿的气候非常有利于陈年蒸馏酒，可以更好地开发酒的潜力。威士忌酒一旦装瓶，蒸发作用即告停止，酒将不再陈化。
+</p></li>
+</ol>
+</div>
+</div>
 <div id="outline-container-orgb2f95d6" class="outline-4">
 <h4 id="orgb2f95d6">爱尔兰威士忌与苏格兰威士忌的法规</h4>
 <div class="outline-text-4" id="text-orgb2f95d6">
@@ -549,14 +726,686 @@
 <li>为使馏出物保持有使用的原料的芬香，蒸馏结束时酒的浓度不超过 94.8%。</li>
 <li>酒在木桶中贮藏不低于 3 年。</li>
 </ul>
+
+<table>
+<caption class="t-above"><span class="table-number">&#34920;1&nbsp;</span> 泥煤、谷物、时间、火焰和原木——各种各样的因素影响着威士忌的口味</caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">威士忌的种类威</th>
+<th scope="col" class="org-left">谷物</th>
+<th scope="col" class="org-left">蒸馏</th>
+<th scope="col" class="org-left">酒桶</th>
+<th scope="col" class="org-left">陈年</th>
+<th scope="col" class="org-left">品质的秘密</th>
+<th scope="col" class="org-left">基本香型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">爱尔兰威士忌</td>
+<td class="org-left">- 不发芽或者是发芽的大麦，</td>
+<td class="org-left">在壶式蒸馏器中</td>
+<td class="org-left">通常为盛装过</td>
+<td class="org-left">至少 3 年</td>
+<td class="org-left">- 蒸馏技术</td>
+<td class="org-left">辛香料，香草，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">但是不用泥煤来熏制</td>
+<td class="org-left">进行三次蒸馏</td>
+<td class="org-left">波本酒、雪利酒</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 蒸馏“酒心”的严格选择</td>
+<td class="org-left">蜂蜜，苹果，雪</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 燕麦</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">或波特酒的旧</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 酒桶的正确选择</td>
+<td class="org-left">利酒和胡桃木香，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 黑麦</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">酒桶</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">扁桃&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">苏格兰调和威士忌</td>
+<td class="org-left">- 发芽或不发芽的大麦</td>
+<td class="org-left">用壶式蒸馏器通过</td>
+<td class="org-left">盛装过波本酒，</td>
+<td class="org-left">至少 3 年</td>
+<td class="org-left">- 单一麦芽威士忌的和谐</td>
+<td class="org-left">馥郁浓烈的芳香</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 小麦</td>
+<td class="org-left">两次蒸馏得到的单</td>
+<td class="org-left">雪利酒或波特酒</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">组合</td>
+<td class="org-left">取决于混合的程序；</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 玉米</td>
+<td class="org-left">一麦芽威士忌和用</td>
+<td class="org-left">的木桶</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 谷物威士忌的成功比例能</td>
+<td class="org-left">干果，香草，植物的</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 燕麦</td>
+<td class="org-left">连续蒸馏器获得的</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">提供圆滑的口感</td>
+<td class="org-left">的香型、特点、烟味、</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">谷物威士忌的混合</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">雪利酒味</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">物</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">苏格兰单一麦芽</td>
+<td class="org-left">- 用泥煤熏制的发芽大麦</td>
+<td class="org-left">在壶式蒸馏器中进</td>
+<td class="org-left">盛装过波本酒、</td>
+<td class="org-left">至少 3 年</td>
+<td class="org-left">- 泉水</td>
+<td class="org-left">蜂蜜，香料，桔皮，</td>
+</tr>
+
+<tr>
+<td class="org-left">威士忌</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">行两次蒸馏</td>
+<td class="org-left">雪利酒或波特酒</td>
+<td class="org-left">但常常是 10 年</td>
+<td class="org-left">- 泥煤特点</td>
+<td class="org-left">巧克力，烟，碘，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">的旧木桶</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 壶式蒸馏器</td>
+<td class="org-left">干果&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 正确的酒桶选择</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 气候条件</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">美国拨备威士忌</td>
+<td class="org-left">- 不少于 51%的玉米</td>
+<td class="org-left">连续蒸馏</td>
+<td class="org-left">新的烘烤橡木桶</td>
+<td class="org-left">至少 2 年</td>
+<td class="org-left">- 玉米的含量很高</td>
+<td class="org-left">焦糖，香草，蜂蜜，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 发芽或不发芽的大麦</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">（60%——65%）</td>
+<td class="org-left">烟草&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 其他谷物</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 使用酸麦芽浆，使酒具有</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">更加柔和的口味</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">加拿大威士忌</td>
+<td class="org-left">- 玉米</td>
+<td class="org-left">连续蒸馏，有时在</td>
+<td class="org-left">新的橡木桶或者</td>
+<td class="org-left">至少 2 年</td>
+<td class="org-left">- 很多数量的燕麦</td>
+<td class="org-left">禾本科植物特色，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 黑麦</td>
+<td class="org-left">壶式蒸馏器中进行</td>
+<td class="org-left">是盛装过波本</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 8 年的陈酿</td>
+<td class="org-left">淡淡的苦味，柑橘</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 发芽或不发芽的大麦</td>
+<td class="org-left">两次蒸馏</td>
+<td class="org-left">酒、雪利酒或波</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">果实，姜&#x2026;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">- 其他谷物</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">特酒的旧木桶</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
+<div id="outline-container-org42c1eb3" class="outline-3">
+<h3 id="org42c1eb3">爱尔兰威士忌</h3>
+<div class="outline-text-3" id="text-org42c1eb3">
+</div>
+<div id="outline-container-org280c92a" class="outline-4">
+<h4 id="org280c92a">历史</h4>
+<div class="outline-text-4" id="text-org280c92a">
+<p>
+爱尔兰的蒸馏技术历史非常悠久。在爱尔兰发现了约公元 6 世纪时期的青铜蒸馏器。第一次关于“生命之水”的书面记载（但是没有提到采用何种原料）出自于爱尔兰并且确定其写作日期为 1405 年。同赋税征收的无休止的斗争见证了爱尔兰威士忌的发展历程。16 世纪末，爱尔兰存在着许多地下酿酒厂。他们当中的布什米尔酿酒厂在 1608 年第一个成为了合法的酿酒厂。
+</p>
+</div>
+</div>
+<div id="outline-container-org31a944c" class="outline-4">
+<h4 id="org31a944c">生产</h4>
+<div class="outline-text-4" id="text-org31a944c">
+<p>
+传统的爱尔兰威士忌使用发芽的大麦，不经过熏制，通过三次蒸馏来生产。
+</p>
+</div>
+<div id="outline-container-org5eddc51" class="outline-5">
+<h5 id="org5eddc51">制芽和发酵</h5>
+<div class="outline-text-5" id="text-org5eddc51">
+<p>
+同苏格兰威士忌不同，大麦不需要用泥煤来熏制。为了生成发酵必须的糖，润湿种子，使其发芽，然后使发芽骤然停止，用火将种子烘干。种子磨成细粉然后用热水混合。将混合物蒸煮，然后过滤，获得麦芽汁，在酵母的作用下，麦芽汁发酵，变为浓度为 6%-8%的就酒醪。
+</p>
+</div>
+</div>
+<div id="outline-container-orge261702" class="outline-5">
+<h5 id="orge261702">蒸馏</h5>
+<div class="outline-text-5" id="text-orge261702">
+<p>
+酒醪要经过三次蒸馏，第三次蒸馏是爱尔兰威士忌最大的独创之处。在第一次蒸馏锅蒸馏后进入第二个蒸馏锅，然后进入第三个蒸馏锅，渐渐去除了一些多余的物质并且使其酒精浓度增加，从第三个蒸馏锅出来后，酒精浓度将达到 70%左右。加入清水，使其浓度降低至 55%左右。爱尔兰威士忌使一种含糖较高，有芳香气味并且细腻圆滑的酒，不需要长时间的陈年。
+</p>
+</div>
+</div>
+<div id="outline-container-org3d099ba" class="outline-5">
+<h5 id="org3d099ba">老熟</h5>
+<div class="outline-text-5" id="text-org3d099ba">
+<p>
+陈年对威士忌的口味有显著的影响。在酒桶中陈化期间，部分酒精会透过木质的细孔挥发出来，这样威士忌就会失掉一些酒精浓度。去除掉最后的一些不理想的组成部分，剩余的物质酒决定了酿制的酒的特色。木质酒桶赋予威士忌一种特殊的芳香。在爱尔兰，人们常常使用曾经盛装过雪利酒或者是波特酒的酒桶。在一些酒窖利，盛装威士忌的酒桶一个叠一个的垂直摆放，这样可以抑制酒桶间的空气循环，从而减缓被称作”天使的一份“的挥发。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd0aa7ad" class="outline-5">
+<h5 id="orgd0aa7ad">调和（混合）</h5>
+<div class="outline-text-5" id="text-orgd0aa7ad">
+<p>
+调酒师将几种威士忌混合在一起，从而制造出最完美的酒。用来调和的威士忌各不相同：
+</p>
+<ul class="org-ul">
+<li>陈年时间（从 3 年到 20 年甚至更久）</li>
+<li>生产原料（发芽或者未发芽的大麦，燕麦，小麦，黑麦）</li>
+<li>蒸馏方式（蒸馏锅的尺寸，酒心部分分离管的宽度）</li>
+</ul>
+
+<p>
+所有的这些威士忌将自己的优点混合起来，赋予它最馥郁浓烈的芬香，调号的酒药放置几天，这一时期称做”婚配期“，然后装瓶。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfcbf8ab" class="outline-3">
+<h3 id="orgfcbf8ab">美国威士忌</h3>
+<div class="outline-text-3" id="text-orgfcbf8ab">
+</div>
+<div id="outline-container-org6bb384f" class="outline-4">
+<h4 id="org6bb384f">生产</h4>
+<div class="outline-text-4" id="text-org6bb384f">
+</div>
+<div id="outline-container-orgf1e0d09" class="outline-5">
+<h5 id="orgf1e0d09">原料</h5>
+<div class="outline-text-5" id="text-orgf1e0d09">
+<p>
+生产美国威士忌所使用的主要谷物有玉米、大麦和黑麦。虽然有时也是用小麦。发酵的意义非常重大，它对于生成的威士忌的气味和口感起着重要的作用。对于水也有严格的要求，特别是水的软硬度。
+</p>
+</div>
+</div>
+<div id="outline-container-orgcb134b3" class="outline-5">
+<h5 id="orgcb134b3">煮沸和发酵</h5>
+<div class="outline-text-5" id="text-orgcb134b3">
+<p>
+玉米磨成细粉，用水搅拌后煮沸。麦芽汁冷却到 156 华氏度（69 摄氏度），然后按一定的比例加入磨成细粉的黑麦和小麦。将混合物煮沸，然后冷却到 146 华氏度（63 摄氏度），在其中加入磨成细粉的大麦芽。其中含有重要的淀粉糖化酶，这是在发酵过程中将淀粉转换为糖的重要物质。麦芽汁冷却到室温时，向其中加入酵母。发酵需要持续大约 3 甜，最后，形成的醪液称作 distiller's beer（蒸馏啤酒）。这种”啤酒“要经过蒸馏、加水勾兑和过滤。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd4bb9f4" class="outline-5">
+<h5 id="orgd4bb9f4">蒸馏和老熟</h5>
+<div class="outline-text-5" id="text-orgd4bb9f4">
+<p>
+酒醪在科菲蒸馏器中进行连续蒸馏。蒸馏后得到的威士忌酒度不高于 190proof（95% vol.），以保证使用的原来的特色不变。威士忌加水勾兑，使其浓度降至 125 proof（62.5% vol.）。经过在橡木桶中陈年 2～4 年，有时会更长，之后可装瓶。每一种美国威士忌都有其生产上的独有的特色。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org60097b1" class="outline-2">
+<h2 id="org60097b1">伏特加</h2>
+<div class="outline-text-2" id="text-org60097b1">
+<p>
+样式讲究，清澈纯正的伏特加是酒吧里最重要的酒精饮料之一。在它的诞生国——波兰和俄罗斯，它被看作民族象征。在那里。关于谁先发明了伏特加的争论至今没有停止。伏特加在这些地方拥有和总要的经济和社会地位。几个世纪以来，它还担负着充实国库的重任。
+</p>
+</div>
+<div id="outline-container-org747e0c0" class="outline-3">
+<h3 id="org747e0c0">伏特加的清澈历程</h3>
+<div class="outline-text-3" id="text-org747e0c0">
+<p>
+伏特加是清澈的酒精饮料。但这种完全彻底的清澈不是与生俱来的，它是自身独特演化的结果。其他酒精饮料的发展方向是口感复杂，寻找最佳的贮藏条件和理想酒龄。与之不同的是，伏特加追求的是清澈和精致。不管使何种风格，精细雅致使所有著名伏特加共同的特点。
+</p>
+</div>
+</div>
+<div id="outline-container-org11d1075" class="outline-3">
+<h3 id="org11d1075">伏特加和鸡尾酒</h3>
+<div class="outline-text-3" id="text-org11d1075">
+<p>
+鸡尾酒的出现是伏特加酒发展过程中的里程碑。色彩丰富，口味众多的鸡尾酒世界需要精美的酒。这些酒能够与其他元素组合而不改变它们的味道，不但品质要高，而且在提高酒度的同时，不能使混合出的气味失真。这里，伏特加扮演了主要角色。
+</p>
+</div>
+</div>
+<div id="outline-container-org15fcc39" class="outline-3">
+<h3 id="org15fcc39">伏特加：工艺卡片</h3>
+<div class="outline-text-3" id="text-org15fcc39">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">原料</td>
+<td class="org-left">谷物（黑麦、小麦、大麦）用于酿造上等的伏特加，而对于低级别的，则可以用土豆甚至甜菜作为原料</td>
+</tr>
+
+<tr>
+<td class="org-left">酿造</td>
+<td class="org-left">在容器中进行连续的蒸馏和精馏</td>
+</tr>
+
+<tr>
+<td class="org-left">存放</td>
+<td class="org-left">绝大多数情况下，伏特加都不久存。但在俄罗斯和波兰有一种叫做”starka“的陈年烈性酒，是用木桶盛装存放，效率不错</td>
+</tr>
+
+<tr>
+<td class="org-left">质量秘诀</td>
+<td class="org-left">精挑细选的谷物，酒精的纯度，水的质量</td>
+</tr>
+
+<tr>
+<td class="org-left">酒度</td>
+<td class="org-left">高于 40%</td>
+</tr>
+
+<tr>
+<td class="org-left">香味</td>
+<td class="org-left">伏特加可以有水果香味或其他一些淡淡的味道</td>
+</tr>
+
+<tr>
+<td class="org-left">外观形态</td>
+<td class="org-left">可能使静态的白色，或者是串香的（柠檬的，毛嵩豆的，胡椒的等等）</td>
+</tr>
+
+<tr>
+<td class="org-left">饮用方式</td>
+<td class="org-left">可以用普通瓶子也可以用长颈玻璃瓶</td>
+</tr>
+
+<tr>
+<td class="org-left">酒杯</td>
+<td class="org-left">高脚杯</td>
+</tr>
+
+<tr>
+<td class="org-left">饮用温度</td>
+<td class="org-left">-10 摄氏度到-18 摄氏度</td>
+</tr>
+
+<tr>
+<td class="org-left">伴侣</td>
+<td class="org-left">各种果汁、奎宁水、甜酒、苦艾酒、苦酒</td>
+</tr>
+
+<tr>
+<td class="org-left">鸡尾酒</td>
+<td class="org-left">血腥玛丽、螺丝刀、马天尼、大都会</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org83ca0d1" class="outline-3">
+<h3 id="org83ca0d1">生产工艺</h3>
+<div class="outline-text-3" id="text-org83ca0d1">
+<p>
+伏特加酒给人的第一印象使简单，它的生产原则非常简单——追求最终产品的最大纯度。但是，又没有什么比它更复杂的了。生产伏特加需要极高的工艺，完善的设置，丰富的经验，集中的注意力。没有任何杂志可以残留在酒中，因为它无法藏身。
+</p>
+
+<p>
+原料、酒精和水的质量区分开了酒的品质，让有的牌子名扬天下，而有的牌子却默默无闻。
+</p>
+</div>
+<div id="outline-container-org2905731" class="outline-4">
+<h4 id="org2905731">酒醪的制备</h4>
+<div class="outline-text-4" id="text-org2905731">
+<p>
+谷物使酿造上等伏特加必备的原料。把谷物磨成粉，加水，加压蒸煮。使谷物中含有的淀粉变成糊状，然后加入糖。得到的麦芽糊冷却后，加入酵母使之发酵。整个发酵过程持续 40 小时，得到的酒醪约为 9 度。
+</p>
+</div>
+</div>
+<div id="outline-container-orgce62866" class="outline-4">
+<h4 id="orgce62866">蒸馏</h4>
+<div class="outline-text-4" id="text-orgce62866">
+<p>
+在不少于两座蒸馏塔中用连续蒸馏和精馏的方法对酒醪进行提纯，制成度数最高的酒精。蒸馏塔一般 20-40 米高。让我们看一下工厂中制造酒精的方法：进行蒸馏的容器有 5 座蒸馏塔，先使用其中的两座进行蒸馏，用以除去大部分的有害物质。加入热酒醪，使其蒸汽由下往上进入第一个蒸馏塔，再顶不和向下送入的水蒸汽相遇。水蒸汽从酒醪中提取酒精。酒醪的残留物——酒槽，从下方排出，用作家畜饲料。而含有约 30%酒精的混合蒸汽上升到顶部，并沿管道向下进入第二座蒸馏塔。在它的顶部，酒精浓缩，达到 93%的酒度，并准备进行下一步的精馏。
+</p>
+</div>
+</div>
+<div id="outline-container-org94facf5" class="outline-4">
+<h4 id="org94facf5">精馏</h4>
+<div class="outline-text-4" id="text-org94facf5">
+<p>
+这是决定伏特加酒纯净度的非常重要的过程。粗馏酒精在连续的三个蒸馏塔中进行精馏。去除杂醇油和甲醇，最终得到的酒精达到 96%的酒度。它没有气味，没有初级原料的味道。
+</p>
+</div>
+</div>
+<div id="outline-container-org247b2c2" class="outline-4">
+<h4 id="org247b2c2">稀释</h4>
+<div class="outline-text-4" id="text-org247b2c2">
+<p>
+将酒精与水混合，使其酒度降低到 40%。稀释用水的纯度和质量很重要。此时伏特加经过严格的质量检查就可以装瓶了。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf44d89d" class="outline-4">
+<h4 id="orgf44d89d">精滤和串香</h4>
+<div class="outline-text-4" id="text-orgf44d89d">
+<p>
+以上讲述了生产上等的，高品质的伏特加酒的一般过程。在不同的生产厂，此过程可能不太一样。
+</p>
+
+<p>
+有些厂家，特别是在俄罗斯，使用厚度达 8 米的木炭层过滤伏特加酒，并向其中加入香料（比如：茴芹，调料丁香，桦树芽，樱桃叶），它们带给伏特加淡淡的，不易觉察的香味。串香的另一个方法使将香料浸透。这个方法用于生产带有特殊味道的伏特加，例如柠檬味的，黑加仑味的，香草味的。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga186044" class="outline-2">
+<h2 id="orga186044">金酒</h2>
+<div class="outline-text-2" id="text-orga186044">
+</div>
+<div id="outline-container-orgf69feb0" class="outline-3">
+<h3 id="orgf69feb0">生产</h3>
+<div class="outline-text-3" id="text-orgf69feb0">
+</div>
+<div id="outline-container-org4f02762" class="outline-4">
+<h4 id="org4f02762">配料</h4>
+<div class="outline-text-4" id="text-org4f02762">
+<p>
+酒精、植物香料和水是金酒的三种基本配料。
+</p>
+
+<ul class="org-ul">
+<li><b>酒精</b> 酒度不低于 96%，被完全净化，没有任何邪杂味。谷物（通常为大麦、玉米）是基本原料，偶尔也用糖蜜（制糖的副产物）和土豆。</li>
+
+<li><b>香料</b> 按照纯净度和质量的标准要求，精心选择，严格检查。金酒的主要和不可或缺的成分使杜松子，通常产自意大利和南斯拉夫。有些酿造商用布口袋装杜松子，存放在干燥阴凉的房间里一年左右，让它们熟透并浓缩香气。其他香料有：香菜、当归、鸢尾根、扁桃、桔皮、柠檬皮、甘草、肉豆蔻、小豆蔻、桂皮等等。按照规定，生产高质量的金酒必须有 6 到 10 种植物成分。基本上，酿造金酒的配方都是厂家的商业秘密。</li>
+
+<li><b>水</b> 无论是蒸馏用水还是装瓶前稀释用水都应保证足够纯净、透明、没有任何异味。通常在使用前应对水进行脱矿处理，以去除水中含有的各种化合物。</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d63b13" class="outline-3">
+<h3 id="org4d63b13">生产方法</h3>
+<div class="outline-text-3" id="text-org4d63b13">
+<p>
+今天，在很多国家生产金酒的方法大致有两种。第一种传统的生产方法是蒸馏法，用它生产的金酒品质纯正，也称作 Distilled Gin 或 London Gin。第二种方法使混合法，用于生产价格低廉的金酒。
+</p>
+
+<ul class="org-ul">
+<li><p>
+第一种生产方法（蒸馏法）  酒精用水稀释到酒度为 45%，加入香料。把得到的混合物加入到蒸馏器（通常为铜制）中。在某些场合，把香料放入特质的槽子或者口袋里，并且把它摆在酒精上面。
+</p>
+
+<p>
+然后进行蒸馏，目的是让酒精充满了香料的味道。掐头去尾，保留了中间饱和了香料味道的馏出物，其酒度达到了 80%。加入水，降低酒精含量。这时得到的金酒就可以饮用了，其酒度介于 37.5%到 47.3%之间。
+</p></li>
+
+<li>第二种生产方法（混合法）  这种方法由于”金酒精“的出现而便得十分简单。它可以通过在小尺寸的蒸馏器中蒸馏混有少量酒精的植物配料或者香料渣得到。然后，将得到的精华与少量的普通酒精混合并加水稀释。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org09cf1f6" class="outline-3">
+<h3 id="org09cf1f6">金酒：工艺卡片</h3>
+<div class="outline-text-3" id="text-org09cf1f6">
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">原料</td>
+<td class="org-left">一般是谷物，有时也用糖蜜和土豆。可以使用杜松子、香菜、当归、鸢尾根、扁桃等做串香剂</td>
+</tr>
+
+<tr>
+<td class="org-left">酿制方法</td>
+<td class="org-left">第一种方法：酒精和香料一起蒸馏。第二种方法：将酒精和香料精混合</td>
+</tr>
+
+<tr>
+<td class="org-left">陈年</td>
+<td class="org-left">比较少用</td>
+</tr>
+
+<tr>
+<td class="org-left">品质关键</td>
+<td class="org-left">经过充分精华的酒精，清洁的水，优质的香料，成熟的配方，蒸馏法酿造</td>
+</tr>
+
+<tr>
+<td class="org-left">酒精度</td>
+<td class="org-left">37.5%到 47.3%之间</td>
+</tr>
+
+<tr>
+<td class="org-left">基本香型</td>
+<td class="org-left">金酒拥有酿造过程中使用的香料的味道：杜松子、香菜、柠檬、橙子等等</td>
+</tr>
+
+<tr>
+<td class="org-left">类型</td>
+<td class="org-left">按照生产方法的不同可以分为：蒸馏金酒，又称 Distilled 或 London Gin；而通过混合法生产</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">的金酒就不能这么叫。还有几种串香型的金酒，Lemon Gin，Sloe Gin 等等</td>
+</tr>
+
+<tr>
+<td class="org-left">饮用方式</td>
+<td class="org-left">主要是用作鸡尾酒的基酒</td>
+</tr>
+
+<tr>
+<td class="org-left">”伴侣“</td>
+<td class="org-left">奎宁水、柠檬、干苦艾酒、苦酒、果汁、蜜酒</td>
+</tr>
+
+<tr>
+<td class="org-left">鸡尾酒</td>
+<td class="org-left">Dry Martini（干马天尼），Gin Fizz（金非士），White Lady（白色佳人），Negroni（尼格罗尼）等等很多</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org13093e7" class="outline-2">
+<h2 id="org13093e7"><span class="todo TODO">TODO</span> 朗姆酒</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-01-20 Wed 17:18</p>
+<p class="date">Created: 2021-04-14 Wed 17:48</p>
 </div>
 </body>
 </html>
