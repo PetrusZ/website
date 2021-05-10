@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-05-10 Mon 18:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何快速且深入地学习一门新技术</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">如何快速且深入地学习一门新技术</h1>
+<p>
+你好，我是颜群。
+</p>
+
+<p>
+软件开发正处于快速发展的时代，新技术层出不穷，已有技术也在频繁更新。甚至有人调侃地说“新技术出现的速度，远大于个人的学习速度”。那么，在这个日新月异的互联网时代，软件开发者们，应该如何保持自己的竞争力呢？今天，我们就来聊聊，如何快速且深入地学习一门新技术。
+</p>
+
+<p>
+大家可能都知道，英语考试中，有一个经典的题型叫“完形填空”。在我上高中的时候，英语老师就告诉我“在做完形填空之前，一定要先花 1 分钟左右的时间，快速地把整篇文章阅读一遍。这样就会对全文的内容有一个大致的了解。之后再去做题，准确率就会提高不少”。
+</p>
+
+<p>
+我认为，这种做英语完形填空的方法，也同样适用于学习软件技术。我们在学习某一个新技术时，也应该先快速地去了解这个新技术的大致情况，之后再仔细地研究这个新技术到底包含了哪些内容，也就是从整体深入到细节。
+</p>
+
+<p>
+例如，Java 基础中的 JDBC、Web 前端中的 HTML、框架技术中的 Netty 等，这些技术都有一个特点就是：可以遵循一定的“套路”去编写。因此，我认为好的学习方法应该是，先不管三七二十一，快速地去了解一下具体的“套路”是什么，然后再深入研究“套路”中的每一步到底是什么意思，这样才能高效地学习一门新技术。
+</p>
+
+<p>
+比如 HTML，不管你要布局什么样的页面，你都得先把、、等标签搭一遍，之后才能编写你想要实现的代码。
+</p>
+
+<p>
+再比如 JDBC，无论你是要进行什么样的数据访问操作，每次都得先加载驱动；然后获取连接对象；之后是创建一个操作对象；最后再处理结果。可能细节上会稍有不同，但整体的流程一定是这么几步。
+</p>
+
+<p>
+再看一下 Netty，虽然 Netty 的实现要稍微复杂一些，但是每次的开发步骤也都几乎是一致的。基本上你只要编写过一次 Netty，下次再编写时，就可以把上次的代码结构先复制过来，然后修改业务逻辑就行了。你看，不论是前端技术、基础技术，还是框架技术，是不是都存在着我们刚才说的“套路”呢？
+</p>
+
+<p>
+这说明了什么呢？至少说明了一件事儿，在学习新技术之前，我们一定得先宏观地、全局性地了解一下技术全貌，这样才能清晰地了解哪些是技术重点，哪些仅仅是“套路”而已。
+</p>
+
+<p>
+那么这时你可能会问了，我该如何快速地浏览技术全貌呢？这其实是“快速阅读”的理论知识了，推荐大家可以通过快速地、跳跃性地查阅资料的方式，看下新技术的实现流程大致是什么样子的。具体细节，你可以查阅技术官网、看书、看博客、看教学视频等等各种方式都行，重点看那些反复出现的重复代码。一般而言，那些重复频率较多的代码，就是这个新技术的基础代码结构了。
+</p>
+
+<p>
+好，在对一个新技术有了宏观的认识后，接下来就可以正式进入深度学习阶段了。一般而言，我们可以通过文档等资料，轻松地实现一个入门级别的 HelloWorld 程序。接着就可以不断地丰富这个 HelloWorld，并让它最终变成一个丰富的案例库了。
+</p>
+
+<p>
+现在，就拿我自己学习 Netty 的亲身经历来讲一下。先说说我当时所面临的一个情况吧，以前，我在做一个项目时，用到了一些 NIO 和网络编程技术，但由于项目交付的时间很紧，并且相关的代码量也不是特别多，所以当时我就没有多想，直接手写了与项目相关的 NIO 和网络编程技术。
+</p>
+
+<p>
+后来，在那个项目刚刚发布第一版之后，为了找到一些后续版本在性能方面的改进思路，我就上网搜索了一下项目中经常使用到的一些 NIO API，然后发现在很多出现 NIO 的页面中，都能看到“Netty”字样的相关词条。显然，Netty 与 NIO 之间必然有着很大关系。于是我就顺手查了下关于“Netty”的简介，发现它是一款“高性能的、基于 NIO 的网络编程框架”。当时就很自然地有了一个想法，以前做项目时，手写的 NIO 和网络编程，好像就可以用 Netty 来替代。
+</p>
+
+<p>
+于是，为了验证这个想法到底是不是真的可行，我就在之后的一段时间开始了关于 Netty 的学习。由于当时刚刚才做完项目，身体比较疲惫，就采用了看视频的方式，以便于减轻自己的脑力开销。当时我找了一个评价不错的视频，用倍速播放、跳跃性拉进度条的方式，用 2 个小时大致地看了看那套视频的核心内容。然后得到了一个心得：Netty 的 HelloWorld，并不像其他技术那么简单，但和其他技术一样，有着标准的代码编写模板和编写流程。
+</p>
+
+<p>
+具体来说，几乎每次在编写 Netty 代码时，我们都需要经过这么几步：通过一个类似 server() 的方法，将 Netty 的流程组织起来，然后调用自定义初始化器，接着再在自定义初始化器中根据业务需求，加入一些 Netty 内置的处理器。对于那些 Netty 没有提供的处理器，就编写自定义处理器去解决。最后再在自定义处理器中，实现具体的处理逻辑就可以了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">server</span>() {
+    ...
+    ServerBootstrap serverBootstrap = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">ServerBootstrap</span>();
+    <span style="color: #ECBE7B;">ChannelFuture</span> <span style="color: #dcaeea;">channelFuture</span> = serverBootstrap
+            .group(...)
+            .channel(NioServerSocketChannel.<span style="color: #51afef;">class</span>)
+            .childHandler(&#33258;&#23450;&#20041;&#21021;&#22987;&#21270;&#22120;).bind(&#31471;&#21475;&#21495;).sync();
+    channelFuture.channel().closeFuture().sync();
+   ...
+}<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#33258;&#23450;&#20041;&#21021;&#22987;&#21270;&#22120;</span>
+<span style="color: #51afef;">public</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">MyNettyServerInitializer</span> <span style="color: #51afef;">extends</span> ... {
+    <span style="color: #51afef;">protected</span>  <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">initChannel</span>(<span style="color: #ECBE7B;">SocketChannel</span> <span style="color: #dcaeea;">sc</span>)<span style="color: #51afef;">throws</span> <span style="color: #ECBE7B;">Exception</span>{
+        <span style="color: #ECBE7B;">ChannelPipeline</span> <span style="color: #dcaeea;">pipeline</span>=sc.pipeline();
+        pipeline.addLast(<span style="color: #ECBE7B;">netty</span> <span style="color: #dcaeea;">&#20869;&#32622;&#22788;&#29702;&#22120;</span>);
+        pipeline.addLast(&#33258;&#23450;&#20041;&#22788;&#29702;&#22120;);
+    }
+}<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#33258;&#23450;&#20041;&#22788;&#29702;&#22120;</span>
+<span style="color: #51afef;">public</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">MyNettyServerHandler</span> <span style="color: #51afef;">extends</span> ... {
+    <span style="color: #a9a1e1;">@Override</span>
+    <span style="color: #51afef;">protected</span> <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">channelRead0</span>(<span style="color: #ECBE7B;">ChannelHandlerContext</span> <span style="color: #dcaeea;">ctx</span>, <span style="color: #ECBE7B;">HttpObject</span> <span style="color: #dcaeea;">msg</span>){
+        &#19994;&#21153;&#36923;&#36753;
+    }
+}
+</pre>
+</div>
+
+<p>
+有了这种对 Netty 的整体认识后，我就能很轻松地实现一个基于 CS 架构的 HelloWorld 了。HelloWorld 实现之后，心里就消除了对 Netty 的陌生感，并且有了一定的成就感。
+</p>
+
+<p>
+但 HelloWorld 仅仅算作是一个快速入门，要想真正地掌握 Netty，必然还得进行深入的学习。那么该如何深入呢？我认为，通过案例来倒逼对理论的理解，是一个很好的方法。于是，我就正式地开始了对 Netty 案例库的搭建，我先是把这个 HelloWorld，扩展成了一个点对点通信的 demo，成功之后，再把它升级成了一个聊天室案例。做完后，还给它加上了心跳监测机制，并结合 Protobuf 组件实现了一个 RPC 功能。
+</p>
+
+<p>
+像这样，我每次只实现一个很小的功能模块，但随着持续的积累，这个 HelloWorld，就会变成一个包含了 Netty 各种功能的案例库。当这个案例库编写完成时，我对 Netty 就已经很熟悉了。
+</p>
+
+<p>
+这里我来做个小总结，关于我自身学习 Netty 的流程，再来简单梳理和回顾下，希望大家可以从中获得些许启发，一定程度上帮助你最终找到一种适合你自己的学习方法：我在准备升级项目时，发现可以用 Netty 改进；然后通过快速学习两小时，了解了 Netty 的整体流程；接着，再从 HelloWorld 开始，逐步积累了 Netty 案例库，最后，当案例库搭建完成的时候，我也在大脑里形成了自己对 Netty 的思维框架图。
+</p>
+
+<p>
+好，相信通过前面的讲解，你已经清楚了如何快速掌握一门新技术的方法了。但还有两个重要的问题需要解决：一个是，对知识的掌握的足够吗？另一个是，刚学会的新技术，会不会很快又给忘掉了？
+</p>
+
+<p>
+我觉得，这其实可以借鉴我们上学时的方法：考试。考试的目的就在于检验知识掌握程度和是否遗忘的最好方式了。但要想真的落实自己给自己“考试”这件事儿，也是很困难的，谁来出题？谁来阅卷？所以，我们得把“考试”的方法，换个方式体现出来。
+</p>
+
+<p>
+这里我建议的一个方式就是做微服务案例。可以先用每个新技术搭建一个独立的微服务，然后再把由各个不同技术搭建的微服务，整合起来。举个例子，当你学完 SSH 时，就用 SSH 搭建一个“用户管理”的微服务；当你学完 SSM 时，再用 SSM 搭建一个“支付结算的微服务”；当你学完 Spring 全家桶时，再用 Spring 系列技术搭建一个“购物微服务”，等等。
+</p>
+
+<p>
+同时，当你每搭建一个微服务之后，还需要把这个微服务，通过 RPC 技术和其他微服务整合起来。例如，用 Spring 全家桶开发的“购物微服务”，调用 SSH 搭建的“用户管理微服务”，再用这个“用户管理微服务”远程调用 SSM 搭建的“支付结算微服务”，也就是将所有的技术都整合在同一个案例中。
+</p>
+
+<p>
+这么做，一方面，可以通过动手开发的方式来做项目，对已掌握的技术进行查漏补缺。因为，在开发这些微服务案例的同时，你就会清晰地了解到这些技术中，哪些是重点，哪些是次重点，哪些是自己学的时候遗漏掉的内容，从而可以解决刚才第一点里提到的，有关于知识掌握得够不够的问题。
+</p>
+
+<p>
+另一方面，这种微服务项目，可以保持我们对所有技术的新鲜度。例如，SSH 搭建的微服务，可能是你半年前就实现好了的，但你现在用 SSM 调用 SSH 时，就必然会涉及到一些对 SSH 代码的联调操作，而在这个联调的过程中，你也会自然而然地对半年前的 SSH 项目，进行一次复习。因此，这也可以解决刚才第二个“防止遗忘”的问题。
+</p>
+
+<p>
+到这里，相信大家已经掌握了一种持续学习的方法了。最后再与大家探讨一下，如何学习难点技术。我们可以将难点技术分为两类，一类是偏理论型的，一类是偏实战型的。先看看第一类，也就是对于偏理论型的难点技术，该如何去学习。
+</p>
+
+<p>
+像数据结构和算法、设计模式，以及架构设计等等，都是较为难理解的偏理论型技术，这些也经常成为初级开发者进阶路上的绊脚石。那么如何才能顺利地跨越这些障碍呢？
+</p>
+
+<p>
+我认为可以采用“先拆解目标，再集中消化”的学习方式来学习这类技术。举个例子，对于算法、设计模式等较为难理解的技术来说，尽量不要想着花一周或者一个月，就把它们彻底搞懂。而应该先计算一下学习的知识数量，然后碎片化地学习。再举个例子，假设你想要学习算法，那就得先计算一下一共有多少个算法需要学。
+</p>
+
+<p>
+比如有 30 个，那就再把这些算法，根据难易程度进行排序，然后从简单的学习，慢慢过渡到较难的算法。至于哪些算法简单，哪些又比较难，相信大家通过搜索引擎就可以轻松地得到结论了。当有了难易程度的排序后，再用碎片化时间，将那 30 个算法逐个攻破。
+</p>
+
+<p>
+比如，在上下班的地铁上、晚餐后的半小时，或者睡前的一段时间，利用一些碎片化的时间去学习某个算法，将业余时间进行合理地安排和规划，其实碎片化的时间，很容易减轻自己学习上的畏难情绪。而且，我们每天的碎片化时间，其实是很多的，如果真的能够被高效利用起来，相信你一定能在不知不觉中，攻克掉很多难点。
+</p>
+
+<p>
+当你感觉自己对技术内容理解得差不多的时候，再用一个比较集中的时间，把它彻底消化掉。之后，再学习下一个。
+</p>
+
+<p>
+好，刚才说的是如何学习偏理论型的难点技术。接下来再来聊聊如何学习偏实践型的难点技术。这里称为“实践”，是因为有些技术，必须借助于开发工具，来追踪代码或者调试才能掌握的。就比如说，阅读一个框架的源代码，就是偏实践型技术的一个典型代表了。
+</p>
+
+<p>
+对于偏实践型技术的学习，最主要的就是“要在实践前，心里已经对实践的内容有了清晰的理论基础，要把动手实践仅仅看成是一种揭晓谜底的感觉”。这里给大家还原一下我学习 MyBatis 框架源码时的情况。
+</p>
+
+<p>
+当时在阅读 MyBatis 源码之前，我已经对 MyBatis 的应用非常熟悉了，因此清晰地知道 MyBatis 的执行是怎样的，也就是需要先经过“获取 SqlSessionFactory 对象”和“获取 SqlSession 对象”这两步。所以，我的思路就是：先写一个最简单的 MyBatis 程序，然后分析这两步源码的底层，到底是怎么执行的。这其实也就是我刚才提到的，我在读 MyBatis 之前，已经知道了 MyBatis 大致的执行步骤，现在仅仅是想通过阅读源码，亲眼见一下底层到底是怎么写的而已。
+</p>
+
+<p>
+于是，我通过 debug 进入源码，也就是打开了“获取 SqlSession 对象”的底层源码，然后随着 debug 的步骤，依次进入了 build()、parse()、parseConfiguration() 等方法，并在 parseConfiguration() 方法中，看到了 typeAliases、plugins、environments、mappers 等名字，显然这些名字就是我们最常用 mapper 配置文件中的标签名。
+</p>
+
+<p>
+结合 MyBatis 的基础知识，很容易知道，MyBatis 的底层，是通过 parseConfiguration() 方法在解析 mapper 配置文件，因此我们就只需要深入研究 parseConfiguration() 的每一步实现，就能知道 MyBatis 对于解析 mapper 配置文件的底层源码实现了。
+</p>
+
+<p>
+当然，考虑到每个人对技术基础的掌握情况是不一样的，每门技术也有很大程度的不同，所以不同的人在学习不同的技术时，可能会存在着或多或少的个性化差异。但我相信学习新技术的整体思路是一样的，就是先快速地进行整体阅读，然后再逐步积累、逐步深入，可以说，这一定是一套很不错的较为有体系的方法论。
+</p>
+
+<p>
+好，那么到现在，如何学习难点技术的方法也讲完了。现在，再给大家一个关于营造学习气氛的方法。很多时候，开发者在学习时都是很孤独的，都是一个人趴在电脑前。一定程度上来讲，个人学习的气氛就没有团体的好。大家想想，是不是在高中的自习室，或者大学图书馆里的学习气氛，就感觉要好很多呢。所以，如果你有很多志同道合的朋友，可以邀请他们一起共同学习。
+</p>
+
+<p>
+但如果不方便，你也可以注册一个微信公众号，或者技术博客，再或者将自己学习的项目部署在云端，然后开放给大家一起访问。
+</p>
+
+<p>
+总之，就是要想办法，将自己的学习成果分享出来，让大家一起来阅读，或者说监督你的学习。并且你也可以通过“留言”功能，与大家互动。如果你是讲师，那么可以把一些学到的东西录制成视频，然后发布出去。
+</p>
+
+<p>
+坚持这样做，除了能够营造出自学的气氛以外，还可以将自己学到的技术沉淀下来，慢慢地，也会为自己吸引到一批技术爱好者，从而提升自己的影响力。是不是一举多得呢？
+</p>
+
+<p>
+好，今天的分享到这里就结束了，在学习新技术时，我们可以先快速地了解技术的宏观内容，然后从 HelloWorld 开始，逐步地搭建一个案例库，从而掌握技术的广度和深度。
+</p>
+
+<p>
+当案例库搭建完以后，再通过微服务技术和其他技术进行整合，形成一张更大的知识网络，从而让自己长期接触到这些技术，防止遗忘。此外，对于偏理论型的难点技术，建议大家“分而治之”，用碎片化的时间逐个攻破，减少自己对难点的恐惧心理；而对于偏实践型的难点技术，需要在实践前，心里已经对实践的内容有了清晰的理论基础。最后，建议大家将自己学到的技术分享出去，做好技术沉淀的同时，也能不断提升自己的知名度。
+</p>
+
+<p>
+好，我是颜群，希望我的分享可以帮助到你，也希望你在视频下方的留言区和我一起探讨。
+</p>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-05-10 Mon 18:03</p>
+</div>
+</body>
+</html>
