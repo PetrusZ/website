@@ -5,6 +5,163 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[Go语言调度器]]></title>
+    <link>https://www.codeplayer.org/Wiki/Program/go/go%e8%af%ad%e8%a8%80%e8%b0%83%e5%ba%a6%e5%99%a8.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Program/go/go%e8%af%ad%e8%a8%80%e8%b0%83%e5%ba%a6%e5%99%a8.html</guid>
+    <description><![CDATA[<p>#+TITLE: Go语言调度器 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>Go 语言调度器 所有应用程序都是运行在操作系统上，真正用来干活(计算)的是 CPU。所以谈到 Go 语言调度器，我们也绕不开操作系统、进程与线程这些概念。线程是操作系统调度时的最基本单元，而 Linux 在调度器并不区分进程和线程的调度，它们在不同操作系统上也有不同的实现，但是在大多数的实现中线程都属于进程。</li>
+</ul>
+<p>多个线程可以属于同一个进程并共享内存空间。因为多线程不需要创建新的虚拟内存空间，所以它们也不需要内存管理单元处理上下文的切换，线程之间的通信也正是基于共享的内存进行的，与重量级的进程相比，线程显得比较轻量。</p>
+<p>虽然线程比较轻量，但是在调度时也有比较大的额外开销。每个线程会都占用 1 兆以上的内存空间，在对线程进行切换时不止会消耗较多的内存，恢复寄存器中的内容还需要向操作系统申请或者销毁对应的资源。</p>
+<p>大量的线程出现了新的问题</p>
+<ul>
+<li>高内存占用</li>
+<li>调度的 CPU 高消耗</li>
+</ul>
+<p>然后工程师们就发现，其实一个线程分为“内核态”线程和“用户态”线程。</p>
+<p>一个 =用户态线程= 必须要绑定一个 =内核态线程= ，但是 CPU 并不知道有 =用户态线程= 的存在，它只知道它运行的是一个内核态线程(Linux 的 PCB 进程控制块)。这样，我们再去细化分类，内核线程依然叫线程(thread)，用户线程叫协程(co-routine)。既然一个协程可以绑定一个线程，那么也可以通过实现协程调度器把多个协程与一个或者多个线程进行绑定。</p>
+<p>Go 语言的 goroutine 来自协程的概念，让一组可复用的函数运行在一组线程之上，即使有协程阻塞，该线程的其他协程也可以被 runtime 调度，转移到其他可运行的线程上。最关键的是，程序员看不到这些底层的细节，这就降低了编程的难度，提供了更容易的并发。</p>
+<p>Go 中，协程被称为 goroutine，它非常轻量，一个 goroutine 只占几 KB，并且这几 KB 就足够 goroutine 运行完，这就能在有限的内存空间内支持大量 goroutine，支持了更多的并发。虽然一个 goroutine 的栈只占几 KB，但实际是可伸缩的，如果需要更多内存，runtime 会自动为 goroutine 分配。</p>
+<p>既然我们知道了 goroutine 和系统线程的关系，那么最关键的一点就是实现协程调度器了。</p>
+<p>Go 目前使用的调度器是 2012 年重新设计的，因为之前的调度器性能存在问题，所以使用 4 年就被废弃了。重新设计的调度器使用 G-M-P 模型并一直沿用至今。</p>
+<p>[[file:../../../pics/Go/GMP.png]]</p>
+<ul>
+<li>G — 表示 goroutine，它是一个待执行的任务；</li>
+<li>M — 表示操作系统的线程，它由操作系统的调度器调度和管理；</li>
+<li>P — 表示处理器，它可以被看做运行在线程上的本地调度器；</li>
+</ul>
+<p>** G gorotuine 就是 Go 语言调度器中待执行的任务，它在运行时调度器中的地位与线程在操作系统中差不多，但是它占用了更小的内存空间，也降低了上下文切换的开销。</p>
+<p>goroutine 只存在于 Go 语言的运行时，它是 Go 语言在用户态提供的线程，作为一种粒度更细的资源调度单元，如果使用得当能够在高并发的场景下更高效地利用机器的 CPU。 ** M Go 语言并发模型中的 M 是操作系统线程。调度器最多可以创建 10000 个线程，但是其中大多数的线程都不会执行用户代码（可能陷入系统调用），最多只会有 GOMAXPROCS 个活跃线程能够正常运行。</p>
+<p>在默认情况下，运行时会将 GOMAXPROCS 设置成当前机器的核数，我们也可以使用 runtime.GOMAXPROCS 来改变程序中最大的线程数。一个四核机器上会创建四个活跃的操作系统线程，每一个线程都对应一个运行时中的 runtime.m 结构体。</p>
+<p>在大多数情况下，我们都会使用 Go 的默认设置，也就是活跃线程数等于 CPU 个数，在这种情况下不会触发操作系统的线程调度和上下文切换，所有的调度都会发生在用户态，由 Go 语言调度器触发，能够减少非常多的额外开销。</p>
+<p>操作系统线程在 Go 语言中会使用私有结构体 runtime.m 来表示</p>
+<p>#+begin_src type m struct { g0 <em>g curg </em>g … } #+end_src</p>
+<p>其中 g0 是持有调度栈的 goroutine，curg 是在当前线程上运行的用户 goroutine，用户 goroutine 执行完后，线程切换回 g0 上，g0 会从线程 M 绑定的 P 上的等待队列中获取 goroutine 交给线程。 ** P 调度器中的处理器 P 是线程和 goroutine 的中间层，它能提供线程需要的上下文环境，也会负责调度线程上的等待队列，通过处理器 P 的调度，每一个内核线程都能够执行多个 goroutine，它能在 goroutine 进行一些 I/O 操作时及时切换，提高线程的利用率。因为调度器在启动时就会创建 GOMAXPROCS 个处理器，所以 Go 语言程序的处理器数量一定会等于 GOMAXPROCS，这些处理器会绑定到不同的内核线程上并利用线程的计算资源运行 goroutine。</p>
+<p>此外在调度器里还有一个全局等待队列，当所有 P 本地的等待队列被占满后，新创建的 goroutine 会进入全局等待队列。P的本地队列为空后，M也会从全局队列中拿一批待执行的 goroutine 放到 P 本地的等待队列中。 ** GMP 模型视图 [[file:../../../pics/Go/GMP_model.png]]</p>
+<ul>
+<li>全局队列：存放等待运行的 G。</li>
+<li>P 的本地队列：同全局队列类似，存放的也是等待运行的 G，存的数量有限，不超过 256 个。新建 G 时，G优先加入到 P 的本地队列，如果队列已满，则会把本地队列中一半的 G 移动到全局队列。</li>
+<li>P 列表：所有的 P 都在程序启动时创建，并保存在数组中，最多有 GOMAXPROCS(可配置)个。</li>
+<li>M：线程想运行任务就得获取 P，从 P 的本地队列获取 G，P 队列为空时，M也会尝试从全局队列拿一批 G 放到 P 的本地队列，或从其他 P 的本地队列偷一半放到自己 P 的本地队列。M运行 G，G 执行之后，M会从 P 获取下一个 G，不断重复下去。</li>
+<li>goroutine 调度器和 OS 调度器是通过 M 结合起来的，每个 M 都代表了 1 个内核线程，OS 调度器负责把内核线程分配到 CPU 上执行。 ** 调度器的策略 调度器的一个策略是尽可能的复用现有的活跃线程，通过以下两个机制提高线程的复用：</li>
+</ul>
+<ol type="1">
+<li>work stealing 机制，当本线程无可运行的 G 时，尝试从其他线程绑定的 P 偷取 G，而不是销毁线程。</li>
+<li>hand off 机制，当本线程因为 G 进行系统调用阻塞时，线程释放绑定的 P，把 P 转移给其他空闲的线程执行。</li>
+</ol>
+<p>Go 的运行时并不具备操作系统内核级的硬件中断能力，基于工作窃取的调度器实现，本质上属于先来先服务的协作式调度，为了解决响应时间可能较高的问题，目前运行时实现了协作式调度和抢占式调度两种不同的调度策略，保证在大部分情况下，不同的 G 能够获得均匀的 CPU 时间片。</p>
+<p>协作式调度依靠被调度方主动弃权，系统监控到一个 goroutine 运行超过 10ms 会通过 runtime.Gosched 调用主动让出执行机会。抢占式调度则依靠调度器强制将被调度方被动中断。</p>
+<p>推荐其他博主的一篇文章 Golang 调度器 GMP 原理与调度全分析，里面用几十张图详细展示了全场景的调度策略解析，让我们更容易理解调度器的 GMP 模型和它的工作原理。</p>
+<p>如果想从 Go 的源码层面了解调度器的实现，可以看看下面链接这个博主的系列文章。</p>
+<p>https://changkun.de/golang/zh-cn/part2runtime/ch06sched/</p>]]></description>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[极客时间]]></title>
+    <link>https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4.html</guid>
+    <description><![CDATA[<p>#+TITLE: 极客时间</p>
+<ul>
+<li>每日一课</li>
+<li>[[file:如何快速且深入地学习一门新技术？.org][如何快速且深入地学习一门新技术？]]</li>
+<li>[[file:如何进行薪资谈判？.org][如何进行薪资谈判？]]</li>
+</ul>]]></description>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[如何进行薪资谈判]]></title>
+    <link>https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e5%a6%82%e4%bd%95%e8%bf%9b%e8%a1%8c%e8%96%aa%e8%b5%84%e8%b0%88%e5%88%a4%ef%bc%9f.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e5%a6%82%e4%bd%95%e8%bf%9b%e8%a1%8c%e8%96%aa%e8%b5%84%e8%b0%88%e5%88%a4%ef%bc%9f.html</guid>
+    <description><![CDATA[<p>#+TITLE: 如何进行薪资谈判 你好，我是邵浩。</p>
+<p>“金三银四”这句话，不仅仅适用于房地产，也适用于技术人员的跳槽期。为什么这么说呢？根据 3 月 2 日拉勾网发布的《互联网人薪资报告》，2021 年开年以来，互联网职位平均薪资环比 2020 年四季度增长 7%，互联人迎来新年薪资的“开门红”，2 月跳槽比 8 月跳槽能多赚 20%。而且，在今年经济好转的前提下，很多同学可能都在考虑找新的机会。那么，在经过重重面试考察环节后，如何跟 HR 谈判，一鼓作气拿下最满意的薪资呢？</p>
+<p>这节课我们就一起来探讨，我将从谈薪准备、薪资基准、公司选择、供需匹配、隐藏因素和谈薪策略这六个方面和你聊一聊薪资谈判中的要素，并针对目前面试中大家普遍关心的问题给出具体答案。虽然薪资谈判的相关因素因人而异，但我也会尽可能地把确定性的内容分享给你。</p>
+<p>需要说明的是，我们这节课主要介绍 2-5 年技术人员，在第一次跳槽时所面临的一些问题。对于刚毕业的同学，基本上没有特别大的谈薪空间，而对于资深专家和行业大牛，可能跳槽次数在两次以上，也有丰富的经验，所以我们也不会涉及。</p>
+<ul>
+<li>谈薪准备 首先是谈薪前的准备。和面试准备一样，知己知彼是谈判的基础。我们通过网上调研（例如使用脉脉、知乎），很容易就能得到一些有价值的信息，例如 CSDN 上的一位博主整理了互联网技术线的薪资一览图，就值得我们参考：</li>
+</ul>
+<p>[[https://static001.geekbang.org/resource/image/90/79/9068678e7eyy66b5cf62fc5d28499d79.png]]</p>
+<p>同时，招聘方的 JD 一般也给出了薪资范围，例如“30k-40k”，这些都是非常好的报价参考，让我们在谈薪过程中，能有一个比较有把握的期望。</p>
+<ul>
+<li>薪资基准 其次是薪资基准。如果你已经拿到了同等级别其他公司的 Offer，就可以拿来作为一个谈判筹码。一般而言，你可以要求 10% 左右的涨幅空间，这里需要注意的是，你一定不要先把自己已有的 Offer 亮出来，而是把它作为一张底牌，在谈判可能达不到预期的时候，再亮出来。同时，你仍然需要表现出加入所面试公司的强烈意愿，并根据对方的话术进行动态调整。</li>
+</ul>
+<p>如果你没有其他公司的 Offer，你可以在新公司的 JD 薪资范围内，提出你的薪资期望。比如说一个年包 55 万的算法工程师，可以要求 15%-30% 的涨薪，也就是 63-70 万左右。据统计，技术人员跳槽的平均涨薪幅度在 15% 左右，而互联网行业的均值在 20%-30%。</p>
+<ul>
+<li><p>公司选择 当然了，我们还要根据公司的情况来判断薪资期望是否合理。很多人说，跳到大厂是“入职即巅峰”，进入大厂一定要尽可能争取到上限。而我的观点是，对于 senior 职位，“入职即巅峰”有一定的道理。但对于有着技术追求，从一般公司跳槽到更好公司的普通技术人员，如果未来发展空间更大，甚至可以放弃薪资的涨幅。如果是跳槽到小公司，那你薪资的涨幅空间一般会更小，如果你看好这家公司的前景，可以选择更多的期权，陪伴公司一起成长。</p></li>
+<li><p>供需匹配 供需匹配也是报价时需要考量的一个因素，买方市场和卖方市场总是此起彼伏。比如 2020 年，整个市场都不景气，很多同学选择留在原公司。而今年年初开始，市场出现了缓和，找新机会的人开始变多，竞争也更为激烈。当然，很多大厂如字节跳动，岗位扩张也非常明显，这对于求职者来说是一个好事情。如果你能力比较优秀，而且公司需求迫切，就可以尽可能要求 JD 上的上限薪资。</p></li>
+<li><p>隐藏因素 接下来，我们再聊聊隐藏因素。了解互联网行业的同学应该都清楚，薪资类型分为很多种，例如固定薪资和浮动薪资、年薪 + 股票模式、月薪 + 多月份奖金模式、年薪 + 期权模式等，你可以根据自己的情况进行选择。</p></li>
+</ul>
+<p>有的公司股票有锁定期，并且按年份兑现，举一个简单的例子，100 万的年包也许到手只有 50 万，剩下的 50 万以股票形式分 4 年发放，两年锁定期。相比于年包 80 万的现金模式，排除掉所得税因素，年包 80 万更适合希望有更多现金收入，并且准备 2-3 年内跳槽的同学。</p>
+<p>其它隐藏因素还包括福利、休假制度和职业风险。所谓福利指的是通勤补贴、住房补贴、节日补贴等，不过如果是拿年薪的话，一般都计算在总包里了。所谓休假制度，有的互联网公司是大小周，相当于每个月多 2 天工作日，还有的互联网公司是月休 2 天，相当于每个月多 6 个工作日。这相比于正常双休，每月 21 个工作日而言，6 个工作日相当于多出了 28% 的工作时间，这也是聊薪资期望时的一个考量因素。</p>
+<p>另外，每个公司都会有倒闭、裁员、业务合并和拆分的风险，这些都需要提前做好调研和思考，建议你平时多关注行业信息，对自己所在领域和工作也会有一个中短期的判断。</p>
+<ul>
+<li>谈薪策略 最后，聊一聊谈薪策略，主要有两个原则。一个重要的原则是实事求是，不要作假，公司一般都会有背景调查，如果你在谈薪资的时候夸大了现有收入，那很可能被 HR 直接否决。另一个原则是以退为进，尽量获取谈判的主动权，争取更多的利益。</li>
+</ul>
+<p>举一个真实的例子，身边一位能力优秀的同学拿到了字节跳动的 Offer，同时也进入了杭州某互联网厂商的终面，薪资略低于字节。在谈拉平薪资的时候，HR 始终不愿意松口，并用公司的发展前景及其它福利来劝说，这名同学以字节的 Offer 为基础，阐述了自己的发展前景，并提到自己还是愿意留在杭州，也非常喜欢这家公司，如果 HR 确实给不到的话，那只好放弃机会。最终，HR 为这名同学争取了 10w 的签字费，达成了这名同学的期望。</p>
+<ul>
+<li>谈薪问答 除了上述的六个谈薪要素，我再针对目前面试者普遍关心的一些具体问题，给出具体回答，给你做一个参考。</li>
+</ul>
+<p>#+begin_quote 问：面试中对技术一般不会考察太深，这种情况下如何定价？</p>
+<p>答：针对这个问题，我的看法是，技术面的过程中，不会牵扯到薪资报价，但技术面试官的反馈会对 HR 最终的报价产生影响。因此，除了我们前面提到的各种因素，你还需要评估自己在面试中的表现，并根据 HR 对岗位需求的迫切程度，给自己一个比较明确的定位和预期。 #+end_quote</p>
+<p>#+begin_quote 问：如何判断薪资的底薪？</p>
+<p>答：首先，薪资的范围在 JD 里有明确的定义，我们谈判的过程一般不会超越这个界限。如果是 JD 中写的是“面议”，也可以根据行业内薪资水平做个大概的判断，这一点我们在前面的“谈薪准备”中也做了介绍。 #+end_quote</p>
+<p>#+begin_quote 问：如何优雅的和 HR 争取更高的薪资？如果 HR 以技术面试官不太认可为由，压低薪资，该如何应对？</p>
+<p>答：谈薪其实是一个博弈的过程。博弈的关键就在于判断对方的底线，并保持自己的主动权。谈薪好比是打牌，“技术面试官不太认可”就是 HR 的一张牌，而你手中握有的其他公司 Offer 也算是一张牌。在谈判前的准备中，可以用一张纸把你可能出的牌（你的优势）都列出来，比如说“我的技术栈比较全面”，“我有 xx 大厂的 Offer”，“我能带来其他团队成员”等等，针对 HR 压低薪酬的理由，沉着冷静，逐一应对。 #+end_quote</p>
+<p>以上就是这节课的全部内容，关于面试中薪资谈判的技巧，我也做了一张思维导图，供你参考。</p>
+<p>[[https://static001.geekbang.org/resource/image/7f/79/7f37933636a86f1c52b3f0269a802179.png]]</p>
+<p>最后，我再给你留一道思考题，面对技术面试（非终面）的面试官，是否可以透露自己的薪资水平？</p>
+<p>你可以在评论区留下你的答案或者疑惑，我们一起探讨。</p>]]></description>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[如何快速且深入地学习一门新技术]]></title>
+    <link>https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e5%a6%82%e4%bd%95%e5%bf%ab%e9%80%9f%e4%b8%94%e6%b7%b1%e5%85%a5%e5%9c%b0%e5%ad%a6%e4%b9%a0%e4%b8%80%e9%97%a8%e6%96%b0%e6%8a%80%e6%9c%af%ef%bc%9f.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Others/%e6%9e%81%e5%ae%a2%e6%97%b6%e9%97%b4/%e5%a6%82%e4%bd%95%e5%bf%ab%e9%80%9f%e4%b8%94%e6%b7%b1%e5%85%a5%e5%9c%b0%e5%ad%a6%e4%b9%a0%e4%b8%80%e9%97%a8%e6%96%b0%e6%8a%80%e6%9c%af%ef%bc%9f.html</guid>
+    <description><![CDATA[<p>#+TITLE: 如何快速且深入地学习一门新技术</p>
+<p>你好，我是颜群。</p>
+<p>软件开发正处于快速发展的时代，新技术层出不穷，已有技术也在频繁更新。甚至有人调侃地说“新技术出现的速度，远大于个人的学习速度”。那么，在这个日新月异的互联网时代，软件开发者们，应该如何保持自己的竞争力呢？今天，我们就来聊聊，如何快速且深入地学习一门新技术。</p>
+<p>大家可能都知道，英语考试中，有一个经典的题型叫“完形填空”。在我上高中的时候，英语老师就告诉我“在做完形填空之前，一定要先花 1 分钟左右的时间，快速地把整篇文章阅读一遍。这样就会对全文的内容有一个大致的了解。之后再去做题，准确率就会提高不少”。</p>
+<p>我认为，这种做英语完形填空的方法，也同样适用于学习软件技术。我们在学习某一个新技术时，也应该先快速地去了解这个新技术的大致情况，之后再仔细地研究这个新技术到底包含了哪些内容，也就是从整体深入到细节。</p>
+<p>例如，Java 基础中的 JDBC、Web 前端中的 HTML、框架技术中的 Netty 等，这些技术都有一个特点就是：可以遵循一定的“套路”去编写。因此，我认为好的学习方法应该是，先不管三七二十一，快速地去了解一下具体的“套路”是什么，然后再深入研究“套路”中的每一步到底是什么意思，这样才能高效地学习一门新技术。</p>
+<p>比如 HTML，不管你要布局什么样的页面，你都得先把、、等标签搭一遍，之后才能编写你想要实现的代码。</p>
+<p>再比如 JDBC，无论你是要进行什么样的数据访问操作，每次都得先加载驱动；然后获取连接对象；之后是创建一个操作对象；最后再处理结果。可能细节上会稍有不同，但整体的流程一定是这么几步。</p>
+<p>再看一下 Netty，虽然 Netty 的实现要稍微复杂一些，但是每次的开发步骤也都几乎是一致的。基本上你只要编写过一次 Netty，下次再编写时，就可以把上次的代码结构先复制过来，然后修改业务逻辑就行了。你看，不论是前端技术、基础技术，还是框架技术，是不是都存在着我们刚才说的“套路”呢？</p>
+<p>这说明了什么呢？至少说明了一件事儿，在学习新技术之前，我们一定得先宏观地、全局性地了解一下技术全貌，这样才能清晰地了解哪些是技术重点，哪些仅仅是“套路”而已。</p>
+<p>那么这时你可能会问了，我该如何快速地浏览技术全貌呢？这其实是“快速阅读”的理论知识了，推荐大家可以通过快速地、跳跃性地查阅资料的方式，看下新技术的实现流程大致是什么样子的。具体细节，你可以查阅技术官网、看书、看博客、看教学视频等等各种方式都行，重点看那些反复出现的重复代码。一般而言，那些重复频率较多的代码，就是这个新技术的基础代码结构了。</p>
+<p>好，在对一个新技术有了宏观的认识后，接下来就可以正式进入深度学习阶段了。一般而言，我们可以通过文档等资料，轻松地实现一个入门级别的 HelloWorld 程序。接着就可以不断地丰富这个 HelloWorld，并让它最终变成一个丰富的案例库了。</p>
+<p>现在，就拿我自己学习 Netty 的亲身经历来讲一下。先说说我当时所面临的一个情况吧，以前，我在做一个项目时，用到了一些 NIO 和网络编程技术，但由于项目交付的时间很紧，并且相关的代码量也不是特别多，所以当时我就没有多想，直接手写了与项目相关的 NIO 和网络编程技术。</p>
+<p>后来，在那个项目刚刚发布第一版之后，为了找到一些后续版本在性能方面的改进思路，我就上网搜索了一下项目中经常使用到的一些 NIO API，然后发现在很多出现 NIO 的页面中，都能看到“Netty”字样的相关词条。显然，Netty 与 NIO 之间必然有着很大关系。于是我就顺手查了下关于“Netty”的简介，发现它是一款“高性能的、基于 NIO 的网络编程框架”。当时就很自然地有了一个想法，以前做项目时，手写的 NIO 和网络编程，好像就可以用 Netty 来替代。</p>
+<p>于是，为了验证这个想法到底是不是真的可行，我就在之后的一段时间开始了关于 Netty 的学习。由于当时刚刚才做完项目，身体比较疲惫，就采用了看视频的方式，以便于减轻自己的脑力开销。当时我找了一个评价不错的视频，用倍速播放、跳跃性拉进度条的方式，用 2 个小时大致地看了看那套视频的核心内容。然后得到了一个心得：Netty 的 HelloWorld，并不像其他技术那么简单，但和其他技术一样，有着标准的代码编写模板和编写流程。</p>
+<p>具体来说，几乎每次在编写 Netty 代码时，我们都需要经过这么几步：通过一个类似 server() 的方法，将 Netty 的流程组织起来，然后调用自定义初始化器，接着再在自定义初始化器中根据业务需求，加入一些 Netty 内置的处理器。对于那些 Netty 没有提供的处理器，就编写自定义处理器去解决。最后再在自定义处理器中，实现具体的处理逻辑就可以了。</p>
+<p>#+begin_src java public static void server() { … ServerBootstrap serverBootstrap = new ServerBootstrap(); ChannelFuture channelFuture = serverBootstrap .group(…) .channel(NioServerSocketChannel.class) .childHandler(自定义初始化器).bind(端口号).sync(); channelFuture.channel().closeFuture().sync(); … }// 自定义初始化器 public class MyNettyServerInitializer extends … { protected void initChannel(SocketChannel sc)throws Exception{ ChannelPipeline pipeline=sc.pipeline(); pipeline.addLast(netty 内置处理器); pipeline.addLast(自定义处理器); } }// 自定义处理器 public class MyNettyServerHandler extends … { <span class="citation" data-cites="Override">@Override</span> protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg){ 业务逻辑 } } #+end_src</p>
+<p>有了这种对 Netty 的整体认识后，我就能很轻松地实现一个基于 CS 架构的 HelloWorld 了。HelloWorld 实现之后，心里就消除了对 Netty 的陌生感，并且有了一定的成就感。</p>
+<p>但 HelloWorld 仅仅算作是一个快速入门，要想真正地掌握 Netty，必然还得进行深入的学习。那么该如何深入呢？我认为，通过案例来倒逼对理论的理解，是一个很好的方法。于是，我就正式地开始了对 Netty 案例库的搭建，我先是把这个 HelloWorld，扩展成了一个点对点通信的 demo，成功之后，再把它升级成了一个聊天室案例。做完后，还给它加上了心跳监测机制，并结合 Protobuf 组件实现了一个 RPC 功能。</p>
+<p>像这样，我每次只实现一个很小的功能模块，但随着持续的积累，这个 HelloWorld，就会变成一个包含了 Netty 各种功能的案例库。当这个案例库编写完成时，我对 Netty 就已经很熟悉了。</p>
+<p>这里我来做个小总结，关于我自身学习 Netty 的流程，再来简单梳理和回顾下，希望大家可以从中获得些许启发，一定程度上帮助你最终找到一种适合你自己的学习方法：我在准备升级项目时，发现可以用 Netty 改进；然后通过快速学习两小时，了解了 Netty 的整体流程；接着，再从 HelloWorld 开始，逐步积累了 Netty 案例库，最后，当案例库搭建完成的时候，我也在大脑里形成了自己对 Netty 的思维框架图。</p>
+<p>好，相信通过前面的讲解，你已经清楚了如何快速掌握一门新技术的方法了。但还有两个重要的问题需要解决：一个是，对知识的掌握的足够吗？另一个是，刚学会的新技术，会不会很快又给忘掉了？</p>
+<p>我觉得，这其实可以借鉴我们上学时的方法：考试。考试的目的就在于检验知识掌握程度和是否遗忘的最好方式了。但要想真的落实自己给自己“考试”这件事儿，也是很困难的，谁来出题？谁来阅卷？所以，我们得把“考试”的方法，换个方式体现出来。</p>
+<p>这里我建议的一个方式就是做微服务案例。可以先用每个新技术搭建一个独立的微服务，然后再把由各个不同技术搭建的微服务，整合起来。举个例子，当你学完 SSH 时，就用 SSH 搭建一个“用户管理”的微服务；当你学完 SSM 时，再用 SSM 搭建一个“支付结算的微服务”；当你学完 Spring 全家桶时，再用 Spring 系列技术搭建一个“购物微服务”，等等。</p>
+<p>同时，当你每搭建一个微服务之后，还需要把这个微服务，通过 RPC 技术和其他微服务整合起来。例如，用 Spring 全家桶开发的“购物微服务”，调用 SSH 搭建的“用户管理微服务”，再用这个“用户管理微服务”远程调用 SSM 搭建的“支付结算微服务”，也就是将所有的技术都整合在同一个案例中。</p>
+<p>这么做，一方面，可以通过动手开发的方式来做项目，对已掌握的技术进行查漏补缺。因为，在开发这些微服务案例的同时，你就会清晰地了解到这些技术中，哪些是重点，哪些是次重点，哪些是自己学的时候遗漏掉的内容，从而可以解决刚才第一点里提到的，有关于知识掌握得够不够的问题。</p>
+<p>另一方面，这种微服务项目，可以保持我们对所有技术的新鲜度。例如，SSH 搭建的微服务，可能是你半年前就实现好了的，但你现在用 SSM 调用 SSH 时，就必然会涉及到一些对 SSH 代码的联调操作，而在这个联调的过程中，你也会自然而然地对半年前的 SSH 项目，进行一次复习。因此，这也可以解决刚才第二个“防止遗忘”的问题。</p>
+<p>到这里，相信大家已经掌握了一种持续学习的方法了。最后再与大家探讨一下，如何学习难点技术。我们可以将难点技术分为两类，一类是偏理论型的，一类是偏实战型的。先看看第一类，也就是对于偏理论型的难点技术，该如何去学习。</p>
+<p>像数据结构和算法、设计模式，以及架构设计等等，都是较为难理解的偏理论型技术，这些也经常成为初级开发者进阶路上的绊脚石。那么如何才能顺利地跨越这些障碍呢？</p>
+<p>我认为可以采用“先拆解目标，再集中消化”的学习方式来学习这类技术。举个例子，对于算法、设计模式等较为难理解的技术来说，尽量不要想着花一周或者一个月，就把它们彻底搞懂。而应该先计算一下学习的知识数量，然后碎片化地学习。再举个例子，假设你想要学习算法，那就得先计算一下一共有多少个算法需要学。</p>
+<p>比如有 30 个，那就再把这些算法，根据难易程度进行排序，然后从简单的学习，慢慢过渡到较难的算法。至于哪些算法简单，哪些又比较难，相信大家通过搜索引擎就可以轻松地得到结论了。当有了难易程度的排序后，再用碎片化时间，将那 30 个算法逐个攻破。</p>
+<p>比如，在上下班的地铁上、晚餐后的半小时，或者睡前的一段时间，利用一些碎片化的时间去学习某个算法，将业余时间进行合理地安排和规划，其实碎片化的时间，很容易减轻自己学习上的畏难情绪。而且，我们每天的碎片化时间，其实是很多的，如果真的能够被高效利用起来，相信你一定能在不知不觉中，攻克掉很多难点。</p>
+<p>当你感觉自己对技术内容理解得差不多的时候，再用一个比较集中的时间，把它彻底消化掉。之后，再学习下一个。</p>
+<p>好，刚才说的是如何学习偏理论型的难点技术。接下来再来聊聊如何学习偏实践型的难点技术。这里称为“实践”，是因为有些技术，必须借助于开发工具，来追踪代码或者调试才能掌握的。就比如说，阅读一个框架的源代码，就是偏实践型技术的一个典型代表了。</p>
+<p>对于偏实践型技术的学习，最主要的就是“要在实践前，心里已经对实践的内容有了清晰的理论基础，要把动手实践仅仅看成是一种揭晓谜底的感觉”。这里给大家还原一下我学习 MyBatis 框架源码时的情况。</p>
+<p>当时在阅读 MyBatis 源码之前，我已经对 MyBatis 的应用非常熟悉了，因此清晰地知道 MyBatis 的执行是怎样的，也就是需要先经过“获取 SqlSessionFactory 对象”和“获取 SqlSession 对象”这两步。所以，我的思路就是：先写一个最简单的 MyBatis 程序，然后分析这两步源码的底层，到底是怎么执行的。这其实也就是我刚才提到的，我在读 MyBatis 之前，已经知道了 MyBatis 大致的执行步骤，现在仅仅是想通过阅读源码，亲眼见一下底层到底是怎么写的而已。</p>
+<p>于是，我通过 debug 进入源码，也就是打开了“获取 SqlSession 对象”的底层源码，然后随着 debug 的步骤，依次进入了 build()、parse()、parseConfiguration() 等方法，并在 parseConfiguration() 方法中，看到了 typeAliases、plugins、environments、mappers 等名字，显然这些名字就是我们最常用 mapper 配置文件中的标签名。</p>
+<p>结合 MyBatis 的基础知识，很容易知道，MyBatis 的底层，是通过 parseConfiguration() 方法在解析 mapper 配置文件，因此我们就只需要深入研究 parseConfiguration() 的每一步实现，就能知道 MyBatis 对于解析 mapper 配置文件的底层源码实现了。</p>
+<p>当然，考虑到每个人对技术基础的掌握情况是不一样的，每门技术也有很大程度的不同，所以不同的人在学习不同的技术时，可能会存在着或多或少的个性化差异。但我相信学习新技术的整体思路是一样的，就是先快速地进行整体阅读，然后再逐步积累、逐步深入，可以说，这一定是一套很不错的较为有体系的方法论。</p>
+<p>好，那么到现在，如何学习难点技术的方法也讲完了。现在，再给大家一个关于营造学习气氛的方法。很多时候，开发者在学习时都是很孤独的，都是一个人趴在电脑前。一定程度上来讲，个人学习的气氛就没有团体的好。大家想想，是不是在高中的自习室，或者大学图书馆里的学习气氛，就感觉要好很多呢。所以，如果你有很多志同道合的朋友，可以邀请他们一起共同学习。</p>
+<p>但如果不方便，你也可以注册一个微信公众号，或者技术博客，再或者将自己学习的项目部署在云端，然后开放给大家一起访问。</p>
+<p>总之，就是要想办法，将自己的学习成果分享出来，让大家一起来阅读，或者说监督你的学习。并且你也可以通过“留言”功能，与大家互动。如果你是讲师，那么可以把一些学到的东西录制成视频，然后发布出去。</p>
+<p>坚持这样做，除了能够营造出自学的气氛以外，还可以将自己学到的技术沉淀下来，慢慢地，也会为自己吸引到一批技术爱好者，从而提升自己的影响力。是不是一举多得呢？</p>
+<p>好，今天的分享到这里就结束了，在学习新技术时，我们可以先快速地了解技术的宏观内容，然后从 HelloWorld 开始，逐步地搭建一个案例库，从而掌握技术的广度和深度。</p>
+<p>当案例库搭建完以后，再通过微服务技术和其他技术进行整合，形成一张更大的知识网络，从而让自己长期接触到这些技术，防止遗忘。此外，对于偏理论型的难点技术，建议大家“分而治之”，用碎片化的时间逐个攻破，减少自己对难点的恐惧心理；而对于偏实践型的难点技术，需要在实践前，心里已经对实践的内容有了清晰的理论基础。最后，建议大家将自己学到的技术分享出去，做好技术沉淀的同时，也能不断提升自己的知名度。</p>
+<p>好，我是颜群，希望我的分享可以帮助到你，也希望你在视频下方的留言区和我一起探讨。</p>]]></description>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[酒吧圣经笔记]]></title>
     <link>https://www.codeplayer.org/Wiki/Others/%e9%85%92%e5%90%a7%e5%9c%a3%e7%bb%8f%e7%ac%94%e8%ae%b0.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Others/%e9%85%92%e5%90%a7%e5%9c%a3%e7%bb%8f%e7%ac%94%e8%ae%b0.html</guid>
@@ -240,7 +397,7 @@
 <p>从修道院里酿造出来的第一批利口酒到吓死你在，它的饮用方式已经完全改变了。而有些利口酒，配方在家族内世代相传，经过了数百年的岁月依然维持原样。这些古老的利口酒在今天仍然广受欢迎。我把他们归类为 <em>传奇利口酒</em> 。它们经常会和僧侣、炼金术士、糖果匠以及药剂师联系在一起，其主要成分为植物、果皮和串香料。</p>
 <p>随着时代的变化，在潮流和需求的影响，和开发新市场利益的驱使下，很多新的原料被用于酿造利口酒，它们使得利口酒带有鲜亮的颜色，新奇的异域口味。这些酒通常使用水果和果皮酿造，并且每升酒里添加不少于 100 克的糖。我把它们归类为 <em>品牌利口酒</em> 。而加工过程中使用了各种香精的利口酒归为单独的一类—— <em>利口乳酒</em> （来自法语 creme，意味乳）。这种酒 每升糖含量不少于 250 克。其中的一些拥有悠久的历史。它还可以细分为两个小类。爱尔兰克列姆（irish creams 爱尔兰乳酒）属于第一小类，它由威士忌、凝乳、糖和蜂蜜组成。由各式水果酿造而成的克列姆属于第二小类，它们是专门为与其他酒混合而酿造的（其中一些可以直接加冰饮用）。它们使鸡尾酒变得细腻，并具有独特的香味。 ** 法规 1. 通过下述方法之一得到的酒精饮料，可以叫做利口酒。 - 浸泡植物原料 - 蒸馏植物原料 - 将植物馏出物加入酒精和水的混合物中 - 上述方法的组合 2. 利口酒的烈度不应小于 15%。 3. 糖、葡萄糖和蜂蜜都可以作为利口酒的甜味剂。</p>
 <p>除上述要求外，每升利口酒的含糖量不能少于 100 克，含乳量不少于 250克。</p>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Dbus Send与dbus Monitor命令的使用]]></title>
     <link>https://www.codeplayer.org/Wiki/Computer-Science/Linux/dbus-send%e4%b8%8edbus-monitor%e5%91%bd%e4%bb%a4%e7%9a%84%e4%bd%bf%e7%94%a8.html</link>
@@ -263,279 +420,7 @@
 <p>如果未指定任何模式，则 dbus-monitor 将使用监视输出格式。 #+begin_src –system 和 –session表示系统总线和会话总线，默认为–session –address ADDRESS：监视在ADDRESS处给定的任意消息总线 –profile：使用配置文件模式打印 –monitor：使用dbus-monitor模式打印 #+end_src</p>
 <p>输出概要： #+begin_src type：分为signal和method_call sender：消息或方法调用者 dest：消息接收或方法拥有者 interface：接口名 path：服务路径 member：方法名或属性名 replay：方法调用的返回值 #+end_src</p>
 <p>监视某些系统级接口时，需要加上 sudo 权限，如监视 lastore 更新模块 ~sudo dbus-monitor –system “interface=com.deepin.lastore.Manager”~ ** 监视信号 ~dbus-monitor type=‘signal’,sender=‘org.gnome.TypingMonitor’,interface=‘org.gnome.TypingMonitor’~ ** 监视方法 ~dbus-monitor –session “interface=com.deepin.daemon.Display”~ ** TODO 监视属性 ** 参考 1. https://wikidev.uniontech.com/index.php?title=Dbus-monitor</p>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[go中使用dbus和gsettings]]></title>
-    <link>https://www.codeplayer.org/Wiki/Program/go/%e5%9c%a8go%e4%b8%ad%e4%bd%bf%e7%94%a8dbus%e5%92%8cgsettings.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Program/go/%e5%9c%a8go%e4%b8%ad%e4%bd%bf%e7%94%a8dbus%e5%92%8cgsettings.html</guid>
-    <description><![CDATA[<p>#+TITLE: go中使用dbus和gsettings #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>dbus in go ** 使用 dbus 包 *** 连接 dbus</li>
-</ul>
-<p>#+BEGIN_SRC go dbus.SessionBus() dbus.SystemBus() #+END_SRC *** 调用方法</p>
-<p>比如调用 dbus-daemon 提供的对象的一个方法，服务名： =org.freedesktop.DBus=, 路径： =/org/freedesktop/DBus= ，接口名： =org.freedesktop.DBus= ， 方法名： =GetNameOwner= , 此方法输入参数是一个字符串，返回参数也是一个字符串。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() obj := sessionBus.Object(“org.freedesktop.DBus”, “/org/freedesktop/DBus”) var ret string err = obj.Call(“org.freedesktop.DBus.GetNameOwner”, 0, “com.deepin.dde.daemon.Dock”).Store(&amp;ret) #+END_SRC</p>
-<p>需要注意传给 =obj.Call= 方法的第一个参数 =method= 的值是接口名 + “.” + 方法名。</p>
-<p>在处理没有返回值的方法时，可以不调用 =Store= 方法，而直接检查 =Err= 字段。 *** 获取和设置属性</p>
-<p>属性的获取和设置本质也是方法调用。 **** 获取属性 获取单个属性是调用对象的 =org.freedesktop.DBus.Properties= 接口的 =Get= 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 =dbus.Variant= 。</p>
-<p>下面的代码是要获取 =org.freedesktop.DBus= 接口的 =Features= 属性，此属性的类型是 =[]string= 。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() obj := sessionBus.Object(“org.freedesktop.DBus”, “/org/freedesktop/DBus”) var ret dbus.Variant err = obj.Call(“org.freedesktop.DBus.Properties.Get”, 0, “org.freedesktop.DBus”, “Features”).Store(&amp;ret) v := ret.Value().([]string) #+END_SRC</p>
-<p>从 =ret= 中获取内部的值，需要调用 =Value= 方法，获取 =interface{}= 类型的内部值，再使用类型断言 =.([]string)= 。</p>
-<p>一次获取对象在某个接口下的全部属性，可调用 =Get= 方法旁边的 =GetAll= 方法。 **** 设置属性 设置属性是调用对象的 =org.freedesktop.DBus.Properties= 接口的 =Set= 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。</p>
-<p>下面的代码是要设置 =org.freedesktop.DBus= 接口的 =Features= 属性。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() obj := sessionBus.Object(“org.freedesktop.DBus”, “/org/freedesktop/DBus”) propVal := dbus.MakeVariant([]string{“abc”}) err = obj.Call(“org.freedesktop.DBus.Properties.Set”, 0, “org.freedesktop.DBus”, “Features”, propVal).Err #+END_SRC</p>
-<p>传入参数中属性值是 =dbus.Variant= 类型，制造这种类型可用 =dbus.MakeVariant= 方法。 *** 监控信号 调用 =AddMatch= 方法添加监控规则，如果不需要监控了，就调用 =RemoveMatch= 方法去掉监控规则。</p>
-<p>go 的 dbus 库提供了方便的方法： =AddMatchSignal= 和 =RemoveMatchSignal= 。</p>
-<p>下面的代码是要监控 =Session Bus= 上的 =/org/freedesktop/Bus= 对象的 =org.freedesktop.DBus= 接口的 =NameOwnerChanged= 信号。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() err = sessionBus.BusObject().AddMatchSignal(“org.freedesktop.DBus”, “NameOwnerChanged”, dbus.WithMatchObjectPath(“/org/freedesktop/DBus”)).Err</p>
-<p>signalCh := make(chan *dbus.Signal, 10) sessionBus.Signal(signalCh) go func() { for { select { case sig := &lt;-signalCh: log.Printf(“sig: %#v”, sig) if sig.Path == “/org/freedesktop/DBus” &amp;&amp; sig.Name == “org.freedesktop.DBus.NameOwnerChanged” { var name string var oldOwner string var newOwner string err = dbus.Store(sig.Body, &amp;name, &amp;oldOwner, &amp;newOwner) log.Printf(“%s %s %s”, name, oldOwner, newOwner) } } } }()</p>
-<p>time.Sleep(100*time.Second) err = sessionBus.BusObject().RemoveMatchSignal(“org.freedesktop.DBus”, “NameOwnerChanged”, dbus.WithMatchObjectPath(“/org/freedesktop/Bus”)).Err sessionBus.RemoveSignal(signalCh) #+END_SRC</p>
-<p>将调用 =sessionBus.Signal= 方法注册 =signalCh= 通道，以此来通过该通道接收信号， =go func ()= 中的代码是循环接收 =signalCh= 通道传来的数据并处理。如果不需要再从这个通道接收信号了，可以调用 =sessionBus.RemoveSignal= 取消注册 =signalCh= 通道，这样信号就不会再被发送到 =signalCh= 通道中了。</p>
-<p>在处理信号时，可以先验证信号（ =<em>dbus.Signal= 类型）的 =Path= 和 =Name= 字段，不必验证 =Sender= 字段。 处理信号的 =Body= 字段，它是 =[]interface{}= 类型，就可以用 =dbus.Store= 方法了。 </em>** 导出对象 将自己代码中的一个变量作为对象的一个接口导出在 DBus 上，然后供其他人调用。</p>
-<p>下面的代码是要把类型为 =Obj= 结构的 =obj= 变量作为对象的一个接口导出，它有一个 =GetString= 方法，路径 =/p1/p2/p3= ，接口名 =p1.p2.p3= 。</p>
-<p>#+BEGIN_SRC go type Obj struct { }</p>
-<p>func (o <em>Obj) GetString() (string, </em>dbus.Error) { return “object”, nil }</p>
-<p>func main() { sessionBus, err := dbus.SessionBus() obj := &amp;Obj{} err = sessionBus.Export(obj, “/p1/p2/p3”, “p1.p2.p3”) log.Print(“names:”, sessionBus.Names()) select { } } #+END_SRC</p>
-<p>程序运行后会打印类似的输出：</p>
-<p>=names:[:1.4239 :1.4239]=</p>
-<p>这是此程序目前在 DBus 上的名字，冒号 =:= 开头的是唯一名。</p>
-<p>导出对象接口，可以调用 =sessionBus.Export= 方法，要停止导出，并没有一个专门的的方法，依旧要使用 =Export= 方法， 但是第一个参数（之前放 =obj= 的位置）要换成 =nil= 。</p>
-<p>自动导出的方法有如下要求：</p>
-<ol type="1">
-<li>公开的，方法名第一字母是大写的。</li>
-<li>最后一个返回值是 <em>dbus.Error 类型。 </em>*** 注册服务名 下面的代码是要申请一个服务名 =p1.p2.p3=, 不是完整代码，可以插在前一份代码的 =sessionBus.Export= 方法调用之后。现有的各个项目里也一般是先导出主要对象，然后再申请服务名。</li>
-</ol>
-<p>~_, err = sessionBus.RequestName(“p1.p2.p3”, 0)~</p>
-<p>*** 发送信号 下面的代码是要发送信号，路径 =/p1/p2/p3=, 接口名 =p1.p2.p3=, 信号名 =Signal1= ， 参数是字符串和数字。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() for { err = sessionBus.Emit(“/p1/p2/p3”, “p1.p2.p3.Signal1”, “arg1”, 2) time.Sleep(2*time.Second) } #+END_SRC</p>
-<p>程序每 2 秒发送一次信号，发送信号时，不要求对象是否已经导出。 ** 使用 go-dbus-factory 项目 此项目实现了根据 dbus 服务的自省 XML 文件和一点配置文件，自动生成访问 dbus 服务的 go 代码。</p>
-<p>项目地址：https://gitlab.deepin.io/dde-v20/go-dbus-factory ，可以打成 deb 包，软件包名 =golang-github-linuxdeepin-go-dbus-factory-dev= ，每个服务放在不同的包中，包名的前缀是 =github.com/linuxdeepin/go-dbus-factory/= 。 *** 方法调用 下面的代码要调用 =com.deepin.dde.daemon.Dock= 服务的 =/com/deepin/dde/daemon/Dock= 对象的 =RequestDock= 方法。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() dockObj := dock.NewDock(sessionBus) ok, err := dockObj.RequestDock(0, “/usr/share/applications/deepin-editor.desktop”, -1) log.Println(“ok:”, ok) #+END_SRC</p>
-<p>需要注意传给 =obj.Call= 方法的第一个参数 =method= 的值是接口名 + “.” + 方法名。</p>
-<p>在处理没有返回值的方法时，可以不调用 =Store= 方法，而直接检查 =Err= 字段。 *** 获取和设置属性</p>
-<p>属性的获取和设置本质也是方法调用。 **** 获取属性 获取单个属性是调用对象的 =org.freedesktop.DBus.Properties= 接口的 =Get= 方法，此方法传入参数是接口名和属性名，返回值是属性值，类型为 =dbus.Variant= 。</p>
-<p>下面的代码是要获取 =org.freedesktop.DBus= 接口的 =Features= 属性，此属性的类型是 =[]string= 。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() obj := sessionBus.Object(“org.freedesktop.DBus”, “/org/freedesktop/DBus”) var ret dbus.Variant err = obj.Call(“org.freedesktop.DBus.Properties.Get”, 0, “org.freedesktop.DBus”, “Features”).Store(&amp;ret) v := ret.Value().([]string) log.Println(v) #+END_SRC</p>
-<p>从 =ret= 中获取内部的值，需要调用 =Value= 方法，获取 =interface{}= 类型的内部值，再使用类型断言 =.([]string)= 。</p>
-<p>一次获取对象在某个接口下的全部属性，可调用 =Get= 方法旁边的 =GetAll= 方法。 **** 设置属性 设置属性是调用对象的 =org.freedesktop.DBus.Properties= 接口的 =Set= 方法，此方法的传入参数是接口名、属性名、属性值，没有返回值。</p>
-<p>下面的代码是要设置 =org.freedesktop.DBus= 接口的 =Features= 属性。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() obj := sessionBus.Object(“org.freedesktop.DBus”, “/org/freedesktop/DBus”) propVal := dbus.MakeVariant([]string{“abc”}) err = obj.Call(“org.freedesktop.DBus.Properties.Set”, 0, “org.freedesktop.DBus”, “Features”, propVal).Err #+END_SRC **** 监控信号 下面的代码是要监控之前说过的 =Dock= 对象的 =EntryAdded= 信号。</p>
-<p>#+BEGIN_SRC go sessionBus, err := dbus.SessionBus() dockObj := dock.NewDock(sessionBus) sigLoop := dbusutil.NewSignalLoop(sessionBus, 10) sigLoop.Start() dockObj.InitSignalExt(sigLoop, true) sigHid, err := dockObj.ConnectEntryAdded(func(entryPath dbus.ObjectPath, index int32) { log.Println(entryPath, index) })</p>
-<p>time.Sleep(100*time.Second) sigLoop.Stop() dockObj.RemoveHandler(sigHid) #+END_SRC</p>
-<p>程序运行后，从启动器打开一个任务栏上之前没有的应用，然后程序就能收到 =EntryAdded= 信号并打印参数值出来。</p>
-<p>这部分代码用到了新的包 =pkg.deepin.io/lib/dbusutil= 包，使用它的 =SignalLoop= 功能来处理信号。调用 =dbusutil.NewSignalLoop= 创建一个信号循环，然后调用 =Start= 方法开始，当不需要时调用 =Stop= 结束。 =dockObj= 默认是不支持监听信号的，直接调用 =dockObj.ConnectXXX= 方法会崩溃，必须先调用 =InitSignalExt= 方法，传入 SignalLoop。 ** 使用 dbusutil 包 之前介绍了使用 dbus1 包，现在介绍使用更多的 dbusutil 包，它是对 dbus1 包的功能的一次包装，更加偏向于导出服务。</p>
-<p>*** 导出对象 #+BEGIN_SRC go type Obj struct { methods *struct { GetString func() <code>out:"result"</code> } }</p>
-<p>func (o <em>Obj) GetString() (string, </em>dbus.Error) { return “object”, nil }</p>
-<p>func (o *Obj) GetInterfaceName() string { return “p1.p2.p3” }</p>
-<p>func main() { service, err := dbusutil.NewSessionService() obj := &amp;Obj{ } err = service.Export(“/p1/p2/p3”, obj) err = service.RequestName(“p1.p2.p3”) service.Wait() } #+END_SRC</p>
-<p>在 =main= 方法中，使用 =dbusutil.NewSessionService= 创建 =<em>dbusutil.Service= 类型的变量 =service= ，然后调用 =service.Export= 方法导出 =obj= 变量。要导出 =obj= 变量，就得让它的类型 =</em>Obj= 实现 =GetInterfaceName= 方法，此方法要返回接口名。 *** 定义属性 定义一个属性的简单方式是，给导出的结构增加公开字段，比如想要导出 =Obj= 结构，导出的接口 =p1.p2.p3= 中会有一个 =Name= 属性，类型为字符串，就要有如下定义：</p>
-<p>#+BEGIN_SRC go type Obj struct { Name string } #+END_SRC</p>
-<p>这个 =Name= 属性是只读的，如果要让它可以写、设置，就要给 =Name= 字段加上结构字段 =tag= : =prop:“access:rw”= ， 如下：</p>
-<p>#+BEGIN_SRC go type Obj struct { Name string <code>prop:"access:rw"</code> } #+END_SRC *** 发送信号 下面的代码是要发送信号，路径 =/p1/p2/p3=, 接口名 =p1.p2.p3=, 信号名 =Signal1= ， 参数是字符串和数字。</p>
-<p>#+BEGIN_SRC go</p>
-<p>type Obj struct { signals *struct { Added struct { arg0 string arg1 int32 } } }</p>
-<p>func (o *Obj) GetInterfaceName() string { return “p1.p2.p3” }</p>
-<p>func main() { service, err := dbusutil.NewSessionService() obj := &amp;Obj{ } err = service.Export(“/p1/p2/p3”, obj) err = service.RequestName(“p1.p2.p3”) for { err = service.Emit(obj, “Added”, “val0”, 11) time.Sleep(2*time.Second) } } #+END_SRC</p>
-<p>要点是在定义 Obj 结构时，加上 =signals= 字段，并在 =signals= 字段类型定义结构中加上 =Added= 字段 ，然后调用 =service.Emit= 方法发送信号。 *** 发送属性改变信号 下面的代码是要发送属性改变信号，路径 =/p1/p2/p3=, 接口名 =p1.p2.p3=, 属性名 =Name= ，类型字符串。</p>
-<p>#+BEGIN_SRC go type Obj struct { Name string }</p>
-<p>func (o *Obj) GetInterfaceName() string { return “p1.p2.p3” }</p>
-<p>func main() { service, err := dbusutil.NewSessionService() obj := &amp;Obj{ } err = service.Export(“/p1/p2/p3”, obj) err = service.RequestName(“p1.p2.p3”) for { err = service.EmitPropertyChanged(obj, “Name”, “name1”) time.Sleep(2*time.Second) } } #+END_SRC</p>
-<p>要点是先在 Obj 结构中定义一个属性 =Name= ，然后调用 =service.EmitPropertyChanged= 方法发送属性改变信号。</p>
-<ul>
-<li>gsettings in go gsettings 是 gio 提供的功能，go 语言要用就得用 cgo 包装一下，这部分代码是由 =go-gir-generator= 工具自动生成的，软件包 =golang-gir-gio-2.0-dev= 提供了源码文件，安装之后放在 =/usr/share/gocode/src/pkg.deepin.io/gir/gio-2.0= 文件夹下。</li>
-</ul>
-<p>项目地址： https://gitlab.deepin.io/github-linuxdeepin-mirror/go-gir-generator</p>
-<p>** 简单使用 下面的代码是要获取和设置 gsettings =ca.desrt.dconf-editor.Demo= 的几个设置项。</p>
-<p>#+BEGIN_SRC go gs := gio.NewSettings(“ca.desrt.dconf-editor.Demo”) str := gs.GetString(“string”)</p>
-<p>gs.SetString(“string”, str)</p>
-<p>int0 := gs.GetInt(“integer-32-signed”)</p>
-<p>gs.SetInt(“integer-32-signed”, int0) gs.Unref() #+END_SRC</p>
-<p>=NewSettings= 方法，创建 Settings 对象。 =GetString= 方法获取字符串类型的设置项的值，=SetString= 方法设置字符串类型的设置项的值。 =GetInt= 方法获取整数 int32 类型的设置项的值，=SetInt= 方法设置整数 int32 类型的设置项的值。 =Unref= 方法，在不再需要 gs 对象时，减少引用计数的值。 ** 监听改变信号（原生） 下面的代码是要监听 gsettings =ca.desrt.dconf-editor.Demo= 的 =boolean= 设置项的值改变事件。</p>
-<p>#+BEGIN_SRC go gs := gio.NewSettings(“ca.desrt.dconf-editor.Demo”) gs.Connect(“changed::boolean”, func(gs *gio.Settings, key string) { boolean := gs.GetBoolean(key) log.Println(boolean) }) glib.StartLoop() #+END_SRC</p>
-<p>调用 =Connect= 方法注册事件监听处理函数，第一个参数为事件名，第二个参数为事件处理函数。</p>
-<p>=glib.StartLoop()= 开始一个 Main Loop 事件循环。 ** 监听改变信号（dbus 实现） 由于原生的信号监听方式之前在一种特殊架构上偶尔出现发生了改变事件但不触发处理函数的问题，于是写了另外一种信号监听方式，来规避这种问题。</p>
-<p>下面的代码使用了另外一个包 =pkg.deepin.io/lib/gsettings= 也实现了监听 =boolean= 设置项的值改变事件。</p>
-<p>#+BEGIN_SRC go gs := gio.NewSettings(“ca.desrt.dconf-editor.Demo”) gsettings.ConnectChanged(“ca.desrt.dconf-editor.Demo”, “boolean”, func(key string) { boolean := gs.GetBoolean(key) log.Println(boolean) }) err := gsettings.StartMonitor() select { } #+END_SRC</p>
-<p>=ConnectChanged= 方法注册改变事件的处理函数，第一个参数是 =schema id= ， 第二个参数是设置项名，第三个参数是事件处理函数。</p>
-<p>=StartMonitor= 方法开始监听循环。 ** dbus 服务中作为属性 下面的代码是要导出 DBus 服务，服务名 =p1.p2.p3=, 对象路径 =/p1/p2/p3=, 接口名 =p1.p2.p3= ，把 gsettings =ca.desrt.dconf-editor.Demo= 的 =boolean= 设置项当作接口的属性。</p>
-<p>#+BEGIN_SRC go type Obj struct { Boolean gsprop.Bool <code>prop:"access:rw"</code> }</p>
-<p>func (o *Obj) GetInterfaceName() string { return “p1.p2.p3” }</p>
-<p>func main() { gs := gio.NewSettings(“ca.desrt.dconf-editor.Demo”)</p>
-<pre><code>service, err := dbusutil.NewSessionService()
-
-obj := &amp;Obj{}
-obj.Boolean.Bind(gs, &quot;boolean&quot;)
-log.Println(&quot;get result:&quot;, obj.Boolean.Get())
-
-err = service.Export(&quot;/p1/p2/p3&quot;, obj)
-err = service.RequestName(&quot;p1.p2.p3&quot;)
-err = gsettings.StartMonitor()
-service.Wait()</code></pre>
-<p>} #+END_SRC</p>
-<p>这算是 gsettings 与 dbusutil 包知识相结合的内容。</p>
-<p>要点是 Obj 结构定义了一个公开字段 =Name= ，类型为 =gsprop.Bool= ，然后调用 =Bind= 方法绑定了 =gs= 的 =boolean= 设置项和 =obj= 的 =Name= 属性的关联，使得对 =Name= 属性的读写即是对 =gs= 的 =boolean= 设置项的读写， 如果 =gs= 的 =boolean= 设置项的值改变会自动发出 =Name= 属性改变信号。</p>
-<p>gsprop 包中还有其他的类型，来支持各种数据类型，比如 =String=，=Int=，=Uint= 等。</p>
-<p>同样要记得调用 =StartMonitor= 方法开始监听循环。</p>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[搭建VNC服务器]]></title>
-    <link>https://www.codeplayer.org/Wiki/Computer-Science/Linux/%e6%90%ad%e5%bb%baVNC%e6%9c%8d%e5%8a%a1%e5%99%a8.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Computer-Science/Linux/%e6%90%ad%e5%bb%baVNC%e6%9c%8d%e5%8a%a1%e5%99%a8.html</guid>
-    <description><![CDATA[<p>#+TITLE: 搭建VNC服务器 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>搭建 VNC 服务器 服务器上安装 x11vnc，构建 vnc 的服务端：</li>
-</ul>
-<p>~sudo apt-get install x11vnc~</p>
-<p>设置并存储 vnc 连接密码</p>
-<p>~sudo x11vnc -storepasswd <password> /etc/x11vnc.pass~</p>
-<p>启动 x11vnc 服务端</p>
-<p>~sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -rfbauth /etc/x11vnc.pass -shared -noxdamage -xrandr “resize” -rfbport 5900~</p>
-<p>无密码启动 vnc</p>
-<p>~sudo x11vnc -display :0 -auth /var/run/lightdm/root/:0 -forever -bg -o /var/log/x11vnc.log -noxdamage -xrandr “resize” -rfbport 5900~</p>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[性能分析]]></title>
-    <link>https://www.codeplayer.org/Wiki/Program/C++/%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Program/C++/%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90.html</guid>
-    <description><![CDATA[<p>#+TITLE: 性能分析 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>google-perftools ** 介绍 性能分析通过抽样方法完成，默认是 1 秒 100 个样本，一个样本是 10 毫秒，即时间单位是 10 毫秒；可以通过环境变量 CPUPROFILE_FREQUENCY 设置采样频率。</li>
-</ul>
-<p>CPU profiler 是基于采样工作的。所以采样次数影响着性能报告的准确性。如果采样次数过少，则你会发现同样的程序同样的数据，每次输出的性能报告中的热点都不一样。 ** 使用方法 *** 直接调用 API 在代码中调用 <sub>ProfilerStart</sub> 和 <sub>ProfilerStop</sub> 这两个函数。 *** 链接静态库 在代码 link 过程中添加参数 –lprofiler</p>
-<p>~gcc […] -o helloworld –lprofiler~</p>
-<p>运行程序： ~CPUPROFILE=./helloworld.prof ./helloworld~</p>
-<p>指定要 profile 的程序为 helloworld，并且指定产生的分析结果文件的路径为./helloworld.prof *** 链接动态库 这种方式和静态库的方式差不多，但不用重新编译或重新链接，所以使用非常方便。只需要在运行时添加 LD_PRELOAD 变量。</p>
-<p>~LD_PRELOAD=“/usr/lib/libprofiler.so” CPUPROFILE=./helloworld.prof ./helloworld~ *** 使用信号触发 profile **** 手动设置信号 由于我们的程序有可能是服务程序，而服务程序不会自动执行完退出，如果以 =ctrl+c= 退出也不是正常的 =exit(0)= 的方式退出，而这会导致我们在 profile 的时候，收集到的数据不全甚至是空的，采用如下解决办法：</p>
-<p>将 <sub>ProfilerStart</sub> 和 <sub>ProfilerStop</sub> 这 2 个函数封装到两个信号处理函数中，给服务程序发信号 SIGUSR1，就开始 profile，给服务程序发信号 SIGUSR2，就停止 profile。这样我们可以随时对程序进行 profiling，并获得数据。代码如下：</p>
-<p>#+BEGIN_SRC C #include &lt;stdio.h&gt; #include &lt;sys/types.h&gt; #include &lt;unistd.h&gt; #include &lt;signal.h&gt; #include &lt;google/profiler.h&gt;</p>
-<p>//SIGUSR1: start profiling //SIGUSR2: stop profiling</p>
-<p>static void gprof_callback(int signum) { if (signum == SIGUSR1) { printf(“Catch the signal ProfilerStart”); ProfilerStart(“bs.prof”); } else if (signum == SIGUSR2) { printf(“Catch the signal ProfilerStop”); ProfilerStop(); } }</p>
-<p>static void setup_signal() { struct sigaction profstat; profstat.sa_handler = gprof_callback; profstat.sa_flags = 0; sigemptyset(&amp;profstat.sa_mask); sigaddset(&amp;profstat.sa_mask, SIGUSR1); sigaddset(&amp;profstat.sa_mask, SIGUSR2);</p>
-<p>if ( sigaction(SIGUSR1, &amp;profstat,NULL) &lt; 0 ) { fprintf(stderr, “Fail to connect signal SIGUSR1 with start profiling”); } if ( sigaction(SIGUSR2, &amp;profstat,NULL) &lt; 0 ) { fprintf(stderr, “Fail to connect signal SIGUSR2 with stop profiling”); } }</p>
-<p>int main(int argc,char** argv) { // // … //</p>
-<p>setup_signal();</p>
-<p>// // … //</p>
-<p>return 0; } #+END_SRC</p>
-<p>启动程序后，可以采用 kill -s SIGUSR1 <pid> 和 kill -s SIGUSR2 <pid> 来开始采样和停止采样。 **** 使用 CPUPROFILESIGNAL 设置信号 设置的信号必须是正常情况下未被程序使用的。</p>
-<p>~CPUPROFILE=./helloworld.prof CPUPROFILESIGNAL=12 ./helloworld~</p>
-<p>可以使用 ~killall -12 hellworld~ 触发 profile 开始，然后过一段时间后再次使用 ~killall -12 hellworld~ 触发 profile 结束并生成文件。 ** 数据分析 *** 生成数据 1. 生成文字数据 ~google-pprof <bin path> <profile path> –text~ 2. 生成网页数据 ~google-pprof <bin path> <profile path> –web~ *** 数据含义 每一列的数据解释：</p>
-<ol type="1">
-<li>该函数中的采样数量</li>
-<li>该函数中的采样百分比</li>
-<li>到目前为止打印的函数中的采样百分比</li>
-<li>该函数和被其调用的函数中的采样数量</li>
-<li>该函数和被其调用的函数中的采样百分比</li>
-</ol>
-<ul>
-<li>gprof ** 介绍 grof 可以获取 C 程序运行期间的统计数据，如每个函数的耗时，调用次数及各个函数的调用关系，（gprof 统计的是 CPU 占用时间，I/O 时间不计算在内。通常 gprof 的采样周期是 0.01s，统计项越接近这个值误差可能越大。若函数的运行时间低于 0.01S，统计值会显示为 0。</li>
-</ul>
-<p>类似于 gdb，gprof 需要对待分析的程序做一些改动，因此在程序编译的时候需要加上“-pg”选项，如果程序的某个模块在编译的时候没有加上“-pg”，则该模块的函数会被排除在统计范围之外。比如想要查看库函数的 profiling，则需在链接库函数的时候用“-lc_p”代替”-lc“（gprof 是各个类 UNIX 的标准工具，系统自带的链接库通常有两个版本，它们的区别在于编译的时候是否加上了”-pg“。用-lc_p 等于告诉编译器选择加上了”-pg“的那个版本）。 加上”-pg"选项后，程序的入口会于 main()之前调用 monstartup()，主要是申请内存存储接下来获取的统计信息。</p>
-<p>在每个函数中会调用_mcount()，主要是在函数的堆栈中查询父函数和子函数的地址并保存下来。最后会在程序退出前调用_mcleanup()，将统计结果保存到 gmon.out 中，并完成清除工作。</p>
-<p>gprof 统计各个函数的运行时间是采用的抽样的方法，周期性的查看 Programcounter 指向哪一个函数的地址段，并把结果以直方图的形式保存下来。 ** 使用方法 1. 编译时添加选项 =-pg= 2. 运行程序，生成 gmonf.out 文件 3. 使用 gprof 进行分析， ~gprof <bin path> <gmonf path>~ ** 数据分析 *** Flat Profile 示例图 | 标注 | 释义 | |——————–+———————————————————–| | %time | 每个函数占用的时间比例，所有函数占比和为 100% | | cumulative seconds | 函数及其调用函数执行累计占用时间 | | self seconds | 单独函数执行累计占用时间 | | calls | 函数调用次数 | | self ms/call | 每次调用函数花费的时间,单位毫秒, 不包含调用函数运行的时间 | | total ms/call | 每次调用函数花费的时间,单位毫秒,包括调用函数运行的时间 | | name | 函数名称 | *** Call Graph 示例图 | 标注 | 释义 | |———-+————————————————————————–| | index | 每个函数第一次出现时分配一个编号，根据编号可以方便查找函数的具体分析数据 | | %time | 函数以及调用子函数所占用的总运行时间的百分比 | | self | 函数的总运行时间 | | children | 子函数执行的总时间 | | called | 函数被调用的次数，不包括递归调用 | | name | 函数名称, name 列中，可查看函数之间的调用关系 |</p>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[self-host mail]]></title>
-    <link>https://www.codeplayer.org/Wiki/Computer-Science/self-host%20mail.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Computer-Science/self-host%20mail.html</guid>
-    <description><![CDATA[<p>#+TITLE: self-host mail #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li><p>DNS record ** SPF 全名 Sender Policy Framework，用来鉴别发送邮件的服务器或者 IP，是否为该域允许的范围。 这需要在发送邮件的域名下添加一条 TXT 记录，举个例子： =example.net. TXT “v=spf1 mx a:pluto.example.net include:aspmx.googlemail.com -all” v=spf1= 做开头为必须，spf1 说明这是第一版 spf 协议 SPF 规定有 6 种机制：</p></li>
-<li><p>ALL 匹配所有的结果，一般放在最后</p></li>
-<li><p>A 匹配所有该域的 A 记录</p></li>
-<li><p>MX 匹配所有该域的 MX 记录</p></li>
-<li><p>IP4 所有之后的 IPv4 地址，可以用 mask 匹配多项，比如：192.168.0.0/24</p></li>
-<li><p>IP6 所有之后的 IPv6 地址，同 IPv4</p></li>
-<li><p>INCLUDE 去之后对应地址查找，比如 INCLUDE:spf.34nm.com，就是去 spf.34nm.com 继续查找 TXT/SPF 记录</p></li>
-</ul>
-<p>还有四种修饰符分别意义是：</p>
-<ul>
-<li>“+“：允许，默认记录都是允许</li>
-<li>“-“：不允许</li>
-<li>“~“：中立，也就是没有相关策略</li>
-<li>“?“：同样是中立，但是为 debug</li>
-</ul>
-<p>这样例子中 =example.net. TXT “v=spf1 mx a:pluto.example.net include:aspmx.googlemail.com -all”= 的意思是</p>
-<table>
-<thead>
-<tr class="header">
-<th>mx</th>
-<th>允许所有 MX 记录</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>a:pluto.example.net</td>
-<td>pluto.example.net 的 A 记录也允许</td>
-</tr>
-<tr class="even">
-<td>include:aspmx.googlemail.com</td>
-<td>其余记录参考 aspmx.googlemail.com</td>
-</tr>
-<tr class="odd">
-<td>-all</td>
-<td>拒绝所有其他记录</td>
-</tr>
-</tbody>
-</table>
-<p>** DKIM 由于 SPF 天生只验证是否可以发信, 不保证这个发信人是验证的,因此,SPF 验证通过的仍然可能是伪造的邮件. 这就需要 DKIM 来进一步保证这封邮件不是伪造的. 在特殊的子域名”_domainkey”(例如:_domainkey.example.com)的 TXT 记录中插入一对 RSA 密钥中的公钥, 而 RSA 的私钥用来加密邮件的部分字段. 收到邮件的服务器发现有 DKIM-SIGNATURE 字段时,会自动校验 DKIM 的公钥, 按照匹配程度进行处理. 这样就完成了验证.</p>
-<p>#+BEGIN_EXAMPLE +—————+ +—————–+ | SenderServer | | ReceiverServer | +—————+ +—————–+ | —————–  | |-| Calculate DKIM | | | |—————-| | | | | Send singed mail | |—————————&gt;| | | | Check DKIM record | |&lt; ————————–| | | —————————<br />
-| |-| OK, found key and verify | | | |————————–| | | #+END_EXAMPLE</p>
-<p>还可以在特殊子域名之上,再建立一堆域名,例如 authmail._domainkey.example.com,这样在校验邮件时还可以选择不同的密钥. 协议的内容相对来说就简单很多了,只有三种值:</p>
-<ul>
-<li>v=DKIM1; 使用 DKIM 第一版协议</li>
-<li>k=rsa; 使用 RSA 加密</li>
-<li>p=长长的一段公钥</li>
-</ul>
-<p>** DMARC</p>
-<p>该验证的都验证了,还有个 DMARC 是干吗的呢? 这是为了给域名邮件的拥有者报告垃圾邮件的状况而设定的规则. 和之前的方法一样,在_dmarc.example.com 下面设定自己的 DMARC 规则, 具体就参考 Google 提供的文档吧.</p>
-<p>https://support.google.com/a/answer/2466580?hl=zh-Hans&amp;ref_topic=2759254</p>
-<ul>
-<li><p>self-host service</p></li>
-<li><p>Poste.io</p>
-<ul>
-<li>https://poste.io</li>
-<li>Demo: https://demo.poste.io/admin/login#admin@poste.io;admin</li>
-<li>1 GiB RAM</li>
-</ul></li>
-<li><p>Mailu</p>
-<ul>
-<li>https://mailu.io/1.7/index.html</li>
-<li>Github: https://github.com/Mailu/Mailu</li>
-<li>Demo: https://test.mailu.io/admin admin@test.mailu.io/letmein</li>
-<li>at least 2GB of total memory and 1GB of free memory</li>
-</ul></li>
-<li><p>docker-mailserver</p>
-<ul>
-<li>Github: https://github.com/tomav/docker-mailserver</li>
-<li>Recommended: 1-2GB RAM, Minimum 512MB RAM</li>
-<li>NO webpanel</li>
-</ul></li>
-<li><p>mailcow</p>
-<ul>
-<li>https://mailcow.email/</li>
-<li>Github: https://github.com/mailcow/mailcow-dockerized</li>
-<li>Demo: https://demo.modoboa.org admin/moohoo</li>
-<li>3 GiB RAM</li>
-</ul></li>
-<li><p>modoboa</p>
-<ul>
-<li>https://modoboa.org/en/</li>
-<li>Demo: https://demo.modoboa.org/</li>
-<li>2 GB RAM</li>
-</ul></li>
-<li><p>Mail-in-a-Box</p></li>
-<li><p>Zarafa</p></li>
-<li><p>Kopano</p></li>
-<li><p>IRedMail</p></li>
-<li><p>EwoMail</p></li>
-<li><p>https://www.reddit.com/r/selfhosted/comments/bmsum7/selfhosted_email_setup_howto/</p></li>
-<li><p>Links</p></li>
-</ul>
-<ol type="1">
-<li>[[https://wiki.archlinux.org/index.php/Mail_server][Mail server/archwiki]]</li>
-<li>[[https://newpants.top/2019/11/14/%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8Poste%E4%BA%94%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA/][邮件服务器 Poste 五分钟搭建]]</li>
-</ol>]]></description>
-    <pubDate>Fri, 30 Apr 2021 17:19:37 +0800</pubDate>
+    <pubDate>Mon, 10 May 2021 17:50:06 +0800</pubDate>
     </item>
 </channel>
 </rss>
