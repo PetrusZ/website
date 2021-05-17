@@ -4,7 +4,7 @@
 <!-- 2021-05-17 Mon 16:26 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Go</title>
+<title>Go内存管理之代码的逃逸分析</title>
 <meta name="author" content="Petrus.Z" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -227,24 +227,168 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Go</h1>
+<h1 class="title">Go内存管理之代码的逃逸分析</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3cc714a">go</a></li>
+<li><a href="#orge163bed">Go 内存管理之代码的逃逸分析</a></li>
+<li><a href="#orgf335a6f">原文链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3cc714a" class="outline-2">
-<h2 id="org3cc714a">go</h2>
-<div class="outline-text-2" id="text-org3cc714a">
+<div id="outline-container-orge163bed" class="outline-2">
+<h2 id="orge163bed">Go 内存管理之代码的逃逸分析</h2>
+<div class="outline-text-2" id="text-orge163bed">
+<p>
+基本上，每种编程语言都有其自己的内存模型。每个变量，常量都存储在内存的某个物理位置上，这些存储位置通过内存指针访问。
+</p>
+
+<p>
+至于变量，就是程序里赋予内存存储位置的名称。程序可以根据需要进行操作，并且可以将新值分配给相同的内存存储位置。而常量也是赋予内存存储位置的名称，但是程序不能将新值分配给相同的存储位置（意思就是常量是恒定值，不能被重新赋值）。
+</p>
+
+<p>
+我们都知道，程序运行时使用的内存被分为两个区：堆和栈。那么如何得知变量是分配在栈（stack）上还是堆（heap）上呢？对于手动管理内存的语言，比如 C/C++，使用 malloc 或者 new 申请的变量会被分配到堆上。但是 Go 并不是这样，虽然 Go 语言里面也有 new。
+</p>
+
+<p>
+在 Go 官网的 FAQ 上有一个关于变量分配的问题如下：
+</p>
+
+<blockquote>
+<p>
+Q：如何得知变量是分配在栈（stack）上还是堆（heap）上？
+</p>
+
+<p>
+A: 准确地说，你并不需要知道。Golang 中的变量只要被引用就一直会存活，存储在堆上还是栈上由内部实现决定而和具体的语法没有关系。知道变量的存储位置确实对程序的效率有帮助。如果可能，Golang 编译器会将函数的局部变量分配到函数栈帧（stack frame）上。然而，如果编译器不能确保变量在函数 return 之后不再被引用，编译器就会将变量分配到堆上。而且，如果一个局部变量非常大，那么它也应该被分配到堆上而不是栈上。当前情况下，如果一个变量被取地址，那么它就有可能被分配到堆上。然而，还要对这些变量做逃逸分析，如果函数 return 之后，变量不再被引用，则将其分配到栈上。
+</p>
+</blockquote>
+
+<p>
+Go 编译器决定变量应该分配到什么地方时会进行逃逸分析。
+</p>
+
+<p>
+逃逸分析指的是：Go 编译器会跨越函数和包的边界进行全局的逃逸分析。它会检查是否需要在堆上为一个变量分配内存，还是说可以在栈本身的内存里对其进行管理。
+</p>
+
+<p>
+我们可以使用 go 命令工具的-gcflags="-m"选项观察逃逸分析的结果以及 GC 工具链的内联决策，内联是一种手动或编译器优化，用于将简短函数的调用替换为函数体本身。这么做的原因是它可以消除函数调用本身的开销，也使得编译器能更高效地执行其他的优化策略。我们可以显示地在函数定义前面加一行特殊的注释让编译器不对函数进行内联（看下面的例子）。
+</p>
+
+<p>
+接下来我们通过两个例子观察一下 Go 编译器对程序进行的逃逸分析。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">package</span> main
+<span style="color: #51afef;">import</span> <span style="color: #98be65;">"fmt"</span>
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"Called stackAnalysis"</span>, <span style="color: #c678dd;">stackAnalysis</span>())
+}
+<span style="color: #5B6268;">//</span><span style="color: #5B6268;">go:noinline</span>
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">stackAnalysis</span>() <span style="color: #ECBE7B;">int</span> {
+    <span style="color: #dcaeea;">data</span> := <span style="color: #da8548; font-weight: bold;">55</span>
+    <span style="color: #51afef;">return</span> data
+}
+</pre>
+</div>
+
+<p>
+在上面的 main 函数中，我们对 stackAnalysis 进行了一个简单的函数调用，函数 stackAnalysis 返回 int 值。通过命令观察一下它的逃逸分析：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">go build -gcflags <span style="color: #98be65;">"-m -l"</span>
+
+./scratch.go:4:14: <span style="color: #98be65;">"Called stackAnalysis"</span> escapes to heap
+./scratch.go:4:51: stackAnalysis<span style="color: #51afef;">()</span> escapes to heap
+./scratch.go:4:13: main ... argument does not escape
+</pre>
+</div>
+
+<p>
+编译器的逃逸分析告诉我们：
+</p>
 <ul class="org-ul">
-<li><a href="在go中使用dbus和gsettings.html">在go中使用dbus和gsettings</a></li>
-<li><a href="go语言调度器.html">Go语言调度器</a></li>
-<li><a href="在Go语言里使用继承的翻车经历.html">在 Go 语言里使用继承的翻车经历</a></li>
-<li><a href="Go内存管理之代码的逃逸分析.html">Go内存管理之代码的逃逸分析</a></li>
+<li>第 4 行 14 个字符处的字符串标量"Called stackAnalysis"逃逸到堆上。</li>
+<li>第 4 行 51 个字符串的函数调用 stackAnalysis()逃逸到了堆上。</li>
+</ul>
+
+<blockquote>
+<p>
+"escapes to heap"的意思是变量需要在函数栈之间共享，上面的例子就是在 main 和 fmt.Println 之间共享。
+</p>
+</blockquote>
+
+
+<div id="orgda2b20a" class="figure">
+<p><img src="../../../pics/Go/stack.png" alt="stack.png">
+</p>
+</div>
+
+<p>
+如上图所示，main 和 stackAnalysis 函数分配在一个栈上。由于函数具有自己的变量，因此也会将变量分配到栈的某个地方。当函数返回时，与该函数关联的所有变量也会从内存中删除。
+</p>
+
+<p>
+接下来再看第二个例子：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">package</span> main
+<span style="color: #51afef;">import</span> <span style="color: #98be65;">"fmt"</span>
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+  fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"Called heapAnalysis"</span>, <span style="color: #c678dd;">heapAnalysis</span>())
+}
+<span style="color: #5B6268;">//</span><span style="color: #5B6268;">go:noinline</span>
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">heapAnalysis</span>() *<span style="color: #ECBE7B;">int</span> {
+   <span style="color: #dcaeea;">data</span> := <span style="color: #da8548; font-weight: bold;">55</span>
+   <span style="color: #51afef;">return</span> &amp;data
+}
+</pre>
+</div>
+
+<p>
+在上面的主函数中，我们对 heapAnalysis 进行了一个简单的函数调用，并且函数 heapAnalysis 返回* int 类型的指针。下面是对这段代码的逃逸分析结果：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">./scratch.go:9:9: &amp;data escapes to heap
+./scratch.go:8:2: moved to heap: data
+./scratch.go:4:14: <span style="color: #98be65;">"Called heapAnalysis"</span> escapes to heap
+./scratch.go:4:49: heapAnalysis<span style="color: #51afef;">()</span> escapes to heap
+./scratch.go:4:13: main ... argument does not escape
+</pre>
+</div>
+
+<p>
+当函数 heapAnalysis 返回* int 类型的指针变量后， 会在 main 函数中使用该指针变量，因为是在 heapAnalysis 函数外部访问，变量必须被移动到堆上。
+</p>
+
+
+<div id="org5f8a605" class="figure">
+<p><img src="../../../pics/Go/heap.png" alt="heap.png">
+</p>
+</div>
+
+<p>
+如上图所示，main 和 heapAnalysis 函数分配在一个栈上。由于函数具有自己的变量，因此也会将变量分配到栈的某个地方。但是编译器检查到该值是返回了它的指针，并且已用于另一个函数，因此变量被移到了堆中，主函数会从堆中访问该变量。
+</p>
+
+<p>
+简单来说，逃逸分析也是了解我们应该如何优化应用程序性能的一种方式。通过上面的分析可以看出来，虽然指针能够减少变量在函数间传递时的数据值拷贝问题，但是也不应该所有类型的数据都应该返回其指针。如果分配到堆上的共享变量太多的话也无形中增加了 GC 的压力。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf335a6f" class="outline-2">
+<h2 id="orgf335a6f">原文链接</h2>
+<div class="outline-text-2" id="text-orgf335a6f">
+<ul class="org-ul">
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247485579&amp;idx=1&amp;sn=f481cff4ffccacc186a020e45e884924&amp;chksm=fa80d91ccdf7500ab984ecde7056aa29a2986c423557736c32bd251f2cb5d1ce1e54909753cc&amp;cur_album_id=1326949382503219201&amp;scene=190#rd">https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247485579&amp;idx=1&amp;sn=f481cff4ffccacc186a020e45e884924&amp;chksm=fa80d91ccdf7500ab984ecde7056aa29a2986c423557736c32bd251f2cb5d1ce1e54909753cc&amp;cur_album_id=1326949382503219201&amp;scene=190#rd</a></li>
 </ul>
 </div>
 </div>
