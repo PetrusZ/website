@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-05-20 Thu 10:21 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Effective Go笔记</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">Effective Go笔记</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8b6e3d1">引言</a></li>
+<li><a href="#orge0eb13a">格式化</a></li>
+<li><a href="#org6281c54">注释</a></li>
+<li><a href="#org850ffeb">命名</a>
+<ul>
+<li><a href="#org78c17d4">包名</a></li>
+<li><a href="#org938d003">获取器</a></li>
+<li><a href="#org5505b0a">接口名</a></li>
+<li><a href="#org9fd28b9">驼峰记法</a></li>
+</ul>
+</li>
+<li><a href="#org1238e8e">分号</a></li>
+<li><a href="#orge174230">控制结构</a>
+<ul>
+<li><a href="#org97281fc">重新声明与再次赋值</a></li>
+<li><a href="#org83ea26b">For</a></li>
+<li><a href="#org4bf1c1b">Switch</a></li>
+<li><a href="#org61482e4">类型选择</a></li>
+</ul>
+</li>
+<li><a href="#orgde0493f">函数</a>
+<ul>
+<li><a href="#org1e8f94a">可命名结果形参</a></li>
+<li><a href="#org807bf6e">Defer</a></li>
+</ul>
+</li>
+<li><a href="#org4fdf39b">数据</a>
+<ul>
+<li><a href="#orgd4fff28">new 分配</a></li>
+<li><a href="#org249fcbb">构造函数与复合字面</a></li>
+<li><a href="#org1086b83">make 分配</a></li>
+<li><a href="#org2b0b716">数组</a></li>
+<li><a href="#org65587d7">切片</a></li>
+<li><a href="#org564f935">二维切片</a></li>
+<li><a href="#org8b747c5">映射（map）</a></li>
+<li><a href="#org764823d">打印</a></li>
+<li><a href="#org03d34e2">追加</a></li>
+</ul>
+</li>
+<li><a href="#orge2f0f9e">初始化</a>
+<ul>
+<li><a href="#org5c8b2ca">常量</a></li>
+<li><a href="#org56c6712">变量</a></li>
+<li><a href="#org237cab0">init 函数</a></li>
+</ul>
+</li>
+<li><a href="#orgeeab03a">方法</a>
+<ul>
+<li><a href="#orgaefa276">指针 vs. 值</a></li>
+</ul>
+</li>
+<li><a href="#org21e3cf8">接口与其它类型</a>
+<ul>
+<li><a href="#org08321fa">接口</a></li>
+</ul>
+</li>
+<li><a href="#org845abe9">空白标识符</a>
+<ul>
+<li><a href="#orgeaf1592">未使用的导入和变量</a></li>
+<li><a href="#org845e3ef">为副作用而导入</a></li>
+<li><a href="#org41e5326">接口检查</a></li>
+</ul>
+</li>
+<li><a href="#org0053851">内嵌</a></li>
+<li><a href="#org6e41383">并发</a>
+<ul>
+<li><a href="#orgd3ba132">通过通信共享内存</a></li>
+<li><a href="#org3f6b651">Go 程</a></li>
+<li><a href="#org89ffecb">信道</a></li>
+<li><a href="#org3fe7215">信道中的信道</a></li>
+<li><a href="#org1795391">并行化</a></li>
+</ul>
+</li>
+<li><a href="#org44c7acd">错误</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8b6e3d1" class="outline-2">
+<h2 id="org8b6e3d1">引言</h2>
+<div class="outline-text-2" id="text-org8b6e3d1">
+<p>
+Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。将现有的 C++或 Java 程序直译为 Go 程序并不能令人满意——毕竟 Java 程序是用 Java 编写的，而不是 Go。 另一方面，若从 Go 的角度去分析问题，你就能编写出同样可行但大不相同的程序。 换句话说，要想将 Go 程序写得好，就必须理解其特性和风格。了解命名、格式化、 程序结构等既定规则也同样重要，这样你编写的程序才能更容易被其他程序员所理解。
+</p>
+</div>
+</div>
+<div id="outline-container-orge0eb13a" class="outline-2">
+<h2 id="orge0eb13a">格式化</h2>
+<div class="outline-text-2" id="text-orge0eb13a">
+<p>
+格式化问题总是充满了争议，但却始终没有形成统一的定论。虽说人们可以适应不同的编码风格， 但抛弃这种适应过程岂不更好？若所有人都遵循相同的编码风格，在这类问题上浪费的时间将会更少。 问题就在于如何实现这种设想，而无需冗长的语言风格规范。
+</p>
+
+<p>
+在 Go 中我们另辟蹊径，让机器来处理大部分的格式化问题。gofmt 程序（也可用 go fmt，它以包为处理对象而非源文件）将 Go 程序按照标准风格缩进、 对齐，保留注释并在需要时重新格式化。若你想知道如何处理一些新的代码布局，请尝试运行 gofmt；若结果仍不尽人意，请重新组织你的程序（或提交有关 gofmt 的 Bug），而不必为此纠结。
+</p>
+
+<p>
+举例来说，你无需花时间将结构体中的字段注释对齐，gofmt 将为你代劳。
+</p>
+
+<p>
+还有一些关于格式化的细节，它们非常简短：
+</p>
+
+<ul class="org-ul">
+<li>缩进我们使用制表符（tab）缩进，gofmt 默认也使用它。在你认为确实有必要时再使用空格。</li>
+<li>行的长度
+Go 对行的长度没有限制，别担心打孔纸不够长。如果一行实在太长，也可进行折行并插入适当的 tab 缩进。</li>
+<li><p>
+括号比起 C 和 Java，Go 所需的括号更少：控制结构（if、for 和 switch）在语法上并不需要圆括号。此外，操作符优先级处理变得更加简洁，因此
+</p>
+
+<p>
+<code>x&lt;&lt;8 + y&lt;&lt;16</code>
+</p>
+
+<p>
+正表述了空格符所传达的含义。
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6281c54" class="outline-2">
+<h2 id="org6281c54">注释</h2>
+<div class="outline-text-2" id="text-org6281c54">
+<p>
+Go 语言支持 C 风格的块注释 <i>* *</i> 和 C++风格的行注释 //。 行注释更为常用，而块注释则主要用作包的注释，当然也可在禁用一大段代码时使用。
+</p>
+
+<p>
+godoc 既是一个程序，又是一个 Web 服务器，它对 Go 的源码进行处理，并提取包中的文档内容。 出现在顶级声明之前，且与该声明之间没有空行的注释，将与该声明一起被提取出来，作为该条目的说明文档。 这些注释的类型和风格决定了 godoc 生成的文档质量。
+</p>
+
+<p>
+每个包都应包含一段包注释，即放置在包子句前的一个块注释。对于包含多个文件的包， 包注释只需出现在其中的任一文件中即可。包注释应在整体上对该包进行介绍，并提供包的相关信息。 它将出现在 godoc 页面中的最上面，并为紧随其后的内容建立详细的文档。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">    regexp &#21253;&#20026;&#27491;&#21017;&#34920;&#36798;&#24335;&#23454;&#29616;&#20102;&#19968;&#20010;&#31616;&#21333;&#30340;&#24211;&#12290;</span>
+
+<span style="color: #5B6268;">    &#35813;&#24211;&#25509;&#21463;&#30340;&#27491;&#21017;&#34920;&#36798;&#24335;&#35821;&#27861;&#20026;&#65306;</span>
+
+<span style="color: #5B6268;">    &#27491;&#21017;&#34920;&#36798;&#24335;:</span>
+<span style="color: #5B6268;">        &#20018;&#32852; { '|' &#20018;&#32852; }</span>
+<span style="color: #5B6268;">    &#20018;&#32852;:</span>
+<span style="color: #5B6268;">        { &#38381;&#21253; }</span>
+<span style="color: #5B6268;">    &#38381;&#21253;:</span>
+<span style="color: #5B6268;">        &#26465;&#30446; [ '*' | '+' | '?' ]</span>
+<span style="color: #5B6268;">    &#26465;&#30446;:</span>
+<span style="color: #5B6268;">        '^'</span>
+<span style="color: #5B6268;">        '$'</span>
+<span style="color: #5B6268;">        '.'</span>
+<span style="color: #5B6268;">        &#23383;&#31526;</span>
+<span style="color: #5B6268;">        '[' [ '^' ] &#23383;&#31526;&#36941;&#21382; ']'</span>
+<span style="color: #5B6268;">        '(' &#27491;&#21017;&#34920;&#36798;&#24335; ')'</span>
+<span style="color: #5B6268;">*/</span>
+<span style="color: #51afef;">package</span> regexp
+</pre>
+</div>
+
+<p>
+若某个包比较简单，包注释同样可以简洁些（使用行注释）。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">path &#21253;&#23454;&#29616;&#20102;&#19968;&#20123;&#24120;&#29992;&#30340;&#24037;&#20855;&#65292;&#20197;&#20415;&#20110;&#25805;&#20316;&#29992;&#21453;&#26012;&#26464;&#20998;&#38548;&#30340;&#36335;&#24452;.</span>
+</pre>
+</div>
+
+<p>
+注释无需进行额外的格式化，如用星号来突出等。生成的输出甚至可能无法以等宽字体显示， 因此不要依赖于空格对齐，godoc 会像 gofmt 那样处理好这一切。 注释是不会被解析的纯文本，因此像 HTML 或其它类似于 <span class="underline">这样</span> 的东西将按照 原样 输出，因此不应使用它们。godoc 所做的调整， 就是将已缩进的文本以等宽字体显示，来适应对应的程序片段。 fmt 包的注释就用了这种不错的效果。
+</p>
+
+<p>
+godoc 是否会重新格式化注释取决于上下文，因此必须确保它们看起来清晰易辨： 使用正确的拼写、标点和语句结构以及折叠长行等。
+</p>
+
+<p>
+在包中，任何顶级声明前面的注释都将作为该声明的文档注释。 在程序中，每个可导出（首字母大写）的名称都应该有文档注释。
+</p>
+
+<p>
+文档注释最好是完整的句子，这样它才能适应各种自动化的展示。 第一句应当以被声明的东西开头，并且是单句的摘要。
+</p>
+</div>
+</div>
+<div id="outline-container-org850ffeb" class="outline-2">
+<h2 id="org850ffeb">命名</h2>
+<div class="outline-text-2" id="text-org850ffeb">
+</div>
+<div id="outline-container-org78c17d4" class="outline-3">
+<h3 id="org78c17d4">包名</h3>
+<div class="outline-text-3" id="text-org78c17d4">
+<p>
+若所有人都以相同的名称来引用其内容将大有裨益， 这也就意味着包应当有个恰当的名称：其名称应该简洁明了而易于理解。按照惯例， 包应当以小写的单个单词来命名，且不应使用下划线或驼峰记法。err 的命名就是出于简短考虑的，因为任何使用该包的人都会键入该名称。 不必担心引用次序的冲突。包名就是导入时所需的唯一默认名称， 它并不需要在所有源码中保持唯一，即便在少数发生冲突的情况下， 也可为导入的包选择一个别名来局部使用。 无论如何，通过文件名来判定使用的包，都是不会产生混淆的。
+</p>
+
+<p>
+另一个约定就是包名应为其源码目录的基本名称。在 src/pkg/encoding/base64 中的包应作为 "encoding/base64" 导入，其包名应为 base64， 而非 encoding_base64 或 encodingBase64。
+</p>
+</div>
+</div>
+<div id="outline-container-org938d003" class="outline-3">
+<h3 id="org938d003">获取器</h3>
+<div class="outline-text-3" id="text-org938d003">
+<p>
+Go 并不对获取器（getter）和设置器（setter）提供自动支持。 你应当自己提供获取器和设置器，通常很值得这样做，但若要将 Get 放到获取器的名字中，既不符合习惯，也没有必要。若你有个名为 owner （小写，未导出）的字段，其获取器应当名为 Owner（大写，可导出）而非 GetOwner。大写字母即为可导出的这种规定为区分方法和字段提供了便利。 若要提供设置器方法，SetOwner 是个不错的选择。两个命名看起来都很合理。
+</p>
+</div>
+</div>
+<div id="outline-container-org5505b0a" class="outline-3">
+<h3 id="org5505b0a">接口名</h3>
+<div class="outline-text-3" id="text-org5505b0a">
+<p>
+按照约定，只包含一个方法的接口应当以该方法的名称加上-er 后缀来命名，如 Reader、Writer、 Formatter、CloseNotifier 等。
+</p>
+
+<p>
+诸如此类的命名有很多，遵循它们及其代表的函数名会让事情变得简单。 Read、Write、Close、Flush、 String 等都具有典型的签名和意义。为避免冲突，请不要用这些名称为你的方法命名， 除非你明确知道它们的签名和意义相同。反之，若你的类型实现了的方法， 与一个众所周知的类型的方法拥有相同的含义，那就使用相同的命名。 请将字符串转换方法命名为 String 而非 ToString。
+</p>
+</div>
+</div>
+<div id="outline-container-org9fd28b9" class="outline-3">
+<h3 id="org9fd28b9">驼峰记法</h3>
+<div class="outline-text-3" id="text-org9fd28b9">
+<p>
+最后，Go 中约定使用驼峰记法 MixedCaps 或 mixedCaps。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1238e8e" class="outline-2">
+<h2 id="org1238e8e">分号</h2>
+<div class="outline-text-2" id="text-org1238e8e">
+<p>
+和 C 一样，Go 的正式语法使用分号来结束语句；和 C 不同的是，这些分号并不在源码中出现。 取而代之，词法分析器会使用一条简单的规则来自动插入分号，因此因此源码中基本就不用分号了。
+</p>
+
+<p>
+规则是这样的：若在新行前的最后一个标记为标识符（包括 int 和 float64 这类的单词）、数值或字符串常量之类的基本字面或以下标记之一
+</p>
+
+<pre class="example">
+break continue fallthrough return ++ -- ) }
+</pre>
+
+<p>
+则词法分析将始终在该标记后面插入分号。这点可以概括为： “如果新行前的标记为语句的末尾，则插入分号”。
+</p>
+
+<p>
+分号也可在闭括号之前直接省略，因此像
+</p>
+
+<pre class="example">
+	go func() { for { dst &lt;- &lt;-src } }()
+</pre>
+
+<p>
+这样的语句无需分号。通常 Go 程序只在诸如 for 循环子句这样的地方使用分号， 以此来将初始化器、条件及增量元素分开。如果你在一行中写多个语句，也需要用分号隔开。
+</p>
+
+<p>
+警告：无论如何，你都不应将一个控制结构（if、for、switch 或 select）的左大括号放在下一行。如果这样做，就会在大括号前面插入一个分号，这可能引起不需要的效果。
+</p>
+</div>
+</div>
+<div id="outline-container-orge174230" class="outline-2">
+<h2 id="orge174230">控制结构</h2>
+<div class="outline-text-2" id="text-orge174230">
+<p>
+Go 中的结构控制与 C 有许多相似之处，但其不同之处才是独到之处。 Go 不再使用 do 或 while 循环，只有一个更通用的 for；switch 要更灵活一点；if 和 switch 像 for 一样可接受可选的初始化语句； 此外，还有一个包含类型选择和多路通信复用器的新控制结构：select。 其语法也有些许不同：没有圆括号，而其主体必须始终使用大括号括住。
+</p>
+</div>
+<div id="outline-container-org97281fc" class="outline-3">
+<h3 id="org97281fc">重新声明与再次赋值</h3>
+<div class="outline-text-3" id="text-org97281fc">
+<p>
+在满足下列条件时，已被声明的变量 v 可出现在:= 声明中：
+</p>
+
+<p>
+本次声明与已声明的 v 处于同一作用域中（若 v 已在外层作用域中声明过，则此次声明会创建一个新的变量§），
+</p>
+<ul class="org-ul">
+<li>在初始化中与其类型相应的值才能赋予 v，且</li>
+<li>在此次声明中至少另有一个变量是新声明的。</li>
+<li>这个特性简直就是纯粹的实用主义体现，它使得我们可以很方面地只使用一个 err 值，例如，在一个相当长的 if-else 语句链中， 你会发现它用得很频繁。</li>
+</ul>
+
+<p>
+§值得一提的是，即便 Go 中的函数形参和返回值在词法上处于大括号之外， 但它们的作用域和该函数体仍然相同。
+</p>
+</div>
+</div>
+<div id="outline-container-org83ea26b" class="outline-3">
+<h3 id="org83ea26b">For</h3>
+<div class="outline-text-3" id="text-org83ea26b">
+<p>
+Go 的 for 循环类似于 C，但却不尽相同。它统一了 for 和 while，不再有 do-while 了。它有三种形式，但只有一种需要分号。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#21516;C&#30340;for&#24490;&#29615;</span>
+<span style="color: #51afef;">for</span> init; condition; post { }
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#21516;C&#30340;while&#24490;&#29615;</span>
+<span style="color: #51afef;">for</span> condition { }
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#22914;&#21516;C&#30340;for(;;)&#24490;&#29615;</span>
+<span style="color: #51afef;">for</span> { }
+</pre>
+</div>
+
+<p>
+若你想遍历数组、切片、字符串或者映射，或从信道中读取消息， range 子句能够帮你轻松实现循环。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">for</span> <span style="color: #dcaeea;">key</span>, <span style="color: #dcaeea;">value</span> := <span style="color: #51afef;">range</span> oldMap {
+    newMap[key] = value
+}
+</pre>
+</div>
+
+<p>
+若你只需要该遍历中的第一个项（键或下标），去掉第二个就行了：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">for</span> <span style="color: #dcaeea;">key</span> := <span style="color: #51afef;">range</span> m {
+    <span style="color: #51afef;">if</span> key.<span style="color: #c678dd;">expired</span>() {
+        <span style="color: #c678dd;">delete</span>(m, key)
+    }
+}
+</pre>
+</div>
+
+<p>
+对于字符串，range 能够提供更多便利。它能通过解析 UTF-8， 将每个独立的 Unicode 码点分离出来。错误的编码将占用一个字节，并以符文 U+FFFD 来代替。 （名称“符文”和内建类型 rune 是 Go 对单个 Unicode 码点的成称谓。 详情见语言规范）。
+</p>
+
+<p>
+最后，Go 没有逗号操作符，而 <code>++</code> 和 <code>--</code> 为语句而非表达式。 因此，若你想要在 for 中使用多个变量，应采用平行赋值的方式 （因为它会拒绝 <code>++</code> 和 <code>--</code> ）.
+</p>
+</div>
+</div>
+<div id="outline-container-org4bf1c1b" class="outline-3">
+<h3 id="org4bf1c1b">Switch</h3>
+<div class="outline-text-3" id="text-org4bf1c1b">
+<p>
+Go 的 switch 比 C 的更通用。其表达式无需为常量或整数，case 语句会自上而下逐一进行求值直到匹配为止。若 switch 后面没有表达式，它将匹配 true，因此，我们可以将 if-else-if-else 链写成一个 switch，这也更符合 Go 的风格。
+</p>
+
+<p>
+switch 并不会自动下溯，但 case 可通过逗号分隔来列举相同的处理条件。
+</p>
+
+<p>
+尽管它们在 Go 中的用法和其它类 C 语言差不多，但 break 语句可以使 switch 提前终止。不仅是 switch， 有时候也必须打破层层的循环。在 Go 中，我们只需将标签放置到循环外，然后 “蹦”到那里即可。下面的例子展示了二者的用法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #a9a1e1;">Loop</span>:
+    <span style="color: #51afef;">for</span> <span style="color: #dcaeea;">n</span> := <span style="color: #da8548; font-weight: bold;">0</span>; n &lt; <span style="color: #c678dd;">len</span>(src); n += size {
+        <span style="color: #51afef;">switch</span> {
+        <span style="color: #51afef;">case</span> src[n] &lt; sizeOne:
+            <span style="color: #51afef;">if</span> validateOnly {
+                <span style="color: #51afef;">break</span>
+            }
+            size = <span style="color: #da8548; font-weight: bold;">1</span>
+            <span style="color: #c678dd;">update</span>(src[n])
+
+        <span style="color: #51afef;">case</span> src[n] &lt; sizeTwo:
+            <span style="color: #51afef;">if</span> n+<span style="color: #da8548; font-weight: bold;">1</span> &gt;= <span style="color: #c678dd;">len</span>(src) {
+                err = errShortInput
+                <span style="color: #51afef;">break</span> <span style="color: #a9a1e1;">Loop</span>
+            }
+            <span style="color: #51afef;">if</span> validateOnly {
+                <span style="color: #51afef;">break</span>
+            }
+            size = <span style="color: #da8548; font-weight: bold;">2</span>
+            <span style="color: #c678dd;">update</span>(src[n] + src[n+<span style="color: #da8548; font-weight: bold;">1</span>]&lt;&lt;shift)
+        }
+    }
+</pre>
+</div>
+
+<p>
+当然，continue 语句也能接受一个可选的标签，不过它只能在循环中使用。
+</p>
+</div>
+</div>
+<div id="outline-container-org61482e4" class="outline-3">
+<h3 id="org61482e4">类型选择</h3>
+<div class="outline-text-3" id="text-org61482e4">
+<p>
+switch 也可用于判断接口变量的动态类型。如 类型选择 通过圆括号中的关键字 type 使用类型断言语法。若 switch 在表达式中声明了一个变量，那么该变量的每个子句中都将有该变量对应的类型。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgde0493f" class="outline-2">
+<h2 id="orgde0493f">函数</h2>
+<div class="outline-text-2" id="text-orgde0493f">
+</div>
+<div id="outline-container-org1e8f94a" class="outline-3">
+<h3 id="org1e8f94a">可命名结果形参</h3>
+<div class="outline-text-3" id="text-org1e8f94a">
+<p>
+Go 函数的返回值或结果“形参”可被命名，并作为常规变量使用，就像传入的形参一样。 命名后，一旦该函数开始执行，它们就会被初始化为与其类型相应的零值； 若该函数执行了一条不带实参的 return 语句，则结果形参的当前值将被返回。
+</p>
+
+<p>
+此名称不是强制性的，但它们能使代码更加简短清晰：它们就是文档。
+</p>
+</div>
+</div>
+<div id="outline-container-org807bf6e" class="outline-3">
+<h3 id="org807bf6e">Defer</h3>
+<div class="outline-text-3" id="text-org807bf6e">
+<p>
+Go 的 defer 语句用于预设一个函数调用（即推迟执行函数）， 该函数会在执行 defer 的函数返回之前立即执行。它显得非比寻常， 但却是处理一些事情的有效方式，例如无论以何种路径返回，都必须释放资源的函数。 典型的例子就是解锁互斥和关闭文件。
+</p>
+
+<p>
+被推迟函数的实参（如果该函数为方法则还包括接收者）在推迟执行时就会求值， 而不是在调用执行时才求值。这样不仅无需担心变量值在函数执行时被改变， 同时还意味着单个已推迟的调用可推迟多个函数的执行。下面是个简单的例子。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">for</span> <span style="color: #dcaeea;">i</span> := <span style="color: #da8548; font-weight: bold;">0</span>; i &lt; <span style="color: #da8548; font-weight: bold;">5</span>; i++ {
+    <span style="color: #51afef;">defer</span> fmt.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"%d "</span>, i)
+}
+</pre>
+</div>
+
+<p>
+被推迟的函数按照后进先出（LIFO）的顺序执行，因此以上代码在函数返回时会打印 4 3 2 1 0。一个更具实际意义的例子是通过一种简单的方法， 用程序来跟踪函数的执行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">trace</span>(<span style="color: #dcaeea;">s</span> <span style="color: #ECBE7B;">string</span>)   { fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"entering:"</span>, s) }
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">untrace</span>(<span style="color: #dcaeea;">s</span> <span style="color: #ECBE7B;">string</span>) { fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"leaving:"</span>, s) }
+
+<span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20687;&#36825;&#26679;&#20351;&#29992;&#23427;&#20204;&#65306;</span>
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">a</span>() {
+    <span style="color: #c678dd;">trace</span>(<span style="color: #98be65;">"a"</span>)
+    <span style="color: #51afef;">defer</span> <span style="color: #c678dd;">untrace</span>(<span style="color: #98be65;">"a"</span>)
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20570;&#19968;&#20123;&#20107;&#24773;....</span>
+}
+</pre>
+</div>
+
+<p>
+我们可以充分利用这个特点，即被推迟函数的实参在 defer 执行时才会被求值。 跟踪例程可针对反跟踪例程设置实参。以下例子：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">trace</span>(<span style="color: #dcaeea;">s</span> <span style="color: #ECBE7B;">string</span>) <span style="color: #ECBE7B;">string</span> {
+    fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"entering:"</span>, s)
+    <span style="color: #51afef;">return</span> s
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">un</span>(<span style="color: #dcaeea;">s</span> <span style="color: #ECBE7B;">string</span>) {
+    fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"leaving:"</span>, s)
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">a</span>() {
+    <span style="color: #51afef;">defer</span> <span style="color: #c678dd;">un</span>(<span style="color: #c678dd;">trace</span>(<span style="color: #98be65;">"a"</span>))
+    fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"in a"</span>)
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">b</span>() {
+    <span style="color: #51afef;">defer</span> <span style="color: #c678dd;">un</span>(<span style="color: #c678dd;">trace</span>(<span style="color: #98be65;">"b"</span>))
+    fmt.<span style="color: #c678dd;">Println</span>(<span style="color: #98be65;">"in b"</span>)
+    <span style="color: #c678dd;">a</span>()
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #c678dd;">b</span>()
+}
+&#20250;&#25171;&#21360;
+
+<span style="color: #a9a1e1;">entering</span>: b
+in <span style="color: #ECBE7B;">b</span>
+<span style="color: #a9a1e1;">entering</span>: a
+in <span style="color: #ECBE7B;">a</span>
+<span style="color: #a9a1e1;">leaving</span>: a
+<span style="color: #a9a1e1;">leaving</span>: b
+</pre>
+</div>
+
+<p>
+对于习惯其它语言中块级资源管理的程序员，defer 似乎有点怪异， 但它最有趣而强大的应用恰恰来自于其基于函数而非块的特点。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4fdf39b" class="outline-2">
+<h2 id="org4fdf39b">数据</h2>
+<div class="outline-text-2" id="text-org4fdf39b">
+</div>
+<div id="outline-container-orgd4fff28" class="outline-3">
+<h3 id="orgd4fff28">new 分配</h3>
+<div class="outline-text-3" id="text-orgd4fff28">
+<p>
+Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的事情不同，所应用的类型也不同。它们可能会引起混淆，但规则却很简单。 让我们先来看看 new。这是个用来分配内存的内建函数， 但与其它语言中的同名函数不同，它不会初始化内存，只会将内存置零。 也就是说，new(T) 会为类型为 T 的新项分配已置零的内存空间， 并返回它的地址，也就是一个类型为 *T 的值。用 Go 的术语来说，它返回一个指针， 该指针指向新分配的，类型为 T 的零值。
+</p>
+
+<p>
+既然 new 返回的内存已置零，那么当你设计数据结构时， 每种类型的零值就不必进一步初始化了，这意味着该数据结构的使用者只需用 new 创建一个新的对象就能正常工作。
+</p>
+</div>
+</div>
+<div id="outline-container-org249fcbb" class="outline-3">
+<h3 id="org249fcbb">构造函数与复合字面</h3>
+<div class="outline-text-3" id="text-org249fcbb">
+<p>
+有时零值还不够好，这时就需要一个初始化构造函数，如来自 os 包中的这段代码所示。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">NewFile</span>(<span style="color: #dcaeea;">fd</span> <span style="color: #ECBE7B;">int</span>, <span style="color: #dcaeea;">name</span> <span style="color: #ECBE7B;">string</span>) *<span style="color: #ECBE7B;">File</span> {
+    <span style="color: #51afef;">if</span> fd &lt; <span style="color: #da8548; font-weight: bold;">0</span> {
+        <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">nil</span>
+    }
+    <span style="color: #dcaeea;">f</span> := <span style="color: #c678dd;">new</span>(<span style="color: #ECBE7B;">File</span>)
+    f.fd = fd
+    f.name = name
+    f.dirinfo = <span style="color: #a9a1e1;">nil</span>
+    f.nepipe = <span style="color: #da8548; font-weight: bold;">0</span>
+    <span style="color: #51afef;">return</span> f
+}
+</pre>
+</div>
+
+<p>
+这里显得代码过于冗长。我们可通过复合字面来简化它， 该表达式在每次求值时都会创建新的实例。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">NewFile</span>(<span style="color: #dcaeea;">fd</span> <span style="color: #ECBE7B;">int</span>, <span style="color: #dcaeea;">name</span> <span style="color: #ECBE7B;">string</span>) *<span style="color: #ECBE7B;">File</span> {
+    <span style="color: #51afef;">if</span> fd &lt; <span style="color: #da8548; font-weight: bold;">0</span> {
+        <span style="color: #51afef;">return</span> <span style="color: #a9a1e1;">nil</span>
+    }
+    <span style="color: #dcaeea;">f</span> := <span style="color: #ECBE7B;">File</span>{fd, name, <span style="color: #a9a1e1;">nil</span>, <span style="color: #da8548; font-weight: bold;">0</span>}
+    <span style="color: #51afef;">return</span> &amp;f
+}
+</pre>
+</div>
+
+<p>
+请注意，返回一个局部变量的地址完全没有问题，这点与 C 不同。该局部变量对应的数据 在函数返回后依然有效。实际上，每当获取一个复合字面的地址时，都将为一个新的实例分配内存， 因此我们可以将上面的最后两行代码合并：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">    <span style="color: #51afef;">return</span> &amp;<span style="color: #ECBE7B;">File</span>{fd, name, <span style="color: #a9a1e1;">nil</span>, <span style="color: #da8548; font-weight: bold;">0</span>}
+</pre>
+</div>
+
+<p>
+复合字面的字段必须按顺序全部列出。但如果以 字段:值 对的形式明确地标出元素，初始化字段时就可以按任何顺序出现，未给出的字段值将赋予零值。 因此，我们可以用如下形式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go">    <span style="color: #51afef;">return</span> &amp;<span style="color: #ECBE7B;">File</span>{<span style="color: #a9a1e1;">fd</span>: fd, <span style="color: #a9a1e1;">name</span>: name}
+</pre>
+</div>
+
+<p>
+少数情况下，若复合字面不包括任何字段，它将创建该类型的零值。表达式 new(File) 和 &amp;File{} 是等价的。
+</p>
+
+<p>
+复合字面同样可用于创建数组、切片以及映射，字段标签是索引还是映射键则视情况而定。
+</p>
+</div>
+</div>
+<div id="outline-container-org1086b83" class="outline-3">
+<h3 id="org1086b83">make 分配</h3>
+<div class="outline-text-3" id="text-org1086b83">
+<p>
+再回到内存分配上来。内建函数 make(T, args) 的目的不同于 new(T)。它只用于创建切片、map 和信道，并返回类型为 T（而非 *T）的一个已初始化 （而非置零）的值。 出现这种用差异的原因在于，这三种类型本质上为引用数据类型，它们在使用前必须初始化。
+</p>
+
+<p>
+请记住，make 只适用于 map、切片和信道且不返回指针。若要获得明确的指针， 请使用 new 分配内存。
+</p>
+</div>
+</div>
+<div id="outline-container-org2b0b716" class="outline-3">
+<h3 id="org2b0b716">数组</h3>
+<div class="outline-text-3" id="text-org2b0b716">
+<p>
+在详细规划内存布局时，数组是非常有用的，有时还能避免过多的内存分配， 但它们主要用作切片的构件。这是下一节的主题了，不过要先说上几句来为它做铺垫。
+</p>
+
+<p>
+以下为数组在 Go 和 C 中的主要区别。在 Go 中，
+</p>
+<ul class="org-ul">
+<li>数组是值。将一个数组赋予另一个数组会复制其所有元素。</li>
+<li>特别地，若将某个数组传入某个函数，它将接收到该数组的一份副本而非指针。</li>
+<li>数组的大小是其类型的一部分。类型 [10]int 和 [20]int 是不同的。</li>
+</ul>
+
+<p>
+数组为值的属性很有用，但代价高昂；若你想要 C 那样的行为和效率，你可以传递一个指向该数组的指针。但这并不是 Go 的习惯用法，切片才是。
+</p>
+</div>
+</div>
+<div id="outline-container-org65587d7" class="outline-3">
+<h3 id="org65587d7">切片</h3>
+<div class="outline-text-3" id="text-org65587d7">
+<p>
+切片通过对数组进行封装，为数据序列提供了更通用、强大而方便的接口。 除了矩阵变换这类需要明确维度的情况外，Go 中的大部分数组编程都是通过切片来完成的。
+</p>
+
+<p>
+切片保存了对底层数组的引用，若你将某个切片赋予另一个切片，它们会引用同一个数组。 若某个函数将一个切片作为参数传入，则它对该切片元素的修改对调用者而言同样可见， 这可以理解为传递了底层数组的指针
+</p>
+
+<p>
+只要切片不超出底层数组的限制，它的长度就是可变的，只需将它赋予其自身的切片即可。 切片的容量可通过内建函数 cap 获得，它将给出该切片可取得的最大长度。 apped 会将数据追加到切片的函数。若数据超出其容量，则会重新分配该切片。返回值即为所得的切片。len 和 cap 在应用于 nil 切片时是合法的，它会返回 0。
+</p>
+</div>
+</div>
+<div id="outline-container-org564f935" class="outline-3">
+<h3 id="org564f935">二维切片</h3>
+<div class="outline-text-3" id="text-org564f935">
+<p>
+Go 的数组和切片都是一维的。要创建等价的二维数组或切片，就必须定义一个数组的数组， 或切片的切片。由于切片长度是可变的，因此其内部可能拥有多个不同长度的切片。
+</p>
+</div>
+</div>
+<div id="outline-container-org8b747c5" class="outline-3">
+<h3 id="org8b747c5">映射（map）</h3>
+<div class="outline-text-3" id="text-org8b747c5">
+<p>
+映射是方便而强大的内建数据结构，它可以关联不同类型的值。其键可以是任何相等性操作符支持的类型， 如整数、浮点数、复数、字符串、指针、接口（只要其动态类型支持相等性判断）、结构以及数组。 切片不能用作映射键，因为它们的相等性还未定义。与切片一样，映射也是引用类型。 若将映射传入函数中，并更改了该映射的内容，则此修改对调用者同样可见。
+</p>
+
+<p>
+映射可使用一般的复合字面语法进行构建，其键-值对使用逗号分隔，因此可在初始化时很容易地构建它们。
+</p>
+
+<p>
+若试图通过映射中不存在的键来取值，就会返回与该映射中项的类型对应的零值。有时你需要区分某项是不存在还是其值为零值。你可以使用多重赋值的形式来分辨这种情况，我们可称之为“逗号 ok”惯用法。
+</p>
+
+<p>
+要删除映射中的某项，可使用内建函数 delete，它以映射及要被删除的键为实参。 即便对应的键不在该映射中，此操作也是安全的。
+</p>
+</div>
+</div>
+<div id="outline-container-org764823d" class="outline-3">
+<h3 id="org764823d">打印</h3>
+<div class="outline-text-3" id="text-org764823d">
+<p>
+Go 采用的格式化打印风格和 C 的 printf 族类似，但却更加丰富而通用。 这些函数位于 fmt 包中，且函数名首字母均为大写：如 fmt.Printf、fmt.Fprintf，fmt.Sprintf 等。 字符串函数（Sprintf 等）会返回一个字符串，而非填充给定的缓冲区。
+</p>
+
+<p>
+你无需提供一个格式字符串。每个 Printf、Fprintf 和 Sprintf 都分别对应另外的函数，如 Print 与 Println。 这些函数并不接受格式字符串，而是为每个实参生成一种默认格式。Println 系列的函数还会在实参中插入空格，并在输出时追加一个换行符，而 Print 版本仅在操作数两侧都没有字符串时才添加空白。
+</p>
+
+<p>
+fmt.Fprint 一类的格式化打印函数可接受任何实现了 io.Writer 接口的对象作为第一个实参；变量 os.Stdout 与 os.Stderr 都是人们熟知的例子。
+</p>
+
+<p>
+从这里开始，就与 C 有些不同了。首先，像 %d 这样的数值格式并不接受表示符号或大小的标记， 打印例程会根据实参的类型来决定这些属性。
+</p>
+
+<p>
+若你只想要默认的转换，如使用十进制的整数，你可以使用通用的格式 %v（对应“值”）；其结果与 Print 和 Println 的输出完全相同。此外，这种格式还能打印任意值，甚至包括数组、结构体和映射。
+</p>
+
+<p>
+当然，映射中的键可能按任意顺序输出。当打印结构体时，改进的格式 %+v 会为结构体的每个字段添上字段名，而另一种格式 %#v 将完全按照 Go 的语法打印值。
+</p>
+
+<p>
+当遇到 string 或 []byte 值时， 可使用 %q 产生带引号的字符串；而格式 %#q 会尽可能使用反引号。 （%q 格式也可用于整数和符文，它会产生一个带单引号的符文常量。） 此外，%x 还可用于字符串、字节数组以及整数，并生成一个很长的十六进制字符串， 而带空格的格式（% x）还会在字节之间插入空格。
+</p>
+
+<p>
+另一种实用的格式是 %T，它会打印某个值的类型。
+</p>
+
+<p>
+若你想控制自定义类型的默认格式，只需为该类型定义一个具有 String() string 签名的方法。对于我们简单的类型 T，可进行如下操作。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">t</span> *<span style="color: #ECBE7B;">T</span>) <span style="color: #c678dd;">String</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> fmt.<span style="color: #c678dd;">Sprintf</span>(<span style="color: #98be65;">"%d/%g/%q"</span>, t.a, t.b, t.c)
+}
+fmt.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"%v\n"</span>, t)
+</pre>
+</div>
+
+<p>
+（如果你需要像指向 T 的指针那样打印类型 T 的值， String 的接收者就必须是值类型的；上面的例子中接收者是一个指针， 因为这对结构来说更高效而通用。更多详情见指针 vs.值接收者一节.）
+</p>
+
+<p>
+我们的 String 方法也可调用 Sprintf， 因为打印例程可以完全重入并按这种方式封装。不过要理解这种方式，还有一个重要的细节： 请勿通过调用 Sprintf 来构造 String 方法，因为它会无限递归你的的 String 方法。
+</p>
+
+<p>
+要解决这个问题也很简单：将该实参转换为基本的字符串类型，它没有这个方法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">MyString</span> <span style="color: #ECBE7B;">string</span>
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">m</span> <span style="color: #ECBE7B;">MyString</span>) <span style="color: #c678dd;">String</span>() <span style="color: #ECBE7B;">string</span> {
+    <span style="color: #51afef;">return</span> fmt.<span style="color: #c678dd;">Sprintf</span>(<span style="color: #98be65;">"MyString=%s"</span>, <span style="color: #c678dd;">string</span>(m)) <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21487;&#20197;&#65306;&#27880;&#24847;&#36716;&#25442;</span>
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org03d34e2" class="outline-3">
+<h3 id="org03d34e2">追加</h3>
+<div class="outline-text-3" id="text-org03d34e2">
+<p>
+现在我们要对内建函数 append 的设计进行补充说明。append 函数的签名不同于前面我们自定义的 Append 函数。大致来说，它就像这样：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">append</span>(<span style="color: #dcaeea;">slice</span> []<span style="color: #ECBE7B;">T</span>, <span style="color: #dcaeea;">&#20803;&#32032;</span> ...<span style="color: #ECBE7B;">T</span>) []<span style="color: #ECBE7B;">T</span>
+</pre>
+</div>
+
+<p>
+其中的 T 为任意给定类型的占位符。实际上，你无法在 Go 中编写一个类型 T 由调用者决定的函数。这也就是为何 append 为内建函数的原因：它需要编译器的支持。
+</p>
+
+<p>
+但如果我们要像 Append 那样将一个切片追加到另一个切片中呢？ 很简单：在调用的地方使用 &#x2026;，就像我们在上面调用 Output 那样。以下代码片段的输出与上一个相同。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">x</span> := []<span style="color: #ECBE7B;">int</span>{<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">3</span>}
+<span style="color: #dcaeea;">y</span> := []<span style="color: #ECBE7B;">int</span>{<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">5</span>,<span style="color: #da8548; font-weight: bold;">6</span>}
+x = <span style="color: #c678dd;">append</span>(x, y...)
+fmt.<span style="color: #c678dd;">Println</span>(x)
+</pre>
+</div>
+
+<p>
+如果没有 &#x2026;，它就会由于类型错误而无法编译，因为 y 不是 int 类型的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2f0f9e" class="outline-2">
+<h2 id="orge2f0f9e">初始化</h2>
+<div class="outline-text-2" id="text-orge2f0f9e">
+<p>
+尽管从表面上看，Go 的初始化过程与 C 或 C++并不算太大，但它确实更为强大。 在初始化过程中，不仅可以构建复杂的结构，还能正确处理不同包对象间的初始化顺序。
+</p>
+</div>
+<div id="outline-container-org5c8b2ca" class="outline-3">
+<h3 id="org5c8b2ca">常量</h3>
+<div class="outline-text-3" id="text-org5c8b2ca">
+<p>
+Go 中的常量就是不变量。它们在编译时创建，即便它们可能是函数中定义的局部变量。 常量只能是数字、字符（符文）、字符串或布尔值。由于编译时的限制， 定义它们的表达式必须也是可被编译器求值的常量表达式。
+</p>
+
+<p>
+在 Go 中，枚举常量使用枚举器 iota 创建。由于 iota 可为表达式的一部分，而表达式可以被隐式地重复，这样也就更容易构建复杂的值的集合了。
+</p>
+
+<p>
+在这里用 Sprintf 实现 ByteSize 的 String 方法很安全（不会无限递归），这倒不是因为类型转换，而是它以 %f 调用了 Sprintf，它并不是一种字符串格式：Sprintf 只会在它需要字符串时才调用 String 方法，而 %f 需要一个浮点数值。
+</p>
+</div>
+</div>
+<div id="outline-container-org56c6712" class="outline-3">
+<h3 id="org56c6712">变量</h3>
+<div class="outline-text-3" id="text-org56c6712">
+<p>
+变量的初始化与常量类似，但其初始值也可以是在运行时才被计算的一般表达式。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org237cab0" class="outline-3">
+<h3 id="org237cab0">init 函数</h3>
+<div class="outline-text-3" id="text-org237cab0">
+<p>
+最后，每个源文件都可以通过定义自己的无参数 init 函数来设置一些必要的状态。 （其实每个文件都可以拥有多个 init 函数。）而它的结束就意味着初始化结束： 只有该包中的所有变量声明都通过它们的初始化器求值后 init 才会被调用， 而那些 init 只有在所有已导入的包都被初始化后才会被求值。
+</p>
+
+<p>
+除了那些不能被表示成声明的初始化外，init 函数还常被用在程序真正开始执行前，检验或校正程序的状态。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeeab03a" class="outline-2">
+<h2 id="orgeeab03a">方法</h2>
+<div class="outline-text-2" id="text-orgeeab03a">
+</div>
+<div id="outline-container-orgaefa276" class="outline-3">
+<h3 id="orgaefa276">指针 vs. 值</h3>
+<div class="outline-text-3" id="text-orgaefa276">
+<p>
+正如 ByteSize 那样，我们可以为任何已命名的类型（除了指针或接口）定义方法； 接收者可不必为结构体。
+</p>
+
+<p>
+在之前讨论切片时，我们编写了一个 Append 函数。 我们也可将其定义为切片的方法。为此，我们首先要声明一个已命名的类型来绑定该方法， 然后使该方法的接收者成为该类型的值。
+</p>
+
+<p>
+我们仍然需要该方法返回更新后的切片。为了消除这种不便，我们可通过重新定义该方法， 将一个指向 ByteSlice 的指针作为该方法的接收者， 这样该方法就能重写调用者提供的切片了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">ByteSlice</span> []<span style="color: #ECBE7B;">byte</span>
+
+<span style="color: #51afef;">func</span> (<span style="color: #dcaeea;">p</span> *<span style="color: #ECBE7B;">ByteSlice</span>) <span style="color: #c678dd;">Append</span>(<span style="color: #dcaeea;">data</span> []<span style="color: #ECBE7B;">byte</span>) {
+    <span style="color: #dcaeea;">slice</span> := *p
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20027;&#20307;&#21644;&#21069;&#38754;&#30456;&#21516;&#65292;&#20294;&#27809;&#26377; return&#12290;</span>
+    *p = slice
+}
+</pre>
+</div>
+
+<p>
+以指针或值为接收者的区别在于：值方法可通过指针和值调用， 而指针方法只能通过指针来调用。
+</p>
+
+<p>
+之所以会有这条规则是因为指针方法可以修改接收者；通过值调用它们会导致方法接收到该值的副本， 因此任何修改都将被丢弃，因此该语言不允许这种错误。不过有个方便的例外：若该值是可寻址的， 那么该语言就会自动插入取址操作符来对付一般的通过值调用的指针方法。在我们的例子中，变量 b 是可寻址的，因此我们只需通过 b.Write 来调用它的 Write 方法，编译器会将它重写为 (&amp;b).Write。
+</p>
+
+<p>
+顺便一提，在字节切片上使用 Write 的想法已被 bytes.Buffer 所实现。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org21e3cf8" class="outline-2">
+<h2 id="org21e3cf8">接口与其它类型</h2>
+<div class="outline-text-2" id="text-org21e3cf8">
+</div>
+<div id="outline-container-org08321fa" class="outline-3">
+<h3 id="org08321fa">接口</h3>
+<div class="outline-text-3" id="text-org08321fa">
+<p>
+Go 中的接口为指定对象的行为提供了一种方法：如果某样东西可以完成 <b>这个</b> ， 那么它就可以用在 <b>这里</b> 。每种类型都能实现多个接口。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org845abe9" class="outline-2">
+<h2 id="org845abe9">空白标识符</h2>
+<div class="outline-text-2" id="text-org845abe9">
+<p>
+我们在 for-range 循环和映射中提过几次空白标识符。 空白标识符可被赋予或声明为任何类型的任何值，而其值会被无害地丢弃。它有点像 Unix 中的 /dev/null 文件：它表示只写的值，在需要变量但不需要实际值的地方用作占位符。 我们在前面已经见过它的用法了。
+</p>
+</div>
+<div id="outline-container-orgeaf1592" class="outline-3">
+<h3 id="orgeaf1592">未使用的导入和变量</h3>
+<div class="outline-text-3" id="text-orgeaf1592">
+<p>
+若导入某个包或声明某个变量而不使用它就会产生错误。未使用的包会让程序膨胀并拖慢编译速度， 而已初始化但未使用的变量不仅会浪费计算能力，还有可能暗藏着更大的 Bug。 然而在程序开发过程中，经常会产生未使用的导入和变量。虽然以后会用到它们， 但为了完成编译又不得不删除它们才行，这很让人烦恼。空白标识符就能提供一个工作空间。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">package</span> main
+
+<span style="color: #51afef;">import</span> (
+    <span style="color: #98be65;">"fmt"</span>
+    <span style="color: #98be65;">"io"</span>
+    <span style="color: #98be65;">"log"</span>
+    <span style="color: #98be65;">"os"</span>
+)
+
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">_</span> = fmt.Printf <span style="color: #5B6268;">// </span><span style="color: #5B6268;">For debugging; delete when done. // &#29992;&#20110;&#35843;&#35797;&#65292;&#32467;&#26463;&#26102;&#21024;&#38500;&#12290;</span>
+<span style="color: #51afef;">var</span> <span style="color: #dcaeea;">_</span> <span style="color: #ECBE7B;">io.Reader</span>    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">For debugging; delete when done. // &#29992;&#20110;&#35843;&#35797;&#65292;&#32467;&#26463;&#26102;&#21024;&#38500;&#12290;</span>
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">main</span>() {
+    <span style="color: #dcaeea;">fd</span>, <span style="color: #dcaeea;">err</span> := os.<span style="color: #c678dd;">Open</span>(<span style="color: #98be65;">"test.go"</span>)
+    <span style="color: #51afef;">if</span> err != <span style="color: #a9a1e1;">nil</span> {
+        log.<span style="color: #c678dd;">Fatal</span>(err)
+    }
+    <span style="color: #5B6268;">// </span><span style="color: #ECBE7B; font-weight: bold;">TODO:</span><span style="color: #5B6268;"> use fd.</span>
+    _ = fd
+}
+</pre>
+</div>
+
+<p>
+按照惯例，我们应在导入并加以注释后，再使全局声明导入错误静默，这样可以让它们更易找到， 并作为以后清理它的提醒。
+</p>
+</div>
+</div>
+<div id="outline-container-org845e3ef" class="outline-3">
+<h3 id="org845e3ef">为副作用而导入</h3>
+<div class="outline-text-3" id="text-org845e3ef">
+<p>
+有时导入某个包只是为了其副作用， 而没有任何明确的使用。例如，在 net/http/pprof 包的 init 函数中记录了 HTTP 处理程序的调试信息。它有个可导出的 API， 但大部分客户端只需要该处理程序的记录和通过 Web 叶访问数据。只为了其副作用来哦导入该包， 只需将包重命名为空白标识符：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">import</span> _ <span style="color: #98be65;">"net/http/pprof"</span>
+</pre>
+</div>
+
+<p>
+这种导入格式能明确表示该包是为其副作用而导入的，因为没有其它使用该包的可能： 在此文件中，它没有名字。（若它有名字而我们没有使用，编译器就会拒绝该程序。）
+</p>
+</div>
+</div>
+<div id="outline-container-org41e5326" class="outline-3">
+<h3 id="org41e5326">接口检查</h3>
+<div class="outline-text-3" id="text-org41e5326">
+<p>
+就像我们在前面接口中讨论的那样， 一个类型无需显式地声明它实现了某个接口。取而代之，该类型只要实现了某个接口的方法， 其实就实现了该接口。在实践中，大部分接口转换都是静态的，因此会在编译时检测。 例如，将一个 *os.File 传入一个预期的 io.Reader 函数将不会被编译， 除非 *os.File 实现了 io.Reader 接口。
+</p>
+
+<p>
+尽管有些接口检查会在运行时进行。encoding/json 包中就有个实例它定义了一个 Marshaler 接口。当 JSON 编码器接收到一个实现了该接口的值，那么该编码器就会调用该值的编组方法， 将其转换为 JSON，而非进行标准的类型转换。 编码器在运行时通过类型断言检查其属性，就像这样：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">m</span>, <span style="color: #dcaeea;">ok</span> := val.(<span style="color: #ECBE7B;">json.Marshaler</span>)
+</pre>
+</div>
+
+<p>
+若只需要判断某个类型是否是实现了某个接口，而不需要实际使用接口本身 （可能是错误检查部分），就使用空白标识符来忽略类型断言的值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">if</span> <span style="color: #dcaeea;">_</span>, <span style="color: #dcaeea;">ok</span> := val.(<span style="color: #ECBE7B;">json.Marshaler</span>); ok {
+    fmt.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"value %v of type %T implements json.Marshaler\n"</span>, val, val)
+}
+</pre>
+</div>
+
+<p>
+当需要确保某个包中实现的类型一定满足该接口时，就会遇到这种情况。 若某个类型（例如 json.RawMessage） 需要一种定制的 JSON 表现时，它应当实现 json.Marshaler， 不过现在没有静态转换可以让编译器去自动验证它。若该类型通过忽略转换失败来满足该接口， 那么 JSON 编码器仍可工作，但它却不会使用定制的实现。为确保其实现正确， 可在该包中用空白标识符声明一个全局变量：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">var</span> <span style="color: #dcaeea;">_</span> <span style="color: #ECBE7B;">json.Marshaler</span> = (*RawMessage)(<span style="color: #a9a1e1;">nil</span>)
+</pre>
+</div>
+
+<p>
+在此声明中，我们调用了一个 *RawMessage 转换并将其赋予了 Marshaler，以此来要求 *RawMessage 实现 Marshaler，这时其属性就会在编译时被检测。 若 json.Marshaler 接口被更改，此包将无法通过编译， 而我们则会注意到它需要更新。
+</p>
+
+<p>
+在这种结构中出现空白标识符，即表示该声明的存在只是为了类型检查。 不过请不要为满足接口就将它用于任何类型。作为约定， 仅当代码中不存在静态类型转换时才能这种声明，毕竟这是种罕见的情况。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0053851" class="outline-2">
+<h2 id="org0053851">内嵌</h2>
+<div class="outline-text-2" id="text-org0053851">
+<p>
+Go 并不提供典型的，类型驱动的子类化概念，但通过将类型内嵌到结构体或接口中， 它就能“借鉴”部分实现。
+</p>
+
+<p>
+还有种区分内嵌与子类的重要手段。当内嵌一个类型时，该类型的方法会成为外部类型的方法， 但当它们被调用时，该方法的接收者是内部类型，而非外部的。
+</p>
+
+<p>
+内嵌类型会引入命名冲突的问题，但解决规则却很简单。首先，字段或方法 X 会隐藏该类型中更深层嵌套的其它项 X。
+</p>
+
+<p>
+其次，若相同的嵌套层级上出现同名冲突，通常会产生一个错误。若 Job 结构体中包含名为 Logger 的字段或方法，再将 log.Logger 内嵌到其中的话就会产生错误。然而，若重名永远不会在该类型定义之外的程序中使用，那就不会出错。 这种限定能够在外部嵌套类型发生修改时提供某种保护。 因此，就算添加的字段与另一个子类型中的字段相冲突，只要这两个相同的字段永远不会被使用就没问题。
+</p>
+</div>
+</div>
+<div id="outline-container-org6e41383" class="outline-2">
+<h2 id="org6e41383">并发</h2>
+<div class="outline-text-2" id="text-org6e41383">
+</div>
+<div id="outline-container-orgd3ba132" class="outline-3">
+<h3 id="orgd3ba132">通过通信共享内存</h3>
+<div class="outline-text-3" id="text-orgd3ba132">
+<p>
+并发编程是个很大的论题。但限于篇幅，这里仅讨论一些 Go 特有的东西。
+</p>
+
+<p>
+在并发编程中，为实现对共享变量的正确访问需要精确的控制，这在多数环境下都很困难。 Go 语言另辟蹊径，它将共享的值通过信道传递，实际上，多个独立执行的线程从不会主动共享。 在任意给定的时间点，只有一个 Go 程能够访问该值。数据竞争从设计上就被杜绝了。 为了提倡这种思考方式，我们将它简化为一句口号：
+</p>
+
+<blockquote>
+<p>
+不要通过共享内存来通信，而应通过通信来共享内存。
+</p>
+</blockquote>
+
+<p>
+这种方法意义深远。例如，引用计数通过为整数变量添加互斥锁来很好地实现。 但作为一种高级方法，通过信道来控制访问能够让你写出更简洁，正确的程序。
+</p>
+
+<p>
+我们可以从典型的单线程运行在单 CPU 之上的情形来审视这种模型。它无需提供同步原语。 现在考虑另一种情况，它也无需同步。现在让它们俩进行通信。若将通信过程看做同步着， 那就完全不需要其它同步了。例如，Unix 管道就与这种模型完美契合。 尽管 Go 的并发处理方式来源于 Hoare 的通信顺序处理（CSP）， 它依然可以看做是类型安全的 Unix 管道的实现。
+</p>
+</div>
+</div>
+<div id="outline-container-org3f6b651" class="outline-3">
+<h3 id="org3f6b651">Go 程</h3>
+<div class="outline-text-3" id="text-org3f6b651">
+<p>
+我们称之为 Go 程是因为现有的术语—线程、协程、进程等等—无法准确传达它的含义。 Go 程具有简单的模型：它是与其它 Go 程并发运行在同一地址空间的函数。它是轻量级的， 所有小号几乎就只有栈空间的分配。而且栈最开始是非常小的，所以它们很廉价， 仅在需要时才会随着堆空间的分配（和释放）而变化。
+</p>
+
+<p>
+Go 程在多线程操作系统上可实现多路复用，因此若一个线程阻塞，比如说等待 I/O， 那么其它的线程就会运行。Go 程的设计隐藏了线程创建和管理的诸多复杂性。
+</p>
+
+<p>
+在函数或方法前添加 go 关键字能够在新的 Go 程中调用它。当调用完成后， 该 Go 程也会安静地退出。（效果有点像 Unix Shell 中的 &amp; 符号，它能让命令在后台运行。）
+</p>
+
+<p>
+在 Go 中，函数字面都是闭包：其实现在保证了函数内引用变量的生命周期与函数的活动时间相同。
+</p>
+</div>
+</div>
+<div id="outline-container-org89ffecb" class="outline-3">
+<h3 id="org89ffecb">信道</h3>
+<div class="outline-text-3" id="text-org89ffecb">
+<p>
+信道与映射一样，也需要通过 make 来分配内存。其结果值充当了对底层数据结构的引用。 若提供了一个可选的整数形参，它就会为该信道设置缓冲区大小。默认值是零，表示不带缓冲的或同步的信道。
+</p>
+
+<p>
+接收者在收到数据前会一直阻塞。若信道是不带缓冲的，那么在接收者收到值前， 发送者会一直阻塞；若信道是带缓冲的，则发送者仅在值被复制到缓冲区前阻塞； 若缓冲区已满，发送者会一直等待直到某个接收者取出一个值为止。
+</p>
+
+<p>
+带缓冲的信道可被用作信号量，例如限制吞吐量。在此例中，进入的请求会被传递给 handle，它从信道中接收值，处理请求后将值发回该信道中，以便让该 “信号量”准备迎接下一次请求。信道缓冲区的容量决定了同时调用 process 的数量上限，因此我们在初始化时首先要填充至它的容量上限。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">var</span> <span style="color: #dcaeea;">sem</span> = <span style="color: #c678dd;">make</span>(<span style="color: #51afef;">chan</span> <span style="color: #ECBE7B;">int</span>, MaxOutstanding)
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">handle</span>(<span style="color: #dcaeea;">r</span> *<span style="color: #ECBE7B;">Request</span>) {
+    sem &lt;- <span style="color: #da8548; font-weight: bold;">1</span> <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#31561;&#24453;&#27963;&#21160;&#38431;&#21015;&#28165;&#31354;&#12290;</span>
+    <span style="color: #c678dd;">process</span>(r)  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21487;&#33021;&#38656;&#35201;&#24456;&#38271;&#26102;&#38388;&#12290;</span>
+    &lt;-sem    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23436;&#25104;&#65307;&#20351;&#19979;&#19968;&#20010;&#35831;&#27714;&#21487;&#20197;&#36816;&#34892;&#12290;</span>
+}
+
+<span style="color: #51afef;">func</span> <span style="color: #c678dd;">Serve</span>(<span style="color: #dcaeea;">queue</span> <span style="color: #51afef;">chan</span> *<span style="color: #ECBE7B;">Request</span>) {
+    <span style="color: #51afef;">for</span> {
+        <span style="color: #dcaeea;">req</span> := &lt;-queue
+        <span style="color: #51afef;">go</span> <span style="color: #c678dd;">handle</span>(req)  <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26080;&#38656;&#31561;&#24453; handle &#32467;&#26463;&#12290;</span>
+    }
+}
+</pre>
+</div>
+
+<p>
+由于数据同步发生在信道的接收端（也就是说发送发生在接受之前，参见 Go 内存模型），因此信号必须在信道的接收端获取，而非发送端。
+</p>
+
+<p>
+然而，它却有个设计问题：尽管只有 MaxOutstanding 个 Go 程能同时运行，但 Serve 还是为每个进入的请求都创建了新的 Go 程。其结果就是，若请求来得很快， 该程序就会无限地消耗资源。为了弥补这种不足，我们可以通过修改 Serve 来限制创建 Go 程，这是个明显的解决方案，但要当心我们修复后出现的 Bug。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">Serve</span>(<span style="color: #dcaeea;">queue</span> <span style="color: #51afef;">chan</span> *<span style="color: #ECBE7B;">Request</span>) {
+    <span style="color: #51afef;">for</span> <span style="color: #dcaeea;">req</span> := <span style="color: #51afef;">range</span> queue {
+        sem &lt;- <span style="color: #da8548; font-weight: bold;">1</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>() {
+            <span style="color: #c678dd;">process</span>(req) <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#36825;&#20799;&#26377;Bug&#65292;&#35299;&#37322;&#35265;&#19979;&#12290;</span>
+            &lt;-sem
+        }()
+    }
+}
+</pre>
+</div>
+
+<p>
+Bug 出现在 Go 的 for 循环中，该循环变量在每次迭代时会被重用，因此 req 变量会在所有的 Go 程间共享，这不是我们想要的。我们需要确保 req 对于每个 Go 程来说都是唯一的。有一种方法能够做到，就是将 req 的值作为实参传入到该 Go 程的闭包中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">Serve</span>(<span style="color: #dcaeea;">queue</span> <span style="color: #51afef;">chan</span> *<span style="color: #ECBE7B;">Request</span>) {
+    <span style="color: #51afef;">for</span> <span style="color: #dcaeea;">req</span> := <span style="color: #51afef;">range</span> queue {
+        sem &lt;- <span style="color: #da8548; font-weight: bold;">1</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>(<span style="color: #dcaeea;">req</span> *<span style="color: #ECBE7B;">Request</span>) {
+            <span style="color: #c678dd;">process</span>(req)
+            &lt;-sem
+        }(req)
+    }
+}
+</pre>
+</div>
+
+<p>
+比较前后两个版本，观察该闭包声明和运行中的差别。 另一种解决方案就是以相同的名字创建新的变量，如例中所示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">func</span> <span style="color: #c678dd;">Serve</span>(<span style="color: #dcaeea;">queue</span> <span style="color: #51afef;">chan</span> *<span style="color: #ECBE7B;">Request</span>) {
+    <span style="color: #51afef;">for</span> <span style="color: #dcaeea;">req</span> := <span style="color: #51afef;">range</span> queue {
+        <span style="color: #dcaeea;">req</span> := req <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#20026;&#35813;Go&#31243;&#21019;&#24314; req &#30340;&#26032;&#23454;&#20363;&#12290;</span>
+        sem &lt;- <span style="color: #da8548; font-weight: bold;">1</span>
+        <span style="color: #51afef;">go</span> <span style="color: #51afef;">func</span>() {
+            <span style="color: #c678dd;">process</span>(req)
+            &lt;-sem
+        }()
+    }
+}
+</pre>
+</div>
+
+<p>
+它的写法看起来有点奇怪
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #dcaeea;">req</span> := req
+</pre>
+</div>
+
+<p>
+但在 Go 中这样做是合法且惯用的。你用相同的名字获得了该变量的一个新的版本， 以此来局部地刻意屏蔽循环变量，使它对每个 Go 程保持唯一。
+</p>
+</div>
+</div>
+<div id="outline-container-org3fe7215" class="outline-3">
+<h3 id="org3fe7215">信道中的信道</h3>
+<div class="outline-text-3" id="text-org3fe7215">
+<p>
+Go 最重要的特性就是信道是一等值，它可以被分配并像其它值到处传递。 这种特性通常被用来实现安全、并行的多路分解。
+</p>
+</div>
+</div>
+<div id="outline-container-org1795391" class="outline-3">
+<h3 id="org1795391">并行化</h3>
+<div class="outline-text-3" id="text-org1795391">
+<p>
+这些设计的另一个应用是在多 CPU 核心上实现并行计算。如果计算过程能够被分为几块 可独立执行的过程，它就可以在每块计算结束时向信道发送信号，从而实现并行处理。
+</p>
+
+<p>
+目前 Go 运行时的实现默认并不会并行执行代码，它只为用户层代码提供单一的处理核心。 任意数量的 Go 程都可能在系统调用中被阻塞，而在任意时刻默认只有一个会执行用户层代码。 它应当变得更智能，而且它将来肯定会变得更智能。但现在，若你希望 CPU 并行执行， 就必须告诉运行时你希望同时有多少 Go 程能执行代码。有两种途径可意识形态，要么 在运行你的工作时将 GOMAXPROCS 环境变量设为你要使用的核心数， 要么导入 runtime 包并调用 runtime.GOMAXPROCS(NCPU)。 runtime.NumCPU() 的值可能很有用，它会返回当前机器的逻辑 CPU 核心数。 当然，随着调度算法和运行时的改进，将来会不再需要这种方法。
+</p>
+
+<p>
+注意不要混淆并发和并行的概念：并发是用可独立执行的组件构造程序的方法， 而并行则是为了效率在多 CPU 上平行地进行计算。尽管 Go 的并发特性能够让某些问题更易构造成并行计算， 但 Go 仍然是种并发而非并行的语言，且 Go 的模型并不适合所有的并行问题。 关于其中区别的讨论，见 <a href="http://blog.golang.org/2013/01/concurrency-is-not-parallelism.html">此博文</a>。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org44c7acd" class="outline-2">
+<h2 id="org44c7acd">错误</h2>
+<div class="outline-text-2" id="text-org44c7acd">
+<p>
+库例程通常需要向调用者返回某种类型的错误提示。之前提到过，Go 语言的多值返回特性， 使得它在返回常规的值时，还能轻松地返回详细的错误描述。按照约定，错误的类型通常为 error，这是一个内建的简单接口。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-go"><span style="color: #51afef;">type</span> <span style="color: #ECBE7B;">error</span> <span style="color: #51afef;">interface</span> {
+    <span style="color: #c678dd;">Error</span>() <span style="color: #ECBE7B;">string</span>
+}
+</pre>
+</div>
+
+<p>
+库的编写者通过更丰富的底层模型可以轻松实现这个接口，这样不仅能看见错误， 还能提供一些上下文。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-05-20 Thu 10:21</p>
+</div>
+</body>
+</html>
