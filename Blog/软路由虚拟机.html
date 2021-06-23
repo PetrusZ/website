@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:33 -->
+<!-- 2021-06-23 Wed 19:43 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>软路由虚拟机</title>
@@ -258,7 +258,7 @@
 </p>
 
 
-<div id="org835f7ef" class="figure">
+<div id="orgd8a6c26" class="figure">
 <p><img src="../pics/Blog/router_topology.jpg" alt="router_topology.jpg">
 </p>
 </div></li>
@@ -269,11 +269,11 @@
 <h2 id="org6d1acdd">固件选择</h2>
 <div class="outline-text-2" id="text-org6d1acdd">
 <p>
-固件这些我们选择基本 openwrt 管方 21.02 代码定制的 garypang13 的固件，github 项目地址为 <a href="https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi">https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi</a> ，固件下载地址为 <a href="https://op.supes.top/">https://op.supes.top/</a> 。
+固件我们选择基本 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 项目地址为 <a href="https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi">https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi</a> ，固件下载地址为 <a href="https://op.supes.top/">https://op.supes.top/</a> 。
 </p>
 
 <p>
-其特点是原生固件非常纯净，只自己少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。
+其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。
 </p>
 </div>
 </div>
@@ -281,7 +281,7 @@
 <h2 id="orgd94b70c">创建网桥</h2>
 <div class="outline-text-2" id="text-orgd94b70c">
 <p>
-首先创建 eth1 网口和软路由虚拟机 lan 口连接的网桥。
+首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。
 </p>
 
 <div class="org-src-container">
@@ -315,9 +315,8 @@ nmcli connection up bridge-br0
 <ul class="org-ul">
 <li>CPU 2 核心</li>
 <li>内存 1G</li>
-<li><p>
-硬盘直接使用 openwrt 的 img 文件
-</p>
+<li>硬盘直接使用 openwrt 的 img 文件</li>
+</ul>
 
 <p>
 eth0 网卡直接设置为直通，另外添加一张网卡，[Network Source]设置为 Bridge device，[Device name]设置为 br0，[Device model]设置为 virtio。即创建桥接到 br0 的第二张网卡。
@@ -325,15 +324,14 @@ eth0 网卡直接设置为直通，另外添加一张网卡，[Network Source]�
 
 <p>
 其他配置默认，之后正常启动 openwrt 虚拟机即可。
-</p></li>
-</ul>
+</p>
 </div>
 </div>
 <div id="outline-container-org93b6ec6" class="outline-2">
 <h2 id="org93b6ec6">配置 openwrt</h2>
 <div class="outline-text-2" id="text-org93b6ec6">
 <p>
-通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 <code>/etc/config/network</code> 。将其中的 <code>config interface 'lan'</code> 中的 <code>option ipaddr</code> 地址设置为 192.168.3.2。之后重启路由器。
+通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 <code>/etc/config/network</code> 。将其中的 <code>config interface 'lan'</code> 中的 <code>option ipaddr</code> 地址设置为 192.168.3.2。之后重启 openwrt。
 </p>
 
 <p>
@@ -378,7 +376,7 @@ nmcli connection up interface
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:33</p>
+<p class="date">Created: 2021-06-23 Wed 19:43</p>
 </div>
 </body>
 </html>
