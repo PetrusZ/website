@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>散列表之开放寻址法</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0bd9bfe">线性探查</a></li>
-<li><a href="#org561f71f">二次探查</a></li>
-<li><a href="#org7c4e63a">3.双重散列</a></li>
+<li><a href="#orge863605">线性探查</a></li>
+<li><a href="#org009be75">二次探查</a></li>
+<li><a href="#org5c56781">3.双重散列</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +250,9 @@
 为了使用开放寻址法插入一个元素，需要连续地检查散列表，或称为探查（probe），直到找到一个空槽来存放待插入的关键字为止。
 </p>
 
-<div id="outline-container-org0bd9bfe" class="outline-2">
-<h2 id="org0bd9bfe">线性探查</h2>
-<div class="outline-text-2" id="text-org0bd9bfe">
+<div id="outline-container-orge863605" class="outline-2">
+<h2 id="orge863605">线性探查</h2>
+<div class="outline-text-2" id="text-orge863605">
 <p>
 给定一个普通的散列函数 h‘: U‘→{0, 1, &#x2026;, m &#x2013; 1}，称之为辅助散列函数，线性探查方法采用的散列函数为：
 </p>
@@ -269,9 +267,9 @@ h(k, i) = (h'(k) + i) mod m,  i = 0, 1, &#x2026;, m &#x2013; 1
 </div>
 </div>
 
-<div id="outline-container-org561f71f" class="outline-2">
-<h2 id="org561f71f">二次探查</h2>
-<div class="outline-text-2" id="text-org561f71f">
+<div id="outline-container-org009be75" class="outline-2">
+<h2 id="org009be75">二次探查</h2>
+<div class="outline-text-2" id="text-org009be75">
 <p>
 二次探查采用如下形式的散列函数：
 </p>
@@ -290,9 +288,9 @@ h(k, i) = (h'(k) + c1* i + c2 * i * i) mod m
 </div>
 </div>
 
-<div id="outline-container-org7c4e63a" class="outline-2">
-<h2 id="org7c4e63a">3.双重散列</h2>
-<div class="outline-text-2" id="text-org7c4e63a">
+<div id="outline-container-org5c56781" class="outline-2">
+<h2 id="org5c56781">3.双重散列</h2>
+<div class="outline-text-2" id="text-org5c56781">
 <p>
 双重散列是用于开放寻址法的最好的方法之一，因为它所产生的排序具有随机选择排列的许多特性。双重散列采用如下形式的散列函数：
 </p>
@@ -474,7 +472,7 @@ h1(k) = k mod m，h2(k) = 1 + ( k mod m')
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

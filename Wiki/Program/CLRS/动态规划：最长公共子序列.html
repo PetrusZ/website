@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>最长公共子序列</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,11 +232,11 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc44564b">步骤 1：刻画最长公共子序列</a></li>
-<li><a href="#orge882402">步骤 2：一个递归解</a></li>
-<li><a href="#org8b9d1d7">步骤 3：计算 LCS 的长度</a></li>
-<li><a href="#orgaecc35e">步骤 4：构造 LCS</a></li>
-<li><a href="#org9e00911">C 语言实现</a></li>
+<li><a href="#orga1a0cb7">步骤 1：刻画最长公共子序列</a></li>
+<li><a href="#org7defdc9">步骤 2：一个递归解</a></li>
+<li><a href="#org5b8c268">步骤 3：计算 LCS 的长度</a></li>
+<li><a href="#org5b9398a">步骤 4：构造 LCS</a></li>
+<li><a href="#orgb309b18">C 语言实现</a></li>
 </ul>
 </div>
 </div>
@@ -252,9 +250,9 @@
 
 <hr>
 
-<div id="outline-container-orgc44564b" class="outline-2">
-<h2 id="orgc44564b">步骤 1：刻画最长公共子序列</h2>
-<div class="outline-text-2" id="text-orgc44564b">
+<div id="outline-container-orga1a0cb7" class="outline-2">
+<h2 id="orga1a0cb7">步骤 1：刻画最长公共子序列</h2>
+<div class="outline-text-2" id="text-orga1a0cb7">
 <p>
 暴力求解的穷举法绝对是一个坏主意，因为其运行时间为指数阶。所以我们要来寻找 LCS 的最优子结构。最优子结构如下：
 </p>
@@ -271,9 +269,9 @@
 </div>
 </div>
 
-<div id="outline-container-orge882402" class="outline-2">
-<h2 id="orge882402">步骤 2：一个递归解</h2>
-<div class="outline-text-2" id="text-orge882402">
+<div id="outline-container-org7defdc9" class="outline-2">
+<h2 id="org7defdc9">步骤 2：一个递归解</h2>
+<div class="outline-text-2" id="text-org7defdc9">
 <p>
 如步骤 1 所述，如果 xm = yn，我们应该求解 X(m-1)和 Y(n-1)的一个 LCS，然后将 xm = yn 添加到这个 LCS 的末尾，就得到了 X 和 Y 的 LCS。如果 xm != yn，我必须求解两个子问题，X(m-1)和 Y 的 LCS 与 X 和 Y(n-1)的 LCS，然后将其中较长的作为 X 和 Y 的 LCS。因为这些情况覆盖了所有的可能，所以必然有一个最优解出现在 X 和 Y 的 LCS 中。另外 LCS 的重叠子问题性质也很明显，在求解 X 和 Y 的 LCS 时，我们会需要 X 和 Y(n-1)的 LCS 及 X(m-1)和 Y 的 LCS，也需要求解 X(m-1)和 Y(n-1)的子问题。
 </p>
@@ -291,9 +289,9 @@
 </div>
 </div>
 
-<div id="outline-container-org8b9d1d7" class="outline-2">
-<h2 id="org8b9d1d7">步骤 3：计算 LCS 的长度</h2>
-<div class="outline-text-2" id="text-org8b9d1d7">
+<div id="outline-container-org5b8c268" class="outline-2">
+<h2 id="org5b8c268">步骤 3：计算 LCS 的长度</h2>
+<div class="outline-text-2" id="text-org5b8c268">
 <p>
 采用自底向上的方法，用表 c 存储 LCS 长度，用表 b[i, j]存储对应计算 c[i, j]时所选择的子问题最优解，然后按行主次序计算表项。具体计算方法见下文的完整 C 语言代码。
 </p>
@@ -311,9 +309,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgaecc35e" class="outline-2">
-<h2 id="orgaecc35e">步骤 4：构造 LCS</h2>
-<div class="outline-text-2" id="text-orgaecc35e">
+<div id="outline-container-org5b9398a" class="outline-2">
+<h2 id="org5b9398a">步骤 4：构造 LCS</h2>
+<div class="outline-text-2" id="text-org5b9398a">
 <p>
 利用表 b，将其递归展开，就可以得到一个 LCS。简单地从 b[m ,n]开始，然后按箭头的方向追踪下去即可，当遇到一个”↖”时，就意味着 xi = yj 是 LCS 的一个元素。同样，具体实现见下本的 C 语言代码。
 </p>
@@ -322,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9e00911" class="outline-2">
-<h2 id="org9e00911">C 语言实现</h2>
-<div class="outline-text-2" id="text-org9e00911">
+<div id="outline-container-orgb309b18" class="outline-2">
+<h2 id="orgb309b18">C 语言实现</h2>
+<div class="outline-text-2" id="text-orgb309b18">
 <p>
 动态规划法解 LCS 问题的 C 语言实现如下，其中包含了两个例子，一个是上文中的 ABCD 的例子，又一个是算法导论中求 DNS 串相似度的例子：
 </p>
@@ -497,7 +495,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

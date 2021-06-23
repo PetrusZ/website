@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>语法</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,28 +232,28 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgff3eb1a">英文的五个基本句型</a></li>
-<li><a href="#org3cb9510">句子的修饰成分</a>
+<li><a href="#org0a05efd">英文的五个基本句型</a></li>
+<li><a href="#orga56762b">句子的修饰成分</a>
 <ul>
-<li><a href="#org0404704">什么成分在句子中是可以删除的？</a></li>
-<li><a href="#org4ebb118">形容词和副词怎么分辨？</a></li>
-<li><a href="#orgc9831ab">介宾短语在句子中可以充当什么成分？</a></li>
+<li><a href="#org721c94a">什么成分在句子中是可以删除的？</a></li>
+<li><a href="#org8f9e8fd">形容词和副词怎么分辨？</a></li>
+<li><a href="#org94a8b04">介宾短语在句子中可以充当什么成分？</a></li>
 </ul>
 </li>
-<li><a href="#org91d4850">补语</a>
+<li><a href="#orgcb50bac">补语</a>
 <ul>
-<li><a href="#org648d179">补语一般出现在句子哪里？</a></li>
-<li><a href="#orgf0a3385">补语还可以在哪里出现？</a></li>
+<li><a href="#org5406b50">补语一般出现在句子哪里？</a></li>
+<li><a href="#orgc3be381">补语还可以在哪里出现？</a></li>
 </ul>
 </li>
-<li><a href="#orgc0e7c62"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</a></li>
+<li><a href="#org6ef541a"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgff3eb1a" class="outline-2">
-<h2 id="orgff3eb1a">英文的五个基本句型</h2>
-<div class="outline-text-2" id="text-orgff3eb1a">
+<div id="outline-container-org0a05efd" class="outline-2">
+<h2 id="org0a05efd">英文的五个基本句型</h2>
+<div class="outline-text-2" id="text-org0a05efd">
 <ul class="org-ul">
 <li>主语 + 及物动词 + 宾语</li>
 <li>主语 + 及物动词 + 宾语 + 宾语补足语</li>
@@ -456,9 +454,9 @@
 </div>
 </div>
 
-<div id="outline-container-org3cb9510" class="outline-2">
-<h2 id="org3cb9510">句子的修饰成分</h2>
-<div class="outline-text-2" id="text-org3cb9510">
+<div id="outline-container-orga56762b" class="outline-2">
+<h2 id="orga56762b">句子的修饰成分</h2>
+<div class="outline-text-2" id="text-orga56762b">
 <blockquote>
 <p>
 形容词、副词、介宾短语、定语和状语
@@ -470,9 +468,9 @@
 </p>
 </div>
 
-<div id="outline-container-org0404704" class="outline-3">
-<h3 id="org0404704">什么成分在句子中是可以删除的？</h3>
-<div class="outline-text-3" id="text-org0404704">
+<div id="outline-container-org721c94a" class="outline-3">
+<h3 id="org721c94a">什么成分在句子中是可以删除的？</h3>
+<div class="outline-text-3" id="text-org721c94a">
 <table>
 
 
@@ -581,9 +579,9 @@
 </div>
 </div>
 
-<div id="outline-container-org4ebb118" class="outline-3">
-<h3 id="org4ebb118">形容词和副词怎么分辨？</h3>
-<div class="outline-text-3" id="text-org4ebb118">
+<div id="outline-container-org8f9e8fd" class="outline-3">
+<h3 id="org8f9e8fd">形容词和副词怎么分辨？</h3>
+<div class="outline-text-3" id="text-org8f9e8fd">
 <p>
 形容词的英文是 adjective，副词的英文是 adverb。查英文字典的时候可以留意单词后面的 <code>adj.</code> 或者 <code>adv.</code> 。在单词构造上，形容词很多时候后加 ly 就是副词。 <b>在句子里，形容词一般都是修饰名词（不管是充当定语，还是表语）的，而副词除了不能修饰名词之外，其他词都能修饰。</b>
 </p>
@@ -658,9 +656,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc9831ab" class="outline-3">
-<h3 id="orgc9831ab">介宾短语在句子中可以充当什么成分？</h3>
-<div class="outline-text-3" id="text-orgc9831ab">
+<div id="outline-container-org94a8b04" class="outline-3">
+<h3 id="org94a8b04">介宾短语在句子中可以充当什么成分？</h3>
+<div class="outline-text-3" id="text-org94a8b04">
 <p>
 所谓的介宾短语， <b>就是在介词 in，at，on 这些单词后面，出现一个名字或动名词充当介词的宾语。</b> 介词后面一般不可以加动词、形容词、副词、句子等。
 </p>
@@ -824,17 +822,17 @@
 </div>
 </div>
 
-<div id="outline-container-org91d4850" class="outline-2">
-<h2 id="org91d4850">补语</h2>
-<div class="outline-text-2" id="text-org91d4850">
+<div id="outline-container-orgcb50bac" class="outline-2">
+<h2 id="orgcb50bac">补语</h2>
+<div class="outline-text-2" id="text-orgcb50bac">
 <p>
 补语（complement）补充说明前面一个名词：有些时候也可以是补充说明形容词和动词。
 </p>
 </div>
 
-<div id="outline-container-org648d179" class="outline-3">
-<h3 id="org648d179">补语一般出现在句子哪里？</h3>
-<div class="outline-text-3" id="text-org648d179">
+<div id="outline-container-org5406b50" class="outline-3">
+<h3 id="org5406b50">补语一般出现在句子哪里？</h3>
+<div class="outline-text-3" id="text-org5406b50">
 <p>
 补语是句子的必要成分。换言之，如果补语在句子中出现，不可以删除。否则，句子会不完成。
 </p>
@@ -895,9 +893,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf0a3385" class="outline-3">
-<h3 id="orgf0a3385">补语还可以在哪里出现？</h3>
-<div class="outline-text-3" id="text-orgf0a3385">
+<div id="outline-container-orgc3be381" class="outline-3">
+<h3 id="orgc3be381">补语还可以在哪里出现？</h3>
+<div class="outline-text-3" id="text-orgc3be381">
 <p>
 在某些情况下，补语也可以是 <b>由单词的性质来决定的</b> 。
 </p>
@@ -945,13 +943,13 @@ People are aware of environmental problems.
 </div>
 </div>
 
-<div id="outline-container-orgc0e7c62" class="outline-2">
-<h2 id="orgc0e7c62"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</h2>
+<div id="outline-container-org6ef541a" class="outline-2">
+<h2 id="org6ef541a"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</h2>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

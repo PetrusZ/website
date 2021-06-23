@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>UNIX缩写风格</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -762,7 +760,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -a all : 全部，所有 (ls , lsattr , uname)
 </p>
 
-<pre class="example">
+<pre class="example" id="orgde50635">
     archive : 存档 (cp , rsync)
 
     append : 附加 (tar -A , 7z)
@@ -772,7 +770,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -b
 </p>
 
-<pre class="example">
+<pre class="example" id="orgb14d910">
     blocksize : 块大小，带参数 (du , df)
 
     batch : 批处理模式 (交互模式的程序通常拥有此选项，如 top -b)
@@ -782,7 +780,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -c
 </p>
 
-<pre class="example">
+<pre class="example" id="orgceddd6a">
     commands : 执行命令，带参数 (bash , ksh , python)
 
     create : 创建 (tar)
@@ -792,7 +790,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -d
 </p>
 
-<pre class="example">
+<pre class="example" id="orga71e542">
     debug : 调试
 
     delete : 删除
@@ -804,7 +802,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -e
 </p>
 
-<pre class="example">
+<pre class="example" id="org2eb747e">
     execute : 执行，带参数 (xterm , perl)
 
     edit : 编辑
@@ -816,7 +814,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -f
 </p>
 
-<pre class="example">
+<pre class="example" id="orged84628">
     force : 强制，不经确认(cp , rm ,mv)
 
     file : 文件，带参数 (tar)
@@ -832,7 +830,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -h
 </p>
 
-<pre class="example">
+<pre class="example" id="org84a3908">
     --help : 帮助
 
     human readable : 人性化显示(ls , du , df)
@@ -844,7 +842,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -i
 </p>
 
-<pre class="example">
+<pre class="example" id="org76ae99d">
     interactive : 交互模式，提示(rm , mv)
 
     include : 包含
@@ -854,7 +852,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -k
 </p>
 
-<pre class="example">
+<pre class="example" id="org4278ae9">
     keep : 保留
 
     kill
@@ -864,7 +862,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -l
 </p>
 
-<pre class="example">
+<pre class="example" id="org74fd4e3">
     long listing format : 长格式(ls)
 
     list : 列表
@@ -876,7 +874,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -m
 </p>
 
-<pre class="example">
+<pre class="example" id="orgeec1ddc">
     message : 消息 (cvs)
 
     manual : 手册 (whereis)
@@ -888,7 +886,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -n
 </p>
 
-<pre class="example">
+<pre class="example" id="orgc6d5bf2">
     number : 行号、编号 (cat , head , tail , pstree , lspci)
 
     no : (useradd , make)
@@ -898,7 +896,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -o
 </p>
 
-<pre class="example">
+<pre class="example" id="orgc726160">
     output : 输出 (cc , sort)
 
     options : 选项 (mount)
@@ -908,7 +906,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -p
 </p>
 
-<pre class="example">
+<pre class="example" id="org8eea0ef">
     port : 端口，带参数 (很多网络工具拥有此选项，如 ssh , lftp )
 
     protocol : 协议，带参数
@@ -920,7 +918,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -q
 </p>
 
-<pre class="example">
+<pre class="example" id="org9e777d7">
     quiet : 静默
 </pre>
 
@@ -928,7 +926,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -r
 </p>
 
-<pre class="example">
+<pre class="example" id="orgad846a3">
     reverse : 反转
 
     recursive : 递归 (cp , rm , chmod -R)
@@ -938,7 +936,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -s
 </p>
 
-<pre class="example">
+<pre class="example" id="orgc805af5">
     silent : 安静
 
     size : 大小，带参数
@@ -950,7 +948,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -t
 </p>
 
-<pre class="example">
+<pre class="example" id="orgae85e24">
     tag
 
     type : 类型 (mount)
@@ -960,7 +958,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -u
 </p>
 
-<pre class="example">
+<pre class="example" id="org3cdd076">
     user : 用户名、UID，带参数
 </pre>
 
@@ -968,7 +966,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -v
 </p>
 
-<pre class="example">
+<pre class="example" id="orga9f88d6">
     verbose : 冗长
 
     version : 版本
@@ -978,7 +976,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -w
 </p>
 
-<pre class="example">
+<pre class="example" id="org0ab23fb">
     width : 宽度
 
     warning : 警告
@@ -988,7 +986,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -x
 </p>
 
-<pre class="example">
+<pre class="example" id="org0b620e5">
     exclude : 排除 (tar , zip)
 </pre>
 
@@ -996,7 +994,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -y
 </p>
 
-<pre class="example">
+<pre class="example" id="org411ab93">
     yes
 </pre>
 
@@ -1004,7 +1002,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 -z
 </p>
 
-<pre class="example">
+<pre class="example" id="org9005709">
     zip : 启用压缩 (bzip , tar , zcat , zip , cvs)
 </pre>
 </div>
@@ -1012,7 +1010,7 @@ Linux 命令的选项繁复庞杂，让人眼花缭乱。不过这些选项往�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

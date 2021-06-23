@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>target_中的public Private Interface</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,24 +232,24 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf057a3d">指令说明</a></li>
-<li><a href="#orga45f294">指令讲解</a>
+<li><a href="#org3215352">指令说明</a></li>
+<li><a href="#org00fdb62">指令讲解</a>
 <ul>
-<li><a href="#org3172306">测试工程目录结构</a></li>
-<li><a href="#org3f6bc85">调用关系</a></li>
-<li><a href="#orgf1318b8">关键字用法说明</a></li>
+<li><a href="#orgfc09091">测试工程目录结构</a></li>
+<li><a href="#org30402a1">调用关系</a></li>
+<li><a href="#orgf770d2e">关键字用法说明</a></li>
 </ul>
 </li>
-<li><a href="#org205a873">include_directories(dir)</a></li>
-<li><a href="#org98335ab">目录划分</a></li>
-<li><a href="#org73b8dd2">Links</a></li>
+<li><a href="#org1e2e700">include_directories(dir)</a></li>
+<li><a href="#org4431e08">目录划分</a></li>
+<li><a href="#orgdd8b783">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf057a3d" class="outline-2">
-<h2 id="orgf057a3d">指令说明</h2>
-<div class="outline-text-2" id="text-orgf057a3d">
+<div id="outline-container-org3215352" class="outline-2">
+<h2 id="org3215352">指令说明</h2>
+<div class="outline-text-2" id="text-org3215352">
 <p>
 <code>target_include_directories()</code> ：指定 <b>目标</b> 包含的头文件路径。<a href="https://cmake.org/cmake/help/latest/command/target_include_directories.html?highlight=target_include_directories">官方文档</a>
 </p>
@@ -273,14 +271,14 @@
 </p>
 </div>
 </div>
-<div id="outline-container-orga45f294" class="outline-2">
-<h2 id="orga45f294">指令讲解</h2>
-<div class="outline-text-2" id="text-orga45f294">
+<div id="outline-container-org00fdb62" class="outline-2">
+<h2 id="org00fdb62">指令讲解</h2>
+<div class="outline-text-2" id="text-org00fdb62">
 </div>
-<div id="outline-container-org3172306" class="outline-3">
-<h3 id="org3172306">测试工程目录结构</h3>
-<div class="outline-text-3" id="text-org3172306">
-<pre class="example">
+<div id="outline-container-orgfc09091" class="outline-3">
+<h3 id="orgfc09091">测试工程目录结构</h3>
+<div class="outline-text-3" id="text-orgfc09091">
+<pre class="example" id="org0ae77aa">
 cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 ├── CMakeLists.txt
 ├── hello-world             生成 libhello-world.so，调用 libhello.so 和 libworld.so
@@ -299,19 +297,19 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </pre>
 </div>
 </div>
-<div id="outline-container-org3f6bc85" class="outline-3">
-<h3 id="org3f6bc85">调用关系</h3>
-<div class="outline-text-3" id="text-org3f6bc85">
-<pre class="example">
+<div id="outline-container-org30402a1" class="outline-3">
+<h3 id="org30402a1">调用关系</h3>
+<div class="outline-text-3" id="text-org30402a1">
+<pre class="example" id="org722a9bf">
                                  ├────libhello.so
 可执行文件────libhello-world.so
                                  ├────libworld.so
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf1318b8" class="outline-3">
-<h3 id="orgf1318b8">关键字用法说明</h3>
-<div class="outline-text-3" id="text-orgf1318b8">
+<div id="outline-container-orgf770d2e" class="outline-3">
+<h3 id="orgf770d2e">关键字用法说明</h3>
+<div class="outline-text-3" id="text-orgf770d2e">
 <p>
 <b>PRIVATE</b> ：私有的。生成 libhello-world.so 时，只在 hello_world.c 中包含了 hello.h，libhello-world.so <b>对外</b> 的头文件——hello_world.h 中不包含 hello.h。而且 main.c 不会调用 hello.c 中的函数，或者说 main.c 不知道 hello.c 的存在，那么在 hello-world/CMakeLists.txt 中应该写入：
 </p>
@@ -358,9 +356,9 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </div>
 </div>
 </div>
-<div id="outline-container-org205a873" class="outline-2">
-<h2 id="org205a873">include_directories(dir)</h2>
-<div class="outline-text-2" id="text-org205a873">
+<div id="outline-container-org1e2e700" class="outline-2">
+<h2 id="org1e2e700">include_directories(dir)</h2>
+<div class="outline-text-2" id="text-org1e2e700">
 <p>
 <code>target_include_directories()</code> 的功能完全可以使用 <code>include_directories()</code> 实现。但是我还是建议使用 <code>target_include_directories()</code> 。为什么？保持清晰！
 </p>
@@ -384,7 +382,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 那么整个工程的源文件在编译时 <b>都</b> 会增加：
 </p>
 
-<pre class="example">
+<pre class="example" id="org6543d31">
 -I hello-world -I hello-world/hello -I hello-world/world ...
 </pre>
 
@@ -397,17 +395,17 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </p>
 </div>
 </div>
-<div id="outline-container-org98335ab" class="outline-2">
-<h2 id="org98335ab">目录划分</h2>
-<div class="outline-text-2" id="text-org98335ab">
+<div id="outline-container-org4431e08" class="outline-2">
+<h2 id="org4431e08">目录划分</h2>
+<div class="outline-text-2" id="text-org4431e08">
 <p>
 每一个目录都是一个模块，目录内部应将对外和对内的头文件进行区分，由模块的调用者决定模块是否被传递（PRIVATE，INTERFACE，PUBLIC）。
 </p>
 </div>
 </div>
-<div id="outline-container-org73b8dd2" class="outline-2">
-<h2 id="org73b8dd2">Links</h2>
-<div class="outline-text-2" id="text-org73b8dd2">
+<div id="outline-container-orgdd8b783" class="outline-2">
+<h2 id="orgdd8b783">Links</h2>
+<div class="outline-text-2" id="text-orgdd8b783">
 <ol class="org-ol">
 <li><a href="https://zhuanlan.zhihu.com/p/82244559">https://zhuanlan.zhihu.com/p/82244559</a></li>
 </ol>
@@ -416,7 +414,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

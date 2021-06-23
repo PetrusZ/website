@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>中位数和顺序统计量</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge622d62">1.同时找到最大值和最小值</a></li>
-<li><a href="#orgd4a10d3">2.期望为线性时间的选择算法</a></li>
-<li><a href="#orgaea2974">3.最坏情况为线性的选择算法</a></li>
+<li><a href="#orgf2f9638">1.同时找到最大值和最小值</a></li>
+<li><a href="#org5fde1ff">2.期望为线性时间的选择算法</a></li>
+<li><a href="#org4e311c9">3.最坏情况为线性的选择算法</a></li>
 </ul>
 </div>
 </div>
@@ -244,9 +242,9 @@
 在一个由 n 个元素组成的集合中，第 i 个顺序统计量是该合集中第 i 小的元素。而中位数，用非形式化的描述来说，一个中位数是它所属集合的“中点元素”。
 </p>
 
-<div id="outline-container-orge622d62" class="outline-2">
-<h2 id="orge622d62">1.同时找到最大值和最小值</h2>
-<div class="outline-text-2" id="text-orge622d62">
+<div id="outline-container-orgf2f9638" class="outline-2">
+<h2 id="orgf2f9638">1.同时找到最大值和最小值</h2>
+<div class="outline-text-2" id="text-orgf2f9638">
 <p>
 通过最多 3(n/2)次比较就可以同时找到最大值和最小值。其主要思想是：将输入元素成对的进行处理，首先将一对输入元素互相比较，然后再将较小的与最小值比较，较大的与最大值比较。这样，每对元素仅需要 3 次比较，而不是 4 次。
 </p>
@@ -300,9 +298,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd4a10d3" class="outline-2">
-<h2 id="orgd4a10d3">2.期望为线性时间的选择算法</h2>
-<div class="outline-text-2" id="text-orgd4a10d3">
+<div id="outline-container-org5fde1ff" class="outline-2">
+<h2 id="org5fde1ff">2.期望为线性时间的选择算法</h2>
+<div class="outline-text-2" id="text-org5fde1ff">
 <p>
 rand_select 算法以快速排序为模型，将输入数组进行递归划分。但不同的是，快速排序会递归处理划分的两边，而 rand_select 只处理一边。期望运行时间为Θ(n)。
 </p>
@@ -337,9 +335,9 @@ rand_select 算法以快速排序为模型，将输入数组进行递归划分�
 </div>
 </div>
 
-<div id="outline-container-orgaea2974" class="outline-2">
-<h2 id="orgaea2974">3.最坏情况为线性的选择算法</h2>
-<div class="outline-text-2" id="text-orgaea2974">
+<div id="outline-container-org4e311c9" class="outline-2">
+<h2 id="org4e311c9">3.最坏情况为线性的选择算法</h2>
+<div class="outline-text-2" id="text-org4e311c9">
 <p>
 该算法也使用了快速排序中的划分算法 partition，但是做了修改，把划分的主元也作输入参数。
 </p>
@@ -357,7 +355,7 @@ rand_select 算法以快速排序为模型，将输入数组进行递归划分�
 </ol>
 
 
-<div class="figure">
+<div id="org445420c" class="figure">
 <p><img src="../../../pics/CLRS/20130721155350687.png" alt="20130721155350687.png">
 </p>
 </div>
@@ -370,7 +368,7 @@ rand_select 算法以快速排序为模型，将输入数组进行递归划分�
 其伪代码为：
 </p>
 
-<pre class="example">
+<pre class="example" id="orgce22d0c">
     SELECT(A, p, r, i)
     {
         // 步骤１、２
@@ -411,7 +409,7 @@ rand_select 算法以快速排序为模型，将输入数组进行递归划分�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

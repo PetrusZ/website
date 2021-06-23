@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dependencies</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,16 +232,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga4a025b">CHOST vs CBUILD</a></li>
-<li><a href="#orgc483a54">Build Dependencies</a></li>
-<li><a href="#org86e3d7d">Runtime Dependencies</a></li>
-<li><a href="#org1dbbf75">Post Dependencies</a></li>
-<li><a href="#org0ae90e6">Implicit System Dependency</a></li>
-<li><a href="#orgdd373c5">Blockers</a></li>
-<li><a href="#org0f7251d">SLot Operators</a></li>
-<li><a href="#orga62d315">Built with USE Dependencies</a>
+<li><a href="#org78f883e">CHOST vs CBUILD</a></li>
+<li><a href="#org83e4d08">Build Dependencies</a></li>
+<li><a href="#org09adb2b">Runtime Dependencies</a></li>
+<li><a href="#orgd15fbe5">Post Dependencies</a></li>
+<li><a href="#orgc387df0">Implicit System Dependency</a></li>
+<li><a href="#orgb243e78">Blockers</a></li>
+<li><a href="#orga04eb4f">SLot Operators</a></li>
+<li><a href="#org7490346">Built with USE Dependencies</a>
 <ul>
-<li><a href="#orgaf34e1c">Use dependency defaults</a></li>
+<li><a href="#orgd40e86a">Use dependency defaults</a></li>
 </ul>
 </li>
 </ul>
@@ -253,9 +251,9 @@
 自动依赖解析是 <code>emerge</code> 提供的最有用的功能之一。
 </p>
 
-<div id="outline-container-orga4a025b" class="outline-2">
-<h2 id="orga4a025b">CHOST vs CBUILD</h2>
-<div class="outline-text-2" id="text-orga4a025b">
+<div id="outline-container-org78f883e" class="outline-2">
+<h2 id="org78f883e">CHOST vs CBUILD</h2>
+<div class="outline-text-2" id="text-org78f883e">
 <p>
 为了避免歧义，在交叉编译时，我们使用以下术语来表示不同的系统：
 </p>
@@ -282,9 +280,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc483a54" class="outline-2">
-<h2 id="orgc483a54">Build Dependencies</h2>
-<div class="outline-text-2" id="text-orgc483a54">
+<div id="outline-container-org83e4d08" class="outline-2">
+<h2 id="org83e4d08">Build Dependencies</h2>
+<div class="outline-text-2" id="text-org83e4d08">
 <p>
 构建依赖时用于指定 unpack、patch、compile、test 或 install 软件包的任何依赖（有关豁免请见 Implicit System Dependency ）。
 </p>
@@ -299,9 +297,9 @@
 </div>
 </div>
 
-<div id="outline-container-org86e3d7d" class="outline-2">
-<h2 id="org86e3d7d">Runtime Dependencies</h2>
-<div class="outline-text-2" id="text-org86e3d7d">
+<div id="outline-container-org09adb2b" class="outline-2">
+<h2 id="org09adb2b">Runtime Dependencies</h2>
+<div class="outline-text-2" id="text-org09adb2b">
 <p>
 <code>RDEPEND</code> ebuild 变量应该指定任何在运行时必要的依赖。这包括库（动态链接时），任何数据包和相关解释器（为了解释语言）。
 </p>
@@ -316,27 +314,27 @@
 </div>
 </div>
 
-<div id="outline-container-org1dbbf75" class="outline-2">
-<h2 id="org1dbbf75">Post Dependencies</h2>
-<div class="outline-text-2" id="text-org1dbbf75">
+<div id="outline-container-orgd15fbe5" class="outline-2">
+<h2 id="orgd15fbe5">Post Dependencies</h2>
+<div class="outline-text-2" id="text-orgd15fbe5">
 <p>
 <code>PDENPED</code> 变量指定不严格要求满足的运行时依赖。它们可以在软件包之后 merge。该变量仅用于解决循环依赖问题，而在一般情况下应用 <code>RDEPEND</code> 替代。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0ae90e6" class="outline-2">
-<h2 id="org0ae90e6">Implicit System Dependency</h2>
-<div class="outline-text-2" id="text-org0ae90e6">
+<div id="outline-container-orgc387df0" class="outline-2">
+<h2 id="orgc387df0">Implicit System Dependency</h2>
+<div class="outline-text-2" id="text-orgc387df0">
 <p>
 所有软件包都对整个 <code>@system</code> set 有隐式的编译时和运行时依赖。指定对像 <code>gcc</code> 、 <code>libc</code> 等 toolchain 软件包的依赖既不是必须的，也不是建议的，除了需要指定版本或软件包（例如使用 <code>glibc</code> 而不是 <code>uclibc</code> ）例外。注意，这条规则同样需要考虑像 <code>flex</code> 、 <code>zlib</code> 和 <code>libtool</code> 软件包，它们不在每个 profile 的 <code>@system</code> set 中。例如，嵌入式 profile 在 <code>@system</code> 中没有 <code>zlib</code> ，在未来 <code>libtool</code> 的 ABI 可能改变并且破坏构建顺序 ， <code>flex</code> 可能会从 <code>@system</code> 中移除。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdd373c5" class="outline-2">
-<h2 id="orgdd373c5">Blockers</h2>
-<div class="outline-text-2" id="text-orgdd373c5">
+<div id="outline-container-orgb243e78" class="outline-2">
+<h2 id="orgb243e78">Blockers</h2>
+<div class="outline-text-2" id="text-orgb243e78">
 <p>
 当两个软件包（包 slots，版本）不能同时安装时，blockers 可用于将这种冲突暴露给包管理器。
 </p>
@@ -399,9 +397,9 @@ Note：当 weak 和 strong blockers 同时匹配了一个给定的软件包，st
 </div>
 </div>
 
-<div id="outline-container-org0f7251d" class="outline-2">
-<h2 id="org0f7251d">SLot Operators</h2>
-<div class="outline-text-2" id="text-org0f7251d">
+<div id="outline-container-orga04eb4f" class="outline-2">
+<h2 id="orga04eb4f">SLot Operators</h2>
+<div class="outline-text-2" id="text-orga04eb4f">
 <p>
 在 EAPI 5 和更高中，你可以使用附加在软件包名称后的 slot 操作符来声明在满足其运行时依赖的版本更新为具有不同 slot 和 sub-slot 的版本之后是否应该重建软件包：
 </p>
@@ -416,9 +414,9 @@ Note：当 weak 和 strong blockers 同时匹配了一个给定的软件包，st
 </div>
 </div>
 
-<div id="outline-container-orga62d315" class="outline-2">
-<h2 id="orga62d315">Built with USE Dependencies</h2>
-<div class="outline-text-2" id="text-orga62d315">
+<div id="outline-container-org7490346" class="outline-2">
+<h2 id="org7490346">Built with USE Dependencies</h2>
+<div class="outline-text-2" id="text-org7490346">
 <p>
 Available specifiers are:
 </p>
@@ -497,9 +495,9 @@ There are also shortcuts for conditional situations:
 </table>
 </div>
 
-<div id="outline-container-orgaf34e1c" class="outline-3">
-<h3 id="orgaf34e1c">Use dependency defaults</h3>
-<div class="outline-text-3" id="text-orgaf34e1c">
+<div id="outline-container-orgd40e86a" class="outline-3">
+<h3 id="orgd40e86a">Use dependency defaults</h3>
+<div class="outline-text-3" id="text-orgd40e86a">
 <p>
 如果在新软件包的版本中，依赖被引进或移除 <code>USE</code> flag。 <code>(+)</code> 或 <code>(-)</code> 可能被添加到 use-dependency 规范来定义默认值，以防止 flag 在目标软件包中不存在。 <code>(+)</code> 假定启用缺失的 flag， <code>(-)</code> 则相反。
 </p>
@@ -516,7 +514,7 @@ There are also shortcuts for conditional situations:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

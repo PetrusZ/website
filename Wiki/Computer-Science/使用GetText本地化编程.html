@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>使用GetText本地化编程</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,27 +232,27 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf7b803a">介绍</a></li>
-<li><a href="#org45a0f49">例子</a>
+<li><a href="#org179e8c4">介绍</a></li>
+<li><a href="#orgc4a44e1">例子</a>
 <ul>
-<li><a href="#org0914369">使用 gettext 的流程</a></li>
-<li><a href="#orgcb17f41">细节</a>
+<li><a href="#org0a84179">使用 gettext 的流程</a></li>
+<li><a href="#org9986881">细节</a>
 <ul>
-<li><a href="#orgff9c8e6">setlocale()</a></li>
-<li><a href="#org954758e">xgettext</a></li>
+<li><a href="#org3a59e99">setlocale()</a></li>
+<li><a href="#orgc090aa3">xgettext</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org21a53c1">多文件的 PO</a></li>
-<li><a href="#org7e20e4f">参考链接</a></li>
+<li><a href="#org145178e">多文件的 PO</a></li>
+<li><a href="#orgfc13154">参考链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf7b803a" class="outline-2">
-<h2 id="orgf7b803a">介绍</h2>
-<div class="outline-text-2" id="text-orgf7b803a">
+<div id="outline-container-org179e8c4" class="outline-2">
+<h2 id="org179e8c4">介绍</h2>
+<div class="outline-text-2" id="text-org179e8c4">
 <p>
 GetText 是 GNU 的一个项目，GetText 主页有最丰富的信息。下面大致翻 译一下 GetText 主页的介绍 :
 </p>
@@ -274,9 +272,9 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </p>
 </div>
 </div>
-<div id="outline-container-org45a0f49" class="outline-2">
-<h2 id="org45a0f49">例子</h2>
-<div class="outline-text-2" id="text-org45a0f49">
+<div id="outline-container-orgc4a44e1" class="outline-2">
+<h2 id="orgc4a44e1">例子</h2>
+<div class="outline-text-2" id="text-orgc4a44e1">
 <div class="org-src-container">
 <pre class="src src-C"><span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;stdio.h&gt;</span>
 <span style="color: #51afef; font-weight: bold;">#include</span> <span style="color: #98be65;">&lt;locale.h&gt;</span>
@@ -307,9 +305,9 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </pre>
 </div>
 </div>
-<div id="outline-container-org0914369" class="outline-3">
-<h3 id="org0914369">使用 gettext 的流程</h3>
-<div class="outline-text-3" id="text-org0914369">
+<div id="outline-container-org0a84179" class="outline-3">
+<h3 id="org0a84179">使用 gettext 的流程</h3>
+<div class="outline-text-3" id="text-org0a84179">
 <ol class="org-ol">
 <li>头文件包含：</li>
 </ol>
@@ -391,21 +389,21 @@ gettext 的工作流程是这样的：比如我们写一个 C 程序，通常 pr
 </p>
 </div>
 </div>
-<div id="outline-container-orgcb17f41" class="outline-3">
-<h3 id="orgcb17f41">细节</h3>
-<div class="outline-text-3" id="text-orgcb17f41">
+<div id="outline-container-org9986881" class="outline-3">
+<h3 id="org9986881">细节</h3>
+<div class="outline-text-3" id="text-org9986881">
 </div>
-<div id="outline-container-orgff9c8e6" class="outline-4">
-<h4 id="orgff9c8e6">setlocale()</h4>
-<div class="outline-text-4" id="text-orgff9c8e6">
+<div id="outline-container-org3a59e99" class="outline-4">
+<h4 id="org3a59e99">setlocale()</h4>
+<div class="outline-text-4" id="text-org3a59e99">
 <p>
 setlocale(LC_ALL,"") 的意思是使用环境变量(系统当前的值)
 </p>
 </div>
 </div>
-<div id="outline-container-org954758e" class="outline-4">
-<h4 id="org954758e">xgettext</h4>
-<div class="outline-text-4" id="text-org954758e">
+<div id="outline-container-orgc090aa3" class="outline-4">
+<h4 id="orgc090aa3">xgettext</h4>
+<div class="outline-text-4" id="text-orgc090aa3">
 <ul class="org-ul">
 <li>-k 参数 可以只搜索某些字符串，没有用的信息省略。</li>
 </ul>
@@ -429,9 +427,9 @@ setlocale(LC_ALL,"") 的意思是使用环境变量(系统当前的值)
 </div>
 </div>
 </div>
-<div id="outline-container-org21a53c1" class="outline-2">
-<h2 id="org21a53c1">多文件的 PO</h2>
-<div class="outline-text-2" id="text-org21a53c1">
+<div id="outline-container-org145178e" class="outline-2">
+<h2 id="org145178e">多文件的 PO</h2>
+<div class="outline-text-2" id="text-org145178e">
 <p>
 一个开源项目中，通常有很多源文件，我们都需要翻译其中的字符串。通常步骤 如下：
 </p>
@@ -484,9 +482,9 @@ intltool-update &#8212;maintain
 </p>
 </div>
 </div>
-<div id="outline-container-org7e20e4f" class="outline-2">
-<h2 id="org7e20e4f">参考链接</h2>
-<div class="outline-text-2" id="text-org7e20e4f">
+<div id="outline-container-orgfc13154" class="outline-2">
+<h2 id="orgfc13154">参考链接</h2>
+<div class="outline-text-2" id="text-orgfc13154">
 <p>
 <a href="http://qiuxing2005.blog.sohu.com/163110064.html">http://qiuxing2005.blog.sohu.com/163110064.html</a>
 </p>
@@ -495,7 +493,7 @@ intltool-update &#8212;maintain
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

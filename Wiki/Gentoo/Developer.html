@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Developer</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,31 +232,31 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdb3e68e">GURU</a>
+<li><a href="#orgef3404f">GURU</a>
 <ul>
-<li><a href="#org7beb5ea">The regulations</a></li>
-<li><a href="#org32babbd">Generating/Managing GLEP 63 based OpenPGP keys</a></li>
-<li><a href="#orgadcf459">git setup</a></li>
-<li><a href="#orgd4b11b8">Committing</a></li>
-<li><a href="#org0ad7432">Resources</a></li>
-<li><a href="#org6474e0c">Links</a></li>
+<li><a href="#org7f087f3">The regulations</a></li>
+<li><a href="#orgde9e67e">Generating/Managing GLEP 63 based OpenPGP keys</a></li>
+<li><a href="#org9faad40">git setup</a></li>
+<li><a href="#org2e42165">Committing</a></li>
+<li><a href="#org588e885">Resources</a></li>
+<li><a href="#orgbe713c2">Links</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdb3e68e" class="outline-2">
-<h2 id="orgdb3e68e">GURU</h2>
-<div class="outline-text-2" id="text-orgdb3e68e">
+<div id="outline-container-orgef3404f" class="outline-2">
+<h2 id="orgef3404f">GURU</h2>
+<div class="outline-text-2" id="text-orgef3404f">
 <p>
 <a href="https://wiki.gentoo.org/wiki/Project:GURU">https://wiki.gentoo.org/wiki/Project:GURU</a>
 </p>
 </div>
 
-<div id="outline-container-org7beb5ea" class="outline-3">
-<h3 id="org7beb5ea">The regulations</h3>
-<div class="outline-text-3" id="text-org7beb5ea">
+<div id="outline-container-org7f087f3" class="outline-3">
+<h3 id="org7f087f3">The regulations</h3>
+<div class="outline-text-3" id="text-org7f087f3">
 <p>
 每一个愿意贡献到 GURU 项目的用户都需要明确的同意以下规定：
 </p>
@@ -275,9 +273,9 @@
 </div>
 </div>
 
-<div id="outline-container-org32babbd" class="outline-3">
-<h3 id="org32babbd">Generating/Managing GLEP 63 based OpenPGP keys</h3>
-<div class="outline-text-3" id="text-org32babbd">
+<div id="outline-container-orgde9e67e" class="outline-3">
+<h3 id="orgde9e67e">Generating/Managing GLEP 63 based OpenPGP keys</h3>
+<div class="outline-text-3" id="text-orgde9e67e">
 <p>
 <a href="https://wiki.gentoo.org/wiki/Project:Infrastructure/Generating_GLEP_63_based_OpenPGP_keys">https://wiki.gentoo.org/wiki/Project:Infrastructure/Generating_GLEP_63_based_OpenPGP_keys</a>
 </p>
@@ -298,9 +296,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgadcf459" class="outline-3">
-<h3 id="orgadcf459">git setup</h3>
-<div class="outline-text-3" id="text-orgadcf459">
+<div id="outline-container-org9faad40" class="outline-3">
+<h3 id="org9faad40">git setup</h3>
+<div class="outline-text-3" id="text-org9faad40">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">git</span><span style="color: #5B6268;"> local config</span>
     <span style="color: #ECBE7B;">git</span> config --local pull.ff only
@@ -322,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgd4b11b8" class="outline-3">
-<h3 id="orgd4b11b8">Committing</h3>
-<div class="outline-text-3" id="text-orgd4b11b8">
+<div id="outline-container-org2e42165" class="outline-3">
+<h3 id="org2e42165">Committing</h3>
+<div class="outline-text-3" id="text-org2e42165">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">stage changes</span>
     <span style="color: #ECBE7B;">git</span> add &lt;files&gt;
@@ -344,9 +342,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0ad7432" class="outline-3">
-<h3 id="org0ad7432">Resources</h3>
-<div class="outline-text-3" id="text-org0ad7432">
+<div id="outline-container-org588e885" class="outline-3">
+<h3 id="org588e885">Resources</h3>
+<div class="outline-text-3" id="text-org588e885">
 <p>
 GURU guides:
 </p>
@@ -364,9 +362,9 @@ GURU guides:
 </div>
 </div>
 
-<div id="outline-container-org6474e0c" class="outline-3">
-<h3 id="org6474e0c">Links</h3>
-<div class="outline-text-3" id="text-org6474e0c">
+<div id="outline-container-orgbe713c2" class="outline-3">
+<h3 id="orgbe713c2">Links</h3>
+<div class="outline-text-3" id="text-orgbe713c2">
 <ol class="org-ol">
 <li><a href="https://www.gentoo.org/get-involved/become-developer/">Become a developer</a></li>
 <li><a href="https://wiki.gentoo.org/wiki/Project:GURU">Project:GURU</a></li>
@@ -382,7 +380,7 @@ GURU guides:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

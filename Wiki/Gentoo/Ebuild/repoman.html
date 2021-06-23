@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>repoman</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,35 +232,35 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org83cce4c">NAME</a></li>
-<li><a href="#orga72ebc0">SYNOPSIS</a></li>
-<li><a href="#org83dfcaf">DESCRIPTION</a></li>
-<li><a href="#org4c2dff6">Links</a></li>
+<li><a href="#orgb2b4d64">NAME</a></li>
+<li><a href="#org226cdf0">SYNOPSIS</a></li>
+<li><a href="#org066b160">DESCRIPTION</a></li>
+<li><a href="#orgaec7eab">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org83cce4c" class="outline-2">
-<h2 id="org83cce4c">NAME</h2>
-<div class="outline-text-2" id="text-org83cce4c">
+<div id="outline-container-orgb2b4d64" class="outline-2">
+<h2 id="orgb2b4d64">NAME</h2>
+<div class="outline-text-2" id="text-orgb2b4d64">
 <p>
 repoman - Gentoo 的程序，用于在添加 ebuild 到仓库时强制执行最低级别的质量保证
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga72ebc0" class="outline-2">
-<h2 id="orga72ebc0">SYNOPSIS</h2>
-<div class="outline-text-2" id="text-orga72ebc0">
+<div id="outline-container-org226cdf0" class="outline-2">
+<h2 id="org226cdf0">SYNOPSIS</h2>
+<div class="outline-text-2" id="text-org226cdf0">
 <p>
 repoman [option] [mode]
 </p>
 </div>
 </div>
 
-<div id="outline-container-org83dfcaf" class="outline-2">
-<h2 id="org83dfcaf">DESCRIPTION</h2>
-<div class="outline-text-2" id="text-org83dfcaf">
+<div id="outline-container-org066b160" class="outline-2">
+<h2 id="org066b160">DESCRIPTION</h2>
+<div class="outline-text-2" id="text-org066b160">
 <p>
 Quality is job zero.
 </p>
@@ -288,9 +286,9 @@ repoman 检查 ebuild 仓库的质量。
 </div>
 </div>
 
-<div id="outline-container-org4c2dff6" class="outline-2">
-<h2 id="org4c2dff6">Links</h2>
-<div class="outline-text-2" id="text-org4c2dff6">
+<div id="outline-container-orgaec7eab" class="outline-2">
+<h2 id="orgaec7eab">Links</h2>
+<div class="outline-text-2" id="text-orgaec7eab">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/Repoman">https://wiki.gentoo.org/wiki/Repoman</a></li>
 </ol>
@@ -299,7 +297,7 @@ repoman 检查 ebuild 仓库的质量。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

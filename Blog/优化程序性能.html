@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>优化程序性能</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,33 +232,33 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcf046f7">优化程序性能</a></li>
-<li><a href="#orgf34bf5e">妨碍优化的因素</a></li>
-<li><a href="#orgfa606fd">优化程序性能的方法</a>
+<li><a href="#orgccf15a0">优化程序性能</a></li>
+<li><a href="#org1a1deee">妨碍优化的因素</a></li>
+<li><a href="#org2e70147">优化程序性能的方法</a>
 <ul>
-<li><a href="#org3f312b7">消除循环的低效率</a></li>
-<li><a href="#org3ad2ef5">减少过程调用</a></li>
-<li><a href="#org150a2ba">消除不必要的存储器引用</a></li>
-<li><a href="#org9daffb3">循环展开</a></li>
-<li><a href="#org0f9a819">提高并行性</a></li>
+<li><a href="#org90f9b9a">消除循环的低效率</a></li>
+<li><a href="#orgefe521e">减少过程调用</a></li>
+<li><a href="#org67b99ef">消除不必要的存储器引用</a></li>
+<li><a href="#orgb5dd88d">循环展开</a></li>
+<li><a href="#org16a76c2">提高并行性</a></li>
 </ul>
 </li>
-<li><a href="#org92af6b9">其他限制因素</a>
+<li><a href="#orgd25f403">其他限制因素</a>
 <ul>
-<li><a href="#org95afbc2">寄存器溢出</a></li>
-<li><a href="#org775ceb7">分支预测或预测错误处罚</a></li>
-<li><a href="#org70f5eaf">存储器性能</a></li>
+<li><a href="#orgc27c47a">寄存器溢出</a></li>
+<li><a href="#org3654967">分支预测或预测错误处罚</a></li>
+<li><a href="#orgd4850b3">存储器性能</a></li>
 </ul>
 </li>
-<li><a href="#orgeb17097">Amdahl 定律</a></li>
-<li><a href="#orgd0c5f1a">总结</a></li>
+<li><a href="#orga1a5d37">Amdahl 定律</a></li>
+<li><a href="#org60e682b">总结</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcf046f7" class="outline-2">
-<h2 id="orgcf046f7">优化程序性能</h2>
-<div class="outline-text-2" id="text-orgcf046f7">
+<div id="outline-container-orgccf15a0" class="outline-2">
+<h2 id="orgccf15a0">优化程序性能</h2>
+<div class="outline-text-2" id="text-orgccf15a0">
 <p>
 优化程序性能大体上可以分为两个步骤：
 </p>
@@ -277,9 +275,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgf34bf5e" class="outline-2">
-<h2 id="orgf34bf5e">妨碍优化的因素</h2>
-<div class="outline-text-2" id="text-orgf34bf5e">
+<div id="outline-container-org1a1deee" class="outline-2">
+<h2 id="org1a1deee">妨碍优化的因素</h2>
+<div class="outline-text-2" id="text-org1a1deee">
 <p>
 我们将两个指针可能指向同一个存储器位置的情况称为 <b>存储器别名使用</b> 。在只执行安全的优化中，编译器必须假设不同的指针可能会指向存储器中同一个位置。这就造成了一个主要的 <b>妨碍优化的因素</b> ，这也是可能严重限制编译器产生优化代码机会的一个方面。如果编译器不能确定两个指针是否指向同一个位置就必须假设什么情况都有可能，限制了可能的优化策略。例如：
 </p>
@@ -334,49 +332,49 @@
 </div>
 </div>
 
-<div id="outline-container-orgfa606fd" class="outline-2">
-<h2 id="orgfa606fd">优化程序性能的方法</h2>
-<div class="outline-text-2" id="text-orgfa606fd">
+<div id="outline-container-org2e70147" class="outline-2">
+<h2 id="org2e70147">优化程序性能的方法</h2>
+<div class="outline-text-2" id="text-org2e70147">
 </div>
-<div id="outline-container-org3f312b7" class="outline-3">
-<h3 id="org3f312b7">消除循环的低效率</h3>
-<div class="outline-text-3" id="text-org3f312b7">
+<div id="outline-container-org90f9b9a" class="outline-3">
+<h3 id="org90f9b9a">消除循环的低效率</h3>
+<div class="outline-text-3" id="text-org90f9b9a">
 <p>
 找出要执行多次但是计算结果不会改变的计算，将该计算移动到代码前面不会被多次求值的部分。这种方法称为 <b>代码移动</b> 。优化编译器会试着进行代码移动，但不幸的是，就像前面讨论的那样，对于会改变在哪里调用函数或调用多少次的变换，编译器通常非常小心，假设函数都会有副作用。所以程序员必须帮助编译器显示地完成代码移动。（一个看上去无足轻重的代码片断有隐藏的渐进低效率。）
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3ad2ef5" class="outline-3">
-<h3 id="org3ad2ef5">减少过程调用</h3>
-<div class="outline-text-3" id="text-org3ad2ef5">
+<div id="outline-container-orgefe521e" class="outline-3">
+<h3 id="orgefe521e">减少过程调用</h3>
+<div class="outline-text-3" id="text-orgefe521e">
 <p>
 过程调用会带来相当大的开销（参数传递、保护现场、控制转移等），而且妨碍大多数形式的程序优化。虽然减少过程调用会损害程序的模块性，但对于性能至关重要的应用来说，为了速度，经常必须要损害一些模块性和抽象性。为了防止以后要修改代码，添加一些文档是很明智的，说明采用了哪些变换以及导致进行这些变换的假设。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org150a2ba" class="outline-3">
-<h3 id="org150a2ba">消除不必要的存储器引用</h3>
-<div class="outline-text-3" id="text-org150a2ba">
+<div id="outline-container-org67b99ef" class="outline-3">
+<h3 id="org67b99ef">消除不必要的存储器引用</h3>
+<div class="outline-text-3" id="text-org67b99ef">
 <p>
 消除无用的存储器读写，引入一个临时变量，用来累积计算出来的值，只有在完成计算之后存放到存储器中。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9daffb3" class="outline-3">
-<h3 id="org9daffb3">循环展开</h3>
-<div class="outline-text-3" id="text-org9daffb3">
+<div id="outline-container-orgb5dd88d" class="outline-3">
+<h3 id="orgb5dd88d">循环展开</h3>
+<div class="outline-text-3" id="text-orgb5dd88d">
 <p>
 循环展开能够从两个方面改善程序的性能。首先，它减少了不直接有助于程序结果的操作的数量，例如循环检索引用计算和条件分支。其次，它提供了一些方法，可以进一步变化代码，减少整个计算中关键路径上的操作数量。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0f9a819" class="outline-3">
-<h3 id="org0f9a819">提高并行性</h3>
-<div class="outline-text-3" id="text-org0f9a819">
+<div id="outline-container-org16a76c2" class="outline-3">
+<h3 id="org16a76c2">提高并行性</h3>
+<div class="outline-text-3" id="text-org16a76c2">
 <ul class="org-ul">
 <li><p>
 <b>多个累积变量。</b>
@@ -408,31 +406,31 @@
 </div>
 </div>
 
-<div id="outline-container-org92af6b9" class="outline-2">
-<h2 id="org92af6b9">其他限制因素</h2>
-<div class="outline-text-2" id="text-org92af6b9">
+<div id="outline-container-orgd25f403" class="outline-2">
+<h2 id="orgd25f403">其他限制因素</h2>
+<div class="outline-text-2" id="text-orgd25f403">
 </div>
-<div id="outline-container-org95afbc2" class="outline-3">
-<h3 id="org95afbc2">寄存器溢出</h3>
-<div class="outline-text-3" id="text-org95afbc2">
+<div id="outline-container-orgc27c47a" class="outline-3">
+<h3 id="orgc27c47a">寄存器溢出</h3>
+<div class="outline-text-3" id="text-orgc27c47a">
 <p>
 循环并行性的好处受到描述计算的汇编代码的能力限制。特别地，IA32 指令集只有很少量的寄存器来存放累积的值。如果我们的并行度 p 超过了可能的寄存器数量，那么编译器会诉诸*溢出*，将某些临时值存放到栈中。一旦出现这种情况，性能会急剧下降。不过 x86-64 代码能够同时累积最多 12 个值，而不会溢出任何寄存器。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org775ceb7" class="outline-3">
-<h3 id="org775ceb7">分支预测或预测错误处罚</h3>
-<div class="outline-text-3" id="text-org775ceb7">
+<div id="outline-container-org3654967" class="outline-3">
+<h3 id="org3654967">分支预测或预测错误处罚</h3>
+<div class="outline-text-3" id="text-org3654967">
 <p>
 当分支预测逻辑不能正确预测一个分支是否要跳转的时候，条件分支可能会导致严重的 <b>预测错误处罚</b> 。虽然错误的分支预测的影响可能非常大，但是这并不意味着所有的程序分支都会减缓程序的执行。实际上，现在处理器中的分支预测逻辑非常善于辨别不同的分支指令有规律的模式和长期的趋势。例如，在闭合循环的分支中通常会被预测为选择继续循环的分支，因此只在最后一次会导致预测错误处罚。另外，还可以显示的编写功能式的条件表达式，以产生条件传送，减小预测错误处罚。不过并不是所有的条件行为都能用条件数据传送来实现。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org70f5eaf" class="outline-3">
-<h3 id="org70f5eaf">存储器性能</h3>
-<div class="outline-text-3" id="text-org70f5eaf">
+<div id="outline-container-orgd4850b3" class="outline-3">
+<h3 id="orgd4850b3">存储器性能</h3>
+<div class="outline-text-3" id="text-orgd4850b3">
 <p>
 如果程序中存在写/读相关——一个存储器读的结果依赖于最近的存储器写，会导致处理速度下降，关键路径变长，程序的并行性下降。
 </p>
@@ -442,11 +440,11 @@
 </div>
 </div>
 
-<div id="outline-container-orgeb17097" class="outline-2">
-<h2 id="orgeb17097">Amdahl 定律</h2>
-<div class="outline-text-2" id="text-orgeb17097">
+<div id="outline-container-orga1a5d37" class="outline-2">
+<h2 id="orga1a5d37">Amdahl 定律</h2>
+<div class="outline-text-2" id="text-orga1a5d37">
 
-<div class="figure">
+<div id="org84d6c93" class="figure">
 <p><img src="../pics/Blog/amdahl.png" alt="amdahl.png">
 </p>
 </div>
@@ -463,9 +461,9 @@ f 为执行某个任务的总时间可被改进部分的执行时间所占百分
 </div>
 </div>
 
-<div id="outline-container-orgd0c5f1a" class="outline-2">
-<h2 id="orgd0c5f1a">总结</h2>
-<div class="outline-text-2" id="text-orgd0c5f1a">
+<div id="outline-container-org60e682b" class="outline-2">
+<h2 id="org60e682b">总结</h2>
+<div class="outline-text-2" id="text-org60e682b">
 <p>
 优化程序性能可以分为三种基础策略：
 </p>
@@ -505,7 +503,7 @@ f 为执行某个任务的总时间可被改进部分的执行时间所占百分
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

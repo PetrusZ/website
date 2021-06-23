@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C语言之过</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org43f3685">错误的优先级</a></li>
-<li><a href="#org7367855">结合性</a></li>
-<li><a href="#org2449057">最大一口策略</a></li>
+<li><a href="#org14fb56d">错误的优先级</a></li>
+<li><a href="#org755fdaa">结合性</a></li>
+<li><a href="#orgaaa7019">最大一口策略</a></li>
 </ul>
 </div>
 </div>
@@ -244,9 +242,9 @@
 挑了一些 C 语言中的容易被人忽略的细微之处，C语言的新手常常在这些问题上想当然，其结果自然是 BUG。
 </p>
 
-<div id="outline-container-org43f3685" class="outline-2">
-<h2 id="org43f3685">错误的优先级</h2>
-<div class="outline-text-2" id="text-org43f3685">
+<div id="outline-container-org14fb56d" class="outline-2">
+<h2 id="org14fb56d">错误的优先级</h2>
+<div class="outline-text-2" id="text-org14fb56d">
 <table>
 
 
@@ -353,9 +351,9 @@ i 赋值为 1 接着执行常量 2 的运算，计算结果被丢弃。最终，
 </div>
 </div>
 
-<div id="outline-container-org7367855" class="outline-2">
-<h2 id="org7367855">结合性</h2>
-<div class="outline-text-2" id="text-org7367855">
+<div id="outline-container-org755fdaa" class="outline-2">
+<h2 id="org755fdaa">结合性</h2>
+<div class="outline-text-2" id="text-org755fdaa">
 <p>
 操作符的优先级已经够让人心烦的了，许多人对操作符的结合性同样感到困惑。在标准 C 语言的文档里，对操作符的结合性并没有作出非常清楚的解释。
 </p>
@@ -368,9 +366,9 @@ i 赋值为 1 接着执行常量 2 的运算，计算结果被丢弃。最终，
 </div>
 </div>
 
-<div id="outline-container-org2449057" class="outline-2">
-<h2 id="org2449057">最大一口策略</h2>
-<div class="outline-text-2" id="text-org2449057">
+<div id="outline-container-orgaaa7019" class="outline-2">
+<h2 id="orgaaa7019">最大一口策略</h2>
+<div class="outline-text-2" id="text-orgaaa7019">
 <p>
 ANSI C 规定了一种逐渐为人所熟知的“maximal munch strategy（最大一口策略）”。这种策略表示如果下一个标记有超过一种的解释方案，编译器将选取能组成最长字符序列的方案。如：
 </p>
@@ -397,7 +395,7 @@ ANSI C 规定了一种逐渐为人所熟知的“maximal munch strategy（最大
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

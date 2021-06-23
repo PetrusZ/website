@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-04-06 Tue 09:47 -->
+<!-- 2021-06-23 Wed 18:33 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dbus Send与dbus Monitor命令的使用</title>
@@ -232,41 +232,41 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1a69124">dbus-send</a>
+<li><a href="#org96aec81">dbus-send</a>
 <ul>
-<li><a href="#org045461b">获取属性值</a></li>
-<li><a href="#orgae4c388">调用方法</a></li>
-<li><a href="#org4d3c171">参考</a></li>
+<li><a href="#org913309a">获取属性值</a></li>
+<li><a href="#orgae3b21c">调用方法</a></li>
+<li><a href="#org643d011">参考</a></li>
 </ul>
 </li>
-<li><a href="#orgeb440f6">dbus-monitor</a>
+<li><a href="#orga54e442">dbus-monitor</a>
 <ul>
-<li><a href="#org7d86313">使用手册</a></li>
-<li><a href="#orgf49a7b1">监视信号</a></li>
-<li><a href="#orga503f85">监视方法</a></li>
-<li><a href="#orgad6d0bd"><span class="todo TODO">TODO</span> 监视属性</a></li>
-<li><a href="#orgef142af">参考</a></li>
+<li><a href="#org3ce4ce3">使用手册</a></li>
+<li><a href="#orga0039e4">监视信号</a></li>
+<li><a href="#org5636925">监视方法</a></li>
+<li><a href="#orgc2bb958"><span class="todo TODO">TODO</span> 监视属性</a></li>
+<li><a href="#org5921ca4">参考</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1a69124" class="outline-2">
-<h2 id="org1a69124">dbus-send</h2>
-<div class="outline-text-2" id="text-org1a69124">
+<div id="outline-container-org96aec81" class="outline-2">
+<h2 id="org96aec81">dbus-send</h2>
+<div class="outline-text-2" id="text-org96aec81">
 </div>
-<div id="outline-container-org045461b" class="outline-3">
-<h3 id="org045461b">获取属性值</h3>
-<div class="outline-text-3" id="text-org045461b">
+<div id="outline-container-org913309a" class="outline-3">
+<h3 id="org913309a">获取属性值</h3>
+<div class="outline-text-3" id="text-org913309a">
 <p>
 <code>dbus-send --print-reply --type=method_call --session --dest=com.deepin.daemon.Display /com/deepin/daemon/Display org.freedesktop.DBus.Properties.Get string:com.deepin.daemon.Display string:Primary</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgae4c388" class="outline-3">
-<h3 id="orgae4c388">调用方法</h3>
-<div class="outline-text-3" id="text-orgae4c388">
+<div id="outline-container-orgae3b21c" class="outline-3">
+<h3 id="orgae3b21c">调用方法</h3>
+<div class="outline-text-3" id="text-orgae3b21c">
 <ol class="org-ol">
 <li>不带参数
 <code>dbus-send --session --print-reply --type=method_call --dest=com.deepin.daemon.Display /com/deepin/daemon/Display com.deepin.daemon.Display.CanRotate</code></li>
@@ -275,9 +275,9 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org4d3c171" class="outline-3">
-<h3 id="org4d3c171">参考</h3>
-<div class="outline-text-3" id="text-org4d3c171">
+<div id="outline-container-org643d011" class="outline-3">
+<h3 id="org643d011">参考</h3>
+<div class="outline-text-3" id="text-org643d011">
 <ol class="org-ol">
 <li><a href="https://wikidev.uniontech.com/index.php?title=Dbus-send">https://wikidev.uniontech.com/index.php?title=Dbus-send</a></li>
 <li><a href="https://note.youdao.com/ynoteshare1/index.html?id=94b62364769faff9eb92cc82cf5aced4&amp;type=note">https://note.youdao.com/ynoteshare1/index.html?id=94b62364769faff9eb92cc82cf5aced4&amp;type=note</a></li>
@@ -285,16 +285,16 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb440f6" class="outline-2">
-<h2 id="orgeb440f6">dbus-monitor</h2>
-<div class="outline-text-2" id="text-orgeb440f6">
+<div id="outline-container-orga54e442" class="outline-2">
+<h2 id="orga54e442">dbus-monitor</h2>
+<div class="outline-text-2" id="text-orga54e442">
 <p>
 <code>dbus-monitor [--system | --session | --address ADDRESS] [--profile | --monitor | --pcap | --binary] [watch expressions]</code>
 </p>
 </div>
-<div id="outline-container-org7d86313" class="outline-3">
-<h3 id="org7d86313">使用手册</h3>
-<div class="outline-text-3" id="text-org7d86313">
+<div id="outline-container-org3ce4ce3" class="outline-3">
+<h3 id="org3ce4ce3">使用手册</h3>
+<div class="outline-text-3" id="text-org3ce4ce3">
 <p>
 dbus-monitor 具有两种不同的文本输出模式：“经典”风格的监视模式和配置文件模式
 </p>
@@ -341,28 +341,28 @@ replay：方法调用的返回值
 </p>
 </div>
 </div>
-<div id="outline-container-orgf49a7b1" class="outline-3">
-<h3 id="orgf49a7b1">监视信号</h3>
-<div class="outline-text-3" id="text-orgf49a7b1">
+<div id="outline-container-orga0039e4" class="outline-3">
+<h3 id="orga0039e4">监视信号</h3>
+<div class="outline-text-3" id="text-orga0039e4">
 <p>
 <code>dbus-monitor type='signal',sender='org.gnome.TypingMonitor',interface='org.gnome.TypingMonitor'</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orga503f85" class="outline-3">
-<h3 id="orga503f85">监视方法</h3>
-<div class="outline-text-3" id="text-orga503f85">
+<div id="outline-container-org5636925" class="outline-3">
+<h3 id="org5636925">监视方法</h3>
+<div class="outline-text-3" id="text-org5636925">
 <p>
 <code>dbus-monitor --session "interface=com.deepin.daemon.Display"</code>
 </p>
 </div>
 </div>
-<div id="outline-container-orgad6d0bd" class="outline-3">
-<h3 id="orgad6d0bd"><span class="todo TODO">TODO</span> 监视属性</h3>
+<div id="outline-container-orgc2bb958" class="outline-3">
+<h3 id="orgc2bb958"><span class="todo TODO">TODO</span> 监视属性</h3>
 </div>
-<div id="outline-container-orgef142af" class="outline-3">
-<h3 id="orgef142af">参考</h3>
-<div class="outline-text-3" id="text-orgef142af">
+<div id="outline-container-org5921ca4" class="outline-3">
+<h3 id="org5921ca4">参考</h3>
+<div class="outline-text-3" id="text-org5921ca4">
 <ol class="org-ol">
 <li><a href="https://wikidev.uniontech.com/index.php?title=Dbus-monitor">https://wikidev.uniontech.com/index.php?title=Dbus-monitor</a></li>
 </ol>
@@ -372,7 +372,7 @@ replay：方法调用的返回值
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-04-06 Tue 09:47</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

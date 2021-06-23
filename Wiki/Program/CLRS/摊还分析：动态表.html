@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>摊还分析：动态表</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,8 +232,8 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge76624f">表扩张</a></li>
-<li><a href="#orgca87d4f">表扩张和收缩</a></li>
+<li><a href="#org3481cb3">表扩张</a></li>
+<li><a href="#org9a410a5">表扩张和收缩</a></li>
 </ul>
 </div>
 </div>
@@ -245,9 +243,9 @@
 
 <hr>
 
-<div id="outline-container-orge76624f" class="outline-2">
-<h2 id="orge76624f">表扩张</h2>
-<div class="outline-text-2" id="text-orge76624f">
+<div id="outline-container-org3481cb3" class="outline-2">
+<h2 id="org3481cb3">表扩张</h2>
+<div class="outline-text-2" id="text-org3481cb3">
 <p>
 一个常用的分配新表的启发式策略是：当旧表被填满时，我们为新表分配 2 倍旧表的槽。如果只允许插入操作，那么装载因子总是保持在 1/2 以上，因此，浪费的空间永远不会超过总空间的一半。
 </p>
@@ -256,7 +254,7 @@
 令 T.table 保存指向表的存储空间的指针，T.num 保存表中的数据数量，T.size 保存表的规模，其伪代码如下：
 </p>
 
-<pre class="example">
+<pre class="example" id="orgde990a3">
     if T.size == 0
         allocate T.table with 1 slot
         T.size = 1
@@ -339,9 +337,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgca87d4f" class="outline-2">
-<h2 id="orgca87d4f">表扩张和收缩</h2>
-<div class="outline-text-2" id="text-orgca87d4f">
+<div id="outline-container-org9a410a5" class="outline-2">
+<h2 id="org9a410a5">表扩张和收缩</h2>
+<div class="outline-text-2" id="text-org9a410a5">
 <p>
 表收缩和表扩张是类似的操作所以省略的收缩的叙述及伪代码。理想情况下，我们希望表收缩的时候保持两个性质：
 </p>
@@ -393,7 +391,7 @@
 </p>
 
 
-<div class="figure">
+<div id="orgb7a829f" class="figure">
 <p><img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
 </p>
 </div>
@@ -450,7 +448,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

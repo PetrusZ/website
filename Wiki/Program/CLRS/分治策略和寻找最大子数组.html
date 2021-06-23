@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>分治策略和寻找最大子数组</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -256,21 +254,21 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge6a061e">分治策略</a></li>
-<li><a href="#org8bf5848">2.最大子数组问题</a>
+<li><a href="#org0ebb73e">分治策略</a></li>
+<li><a href="#orgd389a62">2.最大子数组问题</a>
 <ul>
-<li><a href="#org28804c4">情形一</a></li>
-<li><a href="#org36f2edc">情形二</a></li>
-<li><a href="#org9b549a2">情形三</a></li>
+<li><a href="#orgb35d7b1">情形一</a></li>
+<li><a href="#org3117b4a">情形二</a></li>
+<li><a href="#org5b076b7">情形三</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge6a061e" class="outline-2">
-<h2 id="orge6a061e">分治策略</h2>
-<div class="outline-text-2" id="text-orge6a061e">
+<div id="outline-container-org0ebb73e" class="outline-2">
+<h2 id="org0ebb73e">分治策略</h2>
+<div class="outline-text-2" id="text-org0ebb73e">
 <p>
 许多有用的算法在结构上是递归的：为了解决一个给定的问题，算法一次或多次递归的调用其自身以解决紧密相关的若干子问题。这些算法典型地遵循分治法的思想：将原问题分解为几个规模较小但类似于原问题的子问题，递归地求解这些子问题，然后再合并这些子问题的解来建立原问题的解。
 </p>
@@ -309,9 +307,9 @@ T(n) = aT(n/b) + f(n)
 </div>
 </div>
 
-<div id="outline-container-org8bf5848" class="outline-2">
-<h2 id="org8bf5848">2.最大子数组问题</h2>
-<div class="outline-text-2" id="text-org8bf5848">
+<div id="outline-container-orgd389a62" class="outline-2">
+<h2 id="orgd389a62">2.最大子数组问题</h2>
+<div class="outline-text-2" id="text-orgd389a62">
 <p>
 寻找 A 的和最大的非空连续子数组。我们称这样的连续子数组为 <b>最大子数组</b> 。
 </p>
@@ -331,7 +329,7 @@ T(n) = aT(n/b) + f(n)
 </p>
 
 
-<div class="figure">
+<div id="orge84cac1" class="figure">
 <p><img src="../../../pics/CLRS/最大子数组.png" alt="最大子数组.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>最大子数组</p>
@@ -487,7 +485,7 @@ C 语言求解最大子数组问题代码：
 </p>
 
 
-<div class="figure">
+<div id="org843113e" class="figure">
 <p><img src="../../../pics/CLRS/bbefdd00e0cd1472926c74fe1350b8a4.png" alt="bbefdd00e0cd1472926c74fe1350b8a4.png">
 </p>
 </div>
@@ -497,7 +495,7 @@ C 语言求解最大子数组问题代码：
 </p>
 
 
-<div class="figure">
+<div id="org3b111b0" class="figure">
 <p><img src="../../../pics/CLRS/60adf3d8450792f60d75c81d29e45572.png" alt="60adf3d8450792f60d75c81d29e45572.png">
 </p>
 </div>
@@ -507,15 +505,15 @@ C 语言求解最大子数组问题代码：
 </p>
 </div>
 
-<div id="outline-container-org28804c4" class="outline-3">
-<h3 id="org28804c4">情形一</h3>
-<div class="outline-text-3" id="text-org28804c4">
+<div id="outline-container-orgb35d7b1" class="outline-3">
+<h3 id="orgb35d7b1">情形一</h3>
+<div class="outline-text-3" id="text-orgb35d7b1">
 <p>
 如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有<img src="../../../pics/CLRS/79a7ecad7f97f19240be140f505ddbed.png" alt="79a7ecad7f97f19240be140f505ddbed.png">，并且是多项式的小于 那么
 </p>
 
 
-<div class="figure">
+<div id="org7e7f121" class="figure">
 <p><img src="../../../pics/CLRS/83551c0953b5c391e3fdeb90b81deee2.png" alt="83551c0953b5c391e3fdeb90b81deee2.png">
 </p>
 <p><span class="figure-number">&#22270;4&nbsp; </span>T(n) = &Theta;\left( n\^{log\_b a} \right)</p>
@@ -523,15 +521,15 @@ C 语言求解最大子数组问题代码：
 </div>
 </div>
 
-<div id="outline-container-org36f2edc" class="outline-3">
-<h3 id="org36f2edc">情形二</h3>
-<div class="outline-text-3" id="text-org36f2edc">
+<div id="outline-container-org3117b4a" class="outline-3">
+<h3 id="org3117b4a">情形二</h3>
+<div class="outline-text-3" id="text-org3117b4a">
 <p>
 如果存在常数 <b>k</b> ≥ 0，有
 </p>
 
 
-<div class="figure">
+<div id="org6f1f133" class="figure">
 <p><img src="../../../pics/CLRS/5ec7448a407893b0364e72e624e56a26.png" alt="5ec7448a407893b0364e72e624e56a26.png">
 </p>
 <p><span class="figure-number">&#22270;5&nbsp; </span>f(n) = &Theta;\left( n\^{log\_b a} log\^{k} n \right)</p>
@@ -542,7 +540,7 @@ C 语言求解最大子数组问题代码：
 </p>
 
 
-<div class="figure">
+<div id="orge670884" class="figure">
 <p><img src="../../../pics/CLRS/f4bebc5698e39bdae898ce959e9e5428.png" alt="f4bebc5698e39bdae898ce959e9e5428.png">
 </p>
 <p><span class="figure-number">&#22270;6&nbsp; </span>T(n) = &Theta;\left( n\^{log\_b a} log\^{k+1} n \right)</p>
@@ -550,9 +548,9 @@ C 语言求解最大子数组问题代码：
 </div>
 </div>
 
-<div id="outline-container-org9b549a2" class="outline-3">
-<h3 id="org9b549a2">情形三</h3>
-<div class="outline-text-3" id="text-org9b549a2">
+<div id="outline-container-org5b076b7" class="outline-3">
+<h3 id="org5b076b7">情形三</h3>
+<div class="outline-text-3" id="text-org5b076b7">
 <p>
 如果存在常数<img src="../../../pics/CLRS/e778429d8769714354b1994984a23fe5.png" alt="e778429d8769714354b1994984a23fe5.png"> ，有
 </p>
@@ -566,7 +564,7 @@ C 语言求解最大子数组问题代码：
 </p>
 
 
-<div class="figure">
+<div id="orgc0f6d0c" class="figure">
 <p><img src="../../../pics/CLRS/67ad62611c82b235d6cf0b0cedab740b.png" alt="67ad62611c82b235d6cf0b0cedab740b.png">
 </p>
 <p><span class="figure-number">&#22270;7&nbsp; </span>a f\left( \frac{n}{b} \right) &le; c f(n)</p>
@@ -577,7 +575,7 @@ C 语言求解最大子数组问题代码：
 </p>
 
 
-<div class="figure">
+<div id="org8d3b9a7" class="figure">
 <p><img src="../../../pics/CLRS/4753885194212a420f0126c6896f0ad9.png" alt="4753885194212a420f0126c6896f0ad9.png">
 </p>
 <p><span class="figure-number">&#22270;8&nbsp; </span>T\left(n \right) = &Theta; \left(f \left(n \right) \right)</p>
@@ -592,7 +590,7 @@ C 语言求解最大子数组问题代码：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

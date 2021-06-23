@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>qemu</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,19 +232,19 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8f5eeef">创建 VM</a></li>
-<li><a href="#org2b50184">选项介绍</a></li>
-<li><a href="#org28e4953">网络策略</a></li>
-<li><a href="#org8459792">桥接网络</a></li>
-<li><a href="#orgdb37977">Windows</a></li>
-<li><a href="#orga3f3ba9">Links</a></li>
+<li><a href="#org7e90884">创建 VM</a></li>
+<li><a href="#org77c4ef1">选项介绍</a></li>
+<li><a href="#org8177f7a">网络策略</a></li>
+<li><a href="#orgd3ba622">桥接网络</a></li>
+<li><a href="#orgb4dfd79">Windows</a></li>
+<li><a href="#org0c1b7f6">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8f5eeef" class="outline-2">
-<h2 id="org8f5eeef">创建 VM</h2>
-<div class="outline-text-2" id="text-org8f5eeef">
+<div id="outline-container-org7e90884" class="outline-2">
+<h2 id="org7e90884">创建 VM</h2>
+<div class="outline-text-2" id="text-org7e90884">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;&#30913;&#30424;</span>
     qemu-img create -f qcow2 &lt;name&gt;.img &lt;size&gt;G
@@ -264,9 +262,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2b50184" class="outline-2">
-<h2 id="org2b50184">选项介绍</h2>
-<div class="outline-text-2" id="text-org2b50184">
+<div id="outline-container-org77c4ef1" class="outline-2">
+<h2 id="org77c4ef1">选项介绍</h2>
+<div class="outline-text-2" id="text-org77c4ef1">
 <ul class="org-ul">
 <li><p>
 -display vnc:<x>
@@ -315,9 +313,9 @@
 </div>
 </div>
 
-<div id="outline-container-org28e4953" class="outline-2">
-<h2 id="org28e4953">网络策略</h2>
-<div class="outline-text-2" id="text-org28e4953">
+<div id="outline-container-org8177f7a" class="outline-2">
+<h2 id="org8177f7a">网络策略</h2>
+<div class="outline-text-2" id="text-org8177f7a">
 <p>
 QEMU 提供 4 种网络通信方法，它们分别是：
 </p>
@@ -343,9 +341,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-org8459792" class="outline-2">
-<h2 id="org8459792">桥接网络</h2>
-<div class="outline-text-2" id="text-org8459792">
+<div id="outline-container-orgd3ba622" class="outline-2">
+<h2 id="orgd3ba622">桥接网络</h2>
+<div class="outline-text-2" id="text-orgd3ba622">
 <p>
 由于是使用 ssh 连接到远程机器，所以必须要求在设置桥接时不会使网络中断
 </p>
@@ -384,9 +382,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-orgdb37977" class="outline-2">
-<h2 id="orgdb37977">Windows</h2>
-<div class="outline-text-2" id="text-orgdb37977">
+<div id="outline-container-orgb4dfd79" class="outline-2">
+<h2 id="orgb4dfd79">Windows</h2>
+<div class="outline-text-2" id="text-orgb4dfd79">
 <ol class="org-ol">
 <li><a href="https://pdf.us/2019/01/21/2642.html">Windows Thin PC-微软官方精简版Windows7系统</a></li>
 <li><a href="https://www.spice-space.org/download.html">https://www.spice-space.org/download.html</a></li>
@@ -394,9 +392,9 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 </div>
 
-<div id="outline-container-orga3f3ba9" class="outline-2">
-<h2 id="orga3f3ba9">Links</h2>
-<div class="outline-text-2" id="text-orga3f3ba9">
+<div id="outline-container-org0c1b7f6" class="outline-2">
+<h2 id="org0c1b7f6">Links</h2>
+<div class="outline-text-2" id="text-org0c1b7f6">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/QEMU">https://wiki.gentoo.org/wiki/QEMU</a></li>
 <li><a href="https://wiki.gentoo.org/wiki/QEMU/Options">https://wiki.gentoo.org/wiki/QEMU/Options</a></li>
@@ -414,7 +412,7 @@ TAP 属于 LInux 内核支持的一种虚拟化网络设备，还有 TUN 也属�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>散列表之链接法</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,14 +232,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbaecc1d">直接寻址表</a></li>
-<li><a href="#org9ea191f">散列表</a></li>
-<li><a href="#org8896c16">链接法</a></li>
-<li><a href="#orgf1608b4">4.散列函数</a>
+<li><a href="#org3c417ee">直接寻址表</a></li>
+<li><a href="#org9be0a1f">散列表</a></li>
+<li><a href="#org025b989">链接法</a></li>
+<li><a href="#org102dbb4">4.散列函数</a>
 <ul>
-<li><a href="#org4cb9bdb">(1)除法散列法</a></li>
-<li><a href="#org2576b46">(2)乘法散列法</a></li>
-<li><a href="#org4ed634c">(3)全域散列法</a></li>
+<li><a href="#org393dd0b">(1)除法散列法</a></li>
+<li><a href="#org107d8fa">(2)乘法散列法</a></li>
+<li><a href="#orgac8e857">(3)全域散列法</a></li>
 </ul>
 </li>
 </ul>
@@ -251,24 +249,24 @@
 许多应用都需要一种数据结构，至少支持 INSERT、SEARCH 和 DELETE 字典操作。例如，用于程序语言编译的编译器维护了一个符号表，其中元素的关键字为任意字符串，它与程序中的标识符相对应。散列表(hash table)是实现字典操作的一种有效数据结构。尽管最坏情况下，散列表中欧给你查找一个元素的时候与链表中查找的时间相同，达到了Θ(n)。然后在实际应用中，散列查找的性能是非常好的。
 </p>
 
-<div id="outline-container-orgbaecc1d" class="outline-2">
-<h2 id="orgbaecc1d">直接寻址表</h2>
-<div class="outline-text-2" id="text-orgbaecc1d">
+<div id="outline-container-org3c417ee" class="outline-2">
+<h2 id="org3c417ee">直接寻址表</h2>
+<div class="outline-text-2" id="text-org3c417ee">
 <p>
 当关键字的全域 U 比较小时，直接寻址是一种简单而有效的技术。一般可以采用数组实现直接寻址表，数组下标对应的就是关键字的值，即具有关键字 k 的元素被放在直接寻址表的槽 k 中。直接寻址表的字典操作实现比较简单，直接操作数组即可，只需 O(1)的时间。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9ea191f" class="outline-2">
-<h2 id="org9ea191f">散列表</h2>
-<div class="outline-text-2" id="text-org9ea191f">
+<div id="outline-container-org9be0a1f" class="outline-2">
+<h2 id="org9be0a1f">散列表</h2>
+<div class="outline-text-2" id="text-org9be0a1f">
 <p>
 直接寻址技术的缺点也非常明显：如果全域 U 很大，则在一台标准的计算机可用内存容量中，要存储大小为|U|的一张表 T 也许不实际。还有，实际存储的关键字集合 K 相对 U 来说可能很小，使得分配给 T 的大部分空间都浪费掉。 所以我们需要将散列表的存储需求降至Θ(|k|)，同时散列表中查找一个元素的优势仍得到保持（O(1)时间）。所以在散列方式下，利用散列函数(hash function)h，由关键字 k 计算出槽的位置 h(k)。这里函数 h 将关键字的全域 U 映射到散列表 T[0..m-1]的槽位上。
 </p>
 
 
-<div class="figure">
+<div id="org6ef096c" class="figure">
 <p><img src="../../../pics/CLRS/hash1.png" alt="hash1.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>hash1</p>
@@ -284,15 +282,15 @@
 </div>
 </div>
 
-<div id="outline-container-org8896c16" class="outline-2">
-<h2 id="org8896c16">链接法</h2>
-<div class="outline-text-2" id="text-org8896c16">
+<div id="outline-container-org025b989" class="outline-2">
+<h2 id="org025b989">链接法</h2>
+<div class="outline-text-2" id="text-org025b989">
 <p>
 在链接法中，把散列到同一槽中的所有元素都放在一个链表中。槽中有一个指针，它指向存储所有散列到该槽的元素的链表的表头，如果不存在这样的元素，则该槽中为 NIL。其插入操作、删除操作的最坏情况运行时间为 O(1)，而搜索操作的最坏情况运行时间为 O(n)，如果所有的元素都散列到同一槽中。
 </p>
 
 
-<div class="figure">
+<div id="org246c690" class="figure">
 <p><img src="../../../pics/CLRS/hash2.png" alt="hash2.png">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>hash2</p>
@@ -304,17 +302,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgf1608b4" class="outline-2">
-<h2 id="orgf1608b4">4.散列函数</h2>
-<div class="outline-text-2" id="text-orgf1608b4">
+<div id="outline-container-org102dbb4" class="outline-2">
+<h2 id="org102dbb4">4.散列函数</h2>
+<div class="outline-text-2" id="text-org102dbb4">
 <p>
 一个好的散列函数应近似的满足简单均匀假设：每一个关键字都被等可能的散列到 m 个槽位中的任何一个，并与其他关键字已散列到哪个槽位无关。另外如果关键字的全域不是自然数集，我们需要找到一种方法将它转换为自然数。散列函数可以说是散列表性能最关键的一部分。
 </p>
 </div>
 
-<div id="outline-container-org4cb9bdb" class="outline-3">
-<h3 id="org4cb9bdb">(1)除法散列法</h3>
-<div class="outline-text-3" id="text-org4cb9bdb">
+<div id="outline-container-org393dd0b" class="outline-3">
+<h3 id="org393dd0b">(1)除法散列法</h3>
+<div class="outline-text-3" id="text-org393dd0b">
 <p>
 通过取 k 除以 m 的余数，将关键字 k 映射到 m 个槽中的某一个上：
 </p>
@@ -329,9 +327,9 @@ h(k) = k mod m
 </div>
 </div>
 
-<div id="outline-container-org2576b46" class="outline-3">
-<h3 id="org2576b46">(2)乘法散列法</h3>
-<div class="outline-text-3" id="text-org2576b46">
+<div id="outline-container-org107d8fa" class="outline-3">
+<h3 id="org107d8fa">(2)乘法散列法</h3>
+<div class="outline-text-3" id="text-org107d8fa">
 <p>
 第一步：用关键字 k 乘上常熟 A(0 &lt; A &lt;1)，并提取 kA 的小数部分。第二步：用 m 乘以这个值，再向下取整。总之，散列函数为：h(k) = m(kA mod 1)。
 </p>
@@ -342,9 +340,9 @@ h(k) = k mod m
 </div>
 </div>
 
-<div id="outline-container-org4ed634c" class="outline-3">
-<h3 id="org4ed634c">(3)全域散列法</h3>
-<div class="outline-text-3" id="text-org4ed634c">
+<div id="outline-container-orgac8e857" class="outline-3">
+<h3 id="orgac8e857">(3)全域散列法</h3>
+<div class="outline-text-3" id="text-orgac8e857">
 <p>
 给定一组散列函数 H，每次进行散列时候从 H 中随机的选择一个散列函数 h，使得 h 独立于要存储的关键字。全域散列函数类的平均性能是比较好的。 
 在网上搜索过不少散列表的实现，不知道为什么都是比较复杂，在这里给出一种比较简单的使用链表数组的实现。
@@ -566,7 +564,7 @@ h(k) = k mod m
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

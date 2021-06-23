@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>基本数据结构</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,16 +232,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org04adaaf">栈(stack)</a></li>
-<li><a href="#org2304036">队列(queue)</a></li>
-<li><a href="#org86f3768">链表（linked list）</a></li>
+<li><a href="#org176ef4a">栈(stack)</a></li>
+<li><a href="#orgb8a799b">队列(queue)</a></li>
+<li><a href="#org796f8cc">链表（linked list）</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org04adaaf" class="outline-2">
-<h2 id="org04adaaf">栈(stack)</h2>
-<div class="outline-text-2" id="text-org04adaaf">
+<div id="outline-container-org176ef4a" class="outline-2">
+<h2 id="org176ef4a">栈(stack)</h2>
+<div class="outline-text-2" id="text-org176ef4a">
 <p>
 在栈中，被删除的是最近插入的元素：栈实现的是一种后进先出（LIFO）的策略。
 </p>
@@ -354,9 +352,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2304036" class="outline-2">
-<h2 id="org2304036">队列(queue)</h2>
-<div class="outline-text-2" id="text-org2304036">
+<div id="outline-container-orgb8a799b" class="outline-2">
+<h2 id="orgb8a799b">队列(queue)</h2>
+<div class="outline-text-2" id="text-orgb8a799b">
 <p>
 在队列中，被删除去的总是在集合中存在时间最长的元素：队列实现的是一个中先进先出（FIFO）策略，就像我们平时排队一样。
 </p>
@@ -366,7 +364,7 @@
 </p>
 
 
-<div class="figure">
+<div id="orgc6facc3" class="figure">
 <p><img src="../../../pics/CLRS/queue.png" alt="queue.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>queue</p>
@@ -500,15 +498,15 @@
 </div>
 </div>
 
-<div id="outline-container-org86f3768" class="outline-2">
-<h2 id="org86f3768">链表（linked list）</h2>
-<div class="outline-text-2" id="text-org86f3768">
+<div id="outline-container-org796f8cc" class="outline-2">
+<h2 id="org796f8cc">链表（linked list）</h2>
+<div class="outline-text-2" id="text-org796f8cc">
 <p>
 双向链表的每一个元素都是一个对象，每一个对象有一个关键字 key 和两个指针：next 和 prev。假设 x 是链表是的一个元素，x.next 指向它在链表中的后继元素，x.prev 指向前驱元素。属性 L.head 指向链表的第一个元素。如果 L.head = NIL，则链表为空。
 </p>
 
 
-<div class="figure">
+<div id="org2da08b3" class="figure">
 <p><img src="http://hi.csdn.net/attachment/201108/7/0_1312699572LEMy.gif" alt="0_1312699572LEMy.gif">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>图片丢失</p>
@@ -652,7 +650,7 @@
 </p>
 
 
-<div class="figure">
+<div id="org270a2f4" class="figure">
 <p><img src="../../../pics/CLRS/list.png" alt="list.png">
 </p>
 <p><span class="figure-number">&#22270;3&nbsp; </span>list</p>
@@ -767,7 +765,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

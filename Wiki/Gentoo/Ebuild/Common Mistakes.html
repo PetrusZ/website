@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-02 Mon 17:02 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Common Mistakes</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -191,33 +191,25 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,44 +226,44 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8d0f98b">Common Ebuild Writing Mistakes</a>
+<li><a href="#orgfb4d7e8">Common Ebuild Writing Mistakes</a>
 <ul>
-<li><a href="#org5f9d76c">Invalid use of <code>static</code> use-flag</a></li>
-<li><a href="#org28eb831">Invalid use of ROOT</a></li>
-<li><a href="#orgc38aafb">引用可以压缩的文档的完整路径</a></li>
-<li><a href="#org94a86d6">Build log not verbose</a></li>
-<li><a href="#org2687a52">-Werror compiler flag not removed</a>
+<li><a href="#org13cb778">Invalid use of <code>static</code> use-flag</a></li>
+<li><a href="#org794b5ae">Invalid use of ROOT</a></li>
+<li><a href="#orgd018729">引用可以压缩的文档的完整路径</a></li>
+<li><a href="#org0e09719">Build log not verbose</a></li>
+<li><a href="#org0310d98">-Werror compiler flag not removed</a>
 <ul>
-<li><a href="#org80d1d3d">基本原理</a></li>
-<li><a href="#orgff3a5ed">如何修复</a></li>
-<li><a href="#org5d581c1">Specific -Werror=&#x2026; flags</a></li>
-<li><a href="#org64325b4">例外情况</a></li>
+<li><a href="#org45f1536">基本原理</a></li>
+<li><a href="#org6184086">如何修复</a></li>
+<li><a href="#orgfa400bf">Specific -Werror=&#x2026; flags</a></li>
+<li><a href="#org739c8ce">例外情况</a></li>
 </ul>
 </li>
-<li><a href="#orgf127d7c">Missing/Invalid/Broken Header</a></li>
-<li><a href="#org3dbdc1b">Redefined P, PV, PN, PF</a></li>
-<li><a href="#orge58bbf9">Including version numbers in SRC_URI and S</a></li>
-<li><a href="#orgd26423f">DEPEND has syntactical errors</a></li>
-<li><a href="#orgd7d161a">DEPEND is incomplete</a></li>
-<li><a href="#orge883033">LICENSE Invalid</a></li>
-<li><a href="#orgb5efac0">Untested ARCHs in KEYWORDS</a></li>
-<li><a href="#org7cc20e1">SLOT missing</a></li>
-<li><a href="#orgf5d56d0">DESCRIPTION and HOMEPAGE wrong</a></li>
-<li><a href="#org73754ce">Wrongfully used spaces instead of TABS</a></li>
-<li><a href="#org21f6875">Trailing whitespace</a></li>
-<li><a href="#org122f9cf">添加多余的 <code>S=${WORKDIR}/${P}</code></a></li>
-<li><a href="#orgcff971e">Documentation missing</a></li>
-<li><a href="#org02e6467">Masking unsupported/broken USE flags</a></li>
+<li><a href="#orgecfc3f7">Missing/Invalid/Broken Header</a></li>
+<li><a href="#orgefb756a">Redefined P, PV, PN, PF</a></li>
+<li><a href="#org30c2f75">Including version numbers in SRC_URI and S</a></li>
+<li><a href="#orgdf1f8c7">DEPEND has syntactical errors</a></li>
+<li><a href="#org1c33c04">DEPEND is incomplete</a></li>
+<li><a href="#orge17a4ad">LICENSE Invalid</a></li>
+<li><a href="#org77dd429">Untested ARCHs in KEYWORDS</a></li>
+<li><a href="#org573ebce">SLOT missing</a></li>
+<li><a href="#org731f711">DESCRIPTION and HOMEPAGE wrong</a></li>
+<li><a href="#org9d839c8">Wrongfully used spaces instead of TABS</a></li>
+<li><a href="#org587b747">Trailing whitespace</a></li>
+<li><a href="#org077b858">添加多余的 <code>S=${WORKDIR}/${P}</code></a></li>
+<li><a href="#org3136325">Documentation missing</a></li>
+<li><a href="#orgff07a24">Masking unsupported/broken USE flags</a></li>
 </ul>
 </li>
-<li><a href="#org0fd1392">Common Ebuild Submission Mistakes</a>
+<li><a href="#org3d7e1a1">Common Ebuild Submission Mistakes</a>
 <ul>
-<li><a href="#orgfb18538">Introduction</a></li>
-<li><a href="#org7b9ce60">Tarball'ing an ebuild</a></li>
-<li><a href="#org0dbce1a">Inlining Ebuilds</a></li>
-<li><a href="#orgecadd12">No description on what the package is</a></li>
-<li><a href="#org1fb9253">更新软件包但不说明更改的内容</a></li>
-<li><a href="#org2816eab">因版本 bump 提交未更改的 ebuild</a></li>
+<li><a href="#org8eb9f8c">Introduction</a></li>
+<li><a href="#org6ed9dca">Tarball'ing an ebuild</a></li>
+<li><a href="#org895b2e6">Inlining Ebuilds</a></li>
+<li><a href="#orga6e0720">No description on what the package is</a></li>
+<li><a href="#orgebacf53">更新软件包但不说明更改的内容</a></li>
+<li><a href="#org2165db2">因版本 bump 提交未更改的 ebuild</a></li>
 </ul>
 </li>
 </ul>
@@ -281,22 +273,22 @@
 本章节包含有关开发人员在编写 ebuild 时犯的常见错误的资料。
 </p>
 
-<div id="outline-container-org8d0f98b" class="outline-2">
-<h2 id="org8d0f98b">Common Ebuild Writing Mistakes</h2>
-<div class="outline-text-2" id="text-org8d0f98b">
+<div id="outline-container-orgfb4d7e8" class="outline-2">
+<h2 id="orgfb4d7e8">Common Ebuild Writing Mistakes</h2>
+<div class="outline-text-2" id="text-orgfb4d7e8">
 </div>
-<div id="outline-container-org5f9d76c" class="outline-3">
-<h3 id="org5f9d76c">Invalid use of <code>static</code> use-flag</h3>
-<div class="outline-text-3" id="text-org5f9d76c">
+<div id="outline-container-org13cb778" class="outline-3">
+<h3 id="org13cb778">Invalid use of <code>static</code> use-flag</h3>
+<div class="outline-text-3" id="text-org13cb778">
 <p>
 <code>static</code> use-flag 应该仅用于使二进制文件静态链接而不是动态链接。它不应该用于使一个库安装静态库。相反， <code>static-libs</code> use-flag 应该用于此目的。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org28eb831" class="outline-3">
-<h3 id="org28eb831">Invalid use of ROOT</h3>
-<div class="outline-text-3" id="text-org28eb831">
+<div id="outline-container-org794b5ae" class="outline-3">
+<h3 id="org794b5ae">Invalid use of ROOT</h3>
+<div class="outline-text-3" id="text-org794b5ae">
 <p>
 <code>ROOT</code> 的使用仅旨在影响软件包的安装方式（即安装到 <code>ROOT</code> ） —— 构建和编译不应该依赖于 <code>ROOT</code> 。因此不允许在 <code>src_*</code> 函数中使用 <code>ROOT</code> 。
 </p>
@@ -307,9 +299,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgc38aafb" class="outline-3">
-<h3 id="orgc38aafb">引用可以压缩的文档的完整路径</h3>
-<div class="outline-text-3" id="text-orgc38aafb">
+<div id="outline-container-orgd018729" class="outline-3">
+<h3 id="orgd018729">引用可以压缩的文档的完整路径</h3>
+<div class="outline-text-3" id="text-orgd018729">
 <p>
 当向用户打印在那里可以找到诸如 INSTALL 值文件的文件时，不要指定完整路径因为=PORTAGE_COMPRELESS=会起作用。文件可能会会被用 gzip、bzip2 或其他压缩工具压缩。因此，不要这样做：
 </p>
@@ -328,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-org94a86d6" class="outline-3">
-<h3 id="org94a86d6">Build log not verbose</h3>
-<div class="outline-text-3" id="text-org94a86d6">
+<div id="outline-container-org0e09719" class="outline-3">
+<h3 id="org0e09719">Build log not verbose</h3>
+<div class="outline-text-3" id="text-org0e09719">
 <p>
 当编写 ebuild 时，你应该总是检查构建日志，因为构建系统可能会葫芦俄 CC/CXX/LD/CFLAGS/LDFAGS 都能或默认添加不需要的 flag。为了分析此问题并获得完整的信息，以防有人报告你的软件包存在漏洞， <b>构建日志必须总是详细的</b> 。
 </p>
@@ -359,17 +351,17 @@ Note：如果你遇到受影响的软件包或 eclass，其使用的构建系统
 </div>
 </div>
 
-<div id="outline-container-org2687a52" class="outline-3">
-<h3 id="org2687a52">-Werror compiler flag not removed</h3>
-<div class="outline-text-3" id="text-org2687a52">
+<div id="outline-container-org0310d98" class="outline-3">
+<h3 id="org0310d98">-Werror compiler flag not removed</h3>
+<div class="outline-text-3" id="text-org0310d98">
 <p>
 <code>-Werror</code> flag 将所有的警告变成错误，所以如果遇到任何警告会停止编译。
 </p>
 </div>
 
-<div id="outline-container-org80d1d3d" class="outline-4">
-<h4 id="org80d1d3d">基本原理</h4>
-<div class="outline-text-4" id="text-org80d1d3d">
+<div id="outline-container-org45f1536" class="outline-4">
+<h4 id="org45f1536">基本原理</h4>
+<div class="outline-text-4" id="text-org45f1536">
 <p>
 该 flag 对 release 并不推荐并且在构建日志中遇到时总是应该禁用的，因为在很多情况下这种破坏都是无目的的，例如：
 </p>
@@ -388,9 +380,9 @@ Note：如果你遇到受影响的软件包或 eclass，其使用的构建系统
 </div>
 </div>
 
-<div id="outline-container-orgff3a5ed" class="outline-4">
-<h4 id="orgff3a5ed">如何修复</h4>
-<div class="outline-text-4" id="text-orgff3a5ed">
+<div id="outline-container-org6184086" class="outline-4">
+<h4 id="org6184086">如何修复</h4>
+<div class="outline-text-4" id="text-org6184086">
 <p>
 你应该使用如下方法修复受影响的构建系统：
 </p>
@@ -406,18 +398,18 @@ Note：如果你遇到受影响的软件包或 eclass，其使用的构建系统
 </div>
 </div>
 
-<div id="outline-container-org5d581c1" class="outline-4">
-<h4 id="org5d581c1">Specific -Werror=&#x2026; flags</h4>
-<div class="outline-text-4" id="text-org5d581c1">
+<div id="outline-container-orgfa400bf" class="outline-4">
+<h4 id="orgfa400bf">Specific -Werror=&#x2026; flags</h4>
+<div class="outline-text-4" id="text-orgfa400bf">
 <p>
 GCC 可以使任何指定警告变成错误。例如一个指定的-Werror flag 可以是 <code>-Werror=implicit-function-declaration</code> ，并将仅影响关于隐式函数声明的警告。保留这些鸳鸯是最安全的，因为将它们固定在此问题上，并且不会造成随机的构建时间破坏。还有，我们可以期望上游这么做是为了避免已知的运行时错误，而不仅仅是测试其构建。然而你应该自己检查指定的警告，或在不确定时询问其他开发人员。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org64325b4" class="outline-4">
-<h4 id="org64325b4">例外情况</h4>
-<div class="outline-text-4" id="text-org64325b4">
+<div id="outline-container-org739c8ce" class="outline-4">
+<h4 id="org739c8ce">例外情况</h4>
+<div class="outline-text-4" id="text-org739c8ce">
 <p>
 从 configure.ac 中删除 <code>-Werror</code> 会在极少数的情况下（其中配置阶段依赖于退出代码）导致中断。见<a href="https://sourceforge.net/p/open-vm-tools/tracker/81/">app-emulation/open-vm-tools bug</a>。但是即使如此，我们仍将其从生成的 Makefile 中删除。
 </p>
@@ -425,9 +417,9 @@ GCC 可以使任何指定警告变成错误。例如一个指定的-Werror flag 
 </div>
 </div>
 
-<div id="outline-container-orgf127d7c" class="outline-3">
-<h3 id="orgf127d7c">Missing/Invalid/Broken Header</h3>
-<div class="outline-text-3" id="text-orgf127d7c">
+<div id="outline-container-orgecfc3f7" class="outline-3">
+<h3 id="orgecfc3f7">Missing/Invalid/Broken Header</h3>
+<div class="outline-text-3" id="text-orgecfc3f7">
 <p>
 当你提交 ebuild 时，header 必须和<a href="https://gitweb.gentoo.org/repo/gentoo.git/tree/skel.ebuild">skel.ebuild</a>中的完全形同。
 </p>
@@ -450,9 +442,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-org3dbdc1b" class="outline-3">
-<h3 id="org3dbdc1b">Redefined P, PV, PN, PF</h3>
-<div class="outline-text-3" id="text-org3dbdc1b">
+<div id="outline-container-orgefb756a" class="outline-3">
+<h3 id="orgefb756a">Redefined P, PV, PN, PF</h3>
+<div class="outline-text-3" id="text-orgefb756a">
 <p>
 你应该永远不重新定义这些变量。总是使用 MY_P、MY_PN、MY_PV、P0 等。有关更多信息，请见再 portage 其他这样做的 ebuild。大多数 ebuild 使用 bash 的"Parameter Expansion"。请阅读 bash 的 man page 以理解"Parameter Expansion"是怎么样工作的。
 </p>
@@ -463,9 +455,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orge58bbf9" class="outline-3">
-<h3 id="orge58bbf9">Including version numbers in SRC_URI and S</h3>
-<div class="outline-text-3" id="text-orge58bbf9">
+<div id="outline-container-org30c2f75" class="outline-3">
+<h3 id="org30c2f75">Including version numbers in SRC_URI and S</h3>
+<div class="outline-text-3" id="text-org30c2f75">
 <p>
 你应该尽量不要再 SRC_URI 和 S 中包含版本号。总是尝试使用 <code>${PV}</code> 或 <code>${P}</code> 。这会使得维护 ebuild 更加容易。如果版本号与压缩包/源代码的名字不是一致，则使用 MY_P。一个例子是 dev-python/pyopenal 拉取一个名为 PyOpenAL 的压缩包，所以我们可以像这样重新定义：
 </p>
@@ -479,9 +471,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orgd26423f" class="outline-3">
-<h3 id="orgd26423f">DEPEND has syntactical errors</h3>
-<div class="outline-text-3" id="text-orgd26423f">
+<div id="outline-container-orgdf1f8c7" class="outline-3">
+<h3 id="orgdf1f8c7">DEPEND has syntactical errors</h3>
+<div class="outline-text-3" id="text-orgdf1f8c7">
 <p>
 用户提交的 DEPEND 和 RDEPEND 字段可能会出现很多错误。在编写依赖的时候，需要注意以下几点。
 </p>
@@ -496,9 +488,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orgd7d161a" class="outline-3">
-<h3 id="orgd7d161a">DEPEND is incomplete</h3>
-<div class="outline-text-3" id="text-orgd7d161a">
+<div id="outline-container-org1c33c04" class="outline-3">
+<h3 id="org1c33c04">DEPEND is incomplete</h3>
+<div class="outline-text-3" id="text-org1c33c04">
 <p>
 这是另一个非常常见的错误。ebuild 提交者提交“可以正常工作”的 ebuild，而不检查依赖是否正确。这里有一些如何找到正确依赖的提示。
 </p>
@@ -513,9 +505,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orge883033" class="outline-3">
-<h3 id="orge883033">LICENSE Invalid</h3>
-<div class="outline-text-3" id="text-orge883033">
+<div id="outline-container-orge17a4ad" class="outline-3">
+<h3 id="orge17a4ad">LICENSE Invalid</h3>
+<div class="outline-text-3" id="text-orge17a4ad">
 <p>
 另一个用户犯的常见错误是当提交 ebuild 时提供了无效的 license。例如， <code>GPL</code> 不是一个有效的 license。你需要指定 <code>GPL-1</code> 或 <code>GPL-2</code> 。 <code>LGPL</code> 也是同样的情况。确保你在 <code>LICENSE</code> 字段中使用的 license 在 <code>licenses</code> 目录下存在。一个提示，检查源代码压缩文件中的 <code>COPYING</code> 文件以获取许可证。如果软件包没有指定使用 <code>GPL-1</code> 或 <code>GPL-2</code> ，软件包很有可能使用 <code>GPL-2</code> 。
 </p>
@@ -526,18 +518,18 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orgb5efac0" class="outline-3">
-<h3 id="orgb5efac0">Untested ARCHs in KEYWORDS</h3>
-<div class="outline-text-3" id="text-orgb5efac0">
+<div id="outline-container-org77dd429" class="outline-3">
+<h3 id="org77dd429">Untested ARCHs in KEYWORDS</h3>
+<div class="outline-text-3" id="text-org77dd429">
 <p>
 请不要添加其他的 ARCH 到 KEYWORDS 中，除非 ebuld 在该 ARCH 上经过了测试。还有所有新的 ebuild 应该使用 ~x86 或无论架构是什么。确保当你 bump 版本时，稳定(?)的 KEYWORDS 全部标记为~。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7cc20e1" class="outline-3">
-<h3 id="org7cc20e1">SLOT missing</h3>
-<div class="outline-text-3" id="text-org7cc20e1">
+<div id="outline-container-org573ebce" class="outline-3">
+<h3 id="org573ebce">SLOT missing</h3>
+<div class="outline-text-3" id="text-org573ebce">
 <p>
 确保在 ebuild 中又 SLOT 变量。如果你不打算使用它，也不要将其删除。设为：
 </p>
@@ -548,45 +540,45 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-orgf5d56d0" class="outline-3">
-<h3 id="orgf5d56d0">DESCRIPTION and HOMEPAGE wrong</h3>
-<div class="outline-text-3" id="text-orgf5d56d0">
+<div id="outline-container-org731f711" class="outline-3">
+<h3 id="org731f711">DESCRIPTION and HOMEPAGE wrong</h3>
+<div class="outline-text-3" id="text-org731f711">
 <p>
 请检查 <code>HOMEPAGE</code> 变量是否正确，并且如果用户想了解有关软件包的更多信息，引导用户进入正确的页面。确保 <code>DESCRIPTION</code> 不会太长。好的描述将在一句话内描述软件包的主要功能。如果软件包没有 homepage 可用，则设置 <code>HOMEPAGE</code> 变量为 <code>https://wiki.gentoo.org/wiki/No_homepage</code> 。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org73754ce" class="outline-3">
-<h3 id="org73754ce">Wrongfully used spaces instead of TABS</h3>
-<div class="outline-text-3" id="text-org73754ce">
+<div id="outline-container-org9d839c8" class="outline-3">
+<h3 id="org9d839c8">Wrongfully used spaces instead of TABS</h3>
+<div class="outline-text-3" id="text-org9d839c8">
 <p>
 因为提交者没有遵循使用 TABS 而不是空格的方针，而重新格式化 ebuild 的每一行并不有趣。所有请使用 tabs。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org21f6875" class="outline-3">
-<h3 id="org21f6875">Trailing whitespace</h3>
-<div class="outline-text-3" id="text-org21f6875">
+<div id="outline-container-org587b747" class="outline-3">
+<h3 id="org587b747">Trailing whitespace</h3>
+<div class="outline-text-3" id="text-org587b747">
 <p>
 我经常对此感到内疚。记住在你的 build 上运行 repoman，它可以告诉你在行尾是否有空白或者是否有空行。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org122f9cf" class="outline-3">
-<h3 id="org122f9cf">添加多余的 <code>S=${WORKDIR}/${P}</code></h3>
-<div class="outline-text-3" id="text-org122f9cf">
+<div id="outline-container-org077b858" class="outline-3">
+<h3 id="org077b858">添加多余的 <code>S=${WORKDIR}/${P}</code></h3>
+<div class="outline-text-3" id="text-org077b858">
 <p>
 如果 <code>S=${WORKDIR}/${P}</code> ，那么应该将其添加到你的 ebuild 中。这已经默认设置了，你应该仅在其值与 <code>${WORKDIR}/${P}</code> 不同时才添加它。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgcff971e" class="outline-3">
-<h3 id="orgcff971e">Documentation missing</h3>
-<div class="outline-text-3" id="text-orgcff971e">
+<div id="outline-container-org3136325" class="outline-3">
+<h3 id="org3136325">Documentation missing</h3>
+<div class="outline-text-3" id="text-org3136325">
 <p>
 如果你的软件包有文档，确保使用 <code>dodoc</code> 安装或安装到 <code>/usr/share/doc/${PF}</code> 。到运行 <code>dodoc</code> / <code>doins</code> 时检查错误。
 </p>
@@ -597,9 +589,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-org02e6467" class="outline-3">
-<h3 id="org02e6467">Masking unsupported/broken USE flags</h3>
-<div class="outline-text-3" id="text-org02e6467">
+<div id="outline-container-orgff07a24" class="outline-3">
+<h3 id="orgff07a24">Masking unsupported/broken USE flags</h3>
+<div class="outline-text-3" id="text-orgff07a24">
 <p>
 异常情况下，软件包可能具有不支持/损坏的 USE flag（这可能发生在原生或 custom-cflags 上）。那么该 USE flag 必须在该 ebuild 中屏蔽（通常在 profile/base/package.use.mask），至少当 ebuild 到达稳定分支时。
 </p>
@@ -607,49 +599,49 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-org0fd1392" class="outline-2">
-<h2 id="org0fd1392">Common Ebuild Submission Mistakes</h2>
-<div class="outline-text-2" id="text-org0fd1392">
+<div id="outline-container-org3d7e1a1" class="outline-2">
+<h2 id="org3d7e1a1">Common Ebuild Submission Mistakes</h2>
+<div class="outline-text-2" id="text-org3d7e1a1">
 </div>
-<div id="outline-container-orgfb18538" class="outline-3">
-<h3 id="orgfb18538">Introduction</h3>
-<div class="outline-text-3" id="text-orgfb18538">
+<div id="outline-container-org8eb9f8c" class="outline-3">
+<h3 id="org8eb9f8c">Introduction</h3>
+<div class="outline-text-3" id="text-org8eb9f8c">
 <p>
 请根据<a href="https://devmanual.gentoo.org/ebuild-maintenance/new-ebuild/index.html">Adding a New Ebuild</a>教程正确提交 ebuild。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7b9ce60" class="outline-3">
-<h3 id="org7b9ce60">Tarball'ing an ebuild</h3>
-<div class="outline-text-3" id="text-org7b9ce60">
+<div id="outline-container-org6ed9dca" class="outline-3">
+<h3 id="org6ed9dca">Tarball'ing an ebuild</h3>
+<div class="outline-text-3" id="text-org6ed9dca">
 <p>
 请不要把 ebuild 或 patch 作为 tarball 附加。以避免 review 时的额外操作。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0dbce1a" class="outline-3">
-<h3 id="org0dbce1a">Inlining Ebuilds</h3>
-<div class="outline-text-3" id="text-org0dbce1a">
+<div id="outline-container-org895b2e6" class="outline-3">
+<h3 id="org895b2e6">Inlining Ebuilds</h3>
+<div class="outline-text-3" id="text-org895b2e6">
 <p>
 不要将 ebuild 剪切并粘贴到 bugzilla 的注释字段中。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgecadd12" class="outline-3">
-<h3 id="orgecadd12">No description on what the package is</h3>
-<div class="outline-text-3" id="text-orgecadd12">
+<div id="outline-container-orga6e0720" class="outline-3">
+<h3 id="orga6e0720">No description on what the package is</h3>
+<div class="outline-text-3" id="text-orga6e0720">
 <p>
 请让我们知道这是什么软件包，并填写应用程序的主页（如果有）的 URL。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1fb9253" class="outline-3">
-<h3 id="org1fb9253">更新软件包但不说明更改的内容</h3>
-<div class="outline-text-3" id="text-org1fb9253">
+<div id="outline-container-orgebacf53" class="outline-3">
+<h3 id="orgebacf53">更新软件包但不说明更改的内容</h3>
+<div class="outline-text-3" id="text-orgebacf53">
 <p>
 如果你提交了软件包的更新，那么确保你解释了在 ebuild 中做了什么更改。例如，如果软件包引入了一个新的特性/功能并且你使用了 USE flag， 将它列在你的 bug 中。不要让我们因此受伤。
 </p>
@@ -664,9 +656,9 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 </div>
 
-<div id="outline-container-org2816eab" class="outline-3">
-<h3 id="org2816eab">因版本 bump 提交未更改的 ebuild</h3>
-<div class="outline-text-3" id="text-org2816eab">
+<div id="outline-container-org2165db2" class="outline-3">
+<h3 id="org2165db2">因版本 bump 提交未更改的 ebuild</h3>
+<div class="outline-text-3" id="text-org2165db2">
 <p>
 如果你提交一个新版本的软件包到 portage 中，确保存在的 ebuild 正常工作并且确保更改已合并到新的 build 中（例如添加文档）。如果对闲钱版本的 ebuild 不需要进行任何更改，那么请不要附加 ebuild。只要在 bug report 中说明你复制了 ebuild 并验证了该软件包可以正常安装和工作。
 </p>
@@ -676,7 +668,7 @@ Note：header 以前包括带有一个 CVS  <code>$Id$</code> 或 <code>$Header$
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-02 Mon 17:02</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>简单排序</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,15 +232,15 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2744525">1.插入排序</a></li>
-<li><a href="#org339371b">2.归并排序</a></li>
+<li><a href="#org587d6ce">1.插入排序</a></li>
+<li><a href="#org17aaa57">2.归并排序</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2744525" class="outline-2">
-<h2 id="org2744525">1.插入排序</h2>
-<div class="outline-text-2" id="text-org2744525">
+<div id="outline-container-org587d6ce" class="outline-2">
+<h2 id="org587d6ce">1.插入排序</h2>
+<div class="outline-text-2" id="text-org587d6ce">
 <p>
 插入排序的就像是在玩扑克的时候给扑克排序一样。开始时，我们的左手为空，然后每次拿一张牌并且将它插入到左手中正确的位置。为了找到一张牌的正确位置，我们从右向左将它与在手中的牌进依次行比较。
 </p>
@@ -252,7 +250,7 @@
 </p>
 
 
-<div class="figure">
+<div id="orgf98dbe6" class="figure">
 <p><img src="../../../pics/CLRS/DchGr.png" alt="DchGr.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>DchGr</p>
@@ -291,9 +289,9 @@ C 语言插入排序代码：
 </div>
 </div>
 
-<div id="outline-container-org339371b" class="outline-2">
-<h2 id="org339371b">2.归并排序</h2>
-<div class="outline-text-2" id="text-org339371b">
+<div id="outline-container-org17aaa57" class="outline-2">
+<h2 id="org17aaa57">2.归并排序</h2>
+<div class="outline-text-2" id="text-org17aaa57">
 <p>
 还是以扑克牌为例子，假设桌上有两堆牌，每堆都已排好序，最小的牌在顶上，最大的牌在最底。归并排序的主要思想就是将这两堆牌合并成单一的排好序的牌堆。基本步骤是从两堆牌最顶上两张牌牌中，选出较小的一张，然后将这张牌从其堆上移开并放到输出堆中。重复这个步骤，直到有一个输入堆为空，这时我们需要做的仅仅是把剩下的输入堆的牌全部到放到输出堆中即可。
 </p>
@@ -303,7 +301,7 @@ C 语言插入排序代码：
 </p>
 
 
-<div class="figure">
+<div id="org3e9838f" class="figure">
 <p><img src="../../../pics/CLRS/merge.jpg" alt="merge.jpg">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>merge</p>
@@ -374,7 +372,7 @@ C 语言归并排序代码：
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

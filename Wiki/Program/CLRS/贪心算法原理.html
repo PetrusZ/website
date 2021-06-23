@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>贪心算法原理</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1047790">贪心选择性质</a></li>
-<li><a href="#orga09fad3">最优子结构</a></li>
-<li><a href="#orgdccb359">贪心对动态规划</a></li>
+<li><a href="#orgef40e07">贪心选择性质</a></li>
+<li><a href="#org68e5af7">最优子结构</a></li>
+<li><a href="#org7448c48">贪心对动态规划</a></li>
 </ul>
 </div>
 </div>
@@ -260,9 +258,9 @@
 
 <hr>
 
-<div id="outline-container-org1047790" class="outline-2">
-<h2 id="org1047790">贪心选择性质</h2>
-<div class="outline-text-2" id="text-org1047790">
+<div id="outline-container-orgef40e07" class="outline-2">
+<h2 id="orgef40e07">贪心选择性质</h2>
+<div class="outline-text-2" id="text-orgef40e07">
 <p>
 第一个关键要素是 <b>贪心选择性质</b> ：我们可以通过做出局部最优选择来构造全局最优解。换句话说，在进行选择的时候，直接做出在当前问题中看起来最优的选择，而不必考虑子问题的解。
 </p>
@@ -275,9 +273,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga09fad3" class="outline-2">
-<h2 id="orga09fad3">最优子结构</h2>
-<div class="outline-text-2" id="text-orga09fad3">
+<div id="outline-container-org68e5af7" class="outline-2">
+<h2 id="org68e5af7">最优子结构</h2>
+<div class="outline-text-2" id="text-org68e5af7">
 <p>
 <b>最优子结构</b> 性质是能否应用动态规划和贪心算法的关键要素。比起动态规划而言，贪心算法通常使用更为直接的最优子结构。假定通过对原问题进行贪心选择就可以得到子问题。我们真正要做的全部工作就是论证：将子问题的最优解与贪心选择组合在一起能生成原问题的最优解。这种方法隐含地对子问题使用了数学归纳法，证明了在每个步骤进行贪心选择会生成原问题的最优解。
 </p>
@@ -286,9 +284,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdccb359" class="outline-2">
-<h2 id="orgdccb359">贪心对动态规划</h2>
-<div class="outline-text-2" id="text-orgdccb359">
+<div id="outline-container-org7448c48" class="outline-2">
+<h2 id="org7448c48">贪心对动态规划</h2>
+<div class="outline-text-2" id="text-org7448c48">
 <p>
 由于贪心算法和动态规划都使用了最优子结构性质，你可能会对一个可用贪心算法求解的问题使用动态规划，或者相反。为了说明这两种方法之间的微妙差别，我们研究一个经典最优化问题的两个变形。
 </p>
@@ -322,7 +320,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

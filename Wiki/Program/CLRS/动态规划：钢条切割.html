@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>动态规划：钢铁切割</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,14 +232,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf15d1a0">钢铁切割</a></li>
-<li><a href="#orga89e3d2">自顶向下的递归实现</a>
+<li><a href="#org96f5a66">钢铁切割</a></li>
+<li><a href="#orga00d4fc">自顶向下的递归实现</a>
 <ul>
-<li><a href="#org50fca1f">动态规划方法求解问题</a></li>
+<li><a href="#orgc7fbb79">动态规划方法求解问题</a></li>
 </ul>
 </li>
-<li><a href="#orga3311c5">子问题图</a></li>
-<li><a href="#org89b4f10">重构解</a></li>
+<li><a href="#orgbd684f1">子问题图</a></li>
+<li><a href="#orgb8b8ce3">重构解</a></li>
 </ul>
 </div>
 </div>
@@ -263,9 +261,9 @@
 
 <hr>
 
-<div id="outline-container-orgf15d1a0" class="outline-2">
-<h2 id="orgf15d1a0">钢铁切割</h2>
-<div class="outline-text-2" id="text-orgf15d1a0">
+<div id="outline-container-org96f5a66" class="outline-2">
+<h2 id="org96f5a66">钢铁切割</h2>
+<div class="outline-text-2" id="text-org96f5a66">
 <p>
 先通过一个例子来直观的学习一下动态规划。
 </p>
@@ -307,9 +305,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-orga89e3d2" class="outline-2">
-<h2 id="orga89e3d2">自顶向下的递归实现</h2>
-<div class="outline-text-2" id="text-orga89e3d2">
+<div id="outline-container-orga00d4fc" class="outline-2">
+<h2 id="orga00d4fc">自顶向下的递归实现</h2>
+<div class="outline-text-2" id="text-orga00d4fc">
 <p>
 有了上面的公式，我们就可以使用 C 语言递归求解钢条切割问题了：
 </p>
@@ -366,9 +364,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 <hr>
 </div>
 
-<div id="outline-container-org50fca1f" class="outline-3">
-<h3 id="org50fca1f">动态规划方法求解问题</h3>
-<div class="outline-text-3" id="text-org50fca1f">
+<div id="outline-container-orgc7fbb79" class="outline-3">
+<h3 id="orgc7fbb79">动态规划方法求解问题</h3>
+<div class="outline-text-3" id="text-orgc7fbb79">
 <p>
 与一开始说的一样，动态规划方法仔细安排求解的顺序，对每个子问题只求解一次，并将结果保存下来。如果之后再次遇到此子问题，只需查找保存的结构，而不必重新计算。所以，动态规划是付出额外的内存空间来节省计算时间，典型的时空权衡的例子，而且时间上的节省可能是非常巨大的。
 </p>
@@ -495,9 +493,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-orga3311c5" class="outline-2">
-<h2 id="orga3311c5">子问题图</h2>
-<div class="outline-text-2" id="text-orga3311c5">
+<div id="outline-container-orgbd684f1" class="outline-2">
+<h2 id="orgbd684f1">子问题图</h2>
+<div class="outline-text-2" id="text-orgbd684f1">
 <p>
 当思考一个动态规划问题时，我们应该弄清所涉及的子问题及子问题之间的依赖关系。
 </p>
@@ -519,9 +517,9 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 </div>
 
-<div id="outline-container-org89b4f10" class="outline-2">
-<h2 id="org89b4f10">重构解</h2>
-<div class="outline-text-2" id="text-org89b4f10">
+<div id="outline-container-orgb8b8ce3" class="outline-2">
+<h2 id="orgb8b8ce3">重构解</h2>
+<div class="outline-text-2" id="text-orgb8b8ce3">
 <p>
 前面给出的算法的 C 语言实现只给出了问题的最优解的收益值，但是并没有返回最优解本身。我们可以扩展动态规划算法，使之对每个子问题不仅保存收益值，还保存对应的切割方案。利用这些信息，就可以输出最优解。下面的 C 语言代码将最优解对应的第一段钢条切割长度保存在数组 s 中，然后重构并输出最优解：
 </p>
@@ -575,7 +573,7 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

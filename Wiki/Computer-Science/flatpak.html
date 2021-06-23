@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>flatpak</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,24 +232,24 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc2397f9">flatpak</a>
+<li><a href="#org80a43ab">flatpak</a>
 <ul>
-<li><a href="#org6e91a9c">安装</a></li>
-<li><a href="#orgf076ef0">安装软件</a></li>
-<li><a href="#orgba7c831">配置字体</a></li>
+<li><a href="#org993d4e6">安装</a></li>
+<li><a href="#org6132913">安装软件</a></li>
+<li><a href="#orgb2fe118">配置字体</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc2397f9" class="outline-2">
-<h2 id="orgc2397f9">flatpak</h2>
-<div class="outline-text-2" id="text-orgc2397f9">
+<div id="outline-container-org80a43ab" class="outline-2">
+<h2 id="org80a43ab">flatpak</h2>
+<div class="outline-text-2" id="text-org80a43ab">
 </div>
-<div id="outline-container-org6e91a9c" class="outline-3">
-<h3 id="org6e91a9c">安装</h3>
-<div class="outline-text-3" id="text-org6e91a9c">
+<div id="outline-container-org993d4e6" class="outline-3">
+<h3 id="org993d4e6">安装</h3>
+<div class="outline-text-3" id="text-org993d4e6">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #ECBE7B;">sudo</span> eselect repository add flatpak-overlay <span style="color: #ECBE7B;">git</span> https://github.com/fosero/flatpak-overlay.git
 
@@ -261,18 +259,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgf076ef0" class="outline-3">
-<h3 id="orgf076ef0">安装软件</h3>
-<div class="outline-text-3" id="text-orgf076ef0">
+<div id="outline-container-org6132913" class="outline-3">
+<h3 id="org6132913">安装软件</h3>
+<div class="outline-text-3" id="text-org6132913">
 <ol class="org-ol">
 <li>steam
 <code>flatpak install flathub com.valvesoftware.Steam</code></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgba7c831" class="outline-3">
-<h3 id="orgba7c831">配置字体</h3>
-<div class="outline-text-3" id="text-orgba7c831">
+<div id="outline-container-orgb2fe118" class="outline-3">
+<h3 id="orgb2fe118">配置字体</h3>
+<div class="outline-text-3" id="text-orgb2fe118">
 <p>
 <a href="https://wiki.archlinux.org/index.php/steam#Asian_Font_Problems_with_Flatpak">https://wiki.archlinux.org/index.php/steam#Asian_Font_Problems_with_Flatpak</a>
 </p>
@@ -288,7 +286,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

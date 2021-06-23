@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>包管理工具apt的历史记录与日志分析</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,14 +232,14 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcdc2c31">包管理工具 apt 的历史记录与日志分析</a></li>
+<li><a href="#org984b0d0">包管理工具 apt 的历史记录与日志分析</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcdc2c31" class="outline-2">
-<h2 id="orgcdc2c31">包管理工具 apt 的历史记录与日志分析</h2>
-<div class="outline-text-2" id="text-orgcdc2c31">
+<div id="outline-container-org984b0d0" class="outline-2">
+<h2 id="org984b0d0">包管理工具 apt 的历史记录与日志分析</h2>
+<div class="outline-text-2" id="text-org984b0d0">
 <p>
 相信每个用 Linux 的都会遇到这种情形，用 apt 或 yum 装软件的时候跟随一起装一大堆依赖，但是在卸载时这些依赖并没有一起跟着卸载(autoremove 命令也没用)，这时候我们也不知道安装的这些依赖的名字，无法手动卸载，该怎么办呢？我想大多数人的第一反应会是找日志或者历史记录，我也是这么想的，但是关于这方面的中文资料几乎没有，反正我是没有搜到。然而用英文搜索却很容易就找到了。学好英语真的很重要，中文资料实在太少了。。
 </p>
@@ -254,7 +252,7 @@
 然而，其实 apt 也是有详细的日志的，日志文件位于/var/log/apt/history.log，其中详细的记录了每一条 apt 命令的开始时间、结束时间、输入的命令、安装和删除的软件包等等，尤其是输入的 apt 的命令和安装、删除的软件包这两条命令非常适合我们重现或者反操作之前输入的 apt 命令。其具体的日志格式是这样的：
 </p>
 
-<pre class="example">
+<pre class="example" id="orgb58c7aa">
     Start-Date: 2013-12-20  20:34:55
     Commandline: apt-get autoremove
     Remove: gir1.2-json-1.0:amd64 (0.15.2-0ubuntu1), gir1.2-coglpango-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-gdesktopenums-3.0:amd64 (3.6.1-0ubuntu1), libtracker-miner-0.14-0:amd64 (0.14.5-1ubuntu1), libtracker-sparql-0.14-0:amd64 (0.14.5-1ubuntu1), gir1.2-cogl-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-clutter-1.0:amd64 (1.12.2-0ubuntu3.1)
@@ -317,7 +315,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

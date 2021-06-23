@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>堆排序和优先队列</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,15 +232,15 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org063416d">堆排序</a></li>
-<li><a href="#org2b16fda">优先队列</a></li>
+<li><a href="#org37ec5dd">堆排序</a></li>
+<li><a href="#orge34c407">优先队列</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org063416d" class="outline-2">
-<h2 id="org063416d">堆排序</h2>
-<div class="outline-text-2" id="text-org063416d">
+<div id="outline-container-org37ec5dd" class="outline-2">
+<h2 id="org37ec5dd">堆排序</h2>
+<div class="outline-text-2" id="text-org37ec5dd">
 <p>
 堆排序的时间复杂度是 O(nlgn)，同时还具有空间原址性，所以堆排序集合了插入排序和归并排序两种算法优点的一种排序算法。
 </p>
@@ -252,7 +250,7 @@
 </p>
 
 
-<div class="figure">
+<div id="org33f5cc4" class="figure">
 <p><img src="http://hi.csdn.net/attachment/201109/29/0_1317266626DDu3.gif" alt="0_1317266626DDu3.gif">
 </p>
 </div>
@@ -366,9 +364,9 @@
 </div>
 </div>
 
-<div id="outline-container-org2b16fda" class="outline-2">
-<h2 id="org2b16fda">优先队列</h2>
-<div class="outline-text-2" id="text-org2b16fda">
+<div id="outline-container-orge34c407" class="outline-2">
+<h2 id="orge34c407">优先队列</h2>
+<div class="outline-text-2" id="text-orge34c407">
 <p>
 <b>优先队列</b> （priority queue）是一种用来维护由一组元素构成的集合的数据结构，其中的每一个元素都有一个相关的 <b>关键值</b> （ key）。一个 <b>最大优先队列</b> 支持以下操作：
 </p>
@@ -441,7 +439,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

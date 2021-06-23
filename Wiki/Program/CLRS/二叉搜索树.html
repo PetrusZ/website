@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>二叉搜索树</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga0096a0">什么是二叉搜索树</a></li>
-<li><a href="#orgdf21f18">2.动态集合操作</a></li>
-<li><a href="#org18eefc5">3.随机构建二叉搜索树</a></li>
+<li><a href="#org8a08098">什么是二叉搜索树</a></li>
+<li><a href="#orgf41328c">2.动态集合操作</a></li>
+<li><a href="#org7106a24">3.随机构建二叉搜索树</a></li>
 </ul>
 </div>
 </div>
@@ -248,15 +246,15 @@
 二叉搜索树上的基本操作所花费的时间与这颗树的高度成正比。对于有 n 个结点的一棵完全二叉树来说，这些操作的最坏运行时间为Θ(lgn)。然而，如果这棵树是一条 n 个结点所组成的线性链，那么同样的操作花费Θ(n)的最坏运行时间。
 </p>
 
-<div id="outline-container-orga0096a0" class="outline-2">
-<h2 id="orga0096a0">什么是二叉搜索树</h2>
-<div class="outline-text-2" id="text-orga0096a0">
+<div id="outline-container-org8a08098" class="outline-2">
+<h2 id="org8a08098">什么是二叉搜索树</h2>
+<div class="outline-text-2" id="text-org8a08098">
 <p>
 顾名思义，一颗二叉搜索树是以一颗二叉数来组织的。这样一棵树可以使用一个链表数据结构来表示，其中每个节点就是一个对象，除了 key 外，每一个结点还包含属性 left、right 和 p，分别指向结点的左孩子、右孩子和双亲。
 </p>
 
 
-<div class="figure">
+<div id="org05f1a12" class="figure">
 <p><img src="../../../pics/CLRS/tree1.png" alt="tree1.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>tree1</p>
@@ -268,9 +266,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgdf21f18" class="outline-2">
-<h2 id="orgdf21f18">2.动态集合操作</h2>
-<div class="outline-text-2" id="text-orgdf21f18">
+<div id="outline-container-orgf41328c" class="outline-2">
+<h2 id="orgf41328c">2.动态集合操作</h2>
+<div class="outline-text-2" id="text-orgf41328c">
 <p>
 遍历：二叉搜索树性质允许我们通过一个简单的递归算法来按序输出二叉搜索树中的所有关键字，这种算法称为中序遍历（inorder tree walk）算法。这样命名的原因是输出的子树根的关键字位于其左子树的关键字和右子树的关键字值之间。
 </p>
@@ -280,7 +278,7 @@
 </p>
 
 
-<div class="figure">
+<div id="orgd8cbc6a" class="figure">
 <p><img src="../../../pics/CLRS/tree2.png" alt="tree2.png">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>tree2</p>
@@ -301,7 +299,7 @@
 </ul>
 
 
-<div class="figure">
+<div id="org283833a" class="figure">
 <p><img src="../../../pics/CLRS/tree3.png" alt="tree3.png">
 </p>
 <p><span class="figure-number">&#22270;3&nbsp; </span>tree3</p>
@@ -571,9 +569,9 @@
 </div>
 </div>
 
-<div id="outline-container-org18eefc5" class="outline-2">
-<h2 id="org18eefc5">3.随机构建二叉搜索树</h2>
-<div class="outline-text-2" id="text-org18eefc5">
+<div id="outline-container-org7106a24" class="outline-2">
+<h2 id="org7106a24">3.随机构建二叉搜索树</h2>
+<div class="outline-text-2" id="text-org7106a24">
 <p>
 二叉搜索树上的每一个基本操作都能在О(h)时间内完成，h为树的高度。我们可以将输入序列随机化，可以实现随机构建一棵期望高度为О(lgn)的二叉搜索树。
 </p>
@@ -582,7 +580,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

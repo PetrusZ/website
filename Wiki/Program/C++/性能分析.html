@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-02-04 Thu 15:33 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>性能分析</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,38 +232,38 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc7ae2be">google-perftools</a>
+<li><a href="#orgd63acce">google-perftools</a>
 <ul>
-<li><a href="#orgb0e8f38">介绍</a></li>
-<li><a href="#org320cf42">使用方法</a>
+<li><a href="#org01810e4">介绍</a></li>
+<li><a href="#org593168d">使用方法</a>
 <ul>
-<li><a href="#orgddb1cb2">直接调用 API</a></li>
-<li><a href="#orgf9e6bcb">链接静态库</a></li>
-<li><a href="#orgcc106cc">链接动态库</a></li>
-<li><a href="#org3404e19">使用信号触发 profile</a>
+<li><a href="#orgcded557">直接调用 API</a></li>
+<li><a href="#org573b3cc">链接静态库</a></li>
+<li><a href="#org6d8ad3a">链接动态库</a></li>
+<li><a href="#orga328639">使用信号触发 profile</a>
 <ul>
-<li><a href="#org540eecc">手动设置信号</a></li>
-<li><a href="#org40f4e07">使用 CPUPROFILESIGNAL 设置信号</a></li>
+<li><a href="#org16ac1ac">手动设置信号</a></li>
+<li><a href="#orgc5bba70">使用 CPUPROFILESIGNAL 设置信号</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org72cb2fc">数据分析</a>
+<li><a href="#org672aec6">数据分析</a>
 <ul>
-<li><a href="#org0a55835">生成数据</a></li>
-<li><a href="#orgaa63c63">数据含义</a></li>
+<li><a href="#org4e2efb2">生成数据</a></li>
+<li><a href="#org376756e">数据含义</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org69dea8e">gprof</a>
+<li><a href="#org66d8b9c">gprof</a>
 <ul>
-<li><a href="#org43fad45">介绍</a></li>
-<li><a href="#org95b71ba">使用方法</a></li>
-<li><a href="#orgc5004ce">数据分析</a>
+<li><a href="#org03d2712">介绍</a></li>
+<li><a href="#orgc22727b">使用方法</a></li>
+<li><a href="#orga548aae">数据分析</a>
 <ul>
-<li><a href="#org8c3a0b3">Flat Profile 示例图</a></li>
-<li><a href="#orgbde09bb">Call Graph 示例图</a></li>
+<li><a href="#org22195bb">Flat Profile 示例图</a></li>
+<li><a href="#orgdd27c6f">Call Graph 示例图</a></li>
 </ul>
 </li>
 </ul>
@@ -274,13 +272,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgc7ae2be" class="outline-2">
-<h2 id="orgc7ae2be">google-perftools</h2>
-<div class="outline-text-2" id="text-orgc7ae2be">
+<div id="outline-container-orgd63acce" class="outline-2">
+<h2 id="orgd63acce">google-perftools</h2>
+<div class="outline-text-2" id="text-orgd63acce">
 </div>
-<div id="outline-container-orgb0e8f38" class="outline-3">
-<h3 id="orgb0e8f38">介绍</h3>
-<div class="outline-text-3" id="text-orgb0e8f38">
+<div id="outline-container-org01810e4" class="outline-3">
+<h3 id="org01810e4">介绍</h3>
+<div class="outline-text-3" id="text-org01810e4">
 <p>
 性能分析通过抽样方法完成，默认是 1 秒 100 个样本，一个样本是 10 毫秒，即时间单位是 10 毫秒；可以通过环境变量 CPUPROFILE_FREQUENCY 设置采样频率。
 </p>
@@ -290,21 +288,21 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </p>
 </div>
 </div>
-<div id="outline-container-org320cf42" class="outline-3">
-<h3 id="org320cf42">使用方法</h3>
-<div class="outline-text-3" id="text-org320cf42">
+<div id="outline-container-org593168d" class="outline-3">
+<h3 id="org593168d">使用方法</h3>
+<div class="outline-text-3" id="text-org593168d">
 </div>
-<div id="outline-container-orgddb1cb2" class="outline-4">
-<h4 id="orgddb1cb2">直接调用 API</h4>
-<div class="outline-text-4" id="text-orgddb1cb2">
+<div id="outline-container-orgcded557" class="outline-4">
+<h4 id="orgcded557">直接调用 API</h4>
+<div class="outline-text-4" id="text-orgcded557">
 <p>
 在代码中调用 <code>ProfilerStart</code> 和 <code>ProfilerStop</code> 这两个函数。
 </p>
 </div>
 </div>
-<div id="outline-container-orgf9e6bcb" class="outline-4">
-<h4 id="orgf9e6bcb">链接静态库</h4>
-<div class="outline-text-4" id="text-orgf9e6bcb">
+<div id="outline-container-org573b3cc" class="outline-4">
+<h4 id="org573b3cc">链接静态库</h4>
+<div class="outline-text-4" id="text-org573b3cc">
 <p>
 在代码 link 过程中添加参数 –lprofiler
 </p>
@@ -322,9 +320,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc106cc" class="outline-4">
-<h4 id="orgcc106cc">链接动态库</h4>
-<div class="outline-text-4" id="text-orgcc106cc">
+<div id="outline-container-org6d8ad3a" class="outline-4">
+<h4 id="org6d8ad3a">链接动态库</h4>
+<div class="outline-text-4" id="text-org6d8ad3a">
 <p>
 这种方式和静态库的方式差不多，但不用重新编译或重新链接，所以使用非常方便。只需要在运行时添加 LD_PRELOAD 变量。
 </p>
@@ -334,13 +332,13 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </p>
 </div>
 </div>
-<div id="outline-container-org3404e19" class="outline-4">
-<h4 id="org3404e19">使用信号触发 profile</h4>
-<div class="outline-text-4" id="text-org3404e19">
+<div id="outline-container-orga328639" class="outline-4">
+<h4 id="orga328639">使用信号触发 profile</h4>
+<div class="outline-text-4" id="text-orga328639">
 </div>
-<div id="outline-container-org540eecc" class="outline-5">
-<h5 id="org540eecc">手动设置信号</h5>
-<div class="outline-text-5" id="text-org540eecc">
+<div id="outline-container-org16ac1ac" class="outline-5">
+<h5 id="org16ac1ac">手动设置信号</h5>
+<div class="outline-text-5" id="text-org16ac1ac">
 <p>
 由于我们的程序有可能是服务程序，而服务程序不会自动执行完退出，如果以 <code>ctrl+c</code> 退出也不是正常的 <code>exit(0)</code> 的方式退出，而这会导致我们在 profile 的时候，收集到的数据不全甚至是空的，采用如下解决办法：
 </p>
@@ -414,9 +412,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </p>
 </div>
 </div>
-<div id="outline-container-org40f4e07" class="outline-5">
-<h5 id="org40f4e07">使用 CPUPROFILESIGNAL 设置信号</h5>
-<div class="outline-text-5" id="text-org40f4e07">
+<div id="outline-container-orgc5bba70" class="outline-5">
+<h5 id="orgc5bba70">使用 CPUPROFILESIGNAL 设置信号</h5>
+<div class="outline-text-5" id="text-orgc5bba70">
 <p>
 设置的信号必须是正常情况下未被程序使用的。
 </p>
@@ -432,13 +430,13 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </div>
 </div>
 </div>
-<div id="outline-container-org72cb2fc" class="outline-3">
-<h3 id="org72cb2fc">数据分析</h3>
-<div class="outline-text-3" id="text-org72cb2fc">
+<div id="outline-container-org672aec6" class="outline-3">
+<h3 id="org672aec6">数据分析</h3>
+<div class="outline-text-3" id="text-org672aec6">
 </div>
-<div id="outline-container-org0a55835" class="outline-4">
-<h4 id="org0a55835">生成数据</h4>
-<div class="outline-text-4" id="text-org0a55835">
+<div id="outline-container-org4e2efb2" class="outline-4">
+<h4 id="org4e2efb2">生成数据</h4>
+<div class="outline-text-4" id="text-org4e2efb2">
 <ol class="org-ol">
 <li>生成文字数据
 <code>google-pprof &lt;bin path&gt; &lt;profile path&gt; --text</code></li>
@@ -447,9 +445,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgaa63c63" class="outline-4">
-<h4 id="orgaa63c63">数据含义</h4>
-<div class="outline-text-4" id="text-orgaa63c63">
+<div id="outline-container-org376756e" class="outline-4">
+<h4 id="org376756e">数据含义</h4>
+<div class="outline-text-4" id="text-org376756e">
 <p>
 每一列的数据解释：
 </p>
@@ -465,13 +463,13 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </div>
 </div>
 </div>
-<div id="outline-container-org69dea8e" class="outline-2">
-<h2 id="org69dea8e">gprof</h2>
-<div class="outline-text-2" id="text-org69dea8e">
+<div id="outline-container-org66d8b9c" class="outline-2">
+<h2 id="org66d8b9c">gprof</h2>
+<div class="outline-text-2" id="text-org66d8b9c">
 </div>
-<div id="outline-container-org43fad45" class="outline-3">
-<h3 id="org43fad45">介绍</h3>
-<div class="outline-text-3" id="text-org43fad45">
+<div id="outline-container-org03d2712" class="outline-3">
+<h3 id="org03d2712">介绍</h3>
+<div class="outline-text-3" id="text-org03d2712">
 <p>
 grof 可以获取 C 程序运行期间的统计数据，如每个函数的耗时，调用次数及各个函数的调用关系，（gprof 统计的是 CPU 占用时间，I/O 时间不计算在内。通常 gprof 的采样周期是 0.01s，统计项越接近这个值误差可能越大。若函数的运行时间低于 0.01S，统计值会显示为 0。
 </p>
@@ -489,9 +487,9 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </p>
 </div>
 </div>
-<div id="outline-container-org95b71ba" class="outline-3">
-<h3 id="org95b71ba">使用方法</h3>
-<div class="outline-text-3" id="text-org95b71ba">
+<div id="outline-container-orgc22727b" class="outline-3">
+<h3 id="orgc22727b">使用方法</h3>
+<div class="outline-text-3" id="text-orgc22727b">
 <ol class="org-ol">
 <li>编译时添加选项 <code>-pg</code></li>
 <li>运行程序，生成 gmonf.out 文件</li>
@@ -499,13 +497,13 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </ol>
 </div>
 </div>
-<div id="outline-container-orgc5004ce" class="outline-3">
-<h3 id="orgc5004ce">数据分析</h3>
-<div class="outline-text-3" id="text-orgc5004ce">
+<div id="outline-container-orga548aae" class="outline-3">
+<h3 id="orga548aae">数据分析</h3>
+<div class="outline-text-3" id="text-orga548aae">
 </div>
-<div id="outline-container-org8c3a0b3" class="outline-4">
-<h4 id="org8c3a0b3">Flat Profile 示例图</h4>
-<div class="outline-text-4" id="text-org8c3a0b3">
+<div id="outline-container-org22195bb" class="outline-4">
+<h4 id="org22195bb">Flat Profile 示例图</h4>
+<div class="outline-text-4" id="text-org22195bb">
 <table>
 
 
@@ -559,9 +557,9 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </table>
 </div>
 </div>
-<div id="outline-container-orgbde09bb" class="outline-4">
-<h4 id="orgbde09bb">Call Graph 示例图</h4>
-<div class="outline-text-4" id="text-orgbde09bb">
+<div id="outline-container-orgdd27c6f" class="outline-4">
+<h4 id="orgdd27c6f">Call Graph 示例图</h4>
+<div class="outline-text-4" id="text-orgdd27c6f">
 <table>
 
 
@@ -615,7 +613,7 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-02-04 Thu 15:33</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>docker容器的隔离性</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,23 +232,23 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0c0492c">Linux namespace</a></li>
-<li><a href="#org9f168a9">Docker 容器使用 linux namespace 做运行环境隔离</a>
+<li><a href="#org0b7f006">Linux namespace</a></li>
+<li><a href="#org7a6571a">Docker 容器使用 linux namespace 做运行环境隔离</a>
 <ul>
-<li><a href="#org2d0dbe6">containerd，containerd-shim 和 container 的关系</a></li>
-<li><a href="#org899fe07">PID namespace</a></li>
-<li><a href="#org1f13120">user namespace</a></li>
-<li><a href="#org2f38df0">其他</a></li>
+<li><a href="#orga6b4550">containerd，containerd-shim 和 container 的关系</a></li>
+<li><a href="#org9988f91">PID namespace</a></li>
+<li><a href="#org43eaf41">user namespace</a></li>
+<li><a href="#org0acb9b0">其他</a></li>
 </ul>
 </li>
-<li><a href="#org24feed1">Linux control groups</a></li>
+<li><a href="#orgfca1ec5">Linux control groups</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0c0492c" class="outline-2">
-<h2 id="org0c0492c">Linux namespace</h2>
-<div class="outline-text-2" id="text-org0c0492c">
+<div id="outline-container-org0b7f006" class="outline-2">
+<h2 id="org0b7f006">Linux namespace</h2>
+<div class="outline-text-2" id="text-org0b7f006">
 <p>
 Linux 内核从版本 2.4.19 开始陆续引入了 namespace 的概念。 其目的是将某个特定的全局系统资源（global system resource）通过抽象方法使得 namespace 中的进程看起来拥有它们自己的隔离的全局系统资源实例 （The purpose of each namespace is to wrap a particular global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource. ）。 Linux 内核中实现了六种 namespace。
 </p>
@@ -322,19 +320,19 @@ Linux 内核从版本 2.4.19 开始陆续引入了 namespace 的概念。 其目
 </div>
 </div>
 
-<div id="outline-container-org9f168a9" class="outline-2">
-<h2 id="org9f168a9">Docker 容器使用 linux namespace 做运行环境隔离</h2>
-<div class="outline-text-2" id="text-org9f168a9">
+<div id="outline-container-org7a6571a" class="outline-2">
+<h2 id="org7a6571a">Docker 容器使用 linux namespace 做运行环境隔离</h2>
+<div class="outline-text-2" id="text-org7a6571a">
 <p>
 当 Docker 创建一个容器时，它会创建新的以上六种 namespace 的实例，然后把容器中的所有进程放到这些 namespace 之中，使得 Docker 容器中的进程只能看到隔离的系统资源。
 </p>
 </div>
 
-<div id="outline-container-org2d0dbe6" class="outline-3">
-<h3 id="org2d0dbe6">containerd，containerd-shim 和 container 的关系</h3>
-<div class="outline-text-3" id="text-org2d0dbe6">
+<div id="outline-container-orga6b4550" class="outline-3">
+<h3 id="orga6b4550">containerd，containerd-shim 和 container 的关系</h3>
+<div class="outline-text-3" id="text-orga6b4550">
 
-<div class="figure">
+<div id="orgd3684be" class="figure">
 <p><img src="../../../pics/Docker/containerd.jpg" alt="containerd.jpg">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>containerd</p>
@@ -353,18 +351,18 @@ runC 运行容器。</li>
 </div>
 </div>
 
-<div id="outline-container-org899fe07" class="outline-3">
-<h3 id="org899fe07">PID namespace</h3>
-<div class="outline-text-3" id="text-org899fe07">
+<div id="outline-container-org9988f91" class="outline-3">
+<h3 id="org9988f91">PID namespace</h3>
+<div class="outline-text-3" id="text-org9988f91">
 <p>
 根据以上关系也能看出来，pid namespace 通过将 host 上 PID 映射为容器内的 PID， 使得容器内的进程看起来有个独立的 PID 空间。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1f13120" class="outline-3">
-<h3 id="org1f13120">user namespace</h3>
-<div class="outline-text-3" id="text-org1f13120">
+<div id="outline-container-org43eaf41" class="outline-3">
+<h3 id="org43eaf41">user namespace</h3>
+<div class="outline-text-3" id="text-org43eaf41">
 <p>
 老版本中，Linux 内核里面只有一个数据结构负责处理用户和组。内核从 3.8 版本开始实现了 user namespace。 通过在 clone() 系统调用中使用 CLONE_NEWUSER 标志，一个单独的 user namespace 就会被创建出来。 在新的 user namespace 中，有一个虚拟的用户和用户组的集合。这些用户和用户组，从 uid/gid 0 开始，被映射到该 namespace 之外的 非 root 用户。
 </p>
@@ -379,9 +377,9 @@ runC 运行容器。</li>
 </div>
 </div>
 
-<div id="outline-container-org2f38df0" class="outline-3">
-<h3 id="org2f38df0">其他</h3>
-<div class="outline-text-3" id="text-org2f38df0">
+<div id="outline-container-org0acb9b0" class="outline-3">
+<h3 id="org0acb9b0">其他</h3>
+<div class="outline-text-3" id="text-org0acb9b0">
 <p>
 其他的几个 namespace，比较简单。总之，Docker 守护进程为每个容器都创建了六种 namespace 的实例，使得容器中的进程都处于一种隔离的运行环境之中：
 </p>
@@ -401,9 +399,9 @@ runC 运行容器。</li>
 </div>
 </div>
 
-<div id="outline-container-org24feed1" class="outline-2">
-<h2 id="org24feed1">Linux control groups</h2>
-<div class="outline-text-2" id="text-org24feed1">
+<div id="outline-container-orgfca1ec5" class="outline-2">
+<h2 id="orgfca1ec5">Linux control groups</h2>
+<div class="outline-text-2" id="text-orgfca1ec5">
 <p>
 Linux Cgroup 可让为系统中所运行任务（进程）的用户定义组群分配资源 -&#x2013;&#x2014; 比如 CPU 时间、系统内存、网络带宽或者这些资源的组合。 您可以监控您配置的 cgroup，拒绝 cgroup 访问某些资源，甚至在运行的系统中动态配置您的 cgroup。 所以，可以将 controll groups 理解为 controller (system resource) (for) (process) groups，也就是是说它以一组进程为目标进行系统资源分配和控制。
 </p>
@@ -463,7 +461,7 @@ CPU（在多核系统）和内存节点。</li>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

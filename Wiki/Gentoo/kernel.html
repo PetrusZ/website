@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kernel</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,28 +232,28 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org346b12a">How upgrade kernel</a></li>
-<li><a href="#org6a61dc9">Configure kernel</a>
+<li><a href="#orgecafe1a">How upgrade kernel</a></li>
+<li><a href="#org738880b">Configure kernel</a>
 <ul>
-<li><a href="#orga1522ac">将 intel wifi 固件编译进内核</a></li>
-<li><a href="#orgfa7b9c2">将 Intel microcode 编译进内核</a></li>
+<li><a href="#org986cab1">将 intel wifi 固件编译进内核</a></li>
+<li><a href="#org5050f2c">将 Intel microcode 编译进内核</a></li>
 <li><a href="#其他配置">其他配置</a>
 <ul>
 <li><a href="#开启 zswap">开启 zswap</a></li>
-<li><a href="#orgda21772">CPU Frequency scaling</a></li>
-<li><a href="#org8d4edaf">I/O Schedulers</a></li>
+<li><a href="#orgfd6db74">CPU Frequency scaling</a></li>
+<li><a href="#orgb81f095">I/O Schedulers</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc2030d1">参考</a></li>
+<li><a href="#orga830094">参考</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org346b12a" class="outline-2">
-<h2 id="org346b12a">How upgrade kernel</h2>
-<div class="outline-text-2" id="text-org346b12a">
+<div id="outline-container-orgecafe1a" class="outline-2">
+<h2 id="orgecafe1a">How upgrade kernel</h2>
+<div class="outline-text-2" id="text-orgecafe1a">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/bash</span>
 
@@ -282,13 +280,13 @@
 </div>
 </div>
 
-<div id="outline-container-org6a61dc9" class="outline-2">
-<h2 id="org6a61dc9">Configure kernel</h2>
-<div class="outline-text-2" id="text-org6a61dc9">
+<div id="outline-container-org738880b" class="outline-2">
+<h2 id="org738880b">Configure kernel</h2>
+<div class="outline-text-2" id="text-org738880b">
 </div>
-<div id="outline-container-orga1522ac" class="outline-3">
-<h3 id="orga1522ac">将 intel wifi 固件编译进内核</h3>
-<div class="outline-text-3" id="text-orga1522ac">
+<div id="outline-container-org986cab1" class="outline-3">
+<h3 id="org986cab1">将 intel wifi 固件编译进内核</h3>
+<div class="outline-text-3" id="text-org986cab1">
 <ol class="org-ol">
 <li>Enable <code>CONFIG_IWLWIFI</code> and <code>CONFIG_IWLMVM</code></li>
 
@@ -297,7 +295,7 @@
 <li>将在上面找到的与网卡对应的的二进制固件名称填入 <code>EXTRA_FIRMWARE</code> 选项中。 此选项的值是一个空格分隔的固件文件名字符串，这些文件必须位于 <code>CONFIG_EXTRA_FIRMWARE_DIR</code> 目录中(其默认值为 <code>/lib/firmware</code> ).</li>
 </ol>
 
-<pre class="example">
+<pre class="example" id="org8eceeeb">
     Symbol: EXTRA_FIRMWARE
     Type  : string
     Prompt: Build named firmware blobs into the kernel binary
@@ -310,14 +308,14 @@
 </div>
 </div>
 
-<div id="outline-container-orgfa7b9c2" class="outline-3">
-<h3 id="orgfa7b9c2">将 Intel microcode 编译进内核</h3>
-<div class="outline-text-3" id="text-orgfa7b9c2">
+<div id="outline-container-org5050f2c" class="outline-3">
+<h3 id="org5050f2c">将 Intel microcode 编译进内核</h3>
+<div class="outline-text-3" id="text-org5050f2c">
 <ol class="org-ol">
 <li>Enable <code>CONFIG_MICROCODE</code>, and <code>CONFIG_MICROCODE_INTEL</code></li>
 </ol>
 
-<pre class="example">
+<pre class="example" id="org31980ce">
     Processor type and features  ---&gt;
         &lt;*&gt; CPU microcode loading support
         [*]   Intel microcode loading support
@@ -362,18 +360,18 @@
 </div>
 </div>
 
-<div id="outline-container-orgda21772" class="outline-4">
-<h4 id="orgda21772">CPU Frequency scaling</h4>
-<div class="outline-text-4" id="text-orgda21772">
+<div id="outline-container-orgfd6db74" class="outline-4">
+<h4 id="orgfd6db74">CPU Frequency scaling</h4>
+<div class="outline-text-4" id="text-orgfd6db74">
 <p>
 <code>CONFIG_CPU_FREQ_GOV_POWERSAVE</code> 配合 <code>CONFIG_X86_INTEL_PSTATE</code> 使用，效果与 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 差异不大。 甚至可以获得比 <code>CONFIG_CPU_FREQ_GOV_ONDEMAND</code> 更优秀的"性能/瓦特"比。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8d4edaf" class="outline-4">
-<h4 id="org8d4edaf">I/O Schedulers</h4>
-<div class="outline-text-4" id="text-org8d4edaf">
+<div id="outline-container-orgb81f095" class="outline-4">
+<h4 id="orgb81f095">I/O Schedulers</h4>
+<div class="outline-text-4" id="text-orgb81f095">
 <p>
 TODO
 </p>
@@ -390,9 +388,9 @@ TODO
 </div>
 </div>
 
-<div id="outline-container-orgc2030d1" class="outline-2">
-<h2 id="orgc2030d1">参考</h2>
-<div class="outline-text-2" id="text-orgc2030d1">
+<div id="outline-container-orga830094" class="outline-2">
+<h2 id="orga830094">参考</h2>
+<div class="outline-text-2" id="text-orga830094">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/Kernel/Upgrade/en">https://wiki.gentoo.org/wiki/Kernel/Upgrade/en</a></li>
 <li><a href="http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html">http://www.jinbuguo.com/kernel/longterm-linux-kernel-options.html</a></li>
@@ -402,7 +400,7 @@ TODO
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

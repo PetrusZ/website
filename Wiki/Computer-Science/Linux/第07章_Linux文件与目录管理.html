@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>第07章_Linux文件与目录管理</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,19 +232,19 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org40b57e8">第 07 章_Linux 文件与目录管理</a></li>
+<li><a href="#org3c5a852">第 07 章_Linux 文件与目录管理</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org40b57e8" class="outline-2">
-<h2 id="org40b57e8">第 07 章_Linux 文件与目录管理</h2>
-<div class="outline-text-2" id="text-org40b57e8">
+<div id="outline-container-org3c5a852" class="outline-2">
+<h2 id="org3c5a852">第 07 章_Linux 文件与目录管理</h2>
+<div class="outline-text-2" id="text-org3c5a852">
 <p>
 rm(移除文件或目录）
 </p>
 
-<pre class="example">
+<pre class="example" id="org2b9f10f">
      -i：互动模式
      -r：递归删除
      \rm：忽略默认参数（e.g.：root身份删除时默认加入参数-i）
@@ -256,7 +254,7 @@ rm(移除文件或目录）
 mv(移动文件与目录，改名）
 </p>
 
-<pre class="example">
+<pre class="example" id="orge90e3ab">
     -f：强制执行
     -i：互动模式
     -u：update
@@ -267,7 +265,7 @@ mv(移动文件与目录，改名）
 basename：只取得文件名；dirname：取得目录名 文件内容查阅
 </p>
 
-<pre class="example">
+<pre class="example" id="org4adbbb3">
     cat：由第一行开始显示
 
           -n：打印全部出行号；-b：空白行不打印行号
@@ -297,7 +295,7 @@ Warn:umask 的分数指的是“该默认值需要被减掉的权限”
 chattr(设置文件隐藏属性）
 </p>
 
-<pre class="example">
+<pre class="example" id="org8ba9dd9">
     +，-，=：增加或删除或等于后面接的参数
     a：文件只能增加数据，不能删除也不能修改（only for root）
     i：使文件不能被删除、改名、设置连接、写入或添加数据（only for root）
@@ -307,7 +305,7 @@ chattr(设置文件隐藏属性）
 文件特殊权限：SUID，SGID，SBIT
 </p>
 
-<pre class="example">
+<pre class="example" id="orgad894bd">
     SetUID（-s in owner）：
 
     SUID权限仅对二进制程序有效，不能够用在shell script上面
@@ -337,7 +335,7 @@ chattr(设置文件隐藏属性）
 SUID/SGID/SBIT 权限设置
 </p>
 
-<pre class="example">
+<pre class="example" id="org1f6e4e2">
     4为SUID
     2为SGID
     1为SBIT
@@ -352,7 +350,7 @@ ps：updatedb 命令可以手动更新数据库 find（文件名的查找）基�
 file：列出比 file 还新的文件）
 </p>
 
-<pre class="example">
+<pre class="example" id="org15e2117">
     +4代表大于等于5天前的文件名：ex&gt;find /var -mtime +4
     -4代表小于等于4天内的文件名：ex&gt; find /var -mtime -4
     4则代表4~5那一天的文件名：ex &gt;find /var -mtime 4
@@ -362,7 +360,7 @@ file：列出比 file 还新的文件）
 基于用户或用户名参数查找
 </p>
 
-<pre class="example">
+<pre class="example" id="orgde29fbe">
     -uid n，-gid n
     -user name，-group name
     -nouser，-nogroup
@@ -372,7 +370,7 @@ file：列出比 file 还新的文件）
 基于文件权限、名称和大小参数的查找
 </p>
 
-<pre class="example">
+<pre class="example" id="org6bc7716">
     -name filename
     -size [+-]SIZE
 </pre>
@@ -385,7 +383,7 @@ find 的特殊功能就是能够进行额外的动作(action)
 该范例中特殊的地方有 {} 以及 ; 还有 -exec 这个关键字，这些东西的意义为：
 </p>
 
-<pre class="example">
+<pre class="example" id="org8d4c4ac">
     {} 代表的是『由 find 找到的内容』，如上图所示，find 的结果会被放置到 {} 位置中；
     -exec 一直到 \; 是关键字，代表 find 额外动作的开始 (-exec) 到结束 (\;) ，在这中间的就是 find 命令内的额外动作。 在本例中就是“ls -l {} ”
     因为“ ; ”在 bash 环境下是有特殊意义的，因此利用反斜线来跳脱。
@@ -395,7 +393,7 @@ find 的特殊功能就是能够进行额外的动作(action)
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

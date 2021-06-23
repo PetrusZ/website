@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-02 Mon 17:01 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lt;&lt; &amp; &lt;&lt;&lt; &amp; &lt; &lt;()</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -191,33 +191,25 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,17 +226,17 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org87b6fa4">&lt;&lt;(Here document)</a></li>
-<li><a href="#org9969e0d">&lt;&lt;&lt;(Here string)</a></li>
-<li><a href="#org225c4e3">&lt; &lt;()（Process Substitution）</a></li>
-<li><a href="#org028c64a">Link</a></li>
+<li><a href="#orgbfb3941">&lt;&lt;(Here document)</a></li>
+<li><a href="#orge2b513c">&lt;&lt;&lt;(Here string)</a></li>
+<li><a href="#orgd22ce49">&lt; &lt;()（Process Substitution）</a></li>
+<li><a href="#org29bb43a">Link</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org87b6fa4" class="outline-2">
-<h2 id="org87b6fa4">&lt;&lt;(Here document)</h2>
-<div class="outline-text-2" id="text-org87b6fa4">
+<div id="outline-container-orgbfb3941" class="outline-2">
+<h2 id="orgbfb3941">&lt;&lt;(Here document)</h2>
+<div class="outline-text-2" id="text-orgbfb3941">
 <p>
 <code>&lt;&lt;</code> 被称为 <code>here-document</code> 结构。你让程序知道什么将会结束文本，并且无论何时见到该分隔符，程序就会读取你提供给程序的所有内容作为输入并在其上执行任务。
 </p>
@@ -279,9 +271,9 @@
 </div>
 </div>
 
-<div id="outline-container-org9969e0d" class="outline-2">
-<h2 id="org9969e0d">&lt;&lt;&lt;(Here string)</h2>
-<div class="outline-text-2" id="text-org9969e0d">
+<div id="outline-container-orge2b513c" class="outline-2">
+<h2 id="orge2b513c">&lt;&lt;&lt;(Here string)</h2>
+<div class="outline-text-2" id="text-orge2b513c">
 <p>
 <code>&lt;&lt;&lt;</code> 被称为 <code>here-string</code> 。代替输入文本，你将预制的文本字符串提供给程序。例如，对于诸如 <code>bc</code> 之类的程序，我们可以执行 <code>bc &lt;&lt;&lt; 5*4</code> 来获取此特定情况下的输出，而不需要交互运行 bc。
 </p>
@@ -333,9 +325,9 @@ here-string 在 bash 中通过临时文件实现，通常是 <code>/tmp/sh-thd.&
 </div>
 </div>
 
-<div id="outline-container-org225c4e3" class="outline-2">
-<h2 id="org225c4e3">&lt; &lt;()（Process Substitution）</h2>
-<div class="outline-text-2" id="text-org225c4e3">
+<div id="outline-container-orgd22ce49" class="outline-2">
+<h2 id="orgd22ce49">&lt; &lt;()（Process Substitution）</h2>
+<div class="outline-text-2" id="text-orgd22ce49">
 <p>
 如 tldp.org 的解释：
 </p>
@@ -406,9 +398,9 @@ here-string 在 bash 中通过临时文件实现，通常是 <code>/tmp/sh-thd.&
 </div>
 </div>
 
-<div id="outline-container-org028c64a" class="outline-2">
-<h2 id="org028c64a">Link</h2>
-<div class="outline-text-2" id="text-org028c64a">
+<div id="outline-container-org29bb43a" class="outline-2">
+<h2 id="org29bb43a">Link</h2>
+<div class="outline-text-2" id="text-org29bb43a">
 <ol class="org-ol">
 <li><a href="https://askubuntu.com/questions/678915/whats-the-difference-between-and-in-bash">https://askubuntu.com/questions/678915/whats-the-difference-between-and-in-bash</a></li>
 </ol>
@@ -417,7 +409,7 @@ here-string 在 bash 中通过临时文件实现，通常是 <code>/tmp/sh-thd.&
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-02 Mon 17:01</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

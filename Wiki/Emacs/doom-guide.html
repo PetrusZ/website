@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Doom Guide</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,85 +232,85 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd2c940c">Doom 基础介绍</a>
+<li><a href="#orga63aa4f">Doom 基础介绍</a>
 <ul>
-<li><a href="#orgd17a924"><code>bin/doom</code> 功能</a></li>
-<li><a href="#org7b64717">外部/系统依赖</a></li>
+<li><a href="#orge714d58"><code>bin/doom</code> 功能</a></li>
+<li><a href="#org97e598b">外部/系统依赖</a></li>
 </ul>
 </li>
-<li><a href="#orgba2cc59">更新和回滚</a>
+<li><a href="#org2870474">更新和回滚</a>
 <ul>
-<li><a href="#org5adccc9">升级/降级 Emacs</a></li>
+<li><a href="#orgdb01861">升级/降级 Emacs</a></li>
 </ul>
 </li>
-<li><a href="#orgdcde537">迁移</a></li>
-<li><a href="#orgf27ecb4">配置</a>
+<li><a href="#orgfa2eb96">迁移</a></li>
+<li><a href="#org5f3def3">配置</a>
 <ul>
-<li><a href="#org221011b">init.el</a></li>
-<li><a href="#org1c0069c">config.el</a></li>
-<li><a href="#org70e31d7">packages.el</a></li>
+<li><a href="#org5234277">init.el</a></li>
+<li><a href="#orga431282">config.el</a></li>
+<li><a href="#org15e6515">packages.el</a></li>
 </ul>
 </li>
-<li><a href="#org0c94cbc">模块</a></li>
-<li><a href="#org09370fb">包管理</a>
+<li><a href="#org2e47838">模块</a></li>
+<li><a href="#org1f41986">包管理</a>
 <ul>
-<li><a href="#orgc11f0e4">安装 packages</a></li>
-<li><a href="#org21f2958">从外部源安装 package</a></li>
-<li><a href="#orgd370b08">Pinning package 到特定的 commits</a></li>
-<li><a href="#orgee0acc5">禁用 packages</a></li>
-<li><a href="#orge44cdf5">更改已包含的 package 的 recipe</a></li>
-<li><a href="#org880a16d">使用/载入本地 packages</a>
+<li><a href="#org73ae97c">安装 packages</a></li>
+<li><a href="#orgae40826">从外部源安装 package</a></li>
+<li><a href="#orga5454e2">Pinning package 到特定的 commits</a></li>
+<li><a href="#orgc51e3f0">禁用 packages</a></li>
+<li><a href="#orgc614093">更改已包含的 package 的 recipe</a></li>
+<li><a href="#orgf12f6c6">使用/载入本地 packages</a>
 <ul>
-<li><a href="#org5f43289">调整 <code>load-path</code></a></li>
-<li><a href="#org29314e7">:local-repo</a></li>
+<li><a href="#org28bdd5c">调整 <code>load-path</code></a></li>
+<li><a href="#orgcf74ac2">:local-repo</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org47b2db5">配置 Doom</a>
+<li><a href="#org2838b39">配置 Doom</a>
 <ul>
-<li><a href="#org889593c">配置 packages</a></li>
-<li><a href="#org492bc09">重载配置</a></li>
-<li><a href="#org5d34361">绑定按键</a></li>
+<li><a href="#orgdac33b6">配置 packages</a></li>
+<li><a href="#org25e219c">重载配置</a></li>
+<li><a href="#orgc32b543">绑定按键</a></li>
 </ul>
 </li>
-<li><a href="#org5f143d2">编写自己的模块</a>
+<li><a href="#org586c4e8">编写自己的模块</a>
 <ul>
-<li><a href="#org060f2e0">加载顺序</a></li>
-<li><a href="#org7b27670">位置</a></li>
-<li><a href="#org6d91310">文件结构</a></li>
-<li><a href="#org1bdb3a5"><code>init.el</code></a></li>
-<li><a href="#orgc16ac85"><code>config.el</code></a></li>
-<li><a href="#orga52ba3b"><code>packages.el</code></a></li>
-<li><a href="#org1ce8624"><code>autoload/*.el</code> 或 <code>autoload.el</code></a></li>
-<li><a href="#orgb42c7d1"><code>doctor.el</code></a></li>
-<li><a href="#org02fd04f">附加文件</a></li>
-<li><a href="#org02ea900">Flags</a></li>
-<li><a href="#orgd3c436e">Module cookies</a></li>
-<li><a href="#orgdb0b105">Autodefs</a></li>
+<li><a href="#org6be15b4">加载顺序</a></li>
+<li><a href="#org977c205">位置</a></li>
+<li><a href="#orge1f405d">文件结构</a></li>
+<li><a href="#orga038265"><code>init.el</code></a></li>
+<li><a href="#orgf4f9094"><code>config.el</code></a></li>
+<li><a href="#org23cb40a"><code>packages.el</code></a></li>
+<li><a href="#orgf6f15ac"><code>autoload/*.el</code> 或 <code>autoload.el</code></a></li>
+<li><a href="#org17ed531"><code>doctor.el</code></a></li>
+<li><a href="#orge4b3e67">附加文件</a></li>
+<li><a href="#orgdcce8ba">Flags</a></li>
+<li><a href="#orgace3b43">Module cookies</a></li>
+<li><a href="#org78acc19">Autodefs</a></li>
 </ul>
 </li>
-<li><a href="#orgbb87e52">配置 Doom Emacs 时的常见错误</a>
+<li><a href="#orgee72d04">配置 Doom Emacs 时的常见错误</a>
 <ul>
-<li><a href="#orga7713ad">急切加载 package</a></li>
-<li><a href="#org7b20d63">手动管理 package</a></li>
-<li><a href="#orga77420a">使用 <code>org-babel-do-load-languages</code> 来加载 babel packages</a></li>
-<li><a href="#org34141fb">使用 <code>delete-trailing-whitespaces</code> 或 <code>whitespaces-cleanup</code> 来管理多余的 whitespace</a></li>
+<li><a href="#org11317e6">急切加载 package</a></li>
+<li><a href="#orga355ed1">手动管理 package</a></li>
+<li><a href="#org8df68c6">使用 <code>org-babel-do-load-languages</code> 来加载 babel packages</a></li>
+<li><a href="#orga7f119b">使用 <code>delete-trailing-whitespaces</code> 或 <code>whitespaces-cleanup</code> 来管理多余的 whitespace</a></li>
 </ul>
 </li>
-<li><a href="#orgc38ba7a">Troubleshoot</a></li>
-<li><a href="#org242f132">Links</a></li>
+<li><a href="#org68a9c61">Troubleshoot</a></li>
+<li><a href="#orgefcaa58">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd2c940c" class="outline-2">
-<h2 id="orgd2c940c">Doom 基础介绍</h2>
-<div class="outline-text-2" id="text-orgd2c940c">
+<div id="outline-container-orga63aa4f" class="outline-2">
+<h2 id="orga63aa4f">Doom 基础介绍</h2>
+<div class="outline-text-2" id="text-orga63aa4f">
 </div>
-<div id="outline-container-orgd17a924" class="outline-3">
-<h3 id="orgd17a924"><code>bin/doom</code> 功能</h3>
-<div class="outline-text-3" id="text-orgd17a924">
+<div id="outline-container-orge714d58" class="outline-3">
+<h3 id="orge714d58"><code>bin/doom</code> 功能</h3>
+<div class="outline-text-3" id="text-orge714d58">
 <p>
 <code>bin/doom help</code> 可查看所有命令，不过这里总结了最重要的几个：
 </p>
@@ -339,9 +337,9 @@
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org7b64717" class="outline-3">
-<h3 id="org7b64717">外部/系统依赖</h3>
-<div class="outline-text-3" id="text-org7b64717">
+<div id="outline-container-org97e598b" class="outline-3">
+<h3 id="org97e598b">外部/系统依赖</h3>
+<div class="outline-text-3" id="text-org97e598b">
 <p>
 Doom 由模块组成，其提供了 doom 的大部分功能，包括语言支持和与外部工具集成。其中许多具有外部依赖，你必须自己安装。你可以在模块的 README。org 文件中或通过运行 <code>bin/doom docktor</code> 找到模块所需依赖和如何安装依赖。
 </p>
@@ -362,9 +360,9 @@ Doom 由模块组成，其提供了 doom 的大部分功能，包括语言支持
 </div>
 </div>
 </div>
-<div id="outline-container-orgba2cc59" class="outline-2">
-<h2 id="orgba2cc59">更新和回滚</h2>
-<div class="outline-text-2" id="text-orgba2cc59">
+<div id="outline-container-org2870474" class="outline-2">
+<h2 id="org2870474">更新和回滚</h2>
+<div class="outline-text-2" id="text-org2870474">
 <p>
 Doom 是一个活跃的项目并且其 300+ packages 中的大多数也 package 也在积极开发中。偶尔更新 Doom 是明智的。Doom 努力使这一个过程尽可能轻松。
 </p>
@@ -404,9 +402,9 @@ Doom 暂不支持回滚。
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org5adccc9" class="outline-3">
-<h3 id="org5adccc9">升级/降级 Emacs</h3>
-<div class="outline-text-3" id="text-org5adccc9">
+<div id="outline-container-orgdb01861" class="outline-3">
+<h3 id="orgdb01861">升级/降级 Emacs</h3>
+<div class="outline-text-3" id="text-orgdb01861">
 <p>
 <b>重要：你可能在升级/降级 Emacs 后遇到错误。</b> Emacs bytecode 通常不向前兼容。你必须重新编译或重新安装你的 packages 来解决该问题，例如：
 </p>
@@ -417,9 +415,9 @@ Doom 暂不支持回滚。
 </div>
 </div>
 </div>
-<div id="outline-container-orgdcde537" class="outline-2">
-<h2 id="orgdcde537">迁移</h2>
-<div class="outline-text-2" id="text-orgdcde537">
+<div id="outline-container-orgfa2eb96" class="outline-2">
+<h2 id="orgfa2eb96">迁移</h2>
+<div class="outline-text-2" id="text-orgfa2eb96">
 <p>
 如果你来自另一个 Emacs 发行版（或你自己的发行版），在你将旧配置转换为 Doom 时，需要注意以下几点：
 </p>
@@ -429,7 +427,7 @@ Doom 不使用 <code>package.el</code> 来管理 packages，但是 <code>use-pac
 </p>
 
 <p>
-具体见本指南中的“<a href="#org09370fb">包管理</a>”。
+具体见本指南中的“<a href="#org1f41986">包管理</a>”。
 </p>
 
 <p>
@@ -438,9 +436,9 @@ Doom 不使用 <code>package.el</code> 来管理 packages，但是 <code>use-pac
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf27ecb4" class="outline-2">
-<h2 id="orgf27ecb4">配置</h2>
-<div class="outline-text-2" id="text-orgf27ecb4">
+<div id="outline-container-org5f3def3" class="outline-2">
+<h2 id="org5f3def3">配置</h2>
+<div class="outline-text-2" id="text-org5f3def3">
 <p>
 Doom 在以下位置查找你的私有配置：
 </p>
@@ -463,9 +461,9 @@ Doom 在以下位置查找你的私有配置：
 <code>doom install</code> 将会部署三个文件到 <code>DOOMDIR</code> ：
 </p>
 </div>
-<div id="outline-container-org221011b" class="outline-3">
-<h3 id="org221011b">init.el</h3>
-<div class="outline-text-3" id="text-org221011b">
+<div id="outline-container-org5234277" class="outline-3">
+<h3 id="org5234277">init.el</h3>
+<div class="outline-text-3" id="text-org5234277">
 <p>
 你可以在这里找到 <code>doom!</code> 块，它控制了哪些 Doom 模块开启和以什么顺序载入。
 </p>
@@ -475,17 +473,17 @@ Doom 在以下位置查找你的私有配置：
 </p>
 </div>
 </div>
-<div id="outline-container-org1c0069c" class="outline-3">
-<h3 id="org1c0069c">config.el</h3>
-<div class="outline-text-3" id="text-org1c0069c">
+<div id="outline-container-orga431282" class="outline-3">
+<h3 id="orga431282">config.el</h3>
+<div class="outline-text-3" id="text-orga431282">
 <p>
 99.99%的个人配置应该放在这里。任何放在这里的配置将会在所有其他模块加载完运行。
 </p>
 </div>
 </div>
-<div id="outline-container-org70e31d7" class="outline-3">
-<h3 id="org70e31d7">packages.el</h3>
-<div class="outline-text-3" id="text-org70e31d7">
+<div id="outline-container-org15e6515" class="outline-3">
+<h3 id="org15e6515">packages.el</h3>
+<div class="outline-text-3" id="text-org15e6515">
 <p>
 在该文件中声明要安装的 package 以及从何处安装。
 </p>
@@ -502,9 +500,9 @@ Doom 提供了 <code>setq!</code> 宏用于触发 <code>defcustom</code> setters
 </div>
 </div>
 </div>
-<div id="outline-container-org0c94cbc" class="outline-2">
-<h2 id="org0c94cbc">模块</h2>
-<div class="outline-text-2" id="text-org0c94cbc">
+<div id="outline-container-org2e47838" class="outline-2">
+<h2 id="org2e47838">模块</h2>
+<div class="outline-text-2" id="text-org2e47838">
 <p>
 Doom 包含大约 130 个模块。一个 Doom 模块是 a bundle of packages、配置和命令，组织成一个可以通过从 <code>doom!</code> block（可以在 <code>$DOOMDIR/init.el</code> 中找到）添加或删除它们来启用或禁用的但原。
 </p>
@@ -556,9 +554,9 @@ Doom 包含大约 130 个模块。一个 Doom 模块是 a bundle of packages、�
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org09370fb" class="outline-2">
-<h2 id="org09370fb">包管理</h2>
-<div class="outline-text-2" id="text-org09370fb">
+<div id="outline-container-org1f41986" class="outline-2">
+<h2 id="org1f41986">包管理</h2>
+<div class="outline-text-2" id="text-org1f41986">
 <p>
 <b>Doom Emacs 不使用 package.el</b> （Emacs 内置的包管理器）。替代的，doom 使用自己的构建在<a href="https://github.com/raxod502/straight.el">Straight</a>之上的陈述式包管理器。
 </p>
@@ -580,9 +578,9 @@ Package 在 Doom 模块中的 <code>packages.el</code> 文件中声明。这也�
 </blockquote>
 </div>
 
-<div id="outline-container-orgc11f0e4" class="outline-3">
-<h3 id="orgc11f0e4">安装 packages</h3>
-<div class="outline-text-3" id="text-orgc11f0e4">
+<div id="outline-container-org73ae97c" class="outline-3">
+<h3 id="org73ae97c">安装 packages</h3>
+<div class="outline-text-3" id="text-org73ae97c">
 <p>
 要安装一个 package，添加 <code>package!</code> 声明到 <code>DOOMDIR/packages.el</code> 。
 </p>
@@ -607,9 +605,9 @@ Package 在 Doom 模块中的 <code>packages.el</code> 文件中声明。这也�
 </div>
 </div>
 </div>
-<div id="outline-container-org21f2958" class="outline-3">
-<h3 id="org21f2958">从外部源安装 package</h3>
-<div class="outline-text-3" id="text-org21f2958">
+<div id="outline-container-orgae40826" class="outline-3">
+<h3 id="orgae40826">从外部源安装 package</h3>
+<div class="outline-text-3" id="text-orgae40826">
 <p>
 为了直接从一个外部源（像 github、gitlab 等）安装一个 package，你需要指定一个<a href="https://github.com/raxod502/straight.el#the-recipe-format">MELPA-style straight recipe</a>：
 </p>
@@ -659,9 +657,9 @@ Package 在 Doom 模块中的 <code>packages.el</code> 文件中声明。这也�
 </div>
 </div>
 
-<div id="outline-container-orgd370b08" class="outline-3">
-<h3 id="orgd370b08">Pinning package 到特定的 commits</h3>
-<div class="outline-text-3" id="text-orgd370b08">
+<div id="outline-container-orga5454e2" class="outline-3">
+<h3 id="orga5454e2">Pinning package 到特定的 commits</h3>
+<div class="outline-text-3" id="text-orga5454e2">
 <p>
 所有 Doom 的 package 默认被 pinned。一个 pinned 的 package 时锁定到特定 commit 的 package，如下：
 </p>
@@ -708,9 +706,9 @@ unpin 所有的 packages 时不鼓励的，因为 Doom 的模块是针对 pinned
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orgee0acc5" class="outline-3">
-<h3 id="orgee0acc5">禁用 packages</h3>
-<div class="outline-text-3" id="text-orgee0acc5">
+<div id="outline-container-orgc51e3f0" class="outline-3">
+<h3 id="orgc51e3f0">禁用 packages</h3>
+<div class="outline-text-3" id="text-orgc51e3f0">
 <p>
 <code>package!</code> 宏可以处理 <code>:disable</code> 属性：
 </p>
@@ -740,9 +738,9 @@ unpin 所有的 packages 时不鼓励的，因为 Doom 的模块是针对 pinned
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orge44cdf5" class="outline-3">
-<h3 id="orge44cdf5">更改已包含的 package 的 recipe</h3>
-<div class="outline-text-3" id="text-orge44cdf5">
+<div id="outline-container-orgc614093" class="outline-3">
+<h3 id="orgc614093">更改已包含的 package 的 recipe</h3>
+<div class="outline-text-3" id="text-orgc614093">
 <p>
 如果一个 Doom 模块从一个地方安装 package X，但是你想要从另一个地方安装，为它在 <code>DOOMDIR/packages.el</code> 添加 <code>package!</code> 声明。个人声明总是优先于模块（甚至是自己的）。
 </p>
@@ -771,16 +769,16 @@ unpin 所有的 packages 时不鼓励的，因为 Doom 的模块是针对 pinned
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org880a16d" class="outline-3">
-<h3 id="org880a16d">使用/载入本地 packages</h3>
-<div class="outline-text-3" id="text-org880a16d">
+<div id="outline-container-orgf12f6c6" class="outline-3">
+<h3 id="orgf12f6c6">使用/载入本地 packages</h3>
+<div class="outline-text-3" id="text-orgf12f6c6">
 <p>
 如果你要安装本地的 elisp package。你有两个选择：
 </p>
 </div>
-<div id="outline-container-org5f43289" class="outline-4">
-<h4 id="org5f43289">调整 <code>load-path</code></h4>
-<div class="outline-text-4" id="text-org5f43289">
+<div id="outline-container-org28bdd5c" class="outline-4">
+<h4 id="org28bdd5c">调整 <code>load-path</code></h4>
+<div class="outline-text-4" id="text-org28bdd5c">
 <p>
 Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package 的路径当试图载入它时，Emacs 会找到它。例如：
 </p>
@@ -796,9 +794,9 @@ Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package �
 </div>
 </div>
 </div>
-<div id="outline-container-org29314e7" class="outline-4">
-<h4 id="org29314e7">:local-repo</h4>
-<div class="outline-text-4" id="text-org29314e7">
+<div id="outline-container-orgcf74ac2" class="outline-4">
+<h4 id="orgcf74ac2">:local-repo</h4>
+<div class="outline-text-4" id="text-orgcf74ac2">
 <p>
 或者，你可以在 <code>package!</code> 的 <code>:recipe</code> 声明中指定 <code>:local-repo</code> ：
 </p>
@@ -820,13 +818,13 @@ Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package �
 </div>
 </div>
 </div>
-<div id="outline-container-org47b2db5" class="outline-2">
-<h2 id="org47b2db5">配置 Doom</h2>
-<div class="outline-text-2" id="text-org47b2db5">
+<div id="outline-container-org2838b39" class="outline-2">
+<h2 id="org2838b39">配置 Doom</h2>
+<div class="outline-text-2" id="text-org2838b39">
 </div>
-<div id="outline-container-org889593c" class="outline-3">
-<h3 id="org889593c">配置 packages</h3>
-<div class="outline-text-3" id="text-org889593c">
+<div id="outline-container-orgdac33b6" class="outline-3">
+<h3 id="orgdac33b6">配置 packages</h3>
+<div class="outline-text-3" id="text-orgdac33b6">
 <p>
 如果你的配置需求很简单，那么 <code>use-package!</code> ， <code>after!</code> ， <code>add-hook!</code> 和 <code>setq-hook!</code> 宏时你的面包和黄油。
 </p>
@@ -841,11 +839,11 @@ Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package �
 
 <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">Take a major-mode, a quoted hook function or a list of either</span>
 <span style="color: #51afef;">(</span><span style="color: #51afef;">add-hook!</span> python-mode
-    <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">python-shell-interpreter</span> <span style="color: #98be65;">"bpython"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+    <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> python-shell-interpreter <span style="color: #98be65;">"bpython"</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 
 <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#36825;&#20123;&#26159;&#30456;&#31561;&#30340;</span>
-<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> <span style="color: #51afef;">'</span><span style="color: #dcaeea;">python-mode-hook</span><span style="color: #51afef;">'</span> <span style="color: #dcaeea;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
-<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> python-mode <span style="color: #dcaeea;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">python-mode-hook</span><span style="color: #51afef;">'</span> <span style="color: #ECBE7B;">python-indent-offset</span> <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #51afef;">setq-hook!</span> python-mode python-indent-offset <span style="color: #da8548; font-weight: bold;">2</span><span style="color: #51afef;">)</span>
 
 <span style="color: #51afef;">(</span><span style="color: #51afef;">use-package!</span> hl-todo
   <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#22914;&#26524;&#20320;&#30465;&#30053; :defer&#65292;:hook&#65292;:commands&#25110;:after&#65292;&#37027;&#20040;package&#34987;&#31435;&#21051;&#36733;&#20837;&#12290;</span>
@@ -887,9 +885,9 @@ Emacs 会在 <code>load-path</code> 中搜索 packages。添加你的 package �
 </div>
 </div>
 </div>
-<div id="outline-container-org492bc09" class="outline-3">
-<h3 id="org492bc09">重载配置</h3>
-<div class="outline-text-3" id="text-org492bc09">
+<div id="outline-container-org25e219c" class="outline-3">
+<h3 id="org25e219c">重载配置</h3>
+<div class="outline-text-3" id="text-org25e219c">
 <p>
 你可能会发现让你的改变立即发挥作用非常帮助。对于不需要完全重启 Doom Emacs 的事情（像改变开启的模块或安装的 package），你可以即时评估 Emacs Lisp 代码。
 </p>
@@ -912,9 +910,9 @@ evil 用户可以使用 <code>gr</code> 操作符来苹果一段代码。返回�
 </p>
 </div>
 </div>
-<div id="outline-container-org5d34361" class="outline-3">
-<h3 id="org5d34361">绑定按键</h3>
-<div class="outline-text-3" id="text-org5d34361">
+<div id="outline-container-orgc32b543" class="outline-3">
+<h3 id="orgc32b543">绑定按键</h3>
+<div class="outline-text-3" id="text-orgc32b543">
 <ul class="org-ul">
 <li>define-key</li>
 <li>global-set-key</li>
@@ -925,13 +923,13 @@ evil 用户可以使用 <code>gr</code> 操作符来苹果一段代码。返回�
 </div>
 </div>
 </div>
-<div id="outline-container-org5f143d2" class="outline-2">
-<h2 id="org5f143d2">编写自己的模块</h2>
-<div class="outline-text-2" id="text-org5f143d2">
+<div id="outline-container-org586c4e8" class="outline-2">
+<h2 id="org586c4e8">编写自己的模块</h2>
+<div class="outline-text-2" id="text-org586c4e8">
 </div>
-<div id="outline-container-org060f2e0" class="outline-3">
-<h3 id="org060f2e0">加载顺序</h3>
-<div class="outline-text-3" id="text-org060f2e0">
+<div id="outline-container-org6be15b4" class="outline-3">
+<h3 id="org6be15b4">加载顺序</h3>
+<div class="outline-text-3" id="text-org6be15b4">
 <p>
 模块文件以精确的顺序加载：
 </p>
@@ -946,9 +944,9 @@ evil 用户可以使用 <code>gr</code> 操作符来苹果一段代码。返回�
 </ol>
 </div>
 </div>
-<div id="outline-container-org7b27670" class="outline-3">
-<h3 id="org7b27670">位置</h3>
-<div class="outline-text-3" id="text-org7b27670">
+<div id="outline-container-org977c205" class="outline-3">
+<h3 id="org977c205">位置</h3>
+<div class="outline-text-3" id="text-org977c205">
 <p>
 Doom 在 <code>~/.emacs.d/modules/CATEGORY/MODULE/</code> 和 <code>$DOOMDIR/modules/CATEGORY/MODULE</code> 搜索模块。如果你有一个个人模块和 Doom 包含的模块名相同，将会隐藏包含的那一个（好像包含的那个从未存在过）。
 </p>
@@ -960,9 +958,9 @@ Doom 用以下两种格式之一指明模块： <code>:category module</code> �
 </blockquote>
 </div>
 </div>
-<div id="outline-container-org6d91310" class="outline-3">
-<h3 id="org6d91310">文件结构</h3>
-<div class="outline-text-3" id="text-org6d91310">
+<div id="outline-container-orge1f405d" class="outline-3">
+<h3 id="orge1f405d">文件结构</h3>
+<div class="outline-text-3" id="text-orge1f405d">
 <p>
 一个模块由数个文件组成，所有文件都是可选的。他们是：
 </p>
@@ -981,9 +979,9 @@ modules/
 </pre>
 </div>
 </div>
-<div id="outline-container-org1bdb3a5" class="outline-3">
-<h3 id="org1bdb3a5"><code>init.el</code></h3>
-<div class="outline-text-3" id="text-org1bdb3a5">
+<div id="outline-container-orga038265" class="outline-3">
+<h3 id="orga038265"><code>init.el</code></h3>
+<div class="outline-text-3" id="text-orga038265">
 <p>
 该文件在早期被载入，在其他任何文件之前，但是在 Doom core 载入之后。
 </p>
@@ -1006,9 +1004,9 @@ modules/
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc16ac85" class="outline-3">
-<h3 id="orgc16ac85"><code>config.el</code></h3>
-<div class="outline-text-3" id="text-orgc16ac85">
+<div id="outline-container-orgf4f9094" class="outline-3">
+<h3 id="orgf4f9094"><code>config.el</code></h3>
+<div class="outline-text-3" id="text-orgf4f9094">
 <p>
 该文件是每个模块的核心。
 </p>
@@ -1029,8 +1027,8 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
   <span style="color: #c678dd;">:config</span>
   <span style="color: #c678dd;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">company-idle-delay</span> nil
         <span style="color: #dcaeea;">company-tooltip-limit</span> <span style="color: #da8548; font-weight: bold;">10</span>
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-case nil<span style="color: #c678dd;">)</span>
+        <span style="color: #dcaeea;">company-dabbrev-downcase</span> nil
+        <span style="color: #dcaeea;">company-dabbrev-ignore-case</span> nil<span style="color: #c678dd;">)</span>
    <span style="color: #c678dd;">[</span>...<span style="color: #c678dd;">]</span><span style="color: #51afef;">)</span>
 </pre>
 </div>
@@ -1042,9 +1040,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </blockquote>
 </div>
 </div>
-<div id="outline-container-orga52ba3b" class="outline-3">
-<h3 id="orga52ba3b"><code>packages.el</code></h3>
-<div class="outline-text-3" id="text-orga52ba3b">
+<div id="outline-container-org23cb40a" class="outline-3">
+<h3 id="org23cb40a"><code>packages.el</code></h3>
+<div class="outline-text-3" id="text-org23cb40a">
 <p>
 该文件是 package 升 ingde 地方。如果你像查看一个模块在管理哪些 packages（以及它们从何处安装），它也是一个好地方来查看。
 </p>
@@ -1054,13 +1052,13 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </p>
 
 <p>
-详细信息见<a href="#org09370fb">包管理</a>章节。
+详细信息见<a href="#org1f41986">包管理</a>章节。
 </p>
 </div>
 </div>
-<div id="outline-container-org1ce8624" class="outline-3">
-<h3 id="org1ce8624"><code>autoload/*.el</code> 或 <code>autoload.el</code></h3>
-<div class="outline-text-3" id="text-org1ce8624">
+<div id="outline-container-orgf6f15ac" class="outline-3">
+<h3 id="orgf6f15ac"><code>autoload/*.el</code> 或 <code>autoload.el</code></h3>
+<div class="outline-text-3" id="text-orgf6f15ac">
 <p>
 这些文件中标记有 autoload cookie（ <code>;;;##autoload</code> ）的函数会将被延迟加载。
 </p>
@@ -1089,9 +1087,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </div>
 </div>
 </div>
-<div id="outline-container-orgb42c7d1" class="outline-3">
-<h3 id="orgb42c7d1"><code>doctor.el</code></h3>
-<div class="outline-text-3" id="text-orgb42c7d1">
+<div id="outline-container-org17ed531" class="outline-3">
+<h3 id="org17ed531"><code>doctor.el</code></h3>
+<div class="outline-text-3" id="text-org17ed531">
 <p>
 该文件被 <code>make doctor</code> 使用，并且应该为模块所有的依赖测试。如果缺少一个，它应该使用 <code>warn!</code> 、 <code>error!</code> 和 <code>explain!</code> 宏告诉用户为什么会出现问题，并且理想情况下，提供一个解决问题的方法。
 </p>
@@ -1109,9 +1107,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </div>
 </div>
 </div>
-<div id="outline-container-org02fd04f" class="outline-3">
-<h3 id="org02fd04f">附加文件</h3>
-<div class="outline-text-3" id="text-org02fd04f">
+<div id="outline-container-orge4b3e67" class="outline-3">
+<h3 id="orge4b3e67">附加文件</h3>
+<div class="outline-text-3" id="text-orge4b3e67">
 <p>
 有时，最好将模块的 config.el 文件拆分为多个文件。惯例是将这些附加文件的的名称前加上 <code>+</code> ，例如 <code>modules/feature/version-control/+git.el</code> 。
 </p>
@@ -1135,9 +1133,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </p>
 </div>
 </div>
-<div id="outline-container-org02ea900" class="outline-3">
-<h3 id="org02ea900">Flags</h3>
-<div class="outline-text-3" id="text-org02ea900">
+<div id="outline-container-orgdcce8ba" class="outline-3">
+<h3 id="orgdcce8ba">Flags</h3>
+<div class="outline-text-3" id="text-orgdcce8ba">
 <p>
 一个模块的 flag 可以是任意符号。惯例这些符号以 <code>+</code> 或 <code>-</code> 为前缀，分别表示添加或删除功能。该符号没有功能上的意义。
 </p>
@@ -1156,9 +1154,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </div>
 </div>
 </div>
-<div id="outline-container-orgd3c436e" class="outline-3">
-<h3 id="orgd3c436e">Module cookies</h3>
-<div class="outline-text-3" id="text-orgd3c436e">
+<div id="outline-container-orgace3b43" class="outline-3">
+<h3 id="orgace3b43">Module cookies</h3>
+<div class="outline-text-3" id="text-orgace3b43">
 <p>
 一个特别的语法存在叫做 module cookies。像 autoload cookies ( <code>;;;###autoload</code> )，模块文件可能在或接进文件头部的地方有 <code>;;;###if FORM</code> 。读取 FORM 可以确定是否在扫描该文件进行 autoloads（ <code>doom sync</code> ）或 byte-compiling（ <code>doom compile</code> ）时忽略该文件。
 </p>
@@ -1182,9 +1180,9 @@ package 应该使用 <code>after!</code> 或 <code>use-package!</code> 来配置
 </p>
 </div>
 </div>
-<div id="outline-container-orgdb0b105" class="outline-3">
-<h3 id="orgdb0b105">Autodefs</h3>
-<div class="outline-text-3" id="text-orgdb0b105">
+<div id="outline-container-org78acc19" class="outline-3">
+<h3 id="org78acc19">Autodefs</h3>
+<div class="outline-text-3" id="text-org78acc19">
 <p>
 autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包含的模块，Doom 都保证会始终被定义（但当被禁用时不会对其参数进行评估操作）。
 </p>
@@ -1215,21 +1213,21 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb87e52" class="outline-2">
-<h2 id="orgbb87e52">配置 Doom Emacs 时的常见错误</h2>
-<div class="outline-text-2" id="text-orgbb87e52">
+<div id="outline-container-orgee72d04" class="outline-2">
+<h2 id="orgee72d04">配置 Doom Emacs 时的常见错误</h2>
+<div class="outline-text-2" id="text-orgee72d04">
 </div>
-<div id="outline-container-orga7713ad" class="outline-3">
-<h3 id="orga7713ad">急切加载 package</h3>
-<div class="outline-text-3" id="text-orga7713ad">
+<div id="outline-container-org11317e6" class="outline-3">
+<h3 id="org11317e6">急切加载 package</h3>
+<div class="outline-text-3" id="text-org11317e6">
 <p>
 在没有延迟关键字（ <code>:defer :after :commands :defer-incrementally :after-call</code> 之一）情况下使用 <code>use-package!</code> 将会立即载入 package。这回导致其他 packages 被拉取并加载，从而违纪 Doom 的许多启动优化。
 </p>
 </div>
 </div>
-<div id="outline-container-org7b20d63" class="outline-3">
-<h3 id="org7b20d63">手动管理 package</h3>
-<div class="outline-text-3" id="text-org7b20d63">
+<div id="outline-container-orga355ed1" class="outline-3">
+<h3 id="orga355ed1">手动管理 package</h3>
+<div class="outline-text-3" id="text-orga355ed1">
 <p>
 许多 Emacs 文档和帮助都会包含使用 package.el 的 API（例如 <code>package-install</code> ）或使用 use-package 的 <code>:ensure</code> 关键字来安装 package 的建议。如果你愿意，你可以这样做，否则，Doom 拥有自己的 package 管理系统。
 </p>
@@ -1239,9 +1237,9 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </p>
 </div>
 </div>
-<div id="outline-container-orga77420a" class="outline-3">
-<h3 id="orga77420a">使用 <code>org-babel-do-load-languages</code> 来加载 babel packages</h3>
-<div class="outline-text-3" id="text-orga77420a">
+<div id="outline-container-org8df68c6" class="outline-3">
+<h3 id="org8df68c6">使用 <code>org-babel-do-load-languages</code> 来加载 babel packages</h3>
+<div class="outline-text-3" id="text-org8df68c6">
 <p>
 你不需要 <code>org-babel-do-load-languages</code> 。Doom 会基于在 <code>#+BEGIN_SRC</code> blocks 中的语言名按需 lazy load babel package。只要 babel 插件已安装并且插件以它的语言命名（例如， <code>#+BEGIN_SRC rust</code> 会载入 <code>ob-rust</code> ），你不需要做其他任何操作。
 </p>
@@ -1251,9 +1249,9 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </p>
 </div>
 </div>
-<div id="outline-container-org34141fb" class="outline-3">
-<h3 id="org34141fb">使用 <code>delete-trailing-whitespaces</code> 或 <code>whitespaces-cleanup</code> 来管理多余的 whitespace</h3>
-<div class="outline-text-3" id="text-org34141fb">
+<div id="outline-container-orga7f119b" class="outline-3">
+<h3 id="orga7f119b">使用 <code>delete-trailing-whitespaces</code> 或 <code>whitespaces-cleanup</code> 来管理多余的 whitespace</h3>
+<div class="outline-text-3" id="text-orga7f119b">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #c678dd;">add-hook</span> <span style="color: #51afef;">'</span><span style="color: #dcaeea;">after-save-hook</span><span style="color: #51afef;">'</span> <span style="color: #51afef;">#'</span><span style="color: #ECBE7B;">delete-trailing-whitespaces</span><span style="color: #51afef;">)</span>
 <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">&#25110;</span>
@@ -1289,9 +1287,9 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </div>
 </div>
 </div>
-<div id="outline-container-orgc38ba7a" class="outline-2">
-<h2 id="orgc38ba7a">Troubleshoot</h2>
-<div class="outline-text-2" id="text-orgc38ba7a">
+<div id="outline-container-org68a9c61" class="outline-2">
+<h2 id="org68a9c61">Troubleshoot</h2>
+<div class="outline-text-2" id="text-org68a9c61">
 <p>
 当遇到问题时，你应该准备收集信息以解决问题，或准备要编写的 bug report。Emacs 和 Doom 都提供了工具来使这一过程更加容易。这里有几件事你应该首先尝试：
 </p>
@@ -1312,9 +1310,9 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </p>
 </div>
 </div>
-<div id="outline-container-org242f132" class="outline-2">
-<h2 id="org242f132">Links</h2>
-<div class="outline-text-2" id="text-org242f132">
+<div id="outline-container-orgefcaa58" class="outline-2">
+<h2 id="orgefcaa58">Links</h2>
+<div class="outline-text-2" id="text-orgefcaa58">
 <p>
 <a href="https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org">https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org</a>
 </p>
@@ -1323,7 +1321,7 @@ autodef 是一种特殊的 autoloaded 函数或宏，无乱是否启用了其包
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

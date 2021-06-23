@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Org Mode Basics In Doom Emacs</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,125 +232,125 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4a1c5b5">Getting Started with Org Mode</a>
+<li><a href="#org6061d0d">Getting Started with Org Mode</a>
 <ul>
-<li><a href="#org5f4b9df">org-toggle-heading : SPC-m-h</a></li>
-<li><a href="#org100db6f">org-toggle-item : SPC-m-i</a></li>
+<li><a href="#orgfd52dab">org-toggle-heading : SPC-m-h</a></li>
+<li><a href="#org6318e9d">org-toggle-item : SPC-m-i</a></li>
 </ul>
 </li>
-<li><a href="#orgfddadaa">A new headline</a>
+<li><a href="#org2401a8e">A new headline</a>
 <ul>
-<li><a href="#org224af93">Level 2</a>
+<li><a href="#orgf2f042d">Level 2</a>
 <ul>
-<li><a href="#org3657889">Level 3</a>
+<li><a href="#org3ee2c60">Level 3</a>
 <ul>
-<li><a href="#orgb12abb1">Level 4</a>
+<li><a href="#orge574674">Level 4</a>
 <ul>
-<li><a href="#orgf83db5d">Level 5</a></li>
+<li><a href="#org352e898">Level 5</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc0a4a52">Rotate current subtree between states: TAB</a></li>
-<li><a href="#org0812522">Rotate entire buffer between states : S-TAB</a></li>
-<li><a href="#org23efaa2">close (fold) the tree : zc</a></li>
-<li><a href="#orgb50db16">open (unfold) the tree : zo</a></li>
-<li><a href="#orga12df08">fold everything : zM</a></li>
-<li><a href="#org7a29a04">unfold everything : zR</a></li>
+<li><a href="#org4858969">Rotate current subtree between states: TAB</a></li>
+<li><a href="#org54f8eab">Rotate entire buffer between states : S-TAB</a></li>
+<li><a href="#org6204cd4">close (fold) the tree : zc</a></li>
+<li><a href="#org4b44a4e">open (unfold) the tree : zo</a></li>
+<li><a href="#org645a71e">fold everything : zM</a></li>
+<li><a href="#orgd71da6b">unfold everything : zR</a></li>
 </ul>
 </li>
-<li><a href="#orgdd3b173">Motion</a>
+<li><a href="#orgf35d6bf">Motion</a>
 <ul>
-<li><a href="#orgfd51f77">move left/down/up/right : h/j/k/l</a></li>
-<li><a href="#orgc121532">下一个/前一个标题 : gj/gk OR CTR-j/k</a></li>
-<li><a href="#org545fd5b">move parent/child element : gh/gl</a></li>
+<li><a href="#orge668b20">move left/down/up/right : h/j/k/l</a></li>
+<li><a href="#org6c7892d">下一个/前一个标题 : gj/gk OR CTR-j/k</a></li>
+<li><a href="#org12abe0f">move parent/child element : gh/gl</a></li>
 </ul>
 </li>
-<li><a href="#orge4248eb">Structure Editing</a>
+<li><a href="#orgcb95335">Structure Editing</a>
 <ul>
-<li><a href="#org89c9304">在当前 level 插入标题或列表 : M-RET</a></li>
-<li><a href="#org7822cb7">在子树后插入新标题 : C-RET</a></li>
-<li><a href="#orgd9f8462">升级/降级标题 : M-h/l  OR  M-LEFT/RIGHT</a></li>
-<li><a href="#orgd194742">升级/降级当前子树 : M-S-h/l  OR  M-S-LEFT/RIGHT</a></li>
-<li><a href="#org249bbc9">上/下移动子树/列表 : M-j/k</a></li>
-<li><a href="#orgdb0a801">上/下移动列表，但不移动子树 : M-S-j/k</a></li>
+<li><a href="#org9f0d493">在当前 level 插入标题或列表 : M-RET</a></li>
+<li><a href="#org1f047e3">在子树后插入新标题 : C-RET</a></li>
+<li><a href="#org6f2fc31">升级/降级标题 : M-h/l  OR  M-LEFT/RIGHT</a></li>
+<li><a href="#orgcfc4ebe">升级/降级当前子树 : M-S-h/l  OR  M-S-LEFT/RIGHT</a></li>
+<li><a href="#org8cd55bc">上/下移动子树/列表 : M-j/k</a></li>
+<li><a href="#org62f12ba">上/下移动列表，但不移动子树 : M-S-j/k</a></li>
 </ul>
 </li>
-<li><a href="#org5f167b3">Some advanced editing thanks to Evil Mode!</a>
+<li><a href="#org9e1868f">Some advanced editing thanks to Evil Mode!</a>
 <ul>
-<li><a href="#orgf16acae">select an element : vae</a></li>
-<li><a href="#orgafa1e43">delete an element : dae</a></li>
-<li><a href="#orgceabc3f">select a subtree : vaR</a></li>
-<li><a href="#orgf2b037d">delete subtree : daR</a></li>
-<li><a href="#org016b4a7">yank subtree : yiR</a></li>
+<li><a href="#org5dcd211">select an element : vae</a></li>
+<li><a href="#orgc7b4527">delete an element : dae</a></li>
+<li><a href="#orgae1dc9c">select a subtree : vaR</a></li>
+<li><a href="#org1e0a116">delete subtree : daR</a></li>
+<li><a href="#orge6bd6a2">yank subtree : yiR</a></li>
 </ul>
 </li>
-<li><a href="#org3a43216">插入 Snippets</a>
+<li><a href="#org631649c">插入 Snippets</a>
 <ul>
-<li><a href="#orga6ca794">SPACE-i-s</a></li>
-<li><a href="#orgb7e4361">bang : #!/usr/bin/env bash</a></li>
-<li><a href="#orgcd712be">Insert a license : pick a free license</a></li>
-<li><a href="#org844e7ee">current time  : Sun Feb  9 20:06:29 2020</a></li>
-<li><a href="#org12c47ed">pi :</a></li>
+<li><a href="#org8624af9">SPACE-i-s</a></li>
+<li><a href="#orga804a42">bang : #!/usr/bin/env bash</a></li>
+<li><a href="#org067fb9a">Insert a license : pick a free license</a></li>
+<li><a href="#org2d2e9db">current time  : Sun Feb  9 20:06:29 2020</a></li>
+<li><a href="#org75aa89d">pi :</a></li>
 </ul>
 </li>
-<li><a href="#org15fc813"><span class="todo TODO">TODO</span> 设置标签 : SPC-m-q&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TODO">TODO</span></span></a>
+<li><a href="#org712331d"><span class="todo TODO">TODO</span> 设置标签 : SPC-m-q&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TODO">TODO</span></span></a>
 <ul>
-<li><a href="#org3b39920"><span class="todo TODO">TODO</span> example one</a></li>
-<li><a href="#org74c3d8a"><span class="todo TODO">TODO</span> example two : S-RIGHT</a></li>
-<li><a href="#orgbf5fd9a">移除 TODO : S-LEFT</a></li>
-<li><a href="#orgc2a63c4">切换 TODO 状态 : SPC-m-t</a></li>
-<li><a href="#org530f13b">org-schedule : SPC-m-d-s</a></li>
-<li><a href="#orgfcf48c6">org-priority : SPC-m-p</a></li>
-<li><a href="#orge94aa46">To create checkbox : - [ ]  <code>[1/3]</code> <code>[33%]</code></a></li>
-<li><a href="#org7f2b596">Move this file to front of agenda : C-c-[</a></li>
-<li><a href="#orgfac4fb7">Org-agenda : SPC-o-a</a></li>
-<li><a href="#org2b3d47a">标签搜索 : SPC-o-a-m</a></li>
+<li><a href="#orgf19cb45"><span class="todo TODO">TODO</span> example one</a></li>
+<li><a href="#orga779489"><span class="todo TODO">TODO</span> example two : S-RIGHT</a></li>
+<li><a href="#org04f5ab8">移除 TODO : S-LEFT</a></li>
+<li><a href="#orgb04a7e4">切换 TODO 状态 : SPC-m-t</a></li>
+<li><a href="#orgbcf48a3">org-schedule : SPC-m-d-s</a></li>
+<li><a href="#orgf2494f3">org-priority : SPC-m-p</a></li>
+<li><a href="#org5c3f733">To create checkbox : - [ ]  <code>[1/3]</code> <code>[33%]</code></a></li>
+<li><a href="#orga5b8e03">Move this file to front of agenda : C-c-[</a></li>
+<li><a href="#org280b5f6">Org-agenda : SPC-o-a</a></li>
+<li><a href="#orgdd385a8">标签搜索 : SPC-o-a-m</a></li>
 </ul>
 </li>
-<li><a href="#orga02375f">Tables</a>
+<li><a href="#orgc6b829e">Tables</a>
 <ul>
-<li><a href="#org9ed2960">Creating a table</a>
+<li><a href="#org640c1e6">Creating a table</a>
 <ul>
-<li><a href="#org6c0b1ed">just start typing, e.g.|Name|Phone|Age RET |- TAB</a></li>
-<li><a href="#orgf13b8ef">convert region to table : C-c |</a></li>
-<li><a href="#org543c1da">Go to forward/backward by cell : TAB/S-TAB</a></li>
-<li><a href="#org0d14eb2">&#x2026;  separator at least 3 spaces : C-3 C-c |</a></li>
-<li><a href="#org046644e">Make org table headline : SPC m b -</a></li>
-<li><a href="#orgf40ea97">Duplicate a field in the cell below : S-RET</a></li>
-<li><a href="#org46a3c1f">Move current row UP : M-k</a></li>
-<li><a href="#orgf0455eb">Move current row DOWN : M-j</a></li>
-<li><a href="#org7178a4f">Move current column LEFT : M-h</a></li>
-<li><a href="#orge083d24">Move current column RIGHT : M-l</a></li>
-<li><a href="#orgd16e1b4">Insert new column : M-S-l</a></li>
-<li><a href="#org6982d91">Delete current column : M-S-h</a></li>
-<li><a href="#orgb7cc40d">Insert new row : M-S-j</a></li>
-<li><a href="#org7a5b5d9">Delete current row : M-S-k</a></li>
+<li><a href="#orgdd19ab3">just start typing, e.g.|Name|Phone|Age RET |- TAB</a></li>
+<li><a href="#orgdc5c5a6">convert region to table : C-c |</a></li>
+<li><a href="#orge4c5c77">Go to forward/backward by cell : TAB/S-TAB</a></li>
+<li><a href="#orgee38534">&#x2026;  separator at least 3 spaces : C-3 C-c |</a></li>
+<li><a href="#org1dcd9b1">Make org table headline : SPC m b -</a></li>
+<li><a href="#org5167666">Duplicate a field in the cell below : S-RET</a></li>
+<li><a href="#org6f00b39">Move current row UP : M-k</a></li>
+<li><a href="#org92d177b">Move current row DOWN : M-j</a></li>
+<li><a href="#org0549901">Move current column LEFT : M-h</a></li>
+<li><a href="#org0d200bc">Move current column RIGHT : M-l</a></li>
+<li><a href="#org6234993">Insert new column : M-S-l</a></li>
+<li><a href="#orgaae7719">Delete current column : M-S-h</a></li>
+<li><a href="#org515e4f3">Insert new row : M-S-j</a></li>
+<li><a href="#org1f0ed31">Delete current row : M-S-k</a></li>
 </ul>
 </li>
-<li><a href="#org5602ab3">Commands available inside tables</a></li>
+<li><a href="#org2167dc5">Commands available inside tables</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4a1c5b5" class="outline-2">
-<h2 id="org4a1c5b5">Getting Started with Org Mode</h2>
-<div class="outline-text-2" id="text-org4a1c5b5">
+<div id="outline-container-org6061d0d" class="outline-2">
+<h2 id="org6061d0d">Getting Started with Org Mode</h2>
+<div class="outline-text-2" id="text-org6061d0d">
 <p>
 Read org mode manual with M-x org-info.
 M-RET to insert new headline at current level.
 </p>
 </div>
-<div id="outline-container-org5f4b9df" class="outline-3">
-<h3 id="org5f4b9df">org-toggle-heading : SPC-m-h</h3>
+<div id="outline-container-orgfd52dab" class="outline-3">
+<h3 id="orgfd52dab">org-toggle-heading : SPC-m-h</h3>
 </div>
-<div id="outline-container-org100db6f" class="outline-3">
-<h3 id="org100db6f">org-toggle-item : SPC-m-i</h3>
-<div class="outline-text-3" id="text-org100db6f">
+<div id="outline-container-org6318e9d" class="outline-3">
+<h3 id="org6318e9d">org-toggle-item : SPC-m-i</h3>
+<div class="outline-text-3" id="text-org6318e9d">
 <ul class="org-ul">
 <li>Unordered list item one</li>
 <li>Unordered list item two
@@ -368,161 +366,161 @@ M-RET to insert new headline at current level.
 </div>
 </div>
 </div>
-<div id="outline-container-orgfddadaa" class="outline-2">
-<h2 id="orgfddadaa">A new headline</h2>
-<div class="outline-text-2" id="text-orgfddadaa">
+<div id="outline-container-org2401a8e" class="outline-2">
+<h2 id="org2401a8e">A new headline</h2>
+<div class="outline-text-2" id="text-org2401a8e">
 </div>
-<div id="outline-container-org224af93" class="outline-3">
-<h3 id="org224af93">Level 2</h3>
-<div class="outline-text-3" id="text-org224af93">
+<div id="outline-container-orgf2f042d" class="outline-3">
+<h3 id="orgf2f042d">Level 2</h3>
+<div class="outline-text-3" id="text-orgf2f042d">
 </div>
-<div id="outline-container-org3657889" class="outline-4">
-<h4 id="org3657889">Level 3</h4>
-<div class="outline-text-4" id="text-org3657889">
+<div id="outline-container-org3ee2c60" class="outline-4">
+<h4 id="org3ee2c60">Level 3</h4>
+<div class="outline-text-4" id="text-org3ee2c60">
 </div>
-<div id="outline-container-orgb12abb1" class="outline-5">
-<h5 id="orgb12abb1">Level 4</h5>
-<div class="outline-text-5" id="text-orgb12abb1">
+<div id="outline-container-orge574674" class="outline-5">
+<h5 id="orge574674">Level 4</h5>
+<div class="outline-text-5" id="text-orge574674">
 </div>
-<div id="outline-container-orgf83db5d" class="outline-6">
-<h6 id="orgf83db5d">Level 5</h6>
-<div class="outline-text-6" id="text-orgf83db5d">
+<div id="outline-container-org352e898" class="outline-6">
+<h6 id="org352e898">Level 5</h6>
+<div class="outline-text-6" id="text-org352e898">
 </div>
 <ul class="org-ul">
-<li><a id="orgba5ffbb"></a>Level 6<br></li>
+<li><a id="org8cff426"></a>Level 6<br></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0a4a52" class="outline-3">
-<h3 id="orgc0a4a52">Rotate current subtree between states: TAB</h3>
+<div id="outline-container-org4858969" class="outline-3">
+<h3 id="org4858969">Rotate current subtree between states: TAB</h3>
 </div>
-<div id="outline-container-org0812522" class="outline-3">
-<h3 id="org0812522">Rotate entire buffer between states : S-TAB</h3>
+<div id="outline-container-org54f8eab" class="outline-3">
+<h3 id="org54f8eab">Rotate entire buffer between states : S-TAB</h3>
 </div>
-<div id="outline-container-org23efaa2" class="outline-3">
-<h3 id="org23efaa2">close (fold) the tree : zc</h3>
+<div id="outline-container-org6204cd4" class="outline-3">
+<h3 id="org6204cd4">close (fold) the tree : zc</h3>
 </div>
-<div id="outline-container-orgb50db16" class="outline-3">
-<h3 id="orgb50db16">open (unfold) the tree : zo</h3>
+<div id="outline-container-org4b44a4e" class="outline-3">
+<h3 id="org4b44a4e">open (unfold) the tree : zo</h3>
 </div>
-<div id="outline-container-orga12df08" class="outline-3">
-<h3 id="orga12df08">fold everything : zM</h3>
+<div id="outline-container-org645a71e" class="outline-3">
+<h3 id="org645a71e">fold everything : zM</h3>
 </div>
-<div id="outline-container-org7a29a04" class="outline-3">
-<h3 id="org7a29a04">unfold everything : zR</h3>
-</div>
-</div>
-<div id="outline-container-orgdd3b173" class="outline-2">
-<h2 id="orgdd3b173">Motion</h2>
-<div class="outline-text-2" id="text-orgdd3b173">
-</div>
-<div id="outline-container-orgfd51f77" class="outline-3">
-<h3 id="orgfd51f77">move left/down/up/right : h/j/k/l</h3>
-</div>
-<div id="outline-container-orgc121532" class="outline-3">
-<h3 id="orgc121532">下一个/前一个标题 : gj/gk OR CTR-j/k</h3>
-</div>
-<div id="outline-container-org545fd5b" class="outline-3">
-<h3 id="org545fd5b">move parent/child element : gh/gl</h3>
+<div id="outline-container-orgd71da6b" class="outline-3">
+<h3 id="orgd71da6b">unfold everything : zR</h3>
 </div>
 </div>
-<div id="outline-container-orge4248eb" class="outline-2">
-<h2 id="orge4248eb">Structure Editing</h2>
-<div class="outline-text-2" id="text-orge4248eb">
+<div id="outline-container-orgf35d6bf" class="outline-2">
+<h2 id="orgf35d6bf">Motion</h2>
+<div class="outline-text-2" id="text-orgf35d6bf">
 </div>
-<div id="outline-container-org89c9304" class="outline-3">
-<h3 id="org89c9304">在当前 level 插入标题或列表 : M-RET</h3>
+<div id="outline-container-orge668b20" class="outline-3">
+<h3 id="orge668b20">move left/down/up/right : h/j/k/l</h3>
 </div>
-<div id="outline-container-org7822cb7" class="outline-3">
-<h3 id="org7822cb7">在子树后插入新标题 : C-RET</h3>
+<div id="outline-container-org6c7892d" class="outline-3">
+<h3 id="org6c7892d">下一个/前一个标题 : gj/gk OR CTR-j/k</h3>
 </div>
-<div id="outline-container-orgd9f8462" class="outline-3">
-<h3 id="orgd9f8462">升级/降级标题 : M-h/l  OR  M-LEFT/RIGHT</h3>
-</div>
-<div id="outline-container-orgd194742" class="outline-3">
-<h3 id="orgd194742">升级/降级当前子树 : M-S-h/l  OR  M-S-LEFT/RIGHT</h3>
-</div>
-<div id="outline-container-org249bbc9" class="outline-3">
-<h3 id="org249bbc9">上/下移动子树/列表 : M-j/k</h3>
-</div>
-<div id="outline-container-orgdb0a801" class="outline-3">
-<h3 id="orgdb0a801">上/下移动列表，但不移动子树 : M-S-j/k</h3>
+<div id="outline-container-org12abe0f" class="outline-3">
+<h3 id="org12abe0f">move parent/child element : gh/gl</h3>
 </div>
 </div>
-<div id="outline-container-org5f167b3" class="outline-2">
-<h2 id="org5f167b3">Some advanced editing thanks to Evil Mode!</h2>
-<div class="outline-text-2" id="text-org5f167b3">
+<div id="outline-container-orgcb95335" class="outline-2">
+<h2 id="orgcb95335">Structure Editing</h2>
+<div class="outline-text-2" id="text-orgcb95335">
 </div>
-<div id="outline-container-orgf16acae" class="outline-3">
-<h3 id="orgf16acae">select an element : vae</h3>
+<div id="outline-container-org9f0d493" class="outline-3">
+<h3 id="org9f0d493">在当前 level 插入标题或列表 : M-RET</h3>
 </div>
-<div id="outline-container-orgafa1e43" class="outline-3">
-<h3 id="orgafa1e43">delete an element : dae</h3>
+<div id="outline-container-org1f047e3" class="outline-3">
+<h3 id="org1f047e3">在子树后插入新标题 : C-RET</h3>
 </div>
-<div id="outline-container-orgceabc3f" class="outline-3">
-<h3 id="orgceabc3f">select a subtree : vaR</h3>
+<div id="outline-container-org6f2fc31" class="outline-3">
+<h3 id="org6f2fc31">升级/降级标题 : M-h/l  OR  M-LEFT/RIGHT</h3>
 </div>
-<div id="outline-container-orgf2b037d" class="outline-3">
-<h3 id="orgf2b037d">delete subtree : daR</h3>
+<div id="outline-container-orgcfc4ebe" class="outline-3">
+<h3 id="orgcfc4ebe">升级/降级当前子树 : M-S-h/l  OR  M-S-LEFT/RIGHT</h3>
 </div>
-<div id="outline-container-org016b4a7" class="outline-3">
-<h3 id="org016b4a7">yank subtree : yiR</h3>
+<div id="outline-container-org8cd55bc" class="outline-3">
+<h3 id="org8cd55bc">上/下移动子树/列表 : M-j/k</h3>
+</div>
+<div id="outline-container-org62f12ba" class="outline-3">
+<h3 id="org62f12ba">上/下移动列表，但不移动子树 : M-S-j/k</h3>
 </div>
 </div>
-<div id="outline-container-org3a43216" class="outline-2">
-<h2 id="org3a43216">插入 Snippets</h2>
-<div class="outline-text-2" id="text-org3a43216">
+<div id="outline-container-org9e1868f" class="outline-2">
+<h2 id="org9e1868f">Some advanced editing thanks to Evil Mode!</h2>
+<div class="outline-text-2" id="text-org9e1868f">
 </div>
-<div id="outline-container-orga6ca794" class="outline-3">
-<h3 id="orga6ca794">SPACE-i-s</h3>
+<div id="outline-container-org5dcd211" class="outline-3">
+<h3 id="org5dcd211">select an element : vae</h3>
 </div>
-<div id="outline-container-orgb7e4361" class="outline-3">
-<h3 id="orgb7e4361">bang : #!/usr/bin/env bash</h3>
+<div id="outline-container-orgc7b4527" class="outline-3">
+<h3 id="orgc7b4527">delete an element : dae</h3>
 </div>
-<div id="outline-container-orgcd712be" class="outline-3">
-<h3 id="orgcd712be">Insert a license : pick a free license</h3>
+<div id="outline-container-orgae1dc9c" class="outline-3">
+<h3 id="orgae1dc9c">select a subtree : vaR</h3>
 </div>
-<div id="outline-container-org844e7ee" class="outline-3">
-<h3 id="org844e7ee">current time  : Sun Feb  9 20:06:29 2020</h3>
+<div id="outline-container-org1e0a116" class="outline-3">
+<h3 id="org1e0a116">delete subtree : daR</h3>
 </div>
-<div id="outline-container-org12c47ed" class="outline-3">
-<h3 id="org12c47ed">pi :</h3>
-<div class="outline-text-3" id="text-org12c47ed">
+<div id="outline-container-orge6bd6a2" class="outline-3">
+<h3 id="orge6bd6a2">yank subtree : yiR</h3>
+</div>
+</div>
+<div id="outline-container-org631649c" class="outline-2">
+<h2 id="org631649c">插入 Snippets</h2>
+<div class="outline-text-2" id="text-org631649c">
+</div>
+<div id="outline-container-org8624af9" class="outline-3">
+<h3 id="org8624af9">SPACE-i-s</h3>
+</div>
+<div id="outline-container-orga804a42" class="outline-3">
+<h3 id="orga804a42">bang : #!/usr/bin/env bash</h3>
+</div>
+<div id="outline-container-org067fb9a" class="outline-3">
+<h3 id="org067fb9a">Insert a license : pick a free license</h3>
+</div>
+<div id="outline-container-org2d2e9db" class="outline-3">
+<h3 id="org2d2e9db">current time  : Sun Feb  9 20:06:29 2020</h3>
+</div>
+<div id="outline-container-org75aa89d" class="outline-3">
+<h3 id="org75aa89d">pi :</h3>
+<div class="outline-text-3" id="text-org75aa89d">
 <p>
 3.141592654
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org15fc813" class="outline-2">
-<h2 id="org15fc813"><span class="todo TODO">TODO</span> 设置标签 : SPC-m-q&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TODO">TODO</span></span></h2>
-<div class="outline-text-2" id="text-org15fc813">
+<div id="outline-container-org712331d" class="outline-2">
+<h2 id="org712331d"><span class="todo TODO">TODO</span> 设置标签 : SPC-m-q&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TODO">TODO</span></span></h2>
+<div class="outline-text-2" id="text-org712331d">
 </div>
-<div id="outline-container-org3b39920" class="outline-3">
-<h3 id="org3b39920"><span class="todo TODO">TODO</span> example one</h3>
+<div id="outline-container-orgf19cb45" class="outline-3">
+<h3 id="orgf19cb45"><span class="todo TODO">TODO</span> example one</h3>
 </div>
-<div id="outline-container-org74c3d8a" class="outline-3">
-<h3 id="org74c3d8a"><span class="todo TODO">TODO</span> example two : S-RIGHT</h3>
+<div id="outline-container-orga779489" class="outline-3">
+<h3 id="orga779489"><span class="todo TODO">TODO</span> example two : S-RIGHT</h3>
 </div>
-<div id="outline-container-orgbf5fd9a" class="outline-3">
-<h3 id="orgbf5fd9a">移除 TODO : S-LEFT</h3>
+<div id="outline-container-org04f5ab8" class="outline-3">
+<h3 id="org04f5ab8">移除 TODO : S-LEFT</h3>
 </div>
-<div id="outline-container-orgc2a63c4" class="outline-3">
-<h3 id="orgc2a63c4">切换 TODO 状态 : SPC-m-t</h3>
+<div id="outline-container-orgb04a7e4" class="outline-3">
+<h3 id="orgb04a7e4">切换 TODO 状态 : SPC-m-t</h3>
 </div>
-<div id="outline-container-org530f13b" class="outline-3">
-<h3 id="org530f13b">org-schedule : SPC-m-d-s</h3>
-<div class="outline-text-3" id="text-org530f13b">
+<div id="outline-container-orgbcf48a3" class="outline-3">
+<h3 id="orgbcf48a3">org-schedule : SPC-m-d-s</h3>
+<div class="outline-text-3" id="text-orgbcf48a3">
 </div>
 </div>
-<div id="outline-container-orgfcf48c6" class="outline-3">
-<h3 id="orgfcf48c6">org-priority : SPC-m-p</h3>
+<div id="outline-container-orgf2494f3" class="outline-3">
+<h3 id="orgf2494f3">org-priority : SPC-m-p</h3>
 </div>
-<div id="outline-container-orge94aa46" class="outline-3">
-<h3 id="orge94aa46">To create checkbox : - [ ]  <code>[1/3]</code> <code>[33%]</code></h3>
-<div class="outline-text-3" id="text-orge94aa46">
+<div id="outline-container-org5c3f733" class="outline-3">
+<h3 id="org5c3f733">To create checkbox : - [ ]  <code>[1/3]</code> <code>[33%]</code></h3>
+<div class="outline-text-3" id="text-org5c3f733">
 <ul class="org-ul">
 <li class="off"><code>[&#xa0;]</code> eggs</li>
 <li class="off"><code>[&#xa0;]</code> milk</li>
@@ -530,42 +528,42 @@ M-RET to insert new headline at current level.
 </ul>
 </div>
 </div>
-<div id="outline-container-org7f2b596" class="outline-3">
-<h3 id="org7f2b596">Move this file to front of agenda : C-c-[</h3>
+<div id="outline-container-orga5b8e03" class="outline-3">
+<h3 id="orga5b8e03">Move this file to front of agenda : C-c-[</h3>
 </div>
-<div id="outline-container-orgfac4fb7" class="outline-3">
-<h3 id="orgfac4fb7">Org-agenda : SPC-o-a</h3>
+<div id="outline-container-org280b5f6" class="outline-3">
+<h3 id="org280b5f6">Org-agenda : SPC-o-a</h3>
 </div>
-<div id="outline-container-org2b3d47a" class="outline-3">
-<h3 id="org2b3d47a">标签搜索 : SPC-o-a-m</h3>
+<div id="outline-container-orgdd385a8" class="outline-3">
+<h3 id="orgdd385a8">标签搜索 : SPC-o-a-m</h3>
 </div>
 </div>
-<div id="outline-container-orga02375f" class="outline-2">
-<h2 id="orga02375f">Tables</h2>
-<div class="outline-text-2" id="text-orga02375f">
+<div id="outline-container-orgc6b829e" class="outline-2">
+<h2 id="orgc6b829e">Tables</h2>
+<div class="outline-text-2" id="text-orgc6b829e">
 </div>
-<div id="outline-container-org9ed2960" class="outline-3">
-<h3 id="org9ed2960">Creating a table</h3>
-<div class="outline-text-3" id="text-org9ed2960">
+<div id="outline-container-org640c1e6" class="outline-3">
+<h3 id="org640c1e6">Creating a table</h3>
+<div class="outline-text-3" id="text-org640c1e6">
 </div>
-<div id="outline-container-org6c0b1ed" class="outline-4">
-<h4 id="org6c0b1ed">just start typing, e.g.|Name|Phone|Age RET |- TAB</h4>
+<div id="outline-container-orgdd19ab3" class="outline-4">
+<h4 id="orgdd19ab3">just start typing, e.g.|Name|Phone|Age RET |- TAB</h4>
 </div>
-<div id="outline-container-orgf13b8ef" class="outline-4">
-<h4 id="orgf13b8ef">convert region to table : C-c |</h4>
+<div id="outline-container-orgdc5c5a6" class="outline-4">
+<h4 id="orgdc5c5a6">convert region to table : C-c |</h4>
 </div>
-<div id="outline-container-org543c1da" class="outline-4">
-<h4 id="org543c1da">Go to forward/backward by cell : TAB/S-TAB</h4>
+<div id="outline-container-orge4c5c77" class="outline-4">
+<h4 id="orge4c5c77">Go to forward/backward by cell : TAB/S-TAB</h4>
 </div>
-<div id="outline-container-org0d14eb2" class="outline-4">
-<h4 id="org0d14eb2">&#x2026;  separator at least 3 spaces : C-3 C-c |</h4>
+<div id="outline-container-orgee38534" class="outline-4">
+<h4 id="orgee38534">&#x2026;  separator at least 3 spaces : C-3 C-c |</h4>
 </div>
-<div id="outline-container-org046644e" class="outline-4">
-<h4 id="org046644e">Make org table headline : SPC m b -</h4>
+<div id="outline-container-org1dcd9b1" class="outline-4">
+<h4 id="org1dcd9b1">Make org table headline : SPC m b -</h4>
 </div>
-<div id="outline-container-orgf40ea97" class="outline-4">
-<h4 id="orgf40ea97">Duplicate a field in the cell below : S-RET</h4>
-<div class="outline-text-4" id="text-orgf40ea97">
+<div id="outline-container-org5167666" class="outline-4">
+<h4 id="org5167666">Duplicate a field in the cell below : S-RET</h4>
+<div class="outline-text-4" id="text-org5167666">
 <table>
 
 
@@ -611,34 +609,34 @@ M-RET to insert new headline at current level.
 </table>
 </div>
 </div>
-<div id="outline-container-org46a3c1f" class="outline-4">
-<h4 id="org46a3c1f">Move current row UP : M-k</h4>
+<div id="outline-container-org6f00b39" class="outline-4">
+<h4 id="org6f00b39">Move current row UP : M-k</h4>
 </div>
-<div id="outline-container-orgf0455eb" class="outline-4">
-<h4 id="orgf0455eb">Move current row DOWN : M-j</h4>
+<div id="outline-container-org92d177b" class="outline-4">
+<h4 id="org92d177b">Move current row DOWN : M-j</h4>
 </div>
-<div id="outline-container-org7178a4f" class="outline-4">
-<h4 id="org7178a4f">Move current column LEFT : M-h</h4>
+<div id="outline-container-org0549901" class="outline-4">
+<h4 id="org0549901">Move current column LEFT : M-h</h4>
 </div>
-<div id="outline-container-orge083d24" class="outline-4">
-<h4 id="orge083d24">Move current column RIGHT : M-l</h4>
+<div id="outline-container-org0d200bc" class="outline-4">
+<h4 id="org0d200bc">Move current column RIGHT : M-l</h4>
 </div>
-<div id="outline-container-orgd16e1b4" class="outline-4">
-<h4 id="orgd16e1b4">Insert new column : M-S-l</h4>
+<div id="outline-container-org6234993" class="outline-4">
+<h4 id="org6234993">Insert new column : M-S-l</h4>
 </div>
-<div id="outline-container-org6982d91" class="outline-4">
-<h4 id="org6982d91">Delete current column : M-S-h</h4>
+<div id="outline-container-orgaae7719" class="outline-4">
+<h4 id="orgaae7719">Delete current column : M-S-h</h4>
 </div>
-<div id="outline-container-orgb7cc40d" class="outline-4">
-<h4 id="orgb7cc40d">Insert new row : M-S-j</h4>
+<div id="outline-container-org515e4f3" class="outline-4">
+<h4 id="org515e4f3">Insert new row : M-S-j</h4>
 </div>
-<div id="outline-container-org7a5b5d9" class="outline-4">
-<h4 id="org7a5b5d9">Delete current row : M-S-k</h4>
+<div id="outline-container-org1f0ed31" class="outline-4">
+<h4 id="org1f0ed31">Delete current row : M-S-k</h4>
 </div>
 </div>
-<div id="outline-container-org5602ab3" class="outline-3">
-<h3 id="org5602ab3">Commands available inside tables</h3>
-<div class="outline-text-3" id="text-org5602ab3">
+<div id="outline-container-org2167dc5" class="outline-3">
+<h3 id="org2167dc5">Commands available inside tables</h3>
+<div class="outline-text-3" id="text-org2167dc5">
 <p>
 The following commands work when the cursor isinside a table.
 Outside of tables, the same keys may have other functionality.
@@ -649,7 +647,7 @@ Outside of tables, the same keys may have other functionality.
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

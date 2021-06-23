@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-02-04 Thu 15:33 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>self-host mail</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,26 +232,26 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org356f74e">DNS record</a>
+<li><a href="#org537f4cd">DNS record</a>
 <ul>
-<li><a href="#org1ddeb53">SPF</a></li>
-<li><a href="#org0188dde">DKIM</a></li>
-<li><a href="#org23282ca">DMARC</a></li>
+<li><a href="#orgf637bf0">SPF</a></li>
+<li><a href="#orga6a507b">DKIM</a></li>
+<li><a href="#org2c9f5ae">DMARC</a></li>
 </ul>
 </li>
-<li><a href="#org5a6f93b">self-host service</a></li>
-<li><a href="#org6a6a82f">Links</a></li>
+<li><a href="#org0b75139">self-host service</a></li>
+<li><a href="#org1e3395e">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org356f74e" class="outline-2">
-<h2 id="org356f74e">DNS record</h2>
-<div class="outline-text-2" id="text-org356f74e">
+<div id="outline-container-org537f4cd" class="outline-2">
+<h2 id="org537f4cd">DNS record</h2>
+<div class="outline-text-2" id="text-org537f4cd">
 </div>
-<div id="outline-container-org1ddeb53" class="outline-3">
-<h3 id="org1ddeb53">SPF</h3>
-<div class="outline-text-3" id="text-org1ddeb53">
+<div id="outline-container-orgf637bf0" class="outline-3">
+<h3 id="orgf637bf0">SPF</h3>
+<div class="outline-text-3" id="text-orgf637bf0">
 <p>
 全名 Sender Policy Framework，用来鉴别发送邮件的服务器或者 IP，是否为该域允许的范围。 这需要在发送邮件的域名下添加一条 TXT 记录，举个例子： <code>example.net. TXT "v=spf1 mx a:pluto.example.net include:aspmx.googlemail.com -all" v=spf1</code> 做开头为必须，spf1 说明这是第一版 spf 协议 SPF 规定有 6 种机制：
 </p>
@@ -317,14 +315,14 @@
 </div>
 </div>
 
-<div id="outline-container-org0188dde" class="outline-3">
-<h3 id="org0188dde">DKIM</h3>
-<div class="outline-text-3" id="text-org0188dde">
+<div id="outline-container-orga6a507b" class="outline-3">
+<h3 id="orga6a507b">DKIM</h3>
+<div class="outline-text-3" id="text-orga6a507b">
 <p>
 由于 SPF 天生只验证是否可以发信, 不保证这个发信人是验证的,因此,SPF 验证通过的仍然可能是伪造的邮件. 这就需要 DKIM 来进一步保证这封邮件不是伪造的. 在特殊的子域名”\_domainkey”(例如:\_domainkey.example.com)的 TXT 记录中插入一对 RSA 密钥中的公钥, 而 RSA 的私钥用来加密邮件的部分字段. 收到邮件的服务器发现有 DKIM-SIGNATURE 字段时,会自动校验 DKIM 的公钥, 按照匹配程度进行处理. 这样就完成了验证.
 </p>
 
-<pre class="example">
+<pre class="example" id="org7f274e5">
     +---------------+           +-----------------+
     | SenderServer  |           | ReceiverServer  |
     +---------------+           +-----------------+
@@ -356,9 +354,9 @@
 </div>
 </div>
 
-<div id="outline-container-org23282ca" class="outline-3">
-<h3 id="org23282ca">DMARC</h3>
-<div class="outline-text-3" id="text-org23282ca">
+<div id="outline-container-org2c9f5ae" class="outline-3">
+<h3 id="org2c9f5ae">DMARC</h3>
+<div class="outline-text-3" id="text-org2c9f5ae">
 <p>
 该验证的都验证了,还有个 DMARC 是干吗的呢? 这是为了给域名邮件的拥有者报告垃圾邮件的状况而设定的规则. 和之前的方法一样,在\_dmarc.example.com 下面设定自己的 DMARC 规则, 具体就参考 Google 提供的文档吧.
 </p>
@@ -370,9 +368,9 @@
 </div>
 </div>
 
-<div id="outline-container-org5a6f93b" class="outline-2">
-<h2 id="org5a6f93b">self-host service</h2>
-<div class="outline-text-2" id="text-org5a6f93b">
+<div id="outline-container-org0b75139" class="outline-2">
+<h2 id="org0b75139">self-host service</h2>
+<div class="outline-text-2" id="text-org0b75139">
 <ul class="org-ul">
 <li>Poste.io
 
@@ -427,9 +425,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6a6a82f" class="outline-2">
-<h2 id="org6a6a82f">Links</h2>
-<div class="outline-text-2" id="text-org6a6a82f">
+<div id="outline-container-org1e3395e" class="outline-2">
+<h2 id="org1e3395e">Links</h2>
+<div class="outline-text-2" id="text-org1e3395e">
 <ol class="org-ol">
 <li><a href="https://wiki.archlinux.org/index.php/Mail_server">Mail server/archwiki</a></li>
 <li><a href="https://newpants.top/2019/11/14/%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8Poste%E4%BA%94%E5%88%86%E9%92%9F%E6%90%AD%E5%BB%BA/">邮件服务器 Poste 五分钟搭建</a></li>
@@ -439,7 +437,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-02-04 Thu 15:33</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

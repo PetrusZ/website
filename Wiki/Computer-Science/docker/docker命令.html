@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>docker命令</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,16 +232,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org59aa7bc">命令概述</a></li>
-<li><a href="#org576b37e">docker run 命令</a></li>
+<li><a href="#orga214b71">命令概述</a></li>
+<li><a href="#org1f4802c">docker run 命令</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org59aa7bc" class="outline-2">
-<h2 id="org59aa7bc">命令概述</h2>
-<div class="outline-text-2" id="text-org59aa7bc">
-<pre class="example">
+<div id="outline-container-orga214b71" class="outline-2">
+<h2 id="orga214b71">命令概述</h2>
+<div class="outline-text-2" id="text-orga214b71">
+<pre class="example" id="org5e93c95">
         镜像操作：
         build     Build an image from a Dockerfile
         commit    Create a new image from a container's changes
@@ -309,10 +307,10 @@
 </div>
 </div>
 
-<div id="outline-container-org576b37e" class="outline-2">
-<h2 id="org576b37e">docker run 命令</h2>
-<div class="outline-text-2" id="text-org576b37e">
-<pre class="example">
+<div id="outline-container-org1f4802c" class="outline-2">
+<h2 id="org1f4802c">docker run 命令</h2>
+<div class="outline-text-2" id="text-org1f4802c">
+<pre class="example" id="orgdab81c1">
        cgroups 和 namespace 相关：
         block IO:
           --blkio-weight value          Block IO (relative weight), between 10 and 1000
@@ -433,7 +431,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>贪心算法：赫夫曼编码</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,9 +232,9 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org94f3012">前缀码</a></li>
-<li><a href="#orge529920">构造赫夫曼编码</a></li>
-<li><a href="#orgaa3b6f5">实现</a></li>
+<li><a href="#org855d6a9">前缀码</a></li>
+<li><a href="#orgfdb5027">构造赫夫曼编码</a></li>
+<li><a href="#org8ae1f9c">实现</a></li>
 </ul>
 </div>
 </div>
@@ -269,9 +267,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 
 <hr>
 
-<div id="outline-container-org94f3012" class="outline-2">
-<h2 id="org94f3012">前缀码</h2>
-<div class="outline-text-2" id="text-org94f3012">
+<div id="outline-container-org855d6a9" class="outline-2">
+<h2 id="org855d6a9">前缀码</h2>
+<div class="outline-text-2" id="text-org855d6a9">
 <p>
 <b>前缀码</b> ，即没有任何码字是其他码字的前缀。且前缀码确实可以保证达到最优数据压缩率。
 </p>
@@ -293,9 +291,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 </div>
 
-<div id="outline-container-orge529920" class="outline-2">
-<h2 id="orge529920">构造赫夫曼编码</h2>
-<div class="outline-text-2" id="text-orge529920">
+<div id="outline-container-orgfdb5027" class="outline-2">
+<h2 id="orgfdb5027">构造赫夫曼编码</h2>
+<div class="outline-text-2" id="text-orgfdb5027">
 <p>
 赫夫曼设计了一个贪心算法来构造最优前缀码，被成为*赫夫曼编码*。
 </p>
@@ -304,7 +302,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 在下面的伪代码中，假定 C 是一个 n 个字符的集合，而其中每个字符 c ∈ C 都是一个对象，其属性 c.freq 表示字符出现的频率，算法自底向上构造出对应最优编码的二叉树。算法使用一个以 freq 为关键字的<a href="堆排序和优先队列.html">优先队列</a>Q，以识别两个最低频率的对象将其合并，从|C|个叶结点开始，执行|C|-1 个合并构造出最终的二叉树。
 </p>
 
-<pre class="example">
+<pre class="example" id="orgdaca001">
     n = |C|
     Q = C
     for i = 1 to n - 1
@@ -329,9 +327,9 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 </div>
 
-<div id="outline-container-orgaa3b6f5" class="outline-2">
-<h2 id="orgaa3b6f5">实现</h2>
-<div class="outline-text-2" id="text-orgaa3b6f5">
+<div id="outline-container-org8ae1f9c" class="outline-2">
+<h2 id="org8ae1f9c">实现</h2>
+<div class="outline-text-2" id="text-org8ae1f9c">
 <p>
 赫夫曼编码算法本身倒不算复杂，但是实现起来就有些麻烦了，因为使用混合使用了两种数据结构-&#x2013;&#x2014;优先队列和二叉树。用 C 语言使用<a href="堆排序和优先队列.html">算法导论第六章</a>中用数组实现的优先队列很难将赫夫曼编码实现。这一点亲身体验&#x2026;&#x2026;不过找到了一篇外国的关于<a href="http://nerdaholyc.com/a-simple-example-of-huffman-coding-on-a-string/">赫夫曼编码的文章</a>。
 </p>
@@ -366,7 +364,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

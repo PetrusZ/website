@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>《软件构建中的设计》读书笔记</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,86 +232,86 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5ec3285">前言</a></li>
-<li><a href="#org6bc79ea">1.设计中的挑战</a>
+<li><a href="#orgefd6326">前言</a></li>
+<li><a href="#org4035d2e">1.设计中的挑战</a>
 <ul>
-<li><a href="#org75ad635">设计是一个险恶的问题</a></li>
-<li><a href="#orgdb8efd5">设计是个了无章法的过程（即使它能得出清爽的成果）</a></li>
-<li><a href="#org4f61492">设计就是确定取舍和调整顺序的过程</a></li>
-<li><a href="#orgebdb8f8">设计是一个启发式过程</a></li>
-<li><a href="#orgfdaecef">设计是自然而然形成的</a></li>
+<li><a href="#org5f40d8e">设计是一个险恶的问题</a></li>
+<li><a href="#org1af9b2c">设计是个了无章法的过程（即使它能得出清爽的成果）</a></li>
+<li><a href="#orgd447c6a">设计就是确定取舍和调整顺序的过程</a></li>
+<li><a href="#orgf5099ae">设计是一个启发式过程</a></li>
+<li><a href="#org91b2033">设计是自然而然形成的</a></li>
 </ul>
 </li>
-<li><a href="#org62b9499">2.关键的设计概念</a>
+<li><a href="#org2bd6569">2.关键的设计概念</a>
 <ul>
-<li><a href="#orgae503f4">软件的首要技术使命：管理复杂度</a>
+<li><a href="#org7e86427">软件的首要技术使命：管理复杂度</a>
 <ul>
-<li><a href="#org17f2800">偶然的难题和本质的难题</a></li>
-<li><a href="#org473abd8">管理复杂度的重要性</a></li>
-<li><a href="#org5570cb2">如何应对复杂度</a></li>
+<li><a href="#org61d9300">偶然的难题和本质的难题</a></li>
+<li><a href="#orga6843f4">管理复杂度的重要性</a></li>
+<li><a href="#orga5084cd">如何应对复杂度</a></li>
 </ul>
 </li>
-<li><a href="#org40d28d1">理想的设计特征</a></li>
-<li><a href="#org24f4935">设计的层次</a>
+<li><a href="#orgd38ad59">理想的设计特征</a></li>
+<li><a href="#orgcb8b9f4">设计的层次</a>
 <ul>
-<li><a href="#org6fe1ee5">第一层：软件系统</a></li>
-<li><a href="#orgecfa4bc">第二层：分解为子系统或包</a></li>
-<li><a href="#org9a1489a">第三层：分解为类</a></li>
-<li><a href="#org77f4c93">第四层：分解成子程序</a></li>
-<li><a href="#org4841d03">第五层：子程序内部的设计</a></li>
+<li><a href="#org4a79b24">第一层：软件系统</a></li>
+<li><a href="#org31fc945">第二层：分解为子系统或包</a></li>
+<li><a href="#org91afddc">第三层：分解为类</a></li>
+<li><a href="#org70ed531">第四层：分解成子程序</a></li>
+<li><a href="#org4e6aca2">第五层：子程序内部的设计</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgaf0b577">3.设计构造块：启发是方法</a>
+<li><a href="#orgd85cad2">3.设计构造块：启发是方法</a>
 <ul>
-<li><a href="#org2820dac">找出现实世界中的对象</a></li>
-<li><a href="#orgcb43949">形成一致的抽象</a></li>
-<li><a href="#orgde83818">封装实现细节</a></li>
-<li><a href="#orgba1187b">当继承能简化设计时就继承</a></li>
-<li><a href="#org55c6e86">隐藏秘密（信息隐藏）</a>
+<li><a href="#org861b52a">找出现实世界中的对象</a></li>
+<li><a href="#org70f4225">形成一致的抽象</a></li>
+<li><a href="#org363db43">封装实现细节</a></li>
+<li><a href="#org923d0a5">当继承能简化设计时就继承</a></li>
+<li><a href="#orgfbdb504">隐藏秘密（信息隐藏）</a>
 <ul>
-<li><a href="#org6fc3317">两种秘密</a></li>
-<li><a href="#org4a2d782">信息隐藏的障碍</a></li>
-<li><a href="#orgb85c08d">信息隐藏的价值</a></li>
+<li><a href="#org9b9408c">两种秘密</a></li>
+<li><a href="#org6bd0e41">信息隐藏的障碍</a></li>
+<li><a href="#org56512c6">信息隐藏的价值</a></li>
 </ul>
 </li>
-<li><a href="#org7ad4a89">找出容易改变的区域</a>
+<li><a href="#org0a477b1">找出容易改变的区域</a>
 <ul>
-<li><a href="#orgc67acd0">预料不同程度的变化</a></li>
+<li><a href="#org2912d93">预料不同程度的变化</a></li>
 </ul>
 </li>
-<li><a href="#orgc3da8af">保持松散耦合</a></li>
-<li><a href="#org43d734d">查阅常用的设计模式</a></li>
-<li><a href="#org9507761">关于设计启发的总结</a></li>
-<li><a href="#org675dcb0">使用启发式方法的原则</a></li>
+<li><a href="#org2e9fd04">保持松散耦合</a></li>
+<li><a href="#orgb342e86">查阅常用的设计模式</a></li>
+<li><a href="#org644e18f">关于设计启发的总结</a></li>
+<li><a href="#org3ab9dc1">使用启发式方法的原则</a></li>
 </ul>
 </li>
-<li><a href="#orgbbc8148">4.设计实践</a>
+<li><a href="#org3e2c973">4.设计实践</a>
 <ul>
-<li><a href="#orgc7bf4dc">迭代</a></li>
-<li><a href="#orgc1e34b0">分而治之</a></li>
-<li><a href="#orgd011557">自上而下和自下而上的设计方法</a>
+<li><a href="#orgc0df88e">迭代</a></li>
+<li><a href="#orged97136">分而治之</a></li>
+<li><a href="#org0fbebf5">自上而下和自下而上的设计方法</a>
 <ul>
-<li><a href="#org6a4806c">自上而下的论据</a></li>
-<li><a href="#orgeca36af">自下而上的论据</a></li>
-<li><a href="#org2fc2d60">其实并没有争议</a></li>
+<li><a href="#org278e650">自上而下的论据</a></li>
+<li><a href="#org6d94417">自下而上的论据</a></li>
+<li><a href="#org80e0944">其实并没有争议</a></li>
 </ul>
 </li>
-<li><a href="#org4d75856">建立实验性原型</a></li>
-<li><a href="#org0a91935">合作设计</a></li>
-<li><a href="#org1d91d16">要做多少设计才够</a></li>
-<li><a href="#orgb7f3880">记录你的设计成果</a></li>
-<li><a href="#org5ec61ee">对流行的设计方法的评论</a></li>
+<li><a href="#orga6fcf4f">建立实验性原型</a></li>
+<li><a href="#orgc894e06">合作设计</a></li>
+<li><a href="#org197e51d">要做多少设计才够</a></li>
+<li><a href="#org2dc14d8">记录你的设计成果</a></li>
+<li><a href="#orgafec505">对流行的设计方法的评论</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5ec3285" class="outline-2">
-<h2 id="org5ec3285">前言</h2>
-<div class="outline-text-2" id="text-org5ec3285">
+<div id="outline-container-orgefd6326" class="outline-2">
+<h2 id="orgefd6326">前言</h2>
+<div class="outline-text-2" id="text-orgefd6326">
 <p>
 一年左右没有写过新文章了，一方面是因为工作太忙，平时还得看书什么的，抽不出时间来写博客，另一方面也有些不知道该些什么，当然也有自己偷懒的原因
 </p>
@@ -326,9 +324,9 @@
 </div>
 </div>
 
-<div id="outline-container-org6bc79ea" class="outline-2">
-<h2 id="org6bc79ea">1.设计中的挑战</h2>
-<div class="outline-text-2" id="text-org6bc79ea">
+<div id="outline-container-org4035d2e" class="outline-2">
+<h2 id="org4035d2e">1.设计中的挑战</h2>
+<div class="outline-text-2" id="text-org4035d2e">
 <p>
 <b>好的高层次设计能提供一个可以稳妥容纳多个较低层次设计的结构。</b>
 </p>
@@ -338,18 +336,18 @@
 </p>
 </div>
 
-<div id="outline-container-org75ad635" class="outline-3">
-<h3 id="org75ad635">设计是一个险恶的问题</h3>
-<div class="outline-text-3" id="text-org75ad635">
+<div id="outline-container-org5f40d8e" class="outline-3">
+<h3 id="org5f40d8e">设计是一个险恶的问题</h3>
+<div class="outline-text-3" id="text-org5f40d8e">
 <p>
 然后设计却是一个险恶的问题，这与我们的目标似乎有所冲突。这里“险恶的”定义是那种只有通过解决或部分解决才能被明确的问题。这个看似矛盾的定义其实是在暗示说，你必须首先把这个问题“解决”一遍以便能够明显地定义它，然后再次解决该问题，从而形成一个可行的方案。这一过程已经已经如影随形地在软件开发中存在数十年了。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdb8efd5" class="outline-3">
-<h3 id="orgdb8efd5">设计是个了无章法的过程（即使它能得出清爽的成果）</h3>
-<div class="outline-text-3" id="text-orgdb8efd5">
+<div id="outline-container-org1af9b2c" class="outline-3">
+<h3 id="org1af9b2c">设计是个了无章法的过程（即使它能得出清爽的成果）</h3>
+<div class="outline-text-3" id="text-org1af9b2c">
 <p>
 软件设计的成果应该是组织良好、干净利落的，然而形成这个设计的过程却并非如此清爽。
 </p>
@@ -360,27 +358,27 @@
 </div>
 </div>
 
-<div id="outline-container-org4f61492" class="outline-3">
-<h3 id="org4f61492">设计就是确定取舍和调整顺序的过程</h3>
-<div class="outline-text-3" id="text-org4f61492">
+<div id="outline-container-orgd447c6a" class="outline-3">
+<h3 id="orgd447c6a">设计就是确定取舍和调整顺序的过程</h3>
+<div class="outline-text-3" id="text-orgd447c6a">
 <p>
 如果我们在一个理想的世界中，所有资源都是无限的，那么我们就不用去设计。然而正是因为我们的世界是有限的，才会在诸多的限制中，不断的确定取舍和调整顺序，探索更加优秀的设计方案。虽然设计充满了不确定性，每人都可能会完成一套截然不同的设计。但我们都会促成简单的方案，并最终改善这一解决方案。软件设计的目标也如此。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgebdb8f8" class="outline-3">
-<h3 id="orgebdb8f8">设计是一个启发式过程</h3>
-<div class="outline-text-3" id="text-orgebdb8f8">
+<div id="outline-container-orgf5099ae" class="outline-3">
+<h3 id="orgf5099ae">设计是一个启发式过程</h3>
+<div class="outline-text-3" id="text-orgf5099ae">
 <p>
 正因为设计过程充满不确定性，因此设计技术也就趋于具体探索性——经验法则”或者“试试没准能行的办法”——而不是保证能产生预期结果的可重复的过程。设计过程中总会有试验和犯错误。在一件工作或一件工作的某个方面十分奏效的设计工具或技术，不一定在下一个项目中适用。没有任何工具是用之四海而皆灵的。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfdaecef" class="outline-3">
-<h3 id="orgfdaecef">设计是自然而然形成的</h3>
-<div class="outline-text-3" id="text-orgfdaecef">
+<div id="outline-container-org91b2033" class="outline-3">
+<h3 id="org91b2033">设计是自然而然形成的</h3>
+<div class="outline-text-3" id="text-org91b2033">
 <p>
 把设计的这些特征综合归纳起来，我们可以说设计是“自然而然形成的”。设计不是在谁的头脑中直接跳出来的。它是在不断的设计评估、非正式讨论、写试验代码以及修改试验代码中演化和完善的。
 </p>
@@ -390,21 +388,21 @@
 </div>
 </div>
 
-<div id="outline-container-org62b9499" class="outline-2">
-<h2 id="org62b9499">2.关键的设计概念</h2>
-<div class="outline-text-2" id="text-org62b9499">
+<div id="outline-container-org2bd6569" class="outline-2">
+<h2 id="org2bd6569">2.关键的设计概念</h2>
+<div class="outline-text-2" id="text-org2bd6569">
 <p>
 好的设计源于对一小批关键设计概念的理解，比如复杂度，设计应有的特征和设计的层次。
 </p>
 </div>
 
-<div id="outline-container-orgae503f4" class="outline-3">
-<h3 id="orgae503f4">软件的首要技术使命：管理复杂度</h3>
-<div class="outline-text-3" id="text-orgae503f4">
+<div id="outline-container-org7e86427" class="outline-3">
+<h3 id="org7e86427">软件的首要技术使命：管理复杂度</h3>
+<div class="outline-text-3" id="text-org7e86427">
 </div>
-<div id="outline-container-org17f2800" class="outline-4">
-<h4 id="org17f2800">偶然的难题和本质的难题</h4>
-<div class="outline-text-4" id="text-org17f2800">
+<div id="outline-container-org61d9300" class="outline-4">
+<h4 id="org61d9300">偶然的难题和本质的难题</h4>
+<div class="outline-text-4" id="text-org61d9300">
 <p>
 Brooks 认为，两类不同的问题导致软件开发变得困难——本质的问题和偶然的问题。
 </p>
@@ -427,9 +425,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org473abd8" class="outline-4">
-<h4 id="org473abd8">管理复杂度的重要性</h4>
-<div class="outline-text-4" id="text-org473abd8">
+<div id="outline-container-orga6843f4" class="outline-4">
+<h4 id="orga6843f4">管理复杂度的重要性</h4>
+<div class="outline-text-4" id="text-orga6843f4">
 <p>
 <i>有两种设计软件的方式：一种方法是让设计非常简单，看上去明显没有缺陷；另一种方法是让设计非常复杂，看上去没有明显的缺陷。
 -&#x2013;&#x2014;C.A.R Hoare</i>
@@ -453,9 +451,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org5570cb2" class="outline-4">
-<h4 id="org5570cb2">如何应对复杂度</h4>
-<div class="outline-text-4" id="text-org5570cb2">
+<div id="outline-container-orga5084cd" class="outline-4">
+<h4 id="orga5084cd">如何应对复杂度</h4>
+<div class="outline-text-4" id="text-orga5084cd">
 <p>
 高代价、低效率的设计源于下面三种根源：
 </p>
@@ -482,9 +480,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org40d28d1" class="outline-3">
-<h3 id="org40d28d1">理想的设计特征</h3>
-<div class="outline-text-3" id="text-org40d28d1">
+<div id="outline-container-orgd38ad59" class="outline-3">
+<h3 id="orgd38ad59">理想的设计特征</h3>
+<div class="outline-text-3" id="text-orgd38ad59">
 <p>
 高质量的设计具有很多常见的特征。这些特征之间有时会相互抵触，但这也正是设计中的挑战所在——在一系列相互竞争的目标之中做出一套最好的折中方案。
 </p>
@@ -505,33 +503,33 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org24f4935" class="outline-3">
-<h3 id="org24f4935">设计的层次</h3>
-<div class="outline-text-3" id="text-org24f4935">
+<div id="outline-container-orgcb8b9f4" class="outline-3">
+<h3 id="orgcb8b9f4">设计的层次</h3>
+<div class="outline-text-3" id="text-orgcb8b9f4">
 <p>
 一个软件系统需要在不同细节层次上进行设计。有些设计技术适用于所有的层次，而有些只适用于某些层次上。
 </p>
 
 
-<div class="figure">
+<div id="org5e1d084" class="figure">
 <p><img src="../pics/Blog/design_level.jpg" alt="design_level.jpg">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>design_level</p>
 </div>
 </div>
 
-<div id="outline-container-org6fe1ee5" class="outline-4">
-<h4 id="org6fe1ee5">第一层：软件系统</h4>
-<div class="outline-text-4" id="text-org6fe1ee5">
+<div id="outline-container-org4a79b24" class="outline-4">
+<h4 id="org4a79b24">第一层：软件系统</h4>
+<div class="outline-text-4" id="text-org4a79b24">
 <p>
 第一个层次就是整个系统。有的程序员直接从系统层次就可以是设计类，但是往往先从子系统或者包这些类的更高组织层次来次思考会更有益处。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgecfa4bc" class="outline-4">
-<h4 id="orgecfa4bc">第二层：分解为子系统或包</h4>
-<div class="outline-text-4" id="text-orgecfa4bc">
+<div id="outline-container-org31fc945" class="outline-4">
+<h4 id="org31fc945">第二层：分解为子系统或包</h4>
+<div class="outline-text-4" id="text-org31fc945">
 <p>
 在这一层次上设计的主要成果是识别出所有的主要子系统。在这一层次中，有一点特别重要，即不同子系统之间互相通信的规则。如果所有的子系统都能同其他子系统通信，就完全失去了把它们分开所带来的好处。应该通过限制子系统之间的通信来让每个子系统更有存在意义。如果拿不准如何设计的话，那么就应该先对子系统之间的通信加以限制，等日后需要时再放松，这要比先不限制，等子系统之间已经有了上百个调用时再加以限制要容易得多。
 </p>
@@ -542,9 +540,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org9a1489a" class="outline-4">
-<h4 id="org9a1489a">第三层：分解为类</h4>
-<div class="outline-text-4" id="text-org9a1489a">
+<div id="outline-container-org91afddc" class="outline-4">
+<h4 id="org91afddc">第三层：分解为类</h4>
+<div class="outline-text-4" id="text-org91afddc">
 <p>
 在这一层次上的设计包括识别出系统中所有的类。其主要设计任务是把所有的子系统进行适当的分解，并确保分解出的细节都恰到好处，能够用单个的类实现。
 </p>
@@ -555,18 +553,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org77f4c93" class="outline-4">
-<h4 id="org77f4c93">第四层：分解成子程序</h4>
-<div class="outline-text-4" id="text-org77f4c93">
+<div id="outline-container-org70ed531" class="outline-4">
+<h4 id="org70ed531">第四层：分解成子程序</h4>
+<div class="outline-text-4" id="text-org70ed531">
 <p>
 这一层的设计包括把每个类细分为子程序。在第三层中定义出的类接口已经定义了其中一些子程序，而第四层的设计将细化出类的私用（private）子程序。完整定义出类内部的子程序，常常会有助于对类的接口进行进一步修改，也就是说再次返回第三层的设计。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4841d03" class="outline-4">
-<h4 id="org4841d03">第五层：子程序内部的设计</h4>
-<div class="outline-text-4" id="text-org4841d03">
+<div id="outline-container-org4e6aca2" class="outline-4">
+<h4 id="org4e6aca2">第五层：子程序内部的设计</h4>
+<div class="outline-text-4" id="text-org4e6aca2">
 <p>
 在子程序层次上进行设计就是为每个子程序布置详细的功能。这里的设计工作包括编写伪代码、选择算法、组织子程序内部的代码块，以及用编程语言编写代码。
 </p>
@@ -577,17 +575,17 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgaf0b577" class="outline-2">
-<h2 id="orgaf0b577">3.设计构造块：启发是方法</h2>
-<div class="outline-text-2" id="text-orgaf0b577">
+<div id="outline-container-orgd85cad2" class="outline-2">
+<h2 id="orgd85cad2">3.设计构造块：启发是方法</h2>
+<div class="outline-text-2" id="text-orgd85cad2">
 <p>
 由于软件设计是非确定性的，因此，灵活熟练地运用一组有效的启发式方法，便成了合理的软件设计的核心工作。
 </p>
 </div>
 
-<div id="outline-container-org2820dac" class="outline-3">
-<h3 id="org2820dac">找出现实世界中的对象</h3>
-<div class="outline-text-3" id="text-org2820dac">
+<div id="outline-container-org861b52a" class="outline-3">
+<h3 id="org861b52a">找出现实世界中的对象</h3>
+<div class="outline-text-3" id="text-org861b52a">
 <p>
 在确定设计方案时，首选且最流行的一种做法便是“常规的”面向对象设计方法，辨识现实世界中的对象（object，物体）以及人造的（synthetic）对象。
 </p>
@@ -610,44 +608,44 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgcb43949" class="outline-3">
-<h3 id="orgcb43949">形成一致的抽象</h3>
-<div class="outline-text-3" id="text-orgcb43949">
+<div id="outline-container-org70f4225" class="outline-3">
+<h3 id="org70f4225">形成一致的抽象</h3>
+<div class="outline-text-3" id="text-org70f4225">
 <p>
 抽象是一种能让你在关注某一概念的同时可以放心地忽略其中一些细节的能力——在不同的层次处理不同的细节。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgde83818" class="outline-3">
-<h3 id="orgde83818">封装实现细节</h3>
-<div class="outline-text-3" id="text-orgde83818">
+<div id="outline-container-org363db43" class="outline-3">
+<h3 id="org363db43">封装实现细节</h3>
+<div class="outline-text-3" id="text-org363db43">
 <p>
 封装填补了抽象留下的空白。抽象是说：“可以让你从高层的细节来看待一个对象。”而封装则说：“除此之外，你不能看到对象的任何其他细节层次。”
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgba1187b" class="outline-3">
-<h3 id="orgba1187b">当继承能简化设计时就继承</h3>
-<div class="outline-text-3" id="text-orgba1187b">
+<div id="outline-container-org923d0a5" class="outline-3">
+<h3 id="org923d0a5">当继承能简化设计时就继承</h3>
+<div class="outline-text-3" id="text-org923d0a5">
 <p>
 定义对象之间的相同点和不同点就叫“继承”。继承的好处在于它能很好地辅佐抽象的概念，同时继承还能简化编程的工作。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org55c6e86" class="outline-3">
-<h3 id="org55c6e86">隐藏秘密（信息隐藏）</h3>
-<div class="outline-text-3" id="text-org55c6e86">
+<div id="outline-container-orgfbdb504" class="outline-3">
+<h3 id="orgfbdb504">隐藏秘密（信息隐藏）</h3>
+<div class="outline-text-3" id="text-orgfbdb504">
 <p>
 信息隐藏是结构化程序设计与面向对象设计的基础之一。在设计一个类的时候，一项关键性的决策就是确定类的哪些特性应该对外可见，而哪些特性应该隐藏起来。隐藏设计决策对于减少“改动所影响的代码量”而言是至关重要的。
 </p>
 </div>
 
-<div id="outline-container-org6fc3317" class="outline-4">
-<h4 id="org6fc3317">两种秘密</h4>
-<div class="outline-text-4" id="text-org6fc3317">
+<div id="outline-container-org9b9408c" class="outline-4">
+<h4 id="org9b9408c">两种秘密</h4>
+<div class="outline-text-4" id="text-org9b9408c">
 <p>
 信息隐藏中所说的秘密主要分为两大类：
 </p>
@@ -659,9 +657,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org4a2d782" class="outline-4">
-<h4 id="org4a2d782">信息隐藏的障碍</h4>
-<div class="outline-text-4" id="text-org4a2d782">
+<div id="outline-container-org6bd0e41" class="outline-4">
+<h4 id="org6bd0e41">信息隐藏的障碍</h4>
+<div class="outline-text-4" id="text-org6bd0e41">
 <ul class="org-ul">
 <li>信息过度分散</li>
 
@@ -674,9 +672,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgb85c08d" class="outline-4">
-<h4 id="orgb85c08d">信息隐藏的价值</h4>
-<div class="outline-text-4" id="text-orgb85c08d">
+<div id="outline-container-org56512c6" class="outline-4">
+<h4 id="org56512c6">信息隐藏的价值</h4>
+<div class="outline-text-4" id="text-org56512c6">
 <p>
 信息隐藏有着独特的启发力，它能够激发出有效的设计方案。在设计的所有层面上，都可以通过询问该隐藏些什么来促成好的设计决策。这一问题可以在构建层面上协助你用具名常量来取代字面量，可以在类的内部生成好的子程序和参数名称，还有助于指导在系统层面上做出有关类和子系统分解以及交互设计的决策。
 </p>
@@ -688,9 +686,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org7ad4a89" class="outline-3">
-<h3 id="org7ad4a89">找出容易改变的区域</h3>
-<div class="outline-text-3" id="text-org7ad4a89">
+<div id="outline-container-org0a477b1" class="outline-3">
+<h3 id="org0a477b1">找出容易改变的区域</h3>
+<div class="outline-text-3" id="text-org0a477b1">
 <p>
 好的程序设计所面临的最重要的挑战之一就是适应变化。目标应该是把不稳定的区域隔离出来，从而把变化所带来的影响限制在一个子程序、类或者包的内部。下面是面对各种变动时应该采取的措施：
 </p>
@@ -706,9 +704,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </p>
 </div>
 
-<div id="outline-container-orgc67acd0" class="outline-4">
-<h4 id="orgc67acd0">预料不同程度的变化</h4>
-<div class="outline-text-4" id="text-orgc67acd0">
+<div id="outline-container-org2912d93" class="outline-4">
+<h4 id="org2912d93">预料不同程度的变化</h4>
+<div class="outline-text-4" id="text-org2912d93">
 <p>
 找出容易发生变化的区域的一个好办法是：首先找出程序中可能对用户有用的最小子集。这一子集构成了系统的核心，不容易发生改变。接下来，用微小的步伐扩充这个系统。这里的增量可以非常微小，小到看似微不足道。当你考虑功能上的改变时，同时也要考虑质的变化：比如说让程序变成线性安全的，使程序能够本地化等。这些潜在的改进区域就构成了系统中的潜在变化。依照信息隐藏的原则来设计这些区域。通过首先定义清楚核心，你可以认清哪些组件属于附加功能，这时就可以把它们提取出来，并把它们的可能改进隐藏起来。
 </p>
@@ -716,18 +714,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgc3da8af" class="outline-3">
-<h3 id="orgc3da8af">保持松散耦合</h3>
-<div class="outline-text-3" id="text-orgc3da8af">
+<div id="outline-container-org2e9fd04" class="outline-3">
+<h3 id="org2e9fd04">保持松散耦合</h3>
+<div class="outline-text-3" id="text-org2e9fd04">
 <p>
 一个模块越容易被其他模块所调用，那么它们之间的耦合关系就会越松散。这种设计非常不错，因此它更灵活，并且更易于维护。因此，在创建系统架构时，请按照“尽可能缩减互相连接”的准则来分解程序。如果把程序看做是一块木材，那么就请延着木材的纹理把它劈开。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org43d734d" class="outline-3">
-<h3 id="org43d734d">查阅常用的设计模式</h3>
-<div class="outline-text-3" id="text-org43d734d">
+<div id="outline-container-orgb342e86" class="outline-3">
+<h3 id="orgb342e86">查阅常用的设计模式</h3>
+<div class="outline-text-3" id="text-orgb342e86">
 <p>
 设计模式精炼了众多现成的解决方案，可用于解决很多软件开发中最常见的问题。有些软件问题要求全新的解决方案，但是大多数问题都和过去遇到过的问题类似，因此可以使用类似的解决方案或者模式加以解决。常见的设计模式包括：适配器、桥接、装饰器、外观、工厂方法、观察者、单件、策略以及模板方法。《设计模式》一书是讲述设计模式的最权威著作。
 </p>
@@ -745,9 +743,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org9507761" class="outline-3">
-<h3 id="org9507761">关于设计启发的总结</h3>
-<div class="outline-text-3" id="text-org9507761">
+<div id="outline-container-org644e18f" class="outline-3">
+<h3 id="org644e18f">关于设计启发的总结</h3>
+<div class="outline-text-3" id="text-org644e18f">
 <p>
 下面是对主要的设计中的启发式方法的总结：
 </p>
@@ -783,9 +781,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org675dcb0" class="outline-3">
-<h3 id="org675dcb0">使用启发式方法的原则</h3>
-<div class="outline-text-3" id="text-org675dcb0">
+<div id="outline-container-org3ab9dc1" class="outline-3">
+<h3 id="org3ab9dc1">使用启发式方法的原则</h3>
+<div class="outline-text-3" id="text-org3ab9dc1">
 <ol class="org-ol">
 <li>理解问题。</li>
 <li>设计一个计划。找出现有数据和未知量之间的联系。如果找不出居中的联系，那么可能还得考虑些辅助性的问题。</li>
@@ -798,13 +796,13 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgbbc8148" class="outline-2">
-<h2 id="orgbbc8148">4.设计实践</h2>
-<div class="outline-text-2" id="text-orgbbc8148">
+<div id="outline-container-org3e2c973" class="outline-2">
+<h2 id="org3e2c973">4.设计实践</h2>
+<div class="outline-text-2" id="text-org3e2c973">
 </div>
-<div id="outline-container-orgc7bf4dc" class="outline-3">
-<h3 id="orgc7bf4dc">迭代</h3>
-<div class="outline-text-3" id="text-orgc7bf4dc">
+<div id="outline-container-orgc0df88e" class="outline-3">
+<h3 id="orgc0df88e">迭代</h3>
+<div class="outline-text-3" id="text-orgc0df88e">
 <p>
 设计是一种迭代过程。你并非只能从 A 点进行到 B 点，而是可以从 A 点到达 B 点，再从 B 点返回到 A 点。
 </p>
@@ -815,18 +813,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-orgc1e34b0" class="outline-3">
-<h3 id="orgc1e34b0">分而治之</h3>
-<div class="outline-text-3" id="text-orgc1e34b0">
+<div id="outline-container-orged97136" class="outline-3">
+<h3 id="orged97136">分而治之</h3>
+<div class="outline-text-3" id="text-orged97136">
 <p>
 没有人的头脑能大到装得下一个复杂程序的全部细节，这对设计也同样有效。把程序分解为不同的关注区域，然后分别处理没一个区域。如果你在某个区域里碰上了死胡同，那么就迭代！
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd011557" class="outline-3">
-<h3 id="orgd011557">自上而下和自下而上的设计方法</h3>
-<div class="outline-text-3" id="text-orgd011557">
+<div id="outline-container-org0fbebf5" class="outline-3">
+<h3 id="org0fbebf5">自上而下和自下而上的设计方法</h3>
+<div class="outline-text-3" id="text-org0fbebf5">
 <p>
 自上而下的设计从某个很高的抽象层次开始。你定义出基类或其他不那么特殊的设计元素。在开发这一设计的过程中，你逐渐增加细节的层次，找出派生类、合作类以及其他更细节的设计元素。
 </p>
@@ -836,18 +834,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </p>
 </div>
 
-<div id="outline-container-org6a4806c" class="outline-4">
-<h4 id="org6a4806c">自上而下的论据</h4>
-<div class="outline-text-4" id="text-org6a4806c">
+<div id="outline-container-org278e650" class="outline-4">
+<h4 id="org278e650">自上而下的论据</h4>
+<div class="outline-text-4" id="text-org278e650">
 <p>
 居于自上而下方法背后的指导原则是这样的一种观点：人的大脑在同一时间只能集中关注一定量的细节。如果你从一般的类出发，一步步地把它们分解成为更具体的类，你的大脑就不会被迫同时处理过多的细节。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgeca36af" class="outline-4">
-<h4 id="orgeca36af">自下而上的论据</h4>
-<div class="outline-text-4" id="text-orgeca36af">
+<div id="outline-container-org6d94417" class="outline-4">
+<h4 id="org6d94417">自下而上的论据</h4>
+<div class="outline-text-4" id="text-org6d94417">
 <p>
 有时候自上而下的方法会显得过于抽象，很难入手去做。如果你倾向于用一种更实在的方法，那么可以尝试自下而上的方法。
 </p>
@@ -865,9 +863,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org2fc2d60" class="outline-4">
-<h4 id="org2fc2d60">其实并没有争议</h4>
-<div class="outline-text-4" id="text-org2fc2d60">
+<div id="outline-container-org80e0944" class="outline-4">
+<h4 id="org80e0944">其实并没有争议</h4>
+<div class="outline-text-4" id="text-org80e0944">
 <p>
 自下而上策略和自下而上策略的最关键区别在于，前者是一种分解策略而后者是一种合成策略。前者从一般性的问题除法，把问题分解成可控的部分。后者从可控的部分除法，去构造一个通用的方案。这两种方案都有各自的强项和弱项，如果你想在设计中采用它们的时候，就需要予以考虑。
 </p>
@@ -875,18 +873,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org4d75856" class="outline-3">
-<h3 id="org4d75856">建立实验性原型</h3>
-<div class="outline-text-3" id="text-org4d75856">
+<div id="outline-container-orga6fcf4f" class="outline-3">
+<h3 id="orga6fcf4f">建立实验性原型</h3>
+<div class="outline-text-3" id="text-orga6fcf4f">
 <p>
 使用与产品代码不同的技术，编写最少的代码，完成设计的实验性原型，以低廉的成本解决设计中本质性“险恶”的难题。一旦回答了所提出的问题，就抛弃原型代码，将风险减少到最小。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0a91935" class="outline-3">
-<h3 id="org0a91935">合作设计</h3>
-<div class="outline-text-3" id="text-org0a91935">
+<div id="outline-container-orgc894e06" class="outline-3">
+<h3 id="orgc894e06">合作设计</h3>
+<div class="outline-text-3" id="text-orgc894e06">
 <p>
 在设计过程中，三个臭皮匠顶得上一个诸葛亮。
 </p>
@@ -903,18 +901,18 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org1d91d16" class="outline-3">
-<h3 id="org1d91d16">要做多少设计才够</h3>
-<div class="outline-text-3" id="text-org1d91d16">
+<div id="outline-container-org197e51d" class="outline-3">
+<h3 id="org197e51d">要做多少设计才够</h3>
+<div class="outline-text-3" id="text-org197e51d">
 <p>
 如果在编码之前还判断不了应该在做多深入的设计，那么宁愿去做更详细的设计。最大的设计失误来自于我误认为自己已经做得很充分，可事后却发现还是做得不够，没能发现其他一些设计挑战。换句话说，最大的设计问题通常不是来自于那些我认为是很困难的，并且在其中做出了很不好的设计的区域；而是来自于那些我认为是简单的，而没有做出任何设计的区域。我几乎没有遇到过因为做了太多设计而受损害的项目。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb7f3880" class="outline-3">
-<h3 id="orgb7f3880">记录你的设计成果</h3>
-<div class="outline-text-3" id="text-orgb7f3880">
+<div id="outline-container-org2dc14d8" class="outline-3">
+<h3 id="org2dc14d8">记录你的设计成果</h3>
+<div class="outline-text-3" id="text-org2dc14d8">
 <ul class="org-ul">
 <li>把设计文档插入到代码里</li>
 <li>用 Wiki 来记录设计讨论和决策</li>
@@ -927,9 +925,9 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 </div>
 
-<div id="outline-container-org5ec61ee" class="outline-3">
-<h3 id="org5ec61ee">对流行的设计方法的评论</h3>
-<div class="outline-text-3" id="text-org5ec61ee">
+<div id="outline-container-orgafec505" class="outline-3">
+<h3 id="orgafec505">对流行的设计方法的评论</h3>
+<div class="outline-text-3" id="text-orgafec505">
 <p>
 正如 P.J. Plauger 所言，“你在应用某种设计方法时越教条化，你所能解决的现实问题就会越少”。请把设计看成是一个险恶的、杂乱的和启发式的过程。不要停留于你所想到的第一套解决方案，而是去寻求合作，探求简洁性，在需要的时候做出原型，迭代，并进一步迭代。你将对自己的设计成果感到满意。
 </p>
@@ -939,7 +937,7 @@ Brooks 认为，两类不同的问题导致软件开发变得困难——本质�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

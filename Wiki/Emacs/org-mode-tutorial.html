@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-mode教程</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
-<meta name="description" content="org-mode 简易/基本教程"
->
+<meta name="author" content="Petrus.Z" />
+<meta name="description" content="org-mode 简易/基本教程" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -40,7 +39,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -52,7 +51,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -201,25 +200,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -236,58 +233,58 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgda06506">快捷键</a></li>
-<li><a href="#org07d9671">Evil 快捷键</a></li>
-<li><a href="#orgc1c338a">标题一</a>
+<li><a href="#org953809d">快捷键</a></li>
+<li><a href="#orge28ea0a">Evil 快捷键</a></li>
+<li><a href="#orgf556d73">标题一</a>
 <ul>
-<li><a href="#org3393fba">标题二</a></li>
+<li><a href="#org84e09df">标题二</a></li>
 </ul>
 </li>
-<li><a href="#org23ddd64">列表</a></li>
-<li><a href="#org05e8c0f">checkbox</a></li>
-<li><a href="#org8ca1817">表格</a></li>
-<li><a href="#org9f5879f">脚注</a></li>
-<li><a href="#org85c6351">链接</a></li>
-<li><a href="#orga4ffcf4">TODO</a>
+<li><a href="#orgbff8995">列表</a></li>
+<li><a href="#orgfe2ddf5">checkbox</a></li>
+<li><a href="#org9730833">表格</a></li>
+<li><a href="#orgc319679">脚注</a></li>
+<li><a href="#orgec63118">链接</a></li>
+<li><a href="#org855c09e">TODO</a>
 <ul>
-<li><a href="#orgc7e520d"><span class="todo TODO">TODO</span> 洗衣服</a></li>
-<li><a href="#org3a1c04e"><span class="todo TODO">TODO</span> 任务 1</a></li>
-<li><a href="#orge044bd3"><span class="todo TODO">TODO</span> 任务 2</a></li>
-<li><a href="#orgcbddb6d"><span class="todo TODO">TODO</span> 总任务 <code>[33%]</code></a>
+<li><a href="#org69f5486"><span class="todo TODO">TODO</span> 洗衣服</a></li>
+<li><a href="#org68ed35f"><span class="todo TODO">TODO</span> 任务 1</a></li>
+<li><a href="#org0bd1041"><span class="todo TODO">TODO</span> 任务 2</a></li>
+<li><a href="#org75a25ac"><span class="todo TODO">TODO</span> 总任务 <code>[33%]</code></a>
 <ul>
-<li><a href="#orgde12127"><span class="todo TODO">TODO</span> 子任务 1</a></li>
-<li><a href="#org6daa363"><span class="todo TODO">TODO</span> 子任务 2 <code>[0%]</code></a></li>
-<li><a href="#org7ec446a"><span class="done DONE">DONE</span> 一已完成的任务</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org3284c6e">标签 Tags</a>
-<ul>
-<li><a href="#org7d5b1df">章标题&#xa0;&#xa0;&#xa0;<span class="tag"><span class="work">work</span>&#xa0;<span class="learn">learn</span></span></a>
-<ul>
-<li><a href="#org77ef156">节标题 1&#xa0;&#xa0;&#xa0;<span class="tag"><span class="fly">fly</span>&#xa0;<span class="plane">plane</span></span></a></li>
-<li><a href="#orgca10c3d">节标题 2&#xa0;&#xa0;&#xa0;<span class="tag"><span class="car">car</span>&#xa0;<span class="run">run</span></span></a></li>
+<li><a href="#org90a80bc"><span class="todo TODO">TODO</span> 子任务 1</a></li>
+<li><a href="#orgffa5372"><span class="todo TODO">TODO</span> 子任务 2 <code>[0%]</code></a></li>
+<li><a href="#orgd2c527d"><span class="done DONE">DONE</span> 一已完成的任务</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org9e841ae">时间</a>
+<li><a href="#org87004be">标签 Tags</a>
 <ul>
-<li><a href="#org24fe5f0"><span class="todo TODO">TODO</span> 洗衣服</a></li>
+<li><a href="#orgefd05bc">章标题&#xa0;&#xa0;&#xa0;<span class="tag"><span class="work">work</span>&#xa0;<span class="learn">learn</span></span></a>
+<ul>
+<li><a href="#orgd49cc6a">节标题 1&#xa0;&#xa0;&#xa0;<span class="tag"><span class="fly">fly</span>&#xa0;<span class="plane">plane</span></span></a></li>
+<li><a href="#orgc07a189">节标题 2&#xa0;&#xa0;&#xa0;<span class="tag"><span class="car">car</span>&#xa0;<span class="run">run</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org78cbf1d">特殊文本格式</a></li>
-<li><a href="#org3187804">富文本导出</a></li>
-<li><a href="#orgf5e072b">插入源代码</a></li>
-<li><a href="#org40c7c7b">导出</a></li>
+</ul>
+</li>
+<li><a href="#org615d2b6">时间</a>
+<ul>
+<li><a href="#org0cd71ec"><span class="todo TODO">TODO</span> 洗衣服</a></li>
+</ul>
+</li>
+<li><a href="#orgf25e816">特殊文本格式</a></li>
+<li><a href="#orgf5e7336">富文本导出</a></li>
+<li><a href="#org19a16e4">插入源代码</a></li>
+<li><a href="#orgc16dbc1">导出</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgda06506" class="outline-2">
-<h2 id="orgda06506">快捷键</h2>
-<div class="outline-text-2" id="text-orgda06506">
+<div id="outline-container-org953809d" class="outline-2">
+<h2 id="org953809d">快捷键</h2>
+<div class="outline-text-2" id="text-org953809d">
 <ul class="org-ul">
 <li>章节/标题
 <ul class="org-ul">
@@ -345,9 +342,9 @@
 </div>
 </div>
 
-<div id="outline-container-org07d9671" class="outline-2">
-<h2 id="org07d9671">Evil 快捷键</h2>
-<div class="outline-text-2" id="text-org07d9671">
+<div id="outline-container-orge28ea0a" class="outline-2">
+<h2 id="orge28ea0a">Evil 快捷键</h2>
+<div class="outline-text-2" id="text-orge28ea0a">
 <ul class="org-ul">
 <li>切换 TODO 状态: S-LEFT/RIGHT</li>
 <li>切换 TODO 状态 : SPC-m-t</li>
@@ -369,18 +366,18 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc1c338a" class="outline-2">
-<h2 id="orgc1c338a">标题一</h2>
-<div class="outline-text-2" id="text-orgc1c338a">
+<div id="outline-container-orgf556d73" class="outline-2">
+<h2 id="orgf556d73">标题一</h2>
+<div class="outline-text-2" id="text-orgf556d73">
 </div>
-<div id="outline-container-org3393fba" class="outline-3">
-<h3 id="org3393fba">标题二</h3>
+<div id="outline-container-org84e09df" class="outline-3">
+<h3 id="org84e09df">标题二</h3>
 </div>
 </div>
 
-<div id="outline-container-org23ddd64" class="outline-2">
-<h2 id="org23ddd64">列表</h2>
-<div class="outline-text-2" id="text-org23ddd64">
+<div id="outline-container-orgbff8995" class="outline-2">
+<h2 id="orgbff8995">列表</h2>
+<div class="outline-text-2" id="text-orgbff8995">
 <ul class="org-ul">
 <li>treerot
 <ul class="org-ul">
@@ -391,9 +388,9 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </div>
 </div>
 
-<div id="outline-container-org05e8c0f" class="outline-2">
-<h2 id="org05e8c0f">checkbox</h2>
-<div class="outline-text-2" id="text-org05e8c0f">
+<div id="outline-container-orgfe2ddf5" class="outline-2">
+<h2 id="orgfe2ddf5">checkbox</h2>
+<div class="outline-text-2" id="text-orgfe2ddf5">
 <ol class="org-ol">
 <li class="trans"><code>[-]</code> 任务 1 <code>[33%]</code>
 <ol class="org-ol">
@@ -406,9 +403,9 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </div>
 </div>
 
-<div id="outline-container-org8ca1817" class="outline-2">
-<h2 id="org8ca1817">表格</h2>
-<div class="outline-text-2" id="text-org8ca1817">
+<div id="outline-container-org9730833" class="outline-2">
+<h2 id="org9730833">表格</h2>
+<div class="outline-text-2" id="text-org9730833">
 <table>
 
 
@@ -461,18 +458,18 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </div>
 </div>
 
-<div id="outline-container-org9f5879f" class="outline-2">
-<h2 id="org9f5879f">脚注</h2>
-<div class="outline-text-2" id="text-org9f5879f">
+<div id="outline-container-orgc319679" class="outline-2">
+<h2 id="orgc319679">脚注</h2>
+<div class="outline-text-2" id="text-orgc319679">
 <p>
 用<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>的方式插入脚注，而在最下面插入。这个标签是可以点击的。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org85c6351" class="outline-2">
-<h2 id="org85c6351">链接</h2>
-<div class="outline-text-2" id="text-org85c6351">
+<div id="outline-container-orgec63118" class="outline-2">
+<h2 id="orgec63118">链接</h2>
+<div class="outline-text-2" id="text-orgec63118">
 <p>
 链接用于链接一些资源地址，如图片、文件、URL 等。链接的格式是：
 </p>
@@ -498,7 +495,7 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </p>
 
 
-<div class="figure">
+<div id="orgf5af081" class="figure">
 <p><img src="../../pics/Blog/design_level.jpg" alt="design_level.jpg">
 </p>
 </div>
@@ -513,39 +510,39 @@ SHEDULED: <span class="timestamp-wrapper"><span class="timestamp">&lt;2020-02-10
 </div>
 </div>
 
-<div id="outline-container-orga4ffcf4" class="outline-2">
-<h2 id="orga4ffcf4">TODO</h2>
-<div class="outline-text-2" id="text-orga4ffcf4">
+<div id="outline-container-org855c09e" class="outline-2">
+<h2 id="org855c09e">TODO</h2>
+<div class="outline-text-2" id="text-org855c09e">
 <p>
 TODO 也是一类标题，因此也需要用`*`开头。
 </p>
 </div>
 
-<div id="outline-container-orgc7e520d" class="outline-3">
-<h3 id="orgc7e520d"><span class="todo TODO">TODO</span> 洗衣服</h3>
-<div class="outline-text-3" id="text-orgc7e520d">
+<div id="outline-container-org69f5486" class="outline-3">
+<h3 id="org69f5486"><span class="todo TODO">TODO</span> 洗衣服</h3>
+<div class="outline-text-3" id="text-org69f5486">
 <p>
 org-mode 兼有标题和列表的功能，也可以添加 checkbox 和完成进度，除此之外，还可以设计优先级。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3a1c04e" class="outline-3">
-<h3 id="org3a1c04e"><span class="todo TODO">TODO</span> 任务 1</h3>
+<div id="outline-container-org68ed35f" class="outline-3">
+<h3 id="org68ed35f"><span class="todo TODO">TODO</span> 任务 1</h3>
 </div>
-<div id="outline-container-orge044bd3" class="outline-3">
-<h3 id="orge044bd3"><span class="todo TODO">TODO</span> 任务 2</h3>
+<div id="outline-container-org0bd1041" class="outline-3">
+<h3 id="org0bd1041"><span class="todo TODO">TODO</span> 任务 2</h3>
 </div>
-<div id="outline-container-orgcbddb6d" class="outline-3">
-<h3 id="orgcbddb6d"><span class="todo TODO">TODO</span> 总任务 <code>[33%]</code></h3>
-<div class="outline-text-3" id="text-orgcbddb6d">
+<div id="outline-container-org75a25ac" class="outline-3">
+<h3 id="org75a25ac"><span class="todo TODO">TODO</span> 总任务 <code>[33%]</code></h3>
+<div class="outline-text-3" id="text-org75a25ac">
 </div>
-<div id="outline-container-orgde12127" class="outline-4">
-<h4 id="orgde12127"><span class="todo TODO">TODO</span> 子任务 1</h4>
+<div id="outline-container-org90a80bc" class="outline-4">
+<h4 id="org90a80bc"><span class="todo TODO">TODO</span> 子任务 1</h4>
 </div>
-<div id="outline-container-org6daa363" class="outline-4">
-<h4 id="org6daa363"><span class="todo TODO">TODO</span> 子任务 2 <code>[0%]</code></h4>
-<div class="outline-text-4" id="text-org6daa363">
+<div id="outline-container-orgffa5372" class="outline-4">
+<h4 id="orgffa5372"><span class="todo TODO">TODO</span> 子任务 2 <code>[0%]</code></h4>
+<div class="outline-text-4" id="text-orgffa5372">
 <ul class="org-ul">
 <li class="trans"><code>[-]</code> subsub1 <code>[1/2]</code>
 <ul class="org-ul">
@@ -555,42 +552,42 @@ org-mode 兼有标题和列表的功能，也可以添加 checkbox 和完成进�
 </ul>
 </div>
 </div>
-<div id="outline-container-org7ec446a" class="outline-4">
-<h4 id="org7ec446a"><span class="done DONE">DONE</span> 一已完成的任务</h4>
+<div id="outline-container-orgd2c527d" class="outline-4">
+<h4 id="orgd2c527d"><span class="done DONE">DONE</span> 一已完成的任务</h4>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3284c6e" class="outline-2">
-<h2 id="org3284c6e">标签 Tags</h2>
-<div class="outline-text-2" id="text-org3284c6e">
+<div id="outline-container-org87004be" class="outline-2">
+<h2 id="org87004be">标签 Tags</h2>
+<div class="outline-text-2" id="text-org87004be">
 </div>
-<div id="outline-container-org7d5b1df" class="outline-3">
-<h3 id="org7d5b1df">章标题&#xa0;&#xa0;&#xa0;<span class="tag"><span class="work">work</span>&#xa0;<span class="learn">learn</span></span></h3>
-<div class="outline-text-3" id="text-org7d5b1df">
+<div id="outline-container-orgefd05bc" class="outline-3">
+<h3 id="orgefd05bc">章标题&#xa0;&#xa0;&#xa0;<span class="tag"><span class="work">work</span>&#xa0;<span class="learn">learn</span></span></h3>
+<div class="outline-text-3" id="text-orgefd05bc">
 </div>
-<div id="outline-container-org77ef156" class="outline-4">
-<h4 id="org77ef156">节标题 1&#xa0;&#xa0;&#xa0;<span class="tag"><span class="fly">fly</span>&#xa0;<span class="plane">plane</span></span></h4>
+<div id="outline-container-orgd49cc6a" class="outline-4">
+<h4 id="orgd49cc6a">节标题 1&#xa0;&#xa0;&#xa0;<span class="tag"><span class="fly">fly</span>&#xa0;<span class="plane">plane</span></span></h4>
 </div>
-<div id="outline-container-orgca10c3d" class="outline-4">
-<h4 id="orgca10c3d">节标题 2&#xa0;&#xa0;&#xa0;<span class="tag"><span class="car">car</span>&#xa0;<span class="run">run</span></span></h4>
+<div id="outline-container-orgc07a189" class="outline-4">
+<h4 id="orgc07a189">节标题 2&#xa0;&#xa0;&#xa0;<span class="tag"><span class="car">car</span>&#xa0;<span class="run">run</span></span></h4>
 </div>
 </div>
 </div>
-<div id="outline-container-org9e841ae" class="outline-2">
-<h2 id="org9e841ae">时间</h2>
-<div class="outline-text-2" id="text-org9e841ae">
+<div id="outline-container-org615d2b6" class="outline-2">
+<h2 id="org615d2b6">时间</h2>
+<div class="outline-text-2" id="text-org615d2b6">
 </div>
 
-<div id="outline-container-org24fe5f0" class="outline-3">
-<h3 id="org24fe5f0"><span class="todo TODO">TODO</span> 洗衣服</h3>
-<div class="outline-text-3" id="text-org24fe5f0">
+<div id="outline-container-org0cd71ec" class="outline-3">
+<h3 id="org0cd71ec"><span class="todo TODO">TODO</span> 洗衣服</h3>
+<div class="outline-text-3" id="text-org0cd71ec">
 </div>
 </div>
 </div>
-<div id="outline-container-org78cbf1d" class="outline-2">
-<h2 id="org78cbf1d">特殊文本格式</h2>
-<div class="outline-text-2" id="text-org78cbf1d">
+<div id="outline-container-orgf25e816" class="outline-2">
+<h2 id="orgf25e816">特殊文本格式</h2>
+<div class="outline-text-2" id="text-orgf25e816">
 <p>
 <b>bold</b>
 </p>
@@ -616,9 +613,9 @@ org-mode 兼有标题和列表的功能，也可以添加 checkbox 和完成进�
 </p>
 </div>
 </div>
-<div id="outline-container-org3187804" class="outline-2">
-<h2 id="org3187804">富文本导出</h2>
-<div class="outline-text-2" id="text-org3187804">
+<div id="outline-container-orgf5e7336" class="outline-2">
+<h2 id="orgf5e7336">富文本导出</h2>
+<div class="outline-text-2" id="text-orgf5e7336">
 <p>
 org-mode 可以在导出时加入一些说明符号，来制定导出选项，常用导出符号如下：
 </p>
@@ -627,7 +624,7 @@ org-mode 可以在导出时加入一些说明符号，来制定导出选项，�
 设置标题和目录：
 </p>
 
-<pre class="example">
+<pre class="example" id="orgd44cfcc">
 #+TITILE: This is the title of document
 #+OPTIONS: toc:2 (only to two levels in TOC)
 #+OPTIONS: toc:nil (no TOC at all)
@@ -658,7 +655,7 @@ Everything should be made as simple as possbile, but no any simpler
 设置样例（在这里面的内容将会直接输出，不会被转义）：
 </p>
 
-<pre class="example">
+<pre class="example" id="org6d21e7d">
 这里面的字符不会被转义
 </pre>
 
@@ -676,14 +673,14 @@ org-mode 支持直接输入 LaTex，在导出后 LaTex 能被正确解释。
 </div>
 </div>
 
-<div id="outline-container-orgf5e072b" class="outline-2">
-<h2 id="orgf5e072b">插入源代码</h2>
-<div class="outline-text-2" id="text-orgf5e072b">
+<div id="outline-container-org19a16e4" class="outline-2">
+<h2 id="org19a16e4">插入源代码</h2>
+<div class="outline-text-2" id="text-org19a16e4">
 <p>
 org-mode 除了可以直接插入源代码之外，可以直接求出运行结果。在使用之前，需要在.emacs 配置文件中设置加载的运行语言：
 </p>
 
-<pre class="example">
+<pre class="example" id="org752ec87">
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
@@ -733,9 +730,9 @@ org-mode 除了可以直接插入源代码之外，可以直接求出运行结�
 </div>
 </div>
 
-<div id="outline-container-org40c7c7b" class="outline-2">
-<h2 id="org40c7c7b">导出</h2>
-<div class="outline-text-2" id="text-org40c7c7b">
+<div id="outline-container-orgc16dbc1" class="outline-2">
+<h2 id="orgc16dbc1">导出</h2>
+<div class="outline-text-2" id="text-orgc16dbc1">
 <p>
 org-mode 导出 pdf 需要 LaTeX 支持，导出 html 默认没有任何样式，org-mode 为每个模块都添加了 css 的标签，可以降现成的 css 文件直接加入，便能得道一个好看的输出样式了：
 </p>
@@ -744,7 +741,7 @@ org-mode 导出 pdf 需要 LaTeX 支持，导出 html 默认没有任何样式�
 在头部加入
 </p>
 
-<pre class="example">
+<pre class="example" id="org98af4b9">
 #+HTML_HEAD: &lt;link rel="stylesheet" type="text/css" href="style1.css" /&gt;
 </pre>
 
@@ -766,7 +763,7 @@ org-mode 导出 pdf 需要 LaTeX 支持，导出 html 默认没有任何样式�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

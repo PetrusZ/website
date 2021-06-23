@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ebuild_Manpage</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -256,75 +254,75 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb1ff530">NAME</a></li>
-<li><a href="#org502ef12">DESCRIPTION</a></li>
-<li><a href="#org715521b">Dependencies</a>
+<li><a href="#org67d1233">NAME</a></li>
+<li><a href="#org6d71a34">DESCRIPTION</a></li>
+<li><a href="#org489c52d">Dependencies</a>
 <ul>
-<li><a href="#org34f04af">Atom Base</a></li>
-<li><a href="#org4c59261">Atom Versions</a></li>
-<li><a href="#org1e07b36">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</a></li>
-<li><a href="#orgb615697">Extended Atom Prefixes [!~] and Postfixes [*]</a></li>
-<li><a href="#orgf84ee0c">Atom Slots</a></li>
-<li><a href="#orgbde0264">Sub Slots</a></li>
-<li><a href="#orgc618391">Atom Slot Operators</a></li>
-<li><a href="#orgbf74610">Atom USE</a></li>
-<li><a href="#org1a3d7bd">Atom USE defualts</a></li>
-<li><a href="#orgaf9d390">Dynamic Dependencies</a></li>
+<li><a href="#org8196c28">Atom Base</a></li>
+<li><a href="#org3642ca8">Atom Versions</a></li>
+<li><a href="#org3a97247">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</a></li>
+<li><a href="#orgfc83972">Extended Atom Prefixes [!~] and Postfixes [*]</a></li>
+<li><a href="#org4216bf4">Atom Slots</a></li>
+<li><a href="#orgae1ac5d">Sub Slots</a></li>
+<li><a href="#org759eaed">Atom Slot Operators</a></li>
+<li><a href="#org7fedf1c">Atom USE</a></li>
+<li><a href="#org90b0516">Atom USE defualts</a></li>
+<li><a href="#orgbb7ee85">Dynamic Dependencies</a></li>
 </ul>
 </li>
-<li><a href="#org37bc20e">Variable Usage Notes</a></li>
-<li><a href="#orgb746cd9">Variables Used In Ebuilds</a></li>
-<li><a href="#orgf5f6700">QA Control Variables:</a></li>
-<li><a href="#orge32beec">PORTAGE DECLARATIONS</a></li>
-<li><a href="#org549c7d1">PHASE FUNCTIONS</a></li>
-<li><a href="#org5c29beb">HELPER FUNCTIONS</a>
+<li><a href="#org5577162">Variable Usage Notes</a></li>
+<li><a href="#org40f9fcf">Variables Used In Ebuilds</a></li>
+<li><a href="#orgb8d73f0">QA Control Variables:</a></li>
+<li><a href="#org6b98835">PORTAGE DECLARATIONS</a></li>
+<li><a href="#orga2ca641">PHASE FUNCTIONS</a></li>
+<li><a href="#orgd8cf4fa">HELPER FUNCTIONS</a>
 <ul>
-<li><a href="#org16f16d5">Phase:</a></li>
-<li><a href="#org1142635">General:</a></li>
-<li><a href="#orgc5738bd">Output:</a></li>
-<li><a href="#org33847f9">Unpack</a></li>
-<li><a href="#org91dd204">Compile:</a></li>
-<li><a href="#org752c597">Install:</a></li>
+<li><a href="#org98a6c51">Phase:</a></li>
+<li><a href="#orgd23d838">General:</a></li>
+<li><a href="#orgae98bf3">Output:</a></li>
+<li><a href="#org135406d">Unpack</a></li>
+<li><a href="#org14b0629">Compile:</a></li>
+<li><a href="#orgb5b8207">Install:</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb1ff530" class="outline-2">
-<h2 id="orgb1ff530">NAME</h2>
-<div class="outline-text-2" id="text-orgb1ff530">
+<div id="outline-container-org67d1233" class="outline-2">
+<h2 id="org67d1233">NAME</h2>
+<div class="outline-text-2" id="text-org67d1233">
 <p>
 ebuild - 含有内部格式、变量和函数的 ebuild 脚本
 </p>
 </div>
 </div>
 
-<div id="outline-container-org502ef12" class="outline-2">
-<h2 id="org502ef12">DESCRIPTION</h2>
-<div class="outline-text-2" id="text-org502ef12">
+<div id="outline-container-org6d71a34" class="outline-2">
+<h2 id="org6d71a34">DESCRIPTION</h2>
+<div class="outline-text-2" id="text-org6d71a34">
 <p>
 ebuld 程序接受一个 ebuild 脚本作为参数。该脚本包含变量和指明如何从一个特别的软件源代码进行 download、unpack、patch、complile、install 和 merge 的命令。除了所有这些，ebuild 脚本还包含按要求进行 pre/post install/remove 命令。所有的 ebuild 脚本均以 bash 编写。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org715521b" class="outline-2">
-<h2 id="org715521b">Dependencies</h2>
-<div class="outline-text-2" id="text-org715521b">
+<div id="outline-container-org489c52d" class="outline-2">
+<h2 id="org489c52d">Dependencies</h2>
+<div class="outline-text-2" id="text-org489c52d">
 <p>
 一个依赖 <code>Atom</code> 是 portage 计算包之间关系的依赖基础。请注意，如果 atom 还没有被 merge，那么将匹配最新可用的版本。
 </p>
 </div>
 
-<div id="outline-container-org34f04af" class="outline-3">
-<h3 id="org34f04af">Atom Base</h3>
-<div class="outline-text-3" id="text-org34f04af">
+<div id="outline-container-org8196c28" class="outline-3">
+<h3 id="org8196c28">Atom Base</h3>
+<div class="outline-text-3" id="text-org8196c28">
 <p>
 Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catpkg"。
 </p>
 
-<pre class="example">
+<pre class="example" id="orgcae5907">
     sys-apps/sed
     sys-libs/zlib
     net-misc/dhcp
@@ -332,14 +330,14 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org4c59261" class="outline-3">
-<h3 id="org4c59261">Atom Versions</h3>
-<div class="outline-text-3" id="text-org4c59261">
+<div id="outline-container-org3642ca8" class="outline-3">
+<h3 id="org3642ca8">Atom Versions</h3>
+<div class="outline-text-3" id="text-org3642ca8">
 <p>
 更具体一点，使用包含特定版本的 atom 也是可以接受的。版本必须和前缀一起使用，所以可以将版本号作为后缀添加到 base 上。
 </p>
 
-<pre class="example">
+<pre class="example" id="org929f803">
     sys-apps/sed-4.0.5
     sys-libs/zlib-1.1.4-r1
     net-misc/dhcp-3.0_p2
@@ -351,14 +349,14 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org1e07b36" class="outline-3">
-<h3 id="org1e07b36">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</h3>
-<div class="outline-text-3" id="text-org1e07b36">
+<div id="outline-container-org3a97247" class="outline-3">
+<h3 id="org3a97247">Atom Prefix Operators [&gt; &gt;= = &lt;= &lt;]</h3>
+<div class="outline-text-3" id="text-org3a97247">
 <p>
 有时你可能希望依赖于一个大致的版本，而不是一直指定特定的版本。所以，这里还提供了标准的布尔运算符：
 </p>
 
-<pre class="example">
+<pre class="example" id="orgede27fd">
     &gt;media-libs/libgd-1.6
     &gt;=media-libs/libgd-1.6
     =media-libs/libgd-1.6
@@ -368,9 +366,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgb615697" class="outline-3">
-<h3 id="orgb615697">Extended Atom Prefixes [!~] and Postfixes [*]</h3>
-<div class="outline-text-3" id="text-orgb615697">
+<div id="outline-container-orgfc83972" class="outline-3">
+<h3 id="orgfc83972">Extended Atom Prefixes [!~] and Postfixes [*]</h3>
+<div class="outline-text-3" id="text-orgfc83972">
 <p>
 现在为了更加精巧，ebuild 还提供了定义屏蔽包和版本范围匹配的功能。另外，这些扩展的前缀和后缀可以和上面提到的 atom 类型以各种方式组合。
 </p>
@@ -422,7 +420,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 匹配基于指定的基础版本的任意版本软件包。=*=之前必须是有效的版本号。例如，=2=是有效的版本号，=2.=则不是，所以=2*=是被允许的，=2.*=则不被允许。
 </p>
 
-<pre class="example">
+<pre class="example" id="org533214b">
        =dev-libs/glib-2*
        !=net-fs/samba-2*
 </pre></li>
@@ -430,14 +428,14 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgf84ee0c" class="outline-3">
-<h3 id="orgf84ee0c">Atom Slots</h3>
-<div class="outline-text-3" id="text-orgf84ee0c">
+<div id="outline-container-org4216bf4" class="outline-3">
+<h3 id="org4216bf4">Atom Slots</h3>
+<div class="outline-text-3" id="text-org4216bf4">
 <p>
 从 EAPI 1 开始，可以限制 atom 匹配特定的 SLOT。这通过在冒号后面加上一个 SLOT 来实现
 </p>
 
-<pre class="example">
+<pre class="example" id="org48764b9">
     x11-libs/qt:3
     ~x11-libs/qt-3.3.8:3
     &gt;=x11-libs/qt-3.3.8:3
@@ -446,14 +444,14 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgbde0264" class="outline-3">
-<h3 id="orgbde0264">Sub Slots</h3>
-<div class="outline-text-3" id="text-orgbde0264">
+<div id="outline-container-orgae1ac5d" class="outline-3">
+<h3 id="orgae1ac5d">Sub Slots</h3>
+<div class="outline-text-3" id="text-orgae1ac5d">
 <p>
 从 EAPI 5 开始，一个 slot 依赖可能包含一个可选的 sub-slot，该部分位于常规 slot 之后，并且以=/=字符分隔。
 </p>
 
-<pre class="example">
+<pre class="example" id="org28093a4">
     dev-libs/icu:0/0
     dev-libs/icu:0/49
     dev-lang/perl:0/5.12
@@ -462,9 +460,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgc618391" class="outline-3">
-<h3 id="orgc618391">Atom Slot Operators</h3>
-<div class="outline-text-3" id="text-orgc618391">
+<div id="outline-container-org759eaed" class="outline-3">
+<h3 id="org759eaed">Atom Slot Operators</h3>
+<div class="outline-text-3" id="text-org759eaed">
 <p>
 从 EAPI 5 开始，slot 操作符包含一个冒号，后面跟着以下操作符之一：
 </p>
@@ -478,7 +476,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示任何 slot 值都是可以接受的。另外，对于运行时依赖，如果卸载了指定版本的软件包并且在其他的 slot 中将其替换为了另一个匹配的软件包，则该软件包不会损坏。
 </p>
 
-<pre class="example">
+<pre class="example" id="org1d4e258">
        dev-libs/icu:*
        dev-lang/perl:*
        dev-libs/glib:*
@@ -492,7 +490,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示任何 slot 值都是可以接受的。另外，对于运行时依赖，除非安装了 slot 和 sub-slot 等于该软件包在可安装时的最佳安装版本的 slot 和 sub-slot 的匹配软件包，否则该软件包会损坏。
 </p>
 
-<pre class="example">
+<pre class="example" id="org35c6e9e">
        dev-libs/icu:=
        dev-lang/perl:=
        dev-libs/glib:=
@@ -506,7 +504,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示只能接受特定的 slot 值，否则其行为与普通 slot 操作符相同。
 </p>
 
-<pre class="example">
+<pre class="example" id="orgaa91cbf">
        dev-libs/icu:0=
        dev-lang/perl:0=
        dev-libs/glib:2=
@@ -517,7 +515,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 为了实现等号 slot 操作符，包管理软件需要存储匹配软件包的最佳已安装版本的 slot/sub-slot 对。该语法仅供包管理软件使用且一定不能在 ebuild 中使用。包管理软件可以通过在保存软件包依赖时在分号和等好之间插入适当的 slot/sub-slot 对来实现次目的。sub-slot 部分在这里必须不能省略（当 SLOT 变量省略 sub-slot 部分时，该软件包被认为是具有一个等于常规 slot 的隐式 sub-slot）。
 </p>
 
-<pre class="example">
+<pre class="example" id="org6a1e09d">
     dev-libs/icu:0/0=
     dev-libs/icu:0/49=
     dev-lang/perl:0/5.12=
@@ -526,9 +524,9 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-orgbf74610" class="outline-3">
-<h3 id="orgbf74610">Atom USE</h3>
-<div class="outline-text-3" id="text-orgbf74610">
+<div id="outline-container-org7fedf1c" class="outline-3">
+<h3 id="org7fedf1c">Atom USE</h3>
+<div class="outline-text-3" id="text-org7fedf1c">
 <p>
 从 EAPI 2 开始，任何 atom 可以被匹配的特定 USE flag 设置限制。当和 SLOT 依赖一起使用时，USE 依赖出现在 SLOT 依赖的右手侧。
 </p>
@@ -602,23 +600,23 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 </div>
 </div>
 
-<div id="outline-container-org1a3d7bd" class="outline-3">
-<h3 id="org1a3d7bd">Atom USE defualts</h3>
-<div class="outline-text-3" id="text-org1a3d7bd">
+<div id="outline-container-org90b0516" class="outline-3">
+<h3 id="org90b0516">Atom USE defualts</h3>
+<div class="outline-text-3" id="text-org90b0516">
 <p>
 USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 flag 值为默认假设。这种默认值被通过在 flag 后紧接(<del>)或(-)指定。使用(</del>)表现为好像一个缺少的 flag 存在并且被启用，或(-)表现为好像 flag 存在并且被禁用。
 </p>
 
-<pre class="example">
+<pre class="example" id="org7b7f6e4">
     media-video/ffmpeg[threads(+)]
     media-video/ffmpeg[-threads(-)]
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgaf9d390" class="outline-3">
-<h3 id="orgaf9d390">Dynamic Dependencies</h3>
-<div class="outline-text-3" id="text-orgaf9d390">
+<div id="outline-container-orgbb7ee85" class="outline-3">
+<h3 id="orgbb7ee85">Dynamic Dependencies</h3>
+<div class="outline-text-3" id="text-orgbb7ee85">
 <p>
 有时程序或许会根据 USE 变量依赖不同的东西。Portage 提供了一些选项来处理这种情况。注意当使用下面的语法时，每个情况都被认为是在它出现的范围内的的一个 Atom。这意味着每一个 Atom 都有条件的包含多个 Atom 并且可以被嵌套到无限深度。
 </p>
@@ -675,7 +673,7 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 当一个软件包可以使用几个不同的软件包但不适合使用虚包时，这个语法可以被轻松使用。
 </p>
 
-<pre class="example">
+<pre class="example" id="org47fbe83">
     || (
             app-games/unreal-tournament
             app-games/unreal-tournament-goty
@@ -690,7 +688,7 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 另一个好的例子是当软件包可以使用多个视频接口构建，但仅能使用其中一个接口。
 </p>
 
-<pre class="example">
+<pre class="example" id="org1356d8b">
     || (
             sdl? ( media-libs/libsdl )
             svga? ( media-libs/svgalib )
@@ -711,9 +709,9 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 </div>
 </div>
 
-<div id="outline-container-org37bc20e" class="outline-2">
-<h2 id="org37bc20e">Variable Usage Notes</h2>
-<div class="outline-text-2" id="text-org37bc20e">
+<div id="outline-container-org5577162" class="outline-2">
+<h2 id="org5577162">Variable Usage Notes</h2>
+<div class="outline-text-2" id="text-org5577162">
 <ul class="org-ul">
 <li>定义在 <code>make.conf</code> 中的变量可以在 ebuild 中使用（除了 Portage 特定的变量，其他的包管理器可能不支持）。</li>
 <li>当在 ebuild 中分配变量时，变量名和等好之间不能有空格（与 bash 语法类似）</li>
@@ -722,9 +720,9 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 </div>
 </div>
 
-<div id="outline-container-orgb746cd9" class="outline-2">
-<h2 id="orgb746cd9">Variables Used In Ebuilds</h2>
-<div class="outline-text-2" id="text-orgb746cd9">
+<div id="outline-container-org40f9fcf" class="outline-2">
+<h2 id="org40f9fcf">Variables Used In Ebuilds</h2>
+<div class="outline-text-2" id="text-org40f9fcf">
 <ul class="org-ul">
 <li><p>
 ARCH
@@ -790,7 +788,7 @@ PVR
 包含版本号和修订号（如果不是 0）
 </p>
 
-<pre class="example">
+<pre class="example" id="orga19e850">
       x11-base/xorg-server-1.20.5 --&gt; '1.20.5'
       x11-base/xorg-server-1.20.5-r2 --&gt; '1.20.5-r2
 </pre></li>
@@ -803,7 +801,7 @@ PF
 包含完整包名 PN-PVR
 </p>
 
-<pre class="example">
+<pre class="example" id="org5f2c2b0">
       x11-base/xorg-server-1.20.5 --&gt; 'xorg-server-1.20.5'
       x11-base/xorg-server-1.20.5-r2 --&gt; 'xorg-server-1.20.5-r2'
 </pre></li>
@@ -1358,9 +1356,9 @@ DOCS
 </div>
 </div>
 
-<div id="outline-container-orgf5f6700" class="outline-2">
-<h2 id="orgf5f6700">QA Control Variables:</h2>
-<div class="outline-text-2" id="text-orgf5f6700">
+<div id="outline-container-orgb8d73f0" class="outline-2">
+<h2 id="orgb8d73f0">QA Control Variables:</h2>
+<div class="outline-text-2" id="text-orgb8d73f0">
 <ul class="org-ul">
 <li><p>
 Usage Notes
@@ -1489,9 +1487,9 @@ QA_DESKTOP_FILE
 </div>
 </div>
 
-<div id="outline-container-orge32beec" class="outline-2">
-<h2 id="orge32beec">PORTAGE DECLARATIONS</h2>
-<div class="outline-text-2" id="text-orge32beec">
+<div id="outline-container-org6b98835" class="outline-2">
+<h2 id="org6b98835">PORTAGE DECLARATIONS</h2>
+<div class="outline-text-2" id="text-org6b98835">
 <ul class="org-ul">
 <li><p>
 inherit
@@ -1504,9 +1502,9 @@ inherit 是 portage 对 ebuild 外部的额外 class 的维护的函数并且作
 </div>
 </div>
 
-<div id="outline-container-org549c7d1" class="outline-2">
-<h2 id="org549c7d1">PHASE FUNCTIONS</h2>
-<div class="outline-text-2" id="text-org549c7d1">
+<div id="outline-container-orga2ca641" class="outline-2">
+<h2 id="orga2ca641">PHASE FUNCTIONS</h2>
+<div class="outline-text-2" id="text-orga2ca641">
 <ul class="org-ul">
 <li><p>
 pkg_pretend
@@ -1672,13 +1670,13 @@ pkg_config
 </div>
 </div>
 
-<div id="outline-container-org5c29beb" class="outline-2">
-<h2 id="org5c29beb">HELPER FUNCTIONS</h2>
-<div class="outline-text-2" id="text-org5c29beb">
+<div id="outline-container-orgd8cf4fa" class="outline-2">
+<h2 id="orgd8cf4fa">HELPER FUNCTIONS</h2>
+<div class="outline-text-2" id="text-orgd8cf4fa">
 </div>
-<div id="outline-container-org16f16d5" class="outline-3">
-<h3 id="org16f16d5">Phase:</h3>
-<div class="outline-text-3" id="text-org16f16d5">
+<div id="outline-container-org98a6c51" class="outline-3">
+<h3 id="org98a6c51">Phase:</h3>
+<div class="outline-text-3" id="text-org98a6c51">
 <ul class="org-ul">
 <li><p>
 defualt
@@ -1733,9 +1731,9 @@ defualt_*
 </div>
 </div>
 
-<div id="outline-container-org1142635" class="outline-3">
-<h3 id="org1142635">General:</h3>
-<div class="outline-text-3" id="text-org1142635">
+<div id="outline-container-orgd23d838" class="outline-3">
+<h3 id="orgd23d838">General:</h3>
+<div class="outline-text-3" id="text-orgd23d838">
 <ul class="org-ul">
 <li><p>
 assert [reason]
@@ -1877,9 +1875,9 @@ item list 由 IFS 变量分隔。该变量的默认值为' '或空格。这是�
 </div>
 </div>
 
-<div id="outline-container-orgc5738bd" class="outline-3">
-<h3 id="orgc5738bd">Output:</h3>
-<div class="outline-text-3" id="text-orgc5738bd">
+<div id="outline-container-orgae98bf3" class="outline-3">
+<h3 id="orgae98bf3">Output:</h3>
+<div class="outline-text-3" id="text-orgae98bf3">
 <ul class="org-ul">
 <li><p>
 einfo disposable message
@@ -1940,9 +1938,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org33847f9" class="outline-3">
-<h3 id="org33847f9">Unpack</h3>
-<div class="outline-text-3" id="text-org33847f9">
+<div id="outline-container-org135406d" class="outline-3">
+<h3 id="org135406d">Unpack</h3>
+<div class="outline-text-3" id="text-org135406d">
 <ul class="org-ul">
 <li><p>
 <code>unpack &lt;source&gt; [list of more sources]</code>
@@ -1955,9 +1953,9 @@ ebegin helpful message
 </div>
 </div>
 
-<div id="outline-container-org91dd204" class="outline-3">
-<h3 id="org91dd204">Compile:</h3>
-<div class="outline-text-3" id="text-org91dd204">
+<div id="outline-container-org14b0629" class="outline-3">
+<h3 id="org14b0629">Compile:</h3>
+<div class="outline-text-3" id="text-org14b0629">
 <ul class="org-ul">
 <li><p>
 econf [configure options]
@@ -2010,9 +2008,9 @@ EXTRA_EMAKE knob 是 portage 的特性，所以开发者可以在调试 ebuild �
 </ul>
 </div>
 </div>
-<div id="outline-container-org752c597" class="outline-3">
-<h3 id="org752c597">Install:</h3>
-<div class="outline-text-3" id="text-org752c597">
+<div id="outline-container-orgb5b8207" class="outline-3">
+<h3 id="orgb5b8207">Install:</h3>
+<div class="outline-text-3" id="text-orgb5b8207">
 <ul class="org-ul">
 <li><p>
 einstall [make options] 这用来代替 make install。执行：
@@ -2341,7 +2339,7 @@ docinto [path]
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

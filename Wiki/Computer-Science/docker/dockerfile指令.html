@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>dockerfile指令</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,34 +232,34 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdceb119">常用指令</a>
+<li><a href="#orgefc1b5e">常用指令</a>
 <ul>
-<li><a href="#org83e7883">ADD 和 COPY</a></li>
-<li><a href="#orgabc1076">ARG</a></li>
-<li><a href="#org73e101b">CMD</a></li>
-<li><a href="#orgb5df88c">ENTRYPOINT</a></li>
-<li><a href="#org07d7d43">ENV</a></li>
-<li><a href="#org6f8f844">EXPOSE</a></li>
-<li><a href="#org4c3a69d">FROM</a></li>
-<li><a href="#org5f029f4">MAINTAINER</a></li>
-<li><a href="#org3fc9760">ONBUILD</a></li>
-<li><a href="#org1d17b4a">RUN</a></li>
-<li><a href="#org080d895">USER</a></li>
-<li><a href="#org6715e3e">VOLUME</a></li>
-<li><a href="#org1e007ca">WORKDIR</a></li>
-<li><a href="#org060c030">HEALTHCHECK</a></li>
+<li><a href="#org6484a39">ADD 和 COPY</a></li>
+<li><a href="#orgeda42b5">ARG</a></li>
+<li><a href="#org26bcf39">CMD</a></li>
+<li><a href="#orgd24bf0b">ENTRYPOINT</a></li>
+<li><a href="#orgb30b242">ENV</a></li>
+<li><a href="#orgb1e580c">EXPOSE</a></li>
+<li><a href="#orga285899">FROM</a></li>
+<li><a href="#org331a921">MAINTAINER</a></li>
+<li><a href="#org02a5aea">ONBUILD</a></li>
+<li><a href="#org10e619a">RUN</a></li>
+<li><a href="#org6449666">USER</a></li>
+<li><a href="#org54f5058">VOLUME</a></li>
+<li><a href="#orgaf65259">WORKDIR</a></li>
+<li><a href="#org2a26258">HEALTHCHECK</a></li>
 </ul>
 </li>
-<li><a href="#orge045c3b">容易混淆的地方</a>
+<li><a href="#org78b36e6">容易混淆的地方</a>
 <ul>
-<li><a href="#org5e51936">EXPOSE 和 docker run -p -P 之间的关系</a></li>
-<li><a href="#org13c5115">CMD 和 ENTRYPOINT</a></li>
-<li><a href="#org486946e">镜像构建上下文（Context）</a></li>
+<li><a href="#org8ba2ee2">EXPOSE 和 docker run -p -P 之间的关系</a></li>
+<li><a href="#orgc6585ba">CMD 和 ENTRYPOINT</a></li>
+<li><a href="#org9b83437">镜像构建上下文（Context）</a></li>
 </ul>
 </li>
-<li><a href="#orgb0eab05">其他</a>
+<li><a href="#orga182585">其他</a>
 <ul>
-<li><a href="#orgcfc8744">多段式构建</a></li>
+<li><a href="#org38d8c5d">多段式构建</a></li>
 </ul>
 </li>
 </ul>
@@ -271,13 +269,13 @@
 Dockerfile 是一个文本文件，其内包含了一条条的 指令(Instruction)， <b>每一条指令构建一层</b> ，因此每一条指令的内容，就是描述该层应当如何构建。
 </p>
 
-<div id="outline-container-orgdceb119" class="outline-2">
-<h2 id="orgdceb119">常用指令</h2>
-<div class="outline-text-2" id="text-orgdceb119">
+<div id="outline-container-orgefc1b5e" class="outline-2">
+<h2 id="orgefc1b5e">常用指令</h2>
+<div class="outline-text-2" id="text-orgefc1b5e">
 </div>
-<div id="outline-container-org83e7883" class="outline-3">
-<h3 id="org83e7883">ADD 和 COPY</h3>
-<div class="outline-text-3" id="text-org83e7883">
+<div id="outline-container-org6484a39" class="outline-3">
+<h3 id="org6484a39">ADD 和 COPY</h3>
+<div class="outline-text-3" id="text-org6484a39">
 <p>
 COPY:
 </p>
@@ -318,9 +316,9 @@ ADD 和 COPY 的区别
 </div>
 </div>
 
-<div id="outline-container-orgabc1076" class="outline-3">
-<h3 id="orgabc1076">ARG</h3>
-<div class="outline-text-3" id="text-orgabc1076">
+<div id="outline-container-orgeda42b5" class="outline-3">
+<h3 id="orgeda42b5">ARG</h3>
+<div class="outline-text-3" id="text-orgeda42b5">
 <p>
 ARG 构建参数
 </p>
@@ -335,9 +333,9 @@ ARG 构建参数
 </div>
 </div>
 
-<div id="outline-container-org73e101b" class="outline-3">
-<h3 id="org73e101b">CMD</h3>
-<div class="outline-text-3" id="text-org73e101b">
+<div id="outline-container-org26bcf39" class="outline-3">
+<h3 id="org26bcf39">CMD</h3>
+<div class="outline-text-3" id="text-org26bcf39">
 <p>
 CMD：在容器被创建后执行的命令，和 RUN 不同，它是在构造容器时候所执行的命令
 </p>
@@ -356,9 +354,9 @@ CMD 有三种格式: * <code>CMD ["executable","param1","param2"]</code> (like a
 </div>
 </div>
 
-<div id="outline-container-orgb5df88c" class="outline-3">
-<h3 id="orgb5df88c">ENTRYPOINT</h3>
-<div class="outline-text-3" id="text-orgb5df88c">
+<div id="outline-container-orgd24bf0b" class="outline-3">
+<h3 id="orgd24bf0b">ENTRYPOINT</h3>
+<div class="outline-text-3" id="text-orgd24bf0b">
 <p>
 ENTRYPOINT ：设置默认应用(入口点)，会保证每次容器被创建后该应用都会被执行。
 </p>
@@ -373,9 +371,9 @@ CMD 和 ENTRYPOINT 的关系会在下面详细解释。
 </div>
 </div>
 
-<div id="outline-container-org07d7d43" class="outline-3">
-<h3 id="org07d7d43">ENV</h3>
-<div class="outline-text-3" id="text-org07d7d43">
+<div id="outline-container-orgb30b242" class="outline-3">
+<h3 id="orgb30b242">ENV</h3>
+<div class="outline-text-3" id="text-orgb30b242">
 <p>
 ENV 有连各种格式：
 </p>
@@ -391,9 +389,9 @@ ENV 有连各种格式：
 </div>
 </div>
 
-<div id="outline-container-org6f8f844" class="outline-3">
-<h3 id="org6f8f844">EXPOSE</h3>
-<div class="outline-text-3" id="text-org6f8f844">
+<div id="outline-container-orgb1e580c" class="outline-3">
+<h3 id="orgb1e580c">EXPOSE</h3>
+<div class="outline-text-3" id="text-orgb1e580c">
 <p>
 声明端口
 </p>
@@ -408,9 +406,9 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 </div>
 </div>
 
-<div id="outline-container-org4c3a69d" class="outline-3">
-<h3 id="org4c3a69d">FROM</h3>
-<div class="outline-text-3" id="text-org4c3a69d">
+<div id="outline-container-orga285899" class="outline-3">
+<h3 id="orga285899">FROM</h3>
+<div class="outline-text-3" id="text-orga285899">
 <p>
 指定进行的基础镜像，必须是第一条指令
 </p>
@@ -425,9 +423,9 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 </div>
 </div>
 
-<div id="outline-container-org5f029f4" class="outline-3">
-<h3 id="org5f029f4">MAINTAINER</h3>
-<div class="outline-text-3" id="text-org5f029f4">
+<div id="outline-container-org331a921" class="outline-3">
+<h3 id="org331a921">MAINTAINER</h3>
+<div class="outline-text-3" id="text-org331a921">
 <p>
 可以在任意地方使用，设置镜像的作者
 </p>
@@ -438,9 +436,9 @@ EXPOSE 指令是声明运行时容器提供服务端口，这只是一个声明�
 </div>
 </div>
 
-<div id="outline-container-org3fc9760" class="outline-3">
-<h3 id="org3fc9760">ONBUILD</h3>
-<div class="outline-text-3" id="text-org3fc9760">
+<div id="outline-container-org02a5aea" class="outline-3">
+<h3 id="org02a5aea">ONBUILD</h3>
+<div class="outline-text-3" id="text-org02a5aea">
 <p>
 格式： <code>ONBUILD &lt;其它指令&gt;</code>
 </p>
@@ -455,9 +453,9 @@ Dockerfile 中的其它指令都是为了定制当前镜像而准备的，唯有
 </div>
 </div>
 
-<div id="outline-container-org1d17b4a" class="outline-3">
-<h3 id="org1d17b4a">RUN</h3>
-<div class="outline-text-3" id="text-org1d17b4a">
+<div id="outline-container-org10e619a" class="outline-3">
+<h3 id="org10e619a">RUN</h3>
+<div class="outline-text-3" id="text-org10e619a">
 <p>
 运行命令，结果会生成镜像中的一个新层
 </p>
@@ -477,9 +475,9 @@ Dockerfile 中的其它指令都是为了定制当前镜像而准备的，唯有
 </div>
 </div>
 
-<div id="outline-container-org080d895" class="outline-3">
-<h3 id="org080d895">USER</h3>
-<div class="outline-text-3" id="text-org080d895">
+<div id="outline-container-org6449666" class="outline-3">
+<h3 id="org6449666">USER</h3>
+<div class="outline-text-3" id="text-org6449666">
 <p>
 设置该镜像的容器的主进程所使用的用户，以及后续 RUN, CMD 和 ENTRYPOINT 指令运行所使用的用户
 </p>
@@ -498,9 +496,9 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-org6715e3e" class="outline-3">
-<h3 id="org6715e3e">VOLUME</h3>
-<div class="outline-text-3" id="text-org6715e3e">
+<div id="outline-container-org54f5058" class="outline-3">
+<h3 id="org54f5058">VOLUME</h3>
+<div class="outline-text-3" id="text-org54f5058">
 <p>
 定义匿名卷，允许容器访问 host 上某个目录
 </p>
@@ -515,9 +513,9 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-org1e007ca" class="outline-3">
-<h3 id="org1e007ca">WORKDIR</h3>
-<div class="outline-text-3" id="text-org1e007ca">
+<div id="outline-container-orgaf65259" class="outline-3">
+<h3 id="orgaf65259">WORKDIR</h3>
+<div class="outline-text-3" id="text-orgaf65259">
 <p>
 指定工作目录
 </p>
@@ -532,9 +530,9 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-org060c030" class="outline-3">
-<h3 id="org060c030">HEALTHCHECK</h3>
-<div class="outline-text-3" id="text-org060c030">
+<div id="outline-container-org2a26258" class="outline-3">
+<h3 id="org2a26258">HEALTHCHECK</h3>
+<div class="outline-text-3" id="text-org2a26258">
 <p>
 容器健康检查
 </p>
@@ -559,13 +557,13 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-orge045c3b" class="outline-2">
-<h2 id="orge045c3b">容易混淆的地方</h2>
-<div class="outline-text-2" id="text-orge045c3b">
+<div id="outline-container-org78b36e6" class="outline-2">
+<h2 id="org78b36e6">容易混淆的地方</h2>
+<div class="outline-text-2" id="text-org78b36e6">
 </div>
-<div id="outline-container-org5e51936" class="outline-3">
-<h3 id="org5e51936">EXPOSE 和 docker run -p -P 之间的关系</h3>
-<div class="outline-text-3" id="text-org5e51936">
+<div id="outline-container-org8ba2ee2" class="outline-3">
+<h3 id="org8ba2ee2">EXPOSE 和 docker run -p -P 之间的关系</h3>
+<div class="outline-text-3" id="text-org8ba2ee2">
 <p>
 容器的端口必须被发出（publish）出来后才能被外界使用。Dockerfile 中的 EXPOSE 只是“标记”某个端口会被暴露出来，只有在使用了 docker run -p 或者 -P 后，端口才会被“发出”出来，此时端口才能被使用。
 </p>
@@ -582,9 +580,9 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-org13c5115" class="outline-3">
-<h3 id="org13c5115">CMD 和 ENTRYPOINT</h3>
-<div class="outline-text-3" id="text-org13c5115">
+<div id="outline-container-orgc6585ba" class="outline-3">
+<h3 id="orgc6585ba">CMD 和 ENTRYPOINT</h3>
+<div class="outline-text-3" id="text-orgc6585ba">
 <p>
 这两个指令都指定了运行容器时所运行的命令。以下是它们共存的一些规则：
 </p>
@@ -654,9 +652,9 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-org486946e" class="outline-3">
-<h3 id="org486946e">镜像构建上下文（Context）</h3>
-<div class="outline-text-3" id="text-org486946e">
+<div id="outline-container-org9b83437" class="outline-3">
+<h3 id="org9b83437">镜像构建上下文（Context）</h3>
+<div class="outline-text-3" id="text-org9b83437">
 <p>
 <code>docker build [选项] &lt;上下文路径/URL/-&gt;</code>
 </p>
@@ -680,13 +678,13 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 </div>
 
-<div id="outline-container-orgb0eab05" class="outline-2">
-<h2 id="orgb0eab05">其他</h2>
-<div class="outline-text-2" id="text-orgb0eab05">
+<div id="outline-container-orga182585" class="outline-2">
+<h2 id="orga182585">其他</h2>
+<div class="outline-text-2" id="text-orga182585">
 </div>
-<div id="outline-container-orgcfc8744" class="outline-3">
-<h3 id="orgcfc8744">多段式构建</h3>
-<div class="outline-text-3" id="text-orgcfc8744">
+<div id="outline-container-org38d8c5d" class="outline-3">
+<h3 id="org38d8c5d">多段式构建</h3>
+<div class="outline-text-3" id="text-org38d8c5d">
 <p>
 我们可以使用 as 来为某一阶段命名，例如
 </p>
@@ -724,7 +722,7 @@ Dockerfile 中的默认用户是基础镜像中所使用的用户。 比如，�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:50 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:33 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GPG</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,33 +232,33 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgddb3d39">概念</a>
+<li><a href="#orgda20cb0">概念</a>
 <ul>
-<li><a href="#org0b67653">“主”（认证）密钥</a></li>
+<li><a href="#org4dc567e">“主”（认证）密钥</a></li>
 </ul>
 </li>
-<li><a href="#org6ef7d7c">Command</a>
+<li><a href="#orge6c50fe">Command</a>
 <ul>
-<li><a href="#org9faebea">常用命令</a></li>
-<li><a href="#orge11f03d">添加 SSH keys</a></li>
-<li><a href="#org673de17">导入他人公钥</a></li>
-<li><a href="#orga44da15">文件加密解密、签名与验签</a></li>
+<li><a href="#org35dcb31">常用命令</a></li>
+<li><a href="#orga4fe850">添加 SSH keys</a></li>
+<li><a href="#org8dbba50">导入他人公钥</a></li>
+<li><a href="#orga9483e4">文件加密解密、签名与验签</a></li>
 </ul>
 </li>
-<li><a href="#org01ff9b2">密钥分离思想</a></li>
-<li><a href="#orgd88645f">gpg-agent</a></li>
-<li><a href="#org05db826">Links</a></li>
+<li><a href="#orgcc28323">密钥分离思想</a></li>
+<li><a href="#org8cbe5a5">gpg-agent</a></li>
+<li><a href="#org50109d5">Links</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgddb3d39" class="outline-2">
-<h2 id="orgddb3d39">概念</h2>
-<div class="outline-text-2" id="text-orgddb3d39">
+<div id="outline-container-orgda20cb0" class="outline-2">
+<h2 id="orgda20cb0">概念</h2>
+<div class="outline-text-2" id="text-orgda20cb0">
 </div>
-<div id="outline-container-org0b67653" class="outline-3">
-<h3 id="org0b67653">“主”（认证）密钥</h3>
-<div class="outline-text-3" id="text-org0b67653">
+<div id="outline-container-org4dc567e" class="outline-3">
+<h3 id="org4dc567e">“主”（认证）密钥</h3>
+<div class="outline-text-3" id="text-org4dc567e">
 <ol class="org-ol">
 <li>在“主密钥”和“子密钥”之间没有技术上的区别。</li>
 <li>在创建时，我们赋予每个密钥特定的能力来分配功能限制。</li>
@@ -294,13 +292,13 @@
 </div>
 </div>
 
-<div id="outline-container-org6ef7d7c" class="outline-2">
-<h2 id="org6ef7d7c">Command</h2>
-<div class="outline-text-2" id="text-org6ef7d7c">
+<div id="outline-container-orge6c50fe" class="outline-2">
+<h2 id="orge6c50fe">Command</h2>
+<div class="outline-text-2" id="text-orge6c50fe">
 </div>
-<div id="outline-container-org9faebea" class="outline-3">
-<h3 id="org9faebea">常用命令</h3>
-<div class="outline-text-3" id="text-org9faebea">
+<div id="outline-container-org35dcb31" class="outline-3">
+<h3 id="org35dcb31">常用命令</h3>
+<div class="outline-text-3" id="text-org35dcb31">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29983;&#25104;&#23494;&#38053;</span>
     gpg --expert --full-gen-key
@@ -335,9 +333,9 @@
 </div>
 </div>
 
-<div id="outline-container-orge11f03d" class="outline-3">
-<h3 id="orge11f03d">添加 SSH keys</h3>
-<div class="outline-text-3" id="text-orge11f03d">
+<div id="outline-container-orga4fe850" class="outline-3">
+<h3 id="orga4fe850">添加 SSH keys</h3>
+<div class="outline-text-3" id="text-orga4fe850">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. &#23548;&#20986;authentication&#23376;&#23494;&#38053;&#20026;ssh&#20844;&#38053;</span>
     gpg --export-ssh-key &lt;keyid&gt;
@@ -353,9 +351,9 @@
 </div>
 </div>
 
-<div id="outline-container-org673de17" class="outline-3">
-<h3 id="org673de17">导入他人公钥</h3>
-<div class="outline-text-3" id="text-org673de17">
+<div id="outline-container-org8dbba50" class="outline-3">
+<h3 id="org8dbba50">导入他人公钥</h3>
+<div class="outline-text-3" id="text-org8dbba50">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20808;&#33719;&#21462;&#26576;&#20154;&#30340;&#20844;&#38053;&#65288;&#20174;&#20844;&#38053;&#26381;&#21153;&#22120;&#19978;&#65289;&#65306;</span>
     gpg --recv-keys &lt;keyid/uid&gt;
@@ -370,9 +368,9 @@
 </div>
 </div>
 
-<div id="outline-container-orga44da15" class="outline-3">
-<h3 id="orga44da15">文件加密解密、签名与验签</h3>
-<div class="outline-text-3" id="text-orga44da15">
+<div id="outline-container-orga9483e4" class="outline-3">
+<h3 id="orga9483e4">文件加密解密、签名与验签</h3>
+<div class="outline-text-3" id="text-orga9483e4">
 <div class="org-src-container">
 <pre class="src src-sh">    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">1. GPG&#21152;&#23494;&#25805;&#20316;&#65292;&#30001;&#21457;&#36865;&#26041;&#36827;&#34892;&#65292;&#39318;&#20808;&#33719;&#21462;&#25509;&#25910;&#26041;&#20844;&#38053;&#65292;&#20351;&#29992;&#20844;&#38053;&#21152;&#23494;&#25991;&#20214;</span>
     gpg --output &#21152;&#23494;&#36755;&#20986;&#25991;&#20214; --recipient &lt;uid&gt;  --encrypt &#24453;&#21152;&#23494;&#25991;&#20214;
@@ -417,9 +415,9 @@
 </div>
 </div>
 
-<div id="outline-container-org01ff9b2" class="outline-2">
-<h2 id="org01ff9b2">密钥分离思想</h2>
-<div class="outline-text-2" id="text-org01ff9b2">
+<div id="outline-container-orgcc28323" class="outline-2">
+<h2 id="orgcc28323">密钥分离思想</h2>
+<div class="outline-text-2" id="text-orgcc28323">
 <p>
 该使用且只使用子密钥，主密钥应该放在一个绝对安全的地方。
 </p>
@@ -509,13 +507,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgd88645f" class="outline-2">
-<h2 id="orgd88645f">gpg-agent</h2>
+<div id="outline-container-org8cbe5a5" class="outline-2">
+<h2 id="org8cbe5a5">gpg-agent</h2>
 </div>
 
-<div id="outline-container-org05db826" class="outline-2">
-<h2 id="org05db826">Links</h2>
-<div class="outline-text-2" id="text-org05db826">
+<div id="outline-container-org50109d5" class="outline-2">
+<h2 id="org50109d5">Links</h2>
+<div class="outline-text-2" id="text-org50109d5">
 <ol class="org-ol">
 <li><a href="https://wiki.gentoo.org/wiki/Project:Infrastructure/Generating_GLEP_63_based_OpenPGP_keys">Generating GLEP 63 based OpenPGP keys</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/GnuPG">archwiki GnuPG</a></li>
@@ -529,7 +527,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:50</p>
+<p class="date">Created: 2021-06-23 Wed 18:33</p>
 </div>
 </body>
 </html>

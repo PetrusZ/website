@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-06-23 Wed 18:34 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ebuild(1)</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -256,55 +254,55 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1708135">NAME</a></li>
-<li><a href="#org6b8b2ce">SYNOPSIS</a></li>
-<li><a href="#orgf5d4cab">DESCRIPTION</a></li>
-<li><a href="#org6f59e4e">FILE</a></li>
-<li><a href="#org2bb47de">COMMANDS</a></li>
-<li><a href="#org5e90b7d">OPTIONS</a></li>
+<li><a href="#org5e2030f">NAME</a></li>
+<li><a href="#org34e64f5">SYNOPSIS</a></li>
+<li><a href="#org2f4908d">DESCRIPTION</a></li>
+<li><a href="#orgbea2da2">FILE</a></li>
+<li><a href="#org31abe46">COMMANDS</a></li>
+<li><a href="#org7ef4909">OPTIONS</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1708135" class="outline-2">
-<h2 id="org1708135">NAME</h2>
-<div class="outline-text-2" id="text-org1708135">
+<div id="outline-container-org5e2030f" class="outline-2">
+<h2 id="org5e2030f">NAME</h2>
+<div class="outline-text-2" id="text-org5e2030f">
 <p>
 ebuild - Prortgae 系统的底层接口
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6b8b2ce" class="outline-2">
-<h2 id="org6b8b2ce">SYNOPSIS</h2>
-<div class="outline-text-2" id="text-org6b8b2ce">
+<div id="outline-container-org34e64f5" class="outline-2">
+<h2 id="org34e64f5">SYNOPSIS</h2>
+<div class="outline-text-2" id="text-org34e64f5">
 <p>
 ebuild file command [command]&#x2026;
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf5d4cab" class="outline-2">
-<h2 id="orgf5d4cab">DESCRIPTION</h2>
-<div class="outline-text-2" id="text-orgf5d4cab">
+<div id="outline-container-org2f4908d" class="outline-2">
+<h2 id="org2f4908d">DESCRIPTION</h2>
+<div class="outline-text-2" id="text-org2f4908d">
 <p>
 ebuild 程序时 Prtage 系统的直接接口。它允许 ebuild 直接操作特定自命令和命令组，以在特定的 build 的上下文和函数中执行。ebuild 脚本接受一个或多个命令作为参数，ebuild 程序解析 ebuild 脚本并执行这些命令。有获取源代码、解压缩源文件、安装 object 文件到临时的"image"目录，将 image 目录 merge 到本地文件系统，从 image 目录创建 bzip 压缩包等命令。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6f59e4e" class="outline-2">
-<h2 id="org6f59e4e">FILE</h2>
-<div class="outline-text-2" id="text-org6f59e4e">
+<div id="outline-container-orgbea2da2" class="outline-2">
+<h2 id="orgbea2da2">FILE</h2>
+<div class="outline-text-2" id="text-orgbea2da2">
 <p>
 必须时有效的 build 脚本。更多信息请阅读 ebuild(5)。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org2bb47de" class="outline-2">
-<h2 id="org2bb47de">COMMANDS</h2>
-<div class="outline-text-2" id="text-org2bb47de">
+<div id="outline-container-org31abe46" class="outline-2">
+<h2 id="org31abe46">COMMANDS</h2>
+<div class="outline-text-2" id="text-org31abe46">
 <p>
 默认，portage 将安装实际指定的顺序执行所有函数，除了在之前的 ebuild 调用中已经被执行的函数。例如，发出 compile 将会将会触发并运行在它之前的函数（像 setup 和 unpack），除非它们在之前的 build 调用已运行过。如果你想确保它们都运行，你需要先使用 clean 命令。如果你想仅运行指定的命令，那么你需要在 FEATURES 环境变量中使用 auto 选项。更多信息请见 make.conf(5)。
 </p>
@@ -506,9 +504,9 @@ RPM 安装包。目前，ebuild 的依赖信息尚未合并到 RPM 中。
 </div>
 </div>
 
-<div id="outline-container-org5e90b7d" class="outline-2">
-<h2 id="org5e90b7d">OPTIONS</h2>
-<div class="outline-text-2" id="text-org5e90b7d">
+<div id="outline-container-org7ef4909" class="outline-2">
+<h2 id="org7ef4909">OPTIONS</h2>
+<div class="outline-text-2" id="text-org7ef4909">
 <ul class="org-ul">
 <li><p>
 &#x2013;debug
@@ -555,7 +553,7 @@ RPM 安装包。目前，ebuild 的依赖信息尚未合并到 RPM 中。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-06-23 Wed 18:34</p>
 </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <!-- 2021-06-23 Wed 18:33 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Unix哲学</title>
+<title>软路由虚拟机</title>
 <meta name="author" content="Petrus.Z" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -227,102 +227,152 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Unix哲学</h1>
+<h1 class="title">软路由虚拟机</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org42803dc">Unix 哲学</a></li>
+<li><a href="#org765df59">准备环境</a></li>
+<li><a href="#org6d1acdd">固件选择</a></li>
+<li><a href="#orgd94b70c">创建网桥</a></li>
+<li><a href="#orgb980cf9">创建虚拟机</a></li>
+<li><a href="#org93b6ec6">配置 openwrt</a></li>
+<li><a href="#org9a099e3">插件安装</a></li>
+<li><a href="#org5e1b951">参考链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org42803dc" class="outline-2">
-<h2 id="org42803dc">Unix 哲学</h2>
-<div class="outline-text-2" id="text-org42803dc">
+<div id="outline-container-org765df59" class="outline-2">
+<h2 id="org765df59">准备环境</h2>
+<div class="outline-text-2" id="text-org765df59">
 <p>
-——为了时刻提醒自己，特地将一部分 Unix 哲学摘抄下来，以便随时阅读。
+摸着石头过河，折腾了几天，终于装好了心心念念的虚拟机软路由。
 </p>
 
-<hr>
+<ul class="org-ul">
+<li>硬件环境：3400G + deskmini A300（自带一个网口） + M2 转网口，物理机双网口</li>
+<li>物理机系统： Gentoo Linux</li>
+<li><p>
+网络拓扑，见下图。除了 host 以外的本地设备都是通过设置为 AP 模式的硬路由连接网络。
+</p>
 
+
+<div id="org835f7ef" class="figure">
+<p><img src="../pics/Blog/router_topology.jpg" alt="router_topology.jpg">
+</p>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6d1acdd" class="outline-2">
+<h2 id="org6d1acdd">固件选择</h2>
+<div class="outline-text-2" id="text-org6d1acdd">
 <p>
-Unix 哲学起源于 Ken Thompson 早期关于如果设计一个服务接口简洁、小巧精干的操作系统的思考，随着 Unix 文化在学习如何尽可能发掘 Thompon 设计思想的过程中不断成长，同时一路上还从其它许多地方博采众长。
+固件这些我们选择基本 openwrt 管方 21.02 代码定制的 garypang13 的固件，github 项目地址为 <a href="https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi">https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi</a> ，固件下载地址为 <a href="https://op.supes.top/">https://op.supes.top/</a> 。
 </p>
 
 <p>
-Unix 设哲学说来不算是一种正规设计方法。它不打算从计算机科学的理论高度来产生理论上完美的软件。那些毫无动力、松松跨跨而且薪水微薄的程序员们，能在短短期限内，如果神灵附体般造出稳定而新颖的软件-&#x2013;&#x2014;这只不过是经理人永远的梦呓罢了。
+其特点是原生固件非常纯净，只自己少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。
 </p>
-
+</div>
+</div>
+<div id="outline-container-orgd94b70c" class="outline-2">
+<h2 id="orgd94b70c">创建网桥</h2>
+<div class="outline-text-2" id="text-orgd94b70c">
 <p>
-Unix 哲学（同其它工程领域的民间传统一样）是自下而上的，而不是自上而下的。Unix 哲学注重实效，立足于丰富的经验。你不会在正规方法学和标准中找到它，它更接近于隐性的半本能的知识，即 Unix 文化所传播的专业经验。它鼓励那种分清轻重缓急的感觉，以及怀疑一切的态度，并鼓励你以幽默达观的态度对待这些。
+首先创建 eth1 网口和软路由虚拟机 lan 口连接的网桥。
 </p>
 
-<hr>
-
-<p>
-Unix 管道的发明人、Unix 传统的奠基人之一 Doug Mcllroy 曾经说过：
-</p>
-
-<pre class="example" id="org19472bd">
-    (i) 让每个程序就做好一件事。如果有新任务，就重新开始，不要往原程序中加入新功能而搞得复杂。
-
-    (ii) 假定每个程序的输出都会成为另一个程序的输入，哪怕那个程序还是未知的。输出中不要有无关的信息干扰。避免使用严格的分栏格式和二进制格式输入。不要坚持使用交互式输入。
-
-    (iii) 尽可能早地将设计和编译的软件投入试用，哪怕是操作系统也不例外，理想情况下，应该是在几个星期内。对拙劣的代码别犹豫，扔掉重写。
-
-    (iv) 优先使用工具而不是拙劣的帮助来减轻编程任务的负担。工欲善其事，必先利其器。
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;&#32593;&#26725;</span>
+nmcli connection add type bridge ifname br0 stp no
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23558;eth1&#28155;&#21152;&#20498;&#32593;&#26725;&#20013;</span>
+nmcli connection add type bridge-slave ifname eth1 master br0
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20851;&#38381;&#29616;&#26377;&#30340;&#36830;&#25509;&#65288;&#21487;&#20197;&#20351;&#29992;nmcli connection show --active&#21629;&#20196;&#26597;&#30475;&#65289;</span>
+nmcli connection down &lt;Connection&gt;
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24320;&#21551;&#26032;&#21019;&#24314;&#30340;&#32593;&#26725;</span>
+nmcli connection up bridge-br0
 </pre>
+</div>
 
 <p>
-  Rob Pike， 最伟大的 C 语言大师之一，在《Notes on C Programming》中从另一个稍微不同的角度表述了 Unix 的哲学：
+注意以上操作会关闭正在使用的网口，如果是远程连接到物理机且仅有单网口，请 <b>谨慎操作</b> ！
 </p>
 
-<pre class="example" id="org456281c">
-    原则1 ：你无法断定程序会在什么地方耗费运行时间。瓶颈经常出现在想不到的地方。所以别急于胡乱找个地方写代码，除非你已经证实那儿就是瓶颈所在。
+<p>
+这时如果 eth1 是连接在带 DHCP 的硬路由中，那么会自动为网桥 br0 分配 IP，同时 eth1 上的 ip 地址会消失，可以直接通过网桥 br0 的 ip 访问 eth1 网口。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb980cf9" class="outline-2">
+<h2 id="orgb980cf9">创建虚拟机</h2>
+<div class="outline-text-2" id="text-orgb980cf9">
+<p>
+使用 libvirt + qemu(kvm)创建虚拟机：
+</p>
 
-    原则2 ：估量。在你没对代码进行估量，特别是没找到最耗时的那部分之前，别去优化速度。
+<ul class="org-ul">
+<li>CPU 2 核心</li>
+<li>内存 1G</li>
+<li><p>
+硬盘直接使用 openwrt 的 img 文件
+</p>
 
-    原则3 ：花哨的算法在n很小时通常很慢，而n通常很小。花哨算法的常数复杂度很大。除非你确定n总是很大，否则不要去用花哨算法（即使n很大，也优先考虑原则2）。
+<p>
+eth0 网卡直接设置为直通，另外添加一张网卡，[Network Source]设置为 Bridge device，[Device name]设置为 br0，[Device model]设置为 virtio。即创建桥接到 br0 的第二张网卡。
+</p>
 
-    原则4 ：花哨的算法比简单算法更容易出bug、更难实现。尽量使用简单的算法配合简单的数据结构。
+<p>
+其他配置默认，之后正常启动 openwrt 虚拟机即可。
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org93b6ec6" class="outline-2">
+<h2 id="org93b6ec6">配置 openwrt</h2>
+<div class="outline-text-2" id="text-org93b6ec6">
+<p>
+通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 <code>/etc/config/network</code> 。将其中的 <code>config interface 'lan'</code> 中的 <code>option ipaddr</code> 地址设置为 192.168.3.2。之后重启路由器。
+</p>
 
-    原则5 ：数据压倒一切。如果已经选择了正确的数据结构并且把一切都组织的井井有条，正确的算法也就不言自明。编程的核心是数据结构，而不是算法。
+<p>
+这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。
+</p>
 
-    原则6 ：没有原则6。
+<p>
+这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10
+nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2
+nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2
+nmcli connection modify bridge-br0 ipv4.method manual
+nmcli connection up interface
 </pre>
-
-<hr>
-
+</div>
+</div>
+</div>
+<div id="outline-container-org9a099e3" class="outline-2">
+<h2 id="org9a099e3">插件安装</h2>
+<div class="outline-text-2" id="text-org9a099e3">
 <p>
-Unix 哲学中更多的内容不这些先哲们口头表述出来的，而是由他们所作的一切和 Unix 本身所作出的榜样体现出来的。从整体上来说，可以概括为以下几点：
+在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。
 </p>
-
+</div>
+</div>
+<div id="outline-container-org5e1b951" class="outline-2">
+<h2 id="org5e1b951">参考链接</h2>
+<div class="outline-text-2" id="text-org5e1b951">
 <ol class="org-ol">
-<li>模块原则：使用简单的接口拼接简单的部件。</li>
-<li>清晰原则：清晰胜于机巧。</li>
-<li>组合原则：设计时考虑拼接组合。</li>
-<li>分离原则：策略同机制分离，接口同引擎分离。</li>
-<li>简洁原则：设计要简洁，复杂度能低则低。</li>
-<li>吝啬原则：除非确无它法，不要编写庞大的程序。</li>
-<li>透明性原则：设计要可见，以便审查和调试。</li>
-<li>健壮原则：健壮源于透明与简洁。</li>
-<li>表示原则：把知识叠入数据以求逻辑质朴而健壮。</li>
-<li>通俗原则：接口设计避免标新立异。</li>
-<li>缄默原则：如果一个程序没什么好说的，就沉默。</li>
-<li>补救原则：出现异常时，马上退出并给出足够错误信息。</li>
-<li>经济原则：宁花机器一分，不花程序员一秒。</li>
-<li>生成原则：避免手工 hack，尽量编写程序去生成程序。</li>
-<li>优化原则：雕琢前先要有原型，跑之前先学会走。</li>
-<li>多样原则：决不相信所谓“不二法门”的断言。</li>
-<li>扩展原则：设计着眼未来，未来总比预想来得快。</li>
+<li>Network_bridge wiki <a href="https://wiki.archlinux.org/title/Network_bridge">https://wiki.archlinux.org/title/Network_bridge</a></li>
+<li>软路由折腾记 <a href="https://github.com/fanchangyong/blog/issues/22">https://github.com/fanchangyong/blog/issues/22</a></li>
+<li>qemu-kvm 安装 koolshare LEDE-X64 固件 <a href="https://koolshare.cn/thread-68876-1-1.html">https://koolshare.cn/thread-68876-1-1.html</a></li>
+<li>将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 <a href="https://post.smzdm.com/p/adwrn5gn/">https://post.smzdm.com/p/adwrn5gn/</a></li>
+<li>KVM 虚拟化网络优化技术总结 <a href="https://www.cnblogs.com/lsgxeva/p/8964363.html">https://www.cnblogs.com/lsgxeva/p/8964363.html</a></li>
+<li>OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 <a href="https://www.right.com.cn/forum/thread-3682029-1-1.html">https://www.right.com.cn/forum/thread-3682029-1-1.html</a></li>
 </ol>
-
-<hr>
-
-<p>
-总之，如果要让所有的 Unix 哲学浓缩为一条铁律，那就是各地编程大师奉为圭皋的“KISS”原则： <b><i>Keep It Simple, Stupid!</i></b>
-</p>
 </div>
 </div>
 </div>
