@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-06-29 Tue 22:56 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>双显卡笔记本独显直通</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">双显卡笔记本独显直通</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org60b172d">介绍</a></li>
+<li><a href="#org48e5e5f">MUXed</a></li>
+<li><a href="#org7c15795">启用 IOMMU 和 vfio 模块</a>
+<ul>
+<li><a href="#orga8ccc0d">IOMMU</a></li>
+<li><a href="#org3084c78">vfio</a></li>
+</ul>
+</li>
+<li><a href="#org9359bab">隔离 GPU</a></li>
+<li><a href="#org3c2cae4">创建虚拟机</a></li>
+<li><a href="#orgd5356d9">配置和优化 RemoteFX</a>
+<ul>
+<li><a href="#org2b01199">配置 RemoteFX</a></li>
+<li><a href="#org8be21e1">解除 30-ish fps 限制</a></li>
+</ul>
+</li>
+<li><a href="#orgd7e54ce">显卡直通</a></li>
+<li><a href="#orge38608d">创建网桥</a></li>
+<li><a href="#org1970dfc">远程连接</a>
+<ul>
+<li><a href="#org9953ea8">RDP</a></li>
+<li><a href="#org8ced021">Looking glass</a>
+<ul>
+<li><a href="#org7046ad1">安装 client</a></li>
+<li><a href="#org06c4b7c">计算内存大小</a></li>
+<li><a href="#org1a7bc3e">配置 libvirt</a></li>
+<li><a href="#org057536b">创建共享内存文件</a></li>
+<li><a href="#org602216f">安装 host</a></li>
+<li><a href="#org3f7f30a">配置 client</a></li>
+</ul>
+</li>
+<li><a href="#org2794f02">steam 远程畅玩（流式传输）</a></li>
+</ul>
+</li>
+<li><a href="#org1584f1a">参考连接</a></li>
+<li><a href="#orgc55a63d">附录：XML 配置</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org60b172d" class="outline-2">
+<h2 id="org60b172d">介绍</h2>
+<div class="outline-text-2" id="text-org60b172d">
+<p>
+双显卡笔记本中直通独显（dGPU）到 win10 虚拟机。
+</p>
+
+<p>
+环境：
+</p>
+<ul class="org-ul">
+<li>联想 Legion R7000P 2020 笔记本</li>
+<li>RTX2060 笔记本显卡</li>
+<li>libvirt+qemu</li>
+<li>Host: Gentoo Linux</li>
+<li>Guest: Windows 10 LTSC 2019</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org48e5e5f" class="outline-2">
+<h2 id="org48e5e5f">MUXed</h2>
+<div class="outline-text-2" id="text-org48e5e5f">
+<p>
+MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该就是 MUXed 的。关于什么是 MUXed 的，可以看下图的解释。
+</p>
+
+
+<div id="org3d49bd8" class="figure">
+<p><img src="../pics/Blog/muxed.jpg" alt="muxed.jpg">
+</p>
+</div>
+
+<p>
+关于如何检测笔记本是否是 MUXed 的，目前没有什么好的办法。有一种说法是运行 lspci，查找有关 Intel HD Graphics/AMD GPU 和 NVIDIA 的设备：
+</p>
+
+<ul class="org-ul">
+<li>如果独显设备名以 3D Controller 开头，那你的电脑就是第一种 MUXless（核显直连显示器）。</li>
+<li>如果独显设备名以 VGA Controller 开头，并且有一个 HD Graphics/AMD GPU 核显，那你的电脑是第二种 MUXed（核显、独显切换）。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7c15795" class="outline-2">
+<h2 id="org7c15795">启用 IOMMU 和 vfio 模块</h2>
+<div class="outline-text-2" id="text-org7c15795">
+</div>
+<div id="outline-container-orga8ccc0d" class="outline-3">
+<h3 id="orga8ccc0d">IOMMU</h3>
+<div class="outline-text-3" id="text-orga8ccc0d">
+<ul class="org-ul">
+<li>intel CPU：添加内核参数 <code>intel_iommu=on iommu=pt</code> ，BIOS 开启 VT-d</li>
+<li>amd CPU：添加内核参数 <code>iommu=pt</code> ，BIOS 开启 AMD-Vi</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3084c78" class="outline-3">
+<h3 id="org3084c78">vfio</h3>
+<div class="outline-text-3" id="text-org3084c78">
+<p>
+添加模块 <code>vfio_pci vfio vfio_iommu_type1 vfio_virqfd</code> 到 initramfs 中。如果是像我一样使用 dracut 生成 initramfs，则在 <code>/etc/dracut.conf</code> 中添加配置 <code>add_drivers+=" vfio_pci vfio vfio_iommu_type1 vfio_virqfd "</code> ，之后重新生成 initramfs。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9359bab" class="outline-2">
+<h2 id="org9359bab">隔离 GPU</h2>
+<div class="outline-text-2" id="text-org9359bab">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;">#</span><span style="color: #5B6268;">!/bin/</span><span style="color: #51afef;">bash</span>
+shopt -s nullglob
+<span style="color: #51afef;">for</span> g<span style="color: #51afef;"> in</span> <span style="color: #51afef; font-weight: bold;">`</span><span style="color: #51afef; font-weight: bold;">find</span><span style="color: #51afef; font-weight: bold;"> /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V`</span>; <span style="color: #51afef;">do</span>
+    <span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"IOMMU Group </span><span style="color: #a9a1e1;">$</span><span style="color: #dcaeea;">{g##*/}</span><span style="color: #98be65;">:"</span>
+    <span style="color: #51afef;">for</span> d<span style="color: #51afef;"> in</span> $<span style="color: #dcaeea;">g</span>/devices/*; <span style="color: #51afef;">do</span>
+        <span style="color: #ECBE7B;">echo</span> -e <span style="color: #98be65;">"\t</span><span style="color: #51afef; font-weight: bold;">$(lspci -nns </span><span style="color: #51afef; font-weight: bold;">$</span><span style="color: #51afef; font-weight: bold;">{d##*/}</span><span style="color: #51afef; font-weight: bold;">)</span><span style="color: #98be65;">"</span>
+    <span style="color: #51afef;">done</span>;
+<span style="color: #51afef;">done</span>;
+</pre>
+</div>
+
+<p>
+运行上述脚本，查看显卡所在的 IOMMU Group，并得到显卡相关设备的 device id。
+</p>
+
+<pre class="example">
+IOMMU Group 10:
+        01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1)
+        01:00.1 Audio device [0403]: NVIDIA Corporation TU106 High Definition Audio Controller [10de:10f9] (rev a1)
+        01:00.2 USB controller [0c03]: NVIDIA Corporation TU106 USB 3.1 Host Controller [10de:1ada] (rev a1)
+        01:00.3 Serial bus controller [0c80]: NVIDIA Corporation TU106 USB Type-C UCSI Controller [10de:1adb] (rev a1)
+</pre>
+
+<p>
+如上所见，device id 分别为 <code>10de:1f15</code> 、 <code>10de:10f9</code> 、 <code>10de:1ada</code> 、 <code>10de:1adb</code> 。再将以上 deivce id 作为参数添加到内核参数或 <code>/etc/modprobe.d/vfio.conf</code> 中。
+</p>
+
+<ul class="org-ul">
+<li>内核参数：vfio-pci.ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
+<li><code>/etc/modprobe.d/vfio.conf</code> ：options vfio-pci ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
+</ul>
+
+<p>
+dracut 必须将 device id 添加到内核参数中，并且添加参数 <code>rd.driver.pre=vfio_pci</code> 。
+</p>
+
+<p>
+最后重启电脑。开机后通过命令 <code>lspci -k</code> 确认上述 device id 对应的设备在使用 vfio-pci 驱动。如果有各别设备没有使用 vfio-pci 驱动，则可以通过手动 unbind 和 bind 驱动的方式加载 vfio-pci 驱动。比如如果 0000:01:00.2 仍在使用 xhci_hcd 驱动，则：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">run as root</span>
+<span style="color: #ECBE7B;">echo</span> -n <span style="color: #98be65;">"0000:01:00.2"</span> &gt; /sys/bus/pci/drivers/xhci_hcd/unbind
+<span style="color: #ECBE7B;">echo</span> -n <span style="color: #98be65;">"0000:01:00.2"</span> &gt; /sys/bus/pci/drivers/vfio-pci/bind
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3c2cae4" class="outline-2">
+<h2 id="org3c2cae4">创建虚拟机</h2>
+<div class="outline-text-2" id="text-org3c2cae4">
+<p>
+首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备，并且之后使用 RDP 连接虚拟机。
+</p>
+
+<p>
+首先下载<a href="https://msdn.itellyou.cn/">windows 10 LTSC 2019</a>和 <a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso">virtio windows驱动</a>镜像。
+</p>
+
+<p>
+创建虚拟机：
+</p>
+<ul class="org-ul">
+<li><code>Overview</code> ：Firmware 选择 UEFI x86_64:/usr/share/edk2-ovmf/OVMF_CODE.fd</li>
+<li><code>CPUs</code> ：选择 Topology，Manually set CPU  topology，Sockets 设为 1，Cores 按需要来，我设为 4，Threads 设置为 2。这样一共就分配了 4 核 8 线程的 CPU</li>
+<li><code>Memory</code> ：内存我设置为 32G</li>
+<li><code>SATA Disk</code> ：Disk Bus 选择 Virtio，可以最小化磁盘性能损耗</li>
+<li><code>NIC</code> ：Device model 也选择 virtio</li>
+<li>之后再添加一个 <code>Stroage</code> ，选择 Select custom storage 并选中之前下载的 virtio windows 驱动镜像，然后 Device type 选择 CDROM device</li>
+<li>最后在 <code>Boot Options</code> 中选中需要启动的设备</li>
+</ul>
+
+<p>
+开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 <a href="https://www.bilibili.com/video/BV1dQ4y1o78R">https://www.bilibili.com/video/BV1dQ4y1o78R</a> 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd5356d9" class="outline-2">
+<h2 id="orgd5356d9">配置和优化 RemoteFX</h2>
+<div class="outline-text-2" id="text-orgd5356d9">
+</div>
+<div id="outline-container-org2b01199" class="outline-3">
+<h3 id="org2b01199">配置 RemoteFX</h3>
+<div class="outline-text-3" id="text-org2b01199">
+<ol class="org-ol">
+<li>通过 <code>Win+R</code> 运行 <code>gpedit.msc</code></li>
+<li>定位到 <code>计算机配置</code> -&gt; <code>管理模板</code> -&gt; <code>Windows组件</code> -&gt; <code>远程桌面服务</code> -&gt; <code>远程桌面会话主机</code> -&gt; <code>远程会话环境</code>
+<ul class="org-ul">
+<li>开启 <code>对 RemoteApp 使用高级 RemoteFX 图形</code></li>
+<li>（可选）开启 <code>配置 RemoteFX 自适应图形的图像质量</code> ，设置为高</li>
+<li>开启 <code>为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码</code></li>
+<li>开启 <code>配置 RemoteFX 数据的压缩</code> ，并设置为不需使用 RDP 压缩算法
+<ul class="org-ul">
+<li>连接压缩会导致编码和解码时产生额外的延迟</li>
+</ul></li>
+</ul></li>
+<li>定位到 <code>计算机配置</code> -&gt; <code>管理模板</code> -&gt; <code>Windows组件</code> -&gt; <code>远程桌面服务</code> -&gt; <code>远程桌面会话主机</code> -&gt; <code>远程会话环境</code> -&gt; <code>RemoteFX for Windows Server 2008 R2</code>
+<ul class="org-ul">
+<li>开启 <code>配置RemoteFX</code></li>
+<li>（可选）开启 <code>使用RemoteFX时优化视觉体验</code> ，并都设置为最高</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8be21e1" class="outline-3">
+<h3 id="org8be21e1">解除 30-ish fps 限制</h3>
+<div class="outline-text-3" id="text-org8be21e1">
+<ol class="org-ol">
+<li>启动注册表编辑器</li>
+<li>定位并单击以下注册表子键： <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations</code></li>
+<li>在 <code>编辑</code> 菜单中选择 <code>新建</code> ，然后再选择 <code>DWORD（32位）值</code></li>
+<li>输入 <code>DWMFRAMEINTERVAL</code> 并回车</li>
+<li>右键 <code>DWMFRAMEINTERVAL</code> ，选择 <code>修改</code></li>
+<li>选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd7e54ce" class="outline-2">
+<h2 id="orgd7e54ce">显卡直通</h2>
+<div class="outline-text-2" id="text-orgd7e54ce">
+<p>
+先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 <code>lspci -nnk | egrep -A3 "VGA|3D"</code> 查看显卡的 Vendor ID 和 Device ID。
+</p>
+
+<pre class="example">
+➜ lspci -nnk | egrep -A3 "VGA|3D"
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1)
+        Subsystem: Lenovo TU106M [GeForce RTX 2060 Mobile] [17aa:3a43]
+        Kernel driver in use: vfio-pci
+        Kernel modules: nouveau
+--
+06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c6)
+        Subsystem: Lenovo Renoir [17aa:3a47]
+        Kernel driver in use: amdgpu
+        Kernel modules: amdgpu
+
+</pre>
+
+<p>
+其中 NVIDIA 独显的 Vendor ID 为 10de，Device ID 为 1f15。再用命令 <code>grep "PCI_SUBSYS_ID=" /sys/bus/pci/devices/0000:01:00.0/uevent</code> 查看 Sub Vendor ID 和 Sub Device ID。
+</p>
+
+<pre class="example">
+➜ grep "PCI_SUBSYS_ID=" /sys/bus/pci/devices/0000:01:00.0/uevent
+PCI_SUBSYS_ID=17AA:3A47
+</pre>
+
+<p>
+其中 Sub Vendor ID 为 17AA，Sub Device ID 为 3A47。将 17AA 和 3A47 转换为十进制 6058 和 14919，并在虚拟机的 XML 中添加配置：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #c678dd;">domain</span> <span style="color: #c678dd;">xmlns</span>:<span style="color: #dcaeea;">qemu</span>=<span style="color: #98be65;">"http://libvirt.org/schemas/domain/qemu/1.0"</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">"kvm"</span>&gt;
+  ...
+  &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">commandline</span>&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'-set'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'device.hostdev0.x-pci-sub-vendor-id=6058'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'-set'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'device.hostdev0.x-pci-sub-device-id=14919'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">commandline</span>&gt;
+&lt;/<span style="color: #c678dd;">domain</span>&gt;
+</pre>
+</div>
+
+<p>
+注意 XML 的第一行一定要添加 <code>xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0"</code> ，否则后面的配置无法成功添加。
+</p>
+
+<p>
+在 libvirt 中添加硬件，选择 PCI Host Device，然后将 <code>0000:01:00.0 NVIDIA Corporation GeForce RTX 2060 Mobile</code> 和 <code>0000:01:00.1 NVIDIA Corporation High Definition Audio Controller</code> 等都添加进去。
+</p>
+
+<p>
+最后再在 libvirt 中删除虚拟机的 <code>Display Spice</code> 和 <code>Video QXL</code> ，在 <code>CPUs</code> 中取消 Copy host CPU configuration 并将 Model 选择为 host passthrough。如果你需要直通鼠标和键盘，也可以在这个时候添加。
+</p>
+</div>
+</div>
+<div id="outline-container-orge38608d" class="outline-2">
+<h2 id="orge38608d">创建网桥</h2>
+<div class="outline-text-2" id="text-orge38608d">
+<p>
+有线网卡的网桥创建起来较为简单，这里就不详细介绍了，有需要的可以查看我上一篇<a href="软路由虚拟机.html">软路由虚拟机</a>的 BLOG。因为是笔记本，所以这里主要介绍无线网卡的桥接方法。
+</p>
+
+<p>
+先开启 proxy_arp 和 ip_forward，修改配置文件 <code>/etc/sysctl.conf</code> ，添加下述配置：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #dcaeea;">net.ipv4.ip_forward</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+<span style="color: #dcaeea;">net.ipv4.conf.all.proxy_arp</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+</pre>
+</div>
+
+<p>
+再点击 libvirt 菜单栏上的 <code>Edit</code> -&gt; <code>Connection Details</code> ，假设 host 的 ip 为 192.168.3.12，无线网卡为 wlp4s0，新建一个 Network， <code>Name</code> 设置为 proxyArp， <code>Mode</code> 选择 Routed， <code>Forward to</code> 选择 Physical device， <code>Device</code> 设置为 wlp4s0， IPv4 的 <code>Network</code> 设置为 192.168.3.100/28，完成创建。
+</p>
+
+<p>
+然后修改 win10 虚拟机的 <code>NIC</code> 配置，将 <code>Network source</code> 改为 Virtual network 'proxyArp': Route to wlp4s0，最后重新启动虚拟机与物理机。
+</p>
+</div>
+</div>
+<div id="outline-container-org1970dfc" class="outline-2">
+<h2 id="org1970dfc">远程连接</h2>
+<div class="outline-text-2" id="text-org1970dfc">
+<p>
+重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的分辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。
+</p>
+</div>
+<div id="outline-container-org9953ea8" class="outline-3">
+<h3 id="org9953ea8">RDP</h3>
+<div class="outline-text-3" id="text-org9953ea8">
+<p>
+简单使用方法：
+</p>
+<ul class="org-ul">
+<li>确保使用 FreeRDP 2.0</li>
+<li>获取 windows 虚拟机 IP，比如 192.168.3.108</li>
+<li>xfreerdp /v:192.168.3.108:3389 /w:1600 /h:900 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag</li>
+</ul>
+
+<p>
+对于使用 xfreedp 的 RemoteFX 连接的一些问题：
+</p>
+<ul class="org-ul">
+<li>只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。
+<ul class="org-ul">
+<li>作为解决方案，使用无边框模式游戏，或其他等效方案</li>
+<li>windows 客户端似乎没有该问题</li>
+</ul></li>
+<li>由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑
+<ul class="org-ul">
+<li>重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？</li>
+<li>使用 Synergy (v1) 并启用相对鼠标模式</li>
+<li>通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ced021" class="outline-3">
+<h3 id="org8ced021">Looking glass</h3>
+<div class="outline-text-3" id="text-org8ced021">
+<p>
+Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。
+</p>
+</div>
+
+<div id="outline-container-org7046ad1" class="outline-4">
+<h4 id="org7046ad1">安装 client</h4>
+<div class="outline-text-4" id="text-org7046ad1">
+<p>
+首先在 host 系统上安装 looking glass client，在 gentoo 上可以通过如下步骤直接安装我打包的 looking glass。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ECBE7B;">sudo</span> eselect repository enable gig
+<span style="color: #ECBE7B;">sudo</span> emerge --sync gig
+<span style="color: #ECBE7B;">sudo</span> emerge -avt looking-glass
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org06c4b7c" class="outline-4">
+<h4 id="org06c4b7c">计算内存大小</h4>
+<div class="outline-text-4" id="text-org06c4b7c">
+<p>
+通过以下公式，根据你期望的最大分辨率来计算内存大小。
+</p>
+
+<pre class="example">
+width x height x 4 x 2 = total bytes
+
+total bytes / 1024 / 1024 = total megabytes + 10
+</pre>
+
+<p>
+比如，我想要最大使用 4K 分辨率（3840x2160）：
+</p>
+
+<pre class="example">
+3840 x 2160 x 4 x 2 = 66355200 bytes
+
+66355200 / 1024 / 1024 = 63.28 MB + 10 = 73.28
+</pre>
+
+<p>
+最后要注意内存的大小要上向取整到最接近的 2 的幂，在上面的例子中则应为 128。
+</p>
+</div>
+</div>
+<div id="outline-container-org1a7bc3e" class="outline-4">
+<h4 id="org1a7bc3e">配置 libvirt</h4>
+<div class="outline-text-4" id="text-org1a7bc3e">
+<div class="org-src-container">
+<pre class="src src-xml">...
+&lt;<span style="color: #c678dd;">devices</span>&gt;
+    ...
+  &lt;<span style="color: #c678dd;">shmem</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'looking-glass'</span>&gt;
+    &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'ivshmem-plain'</span>/&gt;
+    &lt;<span style="color: #c678dd;">size</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'M'</span>&gt;128&lt;/<span style="color: #c678dd;">size</span>&gt;
+  &lt;/<span style="color: #c678dd;">shmem</span>&gt;
+&lt;/<span style="color: #c678dd;">devices</span>&gt;
+...
+</pre>
+</div>
+
+<p>
+将以上内容添加到虚拟机的 XML 配置中，其中 128 即为上面计算出来的大小。
+</p>
+
+<p>
+如果想要通过 spice 实现键盘和鼠标输入与剪贴板共享，则必须添加 spice 设备。
+</p>
+<ul class="org-ul">
+<li>在 libvirt 中，选择 <code>Add Hardware</code> ，然后再选择 <code>Graphics</code> ，使用默认的 spice 配置即可，最后完成添加</li>
+<li>选择 <code>Video</code> 设备，然后在 <code>Model</code> 栏中输入 none，注意必须要完成这一步，否则可能会造成虚拟机不使用直通的显卡渲染</li>
+<li>如果有 <code>tablet</code> 设备，则删除</li>
+<li>如果没有 <code>Mouse</code> 设备，则添加一个</li>
+<li>如果没有 <code>Keyboard</code> 设备，则添加一个
+<ul class="org-ul">
+<li>这里使用 Virtio 的键盘可以更好的提高性能，然而 PS/2 的键盘没办法删掉，不知道被哪个设备依赖了，所以就使用 PS/2 的键盘了</li>
+<li>还有如果使用 Virtio 的键盘，则需要通过上面加载的 virtio windows 驱动 的 CDROM，以安装驱动</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org057536b" class="outline-4">
+<h4 id="org057536b">创建共享内存文件</h4>
+<div class="outline-text-4" id="text-org057536b">
+<p>
+新建文件 <code>/etc/tmpfiles.d/10-looking-glass.conf</code> ，其内容为：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #5B6268;">#</span><span style="color: #5B6268;">Type Path               Mode UID  GID Age Argument</span>
+f /dev/shm/looking-glass <span style="color: #da8548; font-weight: bold;">0660</span> user kvm -
+</pre>
+</div>
+
+<p>
+将其中的 user，改为你自己的用户名。最后使用命令 <code>systemd-tmpfiles --create /etc/tmpfiles.d/10-looking-glass.conf</code> 创建共享内存文件，无需等待下次重启。
+</p>
+</div>
+</div>
+<div id="outline-container-org602216f" class="outline-4">
+<h4 id="org602216f">安装 host</h4>
+<div class="outline-text-4" id="text-org602216f">
+<p>
+首先需要在 windows 中安装 IVSHMEM 驱动，windows 不会自己安装 IVSHMEM 设备，相反它只会为该设备安装一个假驱动。先下载需要安装的驱动程序，<a href="https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/">https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/</a> ，注意必须下载 0.1.161 或更高的版本，最后将其解压。
+</p>
+
+<p>
+安装 IVSHMEM 驱动需要打开 <code>设备管理器</code> ，然后在 <code>系统设备</code> 下，找到 <code>PCI标准内存控制器</code> ，然后选择 <code>更新驱动程序</code> ，再选择手动更新，选择我们之前下载并解压好的驱动目录，然后安装驱动即可。
+</p>
+
+<p>
+host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：<a href="https://looking-glass.io/downloads">https://looking-glass.io/downloads</a> 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件查看其是否正常启动，log 在开始菜单里就有。
+</p>
+
+<p>
+最后再安装一下 spice guest tools， <a href="https://www.spice-space.org/download.html#windows-binaries">https://www.spice-space.org/download.html#windows-binaries</a> ，以更好的支持鼠标与剪贴板共享。
+</p>
+</div>
+</div>
+<div id="outline-container-org3f7f30a" class="outline-4">
+<h4 id="org3f7f30a">配置 client</h4>
+<div class="outline-text-4" id="text-org3f7f30a">
+<p>
+我使用的配置如下，将配置文件放在 <code>~/.looking-glass-client.ini</code> 或 <code>/etc/looking-glass-client.ini</code> ：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ini">[app]
+renderer=egl
+shmFile=/dev/shm/looking-glass
+
+[win]
+borderless=yes
+fullScreen=yes
+size=1920x1080
+
+[input]
+grabKeyboard=yes
+escapeKey=228
+
+[spice]
+captureOnStart=yes
+</pre>
+</div>
+
+<p>
+由于我的笔记本没有 ScrLk 按键，所以将 escape 键设置为了 右 Ctrl 按键。具体的 key code 与按键的映射表，可以查看 <a href="https://www.freepascal-meets-sdl.net/sdl-2-0-scancode-lookup-table/">https://www.freepascal-meets-sdl.net/sdl-2-0-scancode-lookup-table/</a> 。
+</p>
+
+<p>
+至此 looking glass 配置完成，运行命令 looking-glass-client 连接到虚拟机。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2794f02" class="outline-3">
+<h3 id="org2794f02">steam 远程畅玩（流式传输）</h3>
+<div class="outline-text-3" id="text-org2794f02">
+<p>
+因为 RDP 的限制，像 steam 家庭串流或 Geforce Experience 的方式对游戏来说更为推荐。
+</p>
+
+<p>
+如果不想每次串流游戏都输入密码解锁屏幕，则可以通过 RDP 以管理员权限运行 cmd，然后运行以下命令，也可以将其保存为脚本，方便以后使用。注意运行完该命令会立马断开 RDP。
+</p>
+
+<pre class="example">
+@powershell -NoProfile -ExecutionPolicy unrestricted -Command "$sessionid=((quser $env:USERNAME | select -Skip 1) -split '\s+')[2]; tscon $sessionid /dest:console" 2&gt; UnlockErrors.log
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1584f1a" class="outline-2">
+<h2 id="org1584f1a">参考连接</h2>
+<div class="outline-text-2" id="text-org1584f1a">
+<ol class="org-ol">
+<li>PCI passthrough via OVMF <a href="https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF">https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF</a></li>
+<li>[GUIDE] Optimus laptop dGPU passthrough <a href="https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28">https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28</a></li>
+<li>Vendor ID &amp; Device ID <a href="https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2">https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2</a></li>
+<li>笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 <a href="https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/">https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/</a></li>
+<li>ledis 的单显卡直通教程 <a href="https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md">https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md</a></li>
+<li>Looking glass Installation <a href="https://looking-glass.io/docs/676/install">https://looking-glass.io/docs/676/install</a></li>
+<li>Bridging Network Connections with Proxy ARP <a href="https://wiki.debian.org/BridgeNetworkConnectionsProxyArp">https://wiki.debian.org/BridgeNetworkConnectionsProxyArp</a></li>
+<li>setup kvm on a wireless interface on a laptop machine <a href="https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine">https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine</a></li>
+<li>桥接无线网卡 <a href="https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html">https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html</a></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc55a63d" class="outline-2">
+<h2 id="orgc55a63d">附录：XML 配置</h2>
+<div class="outline-text-2" id="text-orgc55a63d">
+<p>
+最后附上我的虚拟机的 XML 配置。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-xml">&lt;<span style="color: #c678dd;">domain</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'kvm'</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">'22'</span> <span style="color: #c678dd;">xmlns</span>:<span style="color: #dcaeea;">qemu</span>=<span style="color: #98be65;">'http://libvirt.org/schemas/domain/qemu/1.0'</span>&gt;
+  &lt;<span style="color: #c678dd;">name</span>&gt;win10&lt;/<span style="color: #c678dd;">name</span>&gt;
+  &lt;<span style="color: #c678dd;">uuid</span>&gt;d5da831a-c1eb-4668-a864-0731557d80a0&lt;/<span style="color: #c678dd;">uuid</span>&gt;
+  &lt;<span style="color: #c678dd;">metadata</span>&gt;
+    &lt;<span style="color: #c678dd;">libosinfo</span>:<span style="color: #c678dd;">libosinfo</span> <span style="color: #c678dd;">xmlns</span>:<span style="color: #dcaeea;">libosinfo</span>=<span style="color: #98be65;">"http://libosinfo.org/xmlns/libvirt/domain/1.0"</span>&gt;
+      &lt;<span style="color: #c678dd;">libosinfo</span>:<span style="color: #c678dd;">os</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">"http://microsoft.com/win/10"</span>/&gt;
+    &lt;/<span style="color: #c678dd;">libosinfo</span>:<span style="color: #c678dd;">libosinfo</span>&gt;
+  &lt;/<span style="color: #c678dd;">metadata</span>&gt;
+  &lt;<span style="color: #c678dd;">memory</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'KiB'</span>&gt;33554432&lt;/<span style="color: #c678dd;">memory</span>&gt;
+  &lt;<span style="color: #c678dd;">currentMemory</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'KiB'</span>&gt;33554432&lt;/<span style="color: #c678dd;">currentMemory</span>&gt;
+  &lt;<span style="color: #c678dd;">vcpu</span> <span style="color: #dcaeea;">placement</span>=<span style="color: #98be65;">'static'</span>&gt;8&lt;/<span style="color: #c678dd;">vcpu</span>&gt;
+  &lt;<span style="color: #c678dd;">resource</span>&gt;
+    &lt;<span style="color: #c678dd;">partition</span>&gt;/machine&lt;/<span style="color: #c678dd;">partition</span>&gt;
+  &lt;/<span style="color: #c678dd;">resource</span>&gt;
+  &lt;<span style="color: #c678dd;">os</span>&gt;
+    &lt;<span style="color: #c678dd;">type</span> <span style="color: #dcaeea;">arch</span>=<span style="color: #98be65;">'x86_64'</span> <span style="color: #dcaeea;">machine</span>=<span style="color: #98be65;">'pc-q35-6.0'</span>&gt;hvm&lt;/<span style="color: #c678dd;">type</span>&gt;
+    &lt;<span style="color: #c678dd;">loader</span> <span style="color: #dcaeea;">readonly</span>=<span style="color: #98be65;">'yes'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pflash'</span>&gt;/usr/share/edk2-ovmf/OVMF_CODE.fd&lt;/<span style="color: #c678dd;">loader</span>&gt;
+    &lt;<span style="color: #c678dd;">nvram</span>&gt;/var/lib/libvirt/qemu/nvram/win10_VARS.fd&lt;/<span style="color: #c678dd;">nvram</span>&gt;
+    &lt;<span style="color: #c678dd;">bootmenu</span> <span style="color: #dcaeea;">enable</span>=<span style="color: #98be65;">'no'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">os</span>&gt;
+  &lt;<span style="color: #c678dd;">features</span>&gt;
+    &lt;<span style="color: #c678dd;">acpi</span>/&gt;
+    &lt;<span style="color: #c678dd;">apic</span>/&gt;
+    &lt;<span style="color: #c678dd;">hyperv</span>&gt;
+      &lt;<span style="color: #c678dd;">relaxed</span> <span style="color: #dcaeea;">state</span>=<span style="color: #98be65;">'on'</span>/&gt;
+      &lt;<span style="color: #c678dd;">vapic</span> <span style="color: #dcaeea;">state</span>=<span style="color: #98be65;">'on'</span>/&gt;
+      &lt;<span style="color: #c678dd;">spinlocks</span> <span style="color: #dcaeea;">state</span>=<span style="color: #98be65;">'on'</span> <span style="color: #dcaeea;">retries</span>=<span style="color: #98be65;">'8191'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">hyperv</span>&gt;
+    &lt;<span style="color: #c678dd;">vmport</span> <span style="color: #dcaeea;">state</span>=<span style="color: #98be65;">'off'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">features</span>&gt;
+  &lt;<span style="color: #c678dd;">cpu</span> <span style="color: #dcaeea;">mode</span>=<span style="color: #98be65;">'host-passthrough'</span> <span style="color: #dcaeea;">check</span>=<span style="color: #98be65;">'partial'</span> <span style="color: #dcaeea;">migratable</span>=<span style="color: #98be65;">'on'</span>&gt;
+    &lt;<span style="color: #c678dd;">topology</span> <span style="color: #dcaeea;">sockets</span>=<span style="color: #98be65;">'1'</span> <span style="color: #dcaeea;">dies</span>=<span style="color: #98be65;">'1'</span> <span style="color: #dcaeea;">cores</span>=<span style="color: #98be65;">'4'</span> <span style="color: #dcaeea;">threads</span>=<span style="color: #98be65;">'2'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">cpu</span>&gt;
+  &lt;<span style="color: #c678dd;">clock</span> <span style="color: #dcaeea;">offset</span>=<span style="color: #98be65;">'localtime'</span>&gt;
+    &lt;<span style="color: #c678dd;">timer</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'rtc'</span> <span style="color: #dcaeea;">tickpolicy</span>=<span style="color: #98be65;">'catchup'</span>/&gt;
+    &lt;<span style="color: #c678dd;">timer</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pit'</span> <span style="color: #dcaeea;">tickpolicy</span>=<span style="color: #98be65;">'delay'</span>/&gt;
+    &lt;<span style="color: #c678dd;">timer</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hpet'</span> <span style="color: #dcaeea;">present</span>=<span style="color: #98be65;">'no'</span>/&gt;
+    &lt;<span style="color: #c678dd;">timer</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hypervclock'</span> <span style="color: #dcaeea;">present</span>=<span style="color: #98be65;">'yes'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">clock</span>&gt;
+  &lt;<span style="color: #c678dd;">on_poweroff</span>&gt;destroy&lt;/<span style="color: #c678dd;">on_poweroff</span>&gt;
+  &lt;<span style="color: #c678dd;">on_reboot</span>&gt;restart&lt;/<span style="color: #c678dd;">on_reboot</span>&gt;
+  &lt;<span style="color: #c678dd;">on_crash</span>&gt;destroy&lt;/<span style="color: #c678dd;">on_crash</span>&gt;
+  &lt;<span style="color: #c678dd;">pm</span>&gt;
+    &lt;<span style="color: #c678dd;">suspend-to-mem</span> <span style="color: #dcaeea;">enabled</span>=<span style="color: #98be65;">'no'</span>/&gt;
+    &lt;<span style="color: #c678dd;">suspend-to-disk</span> <span style="color: #dcaeea;">enabled</span>=<span style="color: #98be65;">'no'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">pm</span>&gt;
+  &lt;<span style="color: #c678dd;">devices</span>&gt;
+    &lt;<span style="color: #c678dd;">emulator</span>&gt;/usr/bin/qemu-system-x86_64&lt;/<span style="color: #c678dd;">emulator</span>&gt;
+    &lt;<span style="color: #c678dd;">disk</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'file'</span> <span style="color: #dcaeea;">device</span>=<span style="color: #98be65;">'disk'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'qemu'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'qcow2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">file</span>=<span style="color: #98be65;">'/var/lib/libvirt/images/win10.qcow2'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'3'</span>/&gt;
+      &lt;<span style="color: #c678dd;">backingStore</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'vda'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'virtio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">boot</span> <span style="color: #dcaeea;">order</span>=<span style="color: #98be65;">'1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'virtio-disk0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x04'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">disk</span>&gt;
+    &lt;<span style="color: #c678dd;">disk</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'file'</span> <span style="color: #dcaeea;">device</span>=<span style="color: #98be65;">'cdrom'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'qemu'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'raw'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">file</span>=<span style="color: #98be65;">'/home/petrus/Downloads/iso/cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">backingStore</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'sdb'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'sata'</span>/&gt;
+      &lt;<span style="color: #c678dd;">readonly</span>/&gt;
+      &lt;<span style="color: #c678dd;">boot</span> <span style="color: #dcaeea;">order</span>=<span style="color: #98be65;">'2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'sata0-0-1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'drive'</span> <span style="color: #dcaeea;">controller</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">target</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'1'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">disk</span>&gt;
+    &lt;<span style="color: #c678dd;">disk</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'file'</span> <span style="color: #dcaeea;">device</span>=<span style="color: #98be65;">'cdrom'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'qemu'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'raw'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">file</span>=<span style="color: #98be65;">'/home/petrus/Downloads/iso/virtio-win-0.1.185.iso'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">backingStore</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'sdc'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'sata'</span>/&gt;
+      &lt;<span style="color: #c678dd;">readonly</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'sata0-0-2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'drive'</span> <span style="color: #dcaeea;">controller</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">target</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'2'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">disk</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'usb'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'qemu-xhci'</span> <span style="color: #dcaeea;">ports</span>=<span style="color: #98be65;">'15'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'usb'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'sata'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'0'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'ide'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x1f'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x2'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie.0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'1'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'1'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x10'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span> <span style="color: #dcaeea;">multifunction</span>=<span style="color: #98be65;">'on'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'2'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'2'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x11'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x1'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'3'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'3'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x12'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.3'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x2'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'4'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'4'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x13'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.4'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x3'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'5'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'5'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x14'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.5'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x4'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'6'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'6'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x15'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.6'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x5'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'7'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'7'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x8'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.7'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span> <span style="color: #dcaeea;">multifunction</span>=<span style="color: #98be65;">'on'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'8'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'8'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0x9'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.8'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x1'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'9'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'9'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0xa'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.9'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x2'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'10'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'10'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0xb'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.10'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x3'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'11'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-to-pci-bridge'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-pci-bridge'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.11'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x0a'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'12'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'pcie-root-port'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pcie-root-port'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">chassis</span>=<span style="color: #98be65;">'12'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0xc'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'pci.12'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x4'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">controller</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'virtio-serial'</span> <span style="color: #dcaeea;">index</span>=<span style="color: #98be65;">'0'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'virtio-serial0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x03'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">controller</span>&gt;
+    &lt;<span style="color: #c678dd;">interface</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'network'</span>&gt;
+      &lt;<span style="color: #c678dd;">mac</span> <span style="color: #dcaeea;">address</span>=<span style="color: #98be65;">'52:54:00:9c:b1:61'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">network</span>=<span style="color: #98be65;">'proxyArp'</span> <span style="color: #dcaeea;">portid</span>=<span style="color: #98be65;">'e454d6af-e91e-480d-ab20-30d61c0999ef'</span> <span style="color: #dcaeea;">bridge</span>=<span style="color: #98be65;">'virbr1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'vnet18'</span>/&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'virtio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'net0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">interface</span>&gt;
+    &lt;<span style="color: #c678dd;">serial</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pty'</span>&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/16'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'isa-serial'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0'</span>&gt;
+        &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'isa-serial'</span>/&gt;
+      &lt;/<span style="color: #c678dd;">target</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'serial0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">serial</span>&gt;
+    &lt;<span style="color: #c678dd;">console</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pty'</span> <span style="color: #dcaeea;">tty</span>=<span style="color: #98be65;">'/dev/pts/16'</span>&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/16'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'serial'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'serial0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">console</span>&gt;
+    &lt;<span style="color: #c678dd;">channel</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'spicevmc'</span>&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'virtio'</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'com.redhat.spice.0'</span> <span style="color: #dcaeea;">state</span>=<span style="color: #98be65;">'connected'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'channel0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'virtio-serial'</span> <span style="color: #dcaeea;">controller</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'1'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">channel</span>&gt;
+    &lt;<span style="color: #c678dd;">input</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'mouse'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'ps2'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'input0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">input</span>&gt;
+    &lt;<span style="color: #c678dd;">input</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'keyboard'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'ps2'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'input1'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">input</span>&gt;
+    &lt;<span style="color: #c678dd;">graphics</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'spice'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'5900'</span> <span style="color: #dcaeea;">autoport</span>=<span style="color: #98be65;">'yes'</span> <span style="color: #dcaeea;">listen</span>=<span style="color: #98be65;">'127.0.0.1'</span>&gt;
+      &lt;<span style="color: #c678dd;">listen</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'address'</span> <span style="color: #dcaeea;">address</span>=<span style="color: #98be65;">'127.0.0.1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">image</span> <span style="color: #dcaeea;">compression</span>=<span style="color: #98be65;">'off'</span>/&gt;
+      &lt;<span style="color: #c678dd;">gl</span> <span style="color: #dcaeea;">enable</span>=<span style="color: #98be65;">'no'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">graphics</span>&gt;
+    &lt;<span style="color: #c678dd;">sound</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'ich9'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'sound0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x1b'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">sound</span>&gt;
+    &lt;<span style="color: #c678dd;">audio</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">'1'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'spice'</span>/&gt;
+    &lt;<span style="color: #c678dd;">video</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'none'</span>/&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'video0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">video</span>&gt;
+    &lt;<span style="color: #c678dd;">hostdev</span> <span style="color: #dcaeea;">mode</span>=<span style="color: #98be65;">'subsystem'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">managed</span>=<span style="color: #98be65;">'yes'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'vfio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span>&gt;
+        &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+      &lt;/<span style="color: #c678dd;">source</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hostdev0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x06'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">hostdev</span>&gt;
+    &lt;<span style="color: #c678dd;">hostdev</span> <span style="color: #dcaeea;">mode</span>=<span style="color: #98be65;">'subsystem'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">managed</span>=<span style="color: #98be65;">'yes'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'vfio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span>&gt;
+        &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x1'</span>/&gt;
+      &lt;/<span style="color: #c678dd;">source</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hostdev1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x07'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">hostdev</span>&gt;
+    &lt;<span style="color: #c678dd;">hostdev</span> <span style="color: #dcaeea;">mode</span>=<span style="color: #98be65;">'subsystem'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">managed</span>=<span style="color: #98be65;">'yes'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'vfio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span>&gt;
+        &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x2'</span>/&gt;
+      &lt;/<span style="color: #c678dd;">source</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hostdev2'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x08'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">hostdev</span>&gt;
+    &lt;<span style="color: #c678dd;">hostdev</span> <span style="color: #dcaeea;">mode</span>=<span style="color: #98be65;">'subsystem'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">managed</span>=<span style="color: #98be65;">'yes'</span>&gt;
+      &lt;<span style="color: #c678dd;">driver</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'vfio'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span>&gt;
+        &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x3'</span>/&gt;
+      &lt;/<span style="color: #c678dd;">source</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'hostdev3'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x09'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">hostdev</span>&gt;
+    &lt;<span style="color: #c678dd;">redirdev</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'usb'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'spicevmc'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'redir0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'usb'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'2'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">redirdev</span>&gt;
+    &lt;<span style="color: #c678dd;">redirdev</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'usb'</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'spicevmc'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'redir1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'usb'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'3'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">redirdev</span>&gt;
+    &lt;<span style="color: #c678dd;">memballoon</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'virtio'</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'balloon0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x05'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">memballoon</span>&gt;
+    &lt;<span style="color: #c678dd;">shmem</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'looking-glass'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'ivshmem-plain'</span>/&gt;
+      &lt;<span style="color: #c678dd;">size</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'M'</span>&gt;128&lt;/<span style="color: #c678dd;">size</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'shmem0'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x0b'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">shmem</span>&gt;
+  &lt;/<span style="color: #c678dd;">devices</span>&gt;
+  &lt;<span style="color: #c678dd;">seclabel</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'dynamic'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'dac'</span> <span style="color: #dcaeea;">relabel</span>=<span style="color: #98be65;">'yes'</span>&gt;
+    &lt;<span style="color: #c678dd;">label</span>&gt;+77:+77&lt;/<span style="color: #c678dd;">label</span>&gt;
+    &lt;<span style="color: #c678dd;">imagelabel</span>&gt;+77:+77&lt;/<span style="color: #c678dd;">imagelabel</span>&gt;
+  &lt;/<span style="color: #c678dd;">seclabel</span>&gt;
+  &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">commandline</span>&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'-set'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'device.hostdev0.x-pci-sub-vendor-id=6058'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'-set'</span>/&gt;
+    &lt;<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">arg</span> <span style="color: #dcaeea;">value</span>=<span style="color: #98be65;">'device.hostdev0.x-pci-sub-device-id=14919'</span>/&gt;
+  &lt;/<span style="color: #c678dd;">qemu</span>:<span style="color: #c678dd;">commandline</span>&gt;
+&lt;/<span style="color: #c678dd;">domain</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-06-29 Tue 22:56</p>
+</div>
+</body>
+</html>
