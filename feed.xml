@@ -5,6 +5,147 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[双显卡笔记本独显直通]]></title>
+    <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</guid>
+    <description><![CDATA[<p>#+TITLE: 双显卡笔记本独显直通 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>介绍 双显卡笔记本中直通独显（dGPU）到 win10 虚拟机。</li>
+</ul>
+<p>环境： - 联想 Legion R7000P 2020 笔记本 - RTX2060 笔记本显卡 - libvirt+qemu - Host: Gentoo Linux - Guest: Windows 10 LTSC 2019 * MUXed MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该就是 MUXed 的。关于什么是 MUXed 的，可以看下图的解释。</p>
+<p>[[file:../pics/Blog/muxed.jpg]]</p>
+<p>关于如何检测笔记本是否是 MUXed 的，目前没有什么好的办法。有一种说法是运行 lspci，查找有关 Intel HD Graphics/AMD GPU 和 NVIDIA 的设备：</p>
+<ul>
+<li>如果独显设备名以 3D Controller 开头，那你的电脑就是第一种 MUXless（核显直连显示器）。</li>
+<li>如果独显设备名以 VGA Controller 开头，并且有一个 HD Graphics/AMD GPU 核显，那你的电脑是第二种 MUXed（核显、独显切换）。</li>
+<li>启用 IOMMU 和 vfio 模块 ** IOMMU</li>
+<li>intel CPU：添加内核参数 =intel_iommu=on iommu=pt= ，BIOS 开启 VT-d</li>
+<li>amd CPU：添加内核参数 =iommu=pt= ，BIOS 开启 AMD-Vi ** vfio 添加模块 =vfio_pci vfio vfio_iommu_type1 vfio_virqfd= 到 initramfs 中。如果是像我一样使用 dracut 生成 initramfs，则在 =/etc/dracut.conf= 中添加配置 ~add_drivers+=" vfio_pci vfio vfio_iommu_type1 vfio_virqfd "~ ，之后重新生成 initramfs。</li>
+<li>隔离 GPU #+begin_src sh #!/bin/bash shopt -s nullglob for g in <code>find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V</code>; do echo “IOMMU Group ${g##<em>/}:" for d in <span class="math inline">$g/devices/*; do  echo -e "\t$</span>(lspci -nns ${d##</em>/})” done; done; #+end_src</li>
+</ul>
+<p>运行上述脚本，查看显卡所在的 IOMMU Group，并得到显卡相关设备的 device id。</p>
+<p>#+begin_src IOMMU Group 10: 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) 01:00.1 Audio device [0403]: NVIDIA Corporation TU106 High Definition Audio Controller [10de:10f9] (rev a1) 01:00.2 USB controller [0c03]: NVIDIA Corporation TU106 USB 3.1 Host Controller [10de:1ada] (rev a1) 01:00.3 Serial bus controller [0c80]: NVIDIA Corporation TU106 USB Type-C UCSI Controller [10de:1adb] (rev a1) #+end_src</p>
+<p>如上所见，device id 分别为 <sub>10de:1f15</sub> 、 <sub>10de:10f9</sub> 、 <sub>10de:1ada</sub> 、 <sub>10de:1adb</sub> 。再将以上 deivce id 作为参数添加到内核参数或 =/etc/modprobe.d/vfio.conf= 中。</p>
+<ul>
+<li>内核参数：vfio-pci.ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
+<li>=/etc/modprobe.d/vfio.conf= ：options vfio-pci ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
+</ul>
+<p>dracut 必须将 device id 添加到内核参数中，并且添加参数 =rd.driver.pre=vfio_pci= 。</p>
+<p>最后重启电脑。开机后通过命令 =lspci -k= 确认上述 device id 对应的设备在使用 vfio-pci 驱动。如果有各别设备没有使用 vfio-pci 驱动，则可以通过手动 unbind 和 bind 驱动的方式加载 vfio-pci 驱动。比如如果 0000:01:00.2 仍在使用 xhci_hcd 驱动，则：</p>
+<p>#+begin_src sh # run as root echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/xhci_hcd/unbind echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/vfio-pci/bind #+end_src * 创建虚拟机 首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备，并且之后使用 RDP 连接虚拟机。</p>
+<p>首先下载[[https://msdn.itellyou.cn/][windows 10 LTSC 2019]]和 [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio windows驱动]]镜像。</p>
+<p>创建虚拟机： - =Overview= ：Firmware 选择 UEFI x86_64:/usr/share/edk2-ovmf/OVMF_CODE.fd - =CPUs= ：选择 Topology，Manually set CPU topology，Sockets 设为 1，Cores 按需要来，我设为 4，Threads 设置为 2。这样一共就分配了 4 核 8 线程的 CPU - =Memory= ：内存我设置为 32G - =SATA Disk= ：Disk Bus 选择 Virtio，可以最小化磁盘性能损耗 - =NIC= ：Device model 也选择 virtio - 之后再添加一个 =Stroage= ，选择 Select custom storage 并选中之前下载的 virtio windows 驱动镜像，然后 Device type 选择 CDROM device - 最后在 =Boot Options= 中选中需要启动的设备</p>
+<p>开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
+<p>#+begin_src ➜ lspci -nnk | egrep -A3 “VGA|3D” 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) Subsystem: Lenovo TU106M [GeForce RTX 2060 Mobile] [17aa:3a43] Kernel driver in use: vfio-pci Kernel modules: nouveau – 06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c6) Subsystem: Lenovo Renoir [17aa:3a47] Kernel driver in use: amdgpu Kernel modules: amdgpu</p>
+<p>#+end_src</p>
+<p>其中 NVIDIA 独显的 Vendor ID 为 10de，Device ID 为 1f15。再用命令 ~grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent~ 查看 Sub Vendor ID 和 Sub Device ID。</p>
+<p>#+begin_src ➜ grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent PCI_SUBSYS_ID=17AA:3A47 #+end_src</p>
+<p>其中 Sub Vendor ID 为 17AA，Sub Device ID 为 3A47。将 17AA 和 3A47 转换为十进制 6058 和 14919，并在虚拟机的 XML 中添加配置：</p>
+<p>#+begin_src xml <domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm"> … <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>
+<p>注意 XML 的第一行一定要添加 <sub>xmlns:qemu=“http://libvirt.org/schemas/domain/qemu/1.0”</sub> ，否则后面的配置无法成功添加。</p>
+<p>在 libvirt 中添加硬件，选择 PCI Host Device，然后将 =0000:01:00.0 NVIDIA Corporation GeForce RTX 2060 Mobile= 和 =0000:01:00.1 NVIDIA Corporation High Definition Audio Controller= 等都添加进去。</p>
+<p>最后再在 libvirt 中删除虚拟机的 =Display Spice= 和 =Video QXL= ，在 =CPUs= 中取消 Copy host CPU configuration 并将 Model 选择为 host passthrough。如果你需要直通鼠标和键盘，也可以在这个时候添加。 * 创建网桥 有线网卡的网桥创建起来较为简单，这里就不详细介绍了，有需要的可以查看我上一篇[[file:软路由虚拟机.org][软路由虚拟机]]的 BLOG。因为是笔记本，所以这里主要介绍无线网卡的桥接方法。</p>
+<p>先开启 proxy_arp 和 ip_forward，修改配置文件 =/etc/sysctl.conf= ，添加下述配置：</p>
+<p>#+begin_src conf net.ipv4.ip_forward = 1 net.ipv4.conf.all.proxy_arp = 1 #+end_src</p>
+<p>再点击 libvirt 菜单栏上的 =Edit= -&gt; =Connection Details= ，假设 host 的 ip 为 192.168.3.12，无线网卡为 wlp4s0，新建一个 Network， =Name= 设置为 proxyArp， =Mode= 选择 Routed， =Forward to= 选择 Physical device， =Device= 设置为 wlp4s0， IPv4 的 =Network= 设置为 192.168.3.100/28，完成创建。</p>
+<p>然后修改 win10 虚拟机的 =NIC= 配置，将 =Network source= 改为 Virtual network ‘proxyArp’: Route to wlp4s0，最后重新启动虚拟机与物理机。 * 远程连接 重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的分辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。 ** RDP 简单使用方法： - 确保使用 FreeRDP 2.0 - 获取 windows 虚拟机 IP，比如 192.168.3.108 - xfreerdp /v:192.168.3.108:3389 /w:1600 /h:900 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag</p>
+<p>对于使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
+<p>*** 安装 client 首先在 host 系统上安装 looking glass client，在 gentoo 上可以通过如下步骤直接安装我打包的 looking glass。</p>
+<p>#+begin_src sh sudo eselect repository enable gig sudo emerge –sync gig sudo emerge -avt looking-glass #+end_src *** 计算内存大小 通过以下公式，根据你期望的最大分辨率来计算内存大小。</p>
+<p>#+begin_src width x height x 4 x 2 = total bytes</p>
+<p>total bytes / 1024 / 1024 = total megabytes + 10 #+end_src</p>
+<p>比如，我想要最大使用 4K 分辨率（3840x2160）：</p>
+<p>#+begin_src 3840 x 2160 x 4 x 2 = 66355200 bytes</p>
+<p>66355200 / 1024 / 1024 = 63.28 MB + 10 = 73.28 #+end_src</p>
+<p>最后要注意内存的大小要上向取整到最接近的 2 的幂，在上面的例子中则应为 128。 *** 配置 libvirt #+begin_src xml … <devices> … <shmem name='looking-glass'> <model type='ivshmem-plain'/> <size unit='M'>128</size> </shmem> </devices> … #+end_src</p>
+<p>将以上内容添加到虚拟机的 XML 配置中，其中 128 即为上面计算出来的大小。</p>
+<p>如果想要通过 spice 实现键盘和鼠标输入与剪贴板共享，则必须添加 spice 设备。 - 在 libvirt 中，选择 =Add Hardware= ，然后再选择 =Graphics= ，使用默认的 spice 配置即可，最后完成添加 - 选择 =Video= 设备，然后在 =Model= 栏中输入 none，注意必须要完成这一步，否则可能会造成虚拟机不使用直通的显卡渲染 - 如果有 =tablet= 设备，则删除 - 如果没有 =Mouse= 设备，则添加一个 - 如果没有 =Keyboard= 设备，则添加一个 + 这里使用 Virtio 的键盘可以更好的提高性能，然而 PS/2 的键盘没办法删掉，不知道被哪个设备依赖了，所以就使用 PS/2 的键盘了 + 还有如果使用 Virtio 的键盘，则需要通过上面加载的 virtio windows 驱动 的 CDROM，以安装驱动 *** 创建共享内存文件 新建文件 =/etc/tmpfiles.d/10-looking-glass.conf= ，其内容为：</p>
+<p>#+begin_src conf #Type Path Mode UID GID Age Argument f /dev/shm/looking-glass 0660 user kvm - #+end_src</p>
+<p>将其中的 user，改为你自己的用户名。最后使用命令 =systemd-tmpfiles –create /etc/tmpfiles.d/10-looking-glass.conf= 创建共享内存文件，无需等待下次重启。 *** 安装 host 首先需要在 windows 中安装 IVSHMEM 驱动，windows 不会自己安装 IVSHMEM 设备，相反它只会为该设备安装一个假驱动。先下载需要安装的驱动程序，https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/ ，注意必须下载 0.1.161 或更高的版本，最后将其解压。</p>
+<p>安装 IVSHMEM 驱动需要打开 =设备管理器= ，然后在 =系统设备= 下，找到 =PCI标准内存控制器= ，然后选择 =更新驱动程序= ，再选择手动更新，选择我们之前下载并解压好的驱动目录，然后安装驱动即可。</p>
+<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件查看其是否正常启动，log 在开始菜单里就有。</p>
+<p>最后再安装一下 spice guest tools， https://www.spice-space.org/download.html#windows-binaries ，以更好的支持鼠标与剪贴板共享。 *** 配置 client 我使用的配置如下，将配置文件放在 =~/.looking-glass-client.ini= 或 =/etc/looking-glass-client.ini= ：</p>
+<p>#+begin_src ini [app] renderer=egl shmFile=/dev/shm/looking-glass</p>
+<p>[win] borderless=yes fullScreen=yes size=1920x1080</p>
+<p>[input] grabKeyboard=yes escapeKey=228</p>
+<p>[spice] captureOnStart=yes #+end_src</p>
+<p>由于我的笔记本没有 ScrLk 按键，所以将 escape 键设置为了 右 Ctrl 按键。具体的 key code 与按键的映射表，可以查看 https://www.freepascal-meets-sdl.net/sdl-2-0-scancode-lookup-table/ 。</p>
+<p>至此 looking glass 配置完成，运行命令 looking-glass-client 连接到虚拟机。 ** steam 远程畅玩（流式传输） 因为 RDP 的限制，像 steam 家庭串流或 Geforce Experience 的方式对游戏来说更为推荐。</p>
+<p>如果不想每次串流游戏都输入密码解锁屏幕，则可以通过 RDP 以管理员权限运行 cmd，然后运行以下命令，也可以将其保存为脚本，方便以后使用。注意运行完该命令会立马断开 RDP。</p>
+<p>#+begin_src <span class="citation" data-cites="powershell">@powershell</span> -NoProfile -ExecutionPolicy unrestricted -Command “$sessionid=((quser $env:USERNAME | select -Skip 1) -split ‘+’)[2]; tscon $sessionid /dest:console” 2&gt; UnlockErrors.log #+end_src * 参考连接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
+#+begin_src xml <domain type='kvm' id='22' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'> <name>win10</name> <uuid>d5da831a-c1eb-4668-a864-0731557d80a0</uuid> <metadata> <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0"> <libosinfo:os id="http://microsoft.com/win/10"/> </libosinfo:libosinfo> </metadata> <memory unit='KiB'>33554432</memory> <currentMemory unit='KiB'>33554432</currentMemory> <vcpu placement='static'>8</vcpu> <resource> <partition>/machine</partition> </resource> <os> <type arch='x86_64' machine='pc-q35-6.0'>hvm</type> <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/OVMF_CODE.fd</loader> <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram> <bootmenu enable='no'/> </os> <features> <acpi/> <apic/> <hyperv> <relaxed state='on'/> <vapic state='on'/> <spinlocks state='on' retries='8191'/> </hyperv> <vmport state='off'/> </features> <cpu mode='host-passthrough' check='partial' migratable='on'> <topology sockets='1' dies='1' cores='4' threads='2'/> </cpu> <clock offset='localtime'> <timer name='rtc' tickpolicy='catchup'/> <timer name='pit' tickpolicy='delay'/> <timer name='hpet' present='no'/> <timer name='hypervclock' present='yes'/> </clock> <on_poweroff>destroy</on_poweroff> <on_reboot>restart</on_reboot> <on_crash>destroy</on_crash> <pm> <suspend-to-mem enabled='no'/> <suspend-to-disk enabled='no'/> </pm> <devices> <emulator>/usr/bin/qemu-system-x86_64</emulator> <disk type='file' device='disk'> <driver name='qemu' type='qcow2'/> <source file='/var/lib/libvirt/images/win10.qcow2' index='3'/> <backingStore/> <target dev='vda' bus='virtio'/> <boot order='1'/> <alias name='virtio-disk0'/>
+<address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
+</disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso' index='2'/> <backingStore/> <target dev='sdb' bus='sata'/> <readonly/> <boot order='2'/> <alias name='sata0-0-1'/>
+<address type='drive' controller='0' bus='0' target='0' unit='1'/>
+</disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/virtio-win-0.1.185.iso' index='1'/> <backingStore/> <target dev='sdc' bus='sata'/> <readonly/> <alias name='sata0-0-2'/>
+<address type='drive' controller='0' bus='0' target='0' unit='2'/>
+</disk> <controller type='usb' index='0' model='qemu-xhci' ports='15'> <alias name='usb'/>
+<address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
+</controller> <controller type='sata' index='0'> <alias name='ide'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
+</controller> <controller type='pci' index='0' model='pcie-root'> <alias name='pcie.0'/> </controller> <controller type='pci' index='1' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='1' port='0x10'/> <alias name='pci.1'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0' multifunction='on'/>
+</controller> <controller type='pci' index='2' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='2' port='0x11'/> <alias name='pci.2'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
+</controller> <controller type='pci' index='3' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='3' port='0x12'/> <alias name='pci.3'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
+</controller> <controller type='pci' index='4' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='4' port='0x13'/> <alias name='pci.4'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x3'/>
+</controller> <controller type='pci' index='5' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='5' port='0x14'/> <alias name='pci.5'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x4'/>
+</controller> <controller type='pci' index='6' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='6' port='0x15'/> <alias name='pci.6'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x5'/>
+</controller> <controller type='pci' index='7' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='7' port='0x8'/> <alias name='pci.7'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0' multifunction='on'/>
+</controller> <controller type='pci' index='8' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='8' port='0x9'/> <alias name='pci.8'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
+</controller> <controller type='pci' index='9' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='9' port='0xa'/> <alias name='pci.9'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
+</controller> <controller type='pci' index='10' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='10' port='0xb'/> <alias name='pci.10'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x3'/>
+</controller> <controller type='pci' index='11' model='pcie-to-pci-bridge'> <model name='pcie-pci-bridge'/> <alias name='pci.11'/>
+<address type='pci' domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
+</controller> <controller type='pci' index='12' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='12' port='0xc'/> <alias name='pci.12'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x4'/>
+</controller> <controller type='virtio-serial' index='0'> <alias name='virtio-serial0'/>
+<address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
+</controller> <interface type='network'> <mac address='52:54:00:9c:b1:61'/> <source network='proxyArp' portid='e454d6af-e91e-480d-ab20-30d61c0999ef' bridge='virbr1'/> <target dev='vnet18'/> <model type='virtio'/> <alias name='net0'/>
+<address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+</interface> <serial type='pty'> <source path='/dev/pts/16'/> <target type='isa-serial' port='0'> <model name='isa-serial'/> </target> <alias name='serial0'/> </serial> <console type='pty' tty='/dev/pts/16'> <source path='/dev/pts/16'/> <target type='serial' port='0'/> <alias name='serial0'/> </console> <channel type='spicevmc'> <target type='virtio' name='com.redhat.spice.0' state='connected'/> <alias name='channel0'/>
+<address type='virtio-serial' controller='0' bus='0' port='1'/>
+</channel> <input type='mouse' bus='ps2'> <alias name='input0'/> </input> <input type='keyboard' bus='ps2'> <alias name='input1'/> </input> <graphics type='spice' port='5900' autoport='yes' listen='127.0.0.1'> <listen type='address' address='127.0.0.1'/> <image compression='off'/> <gl enable='no'/> </graphics> <sound model='ich9'> <alias name='sound0'/>
+<address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
+</sound> <audio id='1' type='spice'/> <video> <model type='none'/> <alias name='video0'/> </video> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
+<address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
+</source>
+<alias name='hostdev0'/>
+<address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
+</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
+<address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
+</source>
+<alias name='hostdev1'/>
+<address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
+</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
+<address domain='0x0000' bus='0x01' slot='0x00' function='0x2'/>
+</source>
+<alias name='hostdev2'/>
+<address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
+</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
+<address domain='0x0000' bus='0x01' slot='0x00' function='0x3'/>
+</source>
+<alias name='hostdev3'/>
+<address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
+</hostdev> <redirdev bus='usb' type='spicevmc'> <alias name='redir0'/>
+<address type='usb' bus='0' port='2'/>
+</redirdev> <redirdev bus='usb' type='spicevmc'> <alias name='redir1'/>
+<address type='usb' bus='0' port='3'/>
+</redirdev> <memballoon model='virtio'> <alias name='balloon0'/>
+<address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
+</memballoon> <shmem name='looking-glass'> <model type='ivshmem-plain'/> <size unit='M'>128</size> <alias name='shmem0'/>
+<address type='pci' domain='0x0000' bus='0x0b' slot='0x01' function='0x0'/>
+<p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
+    <pubDate>Tue, 29 Jun 2021 22:57:33 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[软路由虚拟机]]></title>
     <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</guid>
@@ -15,8 +156,8 @@
 <li><p>物理机系统： Gentoo Linux</p></li>
 <li><p>网络拓扑，见下图。除了 host 以外的本地设备都是通过设置为 AP 模式的硬路由连接网络。</p></li>
 </ul>
-<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件这些我们选择基本 openwrt 管方 21.02 代码定制的 garypang13 的固件，github 项目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
-<p>其特点是原生固件非常纯净，只自己少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。 * 创建网桥 首先创建 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
+<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 项目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
+<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
 <p>#+begin_src sh # 创建网桥 nmcli connection add type bridge ifname br0 stp no # 将eth1添加倒网桥中 nmcli connection add type bridge-slave ifname eth1 master br0 # 关闭现有的连接（可以使用nmcli connection show –active命令查看） nmcli connection down <Connection> # 开启新创建的网桥 nmcli connection up bridge-br0 #+end_src</p>
 <p>注意以上操作会关闭正在使用的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
 <p>这时如果 eth1 是连接在带 DHCP 的硬路由中，那么会自动为网桥 br0 分配 IP，同时 eth1 上的 ip 地址会消失，可以直接通过网桥 br0 的 ip 访问 eth1 网口。 * 创建虚拟机 使用 libvirt + qemu(kvm)创建虚拟机：</p>
@@ -26,11 +167,11 @@
 <li>硬盘直接使用 openwrt 的 img 文件</li>
 </ul>
 <p>eth0 网卡直接设置为直通，另外添加一张网卡，[Network Source]设置为 Bridge device，[Device name]设置为 br0，[Device model]设置为 virtio。即创建桥接到 br0 的第二张网卡。</p>
-<p>其他配置默认，之后正常启动 openwrt 虚拟机即可。 * 配置 openwrt 通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 =/etc/config/network= 。将其中的 =config interface ‘lan’= 中的 =option ipaddr= 地址设置为 192.168.3.2。之后重启路由器。</p>
+<p>其他配置默认，之后正常启动 openwrt 虚拟机即可。 * 配置 openwrt 通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 =/etc/config/network= 。将其中的 =config interface ‘lan’= 中的 =option ipaddr= 地址设置为 192.168.3.2。之后重启 openwrt。</p>
 <p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
 <p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
 <p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Wed, 23 Jun 2021 19:25:56 +0800</pubDate>
+    <pubDate>Tue, 29 Jun 2021 22:57:33 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Effective Go笔记]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/go/effective%20go%e7%ac%94%e8%ae%b0.html</link>
@@ -218,7 +359,7 @@
 <p>注意不要混淆并发和并行的概念：并发是用可独立执行的组件构造程序的方法， 而并行则是为了效率在多 CPU 上平行地进行计算。尽管 Go 的并发特性能够让某些问题更易构造成并行计算， 但 Go 仍然是种并发而非并行的语言，且 Go 的模型并不适合所有的并行问题。 关于其中区别的讨论，见 [[http://blog.golang.org/2013/01/concurrency-is-not-parallelism.html][此博文]]。 * 错误 库例程通常需要向调用者返回某种类型的错误提示。之前提到过，Go 语言的多值返回特性， 使得它在返回常规的值时，还能轻松地返回详细的错误描述。按照约定，错误的类型通常为 error，这是一个内建的简单接口。</p>
 <p>#+begin_src go type error interface { Error() string } #+end_src</p>
 <p>库的编写者通过更丰富的底层模型可以轻松实现这个接口，这样不仅能看见错误， 还能提供一些上下文。</p>]]></description>
-    <pubDate>Wed, 23 Jun 2021 19:25:56 +0800</pubDate>
+    <pubDate>Tue, 29 Jun 2021 22:57:33 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[程序员的职业素养笔记]]></title>
     <link>https://www.codeplayer.org/Wiki/Others/%e7%a8%8b%e5%ba%8f%e5%91%98%e7%9a%84%e8%81%8c%e4%b8%9a%e7%b4%a0%e5%85%bb%e7%ac%94%e8%ae%b0.html</link>
@@ -556,7 +697,7 @@
 <p>技艺是工匠所持的精神状态。技艺的“模因”（meme）中包含着价值观、原则、技术、态度和正见。</p>
 <p>但是工匠如何才能获得这种“模因”呢？他们如何才能够练就这种精神状态？ 技艺模因经由口口相传和手手相承而来，需要由资深人士向年轻学徒殷勤传授，然后再在学徒之间相互传播。资深人士会观察年轻学徒的学习过程，然后不断反思和改进传授之道。技艺模因宛如一种“传染病”，一种“精神病毒”。通过观察其他人的工作，让模因落地生根，你也会“感染”上技术模因。 *** 觉者觉人 你无法说服别人成为一名匠者，你无法说服他们去接受技艺模因。口舌之争并无益处，数据亦无足轻重，案例研究也无法说明什么。接受技艺模因并不是一种理性决策的过程，也非感情用事便可奏效。这与人的“自性”（humanthing）紧密相关。</p>
 <p>那么该如何让人们接受技艺模因呢？前面我曾说过，只要技艺模因可以被人观察到，它便具有传染性。因此，只需让技艺模因可以被他人观察到即可。你自己首先要成为表率。你自己首先要成为能工巧匠，向人们展示你的技艺。然后，将剩余的事情交给技艺模因的自然运行之道即可。 ** 14.5 结论 学校能够传授的是计算机编程的理论。但是学校并不会也无法传授作为一名编程匠者所需掌握的原则、实践和技能。这些东西只有经由师徒个体间多年的细心监督和辅导才能获得。软件行业中像我们这样的一批人必须要面对这一事实，即指引下一代软件开发人员成熟起来的重任无法寄希望于大学教育，现在这个重任已经落到了我们肩上。建立一种包含学徒期、实习期和长期指引的机制已是迫在眉睫。</p>]]></description>
-    <pubDate>Wed, 23 Jun 2021 19:25:56 +0800</pubDate>
+    <pubDate>Tue, 29 Jun 2021 22:57:33 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Go内存管理之代码的逃逸分析]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/go/Go%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e4%b9%8b%e4%bb%a3%e7%a0%81%e7%9a%84%e9%80%83%e9%80%b8%e5%88%86%e6%9e%90.html</link>
@@ -590,71 +731,7 @@
 <p>[[file:../../../pics/Go/heap.png]]</p>
 <p>如上图所示，main 和 heapAnalysis 函数分配在一个栈上。由于函数具有自己的变量，因此也会将变量分配到栈的某个地方。但是编译器检查到该值是返回了它的指针，并且已用于另一个函数，因此变量被移到了堆中，主函数会从堆中访问该变量。</p>
 <p>简单来说，逃逸分析也是了解我们应该如何优化应用程序性能的一种方式。通过上面的分析可以看出来，虽然指针能够减少变量在函数间传递时的数据值拷贝问题，但是也不应该所有类型的数据都应该返回其指针。如果分配到堆上的共享变量太多的话也无形中增加了 GC 的压力。 * 原文链接 - https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247485579&amp;idx=1&amp;sn=f481cff4ffccacc186a020e45e884924&amp;chksm=fa80d91ccdf7500ab984ecde7056aa29a2986c423557736c32bd251f2cb5d1ce1e54909753cc&amp;cur_album_id=1326949382503219201&amp;scene=190#rd</p>]]></description>
-    <pubDate>Wed, 23 Jun 2021 19:25:56 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[在go语言里使用继承的翻车经历]]></title>
-    <link>https://www.codeplayer.org/Wiki/Program/go/%e5%9c%a8Go%e8%af%ad%e8%a8%80%e9%87%8c%e4%bd%bf%e7%94%a8%e7%bb%a7%e6%89%bf%e7%9a%84%e7%bf%bb%e8%bd%a6%e7%bb%8f%e5%8e%86.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Program/go/%e5%9c%a8Go%e8%af%ad%e8%a8%80%e9%87%8c%e4%bd%bf%e7%94%a8%e7%bb%a7%e6%89%bf%e7%9a%84%e7%bf%bb%e8%bd%a6%e7%bb%8f%e5%8e%86.html</guid>
-    <description><![CDATA[<p>#+TITLE: 在go语言里使用继承的翻车经历 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>在 go 语言里使用继承的翻车经历 Go 不是面向对象的语言，但是使用组合、嵌套和接口可以支持代码的复用和多态。关于结构体嵌套：外层结构体类型通过匿名嵌套一个已命名的结构体类型后就可以获得匿名成员类型的所有导出成员，而且也获得了该类型导出的全部的方法。比如下面这个例子：</li>
-</ul>
-<p>#+BEGIN_SRC go type ShapeInterface interface { GetName() string }</p>
-<p>type Shape struct { name string }</p>
-<p>func (s *Shape) GetName() string { return s.name }</p>
-<p>type Rectangle struct { Shape w, h float64 } #+END_SRC</p>
-<p>=Shape= 类型上定义了 =GetName()= 方法，而在矩形 =Rectangle= 的定义中匿名嵌套了 =Shape= 类型从而获得了成员方法 =GetName()= ，同时 =Rectangle= 和 =Shape= 一样又都是 =ShapeInterface= 接口的实现。</p>
-<p>我一开始以为这和面向对象的继承没有什么区别，把内部结构体看成是父类，通过嵌套一下结构体就能获得父类的方法，而且还能根据需要重写父类的方法，在实际项目编程中我也是这么用的。直到有一天……</p>
-<p>由于我们这很多推广类促销类的需求很多，几乎每月两三次，每季度还有大型推广活动。产品经理也是绞尽脑汁想各种玩法来提高用户活跃和订单量。每次都是前面玩法不一样，但最后都是参与任务得积分啦、分享后抽奖啦。于是乎我就肩负起了设计通用化流程的任务。根据每次需求通用的部分设计了接口和基础的实现类型，同时预留了给子类实现的方法，应对每次不一样的前置条件，这不就是面向对象里经常干的事儿嘛。</p>
-<p>为了好理解我们还是用上面那个 =ShapeInterface= 举例子。</p>
-<p>#+BEGIN_SRC go type ShapeInterface interface { Area() float64 GetName() string PrintArea() }</p>
-<p>// 标准形状，它的面积为 0.0 type Shape struct { name string }</p>
-<p>func (s *Shape) Area() float64 { return 0.0 }</p>
-<p>func (s *Shape) GetName() string { return s.name }</p>
-<p>func (s *Shape) PrintArea() { fmt.Printf(“%s : Area %v”, s.name, s.Area()) }</p>
-<p>// 矩形 : 重新定义了 Area 方法 type Rectangle struct { Shape w, h float64 }</p>
-<p>func (r <em>Rectangle) Area() float64 { return r.w </em> r.h }</p>
-<p>// 圆形 : 重新定义 Area 和 PrintArea 方法 type Circle struct { Shape r float64 }</p>
-<p>func (c <em>Circle) Area() float64 { return c.r </em> c.r * math.Pi }</p>
-<p>func (c *Circle) PrintArea() { fmt.Printf(“%s : Area %v”, c.GetName(), c.Area()) } #+END_SRC</p>
-<p>我们在 =ShapeInterface= 里增加了 =Area()= 和 =PrintArea()= 方法，因为每种形状计算面积的公式不一样，基础实现类型 =Shape= 里的 =Area= 只是简单返回了 =0.0= ，具体计算面积的任务交给组合 =Shape= 类型的 =Rectange= 类通过重写 =Area()= 方法实现，=Rectange= 通过组合获得了 =Shape= 的 =PrintArea()= 方法就能打印出它自己的面积来。</p>
-<p>到目前为止，这些还都是我的设想，规划完后自己感觉特兴奋，感觉自己已经掌握了组合（Composition）这种思想的精髓…… 按这个思路我就把整套流程都写完了，单元测试只测了每个子功能，前置条件太复杂加上我还管团队里的其他项目自己的时间不太富余，所以就交付给组里的伙伴们使用了让他们顺便帮我测试下整个流程，然后就现场翻车了……</p>
-<p>我们把上面那个例子运行一下，为了能看出区别，又专门写了一个 Circle 类型并用这个类型重写了 =Area()= 和 =PrintArea()= 。</p>
-<p>#+BEGIN_SRC go func main() {</p>
-<pre><code>s := Shape{name: &quot;Shape&quot;}
-c := Circle{Shape: Shape{name: &quot;Circle&quot;}, r: 10}
-r := Rectangle{Shape: Shape{name: &quot;Rectangle&quot;}, w: 5, h: 4}
-
-listshape := []c{&amp;s, &amp;c, &amp;r}
-
-for _, si := range listshape {
-    si.PrintArea() //!! 猜猜哪个 Area()方法会被调用 !!
-}</code></pre>
-<p>} #+END_SRC</p>
-<p>运行后的输出结果如下：</p>
-<p>#+BEGIN_SRC sh Shape : Area 0 Circle : Area 314.1592653589793 Rectangle : Area 0 #+END_SRC</p>
-<p>看出问题来了不， =Rectangle= 通过组合 =Shape= 获得的 =PrintArea()= 方法并没有去调用 =Rectangle= 实现的 =Area()= 方法，而是去调用了 =Shape= 的 =Area()= 方法。 =Circle= 是因为自己重写了 =PrintArea()= 所以在方法里调用到了自身的 =Area()= 。</p>
-<p>在项目里那个类似例子里 =PrintArea()= 的方法比这里的复杂很多而且承载着标准化流程的职责，肯定是不能每组合一次自己去实现一遍 =PrintArea()= 方法啊，那叫什么设计，而且面子上也说不过去，对吧，好不容易炫一次技，可不能被打脸。</p>
-<p>经过 Google 上一番搜索后找到了一些详细的解释，上面我们期待的那种行为叫做虚拟方法：期望 =PrintArea()= 会去调用重写的 =Area()= 。但是在 Go 语言里没有继承和虚拟方法， =Shape.PrintArea()= 的定义是调用 =Shape.Area()= ， =Shape= 不知道它是否被嵌入哪个结构中，因此它无法将方法调用“分派”给虚拟的运行时方法。</p>
-<p>Go 语言规范：选择器 里描述了计算 =x.f= 表达式（其中 =f= 可能是方法）以选择最后要调用的方法时遵循的确切规则。里面的关键点阐述是</p>
-<p>#+begin_quote - 选择器 f 可以表示类型 T 的字段或方法 f，或者可以引用 T 的嵌套匿名字段的字段或方法 f。遍历到达 f 的匿名字段的数量称为其在 T 中的深度。 - 对于类型 T 或* T 的值 x（其中 T 不是指针或接口类型），x.f 表示存在 f 的 T 中最浅深度的字段或方法。 #+end_quote</p>
-<p>回到我们的例子中来就是：</p>
-<p>对于 =Rectangle= 类型来说 =si.PrintArea()= 将调用 =Shape.PrintArea()= 因为没有为 =Rectangle= 类型定义 =PrintArea()= 方法（没有接受者是 =*Rectangle= 的 =PrintArea()= 方法），而 =Shape.PrintArea()= 方法的实现调用的是 =Shape.Area()= 而不是 =Rectangle.Area()=-如前面所讨论的， =Shape= 不知道 =Rectangle= 的存在。所以会看到输出结果：</p>
-<p>#+begin_src sh Rectangle : Area 0 #+end_src</p>
-<p>那么既然在 Go 里不支持继承，如何以组合解决类似的问题呢。我们可以通过定义参数为 ShapeInterface 接口的方法定义 PrintArea。</p>
-<p>#+BEGIN_SRC go func PrintArea (s ShapeInterface){ fmt.Printf(“Interface =&gt; %s : Area %v”, s.GetName(), s.Area()) } #+END_SRC</p>
-<p>因为并不像例子里的这么简单，后来我的解决方法是定义了一个类似 =InitShape= 的方法来完成初始化流程，这里我把 =ShapeInterface= 接口和 =Shape= 类型做一些调整会更好理解一些。</p>
-<p>#+BEGIN_SRC go type ShapeInterface interface { Area() float64 GetName() string SetArea(float64) } type Shape struct { name string area float64 }</p>
-<p>… func (s *Shape) SetArea(area float64) { s.area = area }</p>
-<p>func (s *Shape) PrintArea() { fmt.Printf(“%s : Area %v”, s.name, s.area) } …</p>
-<p>func InitShape(s ShapeInterface) error { area, err := s.Area() if err != nil { return err } s.SetArea(area) … } #+END_SRC</p>
-<p>对于 =Rectangle= 和 =Circle= 这样的组合 =Shape= 的类型，只需要按照自己的计算面积的公式实现 =Area()= ， =SetArea()= 会把 =Area()= 计算出的面积存储在 =area= 字段供后面的程序使用。</p>
-<p>#+BEGIN_SRC go type Rectangle struct { Shape w, h float64 }</p>
-<p>func (r <em>Rectangle) Area() float64 { return r.w </em> r.h }</p>
-<p>r := &amp;Rectangle { Shape: Shape{name: “Rectangle”}, w: 5, h: 4, }</p>
-<p>InitShape(r) r.PrintArea() #+END_SRC</p>
-<p>这个案例也是我用 Go 写代码以来第一次研究继承和组合的区别，以及怎么用组合的方式在 Go 语言里复用代码和提供多态的支持。我觉得很多之前用惯面向对象语言的朋友们或多或少都会遇到同样的问题，毕竟思维定式形成后要靠刻意练习才能打破。由于我不能透漏公司代码的设计，所以以这个简单的例子把这部分的使用经验记录下来分享给大家。读者朋友们在用 Go 语言设计接口和类型时如果遇到类似问题或者有其他疑问可以在文章下面留言，一起讨论。 * 总结 在 golang 中无法使用虚拟方法，例如在子类中调用父类的方法，并在父类的方法中又动态的调用子类的虚拟方法。该问题本质上是因为 golang 不支持继承和虚拟方法造成的，golang 只能基于组合实现类似于继承的功能，但又因为组合是静态的，所以无法支持虚拟方法，并不能在父类的方法中，动态的调用子类的虚拟方法。因为这时父类并不知道子类的存在。 * 原文链接 - https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247484361&amp;idx=1&amp;sn=0eefdc6555b1ae19d65145c5327981e6&amp;chksm=fa80d25ecdf75b48a7d35160b4e776c74124e436581bb6b6d5ed3381c67740551283890e3872&amp;scene=21</p>]]></description>
-    <pubDate>Wed, 23 Jun 2021 19:25:56 +0800</pubDate>
+    <pubDate>Tue, 29 Jun 2021 22:57:33 +0800</pubDate>
     </item>
 </channel>
 </rss>
