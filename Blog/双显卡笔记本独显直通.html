@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-29 Tue 23:19 -->
+<!-- 2021-06-30 Wed 17:51 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>双显卡笔记本独显直通</title>
@@ -266,6 +266,7 @@
 <li><a href="#org2794f02">steam 远程畅玩（流式传输）</a></li>
 </ul>
 </li>
+<li><a href="#orgd02e39d">benchmark</a></li>
 <li><a href="#org1584f1a">参考连接</a></li>
 <li><a href="#orgc55a63d">附录：XML 配置</a></li>
 </ul>
@@ -299,7 +300,7 @@ MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该
 </p>
 
 
-<div id="org803b0db" class="figure">
+<div id="org1d470e6" class="figure">
 <p><img src="../pics/Blog/muxed.jpg" alt="muxed.jpg">
 </p>
 </div>
@@ -763,6 +764,25 @@ captureOnStart=yes
 </div>
 </div>
 </div>
+<div id="outline-container-orgd02e39d" class="outline-2">
+<h2 id="orgd02e39d">benchmark</h2>
+<div class="outline-text-2" id="text-orgd02e39d">
+<p>
+简单运行了一下 3dmark 的 Time Spy，做虚拟机的图形性能测试。测试了以下几种情况：
+</p>
+
+<ul class="org-ul">
+<li>win10 + 物理机直接运行，3dmark 得分 6900</li>
+<li>win10 + 虚拟机显卡直通 + 外接显示器，3dmark 得分 6000</li>
+<li>win10 + 虚拟机显卡直通 + steam 串流，3dmark 得分 5600</li>
+<li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的时候，画面延迟近 10 秒</li>
+</ul>
+
+<p>
+由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。
+</p>
+</div>
+</div>
 <div id="outline-container-org1584f1a" class="outline-2">
 <h2 id="org1584f1a">参考连接</h2>
 <div class="outline-text-2" id="text-org1584f1a">
@@ -1063,7 +1083,7 @@ captureOnStart=yes
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-29 Tue 23:19</p>
+<p class="date">Created: 2021-06-30 Wed 17:51</p>
 </div>
 </body>
 </html>
