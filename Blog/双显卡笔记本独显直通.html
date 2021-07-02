@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-30 Wed 17:51 -->
+<!-- 2021-07-03 Sat 00:02 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>双显卡笔记本独显直通</title>
@@ -261,6 +261,7 @@
 <li><a href="#org057536b">创建共享内存文件</a></li>
 <li><a href="#org602216f">安装 host</a></li>
 <li><a href="#org3f7f30a">配置 client</a></li>
+<li><a href="#orgbda5c29">配置 Scream</a></li>
 </ul>
 </li>
 <li><a href="#org2794f02">steam 远程畅玩（流式传输）</a></li>
@@ -300,7 +301,7 @@ MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该
 </p>
 
 
-<div id="org1d470e6" class="figure">
+<div id="orge46e632" class="figure">
 <p><img src="../pics/Blog/muxed.jpg" alt="muxed.jpg">
 </p>
 </div>
@@ -746,6 +747,82 @@ captureOnStart=yes
 </p>
 </div>
 </div>
+<div id="outline-container-orgbda5c29" class="outline-4">
+<h4 id="orgbda5c29">配置 Scream</h4>
+<div class="outline-text-4" id="text-orgbda5c29">
+<p>
+由于 looking glass 不支持传递音频，所以我们还需要使用 Scream 将 VM 的音频传递给 host。
+</p>
+
+<p>
+首先，编辑 windows 虚拟机的 XML，添加以下部分：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-xml">...
+&lt;<span style="color: #c678dd;">devices</span>&gt;
+    ...
+  &lt;<span style="color: #c678dd;">shmem</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'scream-ivshmem'</span>&gt;
+    &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'ivshmem-plain'</span>/&gt;
+    &lt;<span style="color: #c678dd;">size</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'M'</span>&gt;2&lt;/<span style="color: #c678dd;">size</span>&gt;
+  &lt;/<span style="color: #c678dd;">shmem</span>&gt;
+&lt;/<span style="color: #c678dd;">devices</span>&gt;
+...
+</pre>
+</div>
+
+<p>
+然后再如 looking glass 一样，添加配置文件 <code>/etc/tmpfiles.d/11-scream-ivshmem.conf</code> ，并运行命令 <code>systemd-tmpfiles --create /etc/tmpfiles.d/11-scream-ivshmem.conf</code> 。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-conf">f   /dev/shm/scream-ivshmem <span style="color: #da8548; font-weight: bold;">0660</span>    user    kvm -
+</pre>
+</div>
+
+<p>
+如果没有安装 IVSHMEM 驱动，则需要安装一下，跟上面一样。然后安装 scream 的 windows 驱动，地址： <a href="https://github.com/duncanthrax/scream/releases">https://github.com/duncanthrax/scream/releases</a> 。
+</p>
+
+<p>
+再以管理员权限在 CMD 中运行 <code>REG ADD HKLM\SYSTEM\CurrentControlSet\Services\Scream\Options /v UseIVSHMEM /t REG_DWORD /d 2</code> 。
+</p>
+
+<p>
+在 Linux 物理机中安装 scream，然后创建配置文件 <code>~/.config/systemd/user/scream-ivshmem-pulse.service</code> ：
+</p>
+
+<pre class="example">
+[Unit]
+Description=Scream IVSHMEM pulse receiver
+After=pulseaudio.service
+Wants=pulseaudio.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/truncate -s 0 /dev/shm/scream-ivshmem
+ExecStartPre=/bin/dd if=/dev/zero of=/dev/shm/scream-ivshmem bs=1M count=2
+ExecStart=/usr/bin/scream -m /dev/shm/scream-ivshmem
+
+[Install]
+WantedBy=default.target
+</pre>
+
+<p>
+最后运行以下命令即可：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">systemctl start --user scream-ivshmem-pulse
+systemctl enable --user scream-ivshmem-pulse
+</pre>
+</div>
+
+<p>
+这样就配置完成了，在 looing glass 里就可以听到声音了。
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org2794f02" class="outline-3">
 <h3 id="org2794f02">steam 远程畅玩（流式传输）</h3>
@@ -1083,7 +1160,7 @@ captureOnStart=yes
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-30 Wed 17:51</p>
+<p class="date">Created: 2021-07-03 Sat 00:02</p>
 </div>
 </body>
 </html>
