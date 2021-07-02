@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-07-03 Sat 00:02 -->
+<!-- 2021-07-03 Sat 00:11 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>双显卡笔记本独显直通</title>
@@ -301,7 +301,7 @@ MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该
 </p>
 
 
-<div id="orge46e632" class="figure">
+<div id="org3864b43" class="figure">
 <p><img src="../pics/Blog/muxed.jpg" alt="muxed.jpg">
 </p>
 </div>
@@ -781,7 +781,7 @@ captureOnStart=yes
 </div>
 
 <p>
-如果没有安装 IVSHMEM 驱动，则需要安装一下，跟上面一样。然后安装 scream 的 windows 驱动，地址： <a href="https://github.com/duncanthrax/scream/releases">https://github.com/duncanthrax/scream/releases</a> 。
+如果没有安装 IVSHMEM 驱动，则需要安装一下，跟上面一样。然后下载 scream 的 windows 驱动，地址： <a href="https://github.com/duncanthrax/scream/releases">https://github.com/duncanthrax/scream/releases</a> ，解压并进行安装。
 </p>
 
 <p>
@@ -858,6 +858,10 @@ systemctl enable --user scream-ivshmem-pulse
 <p>
 由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。
 </p>
+
+<p>
+PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。
+</p>
 </div>
 </div>
 <div id="outline-container-org1584f1a" class="outline-2">
@@ -884,7 +888,7 @@ systemctl enable --user scream-ivshmem-pulse
 </p>
 
 <div class="org-src-container">
-<pre class="src src-xml">&lt;<span style="color: #c678dd;">domain</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'kvm'</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">'22'</span> <span style="color: #c678dd;">xmlns</span>:<span style="color: #dcaeea;">qemu</span>=<span style="color: #98be65;">'http://libvirt.org/schemas/domain/qemu/1.0'</span>&gt;
+<pre class="src src-xml">&lt;<span style="color: #c678dd;">domain</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'kvm'</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">'1'</span> <span style="color: #c678dd;">xmlns</span>:<span style="color: #dcaeea;">qemu</span>=<span style="color: #98be65;">'http://libvirt.org/schemas/domain/qemu/1.0'</span>&gt;
   &lt;<span style="color: #c678dd;">name</span>&gt;win10&lt;/<span style="color: #c678dd;">name</span>&gt;
   &lt;<span style="color: #c678dd;">uuid</span>&gt;d5da831a-c1eb-4668-a864-0731557d80a0&lt;/<span style="color: #c678dd;">uuid</span>&gt;
   &lt;<span style="color: #c678dd;">metadata</span>&gt;
@@ -1048,21 +1052,21 @@ systemctl enable --user scream-ivshmem-pulse
     &lt;/<span style="color: #c678dd;">controller</span>&gt;
     &lt;<span style="color: #c678dd;">interface</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'network'</span>&gt;
       &lt;<span style="color: #c678dd;">mac</span> <span style="color: #dcaeea;">address</span>=<span style="color: #98be65;">'52:54:00:9c:b1:61'</span>/&gt;
-      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">network</span>=<span style="color: #98be65;">'proxyArp'</span> <span style="color: #dcaeea;">portid</span>=<span style="color: #98be65;">'e454d6af-e91e-480d-ab20-30d61c0999ef'</span> <span style="color: #dcaeea;">bridge</span>=<span style="color: #98be65;">'virbr1'</span>/&gt;
-      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'vnet18'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">network</span>=<span style="color: #98be65;">'proxyArp'</span> <span style="color: #dcaeea;">portid</span>=<span style="color: #98be65;">'dea4d995-d8d9-408d-ac30-ac45bfd5627e'</span> <span style="color: #dcaeea;">bridge</span>=<span style="color: #98be65;">'virbr1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">dev</span>=<span style="color: #98be65;">'vnet0'</span>/&gt;
       &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'virtio'</span>/&gt;
       &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'net0'</span>/&gt;
       &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x00'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
     &lt;/<span style="color: #c678dd;">interface</span>&gt;
     &lt;<span style="color: #c678dd;">serial</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pty'</span>&gt;
-      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/16'</span>/&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/0'</span>/&gt;
       &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'isa-serial'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0'</span>&gt;
         &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'isa-serial'</span>/&gt;
       &lt;/<span style="color: #c678dd;">target</span>&gt;
       &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'serial0'</span>/&gt;
     &lt;/<span style="color: #c678dd;">serial</span>&gt;
-    &lt;<span style="color: #c678dd;">console</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pty'</span> <span style="color: #dcaeea;">tty</span>=<span style="color: #98be65;">'/dev/pts/16'</span>&gt;
-      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/16'</span>/&gt;
+    &lt;<span style="color: #c678dd;">console</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pty'</span> <span style="color: #dcaeea;">tty</span>=<span style="color: #98be65;">'/dev/pts/0'</span>&gt;
+      &lt;<span style="color: #c678dd;">source</span> <span style="color: #dcaeea;">path</span>=<span style="color: #98be65;">'/dev/pts/0'</span>/&gt;
       &lt;<span style="color: #c678dd;">target</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'serial'</span> <span style="color: #dcaeea;">port</span>=<span style="color: #98be65;">'0'</span>/&gt;
       &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'serial0'</span>/&gt;
     &lt;/<span style="color: #c678dd;">console</span>&gt;
@@ -1141,6 +1145,12 @@ systemctl enable --user scream-ivshmem-pulse
       &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'shmem0'</span>/&gt;
       &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x0b'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x01'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
     &lt;/<span style="color: #c678dd;">shmem</span>&gt;
+    &lt;<span style="color: #c678dd;">shmem</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'scream-ivshmem'</span>&gt;
+      &lt;<span style="color: #c678dd;">model</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'ivshmem-plain'</span>/&gt;
+      &lt;<span style="color: #c678dd;">size</span> <span style="color: #dcaeea;">unit</span>=<span style="color: #98be65;">'M'</span>&gt;2&lt;/<span style="color: #c678dd;">size</span>&gt;
+      &lt;<span style="color: #c678dd;">alias</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">'shmem1'</span>/&gt;
+      &lt;<span style="color: #c678dd;">address</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'pci'</span> <span style="color: #dcaeea;">domain</span>=<span style="color: #98be65;">'0x0000'</span> <span style="color: #dcaeea;">bus</span>=<span style="color: #98be65;">'0x0b'</span> <span style="color: #dcaeea;">slot</span>=<span style="color: #98be65;">'0x02'</span> <span style="color: #dcaeea;">function</span>=<span style="color: #98be65;">'0x0'</span>/&gt;
+    &lt;/<span style="color: #c678dd;">shmem</span>&gt;
   &lt;/<span style="color: #c678dd;">devices</span>&gt;
   &lt;<span style="color: #c678dd;">seclabel</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">'dynamic'</span> <span style="color: #dcaeea;">model</span>=<span style="color: #98be65;">'dac'</span> <span style="color: #dcaeea;">relabel</span>=<span style="color: #98be65;">'yes'</span>&gt;
     &lt;<span style="color: #c678dd;">label</span>&gt;+77:+77&lt;/<span style="color: #c678dd;">label</span>&gt;
@@ -1160,7 +1170,7 @@ systemctl enable --user scream-ivshmem-pulse
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-07-03 Sat 00:02</p>
+<p class="date">Created: 2021-07-03 Sat 00:11</p>
 </div>
 </body>
 </html>
