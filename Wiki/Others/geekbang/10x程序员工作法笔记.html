@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10x程序员工作法笔记</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">10x程序员工作法笔记</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4d49f7b">以终为始</a>
+<ul>
+<li><a href="#orgf59ad29">01 | 10x 程序员是如何思考的</a></li>
+<li><a href="#orgd28cedf">02 | 以终为始：如何让你的努力不白费？</a></li>
+<li><a href="#org2844da5">03 | DoD 的价值：你完成了工作，为什么他们还不满意？</a></li>
+<li><a href="#org5703ee4">04 | 接到需求任务，你要先做哪件事？</a></li>
+<li><a href="#org2ec72f7">05 | 持续集成：集成本身就是写代码的一个环节</a></li>
+<li><a href="#orgb5d134c">06 | 精益创业：产品经理不靠谱，你该怎么办？</a>
+<ul>
+<li><a href="#orgfa88703">总结</a></li>
+</ul>
+</li>
+<li><a href="#orgd4a17d5">07 | 解决了很多技术问题，为什么你依然在“坑”里？</a>
+<ul>
+<li><a href="#org51d74cc">总结</a></li>
+</ul>
+</li>
+<li><a href="#orgf9950d6">08 | 为什么说做事之前要先进行推演？</a>
+<ul>
+<li><a href="#org438efaf">总结</a></li>
+</ul>
+</li>
+<li><a href="#org071f080">09 | 你的工作可以用数字衡量吗？</a>
+<ul>
+<li><a href="#orga01615e">总结</a></li>
+</ul>
+</li>
+<li><a href="#orgc982108">10 | 迭代 0: 启动开发之前，你应该准备什么？</a></li>
+<li><a href="#org0e715f8">划重点 | 关于“以终为始”，你要记住的 9 句话</a>
+<ul>
+<li><a href="#org820488b">重点复习</a></li>
+<li><a href="#orgd768575">实战指南</a></li>
+<li><a href="#orgf5e0606">额外收获</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc3b1a8b">任务分解</a>
+<ul>
+<li><a href="#org6038981">11 | 向埃隆·马斯克学习任务分解</a>
+<ul>
+<li><a href="#orgb0c0347">总结时刻</a></li>
+</ul>
+</li>
+<li><a href="#org80c854c">12 | 测试也是程序员的事吗？</a>
+<ul>
+<li><a href="#org8e4a1da">总结时刻</a></li>
+</ul>
+</li>
+<li><a href="#orgd48700b">13 | 先写测试，就是测试驱动开发吗？</a>
+<ul>
+<li><a href="#orgbbf9224">总结时刻</a></li>
+</ul>
+</li>
+<li><a href="#orgc53c2a9">14 | 大师级程序员的工作秘笈</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4d49f7b" class="outline-2">
+<h2 id="org4d49f7b">以终为始</h2>
+<div class="outline-text-2" id="text-org4d49f7b">
+</div>
+<div id="outline-container-orgf59ad29" class="outline-3">
+<h3 id="orgf59ad29">01 | 10x 程序员是如何思考的</h3>
+<div class="outline-text-3" id="text-orgf59ad29">
+<p>
+大多数人工作低效是由于工作中偶然复杂度太多造成的，只要能更多地将注意力放到本质复杂度上，减少偶然复杂度造成的消耗，我们“真实”的工作效率自然会得到大幅度提升。
+</p>
+
+<p>
+而想要减少偶然复杂度的消耗，就要了解一些高效的工作方式和行业的最佳实践，而这一切是可以用统一的框架进行思考的。
+</p>
+
+<p>
+运用这个思考框架，我们需要问自己一些问题：
+</p>
+
+<ul class="org-ul">
+<li>Where are we?（我们现在在哪？）</li>
+<li>Where are we going?（我们要到哪儿去？）</li>
+<li>How can we get there?（我们如何到达那里？）</li>
+</ul>
+
+<p>
+为了把这个框架应用在我们程序员的工作中，我给了你四个思考原则：
+</p>
+
+<ul class="org-ul">
+<li>以终为始，确定好真实目标；</li>
+<li>任务分解，找到实施路径；</li>
+<li>沟通反馈，解决与人打交道出现的问题；</li>
+<li>自动化，解决与机器打交道出现的问题。</li>
+</ul>
+
+<p>
+解释一下， <b>以终为始</b> 就是在工作的一开始就要确定好自己的目标。我们需要看到的是真正的目标，而不是把别人交代给我们的工作当作目标。你可以看出这个原则是在帮助我们回答思考框架中，Where are we going?（我们要到哪儿去？）这个问题。
+</p>
+
+<p>
+<b>任务分解</b> 是将大目标拆分成一个一个可执行的任务，工作分解得越细致，我们便能更好地掌握工作，它是帮助我们回答思维框架中，How can we get there?（我们如何到达那里？）的问题。
+</p>
+
+<p>
+如何说前两个原则是要在动手之前做的分析，那后面两个原则就是在通往目标的道路上，为我们保驾护航，因为在实际工作中，我们少不了与人和机器打交道。
+</p>
+
+<p>
+<b>沟通反馈</b> 是为了疏通与其他人交互的渠道。一方面，我们保证信息能够传达除去，减少因为理解偏差造成的工作疏漏；另一方面，也要保证我们能够准确接收外部信息，以免因为自我感觉良好，阻碍了进步。
+</p>
+
+<p>
+<b>自动化</b> 就是将繁琐的工作通过自动化的方式交给机器执行，这是我们程序员本职工作的一部分，我们擅长的是为其他人打造自动化的服务，但自己的工作却应用得不够，这也是我们工作中最值得优化的部分。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>面对问题时，用思考框架问问自己，现状、目标和路径。</b>
+</p>
+
+<p>
+最后，我想请你思考一下，如果把这个思考框架运用在你的职业发展规划上，你会如何回答这三个问题呢？
+</p>
+</div>
+</div>
+<div id="outline-container-orgd28cedf" class="outline-3">
+<h3 id="orgd28cedf">02 | 以终为始：如何让你的努力不白费？</h3>
+<div class="outline-text-3" id="text-orgd28cedf">
+<p>
+人们习惯采用顺序思考的思维方式，几十万年的进化将这种思考模式刻在了我们的基因里。要成为更好的自己，我们要克服自身的不足，而这个做法很简单，那就是“以终为始”，做是倒着想，先考虑结果。
+</p>
+
+<p>
+人类是一个想象的共同体，做软件的团队更是如此，而我们写出来的软件是我们将“集体想象”落地的载体。
+</p>
+
+<p>
+任何事物都要经过两次创造：一次是在头脑中的创造，也就是智力上的或者第一次创造（Mental/First Creation），然后才是付诸实践，也就是实际的构建或第二次创建（Physical/Second Creation）。我们应该在第一次创造上多下功夫，统一集体想象，让目标更加明确。
+</p>
+
+<p>
+“以终为始”的思维可以帮助我们更好地规划我们手头任务，也可以帮助我们发现过程中的问题。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>遇到事情，倒着想。</b>
+</p>
+
+<p>
+最后，我想请你思考一下，在实际的工作或生活中，你有运用”以终为始“的思维方式吗？帮助你解决过哪些问题？
+</p>
+</div>
+</div>
+<div id="outline-container-org2844da5" class="outline-3">
+<h3 id="org2844da5">03 | DoD 的价值：你完成了工作，为什么他们还不满意？</h3>
+<div class="outline-text-3" id="text-org2844da5">
+<p>
+首先，你应该知道，人与人协作，总会有这样或那样的理解差异。开始协作之前，我们最好先同步一下彼此的理解，确保之后不会因为理解不一致，而让协作方措手不及。
+</p>
+
+<p>
+怎样解决大家的理解偏差呢，我介绍了 DoD（完成的定义），它是行业中的一种最佳实践，能够在团队内部很好地同步大家对”完成“的理解。好的 DoD 是一个可以检查的清单，可以确保你不遗漏任何事情。
+</p>
+
+<blockquote>
+<p>
+DoD 是一个思维模式，是一种尽可能消除不确定性，达成共识的方式。我们本着”以终为始“的方式做事情，DoD 让我们能够在一开始就把”终“清晰地定义出来。
+</p>
+</blockquote>
+
+<p>
+如果深入领会 DoD，你会发现 DoD 可以灵活应用在不同的协作场景中。比如应用于个人工作、团队工作，甚至跨团队工作。当然，你也可以将它灵活地运用于各种生活场景，弥合人与人之间的差异，更好地协作与沟通。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>在做任何事之前，先定义完成的标准。</b>
+</p>
+
+<p>
+最后，我想请你回想一下，你在工作或生活中，是否发生过因为双方理解差异导致的问题或不快呢？有了 DoD 的概念以后，你是不是有了一些新的想法呢？
+</p>
+</div>
+</div>
+<div id="outline-container-org5703ee4" class="outline-3">
+<h3 id="org5703ee4">04 | 接到需求任务，你要先做哪件事？</h3>
+<div class="outline-text-3" id="text-org5703ee4">
+<p>
+需求，是软件开发中的一个关键环节，一旦需求理解出问题，势必会造成大量的浪费。传统的功能列表只是简单罗列了要实现的功能，丢失了大量的上下文，会导致团队成员对于需求”只见树木不见森林“。
+</p>
+
+<p>
+而在比较大的团队中，更是会将一个功能拆分到多个小团队中，每个人看到的只是功能碎片。于是，后来产生了其他的需求描述方式，比如用例和用户故事。
+</p>
+
+<p>
+在实际的开发过程中，大量的分歧来自于对”需求完成“的定义。当我们把”以终为始“的原则应用在需求领域中，就会注意到，用户故事有一个非常重要的组成部分是验收标准。
+</p>
+
+<p>
+验收标准不仅仅描述了正常流程，也会关注到异常流程的处理，它也是我们验收测试用例的起点。一旦事先定义好验收标准，大量的扯皮功能就随之烟消云散了。
+</p>
+
+<p>
+理解了验收标准的作用，即便我们不使用用户故事来定义需求，依然可以把用户故事中的关键点应用到自己的实践中，在功能列表的每个功能定义中，增加验收标准。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>在做任何需求或任务之前，先定好验收标准。</b>
+</p>
+
+<p>
+最后，我想请你回想一下， 在实际工作中，你是如何澄清你的需求，或者因为需求不清晰给你造成了哪些困扰？
+</p>
+</div>
+</div>
+<div id="outline-container-org2ec72f7" class="outline-3">
+<h3 id="org2ec72f7">05 | 持续集成：集成本身就是写代码的一个环节</h3>
+<div class="outline-text-3" id="text-org2ec72f7">
+<p>
+在软件开发中，编写代码是很重要的一环，但程序员的交付物并不应该是代码，而是一个可工作的软件。当我们在一个团队中工作的时候，把不同人的代码放在一起，使之成为一个可工作软件的过程就是集成。
+</p>
+
+<p>
+在很长一段时间内，集成都是软件行业的难题，改动量和集成时间互相影响。幸运的是，不同的人在不同的方向尝试着改变，结果，同时加大改动量和集成时间的人陷入了泥潭，而调小这两个参数的人看到了曙光。
+</p>
+
+<p>
+每日构建作为早期的一种“最佳实践”被提了出来，但因为它基本上都是原则，没有得到广泛的应用。当人们进一步“调小”参数后，诞生了一个更极致的实践：持续集成，也就是每次提交代码都进行集成。真正让持续集成成为行业最佳实践的是，Martin Fowler 的文章以及持续集成服务器。持续集成的思维让我们认识到，开发和集成可以合二为一。我们应该把开发的完成定义为代码已经集成起来，而站在个体的角度，我们应该尽早提交自己的代码，早点开始集成。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住：尽早提交代码去集成。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5d134c" class="outline-3">
+<h3 id="orgb5d134c">06 | 精益创业：产品经理不靠谱，你该怎么办？</h3>
+<div class="outline-text-3" id="text-orgb5d134c">
+<p>
+我们必须要有自己的独立思考，多问几个为什么，尽可能减少掉到“坑”里之后再求救的次数。
+</p>
+
+<p>
+随着互联网深入人心，软件开始向各个领域蔓延。越来越多的人进入到 IT 行业，不同的人开始在各个方向上进行尝试。这时候，软件开发的主流由面向确定性问题，逐渐变成了面向不确定性问题。
+</p>
+
+<p>
+那精益创业到底说的是什么呢？其实很简单。我们不是要面向不确定性创造新事物吗？ <b>既然是不确定的，那你唯一能做的事情就是“试”</b> 。
+</p>
+
+<p>
+怎么试呢？试就要有试的方法。精益创业的方法论里，提出“开发（build）- 测量（measure）- 认知（learn）”这样一个反馈循环。就是说，当你有了一个新的想法（idea）时，就把想法开发成产品（code）投入市场，然后，收集数据（data）获取反馈，看看前面的想法是不是靠谱。
+</p>
+
+<p>
+得到的结果无非是两种：好想法继续加强，不靠谱的想法丢掉算了。不管是哪种结果，你都会产生新的想法，再进入到下一个循环里。在这个反馈循环中，你所获得的认知是最重要的，因为它是经过验证的。在精益创业中，这也是一个很重要的概念：经过验证的认知（Validated Learning）。
+</p>
+
+<p>
+精益创业提供给我们的是一个做产品的思考框架，我们能够接触到的大多数产品都可以放在这个框架内思考。
+</p>
+
+<p>
+有了框架结构，我们的生活就简单了，当产品经理要做一个新产品或是产品的一个新特性，我们就可以用精益创业的这几个概念来检验一下产品经理是否想清楚了。
+</p>
+
+<p>
+比如，你要做这个产品特性，你要验证的东西是什么呢？他要验证的目标是否有数据可以度量呢？要解决的这个问题是不是当前最重要的事情，是否还有其他更重要的问题呢？
+</p>
+
+<p>
+如果上面的问题都得到肯定的答复，那么验证这个目标是否有更简单的解决方案，是不是一定要通过开发一个产品特性来实现呢？
+</p>
+</div>
+<div id="outline-container-orgfa88703" class="outline-4">
+<h4 id="orgfa88703">总结</h4>
+<div class="outline-text-4" id="text-orgfa88703">
+<p>
+程序员与产品经理的关系是 IT 行业一个经典的话题。许多程序员都会倾向于不问为什么就接受来自产品经理的需求，然后暗自憋气。
+</p>
+
+<p>
+比较早成型的面向不确定创造新事物的方法论是精益创业，它提出了“开发（build）- 测量（measure）- 认知（learn）”这样一个反馈循环和最小可行产品的概念。
+</p>
+
+<p>
+当产品经理让我们做一个新的产品特性时，我们可以从精益创业这个实践上得到启发，向产品经理们问一些问题，帮助我们确定产品经理提出的需求确实是经过严格思考的。
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那请记住： <b>默认所有需求都不做，直到弄清楚为什么要做这件事</b> 。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd4a17d5" class="outline-3">
+<h3 id="orgd4a17d5">07 | 解决了很多技术问题，为什么你依然在“坑”里？</h3>
+<div class="outline-text-3" id="text-orgd4a17d5">
+<p>
+<b>不同角色工作上真正的差异是上下文的不同。</b>
+</p>
+
+<p>
+这是什么意思呢？以前面的问题为例，你在项目里打杂，你只能关注到一个具体的任务，而项目主力心目中是整个系统。 <b>虽然写的代码都一样，但你看到的是树木，人家看到的是森林，他更能从全局思考。</b>
+</p>
+
+<p>
+多问几个为什么，交流一下是不是可以换个做法，许多困惑可能就烟消云散了。 <b>而能想到问这样的问题，前提就是要跳出程序员角色思维，扩大自己工作的上下文。</b>
+</p>
+
+<p>
+虽然我不是项目主力，但不妨碍我去更深入地了解系统全貌；虽然我不是项目负责人，但不妨碍我去了解系统与其他组的接口；同样，虽然我不是项目经理，但我可以去了解一下项目经理是怎样管理项目的；虽然我不是产品经理，但了解一个产品的设计方法对我来说也是有帮助的。
+</p>
+
+<p>
+<b>当你对软件开发的全生命周期都有了认识之后，你看到的就不再是一个点了，而是一条线。</b> 与别人讨论问题的时候，你就会有更多的底气，与那些只在一个点上思考的人相比，你就拥有了降维攻击的能力。
+</p>
+
+<p>
+现在你知道为什么你的工作总能让老板挑出毛病了吧！没错，工作的上下文不同，看到的维度差异很大。单一维度的思考，在多维度思考者的眼里几乎就是漏洞百出的。
+</p>
+</div>
+<div id="outline-container-org51d74cc" class="outline-4">
+<h4 id="org51d74cc">总结</h4>
+<div class="outline-text-4" id="text-org51d74cc">
+<p>
+程序员总喜欢用技术去解决一切问题，但很多令人寝食难安的问题其实根本不是问题。之所以找不出更简单的解决方案，很多时候原因在于程序员被自己的思考局限住了。
+</p>
+
+<p>
+不同角色工作真正的差异在于上下文的差异。在一个局部上下文难以解决的问题，换到另外一个上下文甚至是可以不解决的。所以说无论单点有多努力也只是局部优化，很难达到最优的效果。
+</p>
+
+<p>
+想把工作做好，就需要不断扩大自己工作的上下文，多了解一下别人的工作逻辑是什么样的，认识软件开发的全生命周期。
+</p>
+
+<p>
+扩大自己的上下文，除了能对自己当前的工作效率提高有帮助，对自己的职业生涯也是有好处的。随着你看到的世界越来越宽广，得到的机会也就越来越多。
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那请记住： <b>扩大自己工作的上下文，别把自己局限在一个“程序员”的角色上。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf9950d6" class="outline-3">
+<h3 id="orgf9950d6">08 | 为什么说做事之前要先进行推演？</h3>
+<div class="outline-text-3" id="text-orgf9950d6">
+<p>
+你学会了一招，以后你也可以站在“最后一公里”去发现问题了，加上你已经具备的推演能力，给出一个更令人满意的任务列表似乎更容易一些。
+</p>
+
+<p>
+把这个问题想清楚了，你重新整理了自己的思路，列出了一个自己的问题解决计划。
+</p>
+
+<ul class="org-ul">
+<li>先从结果的角度入手，看看最终上线要考虑哪些因素。</li>
+<li>推演出一个可以一步一步执行的上线方案，用前面考虑到的因素作为衡量指标。</li>
+<li>根据推演出来的上线方案，总结要做的任务。</li>
+</ul>
+
+<p>
+<b>对比我们的工作，多数情况下，即便目标清晰，路径却是模糊的。</b> 所以，不同的人有不同的处理方式。有些人是走到哪算哪，然后再看；有些人则是先推演一下路径，看看能走到什么程度。
+</p>
+
+<p>
+在我们做软件的过程中，这两种路径所带来的差异，已经在前面的小故事里体现出来了。一种是前期其乐融融，后期手忙脚乱；一种是前面思前想后，后面四平八稳。我个人是推崇后一种做法的。
+</p>
+</div>
+<div id="outline-container-org438efaf" class="outline-4">
+<h4 id="org438efaf">总结</h4>
+<div class="outline-text-4" id="text-org438efaf">
+<p>
+即便已经确定了自己的工作目标，我们依然要在具体动手之前，把实施步骤推演一番，完成一次头脑中的创造，也就是第一次创造或智力上的创造。这种思想在军事上称之为沙盘推演，在很多领域都有广泛地应用。
+</p>
+
+<p>
+在软件开发过程中，我们就假设软件已经就绪，看就绪之后，要做哪些事情，比如，如何上线、如何推广等等，这样的推演过程会帮我们发现前期准备的不足之处，进一步丰富我们的工作计划。为了不让我们总在“最后一公里”摔跟头，前期的推演是不可或缺的，也是想让团队进入有条不紊状态的前提。
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那请记住： <b>在动手做一件事之前，先推演一番。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org071f080" class="outline-3">
+<h3 id="org071f080">09 | 你的工作可以用数字衡量吗？</h3>
+<div class="outline-text-3" id="text-org071f080">
+<p>
+<b>一些人说，自己靠直觉就能把事情做好，其实这是一种误解，因为那种所谓的直觉，通常是一种洞见（Insight），洞见很大程度上依赖于一个人在一个领域长期的沉淀和积累，而这其实是某种意义上的大数据。</b>
+</p>
+</div>
+
+<div id="outline-container-orga01615e" class="outline-4">
+<h4 id="orga01615e">总结</h4>
+<div class="outline-text-4" id="text-orga01615e">
+<p>
+随着智能时代的来临，人类社会开始逐渐认识到数据的重要性。但我们这群 IT 人在通过数据为其他人服务的同时，却很少把数字化的思维带到自己的工作范围内。这也是工作中很多“空对空”对话的根源所在。
+</p>
+
+<p>
+结合着“以终为始”的思考，如果我们可以在一开始，就设计好测量工作有效性的指标，那么就可以更有目的性地去工作了。
+</p>
+
+<p>
+而如果我们习惯了用数字去思考，就可以在很多方面让数字帮助我们。我举了几个小例子，比如：基于数据进行技术决策、预先设定系统指标，以及发现系统中的问题等等。希望你也可以把数字思维带到你的日常工作中。
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那请记住： <b>问一下自己，我的工作是不是可以用数字衡量。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc982108" class="outline-3">
+<h3 id="orgc982108">10 | 迭代 0: 启动开发之前，你应该准备什么？</h3>
+<div class="outline-text-3" id="text-orgc982108">
+<p>
+在这一讲中，我给你介绍了迭代 0 的概念，它是在正式开发迭代开始之前，进行一些基础准备的实践。我给了一份我自己的迭代 0 准备清单，这份清单包含了需求和技术两个大方面，你可以参照它设计你自己的迭代 0 清单。
+</p>
+
+
+<div id="org5c1990c" class="figure">
+<p><img src="../../../pics/Others/geekbang/迭代0清单.jpg" alt="迭代0清单.jpg">
+</p>
+</div>
+
+<p>
+根据我的经验，对比这个清单，大多数新项目都在一项或几项上准备得不够充分。 <b>即便你做的不是一个从头开始的项目，对照这个清单，也会发现项目在某些项上的欠缺，可以有针对性地做一些补充。</b>
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那么请记住： <b>设计你的迭代 0 清单，给自己的项目做体检。</b>
+</p>
+</div>
+</div>
+<div id="outline-container-org0e715f8" class="outline-3">
+<h3 id="org0e715f8">划重点 | 关于“以终为始”，你要记住的 9 句话</h3>
+<div class="outline-text-3" id="text-org0e715f8">
+</div>
+<div id="outline-container-org820488b" class="outline-4">
+<h4 id="org820488b">重点复习</h4>
+<div class="outline-text-4" id="text-org820488b">
+<p>
+在这个模块中，我们学习到了一些行业最佳实践。
+</p>
+
+<ul class="org-ul">
+<li>DoD，确定好完成的定义，减少团队内部的理解不一致。</li>
+<li>用户故事，细化出有价值的需求。</li>
+<li>持续集成，通过尽早集成，减少改动量，降低集成的难度。</li>
+<li>精益创业，减少过度开发不确定性产品带来的浪费。</li>
+<li>迭代 0，在项目开始之前，做好一些基础准备。</li>
+</ul>
+
+<p>
+还学习到一些重要的思维转变。任何事物都要经过两次创造：
+</p>
+
+<ul class="org-ul">
+<li>一次是在头脑中的创造，也就是智力上的或者第一次创造（Mental/First Creation），然后才是付诸实践，也就是实际的构建或第二次创造（Physical/Second Creation）。</li>
+<li>在更大的上下文内发现自己的“终”。</li>
+<li>通过推演，找到通往“终”的路径。用可度量的“数字”定义自己的“终”。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd768575" class="outline-4">
+<h4 id="orgd768575">实战指南</h4>
+<div class="outline-text-4" id="text-orgd768575">
+<p>
+在每一篇文章的结尾，我们还将全篇内容浓缩为“一句话”的实战指南，希望你可以迅速上手，把“以终为始”的原则运用在实际工作之中，我们一起来回顾一下这些实战指南。
+</p>
+
+<ul class="org-ul">
+<li>遇到事情，倒着想。——《02 | 以终为始：如何让你的努力不白费？》</li>
+<li>在做任何事之前，先定义完成的标准。——《03 |  DoD 的价值：你完成了工作，为什么他们还不满意？》</li>
+<li>在做任何需求或任务之前，先定好验收标准。——《04 | 接到需求任务，你要先做那件事？》</li>
+<li>尽早提交代码去集成。——《05 | 持续集成：集成本身就是写代码的一个环节》</li>
+<li>默认所有需求都不做，直到弄清楚为什么要做这件事。——《 06 | 精益创业：产品经理不靠谱，你该怎么办？》</li>
+<li>扩大自己工作的上下文，别把自己局限在一个“程序员”的角色上。——《07 | 解决了很多问题，为什么你依然在“坑”里？》</li>
+<li>在动手做一件事之前，先推演一番。——《08 | 为什么说做事之前要先进行推演？》</li>
+<li>问一下自己，我的工作是不是可以用数字衡量。——《09 | 你的工作可以用数字衡量吗？》</li>
+<li>设计你的迭代 0 清单，给自己的项目做体检。——《10 | 启动开发之前，你应该准备什么？》</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf5e0606" class="outline-4">
+<h4 id="orgf5e0606">额外收获</h4>
+<div class="outline-text-4" id="text-orgf5e0606">
+<p>
+在这个部分的最后，针对大家在学习过程中的热门问题，我也进行了回答，希望你懂得：
+</p>
+
+<ul class="org-ul">
+<li>作为程序员，你可以管理你的上级；</li>
+<li>拿老板说事的产品经理，你可以到老板面前澄清；</li>
+<li>喜欢无脑抄袭的产品经理，让他回去先想清楚到底抄的是什么；</li>
+<li>分清楚需求和技术，产品经理和开发团队各自做好各自的事。——《答疑解惑 | 如何管理你的上司？》</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc3b1a8b" class="outline-2">
+<h2 id="orgc3b1a8b">任务分解</h2>
+<div class="outline-text-2" id="text-orgc3b1a8b">
+</div>
+<div id="outline-container-org6038981" class="outline-3">
+<h3 id="org6038981">11 | 向埃隆·马斯克学习任务分解</h3>
+<div class="outline-text-3" id="text-org6038981">
+<p>
+<b>一个大问题，我们都很难给出答案，但回答小问题却是我们擅长的。</b>
+</p>
+
+<p>
+<b>与很多实践相反，任务分解是一个知难行易的过程。</b>
+</p>
+
+<p>
+<b>不同的可执行定义差别在于，你是否能清楚地知道这个问题该如何解决。</b>
+</p>
+
+<p>
+<b>如今软件行业都在提倡拥抱变化，而任务分解是我们拥抱变化的前提。</b>
+</p>
+</div>
+<div id="outline-container-orgb0c0347" class="outline-4">
+<h4 id="orgb0c0347">总结时刻</h4>
+<div class="outline-text-4" id="text-orgb0c0347">
+<p>
+我们从外星人探索和马斯克的火星探索入手，介绍了任务分解在人类社会诸多方面的应用，引出了分而治之这个人类面对复杂问题的基本解决方案。接着，我给你讲了这一思想在软件开发领域中的一个常见应用，分而治之的算法。
+</p>
+
+<p>
+虽然我们很熟悉这一思想，但在日常工作中，我们却没有很好地应用它，这也使得大多数人的工作有很大改进空间。运用这一思想的难点在于，给出一个可执行的分解。
+</p>
+
+<p>
+一方面，对复杂工作而言，给出一个分解是巨大的挑战；另一方面，面对日常工作，人们更容易忽略的是，分解的任务要可执行。每个人对可执行的理解不同，只要你清楚地知道接下来的工作该怎么做，任务分解就可以告一段落。
+</p>
+
+<p>
+大多数人对于可执行的粒度认识是不足的，低估了任务分解的程度，做到好的分解你需要达到“微操作”的程度。有了分解得很小的任务，我们就可以很容易完成一个开发循环，也就让计划调整成为了可能。软件行业在倡导拥抱变化，而任务分解是拥抱变化的前提。
+</p>
+
+<p>
+如果今天的内容你只记住一件事，那么请记住： <b>动手做一个工作之前，请先对它进行任务分解。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org80c854c" class="outline-3">
+<h3 id="org80c854c">12 | 测试也是程序员的事吗？</h3>
+<div class="outline-text-3" id="text-org80c854c">
+<p>
+<b>所以，对于每个程序员来说，只有在开发阶段把代码和测试都写好，才有资格说，自己交付的是高质量的代码。</b>
+</p>
+
+<p>
+需要特别注意的是， <b>不是用单元测试框架写的测试就是单元测试。</b> 很多人用单元测试框架写的是集成测试或是系统测试。单元测试框架只是一个自动化测试的工具而已，并不是用来定义测试类型的。
+</p>
+</div>
+<div id="outline-container-org8e4a1da" class="outline-4">
+<h4 id="org8e4a1da">总结时刻</h4>
+<div class="outline-text-4" id="text-org8e4a1da">
+<p>
+测试是软件开发重要的组成部分，测试应该是软件开发团队中所有人的事，而不仅仅是测试人员的事。因为软件变更成本会随着时间和开发阶段逐步增加，能在早期解决的问题，就不要将它延后至下一个阶段。
+</p>
+
+<p>
+在测试问题上，程序员有着天生的优势，会写代码，于是，程序员拥有了一个突出的强项，自动化测试。写测试应该是程序员工作完成的重要组成部分。
+</p>
+
+<p>
+随着人们对于测试理解的加深，各种各样的测试都出现了，也开始有了测试的分类：单元测试、集成测试、系统测试等等。越在底层测试，成本越低，执行越快；越在高层测试，成本越高，执行越慢。
+</p>
+
+<p>
+人的时间和精力是有限的，所以，人们开始思考不同的测试如何组合。在这个方面的最佳实践称之为测试金字塔，它强调的重点是，越底层的测试应该写得越多。只有按照测试金字塔的方式写测试，持续集成才能更好地发挥作用。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>多写单元测试。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd48700b" class="outline-3">
+<h3 id="orgd48700b">13 | 先写测试，就是测试驱动开发吗？</h3>
+<div class="outline-text-3" id="text-orgd48700b">
+<p>
+讨论到这里你已经知道了 static 方法对测试而言，并不友好。所以，如果你要想让你的代码更可测， <b>一个好的解决方案是尽量不写 static 方法。</b>
+</p>
+</div>
+<div id="outline-container-orgbbf9224" class="outline-4">
+<h4 id="orgbbf9224">总结时刻</h4>
+<div class="outline-text-4" id="text-orgbbf9224">
+<p>
+一些优秀的程序员不仅仅在写测试，还在探索写测试的实践。有人尝试着先写测试，于是，有了一种实践叫测试先行开发。还有人更进一步，一边写测试，一边调整代码，这叫做测试驱动开发，也就是 TDD。
+</p>
+
+<p>
+从步骤上看，关键差别就在，TDD 在测试通过之后，要回到代码上，消除代码的坏味道。
+</p>
+
+<p>
+测试驱动开发已经是行业中的优秀实践，学习测试驱动开发的第一步是，记住测试驱动开发的节奏：红——绿——重构。把测试放在前面，还带来了视角的转变，要编写可测的代码，为此，我们甚至需要调整设计，所以，有人也把 TDD 称为测试驱动设计。
+</p>
+
+<p>
+如果今天的内容你只能记住一件事，那请记住： <b>我们应该编写可测的代码。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc53c2a9" class="outline-3">
+<h3 id="orgc53c2a9">14 | 大师级程序员的工作秘笈</h3>
+<div class="outline-text-3" id="text-orgc53c2a9">
+<p>
+<b>很多人看了一些 TDD 的练习觉得很简单，但自己动起手来却不知道如何下手。中间就是缺了任务分解的环节。</b>
+</p>
+
+<p>
+我们知道，养成一个习惯，最难的是坚持。 <b>如果你有了一个微习惯，坚持就不难了。</b>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

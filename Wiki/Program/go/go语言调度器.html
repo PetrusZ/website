@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-05-11 Tue 17:02 -->
+<!-- 2021-07-09 Fri 21:03 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go语言调度器</title>
@@ -232,22 +232,22 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org54ca470">Go 语言调度器</a>
+<li><a href="#orga545fde">Go 语言调度器</a>
 <ul>
-<li><a href="#orgaed4a50">G</a></li>
-<li><a href="#org465b378">M</a></li>
-<li><a href="#orgc55a168">P</a></li>
-<li><a href="#org38c896c">GMP 模型视图</a></li>
-<li><a href="#org3b4a083">调度器的策略</a></li>
+<li><a href="#org84f4b4a">G</a></li>
+<li><a href="#orgd7bbcf1">M</a></li>
+<li><a href="#org953936e">P</a></li>
+<li><a href="#org40c0ca4">GMP 模型视图</a></li>
+<li><a href="#orgd316be0">调度器的策略</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org54ca470" class="outline-2">
-<h2 id="org54ca470">Go 语言调度器</h2>
-<div class="outline-text-2" id="text-org54ca470">
+<div id="outline-container-orga545fde" class="outline-2">
+<h2 id="orga545fde">Go 语言调度器</h2>
+<div class="outline-text-2" id="text-orga545fde">
 <p>
 所有应用程序都是运行在操作系统上，真正用来干活(计算)的是 CPU。所以谈到 Go 语言调度器，我们也绕不开操作系统、进程与线程这些概念。线程是操作系统调度时的最基本单元，而 Linux 在调度器并不区分进程和线程的调度，它们在不同操作系统上也有不同的实现，但是在大多数的实现中线程都属于进程。
 </p>
@@ -294,7 +294,7 @@ Go 目前使用的调度器是 2012 年重新设计的，因为之前的调度�
 </p>
 
 
-<div id="orgcd2fbf7" class="figure">
+<div id="org34476dc" class="figure">
 <p><img src="../../../pics/Go/GMP.png" alt="GMP.png">
 </p>
 </div>
@@ -306,9 +306,9 @@ Go 目前使用的调度器是 2012 年重新设计的，因为之前的调度�
 </ul>
 </div>
 
-<div id="outline-container-orgaed4a50" class="outline-3">
-<h3 id="orgaed4a50">G</h3>
-<div class="outline-text-3" id="text-orgaed4a50">
+<div id="outline-container-org84f4b4a" class="outline-3">
+<h3 id="org84f4b4a">G</h3>
+<div class="outline-text-3" id="text-org84f4b4a">
 <p>
 gorotuine 就是 Go 语言调度器中待执行的任务，它在运行时调度器中的地位与线程在操作系统中差不多，但是它占用了更小的内存空间，也降低了上下文切换的开销。
 </p>
@@ -318,9 +318,9 @@ goroutine 只存在于 Go 语言的运行时，它是 Go 语言在用户态提�
 </p>
 </div>
 </div>
-<div id="outline-container-org465b378" class="outline-3">
-<h3 id="org465b378">M</h3>
-<div class="outline-text-3" id="text-org465b378">
+<div id="outline-container-orgd7bbcf1" class="outline-3">
+<h3 id="orgd7bbcf1">M</h3>
+<div class="outline-text-3" id="text-orgd7bbcf1">
 <p>
 Go 语言并发模型中的 M 是操作系统线程。调度器最多可以创建 10000 个线程，但是其中大多数的线程都不会执行用户代码（可能陷入系统调用），最多只会有 GOMAXPROCS 个活跃线程能够正常运行。
 </p>
@@ -351,9 +351,9 @@ Go 语言并发模型中的 M 是操作系统线程。调度器最多可以创�
 </p>
 </div>
 </div>
-<div id="outline-container-orgc55a168" class="outline-3">
-<h3 id="orgc55a168">P</h3>
-<div class="outline-text-3" id="text-orgc55a168">
+<div id="outline-container-org953936e" class="outline-3">
+<h3 id="org953936e">P</h3>
+<div class="outline-text-3" id="text-org953936e">
 <p>
 调度器中的处理器 P 是线程和 goroutine 的中间层，它能提供线程需要的上下文环境，也会负责调度线程上的等待队列，通过处理器 P 的调度，每一个内核线程都能够执行多个 goroutine，它能在 goroutine 进行一些 I/O 操作时及时切换，提高线程的利用率。因为调度器在启动时就会创建 GOMAXPROCS 个处理器，所以 Go 语言程序的处理器数量一定会等于 GOMAXPROCS，这些处理器会绑定到不同的内核线程上并利用线程的计算资源运行 goroutine。
 </p>
@@ -363,11 +363,11 @@ Go 语言并发模型中的 M 是操作系统线程。调度器最多可以创�
 </p>
 </div>
 </div>
-<div id="outline-container-org38c896c" class="outline-3">
-<h3 id="org38c896c">GMP 模型视图</h3>
-<div class="outline-text-3" id="text-org38c896c">
+<div id="outline-container-org40c0ca4" class="outline-3">
+<h3 id="org40c0ca4">GMP 模型视图</h3>
+<div class="outline-text-3" id="text-org40c0ca4">
 
-<div id="orgba76ed5" class="figure">
+<div id="org5531701" class="figure">
 <p><img src="../../../pics/Go/GMP_model.png" alt="GMP_model.png">
 </p>
 </div>
@@ -381,9 +381,9 @@ Go 语言并发模型中的 M 是操作系统线程。调度器最多可以创�
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b4a083" class="outline-3">
-<h3 id="org3b4a083">调度器的策略</h3>
-<div class="outline-text-3" id="text-org3b4a083">
+<div id="outline-container-orgd316be0" class="outline-3">
+<h3 id="orgd316be0">调度器的策略</h3>
+<div class="outline-text-3" id="text-orgd316be0">
 <p>
 调度器的一个策略是尽可能的复用现有的活跃线程，通过以下两个机制提高线程的复用：
 </p>
@@ -418,7 +418,7 @@ Go 的运行时并不具备操作系统内核级的硬件中断能力，基于�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-05-11 Tue 17:02</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-05-17 Mon 16:26 -->
+<!-- 2021-07-09 Fri 21:03 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Go内存管理之代码的逃逸分析</title>
@@ -232,15 +232,15 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge163bed">Go 内存管理之代码的逃逸分析</a></li>
-<li><a href="#orgf335a6f">原文链接</a></li>
+<li><a href="#org653bf9c">Go 内存管理之代码的逃逸分析</a></li>
+<li><a href="#orge3fb908">原文链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge163bed" class="outline-2">
-<h2 id="orge163bed">Go 内存管理之代码的逃逸分析</h2>
-<div class="outline-text-2" id="text-orge163bed">
+<div id="outline-container-org653bf9c" class="outline-2">
+<h2 id="org653bf9c">Go 内存管理之代码的逃逸分析</h2>
+<div class="outline-text-2" id="text-org653bf9c">
 <p>
 基本上，每种编程语言都有其自己的内存模型。每个变量，常量都存储在内存的某个物理位置上，这些存储位置通过内存指针访问。
 </p>
@@ -325,7 +325,7 @@ Go 编译器决定变量应该分配到什么地方时会进行逃逸分析。
 </blockquote>
 
 
-<div id="orgda2b20a" class="figure">
+<div id="org3c80f3f" class="figure">
 <p><img src="../../../pics/Go/stack.png" alt="stack.png">
 </p>
 </div>
@@ -370,7 +370,7 @@ Go 编译器决定变量应该分配到什么地方时会进行逃逸分析。
 </p>
 
 
-<div id="org5f8a605" class="figure">
+<div id="orga2a2643" class="figure">
 <p><img src="../../../pics/Go/heap.png" alt="heap.png">
 </p>
 </div>
@@ -384,9 +384,9 @@ Go 编译器决定变量应该分配到什么地方时会进行逃逸分析。
 </p>
 </div>
 </div>
-<div id="outline-container-orgf335a6f" class="outline-2">
-<h2 id="orgf335a6f">原文链接</h2>
-<div class="outline-text-2" id="text-orgf335a6f">
+<div id="outline-container-orge3fb908" class="outline-2">
+<h2 id="orge3fb908">原文链接</h2>
+<div class="outline-text-2" id="text-orge3fb908">
 <ul class="org-ul">
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247485579&amp;idx=1&amp;sn=f481cff4ffccacc186a020e45e884924&amp;chksm=fa80d91ccdf7500ab984ecde7056aa29a2986c423557736c32bd251f2cb5d1ce1e54909753cc&amp;cur_album_id=1326949382503219201&amp;scene=190#rd">https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247485579&amp;idx=1&amp;sn=f481cff4ffccacc186a020e45e884924&amp;chksm=fa80d91ccdf7500ab984ecde7056aa29a2986c423557736c32bd251f2cb5d1ce1e54909753cc&amp;cur_album_id=1326949382503219201&amp;scene=190#rd</a></li>
 </ul>
@@ -395,7 +395,7 @@ Go 编译器决定变量应该分配到什么地方时会进行逃逸分析。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-05-17 Mon 16:26</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

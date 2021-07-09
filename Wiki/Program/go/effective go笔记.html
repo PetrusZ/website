@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-05-20 Thu 10:21 -->
+<!-- 2021-07-09 Fri 21:03 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Effective Go笔记</title>
@@ -232,95 +232,95 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8b6e3d1">引言</a></li>
-<li><a href="#orge0eb13a">格式化</a></li>
-<li><a href="#org6281c54">注释</a></li>
-<li><a href="#org850ffeb">命名</a>
+<li><a href="#orgb2a471c">引言</a></li>
+<li><a href="#org49fa3d9">格式化</a></li>
+<li><a href="#orgfdba18a">注释</a></li>
+<li><a href="#org327d1d1">命名</a>
 <ul>
-<li><a href="#org78c17d4">包名</a></li>
-<li><a href="#org938d003">获取器</a></li>
-<li><a href="#org5505b0a">接口名</a></li>
-<li><a href="#org9fd28b9">驼峰记法</a></li>
+<li><a href="#orgac62f87">包名</a></li>
+<li><a href="#org4dcf5b8">获取器</a></li>
+<li><a href="#orgd535e79">接口名</a></li>
+<li><a href="#org1ffe72e">驼峰记法</a></li>
 </ul>
 </li>
-<li><a href="#org1238e8e">分号</a></li>
-<li><a href="#orge174230">控制结构</a>
+<li><a href="#org6eb1824">分号</a></li>
+<li><a href="#org82126c3">控制结构</a>
 <ul>
-<li><a href="#org97281fc">重新声明与再次赋值</a></li>
-<li><a href="#org83ea26b">For</a></li>
-<li><a href="#org4bf1c1b">Switch</a></li>
-<li><a href="#org61482e4">类型选择</a></li>
+<li><a href="#org6d799d9">重新声明与再次赋值</a></li>
+<li><a href="#org45e5b47">For</a></li>
+<li><a href="#org789f888">Switch</a></li>
+<li><a href="#org979d461">类型选择</a></li>
 </ul>
 </li>
-<li><a href="#orgde0493f">函数</a>
+<li><a href="#orgeea51c0">函数</a>
 <ul>
-<li><a href="#org1e8f94a">可命名结果形参</a></li>
-<li><a href="#org807bf6e">Defer</a></li>
+<li><a href="#org26b2e6d">可命名结果形参</a></li>
+<li><a href="#orgd469772">Defer</a></li>
 </ul>
 </li>
-<li><a href="#org4fdf39b">数据</a>
+<li><a href="#org841b3e2">数据</a>
 <ul>
-<li><a href="#orgd4fff28">new 分配</a></li>
-<li><a href="#org249fcbb">构造函数与复合字面</a></li>
-<li><a href="#org1086b83">make 分配</a></li>
-<li><a href="#org2b0b716">数组</a></li>
-<li><a href="#org65587d7">切片</a></li>
-<li><a href="#org564f935">二维切片</a></li>
-<li><a href="#org8b747c5">映射（map）</a></li>
-<li><a href="#org764823d">打印</a></li>
-<li><a href="#org03d34e2">追加</a></li>
+<li><a href="#orgcc70dc6">new 分配</a></li>
+<li><a href="#orgca7cf34">构造函数与复合字面</a></li>
+<li><a href="#org5080d3f">make 分配</a></li>
+<li><a href="#org62db63e">数组</a></li>
+<li><a href="#orgca27b3b">切片</a></li>
+<li><a href="#org3a91592">二维切片</a></li>
+<li><a href="#orgc41777a">映射（map）</a></li>
+<li><a href="#org4e9f856">打印</a></li>
+<li><a href="#org0e054f8">追加</a></li>
 </ul>
 </li>
-<li><a href="#orge2f0f9e">初始化</a>
+<li><a href="#org06abc29">初始化</a>
 <ul>
-<li><a href="#org5c8b2ca">常量</a></li>
-<li><a href="#org56c6712">变量</a></li>
-<li><a href="#org237cab0">init 函数</a></li>
+<li><a href="#orge278881">常量</a></li>
+<li><a href="#orgeee0a92">变量</a></li>
+<li><a href="#org41e8560">init 函数</a></li>
 </ul>
 </li>
-<li><a href="#orgeeab03a">方法</a>
+<li><a href="#org39c8992">方法</a>
 <ul>
-<li><a href="#orgaefa276">指针 vs. 值</a></li>
+<li><a href="#orgbc50e30">指针 vs. 值</a></li>
 </ul>
 </li>
-<li><a href="#org21e3cf8">接口与其它类型</a>
+<li><a href="#org9bfe321">接口与其它类型</a>
 <ul>
-<li><a href="#org08321fa">接口</a></li>
+<li><a href="#org1928258">接口</a></li>
 </ul>
 </li>
-<li><a href="#org845abe9">空白标识符</a>
+<li><a href="#org48e50a6">空白标识符</a>
 <ul>
-<li><a href="#orgeaf1592">未使用的导入和变量</a></li>
-<li><a href="#org845e3ef">为副作用而导入</a></li>
-<li><a href="#org41e5326">接口检查</a></li>
+<li><a href="#org1534645">未使用的导入和变量</a></li>
+<li><a href="#org5533f85">为副作用而导入</a></li>
+<li><a href="#org95cd2e4">接口检查</a></li>
 </ul>
 </li>
-<li><a href="#org0053851">内嵌</a></li>
-<li><a href="#org6e41383">并发</a>
+<li><a href="#org1061984">内嵌</a></li>
+<li><a href="#org315f4e1">并发</a>
 <ul>
-<li><a href="#orgd3ba132">通过通信共享内存</a></li>
-<li><a href="#org3f6b651">Go 程</a></li>
-<li><a href="#org89ffecb">信道</a></li>
-<li><a href="#org3fe7215">信道中的信道</a></li>
-<li><a href="#org1795391">并行化</a></li>
+<li><a href="#org5919453">通过通信共享内存</a></li>
+<li><a href="#org1eb7853">Go 程</a></li>
+<li><a href="#orgd316ac9">信道</a></li>
+<li><a href="#org29e1d94">信道中的信道</a></li>
+<li><a href="#org9c32c43">并行化</a></li>
 </ul>
 </li>
-<li><a href="#org44c7acd">错误</a></li>
+<li><a href="#orgd81990f">错误</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8b6e3d1" class="outline-2">
-<h2 id="org8b6e3d1">引言</h2>
-<div class="outline-text-2" id="text-org8b6e3d1">
+<div id="outline-container-orgb2a471c" class="outline-2">
+<h2 id="orgb2a471c">引言</h2>
+<div class="outline-text-2" id="text-orgb2a471c">
 <p>
 Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。将现有的 C++或 Java 程序直译为 Go 程序并不能令人满意——毕竟 Java 程序是用 Java 编写的，而不是 Go。 另一方面，若从 Go 的角度去分析问题，你就能编写出同样可行但大不相同的程序。 换句话说，要想将 Go 程序写得好，就必须理解其特性和风格。了解命名、格式化、 程序结构等既定规则也同样重要，这样你编写的程序才能更容易被其他程序员所理解。
 </p>
 </div>
 </div>
-<div id="outline-container-orge0eb13a" class="outline-2">
-<h2 id="orge0eb13a">格式化</h2>
-<div class="outline-text-2" id="text-orge0eb13a">
+<div id="outline-container-org49fa3d9" class="outline-2">
+<h2 id="org49fa3d9">格式化</h2>
+<div class="outline-text-2" id="text-org49fa3d9">
 <p>
 格式化问题总是充满了争议，但却始终没有形成统一的定论。虽说人们可以适应不同的编码风格， 但抛弃这种适应过程岂不更好？若所有人都遵循相同的编码风格，在这类问题上浪费的时间将会更少。 问题就在于如何实现这种设想，而无需冗长的语言风格规范。
 </p>
@@ -355,9 +355,9 @@ Go 对行的长度没有限制，别担心打孔纸不够长。如果一行实�
 </ul>
 </div>
 </div>
-<div id="outline-container-org6281c54" class="outline-2">
-<h2 id="org6281c54">注释</h2>
-<div class="outline-text-2" id="text-org6281c54">
+<div id="outline-container-orgfdba18a" class="outline-2">
+<h2 id="orgfdba18a">注释</h2>
+<div class="outline-text-2" id="text-orgfdba18a">
 <p>
 Go 语言支持 C 风格的块注释 <i>* *</i> 和 C++风格的行注释 //。 行注释更为常用，而块注释则主要用作包的注释，当然也可在禁用一大段代码时使用。
 </p>
@@ -420,13 +420,13 @@ godoc 是否会重新格式化注释取决于上下文，因此必须确保它�
 </p>
 </div>
 </div>
-<div id="outline-container-org850ffeb" class="outline-2">
-<h2 id="org850ffeb">命名</h2>
-<div class="outline-text-2" id="text-org850ffeb">
+<div id="outline-container-org327d1d1" class="outline-2">
+<h2 id="org327d1d1">命名</h2>
+<div class="outline-text-2" id="text-org327d1d1">
 </div>
-<div id="outline-container-org78c17d4" class="outline-3">
-<h3 id="org78c17d4">包名</h3>
-<div class="outline-text-3" id="text-org78c17d4">
+<div id="outline-container-orgac62f87" class="outline-3">
+<h3 id="orgac62f87">包名</h3>
+<div class="outline-text-3" id="text-orgac62f87">
 <p>
 若所有人都以相同的名称来引用其内容将大有裨益， 这也就意味着包应当有个恰当的名称：其名称应该简洁明了而易于理解。按照惯例， 包应当以小写的单个单词来命名，且不应使用下划线或驼峰记法。err 的命名就是出于简短考虑的，因为任何使用该包的人都会键入该名称。 不必担心引用次序的冲突。包名就是导入时所需的唯一默认名称， 它并不需要在所有源码中保持唯一，即便在少数发生冲突的情况下， 也可为导入的包选择一个别名来局部使用。 无论如何，通过文件名来判定使用的包，都是不会产生混淆的。
 </p>
@@ -436,17 +436,17 @@ godoc 是否会重新格式化注释取决于上下文，因此必须确保它�
 </p>
 </div>
 </div>
-<div id="outline-container-org938d003" class="outline-3">
-<h3 id="org938d003">获取器</h3>
-<div class="outline-text-3" id="text-org938d003">
+<div id="outline-container-org4dcf5b8" class="outline-3">
+<h3 id="org4dcf5b8">获取器</h3>
+<div class="outline-text-3" id="text-org4dcf5b8">
 <p>
 Go 并不对获取器（getter）和设置器（setter）提供自动支持。 你应当自己提供获取器和设置器，通常很值得这样做，但若要将 Get 放到获取器的名字中，既不符合习惯，也没有必要。若你有个名为 owner （小写，未导出）的字段，其获取器应当名为 Owner（大写，可导出）而非 GetOwner。大写字母即为可导出的这种规定为区分方法和字段提供了便利。 若要提供设置器方法，SetOwner 是个不错的选择。两个命名看起来都很合理。
 </p>
 </div>
 </div>
-<div id="outline-container-org5505b0a" class="outline-3">
-<h3 id="org5505b0a">接口名</h3>
-<div class="outline-text-3" id="text-org5505b0a">
+<div id="outline-container-orgd535e79" class="outline-3">
+<h3 id="orgd535e79">接口名</h3>
+<div class="outline-text-3" id="text-orgd535e79">
 <p>
 按照约定，只包含一个方法的接口应当以该方法的名称加上-er 后缀来命名，如 Reader、Writer、 Formatter、CloseNotifier 等。
 </p>
@@ -456,18 +456,18 @@ Go 并不对获取器（getter）和设置器（setter）提供自动支持。 �
 </p>
 </div>
 </div>
-<div id="outline-container-org9fd28b9" class="outline-3">
-<h3 id="org9fd28b9">驼峰记法</h3>
-<div class="outline-text-3" id="text-org9fd28b9">
+<div id="outline-container-org1ffe72e" class="outline-3">
+<h3 id="org1ffe72e">驼峰记法</h3>
+<div class="outline-text-3" id="text-org1ffe72e">
 <p>
 最后，Go 中约定使用驼峰记法 MixedCaps 或 mixedCaps。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1238e8e" class="outline-2">
-<h2 id="org1238e8e">分号</h2>
-<div class="outline-text-2" id="text-org1238e8e">
+<div id="outline-container-org6eb1824" class="outline-2">
+<h2 id="org6eb1824">分号</h2>
+<div class="outline-text-2" id="text-org6eb1824">
 <p>
 和 C 一样，Go 的正式语法使用分号来结束语句；和 C 不同的是，这些分号并不在源码中出现。 取而代之，词法分析器会使用一条简单的规则来自动插入分号，因此因此源码中基本就不用分号了。
 </p>
@@ -501,16 +501,16 @@ break continue fallthrough return ++ -- ) }
 </p>
 </div>
 </div>
-<div id="outline-container-orge174230" class="outline-2">
-<h2 id="orge174230">控制结构</h2>
-<div class="outline-text-2" id="text-orge174230">
+<div id="outline-container-org82126c3" class="outline-2">
+<h2 id="org82126c3">控制结构</h2>
+<div class="outline-text-2" id="text-org82126c3">
 <p>
 Go 中的结构控制与 C 有许多相似之处，但其不同之处才是独到之处。 Go 不再使用 do 或 while 循环，只有一个更通用的 for；switch 要更灵活一点；if 和 switch 像 for 一样可接受可选的初始化语句； 此外，还有一个包含类型选择和多路通信复用器的新控制结构：select。 其语法也有些许不同：没有圆括号，而其主体必须始终使用大括号括住。
 </p>
 </div>
-<div id="outline-container-org97281fc" class="outline-3">
-<h3 id="org97281fc">重新声明与再次赋值</h3>
-<div class="outline-text-3" id="text-org97281fc">
+<div id="outline-container-org6d799d9" class="outline-3">
+<h3 id="org6d799d9">重新声明与再次赋值</h3>
+<div class="outline-text-3" id="text-org6d799d9">
 <p>
 在满足下列条件时，已被声明的变量 v 可出现在:= 声明中：
 </p>
@@ -529,9 +529,9 @@ Go 中的结构控制与 C 有许多相似之处，但其不同之处才是独�
 </p>
 </div>
 </div>
-<div id="outline-container-org83ea26b" class="outline-3">
-<h3 id="org83ea26b">For</h3>
-<div class="outline-text-3" id="text-org83ea26b">
+<div id="outline-container-org45e5b47" class="outline-3">
+<h3 id="org45e5b47">For</h3>
+<div class="outline-text-3" id="text-org45e5b47">
 <p>
 Go 的 for 循环类似于 C，但却不尽相同。它统一了 for 和 while，不再有 do-while 了。它有三种形式，但只有一种需要分号。
 </p>
@@ -581,9 +581,9 @@ Go 的 for 循环类似于 C，但却不尽相同。它统一了 for 和 while�
 </p>
 </div>
 </div>
-<div id="outline-container-org4bf1c1b" class="outline-3">
-<h3 id="org4bf1c1b">Switch</h3>
-<div class="outline-text-3" id="text-org4bf1c1b">
+<div id="outline-container-org789f888" class="outline-3">
+<h3 id="org789f888">Switch</h3>
+<div class="outline-text-3" id="text-org789f888">
 <p>
 Go 的 switch 比 C 的更通用。其表达式无需为常量或整数，case 语句会自上而下逐一进行求值直到匹配为止。若 switch 后面没有表达式，它将匹配 true，因此，我们可以将 if-else-if-else 链写成一个 switch，这也更符合 Go 的风格。
 </p>
@@ -627,22 +627,22 @@ switch 并不会自动下溯，但 case 可通过逗号分隔来列举相同的�
 </p>
 </div>
 </div>
-<div id="outline-container-org61482e4" class="outline-3">
-<h3 id="org61482e4">类型选择</h3>
-<div class="outline-text-3" id="text-org61482e4">
+<div id="outline-container-org979d461" class="outline-3">
+<h3 id="org979d461">类型选择</h3>
+<div class="outline-text-3" id="text-org979d461">
 <p>
 switch 也可用于判断接口变量的动态类型。如 类型选择 通过圆括号中的关键字 type 使用类型断言语法。若 switch 在表达式中声明了一个变量，那么该变量的每个子句中都将有该变量对应的类型。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgde0493f" class="outline-2">
-<h2 id="orgde0493f">函数</h2>
-<div class="outline-text-2" id="text-orgde0493f">
+<div id="outline-container-orgeea51c0" class="outline-2">
+<h2 id="orgeea51c0">函数</h2>
+<div class="outline-text-2" id="text-orgeea51c0">
 </div>
-<div id="outline-container-org1e8f94a" class="outline-3">
-<h3 id="org1e8f94a">可命名结果形参</h3>
-<div class="outline-text-3" id="text-org1e8f94a">
+<div id="outline-container-org26b2e6d" class="outline-3">
+<h3 id="org26b2e6d">可命名结果形参</h3>
+<div class="outline-text-3" id="text-org26b2e6d">
 <p>
 Go 函数的返回值或结果“形参”可被命名，并作为常规变量使用，就像传入的形参一样。 命名后，一旦该函数开始执行，它们就会被初始化为与其类型相应的零值； 若该函数执行了一条不带实参的 return 语句，则结果形参的当前值将被返回。
 </p>
@@ -652,9 +652,9 @@ Go 函数的返回值或结果“形参”可被命名，并作为常规变量�
 </p>
 </div>
 </div>
-<div id="outline-container-org807bf6e" class="outline-3">
-<h3 id="org807bf6e">Defer</h3>
-<div class="outline-text-3" id="text-org807bf6e">
+<div id="outline-container-orgd469772" class="outline-3">
+<h3 id="orgd469772">Defer</h3>
+<div class="outline-text-3" id="text-orgd469772">
 <p>
 Go 的 defer 语句用于预设一个函数调用（即推迟执行函数）， 该函数会在执行 defer 的函数返回之前立即执行。它显得非比寻常， 但却是处理一些事情的有效方式，例如无论以何种路径返回，都必须释放资源的函数。 典型的例子就是解锁互斥和关闭文件。
 </p>
@@ -732,13 +732,13 @@ in <span style="color: #ECBE7B;">a</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org4fdf39b" class="outline-2">
-<h2 id="org4fdf39b">数据</h2>
-<div class="outline-text-2" id="text-org4fdf39b">
+<div id="outline-container-org841b3e2" class="outline-2">
+<h2 id="org841b3e2">数据</h2>
+<div class="outline-text-2" id="text-org841b3e2">
 </div>
-<div id="outline-container-orgd4fff28" class="outline-3">
-<h3 id="orgd4fff28">new 分配</h3>
-<div class="outline-text-3" id="text-orgd4fff28">
+<div id="outline-container-orgcc70dc6" class="outline-3">
+<h3 id="orgcc70dc6">new 分配</h3>
+<div class="outline-text-3" id="text-orgcc70dc6">
 <p>
 Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的事情不同，所应用的类型也不同。它们可能会引起混淆，但规则却很简单。 让我们先来看看 new。这是个用来分配内存的内建函数， 但与其它语言中的同名函数不同，它不会初始化内存，只会将内存置零。 也就是说，new(T) 会为类型为 T 的新项分配已置零的内存空间， 并返回它的地址，也就是一个类型为 *T 的值。用 Go 的术语来说，它返回一个指针， 该指针指向新分配的，类型为 T 的零值。
 </p>
@@ -748,9 +748,9 @@ Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的
 </p>
 </div>
 </div>
-<div id="outline-container-org249fcbb" class="outline-3">
-<h3 id="org249fcbb">构造函数与复合字面</h3>
-<div class="outline-text-3" id="text-org249fcbb">
+<div id="outline-container-orgca7cf34" class="outline-3">
+<h3 id="orgca7cf34">构造函数与复合字面</h3>
+<div class="outline-text-3" id="text-orgca7cf34">
 <p>
 有时零值还不够好，这时就需要一个初始化构造函数，如来自 os 包中的这段代码所示。
 </p>
@@ -812,9 +812,9 @@ Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的
 </p>
 </div>
 </div>
-<div id="outline-container-org1086b83" class="outline-3">
-<h3 id="org1086b83">make 分配</h3>
-<div class="outline-text-3" id="text-org1086b83">
+<div id="outline-container-org5080d3f" class="outline-3">
+<h3 id="org5080d3f">make 分配</h3>
+<div class="outline-text-3" id="text-org5080d3f">
 <p>
 再回到内存分配上来。内建函数 make(T, args) 的目的不同于 new(T)。它只用于创建切片、map 和信道，并返回类型为 T（而非 *T）的一个已初始化 （而非置零）的值。 出现这种用差异的原因在于，这三种类型本质上为引用数据类型，它们在使用前必须初始化。
 </p>
@@ -824,9 +824,9 @@ Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的
 </p>
 </div>
 </div>
-<div id="outline-container-org2b0b716" class="outline-3">
-<h3 id="org2b0b716">数组</h3>
-<div class="outline-text-3" id="text-org2b0b716">
+<div id="outline-container-org62db63e" class="outline-3">
+<h3 id="org62db63e">数组</h3>
+<div class="outline-text-3" id="text-org62db63e">
 <p>
 在详细规划内存布局时，数组是非常有用的，有时还能避免过多的内存分配， 但它们主要用作切片的构件。这是下一节的主题了，不过要先说上几句来为它做铺垫。
 </p>
@@ -845,9 +845,9 @@ Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的
 </p>
 </div>
 </div>
-<div id="outline-container-org65587d7" class="outline-3">
-<h3 id="org65587d7">切片</h3>
-<div class="outline-text-3" id="text-org65587d7">
+<div id="outline-container-orgca27b3b" class="outline-3">
+<h3 id="orgca27b3b">切片</h3>
+<div class="outline-text-3" id="text-orgca27b3b">
 <p>
 切片通过对数组进行封装，为数据序列提供了更通用、强大而方便的接口。 除了矩阵变换这类需要明确维度的情况外，Go 中的大部分数组编程都是通过切片来完成的。
 </p>
@@ -861,17 +861,17 @@ Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的
 </p>
 </div>
 </div>
-<div id="outline-container-org564f935" class="outline-3">
-<h3 id="org564f935">二维切片</h3>
-<div class="outline-text-3" id="text-org564f935">
+<div id="outline-container-org3a91592" class="outline-3">
+<h3 id="org3a91592">二维切片</h3>
+<div class="outline-text-3" id="text-org3a91592">
 <p>
 Go 的数组和切片都是一维的。要创建等价的二维数组或切片，就必须定义一个数组的数组， 或切片的切片。由于切片长度是可变的，因此其内部可能拥有多个不同长度的切片。
 </p>
 </div>
 </div>
-<div id="outline-container-org8b747c5" class="outline-3">
-<h3 id="org8b747c5">映射（map）</h3>
-<div class="outline-text-3" id="text-org8b747c5">
+<div id="outline-container-orgc41777a" class="outline-3">
+<h3 id="orgc41777a">映射（map）</h3>
+<div class="outline-text-3" id="text-orgc41777a">
 <p>
 映射是方便而强大的内建数据结构，它可以关联不同类型的值。其键可以是任何相等性操作符支持的类型， 如整数、浮点数、复数、字符串、指针、接口（只要其动态类型支持相等性判断）、结构以及数组。 切片不能用作映射键，因为它们的相等性还未定义。与切片一样，映射也是引用类型。 若将映射传入函数中，并更改了该映射的内容，则此修改对调用者同样可见。
 </p>
@@ -889,9 +889,9 @@ Go 的数组和切片都是一维的。要创建等价的二维数组或切片�
 </p>
 </div>
 </div>
-<div id="outline-container-org764823d" class="outline-3">
-<h3 id="org764823d">打印</h3>
-<div class="outline-text-3" id="text-org764823d">
+<div id="outline-container-org4e9f856" class="outline-3">
+<h3 id="org4e9f856">打印</h3>
+<div class="outline-text-3" id="text-org4e9f856">
 <p>
 Go 采用的格式化打印风格和 C 的 printf 族类似，但却更加丰富而通用。 这些函数位于 fmt 包中，且函数名首字母均为大写：如 fmt.Printf、fmt.Fprintf，fmt.Sprintf 等。 字符串函数（Sprintf 等）会返回一个字符串，而非填充给定的缓冲区。
 </p>
@@ -957,9 +957,9 @@ fmt.<span style="color: #c678dd;">Printf</span>(<span style="color: #98be65;">"%
 </div>
 </div>
 </div>
-<div id="outline-container-org03d34e2" class="outline-3">
-<h3 id="org03d34e2">追加</h3>
-<div class="outline-text-3" id="text-org03d34e2">
+<div id="outline-container-org0e054f8" class="outline-3">
+<h3 id="org0e054f8">追加</h3>
+<div class="outline-text-3" id="text-org0e054f8">
 <p>
 现在我们要对内建函数 append 的设计进行补充说明。append 函数的签名不同于前面我们自定义的 Append 函数。大致来说，它就像这样：
 </p>
@@ -991,16 +991,16 @@ fmt.<span style="color: #c678dd;">Println</span>(x)
 </div>
 </div>
 </div>
-<div id="outline-container-orge2f0f9e" class="outline-2">
-<h2 id="orge2f0f9e">初始化</h2>
-<div class="outline-text-2" id="text-orge2f0f9e">
+<div id="outline-container-org06abc29" class="outline-2">
+<h2 id="org06abc29">初始化</h2>
+<div class="outline-text-2" id="text-org06abc29">
 <p>
 尽管从表面上看，Go 的初始化过程与 C 或 C++并不算太大，但它确实更为强大。 在初始化过程中，不仅可以构建复杂的结构，还能正确处理不同包对象间的初始化顺序。
 </p>
 </div>
-<div id="outline-container-org5c8b2ca" class="outline-3">
-<h3 id="org5c8b2ca">常量</h3>
-<div class="outline-text-3" id="text-org5c8b2ca">
+<div id="outline-container-orge278881" class="outline-3">
+<h3 id="orge278881">常量</h3>
+<div class="outline-text-3" id="text-orge278881">
 <p>
 Go 中的常量就是不变量。它们在编译时创建，即便它们可能是函数中定义的局部变量。 常量只能是数字、字符（符文）、字符串或布尔值。由于编译时的限制， 定义它们的表达式必须也是可被编译器求值的常量表达式。
 </p>
@@ -1014,18 +1014,18 @@ Go 中的常量就是不变量。它们在编译时创建，即便它们可能�
 </p>
 </div>
 </div>
-<div id="outline-container-org56c6712" class="outline-3">
-<h3 id="org56c6712">变量</h3>
-<div class="outline-text-3" id="text-org56c6712">
+<div id="outline-container-orgeee0a92" class="outline-3">
+<h3 id="orgeee0a92">变量</h3>
+<div class="outline-text-3" id="text-orgeee0a92">
 <p>
 变量的初始化与常量类似，但其初始值也可以是在运行时才被计算的一般表达式。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org237cab0" class="outline-3">
-<h3 id="org237cab0">init 函数</h3>
-<div class="outline-text-3" id="text-org237cab0">
+<div id="outline-container-org41e8560" class="outline-3">
+<h3 id="org41e8560">init 函数</h3>
+<div class="outline-text-3" id="text-org41e8560">
 <p>
 最后，每个源文件都可以通过定义自己的无参数 init 函数来设置一些必要的状态。 （其实每个文件都可以拥有多个 init 函数。）而它的结束就意味着初始化结束： 只有该包中的所有变量声明都通过它们的初始化器求值后 init 才会被调用， 而那些 init 只有在所有已导入的包都被初始化后才会被求值。
 </p>
@@ -1036,13 +1036,13 @@ Go 中的常量就是不变量。它们在编译时创建，即便它们可能�
 </div>
 </div>
 </div>
-<div id="outline-container-orgeeab03a" class="outline-2">
-<h2 id="orgeeab03a">方法</h2>
-<div class="outline-text-2" id="text-orgeeab03a">
+<div id="outline-container-org39c8992" class="outline-2">
+<h2 id="org39c8992">方法</h2>
+<div class="outline-text-2" id="text-org39c8992">
 </div>
-<div id="outline-container-orgaefa276" class="outline-3">
-<h3 id="orgaefa276">指针 vs. 值</h3>
-<div class="outline-text-3" id="text-orgaefa276">
+<div id="outline-container-orgbc50e30" class="outline-3">
+<h3 id="orgbc50e30">指针 vs. 值</h3>
+<div class="outline-text-3" id="text-orgbc50e30">
 <p>
 正如 ByteSize 那样，我们可以为任何已命名的类型（除了指针或接口）定义方法； 接收者可不必为结构体。
 </p>
@@ -1080,29 +1080,29 @@ Go 中的常量就是不变量。它们在编译时创建，即便它们可能�
 </div>
 </div>
 </div>
-<div id="outline-container-org21e3cf8" class="outline-2">
-<h2 id="org21e3cf8">接口与其它类型</h2>
-<div class="outline-text-2" id="text-org21e3cf8">
+<div id="outline-container-org9bfe321" class="outline-2">
+<h2 id="org9bfe321">接口与其它类型</h2>
+<div class="outline-text-2" id="text-org9bfe321">
 </div>
-<div id="outline-container-org08321fa" class="outline-3">
-<h3 id="org08321fa">接口</h3>
-<div class="outline-text-3" id="text-org08321fa">
+<div id="outline-container-org1928258" class="outline-3">
+<h3 id="org1928258">接口</h3>
+<div class="outline-text-3" id="text-org1928258">
 <p>
 Go 中的接口为指定对象的行为提供了一种方法：如果某样东西可以完成 <b>这个</b> ， 那么它就可以用在 <b>这里</b> 。每种类型都能实现多个接口。
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org845abe9" class="outline-2">
-<h2 id="org845abe9">空白标识符</h2>
-<div class="outline-text-2" id="text-org845abe9">
+<div id="outline-container-org48e50a6" class="outline-2">
+<h2 id="org48e50a6">空白标识符</h2>
+<div class="outline-text-2" id="text-org48e50a6">
 <p>
 我们在 for-range 循环和映射中提过几次空白标识符。 空白标识符可被赋予或声明为任何类型的任何值，而其值会被无害地丢弃。它有点像 Unix 中的 /dev/null 文件：它表示只写的值，在需要变量但不需要实际值的地方用作占位符。 我们在前面已经见过它的用法了。
 </p>
 </div>
-<div id="outline-container-orgeaf1592" class="outline-3">
-<h3 id="orgeaf1592">未使用的导入和变量</h3>
-<div class="outline-text-3" id="text-orgeaf1592">
+<div id="outline-container-org1534645" class="outline-3">
+<h3 id="org1534645">未使用的导入和变量</h3>
+<div class="outline-text-3" id="text-org1534645">
 <p>
 若导入某个包或声明某个变量而不使用它就会产生错误。未使用的包会让程序膨胀并拖慢编译速度， 而已初始化但未使用的变量不仅会浪费计算能力，还有可能暗藏着更大的 Bug。 然而在程序开发过程中，经常会产生未使用的导入和变量。虽然以后会用到它们， 但为了完成编译又不得不删除它们才行，这很让人烦恼。空白标识符就能提供一个工作空间。
 </p>
@@ -1136,9 +1136,9 @@ Go 中的接口为指定对象的行为提供了一种方法：如果某样东�
 </p>
 </div>
 </div>
-<div id="outline-container-org845e3ef" class="outline-3">
-<h3 id="org845e3ef">为副作用而导入</h3>
-<div class="outline-text-3" id="text-org845e3ef">
+<div id="outline-container-org5533f85" class="outline-3">
+<h3 id="org5533f85">为副作用而导入</h3>
+<div class="outline-text-3" id="text-org5533f85">
 <p>
 有时导入某个包只是为了其副作用， 而没有任何明确的使用。例如，在 net/http/pprof 包的 init 函数中记录了 HTTP 处理程序的调试信息。它有个可导出的 API， 但大部分客户端只需要该处理程序的记录和通过 Web 叶访问数据。只为了其副作用来哦导入该包， 只需将包重命名为空白标识符：
 </p>
@@ -1153,9 +1153,9 @@ Go 中的接口为指定对象的行为提供了一种方法：如果某样东�
 </p>
 </div>
 </div>
-<div id="outline-container-org41e5326" class="outline-3">
-<h3 id="org41e5326">接口检查</h3>
-<div class="outline-text-3" id="text-org41e5326">
+<div id="outline-container-org95cd2e4" class="outline-3">
+<h3 id="org95cd2e4">接口检查</h3>
+<div class="outline-text-3" id="text-org95cd2e4">
 <p>
 就像我们在前面接口中讨论的那样， 一个类型无需显式地声明它实现了某个接口。取而代之，该类型只要实现了某个接口的方法， 其实就实现了该接口。在实践中，大部分接口转换都是静态的，因此会在编译时检测。 例如，将一个 *os.File 传入一个预期的 io.Reader 函数将不会被编译， 除非 *os.File 实现了 io.Reader 接口。
 </p>
@@ -1199,9 +1199,9 @@ Go 中的接口为指定对象的行为提供了一种方法：如果某样东�
 </div>
 </div>
 </div>
-<div id="outline-container-org0053851" class="outline-2">
-<h2 id="org0053851">内嵌</h2>
-<div class="outline-text-2" id="text-org0053851">
+<div id="outline-container-org1061984" class="outline-2">
+<h2 id="org1061984">内嵌</h2>
+<div class="outline-text-2" id="text-org1061984">
 <p>
 Go 并不提供典型的，类型驱动的子类化概念，但通过将类型内嵌到结构体或接口中， 它就能“借鉴”部分实现。
 </p>
@@ -1219,13 +1219,13 @@ Go 并不提供典型的，类型驱动的子类化概念，但通过将类型�
 </p>
 </div>
 </div>
-<div id="outline-container-org6e41383" class="outline-2">
-<h2 id="org6e41383">并发</h2>
-<div class="outline-text-2" id="text-org6e41383">
+<div id="outline-container-org315f4e1" class="outline-2">
+<h2 id="org315f4e1">并发</h2>
+<div class="outline-text-2" id="text-org315f4e1">
 </div>
-<div id="outline-container-orgd3ba132" class="outline-3">
-<h3 id="orgd3ba132">通过通信共享内存</h3>
-<div class="outline-text-3" id="text-orgd3ba132">
+<div id="outline-container-org5919453" class="outline-3">
+<h3 id="org5919453">通过通信共享内存</h3>
+<div class="outline-text-3" id="text-org5919453">
 <p>
 并发编程是个很大的论题。但限于篇幅，这里仅讨论一些 Go 特有的东西。
 </p>
@@ -1249,9 +1249,9 @@ Go 并不提供典型的，类型驱动的子类化概念，但通过将类型�
 </p>
 </div>
 </div>
-<div id="outline-container-org3f6b651" class="outline-3">
-<h3 id="org3f6b651">Go 程</h3>
-<div class="outline-text-3" id="text-org3f6b651">
+<div id="outline-container-org1eb7853" class="outline-3">
+<h3 id="org1eb7853">Go 程</h3>
+<div class="outline-text-3" id="text-org1eb7853">
 <p>
 我们称之为 Go 程是因为现有的术语—线程、协程、进程等等—无法准确传达它的含义。 Go 程具有简单的模型：它是与其它 Go 程并发运行在同一地址空间的函数。它是轻量级的， 所有小号几乎就只有栈空间的分配。而且栈最开始是非常小的，所以它们很廉价， 仅在需要时才会随着堆空间的分配（和释放）而变化。
 </p>
@@ -1269,9 +1269,9 @@ Go 程在多线程操作系统上可实现多路复用，因此若一个线程�
 </p>
 </div>
 </div>
-<div id="outline-container-org89ffecb" class="outline-3">
-<h3 id="org89ffecb">信道</h3>
-<div class="outline-text-3" id="text-org89ffecb">
+<div id="outline-container-orgd316ac9" class="outline-3">
+<h3 id="orgd316ac9">信道</h3>
+<div class="outline-text-3" id="text-orgd316ac9">
 <p>
 信道与映射一样，也需要通过 make 来分配内存。其结果值充当了对底层数据结构的引用。 若提供了一个可选的整数形参，它就会为该信道设置缓冲区大小。默认值是零，表示不带缓冲的或同步的信道。
 </p>
@@ -1372,17 +1372,17 @@ Bug 出现在 Go 的 for 循环中，该循环变量在每次迭代时会被重�
 </p>
 </div>
 </div>
-<div id="outline-container-org3fe7215" class="outline-3">
-<h3 id="org3fe7215">信道中的信道</h3>
-<div class="outline-text-3" id="text-org3fe7215">
+<div id="outline-container-org29e1d94" class="outline-3">
+<h3 id="org29e1d94">信道中的信道</h3>
+<div class="outline-text-3" id="text-org29e1d94">
 <p>
 Go 最重要的特性就是信道是一等值，它可以被分配并像其它值到处传递。 这种特性通常被用来实现安全、并行的多路分解。
 </p>
 </div>
 </div>
-<div id="outline-container-org1795391" class="outline-3">
-<h3 id="org1795391">并行化</h3>
-<div class="outline-text-3" id="text-org1795391">
+<div id="outline-container-org9c32c43" class="outline-3">
+<h3 id="org9c32c43">并行化</h3>
+<div class="outline-text-3" id="text-org9c32c43">
 <p>
 这些设计的另一个应用是在多 CPU 核心上实现并行计算。如果计算过程能够被分为几块 可独立执行的过程，它就可以在每块计算结束时向信道发送信号，从而实现并行处理。
 </p>
@@ -1397,9 +1397,9 @@ Go 最重要的特性就是信道是一等值，它可以被分配并像其它�
 </div>
 </div>
 </div>
-<div id="outline-container-org44c7acd" class="outline-2">
-<h2 id="org44c7acd">错误</h2>
-<div class="outline-text-2" id="text-org44c7acd">
+<div id="outline-container-orgd81990f" class="outline-2">
+<h2 id="orgd81990f">错误</h2>
+<div class="outline-text-2" id="text-orgd81990f">
 <p>
 库例程通常需要向调用者返回某种类型的错误提示。之前提到过，Go 语言的多值返回特性， 使得它在返回常规的值时，还能轻松地返回详细的错误描述。按照约定，错误的类型通常为 error，这是一个内建的简单接口。
 </p>
@@ -1419,7 +1419,7 @@ Go 最重要的特性就是信道是一等值，它可以被分配并像其它�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-05-20 Thu 10:21</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

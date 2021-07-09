@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>面试官会从哪些方面评价候选人的整体素质</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">面试官会从哪些方面评价候选人的整体素质</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7c74093">素质考查</a>
+<ul>
+<li><a href="#org947a872">人品</a></li>
+<li><a href="#org752b5de">意愿</a></li>
+</ul>
+</li>
+<li><a href="#orgd5b229f">总结</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是邵浩。
+</p>
+
+<p>
+近年来，我面试过不少候选人，发现很多同学因为在面试过程中的表现不足，而错失了机会。所以，我想从面试官的角度，基于真实案例，帮你梳理技术面试中要注意的问题。
+</p>
+
+<p>
+简单来说，作为面试官，我关注的核心点就是三方面：人品、能力、意愿。能力考查的关键点，我在上节课已经讲过了，这节课我们来探讨人品、意愿这两方面的素质考查，应该注意什么。
+</p>
+
+<p>
+首先让我们看两个案例：
+</p>
+
+<blockquote>
+<p>
+小 A 是国内某名校硕士毕业生，辗转多个大厂面试，自我感觉都非常良好，什么都能答得上来，但莫名其妙就一直没有拿到合适的 offer，最后去了一家创业公司。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+小 B 是某大厂等同于 P7 级别的工程师，小 C 是某大厂 P6 级别的工程师，他们先后（隔了大概 2 个月）去某互联网公司应聘，结果两人拿到了同职级的 offer，小 C 的薪资反而比小 B 要高。
+</p>
+</blockquote>
+
+<p>
+你可以想想看，为什么会是这样的结果呢？
+</p>
+
+<p>
+在和这几个同学沟通之后，我发现了一些问题所在。小 A 是个聪明但急躁的同学，在回答面试官某些问题的时候，喜欢追问和反问，经常会和面试官针锋相对，反对面试官的一些观点和看法，因此很容易被冠以“难以合作”的标签。在第二个例子中，小 C 平时的交流和表达能力要更强，和人相处时，会让对方感觉很轻松。而小 B 则是学霸型的同学，平时就有些高冷，面试过程中的表达和表现不如小 C 也是可想而知。
+</p>
+
+<p>
+接下来，我们就详细聊一下素质考查中的要点。
+</p>
+
+<div id="outline-container-org7c74093" class="outline-2">
+<h2 id="org7c74093">素质考查</h2>
+<div class="outline-text-2" id="text-org7c74093">
+</div>
+<div id="outline-container-org947a872" class="outline-3">
+<h3 id="org947a872">人品</h3>
+<div class="outline-text-3" id="text-org947a872">
+<p>
+人品是最关键最重要的，哪怕候选人能力再强，人品不过关我也一律不要。
+</p>
+
+<p>
+人品就是人的品性道德，宋朝黄庭坚在《濂溪诗序》中评价周敦颐时写道：“舂陵周茂叔人品甚高，胸中洒落，如光风霁月”。在和优秀候选人沟通的时候，会有这种“光风霁月”的感觉，也非常希望和他们充分交流。
+</p>
+
+<p>
+我觉得人品分解来看，最重要的有几点：真诚、自信乐观、协作意愿。
+</p>
+
+
+<div id="orgfb0ae5d" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/0d/0f/0deec3db064be8e496cac56efd50280f.jpg" alt="0deec3db064be8e496cac56efd50280f.jpg">
+</p>
+</div>
+
+<p>
+真诚就是真实不虚假，我给你举两个反例，你来感受一下。
+</p>
+
+<blockquote>
+<p>
+反例 1：现在很多公司都使用牛客网远程面试，在代码测试的过程中，会发现很多同学不停地切换页面，然后故作沉思状，最后让人感觉是花了很大力气敲上了代码。实际上，这些同学很有可能是切换页面去搜索引擎上找答案。自己觉得天衣无缝，但面试官早就看出来了。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+反例 2：碰到很多同学，不会答就开始瞎答，当面试官指出错误的时候，他还要挣扎一会儿，甚至挣扎到面试官也不想去追究了。所以，遇到不会的问题，可以尽可能说下思路，但也要及时承认自己的不足，避免更多的减分项。
+</p>
+</blockquote>
+
+<p>
+自信乐观的表现是眼中有光，敢于担当。这里我先举个正向的例子：
+</p>
+
+<blockquote>
+<p>
+我碰到过一个同学，学校背景一般，但面试中散发出来的自信气质让人印象深刻，他提到自己为了成为合格的算法工程师，利用所有的业余时间，系统性学习了相关课程，并在 Kaggle 项目上去练手。在上家公司，也主动承担任务，熬夜加班也要按期交付。在沟通的过程中，他非常积极主动，能感受到有很强的上进心。
+</p>
+</blockquote>
+
+<p>
+我再举个反例，对比一下：
+</p>
+
+<blockquote>
+<p>
+很多程序员都比较保守，自己会的东西得心应手，但对于有挑战的事情，就望而却步。比如说我会问应聘的 Python 工程师会不会 C++，对于某个项目，如何用 C++ 进行改写等，一般还不等我追问，一些人就直接回复说“我 C++ 用得不熟，不一定能搞定”，还有同学说“我应聘是 Python，C++ 做不了”。
+</p>
+</blockquote>
+
+<p>
+从这两个例子中可以看出，强大的学习能力和敢于承担的精神，是自信的良好体现。
+</p>
+
+<p>
+再来看协作意愿方面，项目推进中，核心关键人员必不可少，但很大概率上只有团队合作才能有好的成绩。我先举个反例：
+</p>
+
+<blockquote>
+<p>
+看到候选人简历上是 xx 项目的负责人，我会问他带了多少同学做这个事情，怎么分工和配合。有的人回复是这样的：“其他人都不行，这个项目是老板压下来的，都是我一个人搞的”，还碰到过一个候选人说“我就做好我自己的部分，集成还是老大去集成”。当然，还有技术候选人，会批评测试团队、产品团队配合不了，有矛盾，难推进，这些都是面试过程中的减分项。
+</p>
+</blockquote>
+
+<p>
+那怎么样回答才好呢？你可以在回答项目配合的问题时，不仅说清楚团队的配置、不同模块的开发和串联，还提出更好的建议。比如说一个候选人复盘了某个项目，并且告诉我，现在如果他再做这个项目，可以通过自动化手段，节省人力，提升测试能力，避免线上的问题等。
+</p>
+
+<p>
+对于这样的同学，我会感觉他具有很好的全盘意识和协作态度。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org752b5de" class="outline-3">
+<h3 id="org752b5de">意愿</h3>
+<div class="outline-text-3" id="text-org752b5de">
+<p>
+除了人品之外，素质考查的另一个重点是意愿，具体包括两个关键点。
+</p>
+
+
+<div id="org90585be" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/fc/1b/fc4961d5007ca2c920da9ab7228e011b.jpg" alt="fc4961d5007ca2c920da9ab7228e011b.jpg">
+</p>
+</div>
+
+<p>
+一点是有的放矢，目标明确。
+</p>
+
+<p>
+面试是一个双向选择的过程，你是不是真正去准备了这个职位要求的所有方面，你有没有让面试官了解到你的努力程度，都是关键考查点。另外，你还需要注意一些可能有坑的问题，比如说：“你为什么要来这家公司？”，对于这个问题，我认为有几种糟糕的回答：
+</p>
+
+<p>
+第一种：“我喜欢这个工作”。这是个非常通用且没有任何信息量的回答。你应该结合个人职业规划，以及在这个岗位能够为公司做出的贡献，来进一步阐述。
+</p>
+
+<p>
+第二种：“我工作能力强，无论做什么都能做好”。这个回答反而让面试官觉得你并没有清晰的诉求，所以你还不如针对面试的特定岗位，来说明自己的核心能力。
+</p>
+
+<p>
+第三种：“我这边已经有 xx 大厂的 offer，也想来面试你们这家公司” 。这个回答是属于广撒网的，作为面试官，内心 OS 一定是“那你去别的公司好了，不要来我们公司了”。当然也有例外，除非是你特别优秀，而面试官又特别渴求人才的，可能并不在乎你拿到了其他公司的 offer，而是会用最好的条件争取留住你。
+</p>
+
+<p>
+意愿考查的另一关键点是有备而来，知己知彼。
+</p>
+
+<p>
+有一些同学根本不了解岗位的需求，甚至直接问面试官“你们招聘的是什么岗位”。诚然，简历投了一堆，拿到很多面试机会，也很正常，但你做起码要做到，提前去了解这家公司的基本情况。另外，面试快结束时，面试官一般会问你：“你还有什么想了解的？”你可千万别这么回答：
+</p>
+
+<ul class="org-ul">
+<li>第一种：“我没有问题”。这会让面试官觉得你没啥想法。</li>
+<li>第二种：“我不是很了解你们的业务，能再介绍一下么”。这让人感觉你并没有做好调查，意愿不强。</li>
+<li>第三种：“这个岗位需要哪些能力”。这说明你在不了解岗位的情况下就来应聘，根本就没有做好准备。</li>
+<li>第四种：直接问一些众所周知的公开信息，比如说公司的业务构成等。这个回答不痛不痒，不会减分，也不会加分。</li>
+</ul>
+
+<p>
+面试官其实想知道你到底有多想留在这家公司，而且，如果你觉得面试过程中某些点回答得很糟糕，这也是一个非常好的补救机会。所以，好的问法要结合自己的未来发展、业务情况，来问一些具体的问题。当然，也可以问如下一些问题：“能否评价一下我刚才面试表现，有哪些需要改进的地方”，“对该岗位的中长期职业规划建议是什么”，“我如果能够入职，需要在短期内解决哪些问题”，“公司的晋升机制是什么”等。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd5b229f" class="outline-2">
+<h2 id="orgd5b229f">总结</h2>
+<div class="outline-text-2" id="text-orgd5b229f">
+<p>
+总之，素质考查是一个非常重要的评判标准，人品和意愿不仅决定你能不能拿到心仪的 offer，也决定你最后在职业发展中能够有多大的成就。最后，你也可以想一想，如何在日常工作中提升这些基本素质能力，提升自己的段位，补齐自己的短板，欢迎在留言区和我讨论。
+</p>
+
+
+<div id="org435f850" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/66/f1/66c7f8bd4ef4035d46b17d36392738f1.jpg" alt="66c7f8bd4ef4035d46b17d36392738f1.jpg">
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何创建最优的线程池</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">如何创建最优的线程池</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgad4037b">解决问题：先度量再优化的方法</a>
+<ul>
+<li><a href="#orge586242">1. 根据经验和通用公式按需求设置相对合理的参数</a></li>
+<li><a href="#orgc6b50ba">2. 根据度量指标进行调整</a>
+<ul>
+<li><a href="#org065f6b0">度量注册表 MetricRegistry</a></li>
+<li><a href="#orga7a3622">度量类型 Metrics Type</a></li>
+<li><a href="#org29704fd">线程相关度量指标</a></li>
+<li><a href="#orga12dcf5">线程池度量实例</a>
+<ul>
+<li><a href="#org14a425c">线程池中任务的执行时间</a></li>
+<li><a href="#orgb90aa40">线程池中的线程数变化</a></li>
+<li><a href="#org0e37d4f">线程池队列长度</a></li>
+<li><a href="#org2437487">线程池拒绝的任务数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org23e15ad">总结和延伸思考</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是范亚敏。
+</p>
+
+<p>
+多线程是我们最常用的并行编程工具，也是性能优化在多核处理器时代最常用的手段。而线程池是处理并发请求和任务的常用方法，使用线程池可以减少在创建和销毁线程上所花的时间, 充分利用系统的资源，带给用户更快速的响应。创建一个线程池来并发的任务看起来简单，其实不然，线程池的参数是很有讲究的。初学者常犯的错误就是线程要么忙死，要么闲死。
+</p>
+
+<p>
+以 Java 为例，一个标准的线程池创建方法是这样的：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #83898d;">/** Thread Pool Executor */</span>
+<span style="color: #51afef;">public</span> <span style="color: #c678dd;">ThreadPoolExecutor</span>(
+   <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">corePoolSize</span>, <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26680;&#24515;&#32447;&#31243;&#25968;</span>
+   <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">maxPoolSize</span>, <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#26368;&#22823;&#32447;&#31243;&#25968;</span>
+   <span style="color: #ECBE7B;">long</span> <span style="color: #dcaeea;">keepAliveTime</span>, <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23384;&#27963;&#26102;&#38388;&#65292;&#36229;&#36807; corePoolSize &#30340;&#31354;&#38386;&#32447;&#31243;&#22312;&#27492;&#26102;&#38388;&#20043;&#21518;&#20250;&#34987;&#22238;&#25910;</span>
+   <span style="color: #ECBE7B;">TimeUnit</span> <span style="color: #dcaeea;">unit</span>, <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#23384;&#27963;&#26102;&#38388;&#21333;&#20301;</span>
+   <span style="color: #ECBE7B;">BlockingQueue</span>&lt;<span style="color: #ECBE7B;">Runnable</span>&gt; <span style="color: #dcaeea;">workQueue</span><span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#38459;&#22622;&#30340;&#20219;&#21153;&#38431;&#21015;</span>
+   RejectedExecutionHandler handler <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#24403;&#38431;&#21015;&#24050;&#28385;&#65292;&#32447;&#31243;&#25968;&#24050;&#36798; maxPoolSize &#26102;&#30340;&#31574;&#30053;</span>
+) {...}
+</pre>
+</div>
+
+<p>
+虽然 JDK 提供了一些默认实现，比如这三个:
+</p>
+
+<ul class="org-ul">
+<li>static ExecutorService newCachedThreadPool()</li>
+<li>static ExecutorService newFixedThreadPool(int nThreads)</li>
+<li>static ScheduledExecutorService newScheduledThreadPool(int corePoolSize)</li>
+</ul>
+
+<p>
+但是这些线程池并不能满足各种各样的业务场景，在 Java 代码我们一般要求用 ThreadPoolExecutor 来创建线程池，为 ThreadPoolExecutor 设置最优的线程池参数，以满足应用的性能需求。
+</p>
+
+<p>
+但是什么样的参数才是合理的，最优的? 这是最让初学者头疼的，没有标准答案，但是有最佳实践。
+</p>
+
+<p>
+接下来让我们来仔细分析探讨一下我们在实践中总结出来的先度量再优化的方法。
+</p>
+
+<div id="outline-container-orgad4037b" class="outline-2">
+<h2 id="orgad4037b">解决问题：先度量再优化的方法</h2>
+<div class="outline-text-2" id="text-orgad4037b">
+<p>
+通常的做法是这样的：
+</p>
+</div>
+
+<div id="outline-container-orge586242" class="outline-3">
+<h3 id="orge586242">1. 根据经验和通用公式按需求设置相对合理的参数</h3>
+<div class="outline-text-3" id="text-orge586242">
+<p>
+拿线程池来说， 我们需要考虑线程数设置多少才合适， 这个取决于服务器的 CPU 资源，以及任务的类型和资源消耗情况。
+</p>
+
+<p>
+如果任务是读写数据库， 那么它取决于数据库连接池的连接数目， 以及数据库的负载和性能， 而如果任务是通过网络访问第三方服务，那么它取决于网络负载大小，以及第三方服务的负载和性能。
+</p>
+
+<p>
+通常来说，CPU 密集型的任务占用 CPU 时间较长，线程数可以设置的小一点， I/O 密集型的任务占用 CPU 时间较短，线程数可以设的大一点。
+</p>
+
+<p>
+我们的目的是充分利用给到我们的 CPU 资源，如果线程的任务有很多等待时间，比如等待磁盘和网络 I/O，那么就把线程数设多一点，如果任务本身非常耗费 CPU 的计算资源，CPU 处理时间较长，那么就把线程数设得小一点。
+</p>
+
+<p>
+根据这个公式：
+</p>
+
+<p>
+<b><b>线程数 = CPU 核数 * 希望的 CPU 使用率 * (1 + 等待时间 / 处理时间)</b></b>
+</p>
+
+<p>
+假设我们的服务器为 4 核 CPU，我们要创建一个线程池来发送度量数据指标到远端的 Kafka 上，网络延迟约为 50ms，数据解析编码压缩时间大约 5ms，CPU 占用率希望在 10% 之内。根据计算结果，得出我们需要 4.4, 约 5 个线程
+</p>
+
+<p>
+<b><b>4 * 0.1 * (1 + 50 / 5) = 4.4</b></b>
+</p>
+
+<p>
+于是， 我们设置了这些参数，你可以截个图之后再仔细看一下
+</p>
+
+
+<div id="orgfecbacb" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/90/60/90996c94dd87466774aa3809e37b2760.png" alt="90996c94dd87466774aa3809e37b2760.png">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc6b50ba" class="outline-3">
+<h3 id="orgc6b50ba">2. 根据度量指标进行调整</h3>
+<div class="outline-text-3" id="text-orgc6b50ba">
+<p>
+为了进行充分的度量，我们必需对线程池的各种指标进行记录和展示。
+</p>
+
+<p>
+我们先来简单了解一些度量术语：
+</p>
+</div>
+
+<div id="outline-container-org065f6b0" class="outline-4">
+<h4 id="org065f6b0">度量注册表 MetricRegistry</h4>
+<div class="outline-text-4" id="text-org065f6b0">
+<p>
+它是各种度量数据的容器，类似于 windows 的系统注册表，各项度量数据都可以在其中进行注册。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga7a3622" class="outline-4">
+<h4 id="orga7a3622">度量类型 Metrics Type</h4>
+<div class="outline-text-4" id="text-orga7a3622">
+
+<div id="org82e972e" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/d7/e6/d779fb9f235fee1dc1bb6435f5582ee6.png" alt="d779fb9f235fee1dc1bb6435f5582ee6.png">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29704fd" class="outline-4">
+<h4 id="org29704fd">线程相关度量指标</h4>
+<div class="outline-text-4" id="text-org29704fd">
+<p>
+根据以上的度量类型，以及线程池的特点，我们可以想到这些度量指标：
+</p>
+
+
+<div id="orgdbb840a" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/30/a0/306d621134fd6aa18c0c7464c5d652a0.png" alt="306d621134fd6aa18c0c7464c5d652a0.png">
+</p>
+</div>
+
+<p>
+这些度量指标如此重要，在于只有了解了它们，我们才能知道线程池的工作状况，才能进行有的放矢的调优，下面让我们用一个实例来具体说明一下度量驱动调优的方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga12dcf5" class="outline-4">
+<h4 id="orga12dcf5">线程池度量实例</h4>
+<div class="outline-text-4" id="text-orga12dcf5">
+<p>
+这是一个线程池度量调优的实例，主要有三个步骤：
+</p>
+
+<ul class="org-ul">
+<li>创建线程池并注册各项度量指标</li>
+<li>运行线程池并收集度量指标</li>
+<li>观察度量指标并相应地调整参数</li>
+</ul>
+
+<p>
+无度量，不调优， 没有调查取证，就无法做好调优。我们可以应用 dropwizard 的 metrics 库中的 <a href="https://metrics.dropwizard.io/">https://metrics.dropwizard.io/</a> 类库 InstrumentedExecutorService 来帮助我们进行上述指标的统计, 它通过装饰器模式对原来的 Executor Service 进行包装，记录了 submited, running, completed, idle , duration 这些指标，我们可以另外再记录一些指标，来反映线程池的工作情况，以及线程池中运行的任务的执行情况。
+</p>
+
+<p>
+部分代码：
+</p>
+
+<ol class="org-ol">
+<li><p>
+先定义一个线程池参数对象
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #51afef;">package</span> com.github.walterfan.<span style="color: #a9a1e1;">helloconcurrency</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">Gauge</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">MetricRegistry</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">lombok</span>.<span style="color: #ECBE7B;">Builder</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">lombok</span>.<span style="color: #ECBE7B;">Getter</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">lombok</span>.<span style="color: #ECBE7B;">Setter</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">time</span>.<span style="color: #ECBE7B;">Duration</span>;
+
+
+<span style="color: #83898d;">/**</span>
+<span style="color: #83898d;"> * @Author: Walter Fan</span>
+<span style="color: #83898d;"> * &#36825;&#26159;&#19968;&#20010;&#25968;&#25454;&#20256;&#36755;&#23545;&#35937;&#65292;&#23553;&#35013;&#20102;&#32447;&#31243;&#27744;&#30340;&#20851;&#38190;&#21442;&#25968;</span>
+<span style="color: #83898d;"> *</span>
+<span style="color: #83898d;"> * &#23427;&#20063;&#24212;&#29992;&#20102; lombok &#30340; @Getter, @Setter, @Builder &#27880;&#35299;</span>
+<span style="color: #83898d;"> * &#26469;&#33258;&#21160;&#29983;&#25104; setter, getter &#21644; build &#26041;&#27861;</span>
+<span style="color: #83898d;"> *</span>
+<span style="color: #83898d;"> **/</span>
+
+<span style="color: #a9a1e1;">@Getter</span>
+<span style="color: #a9a1e1;">@Setter</span>
+<span style="color: #a9a1e1;">@Builder</span>
+<span style="color: #51afef;">public</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">ThreadPoolParam</span> {
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">minPoolSize</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">maxPoolSize</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">Duration</span> <span style="color: #dcaeea;">keepAliveTime</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">int</span> <span style="color: #dcaeea;">queueSize</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">String</span> <span style="color: #dcaeea;">threadPrefix</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">boolean</span> <span style="color: #dcaeea;">daemon</span>;
+    <span style="color: #51afef;">private</span> <span style="color: #ECBE7B;">MetricRegistry</span> <span style="color: #dcaeea;">metricRegistry</span>;
+
+}
+
+</pre>
+</div></li>
+
+<li><p>
+再写一个创建线程池的工具类
+</p>
+<div class="org-src-container">
+<pre class="src src-java">ThreadPoolUtil.<span style="color: #ECBE7B;">java</span>
+
+<span style="color: #51afef;">package</span> com.github.walterfan.<span style="color: #a9a1e1;">helloconcurrency</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">Counter</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">Gauge</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">InstrumentedExecutorService</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">Meter</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.<span style="color: #ECBE7B;">MetricRegistry</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">google</span>.<span style="color: #a9a1e1;">common</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">ThreadFactoryBuilder</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">lombok</span>.<span style="color: #a9a1e1;">extern</span>.<span style="color: #a9a1e1;">slf4j</span>.<span style="color: #ECBE7B;">Slf4j</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">ExecutorService</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">LinkedBlockingQueue</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">RejectedExecutionHandler</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">ThreadFactory</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">ThreadPoolExecutor</span>;
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">concurrent</span>.<span style="color: #ECBE7B;">TimeUnit</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #a9a1e1;">java</span>.<span style="color: #a9a1e1;">util</span>.<span style="color: #a9a1e1;">function</span>.<span style="color: #ECBE7B;">Supplier</span>;
+
+<span style="color: #51afef;">import</span> <span style="color: #51afef;">static</span> <span style="color: #a9a1e1;">com</span>.<span style="color: #a9a1e1;">codahale</span>.<span style="color: #a9a1e1;">metrics</span>.MetricRegistry.<span style="color: #ECBE7B;">name</span>;
+
+<span style="color: #83898d;">/**</span>
+<span style="color: #83898d;"> * @Author: Walter Fan</span>
+<span style="color: #83898d;"> **/</span>
+<span style="color: #a9a1e1;">@Slf4j</span>
+<span style="color: #51afef;">public</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">ThreadPoolUtil</span> {
+    <span style="color: #5B6268;">/*</span>
+<span style="color: #5B6268;">    &#21644;&#31995;&#32479;&#20869;&#32622;&#30340; ThreadPoolExecutor.CallerRunsPolicy &#24046;&#19981;&#22810;&#65292;</span>
+<span style="color: #5B6268;">    &#22914;&#26524;&#34987;&#25298;&#32477;&#65292;&#23601;&#29992;&#25552;&#20132;&#20219;&#21153;&#30340;&#32447;&#31243;&#26469;&#25191;&#34892;&#20219;&#21153;.</span>
+<span style="color: #5B6268;">    */</span>
+    <span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">DiscardAndLogPolicy</span> <span style="color: #51afef;">implements</span> <span style="color: #ECBE7B;">RejectedExecutionHandler</span> {
+        <span style="color: #51afef;">final</span> <span style="color: #ECBE7B;">MetricRegistry</span> <span style="color: #dcaeea;">metricRegistry</span>;
+        <span style="color: #51afef;">final</span> <span style="color: #ECBE7B;">Meter</span> <span style="color: #dcaeea;">rejectedMeter</span>;
+        <span style="color: #51afef;">final</span> <span style="color: #ECBE7B;">Counter</span> <span style="color: #dcaeea;">rejectedCounter</span>;
+
+        <span style="color: #51afef;">public</span> <span style="color: #c678dd;">DiscardAndLogPolicy</span>(<span style="color: #ECBE7B;">String</span> <span style="color: #dcaeea;">threadPrefix</span>, <span style="color: #ECBE7B;">MetricRegistry</span> <span style="color: #dcaeea;">metricRegistry</span>) {
+            <span style="color: #51afef;">this</span>.metricRegistry = metricRegistry;
+            <span style="color: #51afef;">this</span>.rejectedMeter =  metricRegistry.meter(threadPrefix + <span style="color: #98be65;">".rejected-meter"</span>);
+            <span style="color: #51afef;">this</span>.rejectedCounter = metricRegistry.counter(threadPrefix + <span style="color: #98be65;">".rejected-counter"</span>);
+        }
+
+
+        <span style="color: #51afef;">public</span> <span style="color: #ECBE7B;">void</span> <span style="color: #c678dd;">rejectedExecution</span>(<span style="color: #ECBE7B;">Runnable</span> <span style="color: #dcaeea;">r</span>, <span style="color: #ECBE7B;">ThreadPoolExecutor</span> <span style="color: #dcaeea;">e</span>) {
+            rejectedMeter.mark();
+            rejectedCounter.inc();
+            <span style="color: #51afef;">if</span> (<span style="color: #51afef; font-weight: bold;">!</span>e.isShutdown()) {
+                log.warn(<span style="color: #98be65;">"reject task and run {} directly"</span>, r);
+                r.run();
+
+            }
+        }
+    }
+
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21019;&#24314;&#32447;&#31243;&#25191;&#34892;&#22120;&#65292;&#27880;&#20876;&#20102;&#20960;&#20010;&#24230;&#37327;&#25351;&#26631;</span>
+    <span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">ThreadPoolExecutor</span> <span style="color: #c678dd;">createThreadExecutor</span>(<span style="color: #ECBE7B;">ThreadPoolParam</span> <span style="color: #dcaeea;">threadPoolParam</span>) {
+        <span style="color: #ECBE7B;">MetricRegistry</span> <span style="color: #dcaeea;">metricRegistry</span> = threadPoolParam.getMetricRegistry();
+
+        metricRegistry.register(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">".min"</span>, createIntGauge(() -&gt; threadPoolParam.getMinPoolSize()));
+        metricRegistry.register(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">".max"</span>, createIntGauge(() -&gt; threadPoolParam.getMaxPoolSize()));
+        metricRegistry.register(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">".queue_limitation"</span>, createIntGauge(() -&gt; threadPoolParam.getQueueSize()));
+
+
+        <span style="color: #ECBE7B;">ThreadPoolExecutor</span> <span style="color: #dcaeea;">executor</span> = <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">ThreadPoolExecutor</span>(threadPoolParam.getMinPoolSize(),
+                threadPoolParam.getMaxPoolSize(),
+                threadPoolParam.getKeepAliveTime().toMillis(),
+                <span style="color: #a9a1e1;">TimeUnit</span>.MILLISECONDS,
+                <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">LinkedBlockingQueue</span>&lt;<span style="color: #ECBE7B;">Runnable</span>&gt;(threadPoolParam.getQueueSize()),
+                createThreadFactory(threadPoolParam),
+                createRejectedExecutionHandler(threadPoolParam));
+
+        metricRegistry.register(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">".pool_size"</span>, createIntGauge(() -&gt; executor.getPoolSize()));
+        metricRegistry.register(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">".queue_size"</span>, createIntGauge(() -&gt; executor.getQueue().size()));
+        <span style="color: #51afef;">return</span> executor;
+    }
+
+    <span style="color: #5B6268;">// </span><span style="color: #5B6268;">&#21019;&#24314;&#32447;&#31243;&#25191;&#34892;&#26381;&#21153;&#65292;&#29992; InstrumentedExecutorService &#26469;&#21253;&#35013;&#21644;&#24230;&#37327;&#32447;&#31243;&#20219;&#21153;</span>
+    <span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">ExecutorService</span> <span style="color: #c678dd;">createExecutorService</span>(<span style="color: #ECBE7B;">ThreadPoolParam</span> <span style="color: #dcaeea;">threadPoolParam</span>) {
+        <span style="color: #ECBE7B;">ThreadPoolExecutor</span> <span style="color: #dcaeea;">executor</span> = createThreadExecutor(threadPoolParam);
+
+        <span style="color: #51afef;">return</span> <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">InstrumentedExecutorService</span>(executor,
+                threadPoolParam.getMetricRegistry(),
+                threadPoolParam.getThreadPrefix());
+    }
+
+    <span style="color: #51afef;">private</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">Gauge</span>&lt;<span style="color: #ECBE7B;">Integer</span>&gt; <span style="color: #c678dd;">createIntGauge</span>(<span style="color: #ECBE7B;">Supplier</span>&lt;<span style="color: #ECBE7B;">Integer</span>&gt; <span style="color: #dcaeea;">suppier</span>) {
+        <span style="color: #51afef;">return</span> () -&gt; suppier.get();
+    }
+
+    <span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">ThreadFactory</span> <span style="color: #c678dd;">createThreadFactory</span>(<span style="color: #ECBE7B;">ThreadPoolParam</span> <span style="color: #dcaeea;">threadPoolParam</span>) {
+        <span style="color: #51afef;">return</span> <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">ThreadFactoryBuilder</span>()
+                .setDaemon(threadPoolParam.isDaemon())
+                .setNameFormat(threadPoolParam.getThreadPrefix() + <span style="color: #98be65;">"-%d"</span>)
+                .build();
+    }
+
+    <span style="color: #51afef;">public</span> <span style="color: #51afef;">static</span> <span style="color: #ECBE7B;">RejectedExecutionHandler</span> <span style="color: #c678dd;">createRejectedExecutionHandler</span>(<span style="color: #ECBE7B;">ThreadPoolParam</span> <span style="color: #dcaeea;">threadPoolParam</span>) {
+        <span style="color: #51afef;">return</span> <span style="color: #51afef;">new</span> <span style="color: #ECBE7B;">DiscardAndLogPolicy</span>(threadPoolParam.getThreadPrefix(), threadPoolParam.getMetricRegistry());
+    }
+}
+</pre>
+</div></li>
+</ol>
+
+<p>
+注意: 我们在这个线程池中埋设了 12 个度量指标，看你能不能在代码中找出来设置的地方 。
+</p>
+
+<ul class="org-ul">
+<li>cards-thread-pool.completed</li>
+<li>cards-thread-pool.max</li>
+<li>cards-thread-pool.queue_limitation</li>
+<li>cards-thread-pool.rejected-meter</li>
+<li>cards-thread-pool.duration</li>
+<li>cards-thread-pool.min</li>
+<li>cards-thread-pool.queue_size</li>
+<li>cards-thread-pool.running</li>
+<li>cards-thread-pool.idle</li>
+<li>cards-thread-pool.pool_size</li>
+<li>cards-thread-pool.rejected-counter</li>
+<li>cards-thread-pool.submitted</li>
+
+<li>用线程池执行多副扑克牌的排序任务</li>
+</ul>
+<p>
+以我们最常用的打扑克牌为例，分别用冒泡排序，插入排序和 JDK 自带的 TimSort 来对若干副牌排序，总共创建 20 个任务，都放入线程池中执行，当我们采用不同的线程池参数时，效果大不相同。扑克牌对象类及其排序代码这里从略, 可以参见 GitHub 上的源码.
+</p>
+
+<p>
+这段代码让线程池执行了 30 个排序任务，最多排序 1000 副牌（52000 张）,10 个任务用冒泡排序，10 个任务用插入排序，10 个任务用 Tim 排序, 总共花了 18 秒多。
+</p>
+
+<p>
+我用 CsvReporter 把若干度量指标打印到 Csv 文件中，一共有 12 个 CSV 文件。
+</p>
+
+<ul class="org-ul">
+<li>cards-thread-pool.completed.csv</li>
+<li>cards-thread-pool.max.csv</li>
+<li>cards-thread-pool.queue_limitation.csv</li>
+<li>cards-thread-pool.rejected-meter.csv</li>
+<li>cards-thread-pool.duration.csv</li>
+<li>cards-thread-pool.min.csv</li>
+<li>cards-thread-pool.queue_size.csv</li>
+<li>cards-thread-pool.running.csv</li>
+<li>cards-thread-pool.idle.csv</li>
+<li>cards-thread-pool.pool_size.csv</li>
+<li>cards-thread-pool.rejected-counter.csv</li>
+<li>cards-thread-pool.submitted.csv</li>
+
+<li>分析度量指标，根据分析结果进行优化</li>
+</ul>
+<p>
+基于这些度量指标，我们可以看到任务特点和线程池的参数是否合理。最直观的是批量任务的执行时间，任务在线程池队列中堆积的个数和时长，线程池中工作线程的变化，线程池由于过载而丢弃的任务，下面让我们来逐个分析这四个关键指标。
+</p>
+</div>
+
+<div id="outline-container-org14a425c" class="outline-5">
+<h5 id="org14a425c">线程池中任务的执行时间</h5>
+<div class="outline-text-5" id="text-org14a425c">
+<p>
+从结果来看，三种排序方法的效率差别很大。排两副牌的时候，三种方法差不太多，而排序 1000 副牌（52000 张）的时候， TimSort 花了大约 11 毫秒， InsertSort 花了大约 1 秒 ，而 BubbleSort 花了 14 秒多。
+</p>
+
+<p>
+对于任务执行时间，我们可以通过记录的度量指标文件来作一个分析，下面是运行过程中生成的 csv 文件，看起来不太直观，之后我画一个简单的线形图，你就能理解了。
+</p>
+
+<p>
+这是一个表示任务所执行时间的统计值 (最大，平均，最小，标准差，p50 到 p999 的分位数值)。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-csv">t,count,max,mean,min,stddev,p50,p75,p95,p98,p99,p999,mean_rate,m1_rate,m5_rate,m15_rate,rate_unit,duration_unit
+1585473845,0,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,calls/second,milliseconds
+1585473846,0,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,calls/second,milliseconds
+1585473846,8,63.069663,37.658003,2.579674,25.915099,39.007040,61.809917,63.069663,63.069663,63.069663,63.069663,33.614807,0.000000,0.000000,0.000000,calls/second,milliseconds
+1585473846,8,63.069663,37.658003,2.579674,25.915099,39.007040,61.809917,63.069663,63.069663,63.069663,63.069663,23.777415,0.000000,0.000000,0.000000,calls/second,milliseconds
+1585473846,8,63.069663,37.658003,2.579674,25.915099,39.007040,61.809917,63.069663,63.069663,63.069663,63.069663,18.448678,0.000000,0.000000,0.000000,calls/second,milliseconds
+1585473846,9,384.357751,76.180197,2.579674,111.663094,58.345330,62.339820,384.357751,384.357751,384.357751,384.357751,16.884697,0.000000,0.000000,0.000000,calls/second,milliseconds
+# 省略余下内容
+</pre>
+</div>
+
+<p>
+这个 csv 文件看起来不直观，我们还是用图表来形象地表示：
+</p>
+
+
+<div id="org92527c3" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/d3/d2/d37e3de3265144f5ab56a8394d3756d2.png" alt="d37e3de3265144f5ab56a8394d3756d2.png">
+</p>
+</div>
+
+<p>
+分析任务执行时间的 Python 脚本
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35835;&#21462; cvs &#25991;&#20214;</span>
+<span style="color: #dcaeea;">durations</span> = pd.read_csv(<span style="color: #98be65;">'cards-thread-pool.duration.csv'</span>)
+<span style="color: #51afef;">print</span>(durations.head(<span style="color: #da8548; font-weight: bold;">1</span>))
+&#65283; &#32472;&#21046;&#26368;&#22823;&#65292;&#24179;&#22343;&#21644;&#26368;&#23567;&#20540;
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'max'</span>], label = <span style="color: #98be65;">'max'</span>)
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'mean'</span>], label = <span style="color: #98be65;">'mean'</span>)
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'min'</span>], label = <span style="color: #98be65;">'min'</span>)
+
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32437;&#22352;&#26631;&#20026;&#27627;&#31186;&#65292;&#27178;&#22352;&#26631;&#20026;&#26102;&#38388;&#25139;</span>
+plt.ylabel(<span style="color: #98be65;">"milliSeconds"</span>)
+plt.xlabel(<span style="color: #98be65;">"timestamp"</span>)
+plt.legend(prop = {<span style="color: #98be65;">'size'</span>: <span style="color: #da8548; font-weight: bold;">10</span>})
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26174;&#31034;&#22270;&#24418;</span>
+plt.show()
+</pre>
+</div>
+
+<p>
+排序任务时间
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb90aa40" class="outline-5">
+<h5 id="orgb90aa40">线程池中的线程数变化</h5>
+<div class="outline-text-5" id="text-orgb90aa40">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35835;&#21462; cvs &#25991;&#20214;</span>
+<span style="color: #dcaeea;">durations</span> = pd.read_csv(<span style="color: #98be65;">'cards-thread-pool.pool_size.csv'</span>)
+<span style="color: #51afef;">print</span>(durations.head(<span style="color: #da8548; font-weight: bold;">1</span>))
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32472;&#21046;&#22270;&#34920;&#65292;&#27178;&#22352;&#26631;&#26159;&#26102;&#38388;&#65292;&#32437;&#22352;&#26631;&#26159;&#32447;&#31243;&#25968;</span>
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'value'</span>], label = <span style="color: #98be65;">'pool size'</span>)
+
+plt.ylabel(<span style="color: #98be65;">"thread count"</span>)
+plt.xlabel(<span style="color: #98be65;">"timestamp"</span>)
+plt.legend(prop = {<span style="color: #98be65;">'size'</span>: <span style="color: #da8548; font-weight: bold;">10</span>})
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26174;&#31034;&#22270;&#24418;</span>
+plt.show()
+</pre>
+</div>
+
+
+<div id="orgafe0352" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/2b/86/2b830b8c5c89723062d4ede80082d186.png" alt="2b830b8c5c89723062d4ede80082d186.png">
+</p>
+</div>
+
+<p>
+线程池中的线程数
+</p>
+
+<p>
+线程池的线程数应该比较平稳，避免频繁的创建和销毁线程，这张图揭示如果系统资源足够的话，corePoolSize, maxPoolSize 和 keepAliveTime 时间可以适当调大。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e37d4f" class="outline-5">
+<h5 id="org0e37d4f">线程池队列长度</h5>
+<div class="outline-text-5" id="text-org0e37d4f">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35835;&#21462; cvs &#25991;&#20214;</span>
+<span style="color: #dcaeea;">durations</span> = pd.read_csv(<span style="color: #98be65;">'cards-thread-pool.queue_size.csv'</span>)
+<span style="color: #51afef;">print</span>(durations.head(<span style="color: #da8548; font-weight: bold;">1</span>))
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32472;&#21046;&#22270;&#34920;&#65292;&#27178;&#22352;&#26631;&#26159;&#26102;&#38388;&#65292;&#32437;&#22352;&#26631;&#26159;&#32447;&#31243;&#38431;&#21015;&#30340;&#22534;&#31215;&#30340;&#20219;&#21153;&#25968;</span>
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'value'</span>], label = <span style="color: #98be65;">'queue size'</span>)
+
+plt.ylabel(<span style="color: #98be65;">"queue size"</span>)
+plt.xlabel(<span style="color: #98be65;">"timestamp"</span>)
+plt.legend(prop = {<span style="color: #98be65;">'size'</span>: <span style="color: #da8548; font-weight: bold;">10</span>})
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26174;&#31034;&#22270;&#24418;</span>
+plt.show()
+</pre>
+</div>
+
+<p>
+线程池队列长度
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2437487" class="outline-5">
+<h5 id="org2437487">线程池拒绝的任务数</h5>
+<div class="outline-text-5" id="text-org2437487">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35835;&#21462; cvs &#25991;&#20214;</span>
+<span style="color: #dcaeea;">durations</span> = pd.read_csv(<span style="color: #98be65;">'cards-thread-pool.rejected-counter.csv'</span>)
+<span style="color: #51afef;">print</span>(durations.head(<span style="color: #da8548; font-weight: bold;">1</span>))
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32472;&#21046;&#22270;&#34920;&#65292;&#27178;&#22352;&#26631;&#26159;&#26102;&#38388;&#65292;&#32437;&#22352;&#26631;&#26159;&#32447;&#31243;&#27744;&#30001;&#20110;&#36807;&#36733;&#32780;&#25298;&#32477;&#30340;&#20219;&#21153;&#25968;</span>
+plt.plot(durations[<span style="color: #98be65;">'t'</span>], durations[<span style="color: #98be65;">'count'</span>], label = <span style="color: #98be65;">'rejected count'</span>)
+
+plt.ylabel(<span style="color: #98be65;">"rejected count"</span>)
+plt.xlabel(<span style="color: #98be65;">"timestamp"</span>)
+plt.legend(prop = {<span style="color: #98be65;">'size'</span>: <span style="color: #da8548; font-weight: bold;">10</span>})
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26174;&#31034;&#22270;&#24418;</span>
+plt.show()
+</pre>
+</div>
+
+
+<div id="org3dd5122" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/0a/e7/0a942dfcde815efa2ff431b94fbd1ee7.png" alt="0a942dfcde815efa2ff431b94fbd1ee7.png">
+</p>
+</div>
+
+
+<div id="org58171eb" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/aa/79/aaac88f5c511ef038e67d60e83e80679.png" alt="aaac88f5c511ef038e67d60e83e80679.png">
+</p>
+</div>
+
+<p>
+基于被拒绝的任务数来看，显然核心线程数和队列长度应该增大。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org23e15ad" class="outline-2">
+<h2 id="org23e15ad">总结和延伸思考</h2>
+<div class="outline-text-2" id="text-org23e15ad">
+<p>
+度量的关键是要对线程池的工作原理和关键指标了如指掌，优化的依据是对线程池的度量指标进行实时观测，并定时采样记录。我们通过对线程池的进行包装和埋点，得到了关键指标的度量数据
+</p>
+
+
+<div id="org6e11d62" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/80/05/80d2ec68751e0385a14edc62afde9f05.png" alt="80d2ec68751e0385a14edc62afde9f05.png">
+</p>
+</div>
+
+<p>
+有了这些度量数据，通过数据分析和图表展示，就知道了线程池的工作状况，哪些参数设置得不合理，需要进行调优，有限的系统资源如果满足不了并发任务的需求，则需要增加更多的分布式节点。
+</p>
+
+<p>
+我使用了比较简单的 CSV 文件来记录度量指标。在实际工作中，我们经常利用一些时间序列数据库（例如 InfluxDB，Promethues 等）将这些指标保存起来，再利用报表分析工具（Grafana, Graphite 等）对它们进行分析。
+</p>
+
+<p>
+好，我是范亚敏，希望我的分享可以帮助到你，也希望你在视频下方的留言区和我讨论。
+</p>
+
+<p>
+完整源代码参见<a href="https://github.com/walterfan/helloworld/tree/master/helloconcurrency/src/main/java/com/github/walterfan/helloconcurrency">https://github.com/walterfan/helloworld/tree/master/helloconcurrency/src/main/java/com/github/walterfan/helloconcurrency</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

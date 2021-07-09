@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10分钟带你彻底搞懂负载均衡</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">10分钟带你彻底搞懂负载均衡</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1cffdd7">负载均衡是如何保证软件系统的生产部署的？</a></li>
+<li><a href="#org433af7b">负载均衡分发策略</a>
+<ul>
+<li><a href="#orge7e5b96">请求由谁来分发？</a></li>
+<li><a href="#orgfa6cb5d">服务器端负载均衡器</a></li>
+<li><a href="#org335a7ca">客户端负载均衡</a></li>
+</ul>
+</li>
+<li><a href="#org6bb5ea9">请求分发到哪去？</a>
+<ul>
+<li><a href="#org6f178d5">静态负载均衡算法</a></li>
+<li><a href="#orge6051fb">动态负载均衡算法</a></li>
+</ul>
+</li>
+<li><a href="#org31681d9">总结</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是萧亦然。
+</p>
+
+<p>
+我们都知道，在分布式系统中，业务流程的执行会涉及到多个服务实例之间的协同工作。那么为了提高系统的整体效率和吞吐量，就必须要能最大程度地发挥每个节点的作用，而负载均衡就是保证系统运行效率的关键技术，这也正是我们今天所要探讨的主要话题。
+</p>
+
+<p>
+那么接下来，我们就先通过一个具体的案例场景，来理解下负载均衡的主要作用吧。
+</p>
+
+<div id="outline-container-org1cffdd7" class="outline-2">
+<h2 id="org1cffdd7">负载均衡是如何保证软件系统的生产部署的？</h2>
+<div class="outline-text-2" id="text-org1cffdd7">
+<p>
+假如你要设计一个分布式服务系统，这个系统中存在一批能够独立运行的服务，并且在部署上采用了集群模式，也就是把多个服务实例集中在一起，对外提供同一业务功能，这样用户任意的访问请求都可以由集群中的某一个服务实例进行响应，从而防止出现单点故障，以此实现高可用。如下图所示：
+</p>
+
+
+<div id="org2189dda" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/61/6a/610a99c613a79dcff6efb0f299d5216a.png" alt="610a99c613a79dcff6efb0f299d5216a.png">
+</p>
+</div>
+
+<p>
+不过这样问题也就来了：用户的一次访问请求应该由哪个服务实例来响应最为合适呢？这个问题看上去很简单，实际上却要复杂得多，因为它涉及到服务请求的路由机制。
+</p>
+
+<p>
+负载均衡就是最为常见的路由机制实现方案，能够根据请求来选择合适的服务实例，也就是可以把请求的流量转发到集群中的各个服务实例中，从而达到流量分摊效果。而支持这个实现过程的技术组件，就叫做负载均衡器。
+</p>
+
+<p>
+那么现在，我们来看下负载均衡器的基本结构：
+</p>
+
+
+<div id="orgbde3958" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/fd/36/fd5f1c4ce1dc6217c34990yyf5d8d536.png" alt="fd5f1c4ce1dc6217c34990yyf5d8d536.png">
+</p>
+</div>
+
+<p>
+你可以看到，来自客户端的请求通过中间的负载均衡器被分发到了各个服务实例当中，然后根据分发策略的不同，会产生不同的分发结果。
+</p>
+
+<p>
+这里你可以先停下来考虑一个基础性的问题：负载均衡器想要实现请求分发的前提是什么？
+</p>
+
+<p>
+很显然，那就是负载均衡器需要掌握当前各个服务实例的运行时状态，也就是说，它需要持有当前的服务实例列表信息。
+</p>
+
+
+<div id="org5a58612" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/aa/09/aa972ed966df012eb5392ddaa4033509.png" alt="aa972ed966df012eb5392ddaa4033509.png">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org433af7b" class="outline-2">
+<h2 id="org433af7b">负载均衡分发策略</h2>
+<div class="outline-text-2" id="text-org433af7b">
+<p>
+那么，当负载均衡器拥有了当前的服务实例列表信息后，具体会怎么分发呢？
+</p>
+</div>
+
+<div id="outline-container-orge7e5b96" class="outline-3">
+<h3 id="orge7e5b96">请求由谁来分发？</h3>
+<div class="outline-text-3" id="text-orge7e5b96">
+<p>
+首先要明确的是，请求是由谁来分发？针对这个问题，我们根据服务实例地址列表所存放的位置不同，可以把负载均衡器分成两大类，一类是服务器端负载均衡器，一类是客户端负载均衡器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa6cb5d" class="outline-3">
+<h3 id="orgfa6cb5d">服务器端负载均衡器</h3>
+<div class="outline-text-3" id="text-orgfa6cb5d">
+<p>
+我们先来看服务器端负载均衡的结构：
+</p>
+
+
+<div id="org3ca77ad" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/yy/64/yye1f031147287f5c21341c3a3da2564.png" alt="yye1f031147287f5c21341c3a3da2564.png">
+</p>
+</div>
+
+<p>
+可以看到，在客户端与服务实例集群之间，存在一个独立的负载均衡服务器，这台负载均衡服务器就负责将接收到的各个请求转发到运行中的某个服务实例上。
+</p>
+
+<p>
+提供服务器端负载均衡的工具有很多，比如常见的 Apache、Nginx、HAProxy 等，都实现了基于 HTTP 协议或 TCP 协议的负载均衡模块。基于服务器端的负载均衡机制的实现也比较简单，只需要在客户端与各个服务实例之间，架设集中式的负载均衡器即可。
+</p>
+
+<p>
+此外，负载均衡器与各个服务实例之间还需要实现服务诊断以及状态监控，通过动态获取各个服务实例的运行时信息，来决定负载均衡的目标服务。如果负载均衡器检测到某个服务实例已经不可用，就会自动移除该服务实例。
+</p>
+
+<p>
+这么一分析，我们就能知道，服务器端的负载均衡器是运行在一台独立的服务器上，它会充当代理（Proxy）的作用，所有的请求都需要通过负载均衡器的转发才能实现服务调用。这是它的特点，但也是一个问题。
+</p>
+
+<p>
+因为当服务请求量越来越大时，服务器端负载均衡器就会成为系统的瓶颈。同时，一旦负载均衡器自身出现异常，整个服务的调用过程都会失败。
+</p>
+
+<p>
+因此，在分布式架构中，为了避免服务器端这种集中式的负载均衡所带来的这种问题，我们可以采用客户端负载均衡的请求分发模式。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org335a7ca" class="outline-3">
+<h3 id="org335a7ca">客户端负载均衡</h3>
+<div class="outline-text-3" id="text-org335a7ca">
+<p>
+和服务器端负载均衡器部署在服务集群前端的形式不同，在客户端负载均衡器中，服务实例信息是保存在各个客户端的内部。这时候，目标服务实例地址是由客户端自身通过一定的调度算法来决定的，结构如下：
+</p>
+
+
+<div id="orga2d82e7" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/7e/fa/7e4472337be6acc7dee519491eca84fa.png" alt="7e4472337be6acc7dee519491eca84fa.png">
+</p>
+</div>
+
+<p>
+相比服务器端负载均衡，客户端负载均衡机制的主要优势就是不会出现集中式负载均衡所产生的瓶颈问题，因为每个客户端都有自己的负载均衡器，即使单个负载均衡器失效，也不会造成严重的后果。
+</p>
+
+<p>
+不过客户端负载均衡也同样存在一个缺陷，就是由于所有服务实例运行时信息，都需要在多个负载均衡器之间进行传递，因此会在一定程度上加重网络流量负载。
+</p>
+
+<p>
+好了，现在你应该就清楚“请求由谁来分发”这个问题的答案了吧。这个核心问题实际上也引出了一个新的概念，就是用于执行负载均衡的调度算法，这也是我们要讨论的第二个问题：“请求分发到哪去？”
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6bb5ea9" class="outline-2">
+<h2 id="org6bb5ea9">请求分发到哪去？</h2>
+<div class="outline-text-2" id="text-org6bb5ea9">
+<p>
+要知道，无论是使用服务器端负载均衡还是客户端负载均衡，运行时的分发策略都决定了负载均衡的最终效果。
+</p>
+
+<p>
+分发策略在软件负载均衡中的实现形式是一组调度算法，我们俗称为“负载均衡算法”。
+</p>
+
+<p>
+负载均衡算法有静态和动态之分，它们之间的区别就在于是否依赖于当前服务的运行时状态，这些状态信息包括服务过去一段时间的平均调用时延和所承接的连接数等。
+</p>
+
+
+<div id="org746d152" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/ca/70/ca27dbdee5332ce7522c664yy3ebb670.png" alt="ca27dbdee5332ce7522c664yy3ebb670.png">
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6f178d5" class="outline-3">
+<h3 id="org6f178d5">静态负载均衡算法</h3>
+<div class="outline-text-3" id="text-org6f178d5">
+<p>
+我们先来看静态负载均衡算法，这类算法中具有代表性的是各种随机（Random）和轮询（Round Robin）算法。
+</p>
+
+<p>
+所谓的随机算法，就是在集群中随机选择一个服务实例，它的特点是负载均衡的结果相对比较平均。随机算法的实现也比较简单，我们使用 JDK 自带的 Random 工具类，就可以来指定服务实例的地址。
+</p>
+
+<p>
+举个例子，这是来自客户端的 9 个请求，分别被分发到了服务 A 集群中的 3 个服务实例当中，它的分发策略就是随机选择的，而不是一个固定的规则。
+</p>
+
+
+<div id="org1f009c3" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/a4/be/a41157d3f547cb875a940e40a9ab24be.png" alt="a41157d3f547cb875a940e40a9ab24be.png">
+</p>
+</div>
+
+<p>
+你可能也会用到随机算法的升级版：加权随机（Weight Random）算法。
+</p>
+
+<p>
+在集群中可能存在部分性能较优的服务器，为了使这些服务器响应更多请求，就可以通过加权随机算法提升这些服务器的权重。比如这张图（图 8）中实例 2 的权重设置的最大，所以对应的处理请求数可能也就最多。
+</p>
+
+
+<div id="org75c7796" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/a6/7a/a6eyy286138yy088d34fbebef420c47a.png" alt="a6eyy286138yy088d34fbebef420c47a.png">
+</p>
+</div>
+
+<p>
+讲完随机算法，我们再来看看轮询算法。
+</p>
+
+<p>
+所谓轮询，就是按一定顺序循环遍历整个服务实例列表，并在循环过程中为请求指定某一个服务实例。如果循环过程到达上限，那么就从零开始继续顺序循环，直到找到下一个服务实例。
+</p>
+
+<p>
+我还是给你举个例子。
+</p>
+
+<p>
+可以看到在这个示意图中，第一个请求被分发到了实例 1，第二个请求被分发到了实例 2，第三个请求被分发到了实例 3，然后第四个请求再次被分发到了实例 1，以此类推。当然，轮询的时候每个服务实例也可以具有特定的权重，构成加权轮询算法。
+</p>
+
+
+<div id="orgabfaac5" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/ed/5c/ed5afa8283461b99f62b1cefffdef45c.png" alt="ed5afa8283461b99f62b1cefffdef45c.png">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge6051fb" class="outline-3">
+<h3 id="orge6051fb">动态负载均衡算法</h3>
+<div class="outline-text-3" id="text-orge6051fb">
+<p>
+事实上，所有涉及到权重的静态算法都可以转变为动态算法，因为权重可以在运行过程中动态更新。比如在动态轮询算法中，权重值会基于对各个服务器的持续监控并不断更新。另外，基于服务器的实时性能分配请求也是常见的动态策略。
+</p>
+
+<p>
+典型的动态算法包括最少连接数算法、服务调用时延算法等。
+</p>
+
+<p>
+最少连接数 (Least Connection) 算法，是指根据集群中各个服务的当前打开连接数，来确定目标服务实例，连接数最少的服务实例会优先响应请求。当执行分发策略时，系统会根据在某一个特定的时间点下服务实例的最新连接数，来判断是否执行客户端请求。而在下一个时间点时，服务实例的连接数一般都会发生相应的变化，对应的请求处理也会做相应的调整。
+</p>
+
+
+<div id="org544dc03" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/9b/89/9b9b901e31325f99360eeea5e7b53789.png" alt="9b9b901e31325f99360eeea5e7b53789.png">
+</p>
+</div>
+
+<p>
+与最少连接数类似，服务调用时延（Service Invoke Delay）算法是根据服务实例的调用时延来决定负载均衡的结果，服务器也可以根据服务调用和平均时延的差值动态来调整权重。
+</p>
+
+
+<div id="orgf5c31df" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/a0/fc/a0f2cb3463f71ca54505a5d071ace9fc.png" alt="a0f2cb3463f71ca54505a5d071ace9fc.png">
+</p>
+</div>
+
+<p>
+另外，在现实中，有时候我们也会使用源地址哈希（Source IP Hash）算法，这个算法的具体实现是请求 IP 粘滞（Sticky）连接，以此尽可能地让来自同一 IP 的地址访问到同一个服务实例。
+</p>
+
+<p>
+这是一种有状态机制，因而我们也可以把它归为动态负载均衡算法。
+</p>
+
+
+<div id="orga19be81" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/3c/a3/3cefc2a06a3f92495c70107e9fa74ea3.png" alt="3cefc2a06a3f92495c70107e9fa74ea3.png">
+</p>
+</div>
+
+<p>
+在 Spring Cloud 中实现的核心负载均衡算法，包括了随机、轮询、加权响应时间、并发量最小优先等，而 Dubbo 中则提供了随机、轮询、最少活跃调用数和一致性哈希等算法。
+</p>
+
+<p>
+所以你可以发现，这两个框架中都实现了前面介绍的一些主流算法，但它们也根据框架自身的特点，提供了一些比较有特色的策略。当然，这两个框架也都提供了开发入口，供开发人员实现自定义的负载均衡算法。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org31681d9" class="outline-2">
+<h2 id="org31681d9">总结</h2>
+<div class="outline-text-2" id="text-org31681d9">
+<p>
+以上就是这节课的全部内容，为了让你更好地理解，我做了一张思维导图，供你参考：
+</p>
+
+
+<div id="org543cfd3" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/02/2b/02a5c1f2e8073a42da8118029b51132b.png" alt="02a5c1f2e8073a42da8118029b51132b.png">
+</p>
+</div>
+
+<p>
+最后，我想给你留一道思考题：如果想把随机、轮询等静态负载均衡算法转化为动态算法，你有什么思路？你可以在评论区留下你的答案，和我讨论。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

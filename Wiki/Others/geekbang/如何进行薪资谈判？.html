@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何进行薪资谈判</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">如何进行薪资谈判</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3d707eb">谈薪准备</a></li>
+<li><a href="#orgbb7d010">薪资基准</a></li>
+<li><a href="#org1a0a6bb">公司选择</a></li>
+<li><a href="#org079ab08">供需匹配</a></li>
+<li><a href="#orga0e8fae">隐藏因素</a></li>
+<li><a href="#orgcdf4f3a">谈薪策略</a></li>
+<li><a href="#org8722967">谈薪问答</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是邵浩。
+</p>
+
+<p>
+“金三银四”这句话，不仅仅适用于房地产，也适用于技术人员的跳槽期。为什么这么说呢？根据 3 月 2 日拉勾网发布的《互联网人薪资报告》，2021 年开年以来，互联网职位平均薪资环比 2020 年四季度增长 7%，互联人迎来新年薪资的“开门红”，2 月跳槽比 8 月跳槽能多赚 20%。而且，在今年经济好转的前提下，很多同学可能都在考虑找新的机会。那么，在经过重重面试考察环节后，如何跟 HR 谈判，一鼓作气拿下最满意的薪资呢？
+</p>
+
+<p>
+这节课我们就一起来探讨，我将从谈薪准备、薪资基准、公司选择、供需匹配、隐藏因素和谈薪策略这六个方面和你聊一聊薪资谈判中的要素，并针对目前面试中大家普遍关心的问题给出具体答案。虽然薪资谈判的相关因素因人而异，但我也会尽可能地把确定性的内容分享给你。
+</p>
+
+<p>
+需要说明的是，我们这节课主要介绍 2-5 年技术人员，在第一次跳槽时所面临的一些问题。对于刚毕业的同学，基本上没有特别大的谈薪空间，而对于资深专家和行业大牛，可能跳槽次数在两次以上，也有丰富的经验，所以我们也不会涉及。
+</p>
+
+<div id="outline-container-org3d707eb" class="outline-2">
+<h2 id="org3d707eb">谈薪准备</h2>
+<div class="outline-text-2" id="text-org3d707eb">
+<p>
+首先是谈薪前的准备。和面试准备一样，知己知彼是谈判的基础。我们通过网上调研（例如使用脉脉、知乎），很容易就能得到一些有价值的信息，例如 CSDN 上的一位博主整理了互联网技术线的薪资一览图，就值得我们参考：
+</p>
+
+
+
+<div id="org252b9f4" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/90/79/9068678e7eyy66b5cf62fc5d28499d79.png" alt="9068678e7eyy66b5cf62fc5d28499d79.png">
+</p>
+</div>
+
+
+<p>
+同时，招聘方的 JD 一般也给出了薪资范围，例如“30k-40k”，这些都是非常好的报价参考，让我们在谈薪过程中，能有一个比较有把握的期望。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb7d010" class="outline-2">
+<h2 id="orgbb7d010">薪资基准</h2>
+<div class="outline-text-2" id="text-orgbb7d010">
+<p>
+其次是薪资基准。如果你已经拿到了同等级别其他公司的 Offer，就可以拿来作为一个谈判筹码。一般而言，你可以要求 10% 左右的涨幅空间，这里需要注意的是，你一定不要先把自己已有的 Offer 亮出来，而是把它作为一张底牌，在谈判可能达不到预期的时候，再亮出来。同时，你仍然需要表现出加入所面试公司的强烈意愿，并根据对方的话术进行动态调整。
+</p>
+
+<p>
+如果你没有其他公司的 Offer，你可以在新公司的 JD 薪资范围内，提出你的薪资期望。比如说一个年包 55 万的算法工程师，可以要求 15%-30% 的涨薪，也就是 63-70 万左右。据统计，技术人员跳槽的平均涨薪幅度在 15% 左右，而互联网行业的均值在 20%-30%。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a0a6bb" class="outline-2">
+<h2 id="org1a0a6bb">公司选择</h2>
+<div class="outline-text-2" id="text-org1a0a6bb">
+<p>
+当然了，我们还要根据公司的情况来判断薪资期望是否合理。很多人说，跳到大厂是“入职即巅峰”，进入大厂一定要尽可能争取到上限。而我的观点是，对于 senior 职位，“入职即巅峰”有一定的道理。但对于有着技术追求，从一般公司跳槽到更好公司的普通技术人员，如果未来发展空间更大，甚至可以放弃薪资的涨幅。如果是跳槽到小公司，那你薪资的涨幅空间一般会更小，如果你看好这家公司的前景，可以选择更多的期权，陪伴公司一起成长。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org079ab08" class="outline-2">
+<h2 id="org079ab08">供需匹配</h2>
+<div class="outline-text-2" id="text-org079ab08">
+<p>
+供需匹配也是报价时需要考量的一个因素，买方市场和卖方市场总是此起彼伏。比如 2020 年，整个市场都不景气，很多同学选择留在原公司。而今年年初开始，市场出现了缓和，找新机会的人开始变多，竞争也更为激烈。当然，很多大厂如字节跳动，岗位扩张也非常明显，这对于求职者来说是一个好事情。如果你能力比较优秀，而且公司需求迫切，就可以尽可能要求 JD 上的上限薪资。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga0e8fae" class="outline-2">
+<h2 id="orga0e8fae">隐藏因素</h2>
+<div class="outline-text-2" id="text-orga0e8fae">
+<p>
+接下来，我们再聊聊隐藏因素。了解互联网行业的同学应该都清楚，薪资类型分为很多种，例如固定薪资和浮动薪资、年薪 + 股票模式、月薪 + 多月份奖金模式、年薪 + 期权模式等，你可以根据自己的情况进行选择。
+</p>
+
+<p>
+有的公司股票有锁定期，并且按年份兑现，举一个简单的例子，100 万的年包也许到手只有 50 万，剩下的 50 万以股票形式分 4 年发放，两年锁定期。相比于年包 80 万的现金模式，排除掉所得税因素，年包 80 万更适合希望有更多现金收入，并且准备 2-3 年内跳槽的同学。
+</p>
+
+<p>
+其它隐藏因素还包括福利、休假制度和职业风险。所谓福利指的是通勤补贴、住房补贴、节日补贴等，不过如果是拿年薪的话，一般都计算在总包里了。所谓休假制度，有的互联网公司是大小周，相当于每个月多 2 天工作日，还有的互联网公司是月休 2 天，相当于每个月多 6 个工作日。这相比于正常双休，每月 21 个工作日而言，6 个工作日相当于多出了 28% 的工作时间，这也是聊薪资期望时的一个考量因素。
+</p>
+
+<p>
+另外，每个公司都会有倒闭、裁员、业务合并和拆分的风险，这些都需要提前做好调研和思考，建议你平时多关注行业信息，对自己所在领域和工作也会有一个中短期的判断。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcdf4f3a" class="outline-2">
+<h2 id="orgcdf4f3a">谈薪策略</h2>
+<div class="outline-text-2" id="text-orgcdf4f3a">
+<p>
+最后，聊一聊谈薪策略，主要有两个原则。一个重要的原则是实事求是，不要作假，公司一般都会有背景调查，如果你在谈薪资的时候夸大了现有收入，那很可能被 HR 直接否决。另一个原则是以退为进，尽量获取谈判的主动权，争取更多的利益。
+</p>
+
+<p>
+举一个真实的例子，身边一位能力优秀的同学拿到了字节跳动的 Offer，同时也进入了杭州某互联网厂商的终面，薪资略低于字节。在谈拉平薪资的时候，HR 始终不愿意松口，并用公司的发展前景及其它福利来劝说，这名同学以字节的 Offer 为基础，阐述了自己的发展前景，并提到自己还是愿意留在杭州，也非常喜欢这家公司，如果 HR 确实给不到的话，那只好放弃机会。最终，HR 为这名同学争取了 10w 的签字费，达成了这名同学的期望。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8722967" class="outline-2">
+<h2 id="org8722967">谈薪问答</h2>
+<div class="outline-text-2" id="text-org8722967">
+<p>
+除了上述的六个谈薪要素，我再针对目前面试者普遍关心的一些具体问题，给出具体回答，给你做一个参考。
+</p>
+
+<blockquote>
+<p>
+问：面试中对技术一般不会考察太深，这种情况下如何定价？
+</p>
+
+<p>
+答：针对这个问题，我的看法是，技术面的过程中，不会牵扯到薪资报价，但技术面试官的反馈会对 HR 最终的报价产生影响。因此，除了我们前面提到的各种因素，你还需要评估自己在面试中的表现，并根据 HR 对岗位需求的迫切程度，给自己一个比较明确的定位和预期。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+问：如何判断薪资的底薪？
+</p>
+
+<p>
+答：首先，薪资的范围在 JD 里有明确的定义，我们谈判的过程一般不会超越这个界限。如果是 JD 中写的是“面议”，也可以根据行业内薪资水平做个大概的判断，这一点我们在前面的“谈薪准备”中也做了介绍。
+</p>
+</blockquote>
+
+<blockquote>
+<p>
+问：如何优雅的和 HR 争取更高的薪资？如果 HR 以技术面试官不太认可为由，压低薪资，该如何应对？
+</p>
+
+<p>
+答：谈薪其实是一个博弈的过程。博弈的关键就在于判断对方的底线，并保持自己的主动权。谈薪好比是打牌，“技术面试官不太认可”就是 HR 的一张牌，而你手中握有的其他公司 Offer 也算是一张牌。在谈判前的准备中，可以用一张纸把你可能出的牌（你的优势）都列出来，比如说“我的技术栈比较全面”，“我有 xx 大厂的 Offer”，“我能带来其他团队成员”等等，针对 HR 压低薪酬的理由，沉着冷静，逐一应对。
+</p>
+</blockquote>
+
+<p>
+以上就是这节课的全部内容，关于面试中薪资谈判的技巧，我也做了一张思维导图，供你参考。
+</p>
+
+
+<div id="org4851792" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/7f/79/7f37933636a86f1c52b3f0269a802179.png" alt="7f37933636a86f1c52b3f0269a802179.png">
+</p>
+</div>
+
+<p>
+最后，我再给你留一道思考题，面对技术面试（非终面）的面试官，是否可以透露自己的薪资水平？
+</p>
+
+<p>
+你可以在评论区留下你的答案或者疑惑，我们一起探讨。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

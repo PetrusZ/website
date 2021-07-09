@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>组播&#x2013;IGMPv2</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -337,7 +335,7 @@ IGMPv1 主要基于查询和响应机制来完成对组播组成员的管理。
 </p>
 
 
-<div class="figure">
+<div id="orge0b95bf" class="figure">
 <p><img src="../../pics/Router/igmpv1.jpg" alt="igmpv1.jpg">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>igmpv1</p>
@@ -399,7 +397,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 <div id="outline-container-igmpv2 报文格式" class="outline-4">
 <h4 id="igmpv2 报文格式">IGMPv2 报文格式</h4>
 <div class="outline-text-4" id="text-igmpv2 报文格式">
-<pre class="example">
+<pre class="example" id="org75c8143">
     0             7 8             1516                             31
     +--------------+---------------+-------------------------------+-++
     |    Type      | max_resp_time |           CheckSum            | |
@@ -465,7 +463,7 @@ IGMPv1 没有专门定义=离开组播组=的报文。当运行 IGMPv1 的主机
 <li><code>Group Address</code>: 组地址</li>
 </ul>
 
-<pre class="example">
+<pre class="example" id="org648fcc1">
     Internet Group Management Protocol
         [IGMP Version: 2]
         Type: Membership Report (0x16)
@@ -533,7 +531,7 @@ IGMPv3 在兼容和继承 IGMPv1 和 IGMPv2 的基础上，进一步增强了主
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

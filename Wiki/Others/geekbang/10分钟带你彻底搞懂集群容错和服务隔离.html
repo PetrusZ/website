@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>10分钟带你彻底搞懂集群容错和服务隔离</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">10分钟带你彻底搞懂集群容错和服务隔离</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org50225b3">集群容错策略</a></li>
+<li><a href="#org3681cf2">服务隔离策略</a>
+<ul>
+<li><a href="#org802c97c">线程隔离</a></li>
+<li><a href="#org15d2d39">进程隔离</a></li>
+<li><a href="#orgf6ff452">集群隔离</a></li>
+<li><a href="#org4dd9975">读写隔离</a></li>
+</ul>
+</li>
+<li><a href="#org7684120">总结</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是萧亦然。
+</p>
+
+<p>
+在分布式系统中，由于网络条件以及系统自身缺陷等问题，服务与服务的调用过程难免会出现失败。为了把这种失败的影响程度降到最小，目前，业界有两种主流的最佳实践方案，分别是集群容错和服务隔离。这节课，我就带你利用这两种方案来解决服务雪崩效应，帮你提升分布式系统服务访问的可靠性。
+</p>
+
+<p>
+假如你正在设计和开发一个分布式服务系统，该系统中存在一批独立运行的服务实例。围绕某一个具体的业务场景，通常都会涉及多个服务之间的交互。
+</p>
+
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/c1/74/c14e5baea5ae1fc2d728d016a7a6e774.png" alt="c14e5baea5ae1fc2d728d016a7a6e774.png">
+图 1
+</p>
+
+<p>
+在这个典型场景（图 1）中，存在一个从服务 E 到服务 A 的完整调用链路。如果其中有一个服务出现了宕机，那么整个调用链路中的其它服务因为资源的竞争也会处于不可用状态，这种扩散效应就是所谓的服务雪崩效应。
+</p>
+
+<p>
+我们该怎么应对这种服务雪崩效应呢？
+</p>
+
+<div id="outline-container-org50225b3" class="outline-2">
+<h2 id="org50225b3">集群容错策略</h2>
+<div class="outline-text-2" id="text-org50225b3">
+<p>
+目前主流的应对策略是提供服务访问的容错（Fault Tolerance）机制。想要实现容错机制，集群就要做到冗余，也就是让每个服务具备多个实例。这样，当一个服务实例出现问题时，请求还可以尝试访问其它服务实例。
+</p>
+
+<p>
+我们知道，集群的构建相当于已经具备了冗余的条件，而要想在访问一个服务实例出现问题时确定下一个想要访问的服务实例，就涉及具体的集群容错策略了。
+</p>
+
+<p>
+常见的集群容错策略包括 Failover、Failback、Failsafe 和 Failfast 等。下面我们一一来了解。
+</p>
+
+<p>
+Failover 是最常见、最实用的集群容错策略。它又叫失效转移策略，当发生服务调用异常时，可以重新在集群中查找下一个可用的服务实例。同时，为了防止无限重试，开发人员通常会对失败重试最大次数进行限制，一般控制在 3 次之内。
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/01/0a/0199f0204a8c9eea0525a178301c490a.png" alt="0199f0204a8c9eea0525a178301c490a.png">
+图 2
+</p>
+
+<p>
+对应的，Failback 可以理解为失效自动恢复。当请求失败时，系统会把这个失败请求记录下来，并通过一定的定时机制进行重试。这种策略适用于那些对时效性要求不高的场景，例如消息通知。
+</p>
+
+<p>
+而 Failsafe 代表失败安全策略，当获取服务调用异常时，直接忽略。它通常将异常写入审计日志等媒介，确保后续可以根据日志记录找到引起异常的原因并解决。
+</p>
+
+<p>
+Failfast 也叫快速失败策略，它在获取服务调用异常时，立即报错。显然，Failfast 已经彻底放弃了重试机制，等同于没有容错，可以用于非幂等性的写入操作，这是一种常见的应用场景。而在特定场景中也可以使用该策略确保非核心业务服务只调用一次，为重要的核心服务节约宝贵时间。
+</p>
+
+<p>
+后三种集群容错策略很容易混淆，它们之间的区别你可以参考这张图：
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/96/2d/967486c9af5264dd9981163682a9102d.png" alt="967486c9af5264dd9981163682a9102d.png">
+图 3
+</p>
+
+<p>
+除了这些最常见的集群容错机制之外，在诸如 Dubbo 等主流分布式服务框架中，开发人员还实现了一些特殊的策略。比如 Forking 策略代表一种分支调用机制，在这种机制下请求会同时发送给集群中的多个服务实例，只要有一个服务实例响应成功就行。再比如 Broadcast 策略，代表的是一种广播机制，这种机制同样也会调用所有服务实例，但只有在所有调用都成功的情况下才会返回成功。从适用场景上讲，Forking 机制适用于实时性要求较高的场景，而 Broadcast 机制通常用于实现消息通知，不是简单的远程调用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3681cf2" class="outline-2">
+<h2 id="org3681cf2">服务隔离策略</h2>
+<div class="outline-text-2" id="text-org3681cf2">
+<p>
+除了集群容错策略外，应对服务雪崩还有一种有效手段，就是服务隔离。
+</p>
+
+<p>
+在架构设计领域存在一个舱壁隔离（Bulkhead Isolation）的架构模式，服务隔离的设计思想真是来自于此。那么，什么是舱壁隔离？你可以想象一艘船，这艘船有 8 个船舱，正常情况下，船舱壁是隔离海水或湖水的，如果一个船舱破了，进水了，那么只损失一个船舱，其它船舱可以不受影响。比如这张示意图，2 号和 8 号船舱虽然已经出现问题，但不影响其它 6 个船舱。
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/f2/2a/f291de78a4f020a61edf80512e596d2a.png" alt="f291de78a4f020a61edf80512e596d2a.png">
+图 4
+</p>
+
+<p>
+结合分布式服务架构中的应用场景，舱壁隔离模式的具体体现就是各种服务隔离机制。
+</p>
+
+<p>
+其实，隔离本质上是对系统中的服务进行分割，这样当系统发生故障的时候，就能控制影响范围。也就是说，隔离可以保证发生故障后只有出问题的服务不可用，其它服务仍然可用。
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/fe/32/fe5f715826b14b0db9ae07a9b67f7c32.png" alt="fe5f715826b14b0db9ae07a9b67f7c32.png">
+图 5
+</p>
+
+<p>
+我们一起来看一下服务隔离的基本思路图。图中的隔离媒介是服务隔离实现的关键，针对它业界有一些成熟的实现方案，常见的包括线程隔离、进程隔离、集群隔离以及读写隔离等。
+</p>
+</div>
+
+<div id="outline-container-org802c97c" class="outline-3">
+<h3 id="org802c97c">线程隔离</h3>
+<div class="outline-text-3" id="text-org802c97c">
+<p>
+我们先来看看最常见的线程隔离。我们知道。系统执行一个请求的基本单位是线程，所以使用线程隔离就相当于对请求与请求之间的资源进行了隔离。在日常开发过程中，我们通常使用线程池来创建线程，因此线程隔离的主要实现手段就是借助于线程池。当把不同的请求分配到不同的线程池进行处理时，就算一个线程池出现了问题，也不会把问题扩散到其它线程池。各个线程池之间相互独立，各自确保自身业务的处理过程和可用性。
+</p>
+
+<p>
+线程隔离可以说是实现服务隔离的基础，我们通过一个案例来进一步介绍它的工作场景和原理。假如系统存在服务 A、服务 B 和服务 C 这 3 个服务，我们通过设置运行时参数得到这 3 个服务一共使用 300 个线程，客户端调用这 3 个服务会共享线程池。
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/0c/cf/0cb34eed0d64403c647c9eaf08be49cf.png" alt="0cb34eed0d64403c647c9eaf08be49cf.png">
+图 6
+</p>
+
+<p>
+你看这张示例图，如果服务 A 出现了问题，那么所有访问它的线程就会因为同步等待响应结果而不断消耗线程资源，最终导致雪崩效应：
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/13/2d/13ed0d4e146dd9cd32ce900296103b2d.png" alt="13ed0d4e146dd9cd32ce900296103b2d.png">
+图 7
+</p>
+
+<p>
+这里边框为虚线的服务代表不可用，我们可以看到因为服务 A 不可用导致共享的 300 线程全部耗尽，从而影响了其它两个服务。因此基于线程隔离机制，我们就可以为每个服务分别创建独立的线程池，从而对资源进行隔离，这样就能够避免雪崩效应的产生。
+</p>
+
+<p>
+下面，我们为三个服务都独立分配 100 个线程再来看看：
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/ef/ac/ef68f0095b2bbc090aac4b5930aa61ac.png" alt="ef68f0095b2bbc090aac4b5930aa61ac.png">
+图 8
+</p>
+
+<p>
+调整之后，我们会发现就算服务 A 中的 100 个线程都已经被消耗殆尽，其它服务中的请求过程也不会受到影响，因为它们运行在独立的线程池中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org15d2d39" class="outline-3">
+<h3 id="org15d2d39">进程隔离</h3>
+<div class="outline-text-3" id="text-org15d2d39">
+<p>
+讲完线程隔离，我们再来看进程隔离。进程隔离把资源的隔离范围从线程上升到进程，在 Java 世界中，相当于就是上升到了 JVM 级别。这样，我们就可以把整个业务系统拆分为多个独立的子系统，每个子系统完成自身的请求，而不依赖于其它子系统，目前主流的微服务架构就是这一隔离机制最好的实践。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf6ff452" class="outline-3">
+<h3 id="orgf6ff452">集群隔离</h3>
+<div class="outline-text-3" id="text-orgf6ff452">
+<p>
+集群隔离是进程隔离的升级版，将某些服务单独部署成集群，或对于某些服务可以进行分组集群管理，某一个集群出现问题之后就不会影响到其它集群，从而实现了故障隔离，效果图如下所示：
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/bb/4b/bb077d8e1d9799efa4a98a6b923acb4b.png" alt="bb077d8e1d9799efa4a98a6b923acb4b.png">
+图 9
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4dd9975" class="outline-3">
+<h3 id="org4dd9975">读写隔离</h3>
+<div class="outline-text-3" id="text-org4dd9975">
+<p>
+读写隔离也是一种常见的隔离技术，当用于读取操作的服务器出现故障时，写服务器照常可以运作，反之也是一样。对于离线分析类的应用场景而言，读写隔离可以很好地控制读取操作瓶颈和对写入操作的影响。
+</p>
+
+<p>
+实际运用中，读写隔离可以有不同的表现形式。例如，当使用 MongoDB 进行海量数据存储时，我们可以采用热库和存档库概念，将新写入的数据同时存储到热库和存档库。热库只存储最近一个月的数据，而存档库则保存所有的历史数据。当我们想对历史数据进行读取处理时，可以确保热库不受影响。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7684120" class="outline-2">
+<h2 id="org7684120">总结</h2>
+<div class="outline-text-2" id="text-org7684120">
+<p>
+总的来说，在日常开发过程中，你可以使用这节课介绍的集群容错和服务隔离机制来为分布式系统提升服务访问的可靠性。我再给你梳理一下这节课的关键知识点。
+</p>
+
+<p>
+在分布式系统中，错误总会发生，处理不好就会形成雪崩效应，我们应对雪崩效应的核心思想是努力控制它的影响范围。一方面，我们可以借助于集群机制以及 Failover、Failback、Failsafe 和 Failfast 等机制来实现集群容错；另一方面，我们可以使用线程隔离、进程隔离、集群隔离以及读写隔离等等策略来实现服务隔离。针对日常场景，集群容错一般都是主流框架所默认提供的机制。而服务隔离方面，我建议你合理利用线程隔离和进程隔离来综合使用不同粒度的隔离机制，确保服务的高可用。
+</p>
+
+<p>
+<img src="https://static001.geekbang.org/resource/image/17/32/1710425a7031a6bc176cdc8255d68932.png" alt="1710425a7031a6bc176cdc8255d68932.png">
+图 10
+</p>
+
+<p>
+最后，我想给你留一道思考题：线程隔离机制具体是如何防止服务链路出现雪崩效应的呢？你可以在评论区留下你的答案，和我讨论。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

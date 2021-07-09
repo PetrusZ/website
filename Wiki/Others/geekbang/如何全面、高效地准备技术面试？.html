@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何全面 高效地准备技术面试</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">如何全面 高效地准备技术面试</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org503401f">面试前</a>
+<ul>
+<li><a href="#orga97797d">编程能力</a></li>
+<li><a href="#orgca8cc04">专业领域知识</a></li>
+<li><a href="#orgfd7ab00">简历相关内容</a></li>
+</ul>
+</li>
+<li><a href="#org9d2fb40">面试中</a>
+<ul>
+<li><a href="#org75dd286">状态</a></li>
+<li><a href="#orga9b1354">态度</a></li>
+<li><a href="#org7919698">沟通</a></li>
+</ul>
+</li>
+<li><a href="#orgec62a1c">面试后</a></li>
+<li><a href="#org90e3bd0">总结</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是张云柯。
+</p>
+
+<p>
+今天我们来聊一聊如何全面、高效地准备技术面试。
+</p>
+
+<p>
+我们知道面试流程可以分为面试前、面试中、面试后三个阶段，接下来，我就分阶段给你讲解如何准备技术面试，希望能给你提供一些参考价值。
+</p>
+
+<div id="outline-container-org503401f" class="outline-2">
+<h2 id="org503401f">面试前</h2>
+<div class="outline-text-2" id="text-org503401f">
+<p>
+我们首先梳理一下技术面试前需要重点关注的三大内容，分别是编程能力、专业领域知识、简历相关内容。
+</p>
+
+
+<div id="org6f1b068" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/09/cd/0957c30464cee0452bfca3a4e63dfbcd.jpg" alt="0957c30464cee0452bfca3a4e63dfbcd.jpg">
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga97797d" class="outline-3">
+<h3 id="orga97797d">编程能力</h3>
+<div class="outline-text-3" id="text-orga97797d">
+<p>
+编程能力方面自然不必说，能写一手好代码是一个技术人的基础能力，也是面试官最看重的部分之一。你可能会问，那怎么有效提升编程能力呢？
+</p>
+
+<p>
+通常情况下，锻炼编程能力最好的办法就是刷算法题。但是，在面试中，你并不一定能以刷题的数量取胜，因为相比于你有没有成功解题，面试官更看重你有没有真正理解面试题中的思想。所以，在前期刷题准备的过程中，你还应该站在更高的层面思考：这道题涉及什么知识点？我了解这些知识点吗？与该知识点相关的类似问题还有哪些？如果你能在刷题时多思考这些问题，效果一定是翻倍的。
+</p>
+
+<p>
+这里我也给你分享一些我的刷题经验，如果刚开始刷题的时候毫无头绪，你可以优先尝试二叉树相关的题目。这是因为二叉树相关的题目是面试中的常客，而且二叉树题目中通常涉及递归和遍历，它们实际上是解决后面一些更复杂问题的基础。
+</p>
+
+<p>
+举例来说，假设我们遇到 LeetCode 上面的 226 题“翻转二叉树”：
+</p>
+
+
+<div id="orge836170" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/4b/fd/4bf2d83f7f20db8bf0d6fc01c5a0c4fd.jpg" alt="4bf2d83f7f20db8bf0d6fc01c5a0c4fd.jpg">
+</p>
+</div>
+
+<p>
+面对这道题，可能我们刚开始会没有头绪，如何将一整棵二叉树全部翻转呢？不过，我们知道，二叉树问题往往都是通过递归方法解决的，而递归的要点就在于不需要关注整体完成了什么任务，只需要把任务细化为每次递归的子任务，剩下的交给递归就可以。那么，对于这道题，我们只要把二叉树每个节点的左右节点进行交换，自上而下完成这个子任务，整个二叉树就可以完成翻转。根据上面的思路，我们可以先写出子任务代码：
+</p>
+
+<pre class="example">
+def invertTree(root: TreeNode) -&gt; TreeNode:
+    # 将二叉树的左右子节点进行交换
+    tmp_node = root.left
+    root.left = root.right
+    root.right = tmp_node
+    return root
+</pre>
+
+<p>
+根据子任务代码可以看出，针对输入的一个根节点，我们已经可以把它的左右子节点进行翻转。那怎么让这个任务递归进行呢？我们只需要在完成当前任务后添加递归任务即可：
+</p>
+
+<pre class="example">
+def invertTree(root: TreeNode) -&gt; TreeNode:
+    # 将二叉树的左右子节点进行交换
+    tmp_node = root.left
+    root.left = root.right
+    root.right = tmp_node
+    # 添加递归任务
+    invertTree(root.left)
+    invertTree(root.right)
+    return root
+</pre>
+
+<p>
+在添加了递归任务后，我们还容易忽略一个问题，就是整个递归任务的最简单情况是什么？根据题意，当递归到整个二叉树的叶子节点后，应该停止递归：
+</p>
+
+<pre class="example">
+def invertTree(root: TreeNode) -&gt; TreeNode:
+    # 处理 basecase，遇到叶子节点停止
+    if root == None:
+            return None
+    # 将二叉树的左右子节点进行交换
+    tmp_node = root.left
+    root.left = root.right
+    root.right = tmp_node
+    # 添加递归任务
+    invertTree(root.left)
+    invertTree(root.right)
+    return root
+</pre>
+
+<p>
+在完成题目后，我们也应该对自己进行提问，明确自己是否掌握了这道题的知识点，即二叉树的遍历与递归思想的拆解，并且是否可以做到举一反三。如果觉得自己掌握得不够好，可以继续刷一些相似的题目，比如 LeetCode116 题“填充二叉树的右侧指针”等，强化对这个知识点的理解。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca8cc04" class="outline-3">
+<h3 id="orgca8cc04">专业领域知识</h3>
+<div class="outline-text-3" id="text-orgca8cc04">
+<p>
+除了编程能力之外，面试前我们还要关注的重点就是专业领域的知识，这通常因人而异或因岗位而异，比如你是算法工程师，你需要去充分准备的专业领域知识就是机器学习相关的内容。
+</p>
+
+<p>
+我认为专业领域知识可以分为两个重要方面：
+</p>
+
+<ul class="org-ul">
+<li>通用基础概念：这是必须准备的内容，通常可以选定一到两本参考书，结合自己已有的一些笔记或文档进行高效准备；</li>
+<li>针对性领域知识：针对不同公司的不同岗位，我们需要对这些领域知识进行额外准备。此时最高效的做法就是根据即将应聘的职位描述，对该职位所需要的内容进行针对性准备。</li>
+</ul>
+
+
+<div id="org467a21b" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/f7/c0/f759604c774114d670abd968ab57a8c0.jpg" alt="f759604c774114d670abd968ab57a8c0.jpg">
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfd7ab00" class="outline-3">
+<h3 id="orgfd7ab00">简历相关内容</h3>
+<div class="outline-text-3" id="text-orgfd7ab00">
+<p>
+除此之外，面试前我们还需要重点关注简历相关的内容，因为面试官往往只能通过简历来了解你的过往经验，并进行提问。
+</p>
+
+<p>
+我们在准备简历的过程中，应该做到详略得当。以社会招聘简历为例，一些长期的、规模较大的、较为重要的项目经历可以详述，而一些较为简单的项目经历可以略写甚至不写。一个判断过往项目重要性的简单原则即为：项目产生的营收越大，那么该项目大概率是越重要的。
+</p>
+
+<p>
+除此之外，如果你能对简历上的内容侃侃而谈，并对项目中涉及的知识进行适当延伸，相信这会是你的加分项。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9d2fb40" class="outline-2">
+<h2 id="org9d2fb40">面试中</h2>
+<div class="outline-text-2" id="text-org9d2fb40">
+<p>
+相比于需要充分准备的面试前阶段，面试中最重要的就是临场表现与发挥，这里我也把面试中你需要注意的问题归纳为三个方面，状态、态度和沟通。
+</p>
+
+
+<div id="orgab55b33" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/10/98/10a72d5b0c706acb2d299a9f8b5f7198.jpg" alt="10a72d5b0c706acb2d299a9f8b5f7198.jpg">
+</p>
+</div>
+</div>
+
+<div id="outline-container-org75dd286" class="outline-3">
+<h3 id="org75dd286">状态</h3>
+<div class="outline-text-3" id="text-org75dd286">
+<p>
+面试过程是一个与人交流的过程，因此面试中第一个关键点就是状态，包括精神状态、思维状态和心理状态三个方面。
+</p>
+
+<p>
+精神状态也就是我们通常说的精神面貌，可以从一个人的声音、表情、举止等多方面反映出来，一个好的精神状态可以提升面试官与你交流的意愿，提升面试官对你的印象分。而思维状态就是思维保持敏锐、活跃，能快速解决遇到的问题。另外，心理状态对于面试的影响也不容小觑。根据我的经验，面试时最好的心理状态是从面试开始时的适度紧张，然后逐渐放松并进入佳境。什么是适度紧张呢？如果你感到有些许的躁动，思维活动迅速，但又不至于手脚冰凉或大脑一片空白，那么恭喜你，达到了适度紧张的状态。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga9b1354" class="outline-3">
+<h3 id="orga9b1354">态度</h3>
+<div class="outline-text-3" id="text-orga9b1354">
+<p>
+第二个关键点是态度，主要可以用两个词形容：诚实和诚恳。诚实这个问题其实是老生常谈了，如果在面试时出现不诚实、不诚信的情况，那么相关的技术问题答得再好，恐怕面试官也不愿意把你招致麾下。同时我们也要诚恳，在面试中遇到问题，或者和面试官出现意见分歧的情况下，我们应该抱着诚恳的态度向面试官寻求一些提示，而不是“卡壳”沉默或一定要争论出个高下。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7919698" class="outline-3">
+<h3 id="org7919698">沟通</h3>
+<div class="outline-text-3" id="text-org7919698">
+<p>
+最后一个关键点是沟通，这里有三个原则：沟通主动，回答明确，沉着应对。举例来说，如果你在面试中突然想不起来某个模型的损失函数，先不要慌，尽可能把除了损失函数之外的模型相关内容详细描述，这有助于你快速进行回忆。如果你确实忘记了，也可以让面试官知道你对模型其实有足够的了解，只是偶然忘记了损失函数，这样可以有效化解问题回答不上来的危机。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec62a1c" class="outline-2">
+<h2 id="orgec62a1c">面试后</h2>
+<div class="outline-text-2" id="text-orgec62a1c">
+<p>
+面试后往往很多候选人会长舒一口气，感觉万事大吉，但实际上我们要做的事情还有很多，比如反思与主动。
+</p>
+
+
+<div id="org6a91178" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/29/de/29eee0f0e80f0216ed68fddc48ec05de.jpg" alt="29eee0f0e80f0216ed68fddc48ec05de.jpg">
+</p>
+</div>
+
+<p>
+大多数情况下，我们刚刚结束的面试应该不会是这次求职的最后一场面试，这也就意味着我们后续可能还要经历其他面试。所以，我们一定要进行回顾和反思，一方面对自己的技术问题查漏补缺，另一方面，反思上一次面试过程中有哪些不得体的地方，争取在下次改进。
+</p>
+
+<p>
+除此之外，在面试结束后，你还可以主动和 HR 确认后续情况，但不要过于频繁和着急，最好在面试结束 3-5 天后去确认，这样既表现了自己对于这份机会的看重与关注，也为自己的下一步计划与安排抢占了先机。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org90e3bd0" class="outline-2">
+<h2 id="org90e3bd0">总结</h2>
+<div class="outline-text-2" id="text-org90e3bd0">
+<p>
+以上就是这节课的全部内容，你可以根据这张思维导图回忆一下面试中需要注意的具体细节：
+</p>
+
+
+<div id="org6ed215c" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/e7/48/e70e89fa900bce357cf0a8b0d93a9c48.jpg" alt="e70e89fa900bce357cf0a8b0d93a9c48.jpg">
+</p>
+</div>
+
+<p>
+实际上，关于面试的方法论可能会有很多种，而我今天给出的方法是我比较推荐，也是我在面试中的一些准备原则与方法，不一定适用于 100% 的场景，但是可以在绝大多数面试中助你一臂之力。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

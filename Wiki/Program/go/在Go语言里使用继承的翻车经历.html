@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-05-11 Tue 17:50 -->
+<!-- 2021-07-09 Fri 21:03 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>在go语言里使用继承的翻车经历</title>
@@ -232,16 +232,16 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd3f752e">在 go 语言里使用继承的翻车经历</a></li>
-<li><a href="#orgc95e2a8">总结</a></li>
-<li><a href="#org04aae54">原文链接</a></li>
+<li><a href="#orga10d1e6">在 go 语言里使用继承的翻车经历</a></li>
+<li><a href="#org9d62265">总结</a></li>
+<li><a href="#org0d8fb18">原文链接</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd3f752e" class="outline-2">
-<h2 id="orgd3f752e">在 go 语言里使用继承的翻车经历</h2>
-<div class="outline-text-2" id="text-orgd3f752e">
+<div id="outline-container-orga10d1e6" class="outline-2">
+<h2 id="orga10d1e6">在 go 语言里使用继承的翻车经历</h2>
+<div class="outline-text-2" id="text-orga10d1e6">
 <p>
 Go 不是面向对象的语言，但是使用组合、嵌套和接口可以支持代码的复用和多态。关于结构体嵌套：外层结构体类型通过匿名嵌套一个已命名的结构体类型后就可以获得匿名成员类型的所有导出成员，而且也获得了该类型导出的全部的方法。比如下面这个例子：
 </p>
@@ -484,17 +484,17 @@ r.<span style="color: #c678dd;">PrintArea</span>()
 </p>
 </div>
 </div>
-<div id="outline-container-orgc95e2a8" class="outline-2">
-<h2 id="orgc95e2a8">总结</h2>
-<div class="outline-text-2" id="text-orgc95e2a8">
+<div id="outline-container-org9d62265" class="outline-2">
+<h2 id="org9d62265">总结</h2>
+<div class="outline-text-2" id="text-org9d62265">
 <p>
 在 golang 中无法使用虚拟方法，例如在子类中调用父类的方法，并在父类的方法中又动态的调用子类的虚拟方法。该问题本质上是因为 golang 不支持继承和虚拟方法造成的，golang 只能基于组合实现类似于继承的功能，但又因为组合是静态的，所以无法支持虚拟方法，并不能在父类的方法中，动态的调用子类的虚拟方法。因为这时父类并不知道子类的存在。
 </p>
 </div>
 </div>
-<div id="outline-container-org04aae54" class="outline-2">
-<h2 id="org04aae54">原文链接</h2>
-<div class="outline-text-2" id="text-org04aae54">
+<div id="outline-container-org0d8fb18" class="outline-2">
+<h2 id="org0d8fb18">原文链接</h2>
+<div class="outline-text-2" id="text-org0d8fb18">
 <ul class="org-ul">
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247484361&amp;idx=1&amp;sn=0eefdc6555b1ae19d65145c5327981e6&amp;chksm=fa80d25ecdf75b48a7d35160b4e776c74124e436581bb6b6d5ed3381c67740551283890e3872&amp;scene=21">https://mp.weixin.qq.com/s?__biz=MzUzNTY5MzU2MA==&amp;mid=2247484361&amp;idx=1&amp;sn=0eefdc6555b1ae19d65145c5327981e6&amp;chksm=fa80d25ecdf75b48a7d35160b4e776c74124e436581bb6b6d5ed3381c67740551283890e3872&amp;scene=21</a></li>
 </ul>
@@ -503,7 +503,7 @@ r.<span style="color: #c678dd;">PrintArea</span>()
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-05-11 Tue 17:50</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

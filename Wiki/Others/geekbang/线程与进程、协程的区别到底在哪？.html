@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>线程与进程 协程的区别到底在哪</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">线程与进程 协程的区别到底在哪</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0c50bc9">进程与线程的区别</a></li>
+<li><a href="#org333253f">协程与线程的区别</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是郑建勋（Jonson）。
+</p>
+
+<p>
+大厂在面试过程中考察基础知识时，经常会问到线程与进程、协程的区别，这是很多面试者会困惑的地方。显然，对于 Go 语言基础知识的理解不仅是开发者的基本功，更是进入大公司的入场券。
+</p>
+
+<p>
+所以，接下来我会跟你一起梳理 Go 并发编程中几个基础却重要的概念：进程与线程的区别、协程与线程的区别，以及线程、协程与处理器之间关系的 GMP 模型。明白了进程、协程与线程之间基本的区别，你就会明白 Go 的并发与操作系统之间是如何交互的，明白了 GMP 模型调度模型，你就可以从更高的视角理解 Go 的协程如何组织、调度与运行。
+</p>
+
+
+<div id="org384f9c0" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/92/ef/92bc11a3bfd9a5167fa2edbcc455f4ef.jpg" alt="92bc11a3bfd9a5167fa2edbcc455f4ef.jpg">
+</p>
+</div>
+
+<div id="outline-container-org0c50bc9" class="outline-2">
+<h2 id="org0c50bc9">进程与线程的区别</h2>
+<div class="outline-text-2" id="text-org0c50bc9">
+<p>
+在计算机科学中，线程是可以由调度程序（通常是操作系统的一部分）独立管理的最小程序指令集。而进程是程序运行的实例。在大多数情况下，线程是进程的组成部分。所以在一个进程内部，可能会有多个线程同时处理。
+</p>
+
+<p>
+比如在浏览器这个进程内部，可以同时访问多个网页，这多个网页就是多个线程，再比如微信这个进程，可以同时接收消息和发消息，收发消息也是多个线程，这都是靠一个进程中包含了多个处理线程实现的。
+</p>
+
+<p>
+那为什么程序通常不采取多进程，而是采取多线程的方式设计呢？因为进程有自己独立的内存空间，开启一个新进程的开销要比开启一个新线程大得多，同时也会导致多进程之间的共享通信更加困难。
+</p>
+
+<p>
+进程中的多个线程并发执行，同时共享进程的内存（例如全局变量）等资源。而进程之间是相对独立的，不同进程之间具有不同的内存地址空间、代表程序运行的机器码、进程状态、操作系统资源描述符等（如下图）。
+</p>
+
+
+<div id="org63490ad" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/1b/82/1b9b6d5dd9823496a7a2d8byy6a52382.jpg" alt="1b9b6d5dd9823496a7a2d8byy6a52382.jpg">
+</p>
+</div>
+
+<p>
+操作系统调度到 CPU 中执行的最小单位是线程。在传统的单核 CPU 上运行的多线程应用程序必须交织线程，交替抢占 CPU 的时间片（如下图所示）。 但是，现代计算机系统普遍拥有多核处理器。在多核 CPU 上，线程可以分布在多个 CPU 核心上，从而实现真正的并行处理。
+</p>
+
+
+<div id="org688396c" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/75/de/75354c059eafbyy5512bcb7de586b8de.jpg" alt="75354c059eafbyy5512bcb7de586b8de.jpg">
+</p>
+</div>
+
+<p>
+虽然多核处理器可以保证并行的计算，但是，实际中程序的数量以及实际运行的线程数量会比 CPU 核心数多得多。因此，为了平衡每个线程能够被 CPU 处理的时间以及最大化利用 CPU 资源，操作系统需要在适当的时间，通过定时器中断（Timer interrupt）、I/O 设备中断、操作系统调用来执行上下文切换（context switch）。
+</p>
+
+<p>
+当发生线程上下文切换时，需要首先从操作系统用户态（user mode）转移到内核态（kernel mode），记录上一个线程（P1）的重要寄存器值（例如栈指针）、进程状态等信息，这些信息存储在操作系统线程控制块（Thread control block）当中。
+</p>
+
+<p>
+切换到下一个要执行的线程时，需要加载重要的 CPU 寄存器值，并从内核态转移到操作系统用户态。如果线程在上下文切换时，属于不同的进程，就需要更新额外的状态信息，以及内存地址空间，将新的页表（page tables）导入内存。
+</p>
+
+
+<div id="org9fee911" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/ab/d5/abcfeb26d9a25913a628c79265287ed5.jpg" alt="abcfeb26d9a25913a628c79265287ed5.jpg">
+</p>
+</div>
+
+<p>
+如果线程的上下文切换发生在不同的进程之间，情况会更加复杂。因为进程内存地址空间的切换会导致缓存失效。所以不同进程的切换要显著慢于同一进程中线程的切换。但是，现代的 CPU 也使用了快速上下文切换（rapid context switch）技术，来解决不同进程切换带来的缓存失效问题。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org333253f" class="outline-2">
+<h2 id="org333253f">协程与线程的区别</h2>
+<div class="outline-text-2" id="text-org333253f">
+<p>
+明白了操作系统最基本的线程以及线程与进程的区别，接下来我们继续了解线程和协程到底有什么不同。
+</p>
+
+<p>
+在 Go 语言中，协程被认为是轻量级的线程。但是和线程不同的是，操作系统内核感知不到协程的存在。协程的管理，依赖 Go 语言运行时自身提供的调度器（scheduler）。同时，Go 中的协程是从属于某一个线程的，协程与线程是多对多的关系。Go 调度器可以将多个协程分配到一个线程中，一个协程也可能会转移到多个线程中执行。
+</p>
+
+
+<div id="orge7ed725" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/5d/e5/5dbyy08828cbe61f4907510987a080e5.jpg" alt="5dbyy08828cbe61f4907510987a080e5.jpg">
+</p>
+</div>
+
+<p>
+你可能会问，为什么 Go 语言需要在线程的基础上抽象出协程的概念，难道直接使用线程不香吗？
+</p>
+
+<p>
+要回答这个问题，我们就需要去深入地理解线程与协程的区别。下面我从上下文切换的速度、调度策略、栈的大小这三个方面，来给你分析线程与协程的不同之处。
+</p>
+
+<p>
+首先，对于上下文切换的速度，协程要快于线程，因为协程的切换不用经过操作系统用户态与内核态的切换，并且 Go 语言中协程的切换只需要保留极少的状态和寄存器变量值（SP/BP/PC），而线程的切换会保留额外的寄存器变量值（例如浮点寄存器）。在 Go 语言中，上下文切换速度的一个可参考量化指标是，线程大约为 1~2 微秒，协程大约是 0.2 微秒，比线程快数倍。
+</p>
+
+
+<div id="orgd509f02" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/53/c7/531764f593c3289e6288c90829700ec7.jpg" alt="531764f593c3289e6288c90829700ec7.jpg">
+</p>
+</div>
+
+<p>
+其次，在调度策略方面，线程的调度基本上是抢占式的，操作系统调度器为了均衡每一个线程的执行周期，会定时发出中断信号强制执行线程上下文切换。而协程一般情况下是协作式调度的。当一个协程处理完自己的任务后，可以主动将执行权限让给其他协程。这意味着协程能更好地在规定时间内完成自己的工作，而不会被任意抢占。当一个协作式运行的时间过长，Go 语言调度器才会强制抢占其执行。
+</p>
+
+<p>
+最后是栈的大小方面。线程的栈大小一般是在创建时指定，为了避免出现栈溢出（Stack Overflow）的错误，默认的栈大小会相对较大（例如 2M），这意味着创建 1000 个线程就需要消耗 2G 的虚拟内存，这大大限制了线程创建的数量（虽然今天 64 位的虚拟内存地址空间已经让这种限制变得不太严重）。而 Go 语言中的协程栈默认为 2KB，在实践中，我们经常会看成千上万的协程存在。另外，线程的栈在运行时不能够更改，而协程栈在 Go 运行时的帮助下可以动态检测栈的大小，进行扩容和收缩。由于协程栈很小，在实践中，协程常被看作是一种轻量级的资源。
+</p>
+
+
+<div id="org9a550cb" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/25/b8/25e327a201004e1dfbc59306dbda50b8.jpg" alt="25e327a201004e1dfbc59306dbda50b8.jpg">
+</p>
+</div>
+
+<p>
+Go 语言中经典的 GMP 的概念模型其实生动概括了线程与协程的关系：它表明了 Go 进程中的众多协程其实依托于线程，借助操作系统将线程调度到 CPU 执行从而最终完成对于协程的执行。
+</p>
+
+<p>
+在 GMP 模型中，G 代表的是 Go 中的协程（Goroutine），M 代表的是实际的线程，而 P 代表的是 Go 逻辑处理器（Process），Go 语言抽象出了逻辑处理器 P，为了方便协程调度与缓存。
+</p>
+
+
+<div id="org9b59351" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/d6/72/d614b50607f5af219a0a4284d1173d72.jpg" alt="d614b50607f5af219a0a4284d1173d72.jpg">
+</p>
+</div>
+
+<p>
+在任一时刻，一个 P 中可能包含了多个协程 G，同时一个 P 在任一时刻与唯一的线程 M 绑定。就是说协程与 P 的关系是多对多的，而 P 与线程的关系是一对一的，最终完成了一个线程与多个协程的绑定。但是这种绑定是动态的，借助于 Go 运行时调度器，一个协程可能会被多次调度，并调度到不同的线程中执行。所以,Go 的协程本质上是依赖于线程执行的，但是由于协程在用户态的上下文切换以及动态扩容的栈内存，导致在 Go 语言中可以轻易地创建成千上万个协程。
+</p>
+
+<p>
+在后面的视频中，我还会给你介绍到协程是怎么通过 Go 语言运行时的调度器，公平调度到不同线程中的，有兴趣的话你可以关注一下。
+</p>
+
+<p>
+总结好了，今天的分享就结束了。对于线程与进程、协程的关系，你可以这么理解：协程的运行依托于操作系统对于线程的调度执行，而线程的执行离不开操作系统对于进程的管理。
+</p>
+
+
+<div id="org902237b" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/66/82/6683040d0b317c353a35a3c31yy19c82.jpg" alt="6683040d0b317c353a35a3c31yy19c82.jpg">
+</p>
+</div>
+
+<p>
+我是郑建勋，希望我的分享可以帮助到你，也希望你在视频下方的留言区和我一起讨论。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>

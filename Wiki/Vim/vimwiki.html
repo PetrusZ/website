@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2020-11-23 Mon 16:49 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>vimwiki</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Petrus.Z">
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
   .title  { text-align: center;
@@ -38,7 +38,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -50,7 +50,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -199,25 +199,23 @@
 <script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
        if(null != target) {
-         elem.cacheClassElem = elem.className;
-         elem.cacheClassTarget = target.className;
-         target.className = "code-highlighted";
-         elem.className   = "code-highlighted";
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
        }
      }
      function CodeHighlightOff(elem, id)
      {
        var target = document.getElementById(id);
-       if(elem.cacheClassElem)
-         elem.className = elem.cacheClassElem;
-       if(elem.cacheClassTarget)
-         target.className = elem.cacheClassTarget;
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
      }
     /*]]>*///-->
 // @license-end
@@ -234,25 +232,25 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgca8146a">常用命令</a></li>
-<li><a href="#orgdd40299">基本语法</a></li>
-<li><a href="#org791d709">特殊占位符</a></li>
-<li><a href="#orgb378066">快捷键</a></li>
-<li><a href="#org4ad1a06">vimwiki 使用体会</a>
+<li><a href="#orgdca7e28">常用命令</a></li>
+<li><a href="#org6c08cca">基本语法</a></li>
+<li><a href="#orgbda051b">特殊占位符</a></li>
+<li><a href="#org2c0275d">快捷键</a></li>
+<li><a href="#org0dec11f">vimwiki 使用体会</a>
 <ul>
-<li><a href="#org13840a9">文件命名</a></li>
-<li><a href="#orga4dc1bc">文档归类</a></li>
-<li><a href="#org9d5453f">日期与时间戳</a></li>
-<li><a href="#orgdd72d85">写作方法</a></li>
+<li><a href="#org6b4aa24">文件命名</a></li>
+<li><a href="#org3f24e60">文档归类</a></li>
+<li><a href="#org3aa5300">日期与时间戳</a></li>
+<li><a href="#orgd0601d4">写作方法</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgca8146a" class="outline-2">
-<h2 id="orgca8146a">常用命令</h2>
-<div class="outline-text-2" id="text-orgca8146a">
+<div id="outline-container-orgdca7e28" class="outline-2">
+<h2 id="orgdca7e28">常用命令</h2>
+<div class="outline-text-2" id="text-orgdca7e28">
 <ul class="org-ul">
 <li>:VimWiki2HTML：将当前页面编译成 HTML 文件</li>
 <li>:VimWikiAll2HTML：将本 wiki 所有源文件都编译成 HTML 文件（如果文件很多，将花费较长时间）</li>
@@ -271,10 +269,10 @@
 </div>
 </div>
 
-<div id="outline-container-orgdd40299" class="outline-2">
-<h2 id="orgdd40299">基本语法</h2>
-<div class="outline-text-2" id="text-orgdd40299">
-<pre class="example">
+<div id="outline-container-org6c08cca" class="outline-2">
+<h2 id="org6c08cca">基本语法</h2>
+<div class="outline-text-2" id="text-org6c08cca">
+<pre class="example" id="org04360f6">
     = 一级标题 =
     == 二级标题 ==
     === 三级标题 ===
@@ -322,9 +320,9 @@
 </div>
 </div>
 
-<div id="outline-container-org791d709" class="outline-2">
-<h2 id="org791d709">特殊占位符</h2>
-<div class="outline-text-2" id="text-org791d709">
+<div id="outline-container-orgbda051b" class="outline-2">
+<h2 id="orgbda051b">特殊占位符</h2>
+<div class="outline-text-2" id="text-orgbda051b">
 <p>
 在 wiki 条目中使用以下占位符，能对生成的 HTML 文件做一些特殊的处理。
 </p>
@@ -335,9 +333,9 @@
 </div>
 </div>
 
-<div id="outline-container-orgb378066" class="outline-2">
-<h2 id="orgb378066">快捷键</h2>
-<div class="outline-text-2" id="text-orgb378066">
+<div id="outline-container-org2c0275d" class="outline-2">
+<h2 id="org2c0275d">快捷键</h2>
+<div class="outline-text-2" id="text-org2c0275d">
 <p>
 快捷键总览
 </p>
@@ -366,44 +364,44 @@
 </div>
 </div>
 
-<div id="outline-container-org4ad1a06" class="outline-2">
-<h2 id="org4ad1a06">vimwiki 使用体会</h2>
-<div class="outline-text-2" id="text-org4ad1a06">
+<div id="outline-container-org0dec11f" class="outline-2">
+<h2 id="org0dec11f">vimwiki 使用体会</h2>
+<div class="outline-text-2" id="text-org0dec11f">
 <p>
 摘自<a href="http://www.berlinix.com/vim/VimWiki.php">http://www.berlinix.com/vim/VimWiki.php</a>
 </p>
 </div>
 
-<div id="outline-container-org13840a9" class="outline-3">
-<h3 id="org13840a9">文件命名</h3>
-<div class="outline-text-3" id="text-org13840a9">
+<div id="outline-container-org6b4aa24" class="outline-3">
+<h3 id="org6b4aa24">文件命名</h3>
+<div class="outline-text-3" id="text-org6b4aa24">
 <p>
 出于编辑效率考虑，我没有在 wiki 目录下划分目录。区分不同类别的 wiki，用文件名完成，例如 Linux 类别的文档 linux_xxx.wiki， Apache 类别的文档 apache_xxx.wiki，如果还有子类，继续用 _ 串联起来。文件名一定要规范，否则等到你需要用脚本批量处理 wiki 文件时，麻烦就纷至沓来。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga4dc1bc" class="outline-3">
-<h3 id="orga4dc1bc">文档归类</h3>
-<div class="outline-text-3" id="text-orga4dc1bc">
+<div id="outline-container-org3f24e60" class="outline-3">
+<h3 id="org3f24e60">文档归类</h3>
+<div class="outline-text-3" id="text-org3f24e60">
 <p>
 文件划分的另一个问题是，因为 VimWiki 创建文件过于方便，所以可能创建很多小文档，其中又没有太多内容（我的 wiki 就有这个严重毛病，在克服）。 最好是把同类知识放入一个文档，直到该文档大得维护/引用不便后，再去拆分。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9d5453f" class="outline-3">
-<h3 id="org9d5453f">日期与时间戳</h3>
-<div class="outline-text-3" id="text-org9d5453f">
+<div id="outline-container-org3aa5300" class="outline-3">
+<h3 id="org3aa5300">日期与时间戳</h3>
+<div class="outline-text-3" id="text-org3aa5300">
 <p>
 日期。把 VimWiki 当作知识管理工具，通常无需为文档注明日期，因为需要在一份文档上进行数十，甚至上百次修改（如果你经常更新知识库的话）；如果要输出 HTML，供人阅读，那最好也通过脚本自动为文档添加日期（最后修改时间）。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdd72d85" class="outline-3">
-<h3 id="orgdd72d85">写作方法</h3>
-<div class="outline-text-3" id="text-orgdd72d85">
+<div id="outline-container-orgd0601d4" class="outline-3">
+<h3 id="orgd0601d4">写作方法</h3>
+<div class="outline-text-3" id="text-orgd0601d4">
 <p>
 写作。看到的、实践过的、学习的、经历过的都可以记录在案，供日后快速恢复思路、供人参考之需。有句话说不要在一个地方摔倒两次， 那么通过日积月累的写作、归纳，可以在一个小知识点上进行巨大的扩展，打通不同领域的知识。特别是当前人心浮躁，知识碎片过多，通过 wiki 式的不懈记录， 可以积小流而成江海，积跬步而至千里。
 </p>
@@ -413,7 +411,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2020-11-23 Mon 16:49</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
 </div>
 </body>
 </html>

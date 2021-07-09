@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-07-09 Fri 21:03 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>如何在国内互联网大厂面试中游刃有余</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">如何在国内互联网大厂面试中游刃有余</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org414c380">简历准备</a></li>
+<li><a href="#org71570e5">项目准备</a></li>
+<li><a href="#org7871434">算法准备</a></li>
+</ul>
+</div>
+</div>
+<p>
+你好，我是十一。
+</p>
+
+<p>
+相信参加过多次面试的同学应该会发现，面试官的第一个问题一般都是围绕着简历中的项目经历展开，当项目经历聊得差不多了，再开始问一些技术点，考察算法编程能力。在整个过程中，有很多人因为在面试前没有做好准备，导致表现不佳，可能编程环节都没有开始就被刷下去了。
+</p>
+
+<p>
+那么，如何做好面试前的准备，让我们在面试中游刃有余呢？接下来我给你分享一下我的经验和方法，包括简历准备、项目准备和算法准备这三方面，希望能给你带来参考价值。
+</p>
+
+<div id="outline-container-org414c380" class="outline-2">
+<h2 id="org414c380">简历准备</h2>
+<div class="outline-text-2" id="text-org414c380">
+<p>
+首先，我们来看看如何准备简历。一份好的简历可以让面试官更为清晰地认识和了解你，尤其是简历里面的项目介绍，你需要重点准备，突出项目经历的真实性和亮点。具体怎么体现？分享一个小技巧。
+</p>
+
+<p>
+在做项目介绍时，切记不要让所有的项目都千篇一律，比如这个项目是做什么的、你怎么做的这样逐一列出。而是应该分清主次，将你认为比较重要且能够体现出你技术能力的项目拿出来重点介绍，比如，对于次要项目，只需要简单写明项目需求、技术实现和项目成果即可；而对于重点项目，你可以将项目介绍得更详细一些，从项目为何要做，需求是什么，到满足这些需求需要什么样的技术，这些技术可以达到什么样的效果，甚至项目过程中是否有技术创新，以及详细的项目解决方案都可以拿来讲讲。
+</p>
+
+<p>
+下面我提供了一张项目介绍时的导图，你可以按照这张图，将上面讲述的项目重点分为三个方面进行介绍，这能直接体现出你利用技术解决具体问题的能力。
+</p>
+
+
+<div id="org93100ab" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/0a/be/0aefcc818bc129ba4ae6d8f73ca293be.jpg" alt="0aefcc818bc129ba4ae6d8f73ca293be.jpg">
+</p>
+</div>
+
+<p>
+我给你举一个重点项目介绍的例子，比如我以前做过一个翻译记忆库 - 机器翻译的项目，写在简历上的部分是：
+</p>
+
+<blockquote>
+<p>
+问题背景：目标公司有很多人工翻译的平行句对，希望可以通过算法来利用这部分语料，针对性提升自己公司产品的文本翻译质量。
+</p>
+
+<p>
+需求分析：如何利用公司私有平行句对提升翻译质量，增强模型可迭代性，无需重复部署模型。
+</p>
+
+<p>
+涉及技术：Translation Memory，Point-Network（这里需要简单介绍下每个技术点的作用）
+</p>
+
+<p>
+项目结果：技术价值，翻译质量提升 x% 以上；业务价值，公司语料应用范围几何级扩增，节省公司生产费用 x% 以上。
+</p>
+</blockquote>
+
+<p>
+从上面的例子中，你可以看到，我首先介绍了项目背景，紧接着明确了需求分析、需要用到的技术，以及最后的成果。这就突出了我对整个项目的把控以及细节的处理。
+</p>
+
+<p>
+如果你要描述次要项目，就不用这么详细了，只需要写一下你做了什么，实现了怎样的功能就可以了。
+</p>
+
+<p>
+简历的页数有限，按照上面的项目介绍方法，你就可以把主次分开，面试官看起来也会一目了然。另外，关于简历撰写工具，相较于 Word，我更推荐你使用 Latex，它对于格式和图片的组织更为便捷。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org71570e5" class="outline-2">
+<h2 id="org71570e5">项目准备</h2>
+<div class="outline-text-2" id="text-org71570e5">
+<p>
+前面只是简单地介绍了简历中怎么写项目经历，但在面试中，面试官会通过我们对项目的介绍，来判断我们对技术的理解。所以在面试前，我们应该对自己从事的技术领域的知识框架进行详细的梳理，比如自己做过的项目分别属于哪一个子领域，各个项目之间是否存在关联。
+</p>
+
+<p>
+值得注意的是，梳理框架需要你对所从事领域有比较全面的了解，自上而下建立起完整的知识体系，过程中也可以借助专业的参考书或综述论文，按照当前自己所从事领域的进展，分类别、分方向进行梳理。
+</p>
+
+<p>
+知识框架搭建起来之后，我们就可以在各个看似无关联的项目之间，建立起它们的内在联系。比如机器翻译领域，它的框架就可以这么建立：
+</p>
+
+
+<div id="org8263f71" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/ee/82/eee08568485c081dc2363388b93a7c82.jpg" alt="eee08568485c081dc2363388b93a7c82.jpg">
+</p>
+</div>
+
+<p>
+在梳理完框架之后，我们可以将自己的项目按照项目本身解决的业务问题和用到的技术这两方面进行分类总结。这样，在被问到对应项目时，你就可以详细介绍所涉技术，并由此关联到其它技术，引申出更多细节，展现自己在该领域深厚的技术积累和全面认知。
+</p>
+
+<p>
+比如我在面试中，曾被问到翻译记忆库项目。对话如下：
+</p>
+
+<blockquote>
+<p>
+面试官：翻译记忆库是做什么的？这个项目解决的业务问题是什么？
+</p>
+
+<p>
+我：对方公司有很多人工翻译的平行句对，但没有高效利用这部分语料的方法，希望我们通过算法来提高利用这部分语料的效率，针对性提升公司产品的文本翻译质量。而翻译记忆库则是重复利用高质量文本的一种算法，可以从“模糊匹配”的角度来提高文本利用率。
+</p>
+
+<p>
+面试官：具体的细节可以讲一讲嘛？
+</p>
+
+<p>
+我：详细介绍所使用的技术，从记忆库编码模块，到记忆库辅助解码模块，以及解码效率展开细节。并指出其中 rare-words 的复制问题，进而引申出 rare-words 问题为什么会存在，它是开放词表问题引起的，目前的解决方法有哪些。
+</p>
+
+<p>
+面试官：这样做完之后，可以完全解决利用效率问题？还是说只能解决一部分？
+</p>
+
+<p>
+我：不能完全解决，因为高质量文本是有限的，而需要翻译的文本多种多样。高质量文本只在翻译其相似文本时，才能提高翻译质量。并且由于解码过程的可控性问题，也会存在相似但不能生效的问题。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org7871434" class="outline-2">
+<h2 id="org7871434">算法准备</h2>
+<div class="outline-text-2" id="text-org7871434">
+<p>
+如果你在面试中顺利地和面试官聊完项目经历，来到了技术考察这一关，那么，算法理解和手写代码就成为最核心的考察内容了。所以，面试前的算法准备，我们要重视。我极力推荐《 labuladong 的算法小抄》这本书，里面有不少常见题目类型（动态规划、查找、双指针、高频面试题目）的总结归纳，可以节省你不少时间。
+</p>
+
+<p>
+我在做模拟面试题时，按照技术题目的难易以及涉及的知识，将大部分模拟面试题目总结分为 4 类，基础算法、二叉树知识、动态规划和经典算法，如下图所示：
+</p>
+
+
+<div id="orged3a43e" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/b4/2e/b4c291848ac95c0e0438ec441886062e.jpg" alt="b4c291848ac95c0e0438ec441886062e.jpg">
+</p>
+</div>
+
+<p>
+对于算法工程师岗位，这四类题目应该是面试过程中最为常见的，因为这几类题目 code 不会太长，最适合在面试过程中考察算法编程能力。
+</p>
+
+<p>
+基础算法往往会在一面中考察，包括各类排序算法及其算法复杂度、链表的常见操作和实现等。例如，针对排序问题，常用排序算法如冒泡排序、插入排序、选择排序、快速排序、归并排序、堆排序等，你可以对此类算法进行归纳，并对比其时间复杂度、空间复杂度、稳定性，通过这样的对比来深入理解各个算法不同点。如果在面试中被问及排序问题，我们就可以进行详细的讲解。这类问题面试官通常只会让你简单口述，因此上面的归纳对比就会显得尤其重要。
+</p>
+
+<p>
+二叉树问题通常会在二面、三面中考察。涉及递归和动态规划的一些概念，常见的问题包括二叉树的遍历，判断是否为镜像、对称、平衡、搜索二叉树以及二叉树路径和等等。比如我曾在面试中被问到这样一个问题，“给定一个二叉树，输出该二叉树的深度”。
+</p>
+
+<p>
+我的回答是：
+</p>
+
+<ul class="org-ul">
+<li>首先确定这个题目是要考察二叉树遍历；</li>
+<li>再确定二叉树的深度，需要对整棵二叉树进行遍历；</li>
+<li><p>
+至于在遍历过程中如何保存深度信息，层次遍历可以实现，每多加一层，深度便会加 1。所有层遍历结束，有多少层，深度便是多少。经过上述思考，开始开发层次遍历的代码：
+</p>
+
+<pre class="example">
+def maxDepth(self, root):
+  if not root:
+    return 0
+  current_list = [root]
+  depth = 0
+  while len(current_list):
+    tmp_litst = []
+    for node in current_list:
+      if node.left:
+        tmp_litst.append(node.left)
+      if node.right:
+        tmp_litst.append(node.right)
+    current_list = tmp_list
+    depth += 1
+  return depth
+</pre></li>
+</ul>
+
+<p>
+对于动态规划问题，也是出现在二面、三面中，解题思路万变不离其宗，就是要找到状态转移方程，这适用于几乎所有的动态规划题目，我建议你以 LeetCode 上“股票”相关的算法题为例找找感觉，培养下如何去找到解题需要的状态转移方程。具体的例子我就不再展开了，你可以按照自己的逻辑去培养状态转移方程的建立方法。
+</p>
+
+<p>
+还有一种是经典算法题，我们也需要足够重视，因为这些题目是面试中常考的，比如滑动窗口、双指针、公共子序列和链表反转等。在我所有的面试经历中，共有三次被问到子序列问题，可见频率还是很高的。
+</p>
+
+<p>
+举个例子，我记得有位面试官问过我，“给定一个无序整数数组，请你找到其中最长上升子序列的长度”。
+</p>
+
+<p>
+我是这么回答的。首先这是个动态规划问题，需要找到各个状态之间的转移方程。这个方程转移过程中，应该需要一个变量保存当前状态的最大上升长度。所以，在状态转移过程中，我要确定其最大递增长度，之后进行程序开发。
+</p>
+
+<pre class="example">
+class Solution:
+  def maxLength(self, nums):
+    n = len(nums)
+    if n == 0:
+      return 0
+    dp = [1 for _ in range(n)]
+    for i in range(n):
+      for j in range(i):
+        if nums[i] &gt; nums[j]:
+          dp[i] = max(dp[i], dp[j] + 1)
+    return max(dp)
+</pre>
+
+<p>
+可见，在针对动态规划问题时，找到转移方程真的是非常重要了，其它都是一些细节上的处理。
+</p>
+
+<p>
+好了，今天聊了这么多，相信你已经掌握了面试前的准备技巧。你还可以根据下面这张思维导图，进行关键知识点的复习：
+</p>
+
+
+<div id="org2651537" class="figure">
+<p><img src="https://static001.geekbang.org/resource/image/ba/f1/baa87267df9a19cb1c4612a7352190f1.jpg" alt="baa87267df9a19cb1c4612a7352190f1.jpg">
+</p>
+</div>
+
+<p>
+最后，我再给你留一道思考题：面试一个工作岗位时，如何结合自己的简历，来体现出你更适合这个岗位。
+</p>
+
+<p>
+你可以在评论区留下你的答案，我们一起讨论。
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-07-09 Fri 21:03</p>
+</div>
+</body>
+</html>
