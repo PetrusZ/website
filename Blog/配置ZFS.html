@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-07-18 Sun 16:40 -->
+<!-- 2021-07-18 Sun 16:48 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Blog-Index</title>
+<title>配置zfs</title>
 <meta name="author" content="Petrus.Z" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -227,43 +227,157 @@
  |
  <a accesskey="H" href="/index.html"> HOME </a>
 </div><div id="content">
-<h1 class="title">Blog-Index</h1>
+<h1 class="title">配置zfs</h1>
 <div id="table-of-contents">
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc878d1e">Blog</a></li>
+<li><a href="#org668127c">环境</a></li>
+<li><a href="#org2399a25">安装 ZFS</a></li>
+<li><a href="#org76e6a0f">配置 ZFS</a>
+<ul>
+<li><a href="#org4a5f2d6">设置 ARC 内存大小</a></li>
+<li><a href="#orgc7ad1a4">开启 systemd 服务</a></li>
+</ul>
+</li>
+<li><a href="#org972dd60">创建 zpool 与 dataset</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc878d1e" class="outline-2">
-<h2 id="orgc878d1e">Blog</h2>
-<div class="outline-text-2" id="text-orgc878d1e">
+<div id="outline-container-org668127c" class="outline-2">
+<h2 id="org668127c">环境</h2>
+<div class="outline-text-2" id="text-org668127c">
+<p>
+ST2000LM003 是仅有的一款 2T 大小的 CMR 2.5 英寸硬盘，目前非常稀有，淘宝上卖的 ST2000LM003 散装硬盘大概率是清零盘。不过我从咸鱼买到了两块内芯是 ST2000LM003 的移动硬盘，拆解后将其中的 2.5 英寸硬盘放到 deskmini 中组成小型 NAS。
+</p>
+
 <ul class="org-ul">
-<li><a href="配置ZFS.html">配置ZFS</a></li>
-<li><a href="双显卡笔记本独显直通.html">双显卡笔记本独显直通</a></li>
-<li><a href="软路由虚拟机.html">软路由虚拟机</a></li>
-<li><a href="IPTV与Plex配置.html">IPTV与Plex配置</a></li>
-<li><a href="《软件构建中的设计》读书笔记.html">《软件构建中的设计》读书笔记</a></li>
-<li><a href="《Git-Tutorial》读书笔记.html">《Git Tutorial》读书笔记</a></li>
-<li><a href="C语言之过.html">C语言之过</a></li>
-<li><a href="数组与指针.html">数组与指针</a></li>
-<li><a href="优化程序性能.html">优化程序性能</a></li>
-<li><a href="《乔布斯传》摘选.html">《乔布斯传》摘选</a></li>
-<li><a href="读书笔记——随笔.html">读书笔记——随笔</a></li>
-<li><a href="C语言复杂声明分析.html">C语言复杂声明分析</a></li>
-<li><a href="如何冥想.html">如何冥想</a></li>
-<li><a href="malloc free函数的实现.html">malloc free函数的实现</a></li>
-<li><a href="包管理工具apt的历史记录与日志分析.html">包管理工具apt的历史记录与日志分析</a></li>
-<li><a href="Unix哲学.html">Unix哲学</a></li>
+<li>系统：Gentoo Linux</li>
+<li>机器：deskmini A300</li>
+<li>硬盘：ST2000LM003 * 2</li>
 </ul>
+</div>
+</div>
+<div id="outline-container-org2399a25" class="outline-2">
+<h2 id="org2399a25">安装 ZFS</h2>
+<div class="outline-text-2" id="text-org2399a25">
+<p>
+Gentoo 系统安装 zfs 还算简单，不过要注意开启一些方便使用的 USE。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"sys-fs/zfs dist-kernel"</span> &gt;&gt; /etc/portage/package.use
+<span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"sys-fs/zfs-kmod dist-kernel"</span> &gt;&gt; /etc/portage/package.use
+emerge -avt sys-fs/zfs
+</pre>
+</div>
+
+<p>
+注意，每次更新内核后，都需要重新安装 zfs 模块。Gentoo 可以通过命令 <code>emerge -avt @module-rebuild</code> 完成。
+</p>
+
+<p>
+由于这里我并不使用 zfs 作为 root 的文件系统，所以省略了将 zfs 模块添加到 initramfs 中等步骤。
+</p>
+</div>
+</div>
+<div id="outline-container-org76e6a0f" class="outline-2">
+<h2 id="org76e6a0f">配置 ZFS</h2>
+<div class="outline-text-2" id="text-org76e6a0f">
+</div>
+<div id="outline-container-org4a5f2d6" class="outline-3">
+<h3 id="org4a5f2d6">设置 ARC 内存大小</h3>
+<div class="outline-text-3" id="text-org4a5f2d6">
+<p>
+zfs 的 ARC 缓存默认最大使用系统的三分之二内存。如果想要内存占用少一点，就需要使用下面的方法加以限制，这里限制了最大使用 4GB 内存。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ECBE7B;">echo</span> <span style="color: #98be65;">"options zfs zfs_arc_max=4294967296"</span> &gt;&gt; /etc/modprobe.d/zfs.conf
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc7ad1a4" class="outline-3">
+<h3 id="orgc7ad1a4">开启 systemd 服务</h3>
+<div class="outline-text-3" id="text-orgc7ad1a4">
+<p>
+开启以下服务后，zfs 才能正常使用。注意开启后需要重启，或者手动启动以下服务。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">systemctl enable zfs.target
+systemctl enable zfs-import-cache
+systemctl enable zfs-mount
+systemctl enable zfs-import.target
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org972dd60" class="outline-2">
+<h2 id="org972dd60">创建 zpool 与 dataset</h2>
+<div class="outline-text-2" id="text-org972dd60">
+<p>
+现在我们就可以正式开始使用 zfs 了，我们先创建 zpool 与 dataset，并设置一些优化参数。这里我们将两块 ST2000LM003 组成 raid0。
+</p>
+
+<p>
+首先，使用命令查看硬盘的 id，通过 id 创建 zpool 是最佳的方法，可以避免因盘序或 UUID 变化带来的一些问题。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">&#10140; <span style="color: #ECBE7B;">ls</span> -lh /dev/disk/by-id/
+total <span style="color: #da8548; font-weight: bold;">0</span>
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root  <span style="color: #da8548; font-weight: bold;">9</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 -&gt; ../../sdb
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root <span style="color: #da8548; font-weight: bold;">10</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part1 -&gt; ../../sdb1
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root <span style="color: #da8548; font-weight: bold;">10</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part9 -&gt; ../../sdb9
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root  <span style="color: #da8548; font-weight: bold;">9</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 -&gt; ../../sda
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root <span style="color: #da8548; font-weight: bold;">10</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part1 -&gt; ../../sda1
+lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root <span style="color: #da8548; font-weight: bold;">10</span> Jul <span style="color: #da8548; font-weight: bold;">18</span> 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part9 -&gt; ../../sda9
+</pre>
+</div>
+
+<p>
+这里，我们得到两块硬盘的 id 分别为 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 和 ata-ST2000LM003_HN-M201RAD_S362J9EG922993。接下来，就通过这两个参数来创建 zpool。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;zpool&#65292;&#27880;&#24847;&#26426;&#26800;&#30828;&#30424;&#24517;&#39035;&#20351;&#29992;&#21442;&#25968;ashift=12&#65292;SSD&#20026;ashift=13&#12290;&#35813;&#21442;&#25968;&#22312;&#21019;&#24314;zpool&#23436;&#27605;&#20197;&#21518;&#65292;&#23601;&#26080;&#27861;&#20462;&#25913;&#20102;&#12290;</span>
+zpool create -f -o <span style="color: #dcaeea;">ashift</span>=<span style="color: #da8548; font-weight: bold;">12</span> storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;dataset&#24182;&#35774;&#32622;&#25346;&#36733;&#28857;</span>
+zfs create -o <span style="color: #dcaeea;">mountpoint</span>=/srv/data storage/data
+zfs create -o <span style="color: #dcaeea;">mountpoint</span>=/srv/data/nas storage/data/nas
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24320;&#21551;&#21387;&#32553;&#24182;&#20351;&#29992;&#21387;&#32553;&#31639;&#27861;lz4</span>
+zfs set <span style="color: #dcaeea;">compression</span>=lz4 storage
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22240;&#20026;&#24615;&#33021;&#21407;&#22240;&#65292;&#26368;&#22909;&#35774;&#32622;xattr&#12290;&#35814;&#24773;&#35265;https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094</span>
+zfs set <span style="color: #dcaeea;">acltype</span>=posixacl storage
+zfs set <span style="color: #dcaeea;">xattr</span>=sa storage
+zfs set <span style="color: #dcaeea;">aclinherit</span>=passthrough storage
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20165;&#22312;modified time&#25110;changed time &#25913;&#21464;&#65292;&#25110;&#32773;acces time24&#23567;&#26102;&#20869;&#27809;&#26377;&#26356;&#26032;&#26102;&#65292;&#25165;&#26356;&#26032;access time</span>
+zfs set <span style="color: #dcaeea;">atime</span>=on storage
+zfs set <span style="color: #dcaeea;">relatime</span>=on storage
+</pre>
+</div>
+
+<p>
+最后，我们还需要生成 hostid 和更新 cachefile。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29983;&#25104;hostid&#65292;&#27880;&#24847;&#29983;&#25104;&#23436;hostid&#21518;&#38656;&#35201;&#26356;&#26032;initramfs</span>
+zgenhostid
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26356;&#26032;cachefile</span>
+zpool set <span style="color: #dcaeea;">cachefile</span>=/etc/zfs/zpool.cache storage
+</pre>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-07-18 Sun 16:40</p>
+<p class="date">Created: 2021-07-18 Sun 16:48</p>
 </div>
 </body>
 </html>
