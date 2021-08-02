@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-07-19 Mon 15:00 -->
+<!-- 2021-08-02 Mon 19:57 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>配置zfs</title>
@@ -345,7 +345,7 @@ lrwxrwxrwx <span style="color: #da8548; font-weight: bold;">1</span> root root <
 </p>
 
 <div class="org-src-container">
-<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;zpool&#65292;&#27880;&#24847;&#26426;&#26800;&#30828;&#30424;&#24517;&#39035;&#20351;&#29992;&#21442;&#25968;ashift=12&#65292;SSD&#20026;ashift=13&#12290;&#35813;&#21442;&#25968;&#22312;&#21019;&#24314;zpool&#23436;&#27605;&#20197;&#21518;&#65292;&#23601;&#26080;&#27861;&#20462;&#25913;&#20102;&#12290;</span>
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;zpool&#65292;&#27880;&#24847;&#26426;&#26800;&#30828;&#30424;&#24517;&#39035;&#20351;&#29992;&#21442;&#25968;ashift=12&#65292;&#20855;&#26377;8K&#25159;&#21306;&#30340;SSD&#24212;&#20351;&#29992;ashift=13&#12290;&#35813;&#21442;&#25968;&#22312;&#21019;&#24314;zpool&#23436;&#27605;&#20197;&#21518;&#65292;&#23601;&#26080;&#27861;&#20462;&#25913;&#20102;&#12290;</span>
 zpool create -f -o <span style="color: #dcaeea;">ashift</span>=<span style="color: #da8548; font-weight: bold;">12</span> storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993
 <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21019;&#24314;dataset&#24182;&#35774;&#32622;&#25346;&#36733;&#28857;</span>
 zfs create -o <span style="color: #dcaeea;">mountpoint</span>=/srv/data storage/data
@@ -359,6 +359,8 @@ zfs set <span style="color: #dcaeea;">aclinherit</span>=passthrough storage
 <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20165;&#22312;modified time&#25110;changed time &#25913;&#21464;&#65292;&#25110;&#32773;acces time24&#23567;&#26102;&#20869;&#27809;&#26377;&#26356;&#26032;&#26102;&#65292;&#25165;&#26356;&#26032;access time</span>
 zfs set <span style="color: #dcaeea;">atime</span>=on storage
 zfs set <span style="color: #dcaeea;">relatime</span>=on storage
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">SSD&#36824;&#38656;&#35201;&#24320;&#21551;autotrim</span>
+zpool set <span style="color: #dcaeea;">autotrim</span>=on storage
 </pre>
 </div>
 
@@ -391,7 +393,7 @@ zpool set <span style="color: #dcaeea;">cachefile</span>=/etc/zfs/zpool.cache st
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-07-19 Mon 15:00</p>
+<p class="date">Created: 2021-08-02 Mon 19:57</p>
 </div>
 </body>
 </html>
