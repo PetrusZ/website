@@ -5,6 +5,101 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[语法框架]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</guid>
+    <description><![CDATA[<p>#+TITLE: 语法框架 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>介绍 英语语法的目的：造句。</li>
+<li>句子的成分 #+begin_quote <em>什么</em> /怎么样/ = 主语 + 谓语 #+end_quote</li>
+</ul>
+<p>“什么”和“怎么样”分别对应了两个最基本的“句子成分”——“主语”（subject）和“谓语”（predicate）。</p>
+<p>主语一般为人或物，不管抽象或者具体。谓语为“动作”或发生了什么事。广义上的“动作”是语法上的“动词”。 ** 有哪些“动作”（动词） 5 种动词 -&gt; 5 种”基本句型“ 1. 可以独立完成的动作： <em>不及物动词</em></p>
+<p><em>主语+（不及物）动词</em></p>
+<p>Papa Rabbit <em>sleeps</em>. 2. 有 <em>一个</em> 动作的承受者： <em>单及物动词</em></p>
+<p><em>主语+（单及物）动词+宾语</em></p>
+<p>Papa Rabbit <em>likes</em> /<em>you</em>/. 3. 有 <em>两个</em> 动作的承受者： <em>双及物动词</em></p>
+<p><em>主语+（双及物）动词+间接宾语+直接宾语</em></p>
+<p>Papa Rabbit <em>teaches</em> /<em>you</em>/ /English/.</p>
+<p>其中”you“为间接宾语，”English“为直接宾语 4. 只有一个动作承受者（不同于 2）： <em>复杂及物动词</em></p>
+<p><em>主语+（复杂及物）动词+宾语+（宾语）补语</em></p>
+<p>Papa Rabbit <em>considers</em> /<em>you</em>/ /smart/.</p>
+<p>其中”smart“为（宾语）补语 5. 把这个词后面的信息赋予给前者： <em>系动词</em></p>
+<p><em>主语+（系）动词+（主语）补语</em></p>
+<p>主语补语也是表语</p>
+<p>Papa Rabbit <em>is</em> tall. / Papa Rabbit <em>&lt;-</em> tall. / Papa Rabbit <em>=</em> tall.</p>
+<p>Papa Rabbit <em>looks</em> tall. / Papa Rabbit <em>&lt;-</em> tall.</p>
+<p>把后者信息赋予前者 ** 快速小结 英语中的所有句子，当拆到不能再拆后，都是在说： <em>什么</em> /怎么样/ 。”什么“是语法中的主语，”怎么样“是谓语，谓语都有一个核心动词，叫做谓语动词。</p>
+<p>*** 谓语动词 1. 无承受者</p>
+<p>主语 + <em>动词</em> 2. 一个承受者</p>
+<p>主语 + <em>动词</em> + /<em>宾语</em>/ 3. 两个承受者</p>
+<p>主语 + <em>动词</em> +（间接） /<em>宾语</em>/ + （直接） /<em>宾语</em>/ 4. 一个承受者（不同于 2）</p>
+<p>主语 + <em>动词</em> + /<em>宾语</em>/ + （宾语） /补语/ 5. 赋予信息</p>
+<p>主语 + <em>动词</em> + （主语） /补语/ （表语）</p>
+<p>谓语和谓语动词是有区别的，句子主语后面的余下句子部分都是谓语，谓语动词只是谓语的一部分。与谓语动词相对的，还有 <em>非</em> 谓语动词。 ** 句子成分 1. 主语 Subject 2. 谓语动词（~谓语） Predicate Verb 3. 宾语 Object 4. 宾语补语 Object Complement 5. 主语补语（表语） Subject Complement 6. 定语 Attributive</p>
+<p>主要用来修饰主语或宾语</p>
+<p><em>The little white</em> rabbit ate <em>a large</em> carrot.</p>
+<p>“The little white”是”rabbit”的定语，“a large”是“carrot”的定语 7. 状语 Adverbial</p>
+<p>主要用来修饰谓语动词</p>
+<p>The rabbit ate <em>quickly</em>.</p>
+<p>“quickly”就是“ate”的状语 8. 同位语 Appositive</p>
+<p>主要用来再把主语或宾语说一遍</p>
+<p>Papa Rabbit, <em>an English teacher</em>, eats a carrot.</p>
+<p>“an English teacher”其实就是把“Papa Rabbit”用不同方式再说一遍，在这里算是和主语同等地位 ** 简单句的组合 以上所说的都是简单句，简单句互相组合就形成了 Compound Sentence 复合句，还有 Complex Sentence 复杂局。复合句是简单句的并列组合，而复杂句是简单句的嵌套组合。</p>
+<p>一个句子嵌套另一个句子，在英语语法上分别叫做 <em>主句</em> 和 <em>从句</em> 。从句说白了就是把简单句修改一下来充当另一个句子的句子成分。</p>
+<p>*** 从句 - 名词性从句 + 主语从句 + 宾语从句 + 表语（主语补语）从句 + 同位语从句 - 定语从句 - 状语从句 * 词类 英语的十大词类。</p>
+<ol type="1">
+<li><p>名词 Nouns</p>
+<p>表人和物</p>
+<p><em>Papa Rabbit</em> is a <em>rabbit</em>.</p>
+<p>其中“Papa Rabbit”是专有名词，“rabbit”是普通名词</p></li>
+<li><p>冠词 Articles</p>
+<p>说明人和事物</p>
+<p>Papa Rabbit is <em>a</em> rabbit.</p></li>
+<li><p>代词 Pronouns</p>
+<p>代替人和物</p>
+<p><em>I</em> am a rabbit.</p></li>
+<li><p>形容词 Adjectives</p>
+<p>形容人和物</p>
+<p>I am a <em>smart</em> rabbit.</p></li>
+<li><p>数词 Numerals</p>
+<p>表数量</p>
+<p>I ate <em>two</em> carrot.</p></li>
+<li><p>副词 Adverbs</p>
+<p>修饰动作或形容词等等</p>
+<p>I ate two carrots <em>quickly</em>.</p></li>
+<li><p>介词 Prepositions</p>
+<p>表示和其他词关系的词</p>
+<p>I ate two carrots <em>with</em> chopsticks.</p></li>
+<li><p>叹词 Interjections</p>
+<p>表感叹</p>
+<p><em>Ah</em>, the carrots is tasty!</p></li>
+<li><p>连词 Conjunctions</p>
+<p>连接词和句子</p>
+<p>I ate two carrots <em>and</em> a potato, <em>because</em> I was hungry.</p></li>
+<li><p>动词 Verbs</p></li>
+</ol>
+<p>句子成分和句子中的词类是完全不同的概念。每一种句子成分，除了谓语动词是动词，其他都有可能包含不同的词类。 * 谓语动词的“三大本领” 1. 表示动作的 <em>时间</em> ：现在，过去，将来，从过去某个时间点“算将来”（过去将来）</p>
+<p>比如动作可能在过去或将来 2. 表示动作的 <em>状态</em> ：未说明（一般），完成，进行，不但完成而且继续（完成进行）</p>
+<p>比如动作可能是已经完成的状态或者正在进行的状态 3. 表示动作的 <em>假设，情感等</em></p>
+<p>表示动词的语气</p>
+<p>If I <em>were</em> a rabbit… 虚拟语气</p>
+<p>I <em>ate</em> a carrot… 陈述语气</p>
+<p><em>Eat</em> this carrot and… 祈使语气</p>
+<p>1 和 2 合在一起称为 <em>时态</em> 。时间和状态组合，一共有 16 种时态：</p>
+<p>file:../../pics/English/tense.png * 助动词 谓语动词本身往往是不能够独立完成之前说的那些本领，以及另外一些其他的本领，而且谓语动词独自也无法完成比如表示否定，可能性，必须性等意思。想要谓语动词充分发挥，我们必须用到另一类经常和动词一起用的词帮助完成任务， <em>助动词</em> 。</p>
+<p>** Eat 为了协助它表示吃过了（完成态），就要用到助动词： <em>have</em>, eg, have eaten.</p>
+<p>为了协助它表示正在吃（进行态），就要用到助动词： <em>be</em>, eg, is eating.</p>
+<p>为了协助它表示是“被”吃，就要用到助动词： <em>be</em>, eg, is eaten.</p>
+<p>为了协助它表示有能力吃，就要用到助动词： <em>can</em>, eg, can eat.</p>
+<p>为了协助它表示有可能吃，就要用到助动词： <em>might</em>, eg, might eat.</p>
+<p>为了协助它表示有义务吃，就要用到助动词： <em>must</em>, eg, must eat.</p>
+<p>为了协助它表示否定，不吃，就要用到助动词： <em>do</em>, eg, do not eat.</p>
+<p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
+<p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
+<p>file:../../pics/English/verbs.png</p>]]></description>
+    <pubDate>Wed, 4 Aug 2021 00:17:06 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</guid>
@@ -24,10 +119,10 @@
 <p>首先，使用命令查看硬盘的 id，通过 id 创建 zpool 是最佳的方法，可以避免因盘序或 UUID 变化带来的一些问题。</p>
 <p>#+begin_src sh ➜ ls -lh /dev/disk/by-id/ total 0 lrwxrwxrwx 1 root root 9 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 -&gt; ../../sdb lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part1 -&gt; ../../sdb1 lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part9 -&gt; ../../sdb9 lrwxrwxrwx 1 root root 9 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 -&gt; ../../sda lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part1 -&gt; ../../sda1 lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part9 -&gt; ../../sda9 #+end_src</p>
 <p>这里，我们得到两块硬盘的 id 分别为 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 和 ata-ST2000LM003_HN-M201RAD_S362J9EG922993。接下来，就通过这两个参数来创建 zpool。</p>
-<p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，SSD为ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage #+end_src</p>
+<p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
-<p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src</p>]]></description>
-    <pubDate>Sun, 18 Jul 2021 16:55:02 +0800</pubDate>
+<p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
+    <pubDate>Wed, 4 Aug 2021 00:17:06 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -118,7 +213,7 @@
 <li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的时候，画面延迟近 10 秒</li>
 </ul>
 <p>由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。</p>
-<p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。 * 参考连接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
+<p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。 * 参考链接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
 #+begin_src xml <domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'> <name>win10</name> <uuid>d5da831a-c1eb-4668-a864-0731557d80a0</uuid> <metadata> <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0"> <libosinfo:os id="http://microsoft.com/win/10"/> </libosinfo:libosinfo> </metadata> <memory unit='KiB'>33554432</memory> <currentMemory unit='KiB'>33554432</currentMemory> <vcpu placement='static'>8</vcpu> <resource> <partition>/machine</partition> </resource> <os> <type arch='x86_64' machine='pc-q35-6.0'>hvm</type> <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/OVMF_CODE.fd</loader> <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram> <bootmenu enable='no'/> </os> <features> <acpi/> <apic/> <hyperv> <relaxed state='on'/> <vapic state='on'/> <spinlocks state='on' retries='8191'/> </hyperv> <vmport state='off'/> </features> <cpu mode='host-passthrough' check='partial' migratable='on'> <topology sockets='1' dies='1' cores='4' threads='2'/> </cpu> <clock offset='localtime'> <timer name='rtc' tickpolicy='catchup'/> <timer name='pit' tickpolicy='delay'/> <timer name='hpet' present='no'/> <timer name='hypervclock' present='yes'/> </clock> <on_poweroff>destroy</on_poweroff> <on_reboot>restart</on_reboot> <on_crash>destroy</on_crash> <pm> <suspend-to-mem enabled='no'/> <suspend-to-disk enabled='no'/> </pm> <devices> <emulator>/usr/bin/qemu-system-x86_64</emulator> <disk type='file' device='disk'> <driver name='qemu' type='qcow2'/> <source file='/var/lib/libvirt/images/win10.qcow2' index='3'/> <backingStore/> <target dev='vda' bus='virtio'/> <boot order='1'/> <alias name='virtio-disk0'/>
 <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
 </disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso' index='2'/> <backingStore/> <target dev='sdb' bus='sata'/> <readonly/> <boot order='2'/> <alias name='sata0-0-1'/>
@@ -192,7 +287,7 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Sun, 18 Jul 2021 16:55:02 +0800</pubDate>
+    <pubDate>Wed, 4 Aug 2021 00:17:06 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[软路由虚拟机]]></title>
     <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
@@ -219,195 +314,7 @@
 <p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
 <p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
 <p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Sun, 18 Jul 2021 16:55:02 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[Effective Go笔记]]></title>
-    <link>https://www.codeplayer.org/Wiki/Program/go/effective%20go%e7%ac%94%e8%ae%b0.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Program/go/effective%20go%e7%ac%94%e8%ae%b0.html</guid>
-    <description><![CDATA[<p>#+TITLE: Effective Go笔记 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>引言 Go 是一门全新的语言。尽管它从既有的语言中借鉴了许多理念，但其与众不同的特性， 使得使用 Go 编程在本质上就不同于其它语言。将现有的 C++或 Java 程序直译为 Go 程序并不能令人满意——毕竟 Java 程序是用 Java 编写的，而不是 Go。 另一方面，若从 Go 的角度去分析问题，你就能编写出同样可行但大不相同的程序。 换句话说，要想将 Go 程序写得好，就必须理解其特性和风格。了解命名、格式化、 程序结构等既定规则也同样重要，这样你编写的程序才能更容易被其他程序员所理解。</li>
-<li>格式化 格式化问题总是充满了争议，但却始终没有形成统一的定论。虽说人们可以适应不同的编码风格， 但抛弃这种适应过程岂不更好？若所有人都遵循相同的编码风格，在这类问题上浪费的时间将会更少。 问题就在于如何实现这种设想，而无需冗长的语言风格规范。</li>
-</ul>
-<p>在 Go 中我们另辟蹊径，让机器来处理大部分的格式化问题。gofmt 程序（也可用 go fmt，它以包为处理对象而非源文件）将 Go 程序按照标准风格缩进、 对齐，保留注释并在需要时重新格式化。若你想知道如何处理一些新的代码布局，请尝试运行 gofmt；若结果仍不尽人意，请重新组织你的程序（或提交有关 gofmt 的 Bug），而不必为此纠结。</p>
-<p>举例来说，你无需花时间将结构体中的字段注释对齐，gofmt 将为你代劳。</p>
-<p>还有一些关于格式化的细节，它们非常简短：</p>
-<ul>
-<li><p>缩进 我们使用制表符（tab）缩进，gofmt 默认也使用它。在你认为确实有必要时再使用空格。</p></li>
-<li><p>行的长度 Go 对行的长度没有限制，别担心打孔纸不够长。如果一行实在太长，也可进行折行并插入适当的 tab 缩进。</p></li>
-<li><p>括号 比起 C 和 Java，Go 所需的括号更少：控制结构（if、for 和 switch）在语法上并不需要圆括号。此外，操作符优先级处理变得更加简洁，因此</p>
-<p>~x&lt;&lt;8 + y&lt;&lt;16~</p>
-<p>正表述了空格符所传达的含义。</p></li>
-<li><p>注释 Go 语言支持 C 风格的块注释 /* */ 和 C++风格的行注释 //。 行注释更为常用，而块注释则主要用作包的注释，当然也可在禁用一大段代码时使用。</p></li>
-</ul>
-<p>godoc 既是一个程序，又是一个 Web 服务器，它对 Go 的源码进行处理，并提取包中的文档内容。 出现在顶级声明之前，且与该声明之间没有空行的注释，将与该声明一起被提取出来，作为该条目的说明文档。 这些注释的类型和风格决定了 godoc 生成的文档质量。</p>
-<p>每个包都应包含一段包注释，即放置在包子句前的一个块注释。对于包含多个文件的包， 包注释只需出现在其中的任一文件中即可。包注释应在整体上对该包进行介绍，并提供包的相关信息。 它将出现在 godoc 页面中的最上面，并为紧随其后的内容建立详细的文档。</p>
-<p>#+begin_src go /* regexp 包为正则表达式实现了一个简单的库。</p>
-<pre><code>该库接受的正则表达式语法为：
-
-正则表达式:
-    串联 { &#39;|&#39; 串联 }
-串联:
-    { 闭包 }
-闭包:
-    条目 [ &#39;*&#39; | &#39;+&#39; | &#39;?&#39; ]
-条目:
-    &#39;^&#39;
-    &#39;$&#39;
-    &#39;.&#39;
-    字符
-    &#39;[&#39; [ &#39;^&#39; ] 字符遍历 &#39;]&#39;
-    &#39;(&#39; 正则表达式 &#39;)&#39;</code></pre>
-<p>*/ package regexp #+end_src</p>
-<p>若某个包比较简单，包注释同样可以简洁些（使用行注释）。</p>
-<p>#+begin_src go // path 包实现了一些常用的工具，以便于操作用反斜杠分隔的路径. #+end_src</p>
-<p>注释无需进行额外的格式化，如用星号来突出等。生成的输出甚至可能无法以等宽字体显示， 因此不要依赖于空格对齐，godoc 会像 gofmt 那样处理好这一切。 注释是不会被解析的纯文本，因此像 HTML 或其它类似于 <em>这样</em> 的东西将按照 原样 输出，因此不应使用它们。godoc 所做的调整， 就是将已缩进的文本以等宽字体显示，来适应对应的程序片段。 fmt 包的注释就用了这种不错的效果。</p>
-<p>godoc 是否会重新格式化注释取决于上下文，因此必须确保它们看起来清晰易辨： 使用正确的拼写、标点和语句结构以及折叠长行等。</p>
-<p>在包中，任何顶级声明前面的注释都将作为该声明的文档注释。 在程序中，每个可导出（首字母大写）的名称都应该有文档注释。</p>
-<p>文档注释最好是完整的句子，这样它才能适应各种自动化的展示。 第一句应当以被声明的东西开头，并且是单句的摘要。 * 命名 ** 包名 若所有人都以相同的名称来引用其内容将大有裨益， 这也就意味着包应当有个恰当的名称：其名称应该简洁明了而易于理解。按照惯例， 包应当以小写的单个单词来命名，且不应使用下划线或驼峰记法。err 的命名就是出于简短考虑的，因为任何使用该包的人都会键入该名称。 不必担心引用次序的冲突。包名就是导入时所需的唯一默认名称， 它并不需要在所有源码中保持唯一，即便在少数发生冲突的情况下， 也可为导入的包选择一个别名来局部使用。 无论如何，通过文件名来判定使用的包，都是不会产生混淆的。</p>
-<p>另一个约定就是包名应为其源码目录的基本名称。在 src/pkg/encoding/base64 中的包应作为 “encoding/base64” 导入，其包名应为 base64， 而非 encoding_base64 或 encodingBase64。 ** 获取器 Go 并不对获取器（getter）和设置器（setter）提供自动支持。 你应当自己提供获取器和设置器，通常很值得这样做，但若要将 Get 放到获取器的名字中，既不符合习惯，也没有必要。若你有个名为 owner （小写，未导出）的字段，其获取器应当名为 Owner（大写，可导出）而非 GetOwner。大写字母即为可导出的这种规定为区分方法和字段提供了便利。 若要提供设置器方法，SetOwner 是个不错的选择。两个命名看起来都很合理。 ** 接口名 按照约定，只包含一个方法的接口应当以该方法的名称加上-er 后缀来命名，如 Reader、Writer、 Formatter、CloseNotifier 等。</p>
-<p>诸如此类的命名有很多，遵循它们及其代表的函数名会让事情变得简单。 Read、Write、Close、Flush、 String 等都具有典型的签名和意义。为避免冲突，请不要用这些名称为你的方法命名， 除非你明确知道它们的签名和意义相同。反之，若你的类型实现了的方法， 与一个众所周知的类型的方法拥有相同的含义，那就使用相同的命名。 请将字符串转换方法命名为 String 而非 ToString。 ** 驼峰记法 最后，Go 中约定使用驼峰记法 MixedCaps 或 mixedCaps。 * 分号 和 C 一样，Go 的正式语法使用分号来结束语句；和 C 不同的是，这些分号并不在源码中出现。 取而代之，词法分析器会使用一条简单的规则来自动插入分号，因此因此源码中基本就不用分号了。</p>
-<p>规则是这样的：若在新行前的最后一个标记为标识符（包括 int 和 float64 这类的单词）、数值或字符串常量之类的基本字面或以下标记之一</p>
-<p>#+begin_src break continue fallthrough return ++ – ) } #+end_src</p>
-<p>则词法分析将始终在该标记后面插入分号。这点可以概括为： “如果新行前的标记为语句的末尾，则插入分号”。</p>
-<p>分号也可在闭括号之前直接省略，因此像</p>
-<p>#+begin_src go func() { for { dst &lt;- &lt;-src } }() #+end_src</p>
-<p>这样的语句无需分号。通常 Go 程序只在诸如 for 循环子句这样的地方使用分号， 以此来将初始化器、条件及增量元素分开。如果你在一行中写多个语句，也需要用分号隔开。</p>
-<p>警告：无论如何，你都不应将一个控制结构（if、for、switch 或 select）的左大括号放在下一行。如果这样做，就会在大括号前面插入一个分号，这可能引起不需要的效果。 * 控制结构 Go 中的结构控制与 C 有许多相似之处，但其不同之处才是独到之处。 Go 不再使用 do 或 while 循环，只有一个更通用的 for；switch 要更灵活一点；if 和 switch 像 for 一样可接受可选的初始化语句； 此外，还有一个包含类型选择和多路通信复用器的新控制结构：select。 其语法也有些许不同：没有圆括号，而其主体必须始终使用大括号括住。 ** 重新声明与再次赋值 在满足下列条件时，已被声明的变量 v 可出现在:= 声明中：</p>
-<p>本次声明与已声明的 v 处于同一作用域中（若 v 已在外层作用域中声明过，则此次声明会创建一个新的变量§）， - 在初始化中与其类型相应的值才能赋予 v，且 - 在此次声明中至少另有一个变量是新声明的。 - 这个特性简直就是纯粹的实用主义体现，它使得我们可以很方面地只使用一个 err 值，例如，在一个相当长的 if-else 语句链中， 你会发现它用得很频繁。</p>
-<p>§值得一提的是，即便 Go 中的函数形参和返回值在词法上处于大括号之外， 但它们的作用域和该函数体仍然相同。 ** For Go 的 for 循环类似于 C，但却不尽相同。它统一了 for 和 while，不再有 do-while 了。它有三种形式，但只有一种需要分号。</p>
-<p>#+begin_src go // 如同C的for循环 for init; condition; post { }</p>
-<p>// 如同C的while循环 for condition { }</p>
-<p>// 如同C的for(;;)循环 for { } #+end_src</p>
-<p>若你想遍历数组、切片、字符串或者映射，或从信道中读取消息， range 子句能够帮你轻松实现循环。</p>
-<p>#+begin_src go for key, value := range oldMap { newMap[key] = value } #+end_src</p>
-<p>若你只需要该遍历中的第一个项（键或下标），去掉第二个就行了：</p>
-<p>#+begin_src go for key := range m { if key.expired() { delete(m, key) } } #+end_src</p>
-<p>对于字符串，range 能够提供更多便利。它能通过解析 UTF-8， 将每个独立的 Unicode 码点分离出来。错误的编码将占用一个字节，并以符文 U+FFFD 来代替。 （名称“符文”和内建类型 rune 是 Go 对单个 Unicode 码点的成称谓。 详情见语言规范）。</p>
-<p>最后，Go 没有逗号操作符，而 =++= 和 =–= 为语句而非表达式。 因此，若你想要在 for 中使用多个变量，应采用平行赋值的方式 （因为它会拒绝 =++= 和 =–= ）. ** Switch Go 的 switch 比 C 的更通用。其表达式无需为常量或整数，case 语句会自上而下逐一进行求值直到匹配为止。若 switch 后面没有表达式，它将匹配 true，因此，我们可以将 if-else-if-else 链写成一个 switch，这也更符合 Go 的风格。</p>
-<p>switch 并不会自动下溯，但 case 可通过逗号分隔来列举相同的处理条件。</p>
-<p>尽管它们在 Go 中的用法和其它类 C 语言差不多，但 break 语句可以使 switch 提前终止。不仅是 switch， 有时候也必须打破层层的循环。在 Go 中，我们只需将标签放置到循环外，然后 “蹦”到那里即可。下面的例子展示了二者的用法。</p>
-<p>#+begin_src go Loop: for n := 0; n &lt; len(src); n += size { switch { case src[n] &lt; sizeOne: if validateOnly { break } size = 1 update(src[n])</p>
-<pre><code>    case src[n] &lt; sizeTwo:
-        if n+1 &gt;= len(src) {
-            err = errShortInput
-            break Loop
-        }
-        if validateOnly {
-            break
-        }
-        size = 2
-        update(src[n] + src[n+1]&lt;&lt;shift)
-    }
-}</code></pre>
-<p>#+end_src</p>
-<p>当然，continue 语句也能接受一个可选的标签，不过它只能在循环中使用。 ** 类型选择 switch 也可用于判断接口变量的动态类型。如 类型选择 通过圆括号中的关键字 type 使用类型断言语法。若 switch 在表达式中声明了一个变量，那么该变量的每个子句中都将有该变量对应的类型。 * 函数 ** 可命名结果形参 Go 函数的返回值或结果“形参”可被命名，并作为常规变量使用，就像传入的形参一样。 命名后，一旦该函数开始执行，它们就会被初始化为与其类型相应的零值； 若该函数执行了一条不带实参的 return 语句，则结果形参的当前值将被返回。</p>
-<p>此名称不是强制性的，但它们能使代码更加简短清晰：它们就是文档。 ** Defer Go 的 defer 语句用于预设一个函数调用（即推迟执行函数）， 该函数会在执行 defer 的函数返回之前立即执行。它显得非比寻常， 但却是处理一些事情的有效方式，例如无论以何种路径返回，都必须释放资源的函数。 典型的例子就是解锁互斥和关闭文件。</p>
-<p>被推迟函数的实参（如果该函数为方法则还包括接收者）在推迟执行时就会求值， 而不是在调用执行时才求值。这样不仅无需担心变量值在函数执行时被改变， 同时还意味着单个已推迟的调用可推迟多个函数的执行。下面是个简单的例子。</p>
-<p>#+begin_src go for i := 0; i &lt; 5; i++ { defer fmt.Printf(“%d”, i) } #+end_src</p>
-<p>被推迟的函数按照后进先出（LIFO）的顺序执行，因此以上代码在函数返回时会打印 4 3 2 1 0。一个更具实际意义的例子是通过一种简单的方法， 用程序来跟踪函数的执行。</p>
-<p>#+begin_src go func trace(s string) { fmt.Println(“entering:”, s) } func untrace(s string) { fmt.Println(“leaving:”, s) }</p>
-<p>// 像这样使用它们： func a() { trace(“a”) defer untrace(“a”) // 做一些事情…. } #+end_src</p>
-<p>我们可以充分利用这个特点，即被推迟函数的实参在 defer 执行时才会被求值。 跟踪例程可针对反跟踪例程设置实参。以下例子：</p>
-<p>#+begin_src go func trace(s string) string { fmt.Println(“entering:”, s) return s }</p>
-<p>func un(s string) { fmt.Println(“leaving:”, s) }</p>
-<p>func a() { defer un(trace(“a”)) fmt.Println(“in a”) }</p>
-<p>func b() { defer un(trace(“b”)) fmt.Println(“in b”) a() }</p>
-<p>func main() { b() } 会打印</p>
-<p>entering: b in b entering: a in a leaving: a leaving: b #+end_src</p>
-<p>对于习惯其它语言中块级资源管理的程序员，defer 似乎有点怪异， 但它最有趣而强大的应用恰恰来自于其基于函数而非块的特点。 * 数据 ** new 分配 Go 提供了两种分配原语，即内建函数 new 和 make。 它们所做的事情不同，所应用的类型也不同。它们可能会引起混淆，但规则却很简单。 让我们先来看看 new。这是个用来分配内存的内建函数， 但与其它语言中的同名函数不同，它不会初始化内存，只会将内存置零。 也就是说，new(T) 会为类型为 T 的新项分配已置零的内存空间， 并返回它的地址，也就是一个类型为 *T 的值。用 Go 的术语来说，它返回一个指针， 该指针指向新分配的，类型为 T 的零值。</p>
-<p>既然 new 返回的内存已置零，那么当你设计数据结构时， 每种类型的零值就不必进一步初始化了，这意味着该数据结构的使用者只需用 new 创建一个新的对象就能正常工作。 ** 构造函数与复合字面 有时零值还不够好，这时就需要一个初始化构造函数，如来自 os 包中的这段代码所示。</p>
-<p>#+begin_src go func NewFile(fd int, name string) *File { if fd &lt; 0 { return nil } f := new(File) f.fd = fd f.name = name f.dirinfo = nil f.nepipe = 0 return f } #+end_src</p>
-<p>这里显得代码过于冗长。我们可通过复合字面来简化它， 该表达式在每次求值时都会创建新的实例。</p>
-<p>#+begin_src go func NewFile(fd int, name string) *File { if fd &lt; 0 { return nil } f := File{fd, name, nil, 0} return &amp;f } #+end_src</p>
-<p>请注意，返回一个局部变量的地址完全没有问题，这点与 C 不同。该局部变量对应的数据 在函数返回后依然有效。实际上，每当获取一个复合字面的地址时，都将为一个新的实例分配内存， 因此我们可以将上面的最后两行代码合并：</p>
-<p>#+begin_src go return &amp;File{fd, name, nil, 0} #+end_src</p>
-<p>复合字面的字段必须按顺序全部列出。但如果以 字段:值 对的形式明确地标出元素，初始化字段时就可以按任何顺序出现，未给出的字段值将赋予零值。 因此，我们可以用如下形式：</p>
-<p>#+begin_src go return &amp;File{fd: fd, name: name} #+end_src</p>
-<p>少数情况下，若复合字面不包括任何字段，它将创建该类型的零值。表达式 new(File) 和 &amp;File{} 是等价的。</p>
-<p>复合字面同样可用于创建数组、切片以及映射，字段标签是索引还是映射键则视情况而定。 ** make 分配 再回到内存分配上来。内建函数 make(T, args) 的目的不同于 new(T)。它只用于创建切片、map 和信道，并返回类型为 T（而非 *T）的一个已初始化 （而非置零）的值。 出现这种用差异的原因在于，这三种类型本质上为引用数据类型，它们在使用前必须初始化。</p>
-<p>请记住，make 只适用于 map、切片和信道且不返回指针。若要获得明确的指针， 请使用 new 分配内存。 ** 数组 在详细规划内存布局时，数组是非常有用的，有时还能避免过多的内存分配， 但它们主要用作切片的构件。这是下一节的主题了，不过要先说上几句来为它做铺垫。</p>
-<p>以下为数组在 Go 和 C 中的主要区别。在 Go 中， - 数组是值。将一个数组赋予另一个数组会复制其所有元素。 - 特别地，若将某个数组传入某个函数，它将接收到该数组的一份副本而非指针。 - 数组的大小是其类型的一部分。类型 [10]int 和 [20]int 是不同的。</p>
-<p>数组为值的属性很有用，但代价高昂；若你想要 C 那样的行为和效率，你可以传递一个指向该数组的指针。但这并不是 Go 的习惯用法，切片才是。 ** 切片 切片通过对数组进行封装，为数据序列提供了更通用、强大而方便的接口。 除了矩阵变换这类需要明确维度的情况外，Go 中的大部分数组编程都是通过切片来完成的。</p>
-<p>切片保存了对底层数组的引用，若你将某个切片赋予另一个切片，它们会引用同一个数组。 若某个函数将一个切片作为参数传入，则它对该切片元素的修改对调用者而言同样可见， 这可以理解为传递了底层数组的指针</p>
-<p>只要切片不超出底层数组的限制，它的长度就是可变的，只需将它赋予其自身的切片即可。 切片的容量可通过内建函数 cap 获得，它将给出该切片可取得的最大长度。 apped 会将数据追加到切片的函数。若数据超出其容量，则会重新分配该切片。返回值即为所得的切片。len 和 cap 在应用于 nil 切片时是合法的，它会返回 0。 ** 二维切片 Go 的数组和切片都是一维的。要创建等价的二维数组或切片，就必须定义一个数组的数组， 或切片的切片。由于切片长度是可变的，因此其内部可能拥有多个不同长度的切片。 ** 映射（map） 映射是方便而强大的内建数据结构，它可以关联不同类型的值。其键可以是任何相等性操作符支持的类型， 如整数、浮点数、复数、字符串、指针、接口（只要其动态类型支持相等性判断）、结构以及数组。 切片不能用作映射键，因为它们的相等性还未定义。与切片一样，映射也是引用类型。 若将映射传入函数中，并更改了该映射的内容，则此修改对调用者同样可见。</p>
-<p>映射可使用一般的复合字面语法进行构建，其键-值对使用逗号分隔，因此可在初始化时很容易地构建它们。</p>
-<p>若试图通过映射中不存在的键来取值，就会返回与该映射中项的类型对应的零值。有时你需要区分某项是不存在还是其值为零值。你可以使用多重赋值的形式来分辨这种情况，我们可称之为“逗号 ok”惯用法。</p>
-<p>要删除映射中的某项，可使用内建函数 delete，它以映射及要被删除的键为实参。 即便对应的键不在该映射中，此操作也是安全的。 ** 打印 Go 采用的格式化打印风格和 C 的 printf 族类似，但却更加丰富而通用。 这些函数位于 fmt 包中，且函数名首字母均为大写：如 fmt.Printf、fmt.Fprintf，fmt.Sprintf 等。 字符串函数（Sprintf 等）会返回一个字符串，而非填充给定的缓冲区。</p>
-<p>你无需提供一个格式字符串。每个 Printf、Fprintf 和 Sprintf 都分别对应另外的函数，如 Print 与 Println。 这些函数并不接受格式字符串，而是为每个实参生成一种默认格式。Println 系列的函数还会在实参中插入空格，并在输出时追加一个换行符，而 Print 版本仅在操作数两侧都没有字符串时才添加空白。</p>
-<p>fmt.Fprint 一类的格式化打印函数可接受任何实现了 io.Writer 接口的对象作为第一个实参；变量 os.Stdout 与 os.Stderr 都是人们熟知的例子。</p>
-<p>从这里开始，就与 C 有些不同了。首先，像 %d 这样的数值格式并不接受表示符号或大小的标记， 打印例程会根据实参的类型来决定这些属性。</p>
-<p>若你只想要默认的转换，如使用十进制的整数，你可以使用通用的格式 %v（对应“值”）；其结果与 Print 和 Println 的输出完全相同。此外，这种格式还能打印任意值，甚至包括数组、结构体和映射。</p>
-<p>当然，映射中的键可能按任意顺序输出。当打印结构体时，改进的格式 %+v 会为结构体的每个字段添上字段名，而另一种格式 %#v 将完全按照 Go 的语法打印值。</p>
-<p>当遇到 string 或 []byte 值时， 可使用 %q 产生带引号的字符串；而格式 %#q 会尽可能使用反引号。 （%q 格式也可用于整数和符文，它会产生一个带单引号的符文常量。） 此外，%x 还可用于字符串、字节数组以及整数，并生成一个很长的十六进制字符串， 而带空格的格式（% x）还会在字节之间插入空格。</p>
-<p>另一种实用的格式是 %T，它会打印某个值的类型。</p>
-<p>若你想控制自定义类型的默认格式，只需为该类型定义一个具有 String() string 签名的方法。对于我们简单的类型 T，可进行如下操作。</p>
-<p>#+begin_src go func (t *T) String() string { return fmt.Sprintf(“%d/%g/%q”, t.a, t.b, t.c) } fmt.Printf(“%v”, t) #+end_src</p>
-<p>（如果你需要像指向 T 的指针那样打印类型 T 的值， String 的接收者就必须是值类型的；上面的例子中接收者是一个指针， 因为这对结构来说更高效而通用。更多详情见指针 vs.值接收者一节.）</p>
-<p>我们的 String 方法也可调用 Sprintf， 因为打印例程可以完全重入并按这种方式封装。不过要理解这种方式，还有一个重要的细节： 请勿通过调用 Sprintf 来构造 String 方法，因为它会无限递归你的的 String 方法。</p>
-<p>要解决这个问题也很简单：将该实参转换为基本的字符串类型，它没有这个方法。</p>
-<p>#+begin_src go type MyString string func (m MyString) String() string { return fmt.Sprintf(“MyString=%s”, string(m)) // 可以：注意转换 } #+end_src ** 追加 现在我们要对内建函数 append 的设计进行补充说明。append 函数的签名不同于前面我们自定义的 Append 函数。大致来说，它就像这样：</p>
-<p>#+begin_src go func append(slice []T, 元素 …T) []T #+end_src</p>
-<p>其中的 T 为任意给定类型的占位符。实际上，你无法在 Go 中编写一个类型 T 由调用者决定的函数。这也就是为何 append 为内建函数的原因：它需要编译器的支持。</p>
-<p>但如果我们要像 Append 那样将一个切片追加到另一个切片中呢？ 很简单：在调用的地方使用 …，就像我们在上面调用 Output 那样。以下代码片段的输出与上一个相同。</p>
-<p>#+begin_src go x := []int{1,2,3} y := []int{4,5,6} x = append(x, y…) fmt.Println(x) #+end_src</p>
-<p>如果没有 …，它就会由于类型错误而无法编译，因为 y 不是 int 类型的。 * 初始化 尽管从表面上看，Go 的初始化过程与 C 或 C++并不算太大，但它确实更为强大。 在初始化过程中，不仅可以构建复杂的结构，还能正确处理不同包对象间的初始化顺序。 ** 常量 Go 中的常量就是不变量。它们在编译时创建，即便它们可能是函数中定义的局部变量。 常量只能是数字、字符（符文）、字符串或布尔值。由于编译时的限制， 定义它们的表达式必须也是可被编译器求值的常量表达式。</p>
-<p>在 Go 中，枚举常量使用枚举器 iota 创建。由于 iota 可为表达式的一部分，而表达式可以被隐式地重复，这样也就更容易构建复杂的值的集合了。</p>
-<p>在这里用 Sprintf 实现 ByteSize 的 String 方法很安全（不会无限递归），这倒不是因为类型转换，而是它以 %f 调用了 Sprintf，它并不是一种字符串格式：Sprintf 只会在它需要字符串时才调用 String 方法，而 %f 需要一个浮点数值。 ** 变量 变量的初始化与常量类似，但其初始值也可以是在运行时才被计算的一般表达式。</p>
-<p>** init 函数 最后，每个源文件都可以通过定义自己的无参数 init 函数来设置一些必要的状态。 （其实每个文件都可以拥有多个 init 函数。）而它的结束就意味着初始化结束： 只有该包中的所有变量声明都通过它们的初始化器求值后 init 才会被调用， 而那些 init 只有在所有已导入的包都被初始化后才会被求值。</p>
-<p>除了那些不能被表示成声明的初始化外，init 函数还常被用在程序真正开始执行前，检验或校正程序的状态。 * 方法 ** 指针 vs. 值 正如 ByteSize 那样，我们可以为任何已命名的类型（除了指针或接口）定义方法； 接收者可不必为结构体。</p>
-<p>在之前讨论切片时，我们编写了一个 Append 函数。 我们也可将其定义为切片的方法。为此，我们首先要声明一个已命名的类型来绑定该方法， 然后使该方法的接收者成为该类型的值。</p>
-<p>我们仍然需要该方法返回更新后的切片。为了消除这种不便，我们可通过重新定义该方法， 将一个指向 ByteSlice 的指针作为该方法的接收者， 这样该方法就能重写调用者提供的切片了。</p>
-<p>#+begin_src go type ByteSlice []byte</p>
-<p>func (p <em>ByteSlice) Append(data []byte) { slice := </em>p // 主体和前面相同，但没有 return。 ,*p = slice } #+end_src</p>
-<p>以指针或值为接收者的区别在于：值方法可通过指针和值调用， 而指针方法只能通过指针来调用。</p>
-<p>之所以会有这条规则是因为指针方法可以修改接收者；通过值调用它们会导致方法接收到该值的副本， 因此任何修改都将被丢弃，因此该语言不允许这种错误。不过有个方便的例外：若该值是可寻址的， 那么该语言就会自动插入取址操作符来对付一般的通过值调用的指针方法。在我们的例子中，变量 b 是可寻址的，因此我们只需通过 b.Write 来调用它的 Write 方法，编译器会将它重写为 (&amp;b).Write。</p>
-<p>顺便一提，在字节切片上使用 Write 的想法已被 bytes.Buffer 所实现。 * 接口与其它类型 ** 接口 Go 中的接口为指定对象的行为提供了一种方法：如果某样东西可以完成 <em>这个</em> ， 那么它就可以用在 <em>这里</em> 。每种类型都能实现多个接口。 * 空白标识符 我们在 for-range 循环和映射中提过几次空白标识符。 空白标识符可被赋予或声明为任何类型的任何值，而其值会被无害地丢弃。它有点像 Unix 中的 /dev/null 文件：它表示只写的值，在需要变量但不需要实际值的地方用作占位符。 我们在前面已经见过它的用法了。 ** 未使用的导入和变量 若导入某个包或声明某个变量而不使用它就会产生错误。未使用的包会让程序膨胀并拖慢编译速度， 而已初始化但未使用的变量不仅会浪费计算能力，还有可能暗藏着更大的 Bug。 然而在程序开发过程中，经常会产生未使用的导入和变量。虽然以后会用到它们， 但为了完成编译又不得不删除它们才行，这很让人烦恼。空白标识符就能提供一个工作空间。</p>
-<p>#+begin_src go package main</p>
-<p>import ( “fmt” “io” “log” “os” )</p>
-<p>var _ = fmt.Printf // For debugging; delete when done. // 用于调试，结束时删除。 var _ io.Reader // For debugging; delete when done. // 用于调试，结束时删除。</p>
-<p>func main() { fd, err := os.Open(“test.go”) if err != nil { log.Fatal(err) } // TODO: use fd. _ = fd } #+end_src</p>
-<p>按照惯例，我们应在导入并加以注释后，再使全局声明导入错误静默，这样可以让它们更易找到， 并作为以后清理它的提醒。 ** 为副作用而导入 有时导入某个包只是为了其副作用， 而没有任何明确的使用。例如，在 net/http/pprof 包的 init 函数中记录了 HTTP 处理程序的调试信息。它有个可导出的 API， 但大部分客户端只需要该处理程序的记录和通过 Web 叶访问数据。只为了其副作用来哦导入该包， 只需将包重命名为空白标识符：</p>
-<p>#+begin_src go import _ “net/http/pprof” #+end_src</p>
-<p>这种导入格式能明确表示该包是为其副作用而导入的，因为没有其它使用该包的可能： 在此文件中，它没有名字。（若它有名字而我们没有使用，编译器就会拒绝该程序。） ** 接口检查 就像我们在前面接口中讨论的那样， 一个类型无需显式地声明它实现了某个接口。取而代之，该类型只要实现了某个接口的方法， 其实就实现了该接口。在实践中，大部分接口转换都是静态的，因此会在编译时检测。 例如，将一个 <em>os.File 传入一个预期的 io.Reader 函数将不会被编译， 除非 </em>os.File 实现了 io.Reader 接口。</p>
-<p>尽管有些接口检查会在运行时进行。encoding/json 包中就有个实例它定义了一个 Marshaler 接口。当 JSON 编码器接收到一个实现了该接口的值，那么该编码器就会调用该值的编组方法， 将其转换为 JSON，而非进行标准的类型转换。 编码器在运行时通过类型断言检查其属性，就像这样：</p>
-<p>#+begin_src go m, ok := val.(json.Marshaler) #+end_src</p>
-<p>若只需要判断某个类型是否是实现了某个接口，而不需要实际使用接口本身 （可能是错误检查部分），就使用空白标识符来忽略类型断言的值：</p>
-<p>#+begin_src go if _, ok := val.(json.Marshaler); ok { fmt.Printf(“value %v of type %T implements json.Marshaler”, val, val) } #+end_src</p>
-<p>当需要确保某个包中实现的类型一定满足该接口时，就会遇到这种情况。 若某个类型（例如 json.RawMessage） 需要一种定制的 JSON 表现时，它应当实现 json.Marshaler， 不过现在没有静态转换可以让编译器去自动验证它。若该类型通过忽略转换失败来满足该接口， 那么 JSON 编码器仍可工作，但它却不会使用定制的实现。为确保其实现正确， 可在该包中用空白标识符声明一个全局变量：</p>
-<p>#+begin_src go var _ json.Marshaler = (*RawMessage)(nil) #+end_src</p>
-<p>在此声明中，我们调用了一个 <em>RawMessage 转换并将其赋予了 Marshaler，以此来要求 </em>RawMessage 实现 Marshaler，这时其属性就会在编译时被检测。 若 json.Marshaler 接口被更改，此包将无法通过编译， 而我们则会注意到它需要更新。</p>
-<p>在这种结构中出现空白标识符，即表示该声明的存在只是为了类型检查。 不过请不要为满足接口就将它用于任何类型。作为约定， 仅当代码中不存在静态类型转换时才能这种声明，毕竟这是种罕见的情况。 * 内嵌 Go 并不提供典型的，类型驱动的子类化概念，但通过将类型内嵌到结构体或接口中， 它就能“借鉴”部分实现。</p>
-<p>还有种区分内嵌与子类的重要手段。当内嵌一个类型时，该类型的方法会成为外部类型的方法， 但当它们被调用时，该方法的接收者是内部类型，而非外部的。</p>
-<p>内嵌类型会引入命名冲突的问题，但解决规则却很简单。首先，字段或方法 X 会隐藏该类型中更深层嵌套的其它项 X。</p>
-<p>其次，若相同的嵌套层级上出现同名冲突，通常会产生一个错误。若 Job 结构体中包含名为 Logger 的字段或方法，再将 log.Logger 内嵌到其中的话就会产生错误。然而，若重名永远不会在该类型定义之外的程序中使用，那就不会出错。 这种限定能够在外部嵌套类型发生修改时提供某种保护。 因此，就算添加的字段与另一个子类型中的字段相冲突，只要这两个相同的字段永远不会被使用就没问题。 * 并发 ** 通过通信共享内存 并发编程是个很大的论题。但限于篇幅，这里仅讨论一些 Go 特有的东西。</p>
-<p>在并发编程中，为实现对共享变量的正确访问需要精确的控制，这在多数环境下都很困难。 Go 语言另辟蹊径，它将共享的值通过信道传递，实际上，多个独立执行的线程从不会主动共享。 在任意给定的时间点，只有一个 Go 程能够访问该值。数据竞争从设计上就被杜绝了。 为了提倡这种思考方式，我们将它简化为一句口号：</p>
-<p>#+begin_quote 不要通过共享内存来通信，而应通过通信来共享内存。 #+end_quote</p>
-<p>这种方法意义深远。例如，引用计数通过为整数变量添加互斥锁来很好地实现。 但作为一种高级方法，通过信道来控制访问能够让你写出更简洁，正确的程序。</p>
-<p>我们可以从典型的单线程运行在单 CPU 之上的情形来审视这种模型。它无需提供同步原语。 现在考虑另一种情况，它也无需同步。现在让它们俩进行通信。若将通信过程看做同步着， 那就完全不需要其它同步了。例如，Unix 管道就与这种模型完美契合。 尽管 Go 的并发处理方式来源于 Hoare 的通信顺序处理（CSP）， 它依然可以看做是类型安全的 Unix 管道的实现。 ** Go 程 我们称之为 Go 程是因为现有的术语—线程、协程、进程等等—无法准确传达它的含义。 Go 程具有简单的模型：它是与其它 Go 程并发运行在同一地址空间的函数。它是轻量级的， 所有小号几乎就只有栈空间的分配。而且栈最开始是非常小的，所以它们很廉价， 仅在需要时才会随着堆空间的分配（和释放）而变化。</p>
-<p>Go 程在多线程操作系统上可实现多路复用，因此若一个线程阻塞，比如说等待 I/O， 那么其它的线程就会运行。Go 程的设计隐藏了线程创建和管理的诸多复杂性。</p>
-<p>在函数或方法前添加 go 关键字能够在新的 Go 程中调用它。当调用完成后， 该 Go 程也会安静地退出。（效果有点像 Unix Shell 中的 &amp; 符号，它能让命令在后台运行。）</p>
-<p>在 Go 中，函数字面都是闭包：其实现在保证了函数内引用变量的生命周期与函数的活动时间相同。 ** 信道 信道与映射一样，也需要通过 make 来分配内存。其结果值充当了对底层数据结构的引用。 若提供了一个可选的整数形参，它就会为该信道设置缓冲区大小。默认值是零，表示不带缓冲的或同步的信道。</p>
-<p>接收者在收到数据前会一直阻塞。若信道是不带缓冲的，那么在接收者收到值前， 发送者会一直阻塞；若信道是带缓冲的，则发送者仅在值被复制到缓冲区前阻塞； 若缓冲区已满，发送者会一直等待直到某个接收者取出一个值为止。</p>
-<p>带缓冲的信道可被用作信号量，例如限制吞吐量。在此例中，进入的请求会被传递给 handle，它从信道中接收值，处理请求后将值发回该信道中，以便让该 “信号量”准备迎接下一次请求。信道缓冲区的容量决定了同时调用 process 的数量上限，因此我们在初始化时首先要填充至它的容量上限。</p>
-<p>#+begin_src go var sem = make(chan int, MaxOutstanding)</p>
-<p>func handle(r *Request) { sem &lt;- 1 // 等待活动队列清空。 process(r) // 可能需要很长时间。 &lt;-sem // 完成；使下一个请求可以运行。 }</p>
-<p>func Serve(queue chan *Request) { for { req := &lt;-queue go handle(req) // 无需等待 handle 结束。 } } #+end_src</p>
-<p>由于数据同步发生在信道的接收端（也就是说发送发生在接受之前，参见 Go 内存模型），因此信号必须在信道的接收端获取，而非发送端。</p>
-<p>然而，它却有个设计问题：尽管只有 MaxOutstanding 个 Go 程能同时运行，但 Serve 还是为每个进入的请求都创建了新的 Go 程。其结果就是，若请求来得很快， 该程序就会无限地消耗资源。为了弥补这种不足，我们可以通过修改 Serve 来限制创建 Go 程，这是个明显的解决方案，但要当心我们修复后出现的 Bug。</p>
-<p>#+begin_src go func Serve(queue chan *Request) { for req := range queue { sem &lt;- 1 go func() { process(req) // 这儿有Bug，解释见下。 &lt;-sem }() } } #+end_src</p>
-<p>Bug 出现在 Go 的 for 循环中，该循环变量在每次迭代时会被重用，因此 req 变量会在所有的 Go 程间共享，这不是我们想要的。我们需要确保 req 对于每个 Go 程来说都是唯一的。有一种方法能够做到，就是将 req 的值作为实参传入到该 Go 程的闭包中：</p>
-<p>#+begin_src go func Serve(queue chan <em>Request) { for req := range queue { sem &lt;- 1 go func(req </em>Request) { process(req) &lt;-sem }(req) } } #+end_src</p>
-<p>比较前后两个版本，观察该闭包声明和运行中的差别。 另一种解决方案就是以相同的名字创建新的变量，如例中所示：</p>
-<p>#+begin_src go func Serve(queue chan *Request) { for req := range queue { req := req // 为该Go程创建 req 的新实例。 sem &lt;- 1 go func() { process(req) &lt;-sem }() } } #+end_src</p>
-<p>它的写法看起来有点奇怪</p>
-<p>#+begin_src go req := req #+end_src</p>
-<p>但在 Go 中这样做是合法且惯用的。你用相同的名字获得了该变量的一个新的版本， 以此来局部地刻意屏蔽循环变量，使它对每个 Go 程保持唯一。 ** 信道中的信道 Go 最重要的特性就是信道是一等值，它可以被分配并像其它值到处传递。 这种特性通常被用来实现安全、并行的多路分解。 ** 并行化 这些设计的另一个应用是在多 CPU 核心上实现并行计算。如果计算过程能够被分为几块 可独立执行的过程，它就可以在每块计算结束时向信道发送信号，从而实现并行处理。</p>
-<p>目前 Go 运行时的实现默认并不会并行执行代码，它只为用户层代码提供单一的处理核心。 任意数量的 Go 程都可能在系统调用中被阻塞，而在任意时刻默认只有一个会执行用户层代码。 它应当变得更智能，而且它将来肯定会变得更智能。但现在，若你希望 CPU 并行执行， 就必须告诉运行时你希望同时有多少 Go 程能执行代码。有两种途径可意识形态，要么 在运行你的工作时将 GOMAXPROCS 环境变量设为你要使用的核心数， 要么导入 runtime 包并调用 runtime.GOMAXPROCS(NCPU)。 runtime.NumCPU() 的值可能很有用，它会返回当前机器的逻辑 CPU 核心数。 当然，随着调度算法和运行时的改进，将来会不再需要这种方法。</p>
-<p>注意不要混淆并发和并行的概念：并发是用可独立执行的组件构造程序的方法， 而并行则是为了效率在多 CPU 上平行地进行计算。尽管 Go 的并发特性能够让某些问题更易构造成并行计算， 但 Go 仍然是种并发而非并行的语言，且 Go 的模型并不适合所有的并行问题。 关于其中区别的讨论，见 [[http://blog.golang.org/2013/01/concurrency-is-not-parallelism.html][此博文]]。 * 错误 库例程通常需要向调用者返回某种类型的错误提示。之前提到过，Go 语言的多值返回特性， 使得它在返回常规的值时，还能轻松地返回详细的错误描述。按照约定，错误的类型通常为 error，这是一个内建的简单接口。</p>
-<p>#+begin_src go type error interface { Error() string } #+end_src</p>
-<p>库的编写者通过更丰富的底层模型可以轻松实现这个接口，这样不仅能看见错误， 还能提供一些上下文。</p>]]></description>
-    <pubDate>Sun, 18 Jul 2021 16:55:02 +0800</pubDate>
+    <pubDate>Wed, 4 Aug 2021 00:17:06 +0800</pubDate>
     </item>
 </channel>
 </rss>
