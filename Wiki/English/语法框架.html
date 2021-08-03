@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-04 Wed 00:11 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>语法框架</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">语法框架</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf63ba2f">介绍</a></li>
+<li><a href="#org3507f06">句子的成分</a>
+<ul>
+<li><a href="#org59e1f5a">有哪些“动作”（动词）</a></li>
+<li><a href="#orgf978366">快速小结</a>
+<ul>
+<li><a href="#org4696a39">谓语动词</a></li>
+</ul>
+</li>
+<li><a href="#orgfbc2f32">句子成分</a></li>
+<li><a href="#org6a24889">简单句的组合</a>
+<ul>
+<li><a href="#org7073dbf">从句</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org9d136b7">词类</a></li>
+<li><a href="#org89de855">谓语动词的“三大本领”</a></li>
+<li><a href="#org68557bf">助动词</a>
+<ul>
+<li><a href="#org427bdf3">Eat</a></li>
+</ul>
+</li>
+<li><a href="#orgc030e9e">非谓语动词</a></li>
+<li><a href="#org76f1f18">总结</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf63ba2f" class="outline-2">
+<h2 id="orgf63ba2f">介绍</h2>
+<div class="outline-text-2" id="text-orgf63ba2f">
+<p>
+英语语法的目的：造句。
+</p>
+</div>
+</div>
+<div id="outline-container-org3507f06" class="outline-2">
+<h2 id="org3507f06">句子的成分</h2>
+<div class="outline-text-2" id="text-org3507f06">
+<blockquote>
+<p>
+<b>什么</b> <i>怎么样</i> = 主语 + 谓语
+</p>
+</blockquote>
+
+<p>
+“什么”和“怎么样”分别对应了两个最基本的“句子成分”——“主语”（subject）和“谓语”（predicate）。
+</p>
+
+<p>
+主语一般为人或物，不管抽象或者具体。谓语为“动作”或发生了什么事。广义上的“动作”是语法上的“动词”。
+</p>
+</div>
+<div id="outline-container-org59e1f5a" class="outline-3">
+<h3 id="org59e1f5a">有哪些“动作”（动词）</h3>
+<div class="outline-text-3" id="text-org59e1f5a">
+<p>
+5 种动词 -&gt; 5 种”基本句型“
+</p>
+<ol class="org-ol">
+<li><p>
+可以独立完成的动作： <b>不及物动词</b>
+</p>
+
+<p>
+<b>主语+（不及物）动词</b>
+</p>
+
+<p>
+Papa Rabbit <b>sleeps</b>.
+</p></li>
+<li><p>
+有 <b>一个</b> 动作的承受者： <b>单及物动词</b>
+</p>
+
+<p>
+<b>主语+（单及物）动词+宾语</b>
+</p>
+
+<p>
+Papa Rabbit <b>likes</b> <i><b>you</b></i>.
+</p></li>
+<li><p>
+有 <b>两个</b> 动作的承受者： <b>双及物动词</b>
+</p>
+
+<p>
+<b>主语+（双及物）动词+间接宾语+直接宾语</b>
+</p>
+
+<p>
+Papa Rabbit <b>teaches</b> <i><b>you</b></i> <i>English</i>.
+</p>
+
+<p>
+其中”you“为间接宾语，”English“为直接宾语
+</p></li>
+<li><p>
+只有一个动作承受者（不同于 2）： <b>复杂及物动词</b>
+</p>
+
+<p>
+<b>主语+（复杂及物）动词+宾语+（宾语）补语</b>
+</p>
+
+<p>
+Papa Rabbit <b>considers</b> <i><b>you</b></i> <i>smart</i>.
+</p>
+
+<p>
+其中”smart“为（宾语）补语
+</p></li>
+<li><p>
+把这个词后面的信息赋予给前者： <b>系动词</b>
+</p>
+
+<p>
+<b>主语+（系）动词+（主语）补语</b>
+</p>
+
+<p>
+主语补语也是表语
+</p>
+
+<p>
+Papa Rabbit <b>is</b> tall.  / Papa Rabbit <b>&lt;-</b> tall.  / Papa Rabbit <b>=</b> tall.
+</p>
+
+<p>
+Papa Rabbit <b>looks</b> tall. / Papa Rabbit <b>&lt;-</b> tall.
+</p>
+
+<p>
+把后者信息赋予前者
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgf978366" class="outline-3">
+<h3 id="orgf978366">快速小结</h3>
+<div class="outline-text-3" id="text-orgf978366">
+<p>
+英语中的所有句子，当拆到不能再拆后，都是在说： <b>什么</b> <i>怎么样</i> 。”什么“是语法中的主语，”怎么样“是谓语，谓语都有一个核心动词，叫做谓语动词。
+</p>
+</div>
+
+<div id="outline-container-org4696a39" class="outline-4">
+<h4 id="org4696a39">谓语动词</h4>
+<div class="outline-text-4" id="text-org4696a39">
+<ol class="org-ol">
+<li><p>
+无承受者
+</p>
+
+<p>
+主语 + <b>动词</b>
+</p></li>
+<li><p>
+一个承受者
+</p>
+
+<p>
+主语 + <b>动词</b> + <i><b>宾语</b></i>
+</p></li>
+<li><p>
+两个承受者
+</p>
+
+<p>
+主语 + <b>动词</b> +（间接） <i><b>宾语</b></i> + （直接） <i><b>宾语</b></i>
+</p></li>
+<li><p>
+一个承受者（不同于 2）
+</p>
+
+<p>
+主语 + <b>动词</b> + <i><b>宾语</b></i> + （宾语） <i>补语</i>
+</p></li>
+<li><p>
+赋予信息
+</p>
+
+<p>
+主语 + <b>动词</b> + （主语） <i>补语</i> （表语）
+</p></li>
+</ol>
+
+<p>
+谓语和谓语动词是有区别的，句子主语后面的余下句子部分都是谓语，谓语动词只是谓语的一部分。与谓语动词相对的，还有 <b>非</b> 谓语动词。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfbc2f32" class="outline-3">
+<h3 id="orgfbc2f32">句子成分</h3>
+<div class="outline-text-3" id="text-orgfbc2f32">
+<ol class="org-ol">
+<li>主语 Subject</li>
+<li>谓语动词（~谓语） Predicate Verb</li>
+<li>宾语 Object</li>
+<li>宾语补语 Object Complement</li>
+<li>主语补语（表语） Subject Complement</li>
+<li><p>
+定语 Attributive
+</p>
+
+<p>
+主要用来修饰主语或宾语
+</p>
+
+<p>
+<b>The little white</b> rabbit ate <b>a large</b> carrot.
+</p>
+
+<p>
+“The little white”是”rabbit”的定语，“a large”是“carrot”的定语
+</p></li>
+<li><p>
+状语 Adverbial
+</p>
+
+<p>
+主要用来修饰谓语动词
+</p>
+
+<p>
+The rabbit ate <b>quickly</b>.
+</p>
+
+<p>
+“quickly”就是“ate”的状语
+</p></li>
+<li><p>
+同位语 Appositive
+</p>
+
+<p>
+主要用来再把主语或宾语说一遍
+</p>
+
+<p>
+Papa Rabbit, <b>an English teacher</b>, eats a carrot.
+</p>
+
+<p>
+“an English teacher”其实就是把“Papa Rabbit”用不同方式再说一遍，在这里算是和主语同等地位
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org6a24889" class="outline-3">
+<h3 id="org6a24889">简单句的组合</h3>
+<div class="outline-text-3" id="text-org6a24889">
+<p>
+以上所说的都是简单句，简单句互相组合就形成了 Compound Sentence 复合句，还有 Complex Sentence 复杂局。复合句是简单句的并列组合，而复杂句是简单句的嵌套组合。
+</p>
+
+<p>
+一个句子嵌套另一个句子，在英语语法上分别叫做 <b>主句</b> 和 <b>从句</b> 。从句说白了就是把简单句修改一下来充当另一个句子的句子成分。
+</p>
+</div>
+
+<div id="outline-container-org7073dbf" class="outline-4">
+<h4 id="org7073dbf">从句</h4>
+<div class="outline-text-4" id="text-org7073dbf">
+<ul class="org-ul">
+<li>名词性从句
+<ul class="org-ul">
+<li>主语从句</li>
+<li>宾语从句</li>
+<li>表语（主语补语）从句</li>
+<li>同位语从句</li>
+</ul></li>
+<li>定语从句</li>
+<li>状语从句</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org9d136b7" class="outline-2">
+<h2 id="org9d136b7">词类</h2>
+<div class="outline-text-2" id="text-org9d136b7">
+<p>
+英语的十大词类。
+</p>
+
+<ol class="org-ol">
+<li><p>
+名词 Nouns
+</p>
+
+<p>
+表人和物
+</p>
+
+<p>
+<b>Papa Rabbit</b> is a <b>rabbit</b>.
+</p>
+
+<p>
+其中“Papa Rabbit”是专有名词，“rabbit”是普通名词
+</p></li>
+<li><p>
+冠词 Articles
+</p>
+
+<p>
+说明人和事物
+</p>
+
+<p>
+Papa Rabbit is <b>a</b> rabbit.
+</p></li>
+<li><p>
+代词 Pronouns
+</p>
+
+<p>
+代替人和物
+</p>
+
+<p>
+<b>I</b> am a rabbit.
+</p></li>
+<li><p>
+形容词 Adjectives
+</p>
+
+<p>
+形容人和物
+</p>
+
+<p>
+I am a <b>smart</b> rabbit.
+</p></li>
+<li><p>
+数词 Numerals
+</p>
+
+<p>
+表数量
+</p>
+
+<p>
+I ate <b>two</b> carrot.
+</p></li>
+<li><p>
+副词 Adverbs
+</p>
+
+<p>
+修饰动作或形容词等等
+</p>
+
+<p>
+I ate two carrots <b>quickly</b>.
+</p></li>
+<li><p>
+介词 Prepositions
+</p>
+
+<p>
+表示和其他词关系的词
+</p>
+
+<p>
+I ate two carrots <b>with</b> chopsticks.
+</p></li>
+<li><p>
+叹词 Interjections
+</p>
+
+<p>
+表感叹
+</p>
+
+<p>
+<b>Ah</b>, the carrots is tasty!
+</p></li>
+<li><p>
+连词 Conjunctions
+</p>
+
+<p>
+连接词和句子
+</p>
+
+<p>
+I ate two carrots <b>and</b> a potato, <b>because</b> I was hungry.
+</p></li>
+<li>动词 Verbs</li>
+</ol>
+
+<p>
+句子成分和句子中的词类是完全不同的概念。每一种句子成分，除了谓语动词是动词，其他都有可能包含不同的词类。
+</p>
+</div>
+</div>
+<div id="outline-container-org89de855" class="outline-2">
+<h2 id="org89de855">谓语动词的“三大本领”</h2>
+<div class="outline-text-2" id="text-org89de855">
+<ol class="org-ol">
+<li><p>
+表示动作的 <b>时间</b> ：现在，过去，将来，从过去某个时间点“算将来”（过去将来）
+</p>
+
+<p>
+比如动作可能在过去或将来
+</p></li>
+<li><p>
+表示动作的 <b>状态</b> ：未说明（一般），完成，进行，不但完成而且继续（完成进行）
+</p>
+
+<p>
+比如动作可能是已经完成的状态或者正在进行的状态
+</p></li>
+<li><p>
+表示动作的 <b>假设，情感等</b>
+</p>
+
+<p>
+表示动词的语气
+</p>
+
+<p>
+If I <b>were</b> a rabbit&#x2026; 虚拟语气
+</p>
+
+<p>
+I <b>ate</b> a carrot&#x2026; 陈述语气
+</p>
+
+<p>
+<b>Eat</b> this carrot and&#x2026; 祈使语气
+</p></li>
+</ol>
+
+<p>
+1 和 2 合在一起称为 <b>时态</b> 。时间和状态组合，一共有 16 种时态：
+</p>
+
+
+<div id="org26b3ac5" class="figure">
+<p><img src="../../pics/English/tense.png" alt="tense.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org68557bf" class="outline-2">
+<h2 id="org68557bf">助动词</h2>
+<div class="outline-text-2" id="text-org68557bf">
+<p>
+谓语动词本身往往是不能够独立完成之前说的那些本领，以及另外一些其他的本领，而且谓语动词独自也无法完成比如表示否定，可能性，必须性等意思。想要谓语动词充分发挥，我们必须用到另一类经常和动词一起用的词帮助完成任务， <b>助动词</b> 。
+</p>
+</div>
+
+<div id="outline-container-org427bdf3" class="outline-3">
+<h3 id="org427bdf3">Eat</h3>
+<div class="outline-text-3" id="text-org427bdf3">
+<p>
+为了协助它表示吃过了（完成态），就要用到助动词： <b>have</b>, eg, have eaten.
+</p>
+
+<p>
+为了协助它表示正在吃（进行态），就要用到助动词： <b>be</b>, eg, is eating.
+</p>
+
+<p>
+为了协助它表示是“被”吃，就要用到助动词： <b>be</b>, eg, is eaten.
+</p>
+
+<p>
+为了协助它表示有能力吃，就要用到助动词： <b>can</b>, eg, can eat.
+</p>
+
+<p>
+为了协助它表示有可能吃，就要用到助动词： <b>might</b>, eg, might eat.
+</p>
+
+<p>
+为了协助它表示有义务吃，就要用到助动词： <b>must</b>, eg, must eat.
+</p>
+
+<p>
+为了协助它表示否定，不吃，就要用到助动词： <b>do</b>, eg, do not eat.
+</p>
+
+<p>
+但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc030e9e" class="outline-2">
+<h2 id="orgc030e9e">非谓语动词</h2>
+<div class="outline-text-2" id="text-orgc030e9e">
+<p>
+动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <b>取代所有的从句</b> ，从而 <b>简化句子</b> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。
+</p>
+
+<p>
+它们是以不同的形式出现在句中，包括：
+</p>
+<ul class="org-ul">
+<li>动词不定式，e.g. to eat</li>
+<li>现在分词，e.g. eating</li>
+<li>动名词，e.g. eating</li>
+<li>过去分词，e.g. eaten</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org76f1f18" class="outline-2">
+<h2 id="org76f1f18">总结</h2>
+<div class="outline-text-2" id="text-org76f1f18">
+<p>
+英语语法的核心就是 <b>动词</b> 。动词能够串起几乎所有语法概念。
+</p>
+
+
+<div id="orgcca0679" class="figure">
+<p><img src="../../pics/English/verbs.png" alt="verbs.png">
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-04 Wed 00:11</p>
+</div>
+</body>
+</html>
