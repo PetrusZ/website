@@ -14,7 +14,7 @@
 <li>句子的成分 #+begin_quote <em>什么</em> /怎么样/ = 主语 + 谓语 #+end_quote</li>
 </ul>
 <p>“什么”和“怎么样”分别对应了两个最基本的“句子成分”——“主语”（subject）和“谓语”（predicate）。</p>
-<p>主语一般为人或物，不管抽象或者具体。谓语为“动作”或发生亄�什么事。广义上的“动作”是语法上的“动词”。 ** 有哪些“动作”（动词） 5 种动词 -&gt; 5 种”基本句型“ 1. 可以独立完成的动作： <em>不及物动词</em></p>
+<p>主语一般为人或物，不管抽象或者具体。谓语为“动作”或发生了什么事。广义上的“动作”是语法上的“动词”。 ** 有哪些“动作”（动词） 5 种动词 -&gt; 5 种”基本句型“ 1. 可以独立完成的动作： <em>不及物动词</em></p>
 <p><em>主语+（不及物）动词</em></p>
 <p>Papa Rabbit <em>sleeps</em>. 2. 有 <em>一个</em> 动作的承受者： <em>单及物动词</em></p>
 <p><em>主语+（单及物）动词+宾语</em></p>
@@ -24,12 +24,12 @@
 <p>其中”you“为间接宾语，”English“为直接宾语 4. 只有一个动作承受者（不同于 2）： <em>复杂及物动词</em></p>
 <p><em>主语+（复杂及物）动词+宾语+（宾语）补语</em></p>
 <p>Papa Rabbit <em>considers</em> /<em>you</em>/ /smart/.</p>
-<p>其中”smart“为（宾语）补语 5. 把这个词后面的信息资�予给前者： <em>系动词</em></p>
+<p>其中”smart“为（宾语）补语 5. 把这个词后面的信息赋予给前者： <em>系动词</em></p>
 <p><em>主语+（系）动词+（主语）补语</em></p>
 <p>主语补语也是表语</p>
 <p>Papa Rabbit <em>is</em> tall. / Papa Rabbit <em>&lt;-</em> tall. / Papa Rabbit <em>=</em> tall.</p>
 <p>Papa Rabbit <em>looks</em> tall. / Papa Rabbit <em>&lt;-</em> tall.</p>
-<p>把后者信息赋予前者 ** 快速小结 英语中的所有句子，当拆到不能再拆后，都是在说： <em>什么</em> /怎么样/ 。”什么“是语法中的主语，”怎么样“是谄�语，谓语都有一个核心动词，叫做谓语动词。</p>
+<p>把后者信息赋予前者 ** 快速小结 英语中的所有句子，当拆到不能再拆后，都是在说： <em>什么</em> /怎么样/ 。”什么“是语法中的主语，”怎么样“是谓语，谓语都有一个核心动词，叫做谓语动词。</p>
 <p>*** 谓语动词 1. 无承受者</p>
 <p>主语 + <em>动词</em> 2. 一个承受者</p>
 <p>主语 + <em>动词</em> + /<em>宾语</em>/ 3. 两个承受者</p>
@@ -79,7 +79,7 @@
 <p>I ate two carrots <em>and</em> a potato, <em>because</em> I was hungry.</p></li>
 <li><p>动词 Verbs</p></li>
 </ol>
-<p>句子成分和句子中的词类是完全不同的概念。每一种句子成分，除了谓语动词是动词，其他都有可能包含不同的词类。 * 谓语动词的“三大本领” 1. 表示动作的 <em>时间</em> ：现在，过去，将来，从过去某个时间点“算将来”（迄�去将来）</p>
+<p>句子成分和句子中的词类是完全不同的概念。每一种句子成分，除了谓语动词是动词，其他都有可能包含不同的词类。 * 谓语动词的“三大本领” 1. 表示动作的 <em>时间</em> ：现在，过去，将来，从过去某个时间点“算将来”（过去将来）</p>
 <p>比如动作可能在过去或将来 2. 表示动作的 <em>状态</em> ：未说明（一般），完成，进行，不但完成而且继续（完成进行）</p>
 <p>比如动作可能是已经完成的状态或者正在进行的状态 3. 表示动作的 <em>假设，情感等</em></p>
 <p>表示动词的语气</p>
@@ -98,7 +98,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Thu, 5 Aug 2021 15:51:12 +0800</pubDate>
+    <pubDate>Thu, 5 Aug 2021 15:52:30 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -115,7 +115,7 @@
 <li><p><em>完成</em> 状态</p>
 <p>这兔子 <em>吃掉了</em> 胡萝卜。</p>
 <p>胡萝卜已经在兔子肚子里， <em>吃完了，饱了</em> 。</p>
-<p>用图例 <sub>====</sub> 表示动作完成了。注意，完成态的重点圄�动作完成了，而并没有指出动作具体发生的时间。</p></li>
+<p>用图例 <sub>====</sub> 表示动作完成了。注意，完成态的重点在动作完成了，而并没有指出动作具体发生的时间。</p></li>
 <li><p><em>完成进行</em> 状态</p></li>
 </ul>
 <p>这兔子 <em>从早上就开始</em> 吃胡萝卜，现在 /<em>还没停</em>/ 呢。</p>
@@ -134,7 +134,7 @@
 <li><p>过去完成时态：这兔子昨天下午三点那个时候已经吃完了胡萝卜。</p></li>
 <li><p>过去完成进行时态：这兔子昨天下午三点那个时候已经吃完了一些胡萝卜，还要继续吃。</p></li>
 <li><p>过去一般时态：兔子过去吃了胡萝卜。</p></li>
-<li><p>将来进行时态：这兔子昨天下午三点那个时候会正在各�胡萝卜。</p></li>
+<li><p>将来进行时态：这兔子昨天下午三点那个时候会正在吃胡萝卜。</p></li>
 <li><p>将来完成时态：这兔子明天下午三点那个时候会已经吃完了胡萝卜。</p></li>
 <li><p>将来完成进行时态：这兔子明天下午三点那个时候已经吃完了一些胡萝卜，还要继续吃。</p></li>
 <li><p>将来一般时态：兔子将来吃胡萝卜。</p></li>
@@ -167,7 +167,7 @@
 <li><p>表达习惯/重复的动作</p>
 <p>I play baskball.</p></li>
 <li><p>表示预计发生的事</p>
-<p>The bus leaves at 8PM tonight. *** 现在进行时态 构成： <em>劄�动词 be 的变位 + 动词的现在分词</em> **** be</p></li>
+<p>The bus leaves at 8PM tonight. *** 现在进行时态 构成： <em>助动词 be 的变位 + 动词的现在分词</em> **** be</p></li>
 <li><p>（连）系动词</p>
 <p>I am smart rabbit -&gt; I = a smart rabbit.</p></li>
 <li><p>助动词，构成时态 #+begin_example I <em>am</em> You/we/they <em>are</em> She/he/it <em>is</em> #+end_example **** 现在分词 通常：+ ing</p></li>
@@ -191,7 +191,7 @@
 <p>如：looked, smelled, tasted…</p>
 <p>有些动词是“不规则变化”，如： #+begin_example eat -&gt; eaten; eat, give, see, fall -&gt; eaten, given, seen, fallen bring -&gt; brought; bring, buy, fight, think -&gt; brought, bought, fought, thought feel -&gt; felt; feel, keep, sleep, leave -&gt; felt, kept, slept, left #+end_example</p>
 <p>动词除了过去分词这种变位，还有一种变位叫过去式。过去分词 != 过去式。 **** 现在完成时态 I eat carrots.</p>
-<p>-&gt; I <em>have eaten</em> carrots. 我吃过胡萝卜。（言下之意：我曾吃过这种食物，是叄�见过市面的兔子。）</p>
+<p>-&gt; I <em>have eaten</em> carrots. 我吃过胡萝卜。（言下之意：我曾吃过这种食物，是只见过市面的兔子。）</p>
 <p>-&gt; I <em>have eaten</em> a carrot. 我吃过了一根胡萝卜。（言下之意：我已经吃了，所以不饿。）</p>
 <p>You/we/they <em>have eaten</em> a carrot.</p>
 <p>She/he/it <em>has eaten</em> a carrot.</p>
@@ -238,7 +238,7 @@
 <p>过去完成时态主要是为了表达，过去某一个点（A）的过去（B）对过去那个一点（A）的影响，比如：</p>
 <p>B —— A —— 现在</p>
 <p>I had eaten 5 carrots for <em>lunch yesterday</em>, so I wasn’t hungry at all <em>yesterday afternonn</em>.</p>
-<p>这里要表达的意思就是，对于 <em>昨天下午（时间点 A）</em> 来说，因为昨天下午的过去＄� <em>时间点 B，也就是中饭时间</em> ），我已经吃了一堆胡萝卜，所以 B 对 A 有影响——这个影响就是：我一点都不饿。</p>
+<p>这里要表达的意思就是，对于 <em>昨天下午（时间点 A）</em> 来说，因为昨天下午的过去（ <em>时间点 B，也就是中饭时间</em> ），我已经吃了一堆胡萝卜，所以 B 对 A 有影响——这个影响就是：我一点都不饿。</p>
 <p>He tried to find me <em>yesterday afternonn</em>, but I <em>had</em> already <em>gone</em> to Shanghai.</p>
 <p>对于他试图找我那个 <em>时间点 A（昨天下午）</em> 来说，A的过去 <em>某一点 B</em> （可能是昨天上午，或前天，没说明，但是肯定是昨天下午之前）我已经离开了，去上海了，所以 B 对 A 有影响——这个影响就是：他找不到我。</p>
 <p>The rabbit <em>has</em> eaten a carrot. -&gt; The rabbit <em>had</em> eaten a carrot. （这兔子在过去某个时间点已经吃了胡萝卜。）</p>
@@ -258,7 +258,7 @@
 <p>eat -&gt; will eat</p>
 <p>I/you/she/he/it/they <em>will eat</em> a carrot.</p>
 <p>描述：将来某个时间点发生的动作（说话者 <em>十分确定</em> 会发生的事）</p>
-<p>如果 <em>丄�太确定</em> ，就不能用一般将来时态。（要借助动词的“语气”。） *** 将来进行时态 将来进行时态其实就是现在进行时态往后推一个时间段。</p>
+<p>如果 <em>不太确定</em> ，就不能用一般将来时态。（要借助动词的“语气”。） *** 将来进行时态 将来进行时态其实就是现在进行时态往后推一个时间段。</p>
 <p><em>现在</em> 进行时态： <em>助动词 be 的变位</em> + 动词的现在分词</p>
 <p><em>将来</em> 进行时态： will + <em>助动词 be 的变位</em> + 动词的现在分词 -&gt; will + <em>be</em> + 动词的现在分词</p>
 <p>描述：在将来某个时间，某个动作是在 <em>进行的过程中</em> 。</p>
@@ -271,16 +271,16 @@
 <p>将来 —— B —— A</p>
 <p>I will have finished making the video by <em>4PM tomorrow</em>, so I can publish it <em>after that</em>.</p>
 <p>这里要表达的意思就是，对于 <em>明天下午 4 点钟</em> 那个时间点来说，我在那之前就会完成做视频的这个动作，所以对 4 点钟那时候是有影响的——什么影响呢， <em>4 点钟之后</em> 我就能够发视频啦。</p>
-<p>The rabbit <em>has</em> eaten a carrot. -&gt; The rabbit <em>will have</em> eaten a carrot. （这兔子在将杄�某个时间点已经吃了胡萝卜。）</p>
+<p>The rabbit <em>has</em> eaten a carrot. -&gt; The rabbit <em>will have</em> eaten a carrot. （这兔子在将来某个时间点已经吃了胡萝卜。）</p>
 <p>You <em>have</em> watched my video. -&gt; You <em>will have</em> watched my video. （你在将来某个时间点已经看过了我的视频。）</p>
 <p>I <em>have</em> thought of you. -&gt; I <em>will have</em> thought of you. （我在将来某个时间点已经想过你了。）</p>
-<p>这个时态甚至比刚才的将来进行时态更加笃定，说得都好像已经发生了似的，所以，如果想表达特别特别确定某事，就可以用这丄�将来完成时态。 *** 将来完成进行时态 将来完成进行时态其实就是现在完成进行时态往后推一个时间段。</p>
+<p>这个时态甚至比刚才的将来进行时态更加笃定，说得都好像已经发生了似的，所以，如果想表达特别特别确定某事，就可以用这个将来完成时态。 *** 将来完成进行时态 将来完成进行时态其实就是现在完成进行时态往后推一个时间段。</p>
 <p><em>现在</em> 完成进行时态： <em>助动词 have 的变位</em> + been + 动词的现在分词</p>
 <p><em>将来</em> 完成进行时态： <em>will + 助动词 have 的变位</em> + been + 动词的现在分词 -&gt; <em>will + have</em> + been + 动词的现在分词</p>
-<p>现在完成进行时态描述，对于现在这个时间点，不但已经完戄�了一部分而且还要继续进行的动作；那么将来完成进行时态，自然是描述，对于将来某个点，不但已经完成了一部分而且还要继续进行的动作，比如：</p>
+<p>现在完成进行时态描述，对于现在这个时间点，不但已经完成了一部分而且还要继续进行的动作；那么将来完成进行时态，自然是描述，对于将来某个点，不但已经完成了一部分而且还要继续进行的动作，比如：</p>
 <p>将来 —— B —— A</p>
 <p>I will have been eating carrots <em>for 2 hours</em> by <em>3PM tomorrow</em>.</p>
-<p>这里表达的意思就是：我确定 <em>明天下午三点钟</em> 时， 我不但 <em>已经吃了俩钟头胡萝卜</em> （也就是从昨天下午 1 点开始吃）而且还要组�续吃。</p>
+<p>这里表达的意思就是：我确定 <em>明天下午三点钟</em> 时， 我不但 <em>已经吃了俩钟头胡萝卜</em> （也就是从昨天下午 1 点开始吃）而且还要继续吃。</p>
 <p>You <em>have been</em> watching my video -&gt; You <em>will have been</em> watching my video. （你在将来某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间。）</p>
 <p>I <em>have been</em> thinking of you. -&gt; I <em>will have been</em> thinking of you. （我在将来某个时间点之前已经想你一段时间了，还要在那个时间点之后继续想你一段时间。） ** 过去将来 过去将来时态常出现于从句。</p>
 <p>过去将来的四种时态，只不过事把讲来时间的四种时态，往前推一个时间段（推到现在的过去）而已。 *** 一般过去将来时态 一般 <em>将来</em> 时态： <em>will</em> + 动词原型</p>
@@ -296,12 +296,12 @@
 <p><em>Would</em> you pass me the carrot, please? 能请你把胡萝卜递过来吗？（比 Willl you pass me the carrot? 更礼貌。）</p>
 <p><em>Would</em> you like a carrot for lunch? 你是否中饭想吃胡萝卜？（比 Do you want a carrot for lunch? 更礼貌。） *** 过去将来进行时态 <em>将来</em> 进行时态： <em>will</em> + be + 动词的现在分词</p>
 <p><em>过去将来</em> 进行时态： <em>would</em> + be + 动词的现在分词</p>
-<p>I <em>said</em> I <em>would be eating</em> a carrot at 1PM tomorrow/yesterday. 我（之前）说我明天下午 1 点会在吃胡萝卜。（我 <em>之前说</em> 我明天/昨天下午 1 点 <em>会</em> 是 <em>在吃</em> 胡萝卜这个过程中。） *** 过去将来完成时态 <em>将来</em> 完成时态： <em>will</em> + have + 动词的宄�成分词</p>
+<p>I <em>said</em> I <em>would be eating</em> a carrot at 1PM tomorrow/yesterday. 我（之前）说我明天下午 1 点会在吃胡萝卜。（我 <em>之前说</em> 我明天/昨天下午 1 点 <em>会</em> 是 <em>在吃</em> 胡萝卜这个过程中。） *** 过去将来完成时态 <em>将来</em> 完成时态： <em>will</em> + have + 动词的完成分词</p>
 <p><em>过去将来</em> 完成时态： <em>would</em> + have + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Thu, 5 Aug 2021 15:51:12 +0800</pubDate>
+    <pubDate>Thu, 5 Aug 2021 15:52:30 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -325,7 +325,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Thu, 5 Aug 2021 15:51:12 +0800</pubDate>
+    <pubDate>Thu, 5 Aug 2021 15:52:30 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -334,12 +334,12 @@
 <ul>
 <li>介绍 双显卡笔记本中直通独显（dGPU）到 win10 虚拟机。</li>
 </ul>
-<p>环境： - 联想 Legion R7000P 2020 笔记本 - RTX2060 笔记本显卡 - libvirt+qemu - Host: Gentoo Linux - Guest: Windows 10 LTSC 2019 * MUXed MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该就是 MUXed 的。关于什么是 MUXed 的，可以看丄�图的解释。</p>
+<p>环境： - 联想 Legion R7000P 2020 笔记本 - RTX2060 笔记本显卡 - libvirt+qemu - Host: Gentoo Linux - Guest: Windows 10 LTSC 2019 * MUXed MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该就是 MUXed 的。关于什么是 MUXed 的，可以看下图的解释。</p>
 <p>[[file:../pics/Blog/muxed.jpg]]</p>
 <p>关于如何检测笔记本是否是 MUXed 的，目前没有什么好的办法。有一种说法是运行 lspci，查找有关 Intel HD Graphics/AMD GPU 和 NVIDIA 的设备：</p>
 <ul>
 <li>如果独显设备名以 3D Controller 开头，那你的电脑就是第二种 MUXless（核显直连显示器）。</li>
-<li>如果独显设备名以 VGA Controller 开头，并且有一个 HD Graphics/AMD GPU 核显，那你的电脑是第三种 MUXed（栄�显、独显切换）。</li>
+<li>如果独显设备名以 VGA Controller 开头，并且有一个 HD Graphics/AMD GPU 核显，那你的电脑是第三种 MUXed（核显、独显切换）。</li>
 <li>启用 IOMMU 和 vfio 模块 ** IOMMU</li>
 <li>intel CPU：添加内核参数 =intel_iommu=on iommu=pt= ，BIOS 开启 VT-d</li>
 <li>amd CPU：添加内核参数 =iommu=pt= ，BIOS 开启 AMD-Vi ** vfio 添加模块 =vfio_pci vfio vfio_iommu_type1 vfio_virqfd= 到 initramfs 中。如果是像我一样使用 dracut 生成 initramfs，则在 =/etc/dracut.conf= 中添加配置 ~add_drivers+=" vfio_pci vfio vfio_iommu_type1 vfio_virqfd "~ ，之后重新生成 initramfs。</li>
@@ -357,7 +357,7 @@
 <p>#+begin_src sh # run as root echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/xhci_hcd/unbind echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/vfio-pci/bind #+end_src * 创建虚拟机 首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备，并且之后使用 RDP 连接虚拟机。</p>
 <p>首先下载[[https://msdn.itellyou.cn/][windows 10 LTSC 2019]]和 [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio windows驱动]]镜像。</p>
 <p>创建虚拟机： - =Overview= ：Firmware 选择 UEFI x86_64:/usr/share/edk2-ovmf/OVMF_CODE.fd - =CPUs= ：选择 Topology，Manually set CPU topology，Sockets 设为 1，Cores 按需要来，我设为 4，Threads 设置为 2。这样一共就分配了 4 核 8 线程的 CPU - =Memory= ：内存我设置为 32G - =SATA Disk= ：Disk Bus 选择 Virtio，可以最小化磁盘性能损耗 - =NIC= ：Device model 也选择 virtio - 之后再添加一个 =Stroage= ，选择 Select custom storage 并选中之前下载的 virtio windows 驱动镜像，然后 Device type 选择 CDROM device - 最后在 =Boot Options= 中选中需要启动的设备</p>
-<p>开始安裄�，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模杄�= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将朠�大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
+<p>开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
 <p>#+begin_src ➜ lspci -nnk | egrep -A3 “VGA|3D” 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) Subsystem: Lenovo TU106M [GeForce RTX 2060 Mobile] [17aa:3a43] Kernel driver in use: vfio-pci Kernel modules: nouveau – 06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c6) Subsystem: Lenovo Renoir [17aa:3a47] Kernel driver in use: amdgpu Kernel modules: amdgpu</p>
 <p>#+end_src</p>
 <p>其中 NVIDIA 独显的 Vendor ID 为 10de，Device ID 为 1f15。再用命令 ~grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent~ 查看 Sub Vendor ID 和 Sub Device ID。</p>
@@ -366,18 +366,18 @@
 <p>#+begin_src xml <domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm"> … <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>
 <p>注意 XML 的第一行一定要添加 <sub>xmlns:qemu=“http://libvirt.org/schemas/domain/qemu/1.0”</sub> ，否则后面的配置无法成功添加。</p>
 <p>在 libvirt 中添加硬件，选择 PCI Host Device，然后将 =0000:01:00.0 NVIDIA Corporation GeForce RTX 2060 Mobile= 和 =0000:01:00.1 NVIDIA Corporation High Definition Audio Controller= 等都添加进去。</p>
-<p>最后再在 libvirt 中删除虚拟机的 =Display Spice= 和 =Video QXL= ，在 =CPUs= 中取消 Copy host CPU configuration 并将 Model 选择为 host passthrough。如果你需要直通鼠标和键盘，也可以在这个时候添加。 * 创建网桥 有线网卡的网桥创建起来较为简单，这里就不详细介绍了，有需要的可以查看戄�上一篇[[file:软路由虚拟机.org][软路由虚拟机]]的 BLOG。因为是笔记本，所仠�这里主要介绍无线网卡的桥接方法。</p>
+<p>最后再在 libvirt 中删除虚拟机的 =Display Spice= 和 =Video QXL= ，在 =CPUs= 中取消 Copy host CPU configuration 并将 Model 选择为 host passthrough。如果你需要直通鼠标和键盘，也可以在这个时候添加。 * 创建网桥 有线网卡的网桥创建起来较为简单，这里就不详细介绍了，有需要的可以查看我上一篇[[file:软路由虚拟机.org][软路由虚拟机]]的 BLOG。因为是笔记本，所以这里主要介绍无线网卡的桥接方法。</p>
 <p>先开启 proxy_arp 和 ip_forward，修改配置文件 =/etc/sysctl.conf= ，添加下述配置：</p>
 <p>#+begin_src conf net.ipv4.ip_forward = 1 net.ipv4.conf.all.proxy_arp = 1 #+end_src</p>
 <p>再点击 libvirt 菜单栏上的 =Edit= -&gt; =Connection Details= ，假设 host 的 ip 为 192.168.3.12，无线网卡为 wlp4s0，新建一个 Network， =Name= 设置为 proxyArp， =Mode= 选择 Routed， =Forward to= 选择 Physical device， =Device= 设置为 wlp4s0， IPv4 的 =Network= 设置为 192.168.3.100/28，完成创建。</p>
 <p>然后修改 win10 虚拟机的 =NIC= 配置，将 =Network source= 改为 Virtual network ‘proxyArp’: Route to wlp4s0，最后重新启动虚拟机与物理机。 * 远程连接 重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的分辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。</p>
 <p>远程连接方式一共有三种，分别可以适用于不同的情况。 ** RDP 简单使用方法： - 确保使用 FreeRDP 2.0 - 获取 windows 虚拟机 IP，比如 192.168.3.108 - xfreerdp /v:192.168.3.108:3389 /w:1600 /h:900 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag</p>
-<p>对于使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 造�过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
+<p>对于使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
 <p>*** 安装 client 首先在 host 系统上安装 looking glass client，在 gentoo 上可以通过如下步骤直接安装我打包的 looking glass。</p>
 <p>#+begin_src sh sudo eselect repository enable gig sudo emerge –sync gig sudo emerge -avt looking-glass #+end_src *** 计算内存大小 通过以下公式，根据你期望的最大分辨率来计算内存大小。</p>
 <p>#+begin_src width x height x 4 x 2 = total bytes</p>
 <p>total bytes / 1024 / 1024 = total megabytes + 10 #+end_src</p>
-<p>比如，我想要最处�使用 4K 分辨率（3840x2160）：</p>
+<p>比如，我想要最大使用 4K 分辨率（3840x2160）：</p>
 <p>#+begin_src 3840 x 2160 x 4 x 2 = 66355200 bytes</p>
 <p>66355200 / 1024 / 1024 = 63.28 MB + 10 = 73.28 #+end_src</p>
 <p>最后要注意内存的大小要上向取整到最接近的 2 的幂，在上面的例子中则应为 128。 *** 配置 libvirt #+begin_src xml … <devices> … <shmem name='looking-glass'> <model type='ivshmem-plain'/> <size unit='M'>128</size> </shmem> </devices> … #+end_src</p>
@@ -386,7 +386,7 @@
 <p>#+begin_src conf #Type Path Mode UID GID Age Argument f /dev/shm/looking-glass 0660 user kvm - #+end_src</p>
 <p>将其中的 user，改为你自己的用户名。最后使用命令 =systemd-tmpfiles –create /etc/tmpfiles.d/10-looking-glass.conf= 创建共享内存文件，无需等待下次重启。 *** 安装 host 首先需要在 windows 中安装 IVSHMEM 驱动，windows 不会自己安装 IVSHMEM 设备，相反它只会为该设备安装一个假驱动。先下载需要安装的驱动程序，https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/ ，注意必须下载 0.1.161 或更高的版本，最后将其解压。</p>
 <p>安装 IVSHMEM 驱动需要打开 =设备管理器= ，然后在 =系统设备= 下，找到 =PCI标准内存控制器= ，然后选择 =更新驱动程序= ，再选择手动更新，选择我们之前下载并解压好的驱动目录，然后安装驱动即可。</p>
-<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 斠�件查看其是否正常启动，log 在开始菜单里就有。</p>
+<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件查看其是否正常启动，log 在开始菜单里就有。</p>
 <p>最后再安装一下 spice guest tools， https://www.spice-space.org/download.html#windows-binaries ，以更好的支持鼠标与剪贴板共享。 *** 配置 client 我使用的配置如下，将配置文件放在 =~/.looking-glass-client.ini= 或 =/etc/looking-glass-client.ini= ：</p>
 <p>#+begin_src ini [app] renderer=egl shmFile=/dev/shm/looking-glass</p>
 <p>[win] borderless=yes fullScreen=yes size=1920x1080</p>
@@ -398,7 +398,7 @@
 <p>#+begin_src xml … <devices> … <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> </shmem> </devices> … #+end_src</p>
 <p>然后再如 looking glass 一样，添加配置文件 =/etc/tmpfiles.d/11-scream-ivshmem.conf= ，并运行命令 =systemd-tmpfiles –create /etc/tmpfiles.d/11-scream-ivshmem.conf= 。</p>
 <p>#+begin_src conf f /dev/shm/scream-ivshmem 0660 user kvm - #+end_src</p>
-<p>如果没有安裄� IVSHMEM 驱动，则需要安装一下，跟上面一样。然后下载 scream 的 windows 驱动，地址： https://github.com/duncanthrax/scream/releases ，解压并进行安装。</p>
+<p>如果没有安装 IVSHMEM 驱动，则需要安装一下，跟上面一样。然后下载 scream 的 windows 驱动，地址： https://github.com/duncanthrax/scream/releases ，解压并进行安装。</p>
 <p>再以管理员权限在 CMD 中运行 =REG ADD HKLM/v UseIVSHMEM /t REG_DWORD /d 2= 。</p>
 <p>在 Linux 物理机中安装 scream，然后创建配置文件 =~/.config/systemd/user/scream-ivshmem-pulse.service= ：</p>
 <p>#+begin_src [Unit] Description=Scream IVSHMEM pulse receiver After=pulseaudio.service Wants=pulseaudio.service</p>
@@ -416,7 +416,7 @@
 <li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的时候，画面延迟近 10 秒</li>
 </ul>
 <p>由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。</p>
-<p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600＠�looking glass 的性能有待进一步测试。 * 参考链接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
+<p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。 * 参考链接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
 #+begin_src xml <domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'> <name>win10</name> <uuid>d5da831a-c1eb-4668-a864-0731557d80a0</uuid> <metadata> <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0"> <libosinfo:os id="http://microsoft.com/win/10"/> </libosinfo:libosinfo> </metadata> <memory unit='KiB'>33554432</memory> <currentMemory unit='KiB'>33554432</currentMemory> <vcpu placement='static'>8</vcpu> <resource> <partition>/machine</partition> </resource> <os> <type arch='x86_64' machine='pc-q35-6.0'>hvm</type> <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/OVMF_CODE.fd</loader> <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram> <bootmenu enable='no'/> </os> <features> <acpi/> <apic/> <hyperv> <relaxed state='on'/> <vapic state='on'/> <spinlocks state='on' retries='8191'/> </hyperv> <vmport state='off'/> </features> <cpu mode='host-passthrough' check='partial' migratable='on'> <topology sockets='1' dies='1' cores='4' threads='2'/> </cpu> <clock offset='localtime'> <timer name='rtc' tickpolicy='catchup'/> <timer name='pit' tickpolicy='delay'/> <timer name='hpet' present='no'/> <timer name='hypervclock' present='yes'/> </clock> <on_poweroff>destroy</on_poweroff> <on_reboot>restart</on_reboot> <on_crash>destroy</on_crash> <pm> <suspend-to-mem enabled='no'/> <suspend-to-disk enabled='no'/> </pm> <devices> <emulator>/usr/bin/qemu-system-x86_64</emulator> <disk type='file' device='disk'> <driver name='qemu' type='qcow2'/> <source file='/var/lib/libvirt/images/win10.qcow2' index='3'/> <backingStore/> <target dev='vda' bus='virtio'/> <boot order='1'/> <alias name='virtio-disk0'/>
 <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
 </disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso' index='2'/> <backingStore/> <target dev='sdb' bus='sata'/> <readonly/> <boot order='2'/> <alias name='sata0-0-1'/>
@@ -490,22 +490,22 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Thu, 5 Aug 2021 15:51:12 +0800</pubDate>
+    <pubDate>Thu, 5 Aug 2021 15:52:30 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[软路由虚拟机]]></title>
     <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</guid>
     <description><![CDATA[<p>#+TITLE: 软路由虚拟机 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li><p>准备环境 摸着石头过河，折腾了几天，终亠�装好了心心念念的虚拟机软路由。</p></li>
+<li><p>准备环境 摸着石头过河，折腾了几天，终于装好了心心念念的虚拟机软路由。</p></li>
 <li><p>硬件环境：3400G + deskmini A300（自带一个网口） + M2 转网口，物理机双网口</p></li>
 <li><p>物理机系统： Gentoo Linux</p></li>
 <li><p>网络拓扑，见下图。除了 host 以外的本地设备都是通过设置为 AP 模式的硬路由连接网络。</p></li>
 </ul>
-<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 顠�目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
-<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可宠�成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
+<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 项目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
+<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
 <p>#+begin_src sh # 创建网桥 nmcli connection add type bridge ifname br0 stp no # 将eth1添加倒网桥中 nmcli connection add type bridge-slave ifname eth1 master br0 # 关闭现有的连接（可以使用nmcli connection show –active命令查看） nmcli connection down <Connection> # 开启新创建的网桥 nmcli connection up bridge-br0 #+end_src</p>
-<p>注意以上操作会关闭正在使甠�的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
+<p>注意以上操作会关闭正在使用的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
 <p>这时如果 eth1 是连接在带 DHCP 的硬路由中，那么会自动为网桥 br0 分配 IP，同时 eth1 上的 ip 地址会消失，可以直接通过网桥 br0 的 ip 访问 eth1 网口。 * 创建虚拟机 使用 libvirt + qemu(kvm)创建虚拟机：</p>
 <ul>
 <li>CPU 2 核心</li>
@@ -517,7 +517,7 @@
 <p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
 <p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
 <p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Thu, 5 Aug 2021 15:51:12 +0800</pubDate>
+    <pubDate>Thu, 5 Aug 2021 15:52:30 +0800</pubDate>
     </item>
 </channel>
 </rss>
