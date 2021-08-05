@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-05 Thu 15:23 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>16种时态详解</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">16种时态详解</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org80e0f93">动词时间</a></li>
+<li><a href="#orge5eb993">动词状态</a></li>
+<li><a href="#orgb834068">时间+状态</a></li>
+<li><a href="#org776cd0e">时态的四大难点</a></li>
+<li><a href="#org48d8e8d">每种时态的构成</a>
+<ul>
+<li><a href="#org1997b9c">现在</a>
+<ul>
+<li><a href="#orgd7ffe21">一般现在时态</a></li>
+<li><a href="#orgd22871a">现在进行时态</a>
+<ul>
+<li><a href="#orga42c376">be</a></li>
+<li><a href="#org4288cbd">现在分词</a></li>
+<li><a href="#orgbd83831">现在进行时态</a></li>
+</ul>
+</li>
+<li><a href="#org5e612b9">现在完成时态</a>
+<ul>
+<li><a href="#org495ee3c">have</a></li>
+<li><a href="#org907616b">过去分词</a></li>
+<li><a href="#org2962671">现在完成时态</a></li>
+</ul>
+</li>
+<li><a href="#orgd21ae27">现在完成进行时态</a></li>
+</ul>
+</li>
+<li><a href="#org7f192e4">过去</a>
+<ul>
+<li><a href="#orgc583335">一般过去时态</a>
+<ul>
+<li><a href="#org0f80a27">过去式</a></li>
+<li><a href="#org2267128">一般过去时态</a></li>
+</ul>
+</li>
+<li><a href="#org4218ec0">过去进行时态</a></li>
+<li><a href="#orgafc1d83">现在完成时态 vs. 一般过去时态 vs. 过去进行时态</a>
+<ul>
+<li><a href="#orgbe5f624">现在完成时态 vs. 一般过去时态</a></li>
+<li><a href="#org65eb788">一般过去时态 vs. 过去进行时态</a></li>
+</ul>
+</li>
+<li><a href="#orgbba7f63">过去完成时态</a></li>
+<li><a href="#org9e55ac5">过去完成进行时态</a></li>
+</ul>
+</li>
+<li><a href="#org06bfea7">将来</a>
+<ul>
+<li><a href="#orgdc8c22f">英语“表达”将来时态</a></li>
+<li><a href="#orga8cf880">一般将来时态</a></li>
+<li><a href="#org447922e">将来进行时态</a></li>
+<li><a href="#orgdfae1af">将来完成时态</a></li>
+<li><a href="#orgd015365">将来完成进行时态</a></li>
+</ul>
+</li>
+<li><a href="#orgb766cb2">过去将来</a>
+<ul>
+<li><a href="#orgf34a00d">一般过去将来时态</a></li>
+<li><a href="#orga25ed92">Would 的多义</a></li>
+<li><a href="#orge111142">过去将来进行时态</a></li>
+<li><a href="#org2090d1a">过去将来完成时态</a></li>
+<li><a href="#org592485a">过去将来完成进行时态</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org27f8bfe">“不规则”动词的“规律”</a></li>
+<li><a href="#org209580d">参考视频</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org80e0f93" class="outline-2">
+<h2 id="org80e0f93">动词时间</h2>
+<div class="outline-text-2" id="text-org80e0f93">
+<p>
+过去、现在、将来、过去将来。其中“过去将来”和“现在”，没有必然关系。在下图中，我们默认过去的将来在现在的过去，但并不一定是这样，也有可能过去的将来在现在的将来。其实，过去将来时间在现实中也不常见，一般只出现在从句中。
+</p>
+
+
+<div id="org99074a4" class="figure">
+<p><img src="../../pics/English/verbs_time.png" alt="verbs_time.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge5eb993" class="outline-2">
+<h2 id="orge5eb993">动词状态</h2>
+<div class="outline-text-2" id="text-orge5eb993">
+<ul class="org-ul">
+<li><p>
+<b>进行</b> 状态
+</p>
+
+<p>
+这兔子 <b>正在吃</b> 着胡萝卜。
+</p>
+
+<p>
+兔子这个吃胡萝卜的动作（过程） <b>正在进行</b> 中。
+</p>
+
+<p>
+用图例 <code>——&gt;</code> 表示一个正在进行的过程。
+</p></li>
+
+<li><p>
+<b>完成</b> 状态
+</p>
+
+<p>
+这兔子 <b>吃掉了</b> 胡萝卜。
+</p>
+
+<p>
+胡萝卜已经在兔子肚子里， <b>吃完了，饱了</b> 。
+</p>
+
+<p>
+用图例 <code>====</code> 表示动作完成了。注意，完成态的重点在动作完成了，而并没有指出动作具体发生的时间。
+</p></li>
+
+<li><p>
+<b>完成进行</b> 状态
+</p>
+
+<p>
+这兔子 <b>从早上就开始</b> 吃胡萝卜，现在 <i><b>还没停</b></i> 呢。
+</p>
+
+<p>
+不但有好多胡萝卜 <b>进了兔子肚子</b> ，这 <i><b>还没完</b></i> 呢，这兔子还有一堆胡萝卜没吃呢。
+</p>
+
+<p>
+用图例 <code>==——&gt;</code> 表示动作的一部分完成了，但剩下的还在进行中。
+</p></li>
+
+<li><p>
+默认的，简单的， <b>一般</b> 的状态
+</p>
+
+<p>
+”没有状态信息“，这样的状态就是所谓“一般状态”。
+</p>
+
+<p>
+用图例 <code>•</code> 表示“一般，没有具体说明”。
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb834068" class="outline-2">
+<h2 id="orgb834068">时间+状态</h2>
+<div class="outline-text-2" id="text-orgb834068">
+<ul class="org-ul">
+<li>现在进行时态：这兔子现在正在吃胡萝卜。</li>
+<li>现在完成时态：这兔子现在已经吃完了胡萝卜。</li>
+<li>现在完成进行时态：这兔子现在已经吃完了一些胡萝卜，还要继续吃。</li>
+<li>现在一般时态：这兔子吃胡萝卜。</li>
+
+<li>过去进行时态：这兔子昨天下午三点那个时候正在吃胡萝卜。</li>
+<li>过去完成时态：这兔子昨天下午三点那个时候已经吃完了胡萝卜。</li>
+<li>过去完成进行时态：这兔子昨天下午三点那个时候已经吃完了一些胡萝卜，还要继续吃。</li>
+<li>过去一般时态：兔子过去吃了胡萝卜。</li>
+
+<li>将来进行时态：这兔子昨天下午三点那个时候会正在吃胡萝卜。</li>
+<li>将来完成时态：这兔子明天下午三点那个时候会已经吃完了胡萝卜。</li>
+<li>将来完成进行时态：这兔子明天下午三点那个时候已经吃完了一些胡萝卜，还要继续吃。</li>
+<li>将来一般时态：兔子将来吃胡萝卜。</li>
+</ul>
+
+<p>
+张三上个月被一直兔子咬了，还进了医院。上个月张三出院的时候，说我要报仇，要咬那只兔子一口。
+</p>
+
+<ul class="org-ul">
+<li>过去将来进行时态：如果张三在上个月说，“下个月的某一天，你一定会看见我，正在咬那只兔子。”</li>
+<li>过去将来完成时态：如果张三在上个月说，“下个月的某一天，你一定会发现我已经咬了那只兔子。”</li>
+<li>过去将来完成进行时态：如果张三在上个月说，“下个月的某一天，你一定会发现我不但咬了那只兔子，还会一直咬下去。”</li>
+<li>过去将来一般时态：如果张三在上个月说，“等着瞧，我一定咬那只兔子。”</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org776cd0e" class="outline-2">
+<h2 id="org776cd0e">时态的四大难点</h2>
+<div class="outline-text-2" id="text-org776cd0e">
+<ul class="org-ul">
+<li>难点 1：时&amp;态未分清</li>
+<li><p>
+难点 2：动词变位
+</p>
+
+<p>
+eat -&gt; ate 时态变位， eat -&gt; eats 人称变位
+</p></li>
+<li><p>
+难点 3：助动词
+</p>
+
+<p>
+以下都是进行状态，助动词 be。但是因为动词变位，be 变成了 was been。
+</p>
+
+<p>
+The rabbit <b>was</b> eating a carrot.
+The rabbit has <b>been</b> eating a carrot.
+The rabbit will <b>be</b> eating a carrot.
+</p></li>
+<li>难点 4：与其他语法概念混合
+<ul class="org-ul">
+<li>现在完成：The rabbit <b>has eaten</b> a carrot.</li>
+<li>+情态：The rabbit <b>may have eaten</b> a carrot.</li>
+<li>改时间+否定：The rabbit <b>could not have eaten</b> a carrot.</li>
+<li>改为被动：The carrot <b>could not have been eaten</b> by the rabbit.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org48d8e8d" class="outline-2">
+<h2 id="org48d8e8d">每种时态的构成</h2>
+<div class="outline-text-2" id="text-org48d8e8d">
+</div>
+<div id="outline-container-org1997b9c" class="outline-3">
+<h3 id="org1997b9c">现在</h3>
+<div class="outline-text-3" id="text-org1997b9c">
+</div>
+<div id="outline-container-orgd7ffe21" class="outline-4">
+<h4 id="orgd7ffe21">一般现在时态</h4>
+<div class="outline-text-4" id="text-orgd7ffe21">
+<p>
+构成： <b>+ 动词原型 / +动词原型 + s（第三人称单数）</b>
+</p>
+
+<pre class="example" id="org39a433f">
+I *eat* carrots.
+You *eat* carrots.
+We *eat* carrots.
+She *eats* carrots.
+The rabbit *eats* carrots.
+</pre>
+
+<ol class="org-ol">
+<li><p>
+表达事实
+</p>
+<pre class="example" id="org761486b">
+   I eat carrots.
+   The rabbit eats carrots.
+   The sun rises in the east.
+</pre></li>
+<li><p>
+表达习惯/重复的动作
+</p>
+
+<p>
+I play baskball.
+</p></li>
+<li><p>
+表示预计发生的事
+</p>
+
+<p>
+The bus leaves at 8PM tonight.
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd22871a" class="outline-4">
+<h4 id="orgd22871a">现在进行时态</h4>
+<div class="outline-text-4" id="text-orgd22871a">
+<p>
+构成： <b>助动词 be 的变位 + 动词的现在分词</b>
+</p>
+</div>
+<div id="outline-container-orga42c376" class="outline-5">
+<h5 id="orga42c376">be</h5>
+<div class="outline-text-5" id="text-orga42c376">
+<ol class="org-ol">
+<li><p>
+（连）系动词
+</p>
+
+<p>
+I am smart rabbit -&gt; I = a smart rabbit.
+</p></li>
+
+<li><p>
+助动词，构成时态
+</p>
+<pre class="example" id="org6d5b548">
+   I *am*
+   You/we/they *are*
+   She/he/it *is*
+</pre></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4288cbd" class="outline-5">
+<h5 id="org4288cbd">现在分词</h5>
+<div class="outline-text-5" id="text-org4288cbd">
+<p>
+通常：+ ing
+</p>
+
+<p>
+如：looking, smelling, tasting&#x2026;
+</p>
+
+<p>
+有些动词在此基础上改变拼写，如：
+</p>
+<pre class="example" id="org9770671">
+write -&gt; writing，不是writeing
+hit -&gt; hitting，不是hiting
+die -&gt; dying，不是dieing
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgbd83831" class="outline-5">
+<h5 id="orgbd83831">现在进行时态</h5>
+<div class="outline-text-5" id="text-orgbd83831">
+<p>
+I eat carrots.
+</p>
+
+<p>
+-&gt; I <b>am eating</b> carrots. 我正在吃（一些）胡萝卜。
+</p>
+
+<p>
+-&gt; I <b>am eating</b> a carrot. 我正在吃一根胡萝卜。
+</p>
+
+<p>
+You/we/they <b>are eating</b> a carrot.
+</p>
+
+<p>
+She/he/it <b>is eating</b> a carrot.
+</p>
+
+<p>
+The rabbit <b>is eating</b> a carrot. （这兔子现在正在吃胡萝卜的过程中。）
+</p>
+
+<p>
+You <b>are watching</b> my video. （你现在处在看我的视频的过程中。）
+</p>
+
+<p>
+I <b>am thinking</b> of you. （我现在处在想你的过程中。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5e612b9" class="outline-4">
+<h4 id="org5e612b9">现在完成时态</h4>
+<div class="outline-text-4" id="text-org5e612b9">
+<p>
+构成： <b>助动词 have 的变位 + 动词的过去分词</b>
+</p>
+</div>
+<div id="outline-container-org495ee3c" class="outline-5">
+<h5 id="org495ee3c">have</h5>
+<div class="outline-text-5" id="text-org495ee3c">
+<ol class="org-ol">
+<li><p>
+实义动词
+</p>
+
+<p>
+I have some coins.
+</p></li>
+
+<li><p>
+助动词，构成时态
+</p>
+
+<p>
+I/you/we/they <b>have</b>
+</p>
+
+<p>
+She/he/it <b>has</b>
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org907616b" class="outline-5">
+<h5 id="org907616b">过去分词</h5>
+<div class="outline-text-5" id="text-org907616b">
+<p>
+通常：+ ed
+</p>
+
+<p>
+如：looked, smelled, tasted&#x2026;
+</p>
+
+<p>
+有些动词是“不规则变化”，如：
+</p>
+<pre class="example" id="orgd1a46f4">
+eat -&gt; eaten; eat, give, see, fall -&gt; eaten, given, seen, fallen
+bring -&gt; brought; bring, buy, fight, think -&gt; brought, bought, fought, thought
+feel -&gt; felt; feel, keep, sleep, leave -&gt; felt, kept, slept, left
+</pre>
+
+<p>
+动词除了过去分词这种变位，还有一种变位叫过去式。过去分词 != 过去式。
+</p>
+</div>
+</div>
+<div id="outline-container-org2962671" class="outline-5">
+<h5 id="org2962671">现在完成时态</h5>
+<div class="outline-text-5" id="text-org2962671">
+<p>
+I eat carrots.
+</p>
+
+<p>
+-&gt; I <b>have eaten</b> carrots. 我吃过胡萝卜。（言下之意：我曾吃过这种食物，是只见过市面的兔子。）
+</p>
+
+<p>
+-&gt; I <b>have eaten</b> a carrot. 我吃过了一根胡萝卜。（言下之意：我已经吃了，所以不饿。）
+</p>
+
+<p>
+You/we/they <b>have eaten</b> a carrot.
+</p>
+
+<p>
+She/he/it <b>has eaten</b> a carrot.
+</p>
+
+<p>
+The rabbit <b>has eaten</b> a carrot. （这兔子到现在为止已经吃了个萝卜。）
+</p>
+
+<p>
+You <b>have watched</b> my video. （你到现在为止已经看过了我的视频。）
+</p>
+
+<p>
+I <b>have thought</b> of you. （我到现在为止已经想过你了。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd21ae27" class="outline-4">
+<h4 id="orgd21ae27">现在完成进行时态</h4>
+<div class="outline-text-4" id="text-orgd21ae27">
+<ol class="org-ol">
+<li>现在完成时态的构成是：have 的变位 + 动词的过去分词</li>
+<li>现在进行时态的构成是：be 的变位 + 动词的现在分词</li>
+</ol>
+
+<p>
+两者的综合，其实就是把 2 中的 be 作为 1 中的动词。也就是说 1 中的动词是 be，更进一步的说，2中 be 的变位 = 1 中的 be 的过去分词。
+</p>
+
+<p>
+1 + 2 -&gt; have 的变位 + be 的过去分词 + 动词的现在分词 -&gt; <b>have 的变位 + been + 动词的现在分词</b> 。
+</p>
+
+<p>
+构成： <b>have 的变位 + been + 动词的现在分词</b>
+</p>
+
+<p>
+1 eat carrot.
+</p>
+
+<p>
+-&gt; I + <b>have 的变位 + been + eat 的现在分词</b> + carrots.
+</p>
+
+<p>
+-&gt; I <b>have been eating</b> carrots. 我在吃胡萝卜。（不但 <b>已经</b> 吃了些，还将 <b>继续</b> 。）
+</p>
+
+<p>
+The rabbit <b>has been eating</b> a carrot. （这兔子到现在为止 <b>已经</b> 吃了胡萝卜一段时间了，还要 <b>再继续吃</b> 一段时间。）
+</p>
+
+<p>
+You <b>have been watching</b> my video. （你到现在为止 <b>已经</b> 看了我视频一段时间了，还要 <b>再继续看</b> 一段时间。）
+</p>
+
+<p>
+I <b>have been thinking</b> of you. （我到现在为止 <b>已经</b> 想你一段时间了，还要 <b>再继续想</b> 一段时间。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f192e4" class="outline-3">
+<h3 id="org7f192e4">过去</h3>
+<div class="outline-text-3" id="text-org7f192e4">
+<p>
+过去时间的四种时态，其实就是把现在时间的四种时态往前推一个时间段而已。
+</p>
+</div>
+<div id="outline-container-orgc583335" class="outline-4">
+<h4 id="orgc583335">一般过去时态</h4>
+<div class="outline-text-4" id="text-orgc583335">
+<p>
+构成： <b>+ 动词过去式</b>
+</p>
+
+<p>
+I/you/we/she/he/it/they <b>ate</b> a carrot yesterday.
+</p>
+</div>
+<div id="outline-container-org0f80a27" class="outline-5">
+<h5 id="org0f80a27">过去式</h5>
+<div class="outline-text-5" id="text-org0f80a27">
+<p>
+通常：+ ed
+</p>
+
+<p>
+如：looked, smelled, tasted
+</p>
+
+<p>
+有些动词是“不规则变化”，如：
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">动词原形</th>
+<th scope="col" class="org-left">动词过去式</th>
+<th scope="col" class="org-left">动词过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">do</td>
+<td class="org-left">did</td>
+<td class="org-left">done</td>
+</tr>
+
+<tr>
+<td class="org-left">go</td>
+<td class="org-left">went</td>
+<td class="org-left">gone</td>
+</tr>
+
+<tr>
+<td class="org-left">take</td>
+<td class="org-left">took</td>
+<td class="org-left">taken</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+“不规则”过去式的“规律”
+</p>
+<table>
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">动词原形</th>
+<th scope="col" class="org-left">动词过去式</th>
+<th scope="col" class="org-left">动词过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">bring</td>
+<td class="org-left">brought</td>
+<td class="org-left">brought</td>
+</tr>
+
+<tr>
+<td class="org-left">blow</td>
+<td class="org-left">blew</td>
+<td class="org-left">blown</td>
+</tr>
+
+<tr>
+<td class="org-left">begin</td>
+<td class="org-left">began</td>
+<td class="org-left">begun</td>
+</tr>
+
+<tr>
+<td class="org-left">speak</td>
+<td class="org-left">spoke</td>
+<td class="org-left">spoken</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org2267128" class="outline-5">
+<h5 id="org2267128">一般过去时态</h5>
+<div class="outline-text-5" id="text-org2267128">
+<ul class="org-ul">
+<li>动作发生了   √</li>
+<li>动作多久     ？</li>
+<li>动作何时开始 ？</li>
+<li>动作何时结束 ？</li>
+</ul>
+
+<p>
+“一般”单纯地指出有个动作发生了而已，至于这个动作多久，什么时候开始，什么时候结束，如果没有上下文则不得而知。
+</p>
+
+<p>
+The rabbit <b>ate</b> a carrot. 兔子 <b>吃了</b> 胡萝卜。（只知道这兔子过去某个时刻在吃胡萝卜。）
+</p>
+
+<p>
+You <b>watched</b> my video. 你 <b>看了</b> 我的视频。（可能的言下之意，这是事实，别抵赖哦。）
+</p>
+
+<p>
+I <b>thought</b> of you. 我 <b>想了</b> 你。（可能的言下之意，这是事实，不骗你。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4218ec0" class="outline-4">
+<h4 id="org4218ec0">过去进行时态</h4>
+<div class="outline-text-4" id="text-org4218ec0">
+<p>
+过去进行时态其实就是现在进行时态往前推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 进行时态： <b>助动词 be 的变位</b> + 动词的现在分词
+</p>
+
+<p>
+<b>过去</b> 进行时态： <b>助动词 be 的变位</b> + 动词的现在分词
+</p>
+
+<p>
+现在时间里助动词 be 的变位为：
+</p>
+
+<pre class="example" id="orgca556ca">
+I *am*
+You/we/they *are*
+She/he/it *is*
+</pre>
+
+<p>
+但是，在过去时间里的变位就成了：
+</p>
+
+<pre class="example" id="orgd7d5913">
+I/she/he/it *was*
+You/we/they *were*
+</pre>
+
+<p>
+所以说，其实过去进行时态很简单，就是在现在进行时态的基础上，把助动词 be 改成过去式就好。
+</p>
+
+<p>
+The rabbit <b>is</b> eating a carrot. -&gt; The rabbit <b>was</b> eating a carrot. （这兔子在过去某个时间点处在正在吃胡萝卜的过程中。）
+</p>
+
+<p>
+You <b>are</b> watching my video. -&gt; You <b>were</b> watching my video. （你在过去某个时间点处在看我的视频的过程中。）
+</p>
+
+<p>
+I <b>am</b> thinking of you. -&gt; I <b>was</b> thinking of you. （我在过去的某个时间点处在想你的过程中。）
+</p>
+</div>
+</div>
+<div id="outline-container-orgafc1d83" class="outline-4">
+<h4 id="orgafc1d83">现在完成时态 vs. 一般过去时态 vs. 过去进行时态</h4>
+<div class="outline-text-4" id="text-orgafc1d83">
+</div>
+<div id="outline-container-orgbe5f624" class="outline-5">
+<h5 id="orgbe5f624">现在完成时态 vs. 一般过去时态</h5>
+<div class="outline-text-5" id="text-orgbe5f624">
+<p>
+现在完成时态的重点是动作完成了吗？I have seen a carrot. I know its color. / I have gone to Shanghai. Are you looking for me? Sorry, I have gone to Shanghai(so you can't find me).
+</p>
+
+<p>
+一般过去时代的重点是动作有没有发生？I saw a carrot. I'm not lying! / I went to Shanghai. I am back.
+</p>
+</div>
+</div>
+<div id="outline-container-org65eb788" class="outline-5">
+<h5 id="org65eb788">一般过去时态 vs. 过去进行时态</h5>
+<div class="outline-text-5" id="text-org65eb788">
+<p>
+一般过去时态你可以想做一张照片（The rabbit ate a carrot.），那么过去进行时态，因为是强调过去时间中的进行状态，一个过程，所以可以想做一段视频（The rabbit was eating a carrot.）。
+</p>
+
+<p>
+粗略的说，一般过去时态和过去进行时态都是在过去时间里，但是前者重点是某个动作做了没有，后者是某个动作在某个时间是在进行过程中的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbba7f63" class="outline-4">
+<h4 id="orgbba7f63">过去完成时态</h4>
+<div class="outline-text-4" id="text-orgbba7f63">
+<p>
+过去完成时态其实就是现在完成时态往前推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 完成时态： <b>助动词 have 的变位</b> + 动词的过去分词
+</p>
+
+<p>
+<b>过去</b> 完成时态： <b>助动词 have 的变位</b> + 动词的过去分词
+</p>
+
+<p>
+现在时间里助动词 have 的变位为：
+</p>
+
+<pre class="example" id="orgb14e63f">
+I/you/we/they *have*
+She/he/it *has*
+</pre>
+
+<p>
+但是，在过去时间里的变位就成了：
+</p>
+
+<pre class="example" id="orge024bdd">
+I/you/we/they/she/he/it *had*
+</pre>
+
+<p>
+其实，助动词 had 在过去时间的变位，就是 have 的过去式（只有一个）而已。
+</p>
+
+<p>
+所以说，其实过去完成时态很简单，就是在现在完成时态的基础上，把助动词 have 改成过去式就好。
+</p>
+
+<p>
+过去完成时态主要是为了表达，过去某一个点（A）的过去（B）对过去那个一点（A）的影响，比如：
+</p>
+
+<p>
+B —— A —— 现在
+</p>
+
+<p>
+I had eaten 5 carrots for <b>lunch yesterday</b>, so I wasn't hungry at all <b>yesterday afternonn</b>.
+</p>
+
+<p>
+这里要表达的意思就是，对于 <b>昨天下午（时间点 A）</b> 来说，因为昨天下午的过去（ <b>时间点 B，也就是中饭时间</b> ），我已经吃了一堆胡萝卜，所以 B 对 A 有影响——这个影响就是：我一点都不饿。
+</p>
+
+<p>
+He tried to find me <b>yesterday afternonn</b>, but I <b>had</b> already <b>gone</b> to Shanghai.
+</p>
+
+<p>
+对于他试图找我那个 <b>时间点 A（昨天下午）</b> 来说，A的过去 <b>某一点 B</b> （可能是昨天上午，或前天，没说明，但是肯定是昨天下午之前）我已经离开了，去上海了，所以 B 对 A 有影响——这个影响就是：他找不到我。
+</p>
+
+<p>
+The rabbit <b>has</b> eaten a carrot. -&gt; The rabbit <b>had</b> eaten a carrot. （这兔子在过去某个时间点已经吃了胡萝卜。）
+</p>
+
+<p>
+You <b>have</b> watched my video. -&gt; You <b>had</b> watched my video. （你在过去某个时间点已经看过了我的视频。）
+</p>
+
+<p>
+I <b>have</b> thought of you. -&gt; I <b>had</b> thought of you. （我在过去某个时间点已经想过你了。）
+</p>
+</div>
+</div>
+<div id="outline-container-org9e55ac5" class="outline-4">
+<h4 id="org9e55ac5">过去完成进行时态</h4>
+<div class="outline-text-4" id="text-org9e55ac5">
+<p>
+过去完成进行时态其实就是现在完成进行时态往前推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 完成进行时态： <b>助动词 have 的变位</b> + been + 动词的现在分词
+</p>
+
+<p>
+<b>过去</b> 完成进行时态： <b>助动词 have 的变位</b> + been + 动词的现在分词
+</p>
+
+<p>
+现在时间里助动词 have 的变位为：
+</p>
+
+<pre class="example" id="org0cc6251">
+I/you/we/they *have*
+She/he/it *has*
+</pre>
+
+<p>
+但是，在过去时间里的变位就成了：
+</p>
+
+<pre class="example" id="org5b99e47">
+I/you/we/they/she/he/it *had*
+</pre>
+
+<p>
+所以说，其实过去完成进行时态很简单，就是在现在完成进行时态的基础上，把助动词 have 改成过去式就好。
+</p>
+
+<p>
+The rabbit <b>has</b> been eating a carrot. -&gt; The rabbit <b>had</b> been eating a carrot. （这兔子在过去某个时间点已经吃（某根）胡萝卜一段时间了，还要在过去那个时间点之后继续吃一段时间。）
+</p>
+
+<p>
+You <b>have</b> been watching my video. -&gt; You <b>had</b> been watching my video. （你在过去某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间。）
+</p>
+
+<p>
+I <b>have</b> been thinking of you. -&gt; I <b>had</b> been thinking of you. （我在过去某个时间点之前已经想你一段时间了，还要在那个时间点之后继续想一段时间。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org06bfea7" class="outline-3">
+<h3 id="org06bfea7">将来</h3>
+<div class="outline-text-3" id="text-org06bfea7">
+<p>
+将来时间的四种状态，其实就是把现在时间的四种状态，往后推一个时间段而已。
+</p>
+
+<p>
+将来时态需要 <b>助动词</b> 帮忙，放在主动词，也就是谓语动词之前。这个将来时态里用到的助动词就是：will。（有时也会用 shell，有些微妙区别。）
+</p>
+</div>
+<div id="outline-container-orgdc8c22f" class="outline-4">
+<h4 id="orgdc8c22f">英语“表达”将来时态</h4>
+<div class="outline-text-4" id="text-orgdc8c22f">
+<ul class="org-ul">
+<li><b>一般现在时态</b> 可以表达将来的动作，如：The bus <b>leaves</b> at 8PM.</li>
+<li>助动词 <b>be 的变位 + going + to</b> +动词原型，如：I <b>am going to</b> eat a carrot.</li>
+<li>甚至上句的 going 也可以省略，变为助动词 <b>be 的变位 + to</b> + 动词原型，如：You <b>are to</b> eat carrot.</li>
+<li>又或者也可以用介词 about 取代 going，即：+ <b>about + to</b> + 动词原型，如：I <b>am about to</b> eat a carrot.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga8cf880" class="outline-4">
+<h4 id="orga8cf880">一般将来时态</h4>
+<div class="outline-text-4" id="text-orga8cf880">
+<p>
+构成： <b>will + 动词原形</b>
+</p>
+
+<p>
+eat -&gt; will eat
+</p>
+
+<p>
+I/you/she/he/it/they <b>will eat</b> a carrot.
+</p>
+
+<p>
+描述：将来某个时间点发生的动作（说话者 <b>十分确定</b> 会发生的事）
+</p>
+
+<p>
+如果 <b>不太确定</b> ，就不能用一般将来时态。（要借助动词的“语气”。）
+</p>
+</div>
+</div>
+<div id="outline-container-org447922e" class="outline-4">
+<h4 id="org447922e">将来进行时态</h4>
+<div class="outline-text-4" id="text-org447922e">
+<p>
+将来进行时态其实就是现在进行时态往后推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 进行时态： <b>助动词 be 的变位</b> + 动词的现在分词
+</p>
+
+<p>
+<b>将来</b> 进行时态： will + <b>助动词 be 的变位</b> + 动词的现在分词 -&gt; will + <b>be</b> + 动词的现在分词
+</p>
+
+<p>
+描述：在将来某个时间，某个动作是在 <b>进行的过程中</b> 。
+</p>
+
+<p>
+I will be eating a carrot for lunch tomorrow. （我明天午饭会在吃萝卜这个动作过程中。）
+</p>
+
+<p>
+将来进行时态比一般将来时态还要笃定，所以当你特别确定某个动作/事件一定会发生时，就可以考虑用将来进行时。
+</p>
+
+<p>
+之前用过照片和视频的类比，这里也适用，一般将来时态相当于一张（你想象）的照片，而将来进行时态相当于一段（你想像）的视频。
+</p>
+</div>
+</div>
+<div id="outline-container-orgdfae1af" class="outline-4">
+<h4 id="orgdfae1af">将来完成时态</h4>
+<div class="outline-text-4" id="text-orgdfae1af">
+<p>
+将来完成时态其实就是现在完成时态往后推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 完成时态： <b>助动词 have 的变位</b> + 动词的过去分词
+</p>
+
+<p>
+<b>将来</b> 完成时态： will + <b>助动词 have 的变位</b> + 动词的过去分词 -&gt; will + <b>have</b> + 动词的过去分词
+</p>
+
+<p>
+将来完成时态主要是为了表达，将来某一个点（A）的过去（B和现在的前后不能确定）对将来那一点（A）的影响，比如：
+</p>
+
+<p>
+将来 —— B —— A
+</p>
+
+<p>
+I will have finished making the video by <b>4PM tomorrow</b>, so I can publish it <b>after that</b>.
+</p>
+
+<p>
+这里要表达的意思就是，对于 <b>明天下午 4 点钟</b> 那个时间点来说，我在那之前就会完成做视频的这个动作，所以对 4 点钟那时候是有影响的——什么影响呢， <b>4 点钟之后</b> 我就能够发视频啦。
+</p>
+
+<p>
+The rabbit <b>has</b> eaten a carrot. -&gt; The rabbit <b>will have</b> eaten a carrot. （这兔子在将来某个时间点已经吃了胡萝卜。）
+</p>
+
+<p>
+You <b>have</b> watched my video. -&gt; You <b>will have</b> watched my video. （你在将来某个时间点已经看过了我的视频。）
+</p>
+
+<p>
+I <b>have</b> thought of you. -&gt; I <b>will have</b> thought of you. （我在将来某个时间点已经想过你了。）
+</p>
+
+<p>
+这个时态甚至比刚才的将来进行时态更加笃定，说得都好像已经发生了似的，所以，如果想表达特别特别确定某事，就可以用这个将来完成时态。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd015365" class="outline-4">
+<h4 id="orgd015365">将来完成进行时态</h4>
+<div class="outline-text-4" id="text-orgd015365">
+<p>
+将来完成进行时态其实就是现在完成进行时态往后推一个时间段。
+</p>
+
+<p>
+<b>现在</b> 完成进行时态： <b>助动词 have 的变位</b> + been + 动词的现在分词
+</p>
+
+<p>
+<b>将来</b> 完成进行时态： <b>will + 助动词 have 的变位</b> + been + 动词的现在分词 -&gt; <b>will + have</b> + been + 动词的现在分词
+</p>
+
+<p>
+现在完成进行时态描述，对于现在这个时间点，不但已经完成了一部分而且还要继续进行的动作；那么将来完成进行时态，自然是描述，对于将来某个点，不但已经完成了一部分而且还要继续进行的动作，比如：
+</p>
+
+<p>
+将来 —— B —— A
+</p>
+
+<p>
+I will have been eating carrots <b>for 2 hours</b> by <b>3PM tomorrow</b>.
+</p>
+
+<p>
+这里表达的意思就是：我确定 <b>明天下午三点钟</b> 时， 我不但 <b>已经吃了俩钟头胡萝卜</b> （也就是从昨天下午 1 点开始吃）而且还要继续吃。
+</p>
+
+<p>
+You <b>have been</b> watching my video -&gt; You <b>will have been</b> watching my video. （你在将来某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间。）
+</p>
+
+<p>
+I <b>have been</b> thinking of you. -&gt; I <b>will have been</b> thinking of you. （我在将来某个时间点之前已经想你一段时间了，还要在那个时间点之后继续想你一段时间。）
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb766cb2" class="outline-3">
+<h3 id="orgb766cb2">过去将来</h3>
+<div class="outline-text-3" id="text-orgb766cb2">
+<p>
+过去将来时态常出现于从句。
+</p>
+
+<p>
+过去将来的四种时态，只不过事把讲来时间的四种时态，往前推一个时间段（推到现在的过去）而已。
+</p>
+</div>
+<div id="outline-container-orgf34a00d" class="outline-4">
+<h4 id="orgf34a00d">一般过去将来时态</h4>
+<div class="outline-text-4" id="text-orgf34a00d">
+<p>
+一般 <b>将来</b> 时态： <b>will</b> + 动词原型
+</p>
+
+<p>
+一般 <b>过去将来</b> 时态： <b>would</b> + 动词原型
+</p>
+
+<p>
+I <b>said</b> I <b>would eat</b> a carrot for lunch. 我 <b>（之前）说过</b> 我 <b>会</b> 午饭 <b>吃</b> 根胡萝卜。 （午饭时间对于之前我说那句话的时间来说是在将来，但至于现在午饭时间有没有到，不得而知。）
+</p>
+
+<p>
+I <b>knew</b> you <b>would watch</b> my video. 我 <b>（之前）就知道</b> 你 <b>会看</b> 我的视频。 （你看我视频这件事对于我作出这个判断的时间来说是在将来。）
+</p>
+
+<p>
+<b>助动词 be 的变位 + going + to</b> 也可以表示一般 <b>过去将来</b> 时态。只不过需要把助动词 be 变位体现过去，也就是：
+</p>
+
+<pre class="example" id="orgc433c1f">
+I/she/he/it *was*
+You/they *were*
+</pre>
+
+<p>
+上面两句就可以变为：
+</p>
+
+<p>
+I said I <b>would</b> eat a carrot for lunch. -&gt; I said I <b>was going to</b> eat a carrot for lunch.
+</p>
+
+<p>
+I knew you <b>would</b> watch my video. -&gt; I knew you <b>were going to</b> watch my video.
+</p>
+</div>
+</div>
+<div id="outline-container-orga25ed92" class="outline-4">
+<h4 id="orga25ed92">Would 的多义</h4>
+<div class="outline-text-4" id="text-orga25ed92">
+<p>
+I said I <b>would</b> eat a carrot for lunch. 我（之前）说过我会午饭吃根胡萝卜。 <b>（will 的过去式变位，构成时态）</b>
+</p>
+
+<p>
+If I were you, I <b>would</b> eat a carrot. 如果我是你，我会吃根胡萝卜。 （构成动词 eat 的 <b>虚拟语气</b> ：我不可能是你，所以这里的“吃”是“虚拟”动作。）
+</p>
+
+<p>
+<b>Would</b> you pass me the carrot, please? 能请你把胡萝卜递过来吗？（比 Willl you pass me the carrot? 更礼貌。）
+</p>
+
+<p>
+<b>Would</b> you like a carrot for lunch? 你是否中饭想吃胡萝卜？（比 Do you want a carrot for lunch? 更礼貌。）
+</p>
+</div>
+</div>
+<div id="outline-container-orge111142" class="outline-4">
+<h4 id="orge111142">过去将来进行时态</h4>
+<div class="outline-text-4" id="text-orge111142">
+<p>
+<b>将来</b> 进行时态： <b>will</b> + be + 动词的现在分词
+</p>
+
+<p>
+<b>过去将来</b> 进行时态： <b>would</b> + be + 动词的现在分词
+</p>
+
+<p>
+I <b>said</b> I <b>would be eating</b> a carrot at 1PM tomorrow/yesterday. 我（之前）说我明天下午 1 点会在吃胡萝卜。（我 <b>之前说</b> 我明天/昨天下午 1 点 <b>会</b> 是 <b>在吃</b> 胡萝卜这个过程中。）
+</p>
+</div>
+</div>
+<div id="outline-container-org2090d1a" class="outline-4">
+<h4 id="org2090d1a">过去将来完成时态</h4>
+<div class="outline-text-4" id="text-org2090d1a">
+<p>
+<b>将来</b> 完成时态： <b>will</b> + have + 动词的完成分词
+</p>
+
+<p>
+<b>过去将来</b> 完成时态： <b>would</b> + have + 动词的完成分词
+</p>
+
+<p>
+I <b>said</b> I <b>would have eaten</b> a carrot by 1PM tomorrow/yesterday. 我 <b>（之前）说</b> 我明天/昨天下午 1 点 <b>会</b> 已经 <b>吃掉了</b> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。）
+</p>
+</div>
+</div>
+<div id="outline-container-org592485a" class="outline-4">
+<h4 id="org592485a">过去将来完成进行时态</h4>
+<div class="outline-text-4" id="text-org592485a">
+<p>
+<b>将来</b> 完成进行时态： <b>will</b> + have + been + 动词的完成分词
+</p>
+
+<p>
+<b>过去将来</b> 完成进行时态： <b>would</b> + have + been + 动词的完成分词
+</p>
+
+<p>
+I <b>said</b> I <b>would have been eating</b> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <b>之前说</b> 我 <b>会</b> 明天/昨天下午 1 点时在吃中饭这个过程中， <b>之前已经吃了 2 个钟头</b> ，之后还会 <b>继续吃</b> 。）
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org27f8bfe" class="outline-2">
+<h2 id="org27f8bfe">“不规则”动词的“规律”</h2>
+<div class="outline-text-2" id="text-org27f8bfe">
+<p>
+<a href="https://www.yingyutu.com/bgz">https://www.yingyutu.com/bgz</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org209580d" class="outline-2">
+<h2 id="org209580d">参考视频</h2>
+<div class="outline-text-2" id="text-org209580d">
+<p>
+<a href="https://www.youtube.com/watch?v=P5FrIGgyNSc">https://www.youtube.com/watch?v=P5FrIGgyNSc</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-05 Thu 15:23</p>
+</div>
+</body>
+</html>
