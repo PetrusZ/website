@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-05 Thu 21:00 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>虚拟语气</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">虚拟语气</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org3eae9f8">动词语气 Verb Moods</a>
+<ul>
+<li><a href="#org04e3209">陈述语气</a></li>
+<li><a href="#org4f8801f">祈使语气</a></li>
+<li><a href="#org9f486b5">虚拟语气</a>
+<ul>
+<li><a href="#orgb75bf5d">英语思维：如何描述动作/时间</a></li>
+<li><a href="#orgbfae878">举例</a>
+<ul>
+<li><a href="#orgbc85ee1">和现在事实相反</a></li>
+<li><a href="#org1f12868">和将来事实相反（可能性很小）</a></li>
+<li><a href="#org45db7b0">和过去事实相反</a></li>
+</ul>
+</li>
+<li><a href="#org3770e9d">虚拟语气的两大用法</a>
+<ul>
+<li><a href="#org7a05aad">虚拟语气表”不可能假设“</a>
+<ul>
+<li><a href="#orgbd1e44c">与现在相反</a></li>
+<li><a href="#orga3d1c0d">与将来相反</a></li>
+<li><a href="#org96fd57f">与过去相反</a></li>
+</ul>
+</li>
+<li><a href="#org77765cb">虚拟语气表达愿望、请求、建议、命令等</a>
+<ul>
+<li><a href="#org7749a42">wish</a></li>
+<li><a href="#org0fce534">would rather</a></li>
+<li><a href="#org68bd138">demand, suggset, insist, order&#x2026;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgd53b2bb">英语动词语气总结</a>
+<ul>
+<li><a href="#org6be3846">陈述语气</a></li>
+<li><a href="#org5d36dd7">祈使语气</a></li>
+<li><a href="#org44faa0a">虚拟语气</a>
+<ul>
+<li><a href="#orga23d672">与事实相反的假设</a>
+<ul>
+<li><a href="#orgfffc004">与现在相反</a></li>
+<li><a href="#orgb32fb01">与过去相反</a></li>
+<li><a href="#orgdea066b">与将来相反（可能性小）</a></li>
+</ul>
+</li>
+<li><a href="#org1ac60c8">表达愿望、请求、建议、命令等</a>
+<ul>
+<li><a href="#org366eb3b">wish</a>
+<ul>
+<li><a href="#org630ca32">与现在相反</a></li>
+<li><a href="#org3402b4b">与过去相反</a></li>
+<li><a href="#org0ce19ed">与将来相反</a></li>
+</ul>
+</li>
+<li><a href="#orgb73710f">demand, suggest, insist, would rather&#x2026;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3eae9f8" class="outline-2">
+<h2 id="org3eae9f8">动词语气 Verb Moods</h2>
+<div class="outline-text-2" id="text-org3eae9f8">
+<p>
+这里的“语气”是语法概念或语法术语，可不是”说话的语气“。
+</p>
+
+<p>
+英语语气最主要有三种语气：
+</p>
+<ul class="org-ul">
+<li>陈述语气</li>
+<li>祈使语气</li>
+<li>虚拟语气</li>
+</ul>
+</div>
+<div id="outline-container-org04e3209" class="outline-3">
+<h3 id="org04e3209">陈述语气</h3>
+<div class="outline-text-3" id="text-org04e3209">
+<p>
+陈述语气说白了就是描述现实，比如：
+</p>
+
+<p>
+The rabbit <b>ate</b> the carrot. 这兔子 <b>吃了</b> 这胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org4f8801f" class="outline-3">
+<h3 id="org4f8801f">祈使语气</h3>
+<div class="outline-text-3" id="text-org4f8801f">
+<p>
+祈使语气说白了就是命令/请求。
+</p>
+
+<p>
+Rabbit, <b>eat</b> the carrot! 兔子， <b>吃</b> 这胡萝卜！
+</p>
+
+<p>
+构成：
+</p>
+<ol class="org-ol">
+<li>用第二人称（“你”）&amp;用一般现在时态</li>
+<li>去掉“你”，并保证动词原形</li>
+</ol>
+
+<p>
+<del>You</del> eat the carrot! -&gt; Eat the carrot!
+</p>
+
+<p>
+<del>You</del> don't eat it! -&gt; Don't eat it!
+</p>
+
+<p>
+<del>You</del> are quiet! -&gt; Be quiet!
+</p>
+
+<p>
+<del>You</del> never give up! -&gt; Never give up!
+</p>
+</div>
+</div>
+<div id="outline-container-org9f486b5" class="outline-3">
+<h3 id="org9f486b5">虚拟语气</h3>
+<div class="outline-text-3" id="text-org9f486b5">
+</div>
+<div id="outline-container-orgb75bf5d" class="outline-4">
+<h4 id="orgb75bf5d">英语思维：如何描述动作/时间</h4>
+<div class="outline-text-4" id="text-orgb75bf5d">
+<ul class="org-ul">
+<li>与现实相悖的想像，主观意愿：使用动词的虚拟语气</li>
+<li>现实的描述，直接请求/命令：不用动词的虚拟语气，而且用陈述语气、祈使语气</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbfae878" class="outline-4">
+<h4 id="orgbfae878">举例</h4>
+<div class="outline-text-4" id="text-orgbfae878">
+<p>
+张三被兔子咬了，进了医院，张三决心报复兔子。张三在出院的时候，夸下海口，说是要咬兔子。可是，时间慢慢过去了，来到了现在。兔子就是没有出现。因为兔子听到风声，躲起来了。
+</p>
+</div>
+
+<div id="outline-container-orgbc85ee1" class="outline-5">
+<h5 id="orgbc85ee1">和现在事实相反</h5>
+<div class="outline-text-5" id="text-orgbc85ee1">
+<p>
+于是张三说：如果我现在 <b>看到</b> 那只兔子的话，我会 <b>咬</b> 它。
+</p>
+
+<p>
+If I <b>saw</b> the rabbit now, I <b>would</b> bite him.
+</p>
+
+<p>
+这里动词是过去式，但是并不表示过去时间，也就是说，这句话不是在描述过去发生的事实，而是在描述现在的，没发生，但是希望发生的事，是一个主观意愿或者说想象的假设。
+</p>
+
+<p>
+以上是虚拟语气的第一种用法，表示和 <b>现在</b> 事实相反。
+</p>
+</div>
+</div>
+<div id="outline-container-org1f12868" class="outline-5">
+<h5 id="org1f12868">和将来事实相反（可能性很小）</h5>
+<div class="outline-text-5" id="text-org1f12868">
+<p>
+然而，咬了张三的兔子，听到风声，昨晚就跑到月亮上了。张三知道，接下来一段时间里，他是多半找不到这兔子了。
+</p>
+
+<p>
+于是他只能说：万一我明天看见那只兔子，我要咬它。他这里说“万一”，其实就是表明可能性太小了。对应的那英文，一般也要用虚拟语气。用来表示，像这样的，将来时间里，可能性很小的动作。
+</p>
+
+<p>
+If I <b>should see</b> the rabbit tomorrow, I <b>would</b> bite him.
+</p>
+
+<p>
+条件句里动词虚拟语气构成是 <b>Should + 动词原型</b> ；而主句里，因为这里是假想，所以要用 would。
+</p>
+
+<p>
+以上是虚拟语气的第二种主要用法：表示和 <b>将来</b> 事实相反，或者说，描述将来很小可能性的动作/事件。
+</p>
+</div>
+</div>
+<div id="outline-container-org45db7b0" class="outline-5">
+<h5 id="org45db7b0">和过去事实相反</h5>
+<div class="outline-text-5" id="text-org45db7b0">
+<p>
+按么张三现在找不到这兔子，也知道接下来多半还是找不到这兔子，所以就特别后悔，没在前段时间刚出院时就去咬兔子。
+</p>
+
+<p>
+他就说，我要是前几天看见那只兔子就好了，当时就会咬他。
+</p>
+
+<p>
+和过去事实相反，动词虚拟语气的变位就要改成过去完成态的形式：
+</p>
+
+<p>
+If I <del>saw</del> the rabbit a few days ago, I <del>would</del> bite him.
+</p>
+
+<p>
+-&gt; If I <b>had seen</b> the rabbit a few days ago, I <b>would have bitten</b> him.
+</p>
+
+<p>
+你可以把过去时间的虚拟理解为，假设对过去某一点有影响，所以是“完成态”。而这样的假设当然在条件句中。那主句里就不能说 I would bite him，否则又回到了现在时间，所以主句也同样要改成完成态。
+</p>
+
+<p>
+以上是虚拟语气的第三种主要用法：和 <b>过去</b> 已经发生的事实相反。不可能的情况。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3770e9d" class="outline-4">
+<h4 id="org3770e9d">虚拟语气的两大用法</h4>
+<div class="outline-text-4" id="text-org3770e9d">
+<p>
+上面就是讲的虚拟语气的两大用法之一：表“不可能“假设。按时间分，又可分为对现在的假设，对将来的假设，对过去的假设。
+</p>
+</div>
+<div id="outline-container-org7a05aad" class="outline-5">
+<h5 id="org7a05aad">虚拟语气表”不可能假设“</h5>
+<div class="outline-text-5" id="text-org7a05aad">
+</div>
+<div id="outline-container-orgbd1e44c" class="outline-6">
+<h6 id="orgbd1e44c">与现在相反</h6>
+<div class="outline-text-6" id="text-orgbd1e44c">
+<p>
+条件句： <b>过去式</b>
+</p>
+
+<p>
+主句： <b>would + 动词原形</b>
+</p>
+
+<p>
+If I <b>were</b> you, I <b>would bookmark</b> this article.
+</p>
+</div>
+</div>
+<div id="outline-container-orga3d1c0d" class="outline-6">
+<h6 id="orga3d1c0d">与将来相反</h6>
+<div class="outline-text-6" id="text-orga3d1c0d">
+<p>
+真的不可能，如：兔子下蛋
+</p>
+
+<p>
+可能性极小，如：该文章排在搜索排名第一
+</p>
+
+<p>
+条件句： <b>should + 动词原形</b>
+</p>
+
+<p>
+主句： <b>would + 动词原形</b>
+</p>
+
+<p>
+If <b>should meet</b> thee after longs years, how <b>should</b> I <b>greet</b> thee?
+</p>
+
+<p>
+<b>万一</b> 我们将来 <b>重逢</b> 了， 我又该如何 <b>面对</b> 你呢？
+</p>
+
+<p>
+注意，should 其实是 shall 的过去式，构成将来时态往往用 will 或 shall，这里其实就是用了 shall 的过去式，并没有”应该“这个含义。而 should 的另一个身份，做情态动词时，才有”应该“这个含义。顺便提一下相似的助动词的过去式变位：
+</p>
+
+<pre class="example" id="orga38412d">
+shall -&gt; should
+will -&gt; would
+can -&gt; could
+may -&gt; might
+</pre>
+
+<p>
+主句中的 would，也可以用 <b>should/could/might</b> 来替换，当然也要看具体语境。另外，条件句中的 should 也可以用 <b>were to</b> 来取代
+</p>
+</div>
+</div>
+<div id="outline-container-org96fd57f" class="outline-6">
+<h6 id="org96fd57f">与过去相反</h6>
+<div class="outline-text-6" id="text-org96fd57f">
+<p>
+条件句： <b>had + 动词过去分词</b>
+主句： <b>would have + 动词过去分词</b>
+</p>
+
+<p>
+If I <b>had watched</b> this video before, I <b>would have aced</b> my test.
+</p>
+
+<p>
+我要是之间就 <b>看了</b> 这视频，那绝对能 <b>考个</b> 好成绩。言下之意：我没考出好成绩。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org77765cb" class="outline-5">
+<h5 id="org77765cb">虚拟语气表达愿望、请求、建议、命令等</h5>
+<div class="outline-text-5" id="text-org77765cb">
+<p>
+虚拟语气表达愿望、请求、建议、命令等，说白了就是”希望某个动作/事件“发生。其实这也很好理解，因为这样的”希望“也是发生在我们脑中的，而非在现实中已经发生了的事。而这样的虚拟语气用法特征也很明显，因为这样的虚拟语气用法特征也很明显，因为这样的动词虚拟语气一般和一些”表达愿望的词“一起使用；最具代表性的就是 wish 这个词。
+</p>
+
+<p>
+wish 是希望可能性小的事发生，而 hope 比较中性。
+</p>
+</div>
+<div id="outline-container-org7749a42" class="outline-6">
+<h6 id="org7749a42">wish</h6>
+<div class="outline-text-6" id="text-org7749a42">
+<ul class="org-ul">
+<li><p>
+对现在的愿望
+</p>
+
+<p>
+构成： <b>wish + 动词过去式</b>
+</p>
+
+<p>
+I wish (that) I <b>were</b> a rabbit. 我希望我是只兔子。
+</p></li>
+
+<li><p>
+对过去的愿望
+</p>
+
+<p>
+构成： <b>wish + had/would have + 动词过去分词</b>
+</p>
+
+<p>
+I wish (that) I <b>had eaten</b> the carrot. 我希望我 <b>吃了</b> 那只胡萝卜。
+</p></li>
+
+<li><p>
+对将来的愿望
+</p>
+
+<p>
+构成： <b>wish + should/would/could/might + 动词原形</b>
+</p>
+
+<p>
+I wish (that) I <b>could eat</b> the carrot. 我希望我 <b>能吃</b> 那只胡萝卜。
+</p></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0fce534" class="outline-6">
+<h6 id="org0fce534">would rather</h6>
+<div class="outline-text-6" id="text-org0fce534">
+<p>
+I would rather that you <b>didn't eat</b> the carrot. 我宁愿你 <b>不会吃</b> 那胡萝卜。
+</p>
+
+<p>
+I would rather that you <b>hadn't eat</b> the carrot. 我宁愿你 <b>没吃掉</b> 那胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org68bd138" class="outline-6">
+<h6 id="org68bd138">demand, suggset, insist, order&#x2026;</h6>
+<div class="outline-text-6" id="text-org68bd138">
+<p>
+这样的词后面接的虚拟语气一律是 <b>should + 动词原形</b> 。
+</p>
+
+<p>
+I demand/suggest/insist/order that you <b><del>should</del> give</b> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。
+</p>
+
+<p>
+上面的 should 也可以省略。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd53b2bb" class="outline-2">
+<h2 id="orgd53b2bb">英语动词语气总结</h2>
+<div class="outline-text-2" id="text-orgd53b2bb">
+</div>
+<div id="outline-container-org6be3846" class="outline-3">
+<h3 id="org6be3846">陈述语气</h3>
+<div class="outline-text-3" id="text-org6be3846">
+<p>
+描述现实
+</p>
+</div>
+</div>
+<div id="outline-container-org5d36dd7" class="outline-3">
+<h3 id="org5d36dd7">祈使语气</h3>
+<div class="outline-text-3" id="text-org5d36dd7">
+<p>
+命令，请求……
+</p>
+</div>
+</div>
+<div id="outline-container-org44faa0a" class="outline-3">
+<h3 id="org44faa0a">虚拟语气</h3>
+<div class="outline-text-3" id="text-org44faa0a">
+<p>
+“脑中的”，“非现实的”……
+</p>
+</div>
+<div id="outline-container-orga23d672" class="outline-4">
+<h4 id="orga23d672">与事实相反的假设</h4>
+<div class="outline-text-4" id="text-orga23d672">
+</div>
+<div id="outline-container-orgfffc004" class="outline-5">
+<h5 id="orgfffc004">与现在相反</h5>
+<div class="outline-text-5" id="text-orgfffc004">
+<p>
+构成：if + 过去式；would + 原形
+</p>
+</div>
+</div>
+<div id="outline-container-orgb32fb01" class="outline-5">
+<h5 id="orgb32fb01">与过去相反</h5>
+<div class="outline-text-5" id="text-orgb32fb01">
+<p>
+构成：if + 过去完成式；would have + 过去分词
+</p>
+</div>
+</div>
+<div id="outline-container-orgdea066b" class="outline-5">
+<h5 id="orgdea066b">与将来相反（可能性小）</h5>
+<div class="outline-text-5" id="text-orgdea066b">
+<p>
+构成：if + should + 原形；would + 原形
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1ac60c8" class="outline-4">
+<h4 id="org1ac60c8">表达愿望、请求、建议、命令等</h4>
+<div class="outline-text-4" id="text-org1ac60c8">
+</div>
+<div id="outline-container-org366eb3b" class="outline-5">
+<h5 id="org366eb3b">wish</h5>
+<div class="outline-text-5" id="text-org366eb3b">
+</div>
+<div id="outline-container-org630ca32" class="outline-6">
+<h6 id="org630ca32">与现在相反</h6>
+<div class="outline-text-6" id="text-org630ca32">
+<p>
+构成：wish + 过去式
+</p>
+</div>
+</div>
+<div id="outline-container-org3402b4b" class="outline-6">
+<h6 id="org3402b4b">与过去相反</h6>
+<div class="outline-text-6" id="text-org3402b4b">
+<p>
+构成：wish + 过去完成式
+</p>
+</div>
+</div>
+<div id="outline-container-org0ce19ed" class="outline-6">
+<h6 id="org0ce19ed">与将来相反</h6>
+<div class="outline-text-6" id="text-org0ce19ed">
+<p>
+构成：wish + would/should/could/might + 动词原形
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb73710f" class="outline-5">
+<h5 id="orgb73710f">demand, suggest, insist, would rather&#x2026;</h5>
+<div class="outline-text-5" id="text-orgb73710f">
+<p>
++(should) + 动词原形
+</p>
+
+<p>
+虚拟语气可以存在于不同类型的从句中：
+</p>
+<ul class="org-ul">
+<li>主语从句</li>
+<li>宾语从句</li>
+<li>主语补语从句（表语从句）</li>
+<li>定语从句</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-05 Thu 21:00</p>
+</div>
+</body>
+</html>
