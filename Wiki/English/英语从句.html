@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-09 Mon 17:35 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>英语从句</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">英语从句</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf41fe2e">英语从句的原理</a>
+<ul>
+<li><a href="#orgb6ee948">英语的三种句子</a></li>
+</ul>
+</li>
+<li><a href="#org46c3e0f">英语从句的分类</a>
+<ul>
+<li><a href="#orgcb898dc">句子成分/句型</a></li>
+<li><a href="#org134ece7">词类</a>
+<ul>
+<li><a href="#orga0ac5f6">名词从句</a></li>
+<li><a href="#orgf2a7dbb">形容词从句</a></li>
+<li><a href="#org1863c73">副词从句</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge81f609">形容词从句</a>
+<ul>
+<li><a href="#orge9b9872">形容词从句的思维方式</a>
+<ul>
+<li><a href="#org35286c5">快速总结：中英思维方式不同</a></li>
+</ul>
+</li>
+<li><a href="#org2677789">形容词从句的构成</a>
+<ul>
+<li><a href="#orgef7292c">关系词</a>
+<ul>
+<li><a href="#org2e14428">关系代词</a>
+<ul>
+<li><a href="#org506af50">关系代词引导的形容词从句</a></li>
+<li><a href="#org202ee95">that vs. which</a></li>
+</ul>
+</li>
+<li><a href="#org5c435ed">关系副词</a>
+<ul>
+<li><a href="#orgc11ba68">关系副词引导的形容词从句</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgda6af74">形容词从句的限定性和非限定性</a>
+<ul>
+<li><a href="#org9ffe4ef">限定性形容词从句</a></li>
+<li><a href="#org2955f8f">非限定性形容词从句</a></li>
+<li><a href="#org0cf10c5">限定性 vs. 非限定性</a></li>
+<li><a href="#org82a231f">非限定性形容词从句作插入语</a></li>
+<li><a href="#org19479e4">非限定性形容词从句指代整句话</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgee22a7c">名词从句</a>
+<ul>
+<li><a href="#org9d132f2">主语从句</a>
+<ul>
+<li><a href="#org8c7afc1">主语从句的原理</a>
+<ul>
+<li><a href="#orgb6240fa">确定信息</a></li>
+<li><a href="#orgc95fb9e">不确定信息</a></li>
+</ul>
+</li>
+<li><a href="#org45ca6c8">形式主语</a></li>
+</ul>
+</li>
+<li><a href="#org9e92ff3">宾语从句</a>
+<ul>
+<li><a href="#org3e62591">确定信息&amp;不确定信息</a>
+<ul>
+<li><a href="#org2bbef4e">确定信息作宾语从句</a></li>
+<li><a href="#orgaad09f2">不确定信息作宾语从句</a></li>
+</ul>
+</li>
+<li><a href="#orge6d0998">引导词 that 的省略</a>
+<ul>
+<li><a href="#org8590ec3">不可省略引导词 that</a></li>
+</ul>
+</li>
+<li><a href="#orgc96f9b7">某些词后的宾语从句的否定</a></li>
+<li><a href="#org7cb47c7">主从时态一致</a></li>
+<li><a href="#orga3a05fa">be + 形容词 + that&#x2026;</a></li>
+</ul>
+</li>
+<li><a href="#org215760c">主语补语/表语从句</a>
+<ul>
+<li><a href="#org11caebc">系动词：be 动词</a></li>
+<li><a href="#org724699d">系动词：非 be 动词</a></li>
+</ul>
+</li>
+<li><a href="#orgba6b261">同位语从句</a></li>
+<li><a href="#org2255355">宾语补语从句</a></li>
+</ul>
+</li>
+<li><a href="#org2a7cd41">副词从句</a>
+<ul>
+<li><a href="#orgca27352">时间副词从句</a>
+<ul>
+<li><a href="#org2cd05bf">在某一时间点之前</a></li>
+<li><a href="#org8c812ca">在某一时间点之中（当时）</a>
+<ul>
+<li><a href="#org1f445f4">三者的不同点</a></li>
+</ul>
+</li>
+<li><a href="#org18851fa">在某一时间点之后</a></li>
+<li><a href="#orgf4ffdbd">从之前某一个时间点开始酸</a></li>
+<li><a href="#org0849283">直到之后某一时间点</a></li>
+<li><a href="#org2906c7f">一&#x2026;就&#x2026;</a></li>
+<li><a href="#org8228344">下次&#x2026;</a></li>
+</ul>
+</li>
+<li><a href="#org283260c">地点副词从句</a></li>
+<li><a href="#org9471a1f">比较副词从句</a>
+<ul>
+<li><a href="#org7ef004a">英语形容词：比较极</a></li>
+<li><a href="#orga2565f1">比较副词从句：“更&#x2026;”</a></li>
+<li><a href="#orgbc67ca5">比较副词从句：“同样得&#x2026;”</a></li>
+<li><a href="#orgbd45bdd">比较副词从句：“越&#x2026;越&#x2026;”</a></li>
+</ul>
+</li>
+<li><a href="#orgf7b405c">条件副词从句</a>
+<ul>
+<li><a href="#org04fb1bf">国内说法：主将从现</a></li>
+<li><a href="#orge5c564f">然而&#x2026;</a></li>
+<li><a href="#org84f0276">规律</a></li>
+<li><a href="#org3d21979">其他引导词</a></li>
+</ul>
+</li>
+<li><a href="#orge940397">让步副词从句</a></li>
+<li><a href="#org0bfb47b">方式副词从句</a></li>
+<li><a href="#org7956578">原因副词从句</a>
+<ul>
+<li><a href="#orgb3ef5f0">since</a></li>
+<li><a href="#org07e8693">as</a></li>
+<li><a href="#orge7d80d9">because/since/as 的区别</a></li>
+<li><a href="#org5bcf7a1">because vs for</a></li>
+</ul>
+</li>
+<li><a href="#org3f87577">目的副词从句</a></li>
+<li><a href="#orge93fe2d">结果副词从句</a>
+<ul>
+<li><a href="#org4985e53">so</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf41fe2e" class="outline-2">
+<h2 id="orgf41fe2e">英语从句的原理</h2>
+<div class="outline-text-2" id="text-orgf41fe2e">
+<p>
+一个句子 A 可以成为一个整句的某种句子成分——你可以理解为——A 成了整句其余部分 B 的附属，服“从”B，同时也不能独立成句了；而 B 就成为了 A 的“主”人。这就是英语从句的原理。A就是所谓“从句”，B就是所谓“主句”。它们合在一起是一句“复杂句“。
+</p>
+
+
+<div id="org417f867" class="figure">
+<p><img src="../../pics/English/从句.png" alt="从句.png">
+</p>
+</div>
+</div>
+<div id="outline-container-orgb6ee948" class="outline-3">
+<h3 id="orgb6ee948">英语的三种句子</h3>
+<div class="outline-text-3" id="text-orgb6ee948">
+<ol class="org-ol">
+<li>简单句 Simple Sentences    不能再拆</li>
+<li>复合句 Compound Sentences  不分主次</li>
+<li>复杂句 Complex Sentences   主句 + 从句</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org46c3e0f" class="outline-2">
+<h2 id="org46c3e0f">英语从句的分类</h2>
+<div class="outline-text-2" id="text-org46c3e0f">
+<p>
+一个从句可以充当句子成分，所以只要把所有句子成分列出来，咱们就知道有哪些从句了。一句话有可能有的句子成分为：主语、宾语、间接宾语、直接宾语、（宾语）补语、（主语）补语（表语）、定语、状语、同位语，除了其中最特殊的句子成分，谓语动词之外，每种句子成分祈使都可以由从句充当。
+</p>
+</div>
+
+<div id="outline-container-orgcb898dc" class="outline-3">
+<h3 id="orgcb898dc">句子成分/句型</h3>
+<div class="outline-text-3" id="text-orgcb898dc">
+<pre class="example" id="org1eed188">
+主语+动词                           主语从句
+主语+动词+宾语                      宾语从句
+主语+动词+间接宾语+直接宾语
+主语+动词+宾语+（宾语）补语         宾语补语从句
+主语+动词+（主语）+补语（表语）     主语补语（表语）从句
+定语、状语、同位语                  定语从句、状语从句、同位语从句
+</pre>
+</div>
+</div>
+<div id="outline-container-org134ece7" class="outline-3">
+<h3 id="org134ece7">词类</h3>
+<div class="outline-text-3" id="text-org134ece7">
+<pre class="example" id="org182066c">
+动词        数词
+名词        副词
+代词        介词
+冠词        叹词
+形容词      连词
+</pre>
+</div>
+<div id="outline-container-orga0ac5f6" class="outline-4">
+<h4 id="orga0ac5f6">名词从句</h4>
+<div class="outline-text-4" id="text-orga0ac5f6">
+<pre class="example" id="org6752696">
+主语从句
+宾语从句
+主语补语（表语）从句
+宾语补语从句
+同位语从句
+</pre>
+</div>
+</div>
+<div id="outline-container-orgf2a7dbb" class="outline-4">
+<h4 id="orgf2a7dbb">形容词从句</h4>
+<div class="outline-text-4" id="text-orgf2a7dbb">
+<pre class="example" id="org72f1574">
+定语从句
+</pre>
+</div>
+</div>
+<div id="outline-container-org1863c73" class="outline-4">
+<h4 id="org1863c73">副词从句</h4>
+<div class="outline-text-4" id="text-org1863c73">
+<pre class="example" id="org5c528e9">
+状语从句
+- 时间状语从句
+- 地点状语从句
+- 条件、原因、方式、比较……状语从句
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge81f609" class="outline-2">
+<h2 id="orge81f609">形容词从句</h2>
+<div class="outline-text-2" id="text-orge81f609">
+</div>
+<div id="outline-container-orge9b9872" class="outline-3">
+<h3 id="orge9b9872">形容词从句的思维方式</h3>
+<div class="outline-text-3" id="text-orge9b9872">
+<p>
+在中文里，无论定语是单个形容词也好，又或是一句话充当的，都是放在被修饰的名词/代词之前：
+</p>
+
+<pre class="example" id="org60c9da2">
+*好吃的* 胡萝卜
+*我买来的* 胡萝卜
+*我昨天在菜市场向刚从地里回来的乌龟那儿买来的* 胡萝卜
+</pre>
+
+<p>
+中文构成定语基本上就是“ <b>形容词/句子 + 的</b> ”。
+</p>
+
+<p>
+但是，英语就不一样了。虽然单个形容词（或者多个形容词，或副词加形容词）作定语也是放在被修饰词之前，如：
+</p>
+
+<p>
+<b>a tasty</b> carrot    <b>一根好吃的</b> 胡萝卜
+</p>
+
+<p>
+但是如果定语要用一句话来描述时，就无法使用中文里“ <b>形容词/句子 + 的</b> ”的结构来实现了。
+</p>
+
+<p>
+在英语里，一根 <b>我买来的</b> 胡萝卜要说成： a carrot <b>that I bought</b>
+</p>
+
+<p>
+这样的英语定语的思维方式，可以理解为：在被修饰的词之后，添加另一个和它有关系的词，然后再把这个新词放在另一个句子中进行补充说明/逻辑阐述。语法上，这个新词叫”关系词“，它之前的被修饰的词叫”先行词“；这里的”另一个句子“就是”定语从句/形容词从句“；而因为其中包含关系词的缘故，这样的从句也被成为”关系从句“。
+</p>
+
+
+<div id="orgbcab19f" class="figure">
+<p><img src="../../pics/English/英语定语从句的思维方式.png" alt="英语定语从句的思维方式.png">
+</p>
+</div>
+</div>
+<div id="outline-container-org35286c5" class="outline-4">
+<h4 id="org35286c5">快速总结：中英思维方式不同</h4>
+<div class="outline-text-4" id="text-org35286c5">
+<p>
+中文思维：
+</p>
+
+<p>
+这兔子在吃一根我买来的胡萝卜
+</p>
+
+<p>
+英文思维：
+</p>
+
+<p>
+这兔子在吃一根 <b>胡萝卜</b> （[ <b>胡萝卜的关系词</b> ]我买）。
+</p>
+
+<p>
+The rabbit is eating a <b>carrot</b> ([ <b>that</b> ] I bought).
+</p>
+
+<p>
+再具体一点，中文句子的定语都是”前置“的：
+</p>
+
+<pre class="example" id="org72a7b9f">
+一根 *好吃的* 胡萝卜
+一根 *兔子吃了的* 胡萝卜
+一个 *是兔子的* 老师
+一个 *我昨天看见的* 老师
+*兔子吃胡萝卜的* 地方
+*兔子吃胡萝卜的* 原因
+</pre>
+
+<p>
+而对应的英语是：
+</p>
+
+<pre class="example" id="orga9363a9">
+a *tasty* carrot
+a carrot *that the rabbit ate*
+a teacher *who is a rabbit*
+a teacher *whom I saw yeasterday*
+the place *where the rabbit ate the carrot*
+the reason *why the rabbit ate the carrot*
+</pre>
+
+<p>
+从句做定语都是”后置“的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2677789" class="outline-3">
+<h3 id="org2677789">形容词从句的构成</h3>
+<div class="outline-text-3" id="text-org2677789">
+</div>
+<div id="outline-container-orgef7292c" class="outline-4">
+<h4 id="orgef7292c">关系词</h4>
+<div class="outline-text-4" id="text-orgef7292c">
+</div>
+<div id="outline-container-org2e14428" class="outline-5">
+<h5 id="org2e14428">关系代词</h5>
+<div class="outline-text-5" id="text-org2e14428">
+</div>
+<div id="outline-container-org506af50" class="outline-6">
+<h6 id="org506af50">关系代词引导的形容词从句</h6>
+<div class="outline-text-6" id="text-org506af50">
+<pre class="example" id="orgd30d555">
+The rabbit is eating a carrot _*that* I bought_.
+The teacher _*who* ate a carrot_ is a rabbit.
+The teacher _*whom* I saw yesterday_ is a rabbit.
+The teacher _*whose* favorite food is carrot_ is a rabbit.
+The food _*which* the teacher likes_ a carrot.
+</pre>
+
+<p>
+这些从句中，除去关系代词在开头作引导词，其他词的语序与对应的陈述的语序是一致的。
+</p>
+</div>
+<ul class="org-ul">
+<li><a id="org1f35980"></a>陈述句<br>
+<div class="outline-text-7" id="text-org1f35980">
+<pre class="example" id="org7ceb4b1">
+I bought *the carrot*
+*the rabbit* ate a carrot
+I saw *the teacher* yesterday
+*the teacher's* favorite food is carrot
+the teacher likes *the food*
+</pre>
+</div>
+</li>
+<li><a id="orgddcfffc"></a>-&gt; 陈述句语序，含关系代词<br>
+<div class="outline-text-7" id="text-orgddcfffc">
+<p>
+先把对应的陈述句中需要替代的词变做相应的关系代词：
+</p>
+
+<pre class="example" id="org322f916">
+I bought *that*
+*who* ate a carrot
+I saw *whom* yesterday
+*whose* favorite food is carrot
+the teacher likes *which*
+</pre>
+</div>
+</li>
+<li><a id="org88f51b6"></a>-&gt; 从句<br>
+<div class="outline-text-7" id="text-org88f51b6">
+<p>
+再把关系代词移到开头，就构成了从句
+</p>
+
+<pre class="example" id="org07f2d18">
+*that* I bought
+*who* ate a carrot
+*whom* I saw yesterday
+*whose* favorite food is carrot
+*which* the teacher likes
+</pre>
+</div>
+</li>
+</ul>
+</div>
+<div id="outline-container-org202ee95" class="outline-6">
+<h6 id="org202ee95">that vs. which</h6>
+<div class="outline-text-6" id="text-org202ee95">
+<p>
+刚才最后一个例句里的关系代词是 which，它代表之前的词 food，这里其实也可以用 that：
+</p>
+
+<pre class="example" id="org8b5806b">
+The rabbit is eating a carrot *that I bought*.
+The teacher who ate a carrot is a rabbit.
+The teacher whom I saw yesterday is a rabbit.
+The teacher whose favorite food is carrot is a rabbit.
+The food *which the teacher likes* a carrot.
+The food *that the teacher likes* a carrot.
+</pre>
+
+<p>
+也就是说，关系代词 that 和 which 经常可以互换。
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="org6ffe9e4"></a>先行词是 <b>唯一</b> 的：that<br>
+<div class="outline-text-7" id="text-org6ffe9e4">
+<p>
+先行词明确、唯一，没有其他可能时，就要用 that。
+</p>
+
+<pre class="example" id="orgbb85eda">
+The rabbit ate *the largest* carrot that I've ever seen.
+*all* the rabbit that ate a carrot
+*the only* rabbit that ate a carrot
+*the first* rabbit that ate a carrot
+</pre>
+</div>
+</li>
+<li><a id="org636e10e"></a>先行词是 <b>多选一</b> 的：which<br>
+<div class="outline-text-7" id="text-org636e10e">
+<p>
+而如果很多个同类事物中按限定条件选择，则不一定用 that，也可以用 which。
+</p>
+
+<pre class="example" id="org6f8187b">
+The rabbit ate a carrot *which* I bought.
+The rabbit ate a carrot *that* I bought.
+</pre>
+
+<p>
+可提问：Which one are you talking about?
+</p>
+
+<p>
+连提问都不用就知道的对象，就只能用 that，而如果还可以问 which one are talking about?那么就可以用 which 或者 that。
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5c435ed" class="outline-5">
+<h5 id="org5c435ed">关系副词</h5>
+<div class="outline-text-5" id="text-org5c435ed">
+</div>
+<div id="outline-container-orgc11ba68" class="outline-6">
+<h6 id="orgc11ba68">关系副词引导的形容词从句</h6>
+<div class="outline-text-6" id="text-orgc11ba68">
+<pre class="example" id="org2c25e0f">
+This was the _place *where*_ the rabbit ate the carrot.
+This is the _reason *why*_ the rabbit ate the carrot.
+That was the _day *when*_ the rabbit ate the carrot for the first time.
+</pre>
+
+<p>
+也可以把这些关系副词转为关系代词：
+</p>
+
+<pre class="example" id="orga50ba75">
+This was the _place *at which*_ the rabbit ate the carrot.
+This is the _reason *for which*_ the rabbit ate the carrot.
+That was the _day *on which*_ the rabbit ate the carrot for the first time.
+</pre>
+
+<p>
+关系副词 = 介词 + which
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgda6af74" class="outline-3">
+<h3 id="orgda6af74">形容词从句的限定性和非限定性</h3>
+<div class="outline-text-3" id="text-orgda6af74">
+</div>
+<div id="outline-container-org9ffe4ef" class="outline-4">
+<h4 id="org9ffe4ef">限定性形容词从句</h4>
+<div class="outline-text-4" id="text-org9ffe4ef">
+<p>
+形容词从句/定语从句的主要功能即：限定范围。比如：
+</p>
+
+<p>
+The rabbit ate the carrot <b>which was on the table</b>. 限定 carrot 的范围/性质
+</p>
+</div>
+</div>
+<div id="outline-container-org2955f8f" class="outline-4">
+<h4 id="org2955f8f">非限定性形容词从句</h4>
+<div class="outline-text-4" id="text-org2955f8f">
+<p>
+就是没有限定作用的从句
+</p>
+
+<p>
+The rabbit ate the carrot, <b>which</b> was on the table.
+</p>
+
+<p>
+The rabbit ate the carrot, <b>the carrot</b> was on the table.
+</p>
+
+<p>
+这样的从句没有限定作用，只不过是用了个代词”接着说话“而已。其实就是一前一后表达了两个信息：兔子吃胡萝卜和胡萝卜（再被吃之前）在桌上。言下之意是，完全可能只有一根胡萝卜，然后补充信息是，这根胡萝卜恰巧在桌上而已。
+</p>
+</div>
+</div>
+<div id="outline-container-org0cf10c5" class="outline-4">
+<h4 id="org0cf10c5">限定性 vs. 非限定性</h4>
+<div class="outline-text-4" id="text-org0cf10c5">
+<p>
+I have a head which is round.
+</p>
+
+<p>
+I have a head, which is round.
+</p>
+
+<p>
+第一句的言下之意是我有好几个头，其中一个是圆，其他的它头可能是方的扁的。第二句就比较清楚，我有一个头，而我这个头是圆的。
+</p>
+</div>
+</div>
+<div id="outline-container-org82a231f" class="outline-4">
+<h4 id="org82a231f">非限定性形容词从句作插入语</h4>
+<div class="outline-text-4" id="text-org82a231f">
+<p>
+正因为非限定性形容从句的这种”非限定性的“，”接着补充“（而非限定）的特性，所以往往用来做句子的插入语，比如：
+</p>
+
+<p>
+My head, <b>which is big</b>, is useful when it rains. 我有大头，下雨不愁。
+</p>
+
+<p>
+The biggest carrot, <b>which the rabbit ate</b>, was on the table. 最大的那根胡萝卜曾在桌上，兔子吃了它。
+</p>
+
+<p>
+这两个做插入语的形容词从句，都可以直接去掉都不影响句意。而且正因为只是补充信息用，所以前面加 the biggest 这样，”确定唯一“的限定词一点问题都没有。
+</p>
+</div>
+</div>
+<div id="outline-container-org19479e4" class="outline-4">
+<h4 id="org19479e4">非限定性形容词从句指代整句话</h4>
+<div class="outline-text-4" id="text-org19479e4">
+<p>
+非限定性形容词从句不一定是补充某个先行词，而是可以指代整句话，比如：
+</p>
+
+<p>
+<b>The rabbit ate the carrot</b>, <b>which</b> was not surprising. <b>兔子吃了胡萝卜</b> ， <b>这事儿</b> 不令人吃惊。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgee22a7c" class="outline-2">
+<h2 id="orgee22a7c">名词从句</h2>
+<div class="outline-text-2" id="text-orgee22a7c">
+</div>
+<div id="outline-container-org9d132f2" class="outline-3">
+<h3 id="org9d132f2">主语从句</h3>
+<div class="outline-text-3" id="text-org9d132f2">
+</div>
+<div id="outline-container-org8c7afc1" class="outline-4">
+<h4 id="org8c7afc1">主语从句的原理</h4>
+<div class="outline-text-4" id="text-org8c7afc1">
+<p>
+<b>The fact</b> is obvious. <b>这事实</b> 是明显的。
+</p>
+
+<p>
+在这个简单句中，主语是名词 fact，把主语 fact（以及之前的定冠词 the）换成一个从句，就得到了一个作主语的从句，即主语从句，如：
+</p>
+
+<p>
+That the rabbit ate a carrot. 就是引导词 that 引导的主语从句。
+</p>
+
+<p>
+-&gt; <b>That</b> the rabbit ate a carrot is obvious. 兔子吃了胡萝卜，这是明显的。
+</p>
+
+<p>
+我们已经知道 that 经常充当从句的引导词。再具体一点，这个引导词 that 在这里，是个“从属连词”。它也是一个信号，表示接下来从句开始了。
+</p>
+
+<p>
+说白了，主语从句就是句子主语由从句充当。而其他成分，该怎么来就怎么来。
+</p>
+
+<p>
+再看 That the rabbit ate a  carrot is obvious 这句话，这个主语从句表达了一个很确定的信息，即“兔子吃了胡萝卜”。但其实不确定的信息也可以构成主语从句。
+</p>
+</div>
+
+<div id="outline-container-orgb6240fa" class="outline-5">
+<h5 id="orgb6240fa">确定信息</h5>
+<div class="outline-text-5" id="text-orgb6240fa">
+<p>
+兔子吃了胡萝卜
+</p>
+
+<p>
+<b>That</b> the rabbit ate the carrot.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc95fb9e" class="outline-5">
+<h5 id="orgc95fb9e">不确定信息</h5>
+<div class="outline-text-5" id="text-orgc95fb9e">
+<p>
+以下这些都可以当主语
+</p>
+
+<pre class="example" id="org5e6a46f">
+  兔子 *是否* 吃了胡萝卜
+  兔子 *哪里* 吃的胡萝卜
+  兔子 *什么时候* 吃的胡萝卜
+  兔子 *怎样* 吃地胡萝卜
+  *谁* 吃了胡萝卜
+  兔子吃的 *什么*
+</pre>
+
+<p>
+-&gt;
+</p>
+
+<pre class="example" id="org4b712db">
+  兔子 *是否* 吃了胡萝卜 *是明显的*
+  兔子 *哪里* 吃的胡萝卜 *是明显的*
+  兔子 *什么时候* 吃的胡萝卜 *是明显的*
+  兔子 *怎样* 吃地胡萝卜 *是明显的*
+  *谁* 吃了胡萝卜 *是明显的*
+  兔子吃的 *什么* *是明显的*
+</pre>
+
+<p>
+-&gt; 其对应英语为：
+</p>
+
+<pre class="example" id="orgd15477f">
+  *Whether* the rabbit ate the carrot *is obvious*.
+  *Where* the rabbit ate the carrot *is obvious*.
+  *When* the rabbit ate the carrot *is obvious*.
+  *How* the rabbit ate the carrot *is obvious*.
+  *Who* ate the carrot *is obvious*.
+  *What* the rabbit ate *is obvious*.
+</pre>
+
+<p>
+这几句中英翻译的最大区别是，主语从句是要以引导词开头的——这些引导词都是像 what、where、when 这样的代词/副词——它们如果出现在问句中，被叫做”疑问代词/疑问副词“；这里用来引导从句，也就是作从句的”引导词“，属于”连接代词/连接副词“。而从句去除引导词，剩下的词序和中文基本是一致的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org45ca6c8" class="outline-4">
+<h4 id="org45ca6c8">形式主语</h4>
+<div class="outline-text-4" id="text-org45ca6c8">
+<p>
+<b>That the hungry rabbit had already eaten a carrot for dinner this evening</b> is obvious.
+</p>
+
+<p>
+-&gt; <b>It</b> is obvious <b>that the hungry rabbit had already eaten a carrot for dinner this evening</b>.
+</p>
+
+<p>
+这里的 it 不是平时指代物体的代词”它“，而是指代后面的从句，本身没有实际意义，所以被成为”形式主语“——它代表的是之后的真正的主语，也就是之后的主语从句。也就是说，放在句子后面的从句才是真正的主语。
+</p>
+
+<p>
+这样的形式主语 it 开头的句子构成很简单，就是用 it 把整句话用之前的语序说完，然后紧接着加上从句就可以了。
+</p>
+
+<p>
+我们可以把几句话改写成带有形式主语的句子：
+</p>
+
+<pre class="example" id="orgbff48c0">
+*That the rabbit ate a carrot* is a secret.
+*That the rabbit ate a carrot* was discussed.
+*That the rabbit ate a carrot* happed.
+</pre>
+
+<p>
+-&gt;
+</p>
+
+<pre class="example" id="orgc8ee1e3">
+It is a secret *that the rabbit ate a carrot*.
+It was discussed *that the rabbit ate a carrot*.
+It happened *that the rabbit ate a carrot*.
+</pre>
+
+<p>
+同理，我们也可以把”不确定信息“的句子改写以下：
+</p>
+
+<pre class="example" id="orgc932bbd">
+*Whether the rabbit ate the carrot* is obvious.
+*Where the rabbit ate the carrot* is obvious.
+*When the rabbit ate the carrot* is obvious.
+*How the rabbit ate the carrot* is obvious.
+*Who ate the carrot* is obvious.
+*What the rabbit ate* is obvious.
+</pre>
+
+<p>
+-&gt;
+</p>
+
+<pre class="example" id="org1312322">
+It is obvious *whether the rabbit ate the carrot*.
+It is obvious *where the rabbit ate the carrot*.
+It is obvious *when the rabbit ate the carrot*.
+It is obvious *how the rabbit ate the carrot*.
+It is obvious *who ate the carrot*.
+It is obvious *what the rabbit ate*.
+</pre>
+
+<p>
+在“It is + 形容词 + that“相似的结构中，一但谓语动词是 suggest、demand、insist、order……这样的词，从句中的动词就要使用动词的虚拟语气。
+</p>
+
+<p>
+It is <b>suggested/demanded/insisted/ordered</b> <b>that you (should) eat a carrot</b>.
+</p>
+
+<p>
+这几个动词被动态也可以换成某些形容词，照样使用动词虚拟语气，比如：
+</p>
+
+<p>
+It is <b>important/essential/necessary</b> <b>that you (should) eat a carrot</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e92ff3" class="outline-3">
+<h3 id="org9e92ff3">宾语从句</h3>
+<div class="outline-text-3" id="text-org9e92ff3">
+<p>
+宾语从句其实就是从句在整个复杂句中做宾语而已。这样的从句有可能包含确定信息，也可能包含不确定信息
+</p>
+</div>
+<div id="outline-container-org3e62591" class="outline-4">
+<h4 id="org3e62591">确定信息&amp;不确定信息</h4>
+<div class="outline-text-4" id="text-org3e62591">
+</div>
+<div id="outline-container-org2bbef4e" class="outline-5">
+<h5 id="org2bbef4e">确定信息作宾语从句</h5>
+<div class="outline-text-5" id="text-org2bbef4e">
+<p>
+I saw <b>that the rabbit ate a carrot</b>. 我看见 <b>这兔子吃了根胡萝卜</b>
+</p>
+</div>
+</div>
+<div id="outline-container-orgaad09f2" class="outline-5">
+<h5 id="orgaad09f2">不确定信息作宾语从句</h5>
+<div class="outline-text-5" id="text-orgaad09f2">
+<p>
+不确定的信息也可以作从句，充当句子的宾语，如：
+</p>
+
+<pre class="example" id="org0e2938c">
+I saw *whether* the rabbit ate the carrot.
+I saw *who* ate the carrot.
+I saw *what* the rabbit ate.
+I saw *where* the rabbit ate the carrot.
+I saw *when* the rabbit ate the carrot.
+I saw *how* the rabbit ate the carrot.
+</pre>
+
+<p>
+有两点需要注意：1.除了某些介词参与的情况，从句的引导词基本都在从句的开头，而其他的词遵照正常的陈述语序，基本也和中文一致。2.千万不要看到 whether、where、when、how 这样的词就以为看到了包含疑问代词/疑问副词的问句， 于是在之后错误地加上了助动词。以下句子是错误的：
+</p>
+
+<pre class="example" id="orgac0a2b1">
+You told me whether +does+ the rabbit eat the carrot.
+You told me where +does+ the rabbit eat the carrot.
+You told me when +does+ the rabbit eat the carrot.
+You told me how +does+ the rabbit eat the carrot.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge6d0998" class="outline-4">
+<h4 id="orge6d0998">引导词 that 的省略</h4>
+<div class="outline-text-4" id="text-orge6d0998">
+<p>
+在口语或非正式书面语中，宾语从句的引导词 that 往往可以省略，比如：
+</p>
+
+<p>
+I know <b>(that)</b> the rabbit ate a carrot.
+</p>
+
+<p>
+也可以说 I konw the rabbit ate a carrot.
+</p>
+
+<p>
+不过只有引导词 that 可以省略，而引导词 what、who、which、when、where、how 等，则不可以省略。
+</p>
+
+<pre class="example" id="org5cb4fd0">
+I saw *whether* the rabbit ate the carrot.
+I saw *who* ate the carrot.
+I saw *what* the rabbit ate.
+I saw *where* the rabbit ate the carrot.
+I saw *when* the rabbit ate the carrot.
+I saw *how* the rabbit ate the carrot.
+</pre>
+</div>
+<div id="outline-container-org8590ec3" class="outline-5">
+<h5 id="org8590ec3">不可省略引导词 that</h5>
+<div class="outline-text-5" id="text-org8590ec3">
+<p>
+也有的时候引导词 that 不能省略，否则句子有歧义或语法错误，比如：
+</p>
+
+<p>
+I didn't know <b>that the rabbit ate the carrot</b> and <b>that you saw it</b>.
+</p>
+
+<p>
+这句话实际是两个宾语，分别是两个宾语从句。意思是：1.我不知道兔子吃了胡萝卜，2.我不知道你看见了。第一个 that 去掉还好，但如果第二个 that 也去掉，那就可以这么断句：
+</p>
+
+<p>
+<b>I didn't know the rabbit ate the carrot</b> and <b>you saw it</b>.
+</p>
+
+<p>
+再比如插入语：
+</p>
+
+<p>
+I know, just like you do, <b>that</b> the rabbit ate the carrot.
+</p>
+
+<p>
+-&gt; I know, just like you do, the rabbit ate the carrot.
+</p>
+
+<p>
+如果去掉 that，会让人一下子反应不过来后面是个从句，从而认为这句话有语病。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc96f9b7" class="outline-4">
+<h4 id="orgc96f9b7">某些词后的宾语从句的否定</h4>
+<div class="outline-text-4" id="text-orgc96f9b7">
+<p>
+表达某种意见时，经常会用到宾语从句，如：
+</p>
+
+<p>
+I think <b>(that) the rabbit is smart</b>. 我认为这兔子很聪明。
+</p>
+
+<p>
+在做否定时，否定往往是加在谓语动词前，而不是在从句里，也就是：
+</p>
+
+<p>
+I <b>don't</b> think (that) the rabbit is smart.
+</p>
+
+<p>
+而不是：
+</p>
+
+<p>
+<del>I think (that) the rabbit <b>isn't</b> smart.</del>
+</p>
+</div>
+</div>
+<div id="outline-container-org7cb47c7" class="outline-4">
+<h4 id="org7cb47c7">主从时态一致</h4>
+<div class="outline-text-4" id="text-org7cb47c7">
+<p>
+在大多数情况下，宾语从句和主句中的时态要保持一致，比如：
+</p>
+
+<p>
+现在：I <b>don't</b> think (that) you <b>are</b> right.
+</p>
+
+<p>
+过去：I <b>didn't</b> think (that) you <b>were</b> right.
+</p>
+
+<p>
+再比如：
+</p>
+
+<p>
+I <b>knew</b> (that) the rabbit <b>liked</b> carrots.
+</p>
+
+<p>
+虽然 like 是一个”习惯性“的动作/行为，但是因为它所在的从句紧跟了过去时间的主句，所以也要用动词过去式 liked 而不是 like。
+</p>
+
+<p>
+只有“不变”的客观现在才是例外，如：
+</p>
+
+<p>
+I <b>knew</b> (that) the sun <b>rises</b> in the east.
+</p>
+
+<p>
+如果用了 rise 的过去式 rose 反而很奇怪：
+</p>
+
+<p>
+I <b>knew</b> (that) the sun <del>rose</del> in the east.
+</p>
+
+<p>
+这句话似乎在暗示，太阳过去从东边升级，可是之后就不一定了。
+</p>
+</div>
+</div>
+<div id="outline-container-orga3a05fa" class="outline-4">
+<h4 id="orga3a05fa">be + 形容词 + that&#x2026;</h4>
+<div class="outline-text-4" id="text-orga3a05fa">
+<p>
+be + 形容词 + that 这种句型很常见，但是很有“归类争议”。比如：
+</p>
+
+<pre class="example" id="org1e42d5a">
+I *am sure that* there's a carrot on the table.
+I *am happy that* there's a carrot on the table.
+I *am afraid that* there's no carrot on the table.
+</pre>
+
+<p>
+只所以说这样的句型归类有争议，是因为它往往被不同的老师/学者归类为：1.宾语从句，2.同位语从句，3.状语从句。
+</p>
+
+<p>
+把这样的句子归类为宾语从句的理由是：其中的形容词通常都是表达某种看法/判断，而 that 引导的从句相当于看法/判断，尤其是在中文表达中，这样的用法，和动作后加承受者很相似。
+</p>
+
+<p>
+这个句型还没有一个定论，但是这里稍稍偏向于宾语从句的归类。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org215760c" class="outline-3">
+<h3 id="org215760c">主语补语/表语从句</h3>
+<div class="outline-text-3" id="text-org215760c">
+<p>
+表语从句就是用一个从句充当系动词之后的那个表语。
+</p>
+</div>
+
+<div id="outline-container-org11caebc" class="outline-4">
+<h4 id="org11caebc">系动词：be 动词</h4>
+<div class="outline-text-4" id="text-org11caebc">
+<p>
+表语从句中最常见的系动词就是 be 动词。
+</p>
+
+<p>
+而表语从句的引导词，和之前一样，也有多种可能，比如：
+</p>
+
+<pre class="example" id="org2f7fe0b">
+The problem is *that* the rabbit is hungry.
+The reason is *that* there's no more carrot.
+The question is *whether* the rabbit is hungry.
+The question is *what* the rabbit should eat.
+The question is *where/when/how* the rabbit should eat the carrot.
+</pre>
+
+<p>
+和之前我们见过的从句一样，引导词开头，之后的语序和陈述句基本一致。
+</p>
+
+<p>
+表语从句（主语补语从句）往往就是把之前讲到的主语从句，移到系动词之后去而已，比如之前的：
+</p>
+
+<p>
+主语从句： <b>That the rabbit ate a carrot</b> is a <b>secret</b>.
+</p>
+
+<p>
+-&gt; 表语从句： <b>The *secret</b> is <b>that the rabbit ate a carrot</b>.
+</p>
+
+<p>
+这两句话意思大致相同，但是还是有些微妙区别的，主要体现在要强调的信息。
+</p>
+</div>
+</div>
+<div id="outline-container-org724699d" class="outline-4">
+<h4 id="org724699d">系动词：非 be 动词</h4>
+<div class="outline-text-4" id="text-org724699d">
+<p>
+系动词不一定是 be 动词，也有可能是 feel、seem、look、taste……这样的系动词。所以也能看到这样的表语从句：
+</p>
+
+<p>
+It <b>seems</b> that the rabbit is hungry.
+</p>
+
+<p>
+It <b>feels</b> that you're not telling the truth.
+</p>
+
+<p>
+这些句子中的 it 并不是某个物体“它”，而是个“形式主语”，没有实际意义。句子真正要表达的意思其实全部被涵盖在了后面的从句中。而后面的从句，在语法上来说，是的的确确的表语成分，所以是表语从句。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgba6b261" class="outline-3">
+<h3 id="orgba6b261">同位语从句</h3>
+<div class="outline-text-3" id="text-orgba6b261">
+<p>
+所谓“同位语”，其实就是用不同的方式把一个概念再说一遍，用逗号隔开，比如：
+</p>
+
+<p>
+My teacher, Papa Rabbit, likes carrots. 我的老师，兔老爹，喜欢胡萝卜。
+</p>
+
+<p>
+Papa Rabbit 在这里是主语 teacher 的同位语。同样的道理：
+</p>
+
+<p>
+I like my teacher, Papa Rabbit. 我喜欢我的老师，兔老爹。
+</p>
+
+<p>
+这句话中，Papa Rabbit 是宾语 teacher 的同位语。
+</p>
+
+<p>
+我们当然可以把同位语这个概念引申到从句，也就是， 当一个从句来充当同位语时，那么这个从句就是同位语从句。这样的从句常在句中修饰抽象的名词——因为抽象，所以才要“另一种方式来再说一遍”，比如：
+</p>
+
+<p>
+The <b>fact</b> <b>that the rabbit ate the carrot</b> did not surprise me. <b>兔子吃了胡萝卜</b> 这个 <b>事实</b> 并没有让我吃惊。
+</p>
+
+<p>
+这里的 The fact 和 that the rabbit ate the carrot 是同一个概念，一前一后用两种方式说出来而已——后者显然就是个由 that 这个引导词引导的同位语从句。注意这里因为有了引导词，很容易看出从句从哪里开始，所以也就不需要逗号隔开了。
+</p>
+
+<p>
+刚才的同位语从句包含了已知信息。同位语从句当然也可以包含未知信息，比如：
+</p>
+
+<p>
+The <b>question</b> <b>whether the rabbit will eat the carrot</b> is on all our minds. 兔子 <b>是否会吃胡萝卜</b> 这个问题萦绕在我们所有人心中。
+</p>
+
+<p>
+这里的 whether the rabbit will eat the carrot 也是个同位语从句，把主语 question 又说了一遍。
+</p>
+
+<p>
+I have no idea <b>who ate the carrot</b>. 我不知道 <b>谁吃了那胡萝卜</b> 。
+</p>
+
+<p>
+其中，idea 是宾语，所以之后的 who ate the carrot，其实只是把这里的 idea 重新定义了一番，还是个同位语从句，是句中宾语 idea 的同位语。
+</p>
+</div>
+</div>
+<div id="outline-container-org2255355" class="outline-3">
+<h3 id="org2255355">宾语补语从句</h3>
+<div class="outline-text-3" id="text-org2255355">
+<p>
+宾语补语从句，对应句型“主语+动词+宾语+（宾语）补语”，以及对应需要宾语补语的动词，比如 call、make、consider……等等。
+</p>
+
+<p>
+You can call <b>me</b> <b>Papa Rabbit</b>. 你可以叫我兔老爹。
+</p>
+
+<p>
+这句话中的 me，是复杂及物动词 call 的宾语，而 Papa Rabbit 就是宾语补语，对宾语 me 的补充。我们只要将 Papa Rabbit 这个充当宾语补语的专有名词，用从句替换，就能得到一个作宾语补语的从句，即宾语补语从句：
+</p>
+
+<p>
+You can call <b>me</b> <b>what you like</b>. 你可以叫我你想叫我的（称号）。（你可以随便叫我什么。）
+</p>
+
+<p>
+这里的 what you like 就是一个宾语补语从句。
+</p>
+
+<p>
+My education made <b>me</b> <b>who I am today</b>. 我的教育造就了我今天是的（这个人）。（我的教育成就了今天的我。）
+</p>
+
+<p>
+其中 who I am today 也是一个宾语补语从句。
+</p>
+
+<p>
+另外，虽然把宾语补语从句放在“名词从句”里，但是宾语补语从句不见得一定有名词性质，也有可能是形容词的性质，但是如果把它放到形容词从句，也有点奇怪。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a7cd41" class="outline-2">
+<h2 id="org2a7cd41">副词从句</h2>
+<div class="outline-text-2" id="text-org2a7cd41">
+<p>
+副词从句在句中起到副词的作用，一般补充说明动词、形容词、副词等。从句子成分上说，它充当了句子的状语，所以副词从句也叫“状语从句”——两者是一回事。副词从句与之前两大类从句（即名词从句和形容词从句）相比，种类很多，因为“作状语”在句子中补充信息，有多种可能。
+</p>
+
+<p>
+可以根据用途/意义把副词从句分类：
+</p>
+
+<ol class="org-ol">
+<li>表时间 （如：在&#x2026;前）</li>
+<li>表地点 （如：在&#x2026;地方）</li>
+<li>表条件 （如：如果&#x2026;）</li>
+<li>表让步 （如：虽然&#x2026;但是）</li>
+<li>表方式 （如：就好像&#x2026;）</li>
+<li>表比较 （如：比&#x2026;）</li>
+<li>表原因 （如：因为&#x2026;所以&#x2026;）</li>
+<li>表目的 （如：为了&#x2026;）</li>
+<li>表结果 （如：所以&#x2026;）</li>
+</ol>
+</div>
+<div id="outline-container-orgca27352" class="outline-3">
+<h3 id="orgca27352">时间副词从句</h3>
+<div class="outline-text-3" id="text-orgca27352">
+</div>
+<div id="outline-container-org2cd05bf" class="outline-4">
+<h4 id="org2cd05bf">在某一时间点之前</h4>
+<div class="outline-text-4" id="text-org2cd05bf">
+<p>
+从句引导词：before，如：
+</p>
+
+<p>
+The rabbit ate a carrot at home <b>before</b> the wolf stopped by. 大灰狼串门 <b>之前</b> ，兔子吃了根胡萝卜。
+</p>
+
+<p>
+这里，主句在从句之前。也可以把从句提前，写成：
+</p>
+
+<p>
+<b>Before</b> the wolf stopped by, the rabbit ate a carrot at home.
+</p>
+
+<p>
+但是如果从句在主句之前，则要在从句后加上逗号，便于断句。
+</p>
+</div>
+</div>
+<div id="outline-container-org8c812ca" class="outline-4">
+<h4 id="org8c812ca">在某一时间点之中（当时）</h4>
+<div class="outline-text-4" id="text-org8c812ca">
+<p>
+从句引导词：when、while、as，如：
+</p>
+
+<p>
+The rabbit wa eating a carrot <b>when</b> I reached home. 我到家 <b>的时候</b> ，兔子在吃胡萝卜。
+</p>
+
+<p>
+The rabbit wa eating a carrot <b>while</b> I making a video. 我做视频的 <b>过程中</b> ，兔子在吃胡萝卜。
+</p>
+
+<p>
+I ate a carrot <b>as</b> I made the video. 我 <b>一边</b> 吃胡萝卜 <b>一边</b> 做视频。
+</p>
+</div>
+<div id="outline-container-org1f445f4" class="outline-5">
+<h5 id="org1f445f4">三者的不同点</h5>
+<div class="outline-text-5" id="text-org1f445f4">
+<ol class="org-ol">
+<li><p>
+When：时间点，“突然”
+</p>
+
+<p>
+when 一般强调表示在某个时间点，如“当我回到家的那个时候”。实际上 when 有“突然”之意：
+</p>
+
+<p>
+The rabbit was eating a carrot at home <b>when</b> the wolf stopped by. 兔子在家吃胡萝卜 <b>的时候（突然）</b> 大灰狼来串门了。
+</p>
+
+<p>
+The rabbit was about to eat a carrot at home <b>when</b> the wolf stopped by. 兔子在家刚要吃胡萝卜 <b>的时候（突然）</b> 大灰狼来串门了。
+</p></li>
+
+<li><p>
+While：时间段
+</p>
+
+<p>
+While 一般强调一个时间段内，如“当我在做视频的这个时间段之内”。
+</p>
+
+<p>
+The rabbit was eating a carrot <b>while</b> I was making a video. 我做视频的 <b>过程中</b> ，兔子在吃胡萝卜。
+</p></li>
+
+<li><p>
+As：同时
+</p>
+
+<p>
+As 一般强调同时进行两个动作，如“同时吃胡萝卜和做视频”。
+</p>
+
+<p>
+I ate a carrot <b>as</b> I made the video. 我 <b>一边</b> 吃胡萝卜 <b>一边</b> 做视频。
+</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org18851fa" class="outline-4">
+<h4 id="org18851fa">在某一时间点之后</h4>
+<div class="outline-text-4" id="text-org18851fa">
+<p>
+从句引导词：after，如：
+</p>
+
+<p>
+The rabbit ate a carrot <b>after</b> the wolf stopped by 大灰狼串门 <b>之后</b> ，兔子吃了根胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4ffdbd" class="outline-4">
+<h4 id="orgf4ffdbd">从之前某一个时间点开始酸</h4>
+<div class="outline-text-4" id="text-orgf4ffdbd">
+<p>
+从句引导词：since。注意这里是从某时间点算起的时间段，往往暗示了对之后有影响。而我们在之前的时态文章里提到过，这样的情况下，一般要使用完成状态，比如：
+</p>
+
+<p>
+The rabbit has shared three carrots <b>since</b> the wolf stopped by. <b>自从</b> 大灰狼来串门，兔子已经分享了三根胡萝卜了。
+</p>
+
+<p>
+The rabbit has not stoped sharing carrots <b>since</b> the wolf stopped by. <b>自从</b> 大灰狼来串门，兔子就一直在分享胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org0849283" class="outline-4">
+<h4 id="org0849283">直到之后某一时间点</h4>
+<div class="outline-text-4" id="text-org0849283">
+<p>
+从句引导词：until。这个有点像 since 的对立面，即从某一时间点算起，直到之后的某一时间点。
+</p>
+
+<p>
+The rabbit waited <b>until</b> the wolf stopped by. 兔子一直在等， <b>直到</b> 大灰狼来串门。
+</p>
+
+<p>
+The rabbit did <b>not</b> eat any carrot <b>until</b> the wolf stopped by. 兔子 <b>直到</b> 大灰狼来串门 <b>才</b> 吃了胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org2906c7f" class="outline-4">
+<h4 id="org2906c7f">一&#x2026;就&#x2026;</h4>
+<div class="outline-text-4" id="text-org2906c7f">
+<p>
+从句引导词：as soon as，相当于一个动作紧跟着另一个动作发生。
+</p>
+
+<p>
+The rabbit will eat a carrot <b>as soon as</b> the wolf leaves. 大灰狼 <b>一</b> 离开兔子 <b>就</b> 要吃一个胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org8228344" class="outline-4">
+<h4 id="org8228344">下次&#x2026;</h4>
+<div class="outline-text-4" id="text-org8228344">
+<p>
+从句引导词：the next time。
+</p>
+
+<p>
+The rabbit will share the biggest carrot <b>the next time</b> the wolf stops by. <b>下次</b> 大灰狼来串门，兔子会一起分享最大的胡萝卜。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org283260c" class="outline-3">
+<h3 id="org283260c">地点副词从句</h3>
+<div class="outline-text-3" id="text-org283260c">
+<p>
+引导词：where + “强调形式”（wherever、everywhere、anywhere）
+</p>
+
+<p>
+主要引导词就是 where 以及它的“强调形式”，来表达“地点”，如：
+</p>
+
+<p>
+The rabbit ate the carrot <b>where he found it</b>. 兔子在找到胡萝卜的地方吃了它。
+</p>
+
+<p>
+光看见引导词 where，还不能确定该从句是哪种从句，得分别对待。
+</p>
+
+<p>
+引导地点副词（状语）从句： The rabbit ate the carrot <b>where</b> he found it.
+</p>
+
+<p>
+引导定语（形容词）从句： The rabbit ate the carrot at the place <b>where</b> he found it.
+</p>
+
+<p>
+引导表语（主语补语）从句： This is <b>where</b> he found the carrot.
+</p>
+
+<p>
+引导主语从句： <b>Where</b> he found the carrot is a sercet.
+</p>
+
+<p>
+在开始提到 where 的强调形式，它有点近似于中文的“不管哪里、任何地方、所有地方”。这样的引导词包括 wherever、everywhere、anywhere，比如：
+</p>
+
+<p>
+The rabbit will go <b>where</b> he can find a carrot.
+</p>
+
+<p>
+The rabbit will go <b>wherever</b> he can find a carrot.
+</p>
+
+<p>
+这两句很相似，只不过 wherever 强调了不管哪里，只要能发现胡萝卜，这兔子就会去。
+</p>
+
+<p>
+The rabbit sees a carrot <b>everywhere</b> he goes.
+</p>
+
+<p>
+The rabbit can eat a carrot <b>anywhere</b> he likes.
+</p>
+
+<p>
+这两句的区别在于，前者强调“所有”地方，后者强调“任何”某一处地方。可以把他们理解为“等效、相应”的定语从句：
+</p>
+
+<p>
+The rabbit sees a carrot <b>at every place where</b> he goes.
+</p>
+
+<p>
+The rabbit can eat a carrot <b>at any place where</b> he likes.
+</p>
+</div>
+</div>
+<div id="outline-container-org9471a1f" class="outline-3">
+<h3 id="org9471a1f">比较副词从句</h3>
+<div class="outline-text-3" id="text-org9471a1f">
+</div>
+<div id="outline-container-org7ef004a" class="outline-4">
+<h4 id="org7ef004a">英语形容词：比较极</h4>
+<div class="outline-text-4" id="text-org7ef004a">
+<pre class="example" id="org72d9a03">
+smart, smarter
+big, bigger
+beautiful, more beautiful
+</pre>
+
+<pre class="example" id="org942b168">
+He is smarter than me.
+This carrot is bigger than that one.
+She is as beautiful as Snow White.
+</pre>
+
+<p>
+以上这些常见的句子都可以算是省略句，或者口语化用法。它们完整的，正式的形式都是副词（状语）从句中的比较副词（状语）从句。
+</p>
+</div>
+</div>
+<div id="outline-container-orga2565f1" class="outline-4">
+<h4 id="orga2565f1">比较副词从句：“更&#x2026;”</h4>
+<div class="outline-text-4" id="text-orga2565f1">
+<pre class="example" id="org98e74d0">
+He is smarter *than me*
+He is smarter *than I am*
+
+This carrot is bigger *than that one*.
+This carrot is bigger *than that one is*.
+
+She is more beautiful *than Snow White*.
+She is more beautiful *than Snow White is*.
+</pre>
+
+<p>
+其中，than I am，than that one is，than Snow White is 实际上都是副词从句，用“比较”的方式对前面的主句进行补充说明。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc67ca5" class="outline-4">
+<h4 id="orgbc67ca5">比较副词从句：“同样得&#x2026;”</h4>
+<div class="outline-text-4" id="text-orgbc67ca5">
+<p>
+比较也不定非要“更”怎么样，也可能“同样得”怎样，如：
+</p>
+
+<pre class="example" id="org53b709e">
+He is as smart as I am.
+This carrot is as big as that one is.
+She is as beautiful as Snow WHite is.
+</pre>
+
+<p>
+以上也可以省略/口语化为：
+</p>
+
+<pre class="example" id="orga0c5d85">
+He is as smart as me.
+This carrot is as big as that one.
+She is as beautiful as Snow WHite.
+</pre>
+</div>
+</div>
+<div id="outline-container-orgbd45bdd" class="outline-4">
+<h4 id="orgbd45bdd">比较副词从句：“越&#x2026;越&#x2026;”</h4>
+<div class="outline-text-4" id="text-orgbd45bdd">
+<p>
+还有一种常见的比较副词从句是“the（比较极）, the（比较极）”的形式，比如：
+</p>
+
+<p>
+<b>The more</b> you practice English, <b>the more fluent</b> you become. 你 <b>越多</b> 练习英语， 你就 <b>越流利</b> 。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf7b405c" class="outline-3">
+<h3 id="orgf7b405c">条件副词从句</h3>
+<div class="outline-text-3" id="text-orgf7b405c">
+<p>
+条件副词从句其实就是通常说的“条件句”，如：
+</p>
+
+<p>
+<b>If the rabbit sees a carrot</b>, he will eat it.
+</p>
+
+<p>
+这个条件只是单纯的假设，属于“真实条件句”。
+</p>
+
+<p>
+而在虚拟语气中，有“虚拟条件句”，即和事实相反的假设，如：
+</p>
+
+<p>
+If I <b>saw</b> a carrot, I <b>would eat</b> it.
+</p>
+
+<p>
+If I <b>had seen</b> a carrot, I <b>would have eaten</b> it.
+</p>
+
+<p>
+就是使用了动词虚拟语气的条件副词从句。
+</p>
+</div>
+<div id="outline-container-org04fb1bf" class="outline-4">
+<h4 id="org04fb1bf">国内说法：主将从现</h4>
+<div class="outline-text-4" id="text-org04fb1bf">
+<p>
+“主将从现”就是主句用将来时态，而从句用现在时态，比如：
+</p>
+
+<p>
+If the rabbit sees carrot, he will eat it.
+</p>
+
+<p>
+这句话等于 The rabbit will eat the carrot if the rabbit sees it .
+</p>
+
+<p>
+两句中，if 引导了从句，使用的是一般现在时态；之后是主句，用一般将来时态。
+</p>
+</div>
+</div>
+<div id="outline-container-orge5c564f" class="outline-4">
+<h4 id="orge5c564f">然而&#x2026;</h4>
+<div class="outline-text-4" id="text-orge5c564f">
+<p>
+<b>If</b> I see a carrot&#x2026;
+</p>
+
+<p>
+英语的“将来”时态指的是非常确定会发生的事。
+</p>
+
+<p>
+I will eat a carrot. 是我确定我将来会吃根胡萝卜。
+</p>
+
+<p>
+问题是这么做的条件我不确定是否会形成。所以条件只能用一般状态，If I see a carrot，而不是 If I will see carrot.
+</p>
+
+<p>
+我不确定我是否一定会看见一只胡萝卜，所以条件句中，只能“去掉时间信息”，表达一个“一般的、默认的、普通”的状态，使用一般现在时态，而不是用明确的会发生的“一般将来时态”。
+</p>
+
+<p>
+但是，如果这个假设的条件成立，在这种情况下，我一定会明确地做“吃胡萝卜”这个动作，所以主句，也就是在这种条件成立的情况下，使用一般将来时态，表示明确在将来会发生的事。
+</p>
+</div>
+</div>
+<div id="outline-container-org84f0276" class="outline-4">
+<h4 id="org84f0276">规律</h4>
+<div class="outline-text-4" id="text-org84f0276">
+<p>
+进一步从规律上来说，条件句总是比主句在时态上落后一个时间段。这也可以用于虚拟语气：
+</p>
+
+<p>
+If I saw a carrot , I wouild eat it.
+</p>
+
+<p>
+If I had seen a carrot, I would have eaten it.
+</p>
+
+<p>
+至于为什么虚拟语气的条件句有过去式或者过去分词，是因为虚拟语气条件句中的 saw 并不是在表达时间，而是表达与现实相反的条件。
+</p>
+</div>
+</div>
+<div id="outline-container-org3d21979" class="outline-4">
+<h4 id="org3d21979">其他引导词</h4>
+<div class="outline-text-4" id="text-org3d21979">
+<p>
+除了 if 可以引导条件从句，还有 unless，其实就是把 if 反着说。
+</p>
+
+<p>
+If you like this video, you will give it a thumbs-up. 如果你喜欢这个视频，你会给它点赞。
+</p>
+
+<p>
+-&gt; Unless you like this video, you will not give it a thumbs-up.  除非你喜欢这个视频，否则你不会给它点赞。
+</p>
+
+<p>
+除了 if 和 unless 这两种最主要的，还有其他一些词/词组可以构成条件副词从句，比如 provided、as long as、in case：
+</p>
+
+<p>
+<b>Provided</b> that my video is excellent, you will give it a thumbs-up. 如果我的视频很棒，你会给他点赞。
+</p>
+
+<p>
+<b>As long as</b> I make excellent videos, you will remain my follower. 只要我一致做高质量视频，你就会继续关注我。
+</p>
+
+<p>
+<b>In case</b> you don't understand, please comment below. 如果你不明白，请在下方评论。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge940397" class="outline-3">
+<h3 id="orge940397">让步副词从句</h3>
+<div class="outline-text-3" id="text-orge940397">
+<p>
+和条件副词从句有些相通的地方，都是阐述某种情况或做出某种假设，但接下来会更近一步做出一个“相反/相对”的阐述，最常见的就是“即是&#x2026;也&#x2026;”，所以才有“让步”这一说。
+</p>
+
+<p>
+让步副词从句： <b>Event</b> if I see a carrot, I will not eat it. <b>即使</b> 我看到了一根胡萝卜，我也不会吃它。
+</p>
+
+<p>
+条件副词从句： If I saw a carrot, I would eat it. 如果我看到了一根胡萝卜，我就会吃掉它。
+</p>
+
+<p>
+“让步”的情况也不一定是假设，而可能就是事实，比如：
+</p>
+
+<p>
+<b>Although</b> I see a carrot, I will not eat it. <b>尽管</b> 我看见了一根胡萝卜，但我不会吃它。
+</p>
+
+<p>
+引导词 although 也可以用 though 或 event though 来替代。
+</p>
+
+<p>
+注意，虽然中文说”尽管/虽然&#x2026;但是&#x2026;“，英文可不能说”although/though/even though&#x2026;but&#x2026;“。因为 although 引导了从句，和主句构成了复杂句，但如果又用连词 but 就又构成了一个复合句。又用 although 又用 but，就混了复杂句和复合句，让人分辨不清。
+</p>
+
+<p>
+还有一个很重要的让步副词从句用法是，”no matter + 疑问词“的形式。刚才的让步都是具体情况，而这里的让步是”未知情况“，但依旧“不管如何”&#x2026;。
+</p>
+
+<p>
+No matter what happens, I will not eat the carrot. 不管什么事会发生，我都不会吃这胡萝卜。
+</p>
+
+<p>
+No matter who orders me, I will not eat the carrot. 不管谁命令我，我都不会吃这个胡萝卜。
+</p>
+
+<p>
+No matter how hungry I am, I will not eat the carrot. 不管我有多饿，我都不会吃这个胡萝卜。
+</p>
+
+<p>
+no matter 也可以用 regardless of 来取代。
+</p>
+</div>
+</div>
+<div id="outline-container-org0bfb47b" class="outline-3">
+<h3 id="org0bfb47b">方式副词从句</h3>
+<div class="outline-text-3" id="text-org0bfb47b">
+<p>
+最常见的是两种“方式”：
+</p>
+
+<p>
+好像某事 <b>发生过</b> 的方式
+</p>
+
+<p>
+好像某事 <b>正在发生</b> 的方式
+</p>
+
+<p>
+方式副词从句： I feel good as if I just ate a carrot. 我感觉良好，就 <b>好像</b> 我刚吃了根胡萝卜一样。
+</p>
+
+<p>
+这里的“好像”其实就是在做一个与现实相反的假设。和虚拟语气很像。
+</p>
+
+<p>
+如果是虚拟语气的条件副词从句，可能会说：
+</p>
+
+<p>
+条件副词从句（虚拟语气）： If I had eaten a carrot, I would feel good. <b>如果我刚才吃了</b> 根胡萝卜的话，我现在就会感觉良好。
+</p>
+
+<p>
+在方式副词从句中，主句直接就交代了某种情况，然后用从句交代一个与事实相反的假设。但是不管怎么样，那种情况已经发生了——在这里，I feel good 是确认情况；而在虚拟语气中，因为假设的条件并非事实，所以 I feel good 也并不是确认的情况。
+</p>
+
+<p>
+You spend (so much) money as if you were a millionaire.
+</p>
+
+<p>
+一上来就交代了你花（很多）钱，然后再说这种情况（你花钱的效果），就和一个虚拟的与事实相反的假设的情况下一样（就好像你是百万富翁，但你并不是）。
+</p>
+
+<p>
+If you were a millionaire, you would spend a lot of money.
+</p>
+
+<p>
+再比较这句虚拟语气。意思是，如果你是百万富翁（但你并不是），你会把很多钱。言下之意是，因为你有钱是假想，所以你并不会花很多钱。
+</p>
+
+<p>
+刚才的方式是假想，接下来不用假想，比如：
+</p>
+
+<p>
+Eat the carrot as I do. <b>像我</b> 一样吃胡萝卜。
+</p>
+
+<p>
+Leave the carrot as it is. 别动这胡萝卜。 -&gt; <b>像这</b> 胡萝卜原本那样，别碰它。
+</p>
+
+<p>
+这样的方式副词从句中，虽然也描述了某种情况，但是并不是假设，而是某种事实的阐述。可以把它理解为“正在”发生的某种方式。
+</p>
+
+<p>
+其实可以把之前的几个方式副词从句，真的用包含了“方式”这个词的形容词从句来表达，如：
+</p>
+
+<p>
+You spend money the way (in which) millionaire do.
+</p>
+
+<p>
+Eat the carrot the way (in which) I eat it.
+</p>
+
+<p>
+所以，要表达一个意思往往可以使用不同类型的从句。只不过有些听上去更常用、更自然、更简洁。
+</p>
+</div>
+</div>
+<div id="outline-container-org7956578" class="outline-3">
+<h3 id="org7956578">原因副词从句</h3>
+<div class="outline-text-3" id="text-org7956578">
+<p>
+最后三种副词从句，原因副词从句、目的副词从句、结果副词从句，都有相通之处。它们的共同点在于都 ishi“表达了某种因果”，即 A 导致 B 这样的情况。
+</p>
+
+<p>
+先说原因副词从句，比如：
+</p>
+
+<p>
+The rabbit ate the carrot <b>beacuse he was hungry</b>. 兔子吃了胡萝卜， <b>因为它饿了</b> 。
+</p>
+
+<p>
+这里的 beacuse he was hungry 就是个原因副词从句。不过也要注意，中文说“因为&#x2026;所以”，但英语却不能说：
+</p>
+
+<p>
+Because the rabbit was hungry, <del>so</del> he ate the carrot.
+</p>
+
+<p>
+这和之前为什么不能用"although&#x2026;but&#x2026;“一个道理。because 引导从句，所以主句前什么也不用加，构成了一个复杂句。而 so 是一个用来搞偶成复合句的连词。如果 beacuse 和 so 都用，就分不清到底是复杂句还是复合句了。
+</p>
+
+<p>
+除了 beacuse 这个引导词构成原因副词从句，还能用 since 和 as。
+</p>
+</div>
+<div id="outline-container-orgb3ef5f0" class="outline-4">
+<h4 id="orgb3ef5f0">since</h4>
+<div class="outline-text-4" id="text-orgb3ef5f0">
+<p>
+<b>Since</b> you are hungry, you can eat the carrot. 既然你饿了，你可以吃这胡萝卜。
+</p>
+
+<p>
+注意这里的 since 不是时间副词从句那个”从某个时间点开始“的意思，而是介绍某个原因。
+</p>
+</div>
+</div>
+<div id="outline-container-org07e8693" class="outline-4">
+<h4 id="org07e8693">as</h4>
+<div class="outline-text-4" id="text-org07e8693">
+<p>
+<b>As</b> you were not here, we ate the carrot without you. 因为你之前不在这，所以吃胡萝卜没带你。
+</p>
+
+<p>
+这里的 as 也和之前说的方式副词从句中的”像&#x2026;一样“有区别。这里也是表原因。
+</p>
+</div>
+</div>
+<div id="outline-container-orge7d80d9" class="outline-4">
+<h4 id="orge7d80d9">because/since/as 的区别</h4>
+<div class="outline-text-4" id="text-orge7d80d9">
+<p>
+有两大区别：第一，从因果或说语气的程度上说，because &gt; since &gt; as。Because 引出的是实实在在的因果关系，since 引出的是大家都已经知道的情况，as 引出的是显而易见的事实。
+</p>
+
+<p>
+Because：Beacuse this video is excellent, you should give it a thumbs-up. 因为这视频很棒，所以要点赞。
+</p>
+
+<p>
+Since：Since all my videos are excellent, you should give this video a thumbs-up. 众所周知，我的视频都很棒，所以要点赞。
+</p>
+
+<p>
+As：As I have thick skin, I'm begging you for a thumbs-up. 显而易见我脸皮很厚，所以求你点赞。
+</p>
+
+<p>
+第二，就是语序的区别。Beacuse 引导的从句在主句前后都可以，而 Since 和 as 引导的从句一般只能放在主句之前。
+</p>
+</div>
+</div>
+<div id="outline-container-org5bcf7a1" class="outline-4">
+<h4 id="org5bcf7a1">because vs for</h4>
+<div class="outline-text-4" id="text-org5bcf7a1">
+<p>
+其实 for 这个词也可以表示一定的因果关系，比如：
+</p>
+
+<p>
+You must really like me, <b>for</b> you have given all my videos a thumbs-up. 你肯定很喜欢我，因为你给我所有视频都点赞了。
+</p>
+
+<p>
+但是，请特别注意，for 构成的不是原因状语从句。for 在这里构成复合句，而不是复杂句。
+</p>
+
+<p>
+也就说”for you have given all my videos a thumbs-up.“可不是从句。"You must really like me”和"you have given all my videos a thumbs-up“是有着同等地方的句子，前者是个推测，而后者补充了推测的原因。
+</p>
+
+<p>
+仔细体会以下两句的区别：
+</p>
+
+<p>
+Because you like me, you have given all my videos a thumbs-up. 因为你喜欢我，所以你给所有英语兔视频都点赞了。
+</p>
+
+<p>
+原因：你喜欢我（because you like me），结果：你给我的所有视频都点赞了（you have given all my videos a thumbs-up）。
+</p>
+
+<p>
+You must really like me, for you have given all my videos a thumbs-up. 你一定喜欢我，因为你给我的所有视频都点赞了。
+</p>
+
+<p>
+推测的结果：你喜欢我（you must really like me），这么推测的原因：你给我的所有视频都点赞了（you have given all my videos a thumbs-up）。
+</p>
+
+<p>
+它们是很不同的用法，千万不要像很多人以为的那样，”for 可以直接替换 because，只不过语气弱一点而已“。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f87577" class="outline-3">
+<h3 id="org3f87577">目的副词从句</h3>
+<div class="outline-text-3" id="text-org3f87577">
+<p>
+目的副词从句也有一定的因果关系，只不过是使用”目的”的方式说出来的：因为要达到目的 A（从句），所以做了 B（主句）。或者说，之所以做 B（主句），是为了达到目的 A（从句）。比如：
+</p>
+
+<p>
+In order that I could finsh the video in time, I pulled an all-nighter. 为了及时完成视频，我熬夜不睡（肝视频）。
+</p>
+
+<p>
+= I pulled an all-nighter so that I could finsh the video in time. 我熬夜不睡（肝视频），就为了及时完成视频。
+</p>
+
+<p>
+注意”so that“不能放在句首。另外要注意，目的副词从句中，一般使用情态助动词 can、could、my、might、should、would 等，因为这样能更好体现目的性。这一点在下面的“结果副词从句”中，你就能更好体会了。
+</p>
+</div>
+</div>
+<div id="outline-container-orge93fe2d" class="outline-3">
+<h3 id="orge93fe2d">结果副词从句</h3>
+<div class="outline-text-3" id="text-orge93fe2d">
+<p>
+结果副词从句也可以由 so that 构成。
+</p>
+
+<p>
+I ate a lot of carrots for lunch <b>so that</b> I wasn't hungry at all in the afternoon.
+</p>
+
+<p>
+你能看出 so that 引导这里的结果副词从句和引导之前的目的副词从句有什么区别吗？如果还不是很清楚，看下面这句话：
+</p>
+
+<p>
+The temperature was low <b>so that</b> the lake froze. 气温很低，所以湖结冰了。
+</p>
+
+<p>
+显然，这样的句子只能用“结果”来解释。总不能说“气温很低，目的就是让湖面结冰”。
+</p>
+</div>
+<div id="outline-container-org4985e53" class="outline-4">
+<h4 id="org4985e53">so</h4>
+<div class="outline-text-4" id="text-org4985e53">
+<p>
+也是表示“因此是、结果是”，如：
+</p>
+
+<p>
+I like this video, <b>so</b> I'll give it a thumbs-up.
+</p>
+
+<p>
+so 连接了两个并列句，从而构成了复合句。而 so that 引导的是副词从句，它起到的作用就是解释说明主句的情况，是主句动作产生的结果。
+</p>
+
+<p>
+I ate a lot of carrots for lunch <b>so that</b> I wasn't hungry at all in the afternoon.
+</p>
+
+<p>
+对于上面这句话，还可以用 so&#x2026;that..这个结构：
+</p>
+
+<p>
+I ate <b>so</b> many carrot for lunch <b>that</b> I felt sick afterwards. 我吃了那么多胡萝卜， <b>导致（结果是）</b> 我之后感到不舒服。
+</p>
+
+<p>
+相似的还有 such&#x2026;that&#x2026;，不过 such 后要接名词而不是形容词，比如：
+</p>
+
+<p>
+It was <b>such</b> <i>a tasty carrot</i> <b>that</b> I ate it all at once. 这是个如此 <b>好吃的胡萝卜</b> ， <b>以至于（结果）</b> 我一下子就吃完了它。
+</p>
+
+<p>
+如果一定要用 so&#x2026;that&#x2026;，也不是不可以，但是要说：
+</p>
+
+<p>
+It was <b>so</b> <i>tasty</i> a carrot <b>that</b> I ate it all at once.
+</p>
+
+<p>
+so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-09 Mon 17:35</p>
+</div>
+</body>
+</html>
