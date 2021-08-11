@@ -5,100 +5,162 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
-    <title><![CDATA[Ebuild-defined Variables]]></title>
-    <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</guid>
-    <description><![CDATA[<p>#+TITLE: Ebuild-defined Variables #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+    <title><![CDATA[被动语态]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</guid>
+    <description><![CDATA[<p>#+TITLE: 被动语态 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li>Ebuild-defined Variables The following variables may or must be defined by every ebuild.</li>
+<li>语态 英语语态分为两种：主动语态和被动语态。</li>
 </ul>
-<table>
-<colgroup>
-<col style="width: 3%" />
-<col style="width: 96%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Variable</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>EAPI</td>
-<td>The EAPI. See EAPI Usage and Description.</td>
-</tr>
-<tr class="even">
-<td>DESCRIPTION</td>
-<td>A short (not more than 80 characters) description of the package’s purpose. Mandatory.</td>
-</tr>
-<tr class="odd">
-<td>HOMEPAGE</td>
-<td>Package’s homepage(s). Mandatory (except for virtuals), accepts multiple values. In some contexts, it is customary to provide package tracker and/or code hosting links besides the main homepage (e.g. PyPI link for Python packages, GitHub link when code can’t easily be found on homepage) for convenience. If no homepage for the package is available, please set it to https://wiki.gentoo.org/wiki/No_homepage. Never refer to a variable name in the string; include only raw text.</td>
-</tr>
-<tr class="even">
-<td>SRC_URI</td>
-<td>A list of source URIs for the package. Can contain USE-conditional parts, see SRC_URI.</td>
-</tr>
-<tr class="odd">
-<td>LICENSE</td>
-<td>The package’s license, corresponding exactly (including case) to a file in licenses/. Mandatory (except for virtuals). See LICENSE.</td>
-</tr>
-<tr class="even">
-<td>SLOT</td>
-<td>The package’s SLOT. Mandatory. See SLOT.</td>
-</tr>
-<tr class="odd">
-<td>KEYWORDS</td>
-<td>See KEYWORDS and Keywording and Stabilization.</td>
-</tr>
-<tr class="even">
-<td>IUSE</td>
-<td>A list of all USE flags (excluding arch flags, but including USE_EXPAND flags) used within the ebuild. See IUSE.</td>
-</tr>
-<tr class="odd">
-<td>REQUIRED_USE</td>
-<td>A list of assertions that must be met by the configuration of USE flags to be valid for this ebuild. See REQUIRED_USE.</td>
-</tr>
-<tr class="even">
-<td>PROPERTIES</td>
-<td>A space-delimited list of properties, with conditional syntax support. interactive is the only valid value for now.</td>
-</tr>
-<tr class="odd">
-<td>RESTRICT</td>
-<td>A space-delimited list of portage features to restrict. Valid values are fetch, mirror, strip, test and userpriv. See man 5 ebuild for details.</td>
-</tr>
-<tr class="even">
-<td>DEPEND</td>
-<td>A list of the package’s build dependencies. See Dependencies. Starting with EAPI-7, applies to CHOST only.</td>
-</tr>
-<tr class="odd">
-<td>BDEPEND</td>
-<td>(EAPI=7) A list of the package’s CBUILD build dependencies. See Dependencies.</td>
-</tr>
-<tr class="even">
-<td>RDEPEND</td>
-<td>A list of the package’s runtime dependencies. See Dependencies.</td>
-</tr>
-<tr class="odd">
-<td>PDEPEND</td>
-<td>A list of packages to be installed (if possible) after the package is merged. Use this only when RDEPEND would cause cyclic dependencies. See Dependencies.</td>
-</tr>
-<tr class="even">
-<td>S</td>
-<td>Path to the temporary build directory, used by src_compile and src_install. Default: “=<span class="math inline"><em>W</em><em>O</em><em>R</em><em>K</em><em>D</em><em>I</em><em>R</em>/</span>{P}=”. Ebuilds should not provide a value for this variable if it is the same as the default value.</td>
-</tr>
-<tr class="odd">
-<td>DOCS</td>
-<td>An array or whitespace-separated list of documentation files for the default src_install function to install using dodoc. If undefined, a reasonable default list is used. See the default src_install function.</td>
-</tr>
-<tr class="even">
-<td>HTML_DOCS</td>
-<td>An array or space-delimited list of documentation files or directories for the einstalldocs function to install recursively. (Requires EAPI&gt;=6.)</td>
-</tr>
-</tbody>
-</table>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+<p>“兔子咬人了！”</p>
+<p>”谁被兔子咬了？“</p>
+<p>在一句话中，想要强调谁，谁就会充当主语。如果强调动作的执行者，譬如兔子做出咬人的举动，句子就会用主动语态。如果强调动作的承受者，譬如谁被咬，句子就倾向用被动语态。</p>
+<p>被动语态的构成也是通过谓语动词的变化完成的，不妨通过五种基本句型来看看它们的被动语态是怎么演化的。 * 基本句型 ** 主 + 谓 The rabbit slept.</p>
+<p>该剧 slept 是个不及物动词，没有宾语，不存在动作的承受者这个概念，自然就没有被动语态了。 ** 主 + 谓 + 宾 The rabbit ate the carrot.</p>
+<p>主语 the rabbit 是动作 ate 的执行者，the carrot 是动作 ate 的承受者，如果变成被动语态，就是强调动作的承受者，让 the carrot 成为主语。其中被动语态的构成为“be + 动词过去分词”。如果需要表明动作的执行者是谁，就要借助“by + 动作执行者”。所以，我们得到：</p>
+<p>Teh carrot was eaten by the rabbit.</p>
+<p>很多情况下，无需表明“被谁…”这一概念，例如：</p>
+<p>A carrot was eaten.</p>
+<p>回想一下在非谓语动词里，过去分词作主语补语（表语）的句子：</p>
+<p>The rabbit was frightened by the wolf.</p>
+<p>所以，过去分词表被动的意义和被动语态脱不了关系。 ** 主 + 谓 + 宾 + 宾 The rabbit gave the carrot <em>to</em> the wolf.</p>
+<p>在这个句子里有两个宾语，直接宾语 the carrot 和间接宾语 the wolf。如果强调间接宾语 the wolf：</p>
+<p>The wolf was given the carrot by the rabbit.</p>
+<p>如果强调直接宾语 the carrot：</p>
+<p>The carrot was given to the wolf by the rabbit.</p>
+<p>当然，如果都知道是兔子给狼胡萝卜，可以把 by + 动作执行者这部分去掉。所以上面两个句子可以简写成：</p>
+<p>The wolf was given the carrot.</p>
+<p>The carrot was given <em>to</em> the wolf.</p>
+<p>如果这个句子主动形式写成“主语+谓语+间接宾语+直接宾语”的形式，那 to 就消失了。</p>
+<p>The rabbit gave <em>the wolf</em> <em>the carrot</em>.</p>
+<p>但在强调直接宾语 the carrot 变被动句时，可不能是：</p>
+<p>+The carrot was given the wolf (by the rabbit).+</p>
+<p>它和之前那句代介词 to 的主动句变被动语态是一样的，所以应该还是：</p>
+<p>The carrot was given <em>to</em> the wolf (by the rabbit)+</p>
+<p>千万不要漏掉 to。 ** 主 + 谓 + 宾 + 宾补 The wolf invited the rabbit to her party.</p>
+<p>改为被动态：</p>
+<p>The rabbit was invited to the party by the wolf.</p>
+<p>有时需要特别注意，再看一个例子：</p>
+<p>The rabbit <em>made</em> the wolf <em>laught</em>.</p>
+<p>make 等后接的是省略了 to 的动词不定式，这种不带 to 的动词不定式也被成为裸不定式。</p>
+<p>所以原句实际上相当于：</p>
+<p>The rabbit made the wolf +to+ laught.</p>
+<p><em>一旦省略了 to 的动词不定式作宾补，改成被动语态时要把 to 还原。</em> 所以改成被动语态应该是：</p>
+<p>The wolf was made to laugh (by the rabbit). ** 主 + 系 + 表（主语补语） The rabbit is smart.</p>
+<p>这种句型没有办法变成被动语态。 * 复杂用法 其实被动态可以更复杂，如果被动态和动态、语气、情态助词相结合的话，就会产生一系列“化学反应”，比如：</p>
+<ul>
+<li><p>The rabbit <em>has eaten</em> the carrot.</p>
+<p>-&gt; The carrot <em>has been eaten</em> by the rabbit.</p>
+<p>-&gt; The carrot <em>has not been eaten</em> by the rabbit.</p>
+<p>-&gt; <em>Has</em> the carrot <em>been</em> eaten by the rabbit.</p></li>
+<li><p>The rabbit <em>would have eaten</em> the carrot.h</p>
+<p>-&gt; The carrot <em>would have been eaten</em> by the rabbit.</p>
+<p>-&gt; The carrot <em>would not have been eaten</em> by the rabbit.</p>
+<p>-&gt; <em>Would</em> the carrot <em>have been</em> eaten by the rabbit.</p></li>
+<li><p>The rabbit <em>might eat</em> the carrot.</p>
+<p>-&gt; The carrot <em>might be eaten</em> by the rabbit.</p>
+<p>-&gt; The carrot <em>might not be eaten</em> by the rabbit.</p>
+<p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
+<p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
+</ul>]]></description>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[独立主格]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</guid>
+    <description><![CDATA[<p>#+TITLE: 独立主格 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>独立主格结构 先回忆一下非谓语动词对从句的简化：</li>
+</ul>
+<p>Because he was invited by the wolf, the rabbit decided to go the party. 因为兔子被狼邀请了，所以兔子决定去参加聚会。</p>
+<p>学过非谓语动词后，这个句子就可以改写成：</p>
+<p><em>Invited</em> by the wolf, the rabbit decided to go to the party. （本句不包含独立主格结构）</p>
+<p>invited 是过去分词，因为句子的主语是 the rabbit，它跟 invite 这个动作之间是一种被动的关系，所以使用过去分词 invited。</p>
+<p>相比较上一个句子，省略掉了 because he was 这一部分，却同样达到了表原因这一目的，从而使这个句子达到了简化的效果。再看：</p>
+<p>Because the wolf invited him, the rabbit decided to go to the party. 因为狼邀请了兔子，所以兔子决定去参加聚会了。</p>
+<p>后面的主句中 the rabbit，前面的原因状语从句中他是 the wolf。那怎么简化呢？是直接去掉 because 及后面的部分吗？又因为 wolf 邀请 rabbit，所以 wolf 不能省略：</p>
+<p>The wolf invited him, the rabbit decided to go to the party.</p>
+<p>但这样还是有问题。这样一来，逗号连接了前后两个意义完整的句子。而一个句子只能有一个谓语动词。所以前面 wolf 那里就不能用谓语动词了，得用非谓语动词。而这里 wolf 是邀请者，是主动而不是被动，所以就要用现在分词了。那再改一下：</p>
+<p>The wolf inviting him, the rabbit decided to go to the party.</p>
+<p>这就是独立主格结构的真面目。这个句子的主干是 the rabbit decided to go to the party，而前面 the wolf inviting him 中，invite 这个动作是由 the wolf 发出的，而不是真正的主语 the rabbit 发出的动作。所以语法上把 the wolf 称为动词 invite 的逻辑主语，而这就是“独立主格”中的“主格”。</p>
+<p>那独立又如何理解呢？因为 the wolf 是游离真正主语 the rabbit 之外的，在 the wolf inviting him 中“自立门户”，“独立”了出来。不过这个独立的主语还是不能跟真正的主语相提并论，要不怎么说是“独立主格”，而不是“独立主语”呢？ * 独立主格结构对从句的简化 If the weather permits, the rabbit will go out. 如果天气允许，兔子就会出门。</p>
+<p>这里是 if 引导的条件状语从句，因为从句中的 the weather 和主句中的 the rabbit 明显不同，那就使用独立主格来表达：</p>
+<p>The weather permitting, the rabbit will go out. 如果天气允许，兔子就会出门。</p>
+<p>继续看：</p>
+<p>After the work was finished, the rabbit went home. 工作完成后，兔子回家了。</p>
+<p>after 引导的是时间状语从句，从句中的主语 the work，与主句中的主句 the rabbit 显然也不一样，看看独立主格是怎么表达的：</p>
+<p>The work finished, the rabbit went home.</p>
+<p>再看一个：</p>
+<p>The rabbit is lying in bed and a carrot is still held in his hand. 兔子正躺在床上，胡萝卜仍在他手中。</p>
+<p>这是一个 and 引导的并列句，这两个句子两个主语，动作同时发生，相当于伴随的状况。看看独立主格是怎么表达的：</p>
+<p>The rabbit is lying in bed, a carrot still held in his hand.</p>
+<p>前面说了那么多，实际上只是独立主格的两种形式，“名词/代词 + 现在分词”，如：the wolf inviting him，“名词/代词 + 过分分词”，如：a carrot held in the hand。其实独立主格还有很多副面孔，看下面的例子：</p>
+<p>The <em>rabbit</em> <em>to come</em>, the wolf is overjoyed. 兔子要来，狼乐翻天。</p>
+<p>这是“名词/代词 + 动词不定式”，动词不定式一般表将要发生的动作。还有：</p>
+<p>Many animals went to the party, <em>some</em> of them <em>rabbits and wolves</em>. 许多动物去了聚会，它们中的一些是兔子和狼。</p>
+<p>这是“名词/代词 + 名词”。</p>
+<p>Many animals went to party, <em>some</em> of them <em>happy</em>. 许多动物去了聚会，它们中的一些很开心。</p>
+<p>这是“名词/代词 + 形容词”。再看：</p>
+<p>The rabbit sat on a chair, <em>head</em> <em>down</em>. 兔子做在一张椅子上，头垂着。</p>
+<p>这是“名词/代词 + 副词“。还有：</p>
+<p>The rabbit came in, <em>carrot</em> <em>in hand</em>. 兔子近来了，手里拿着胡萝卜。</p>
+<p>这是“名词/代词 + 介词短语“。</p>
+<p>实际上它们更像是：包含 be 动词的独立主格——也就是”名词/代词 + be 动作的现在分词（being）“，然后再把 being 省略掉，比如：</p>
+<p>Many animals went to the party, some of them +being+ rabbits and wolves.</p>
+<p>Many animals went to party, some of them +being+ happy.</p>
+<p>The rabbit sat on a chair, head +being+ down.</p>
+<p>The rabbit came in, carrot +being+ in hand. * 总结 在学习独立主格的主要形式时，其实还是不能脱离非谓语动词这一概念， 过去分词表示逻辑主语和动作是一种被动、完成的关系；现在分词表示逻辑主语和动作是一种主动、进行的关系；动词不定式表示逻辑主语将要发生的动作。而其他的形式，更像是省略了现在分词 being 的一种简化形式。</p>
+<p>你可能经常会见到”with + 宾语 + 宾语补语“这样的复合结构，其实这个 with 结构就是一个很重要的独立主格结构。</p>
+<p>The work finished, the rabbit went home.</p>
+<p>-&gt; <em>With</em> the work finished, the rabbit went home.</p>
+<p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
+<p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
+<p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[倒装句]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</guid>
+    <description><![CDATA[<p>#+TITLE: 倒装句 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>倒装句 所谓倒装句，就是为了强调某些信息而颠倒了原有语序的句式。比如：</li>
+</ul>
+<p>你 <em>吃</em> 胡萝卜了吗？</p>
+<p>这个问题强调的是“吃”（或者“胡萝卜”），而：</p>
+<p>吃胡萝卜了吗，你？</p>
+<p>强调的是“你”。</p>
+<p>汉语的倒装句多用于口语表达，而英语则常见于书面用语。</p>
+<p>英语的语序是主语谓语，主语在谓语动词的前面。所以，倒装，通常就要把谓语动词提前。 * 完全倒装（谓语动词完全在主语前） 完全倒装的结构是谓语部分完全放在主语之前。但不是什么句子都能“倒着说”。 ** 副词/介词短语在句首的倒装 - 地点副词在句首的倒装</p>
+<p>以 here，there 为代表。</p>
+<p><em>There</em> goes the last bus. 末班公共汽车开走了。</p>
+<p>虽然正常语序是”The last bus goes.“。但是为了强调开走了，出现了地点副词 there，可以把地点副词置于句首。</p>
+<ul>
+<li><p>时间副词在句首的倒装</p>
+<p>以 now、then 为代表，比如：</p>
+<p>Now comes the wolf’s turn! 现在轮到大灰狼了。</p></li>
+<li><p>表运动方向的副词在句首的倒装</p>
+<p>有些副词表示动作的运动方式，如 in、out、up、down、away 等，把它们出现在句首时，句子要用完全倒装。</p>
+<p>这种完全倒装句，可以使动作显得更加生动，容易让读者有一种画面感，比如：</p>
+<p>Up went the carrots into air. 胡萝卜飞向空中。</p></li>
+<li><p>介词短语在句首的倒装</p>
+<p>At the table sat a rabbit. 桌边上坐着一只兔子。 ** 主语补语（表语）的倒装 主语补语，或者说表语，就是当我们使用系动词时，对主语进行补充说明的成分。比如：“A is B.”，A就是主语，B就是主语补语（表语）。</p></li>
+</ul>
+<p>英语中为了保持句子平衡或者强调表语部分，讲做表语的形容词、分词、介词短语、such 置于句首时，需要完全倒装。比如：</p>
+<p>Seated on the grould is a group of rabbits. 席地而坐的是一群兔子们。</p>
+<p>Such were the wolf’s tricks. 这就是大灰狼的把戏。 * 部分倒装（仅有助动词提前） 部分倒装的形式主要是讲助动词和谓语动词分离，助动词提前。这类句型主要有下面几种。 ** 句首有否定意义词时的倒装 Never before have I eaten such a delicious carrot. 我以前从未吃过如此美味的胡萝卜。</p>
+<p>其实这个句子相当于：</p>
+<p>I have never eaten such a delicious carrot. 我以前从未吃过如此美味的胡萝卜。</p>
+<p>have eaten 里面，只有助动词 have 提到了主语之前。 ** 句首有“only”时的倒装 Only in this way <em>can</em> we grow delicious carrots. 只有用这种饭伽梵我们才能种出美味的胡萝卜。</p>
+<p>情态动词 can 提到主语前面形成部分倒装。</p>
+<p>Only then <em>did</em> the rabbit meet the wolf. 直到那时，兔子才遇见了狼。</p>
+<p>同样，助动词 did 提到主语前形成部分倒装。 ** “if…should..”构成虚拟语气的倒装 If I should win the lottery, I would buy a huge pile of carrots. 如果我能赢得大奖，我就会买一大堆胡萝卜。</p>
+<p>这是一个正常语序的虚拟语气，如果把 if 去掉，那条件句就要进行部分倒装， 所以就成了</p>
+<p>Should I win the lottery, I would buy a huge pile of carrots. ** 固定句型中的倒装 Rabbits love eating carrots; so do wolves. 兔子喜欢吃胡萝卜，狼也是。</p>
+<p>I was afraid. So was I. (= I was afraid, too.)</p>
+<p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
+<p>这句话其实相当于：</p>
+<p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
@@ -116,7 +178,7 @@
 <p>+I <em>am</em> a rabbit, I <em>eat</em> carrots.+</p>
 <p>这里出现了两个谓语动词，而一个简单句只能有一个谓语动词。所以要么把上句改写成并列句，用连接相连，这样我们至少知道有两个并列的句子，分别对应连个谓语动词。</p>
 <p>I am a rabbit, so I eat carrots.</p>
-<p>要么把它白菜那横一个从句，一个主句：</p>
+<p>要么把它变成为一个从句，一个主句：</p>
 <p>Because I am a rabbit, I eat carrots. * 动词不定式 首先来说非谓语动词中的“动词不定式”。</p>
 <p>通常，不定式的形式为：“to + 动词原形”。但有的时候 to 也会 shenglve，比如：</p>
 <p>完全不定式：To be or not to be, that is the question.</p>
@@ -249,7 +311,102 @@
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
 <p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    </item>    <item>
+    <title><![CDATA[Ebuild-defined Variables]]></title>
+    <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</guid>
+    <description><![CDATA[<p>#+TITLE: Ebuild-defined Variables #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>Ebuild-defined Variables The following variables may or must be defined by every ebuild.</li>
+</ul>
+<table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 96%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>EAPI</td>
+<td>The EAPI. See EAPI Usage and Description.</td>
+</tr>
+<tr class="even">
+<td>DESCRIPTION</td>
+<td>A short (not more than 80 characters) description of the package’s purpose. Mandatory.</td>
+</tr>
+<tr class="odd">
+<td>HOMEPAGE</td>
+<td>Package’s homepage(s). Mandatory (except for virtuals), accepts multiple values. In some contexts, it is customary to provide package tracker and/or code hosting links besides the main homepage (e.g. PyPI link for Python packages, GitHub link when code can’t easily be found on homepage) for convenience. If no homepage for the package is available, please set it to https://wiki.gentoo.org/wiki/No_homepage. Never refer to a variable name in the string; include only raw text.</td>
+</tr>
+<tr class="even">
+<td>SRC_URI</td>
+<td>A list of source URIs for the package. Can contain USE-conditional parts, see SRC_URI.</td>
+</tr>
+<tr class="odd">
+<td>LICENSE</td>
+<td>The package’s license, corresponding exactly (including case) to a file in licenses/. Mandatory (except for virtuals). See LICENSE.</td>
+</tr>
+<tr class="even">
+<td>SLOT</td>
+<td>The package’s SLOT. Mandatory. See SLOT.</td>
+</tr>
+<tr class="odd">
+<td>KEYWORDS</td>
+<td>See KEYWORDS and Keywording and Stabilization.</td>
+</tr>
+<tr class="even">
+<td>IUSE</td>
+<td>A list of all USE flags (excluding arch flags, but including USE_EXPAND flags) used within the ebuild. See IUSE.</td>
+</tr>
+<tr class="odd">
+<td>REQUIRED_USE</td>
+<td>A list of assertions that must be met by the configuration of USE flags to be valid for this ebuild. See REQUIRED_USE.</td>
+</tr>
+<tr class="even">
+<td>PROPERTIES</td>
+<td>A space-delimited list of properties, with conditional syntax support. interactive is the only valid value for now.</td>
+</tr>
+<tr class="odd">
+<td>RESTRICT</td>
+<td>A space-delimited list of portage features to restrict. Valid values are fetch, mirror, strip, test and userpriv. See man 5 ebuild for details.</td>
+</tr>
+<tr class="even">
+<td>DEPEND</td>
+<td>A list of the package’s build dependencies. See Dependencies. Starting with EAPI-7, applies to CHOST only.</td>
+</tr>
+<tr class="odd">
+<td>BDEPEND</td>
+<td>(EAPI=7) A list of the package’s CBUILD build dependencies. See Dependencies.</td>
+</tr>
+<tr class="even">
+<td>RDEPEND</td>
+<td>A list of the package’s runtime dependencies. See Dependencies.</td>
+</tr>
+<tr class="odd">
+<td>PDEPEND</td>
+<td>A list of packages to be installed (if possible) after the package is merged. Use this only when RDEPEND would cause cyclic dependencies. See Dependencies.</td>
+</tr>
+<tr class="even">
+<td>S</td>
+<td>Path to the temporary build directory, used by src_compile and src_install. Default: “=<span class="math inline"><em>W</em><em>O</em><em>R</em><em>K</em><em>D</em><em>I</em><em>R</em>/</span>{P}=”. Ebuilds should not provide a value for this variable if it is the same as the default value.</td>
+</tr>
+<tr class="odd">
+<td>DOCS</td>
+<td>An array or whitespace-separated list of documentation files for the default src_install function to install using dodoc. If undefined, a reasonable default list is used. See the default src_install function.</td>
+</tr>
+<tr class="even">
+<td>HTML_DOCS</td>
+<td>An array or space-delimited list of documentation files or directories for the einstalldocs function to install recursively. (Requires EAPI&gt;=6.)</td>
+</tr>
+</tbody>
+</table>]]></description>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -545,7 +702,7 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
@@ -603,7 +760,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -698,7 +855,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -901,7 +1058,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -925,7 +1082,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -1090,7 +1247,7 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[软路由虚拟机]]></title>
     <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
@@ -1117,7 +1274,7 @@
 <p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
 <p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
 <p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 01:12:33 +0800</pubDate>
+    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
     </item>
 </channel>
 </rss>
