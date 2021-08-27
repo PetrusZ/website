@@ -5,6 +5,294 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[介词攻略]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</guid>
+    <description><![CDATA[<p>#+TITLE: 介词攻略 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>介词的原理 介词，preposition。preposition 符合派生构词法：前缀 pre 表示“在…之前”，position 表示“位置”。所以，说白了英语介词，preposition，就是“放置在前面的”词，即“前置词”。</li>
+</ul>
+<p>不过，“前置词”的“前置”好像只表达了一半的意思。更进一步说，介词 preposition 就是通常放置在名词、代词等之前，哟 inglaigei 它们增添”附加信息“的词。其中附加信息包括，时间信息、空间信息、方式信息，逻辑信息（原因、目的、对象…）等等。</p>
+<p>其实中文里也是一样，介词可以理解为”前置词“，用来提供补充信息。举个例子：</p>
+<p>#+begin_example 兔子 <em>在8点前</em> 吃胡萝卜。 兔子 <em>在8点后</em> 吃胡萝卜。 兔子 <em>在8点时</em> 吃胡萝卜。</p>
+<p>注：严格来说，以上中文语句里的介词是“在”。 #+end_example</p>
+<p>因为介词不同，表达的附加意思都是不同的。</p>
+<p>以上是时间信息，那换成空间信息的例子，就有：</p>
+<p>#+begin_example 兔子 <em>在屋子里</em> 吃胡萝卜。 兔子 <em>在屋子上</em> 吃胡萝卜。 兔子 <em>在屋子下</em> 吃胡萝卜。</p>
+<p>注：严格来说，以上中文语句里的介词是“在”。 #+end_example</p>
+<p>介词也可以补充逻辑信息:</p>
+<p>#+begin_example 兔子 <em>为了</em> 健康吃胡萝卜。 兔子 <em>除了</em> 胡萝卜什么都不吃。 #+end_example</p>
+<p>刚才这些是中文的例子，英文中当然也有相似的介词表达：</p>
+<p>#+begin_example before 8 o’clock 在8点前 after 8 o’clock 在8点后 at 8 o’clock 在8点时</p>
+<p>in the room 在屋子里 on the roof 在屋顶上 under the table 在桌子下</p>
+<p>for health (reasons) 为了健康 except (for) carrots 除了胡萝卜 #+end_example</p>
+<p>这样的介词表达，归根结底，都是作为某个内容的“前置词”，通过与其之后的内容的关系，来表达某种信息。这便是介词的原理。</p>
+<p>正因此，完整的信息必须要有介词之后的部分参与。如果仅仅只有介词，因为与之后的内容关系缺失，自然也表达不了完整的意思。这也就是为什么介词不能单独作为句子成分存在。 * 介词的构成形式 在我们理解了“所谓介词，不过就是‘前置词’而已”，那接下来就不难理解，为什么介词的构成形式多种多样。因为就是放在其他信息之前建立关系。 ** 简单介词 最常见的英文介词，是单个词，比如：</p>
+<p>in，在…里（以及其他多重含义）；to，朝…（以及其他多重含义）；with，和…（以及其他多重含义）。这些都是所谓简单介词。 ** 短语介词 介词还可以和其他类的词共同构成短语介词，即一个短语充当介词的功能，比如：</p>
+<p>#+begin_example by way of 通过…方式 &lt;- 介词 + 名词 + 介词 at the end of 在…的最后 &lt;- 介词 + the + 名词 + 介词 along with 和…一起 &lt;- 介词 + 介词 because of 因为… &lt;- 连词 + 介词 previous to …之前 &lt;- 形容词 + 介词 #+end_example</p>
+<p>这样的短语构成也很多样。</p>
+<p>特别注意，这里的“短语介词”和之后要说的“介词短语”是不同的概念。短语介词相当于介词，不能单独表示完整意思，而介词短语已经是完整的意思了，往往相当于副词。这个之后再说。 ** 合成介词 还有的介词可以互相合成，比如：</p>
+<p>into，到…之内。onto，到…之上。within，在…之内 。notwithunderstanding，尽管…。 ** 分词介词 还有一类介词是由动词的分词充当的，比如：</p>
+<p>including，包括…。regarding，关于…；至于…。considering，鉴于…；考虑到…。given，考虑到…；如果…。</p>
+<p>也就说，这些原本是动词的词，“变个形”，就有了介词的功效。</p>
+<p>还是那个道理，介词之所以这么多样，就是因为介词本质上不过是“前置词”，和后面的信息构成关系而已，所以以上这些结构形式都能满足这一点，所以都可以充当介词。 * 介词学习的误区 正因为介词是作为“前置词”，通过与之后内容的关系，来表达信息的，所以当这样的关系在中英文里的思维方式相似时，中英文介词有些对应程度很高，如：</p>
+<p>until，直到；along，沿着；expect，除了。都只有一个或几个主要含义。这些介词相对好掌握。</p>
+<p>反之，当介词使用时中英文思维方式不同时，就没有办法找到完全对应的介词翻译。这一点和名词、动词等实词往往能能够找到对应翻译很不同。</p>
+<p>比如兔子和 rabbit 可以说是对应的。但英文中的某些介词，比如 in、on、with…恰恰因为常用，出现频率很高，所以引申义很多，导致有很多中文无法对应上的含义，无法用“里面”、“上面”、“和”，字面上对应：</p>
+<p>#+begin_example in two days 两天后 on the left 在左边 angry with me 生我的气 #+end_example</p>
+<p>注：字面上无法对应，但引申义可以帮助理解，之后会提到。</p>
+<p>换句话说，学习英语介词，最忌讳的、最需要避免的，就是拼命去找个中文介词对号入座，因为那往往是不可能说的。</p>
+<p>千万不要试图把中文介词和英文介词一一对应着生搬硬套。 * 介词学习的诀窍 学习介词有两个很大的麻烦：1.很多介词意义太多：同一介词出现在不同的分类里。也就是说，它们可以和之后的内容构成不同类别的关系，从而表达差别很大，甚至表达毫不想干的含义。2.很多介词相互之间容易混淆：在同一个类别里的介词有的时候看起来很像。比如 in、on、at 都可以表示时间或空间信息。这就导致非母语人士往往会觉得他们过于相似，从而弄混淆。</p>
+<p>要解决，或者说缓解，这两个问题，往往要从介词的本义，以及引申义入手。具体说来，介词的本义，也就是根源意义，通常能表达明确的空间含义；而在这些空间含义的基础上，又引申出了许多非空间的“衍生含义”。 ** 介词意义太多 比如，about 这个介词，原来在古英语里是 onbutan（相当于 on by utan）。最后 utan 是 outside 的意思，所以 about 原意是 on the outside of，即“在…的外面（之处）”。这也是这个介词最源是，最根源的空间含义。</p>
+<p>这个“在…外面（之处）”接着就引申出了以下一系列相关的含义，比如：</p>
+<ul>
+<li><p>关于：…的外围信息、涉及到（但往往不是核心关键，因为在外面嘛）</p>
+<p>I know something about the rabbit. 我知道关于这个兔子的事。</p></li>
+<li><p>大约：从外大范围（大致）数一数</p>
+<p>There are about 20 carrots. 大约有 20 根胡萝卜。</p></li>
+<li><p>针对：从外向内地解决</p>
+<p>Let’s do something about the problem. 让我们做些事解决问题。</p></li>
+<li><p>某人某事有某种特性</p>
+<p>就像在外包了一层包装，有某种气质</p>
+<p>There’s something dangerous about the wolf. 狼有点危险的特质。（狼感觉有点危险。）</p></li>
+<li><p>到处：在…的外面来来回回</p>
+<p>Stop running about! 别来来回回跑！</p></li>
+</ul>
+<p>再看 on 这个介词，它有以下用法：</p>
+<p>Dinner is on me. 晚餐我付钱。</p>
+<p>这里之所以用介词 on（在…之上），可以理解为“付账”的重任在我身上，即：</p>
+<p>The burden of paying for dinner is on me. 为晚餐付钱的重任在我身上。</p>
+<p>又比如介词 beyond：</p>
+<p>It’s beyond me. 我无法理解。</p>
+<p>这里之所以用介词 beyond（在…之外），可以理解为某件事在我“能理解的范围”之外，即：</p>
+<p>It is beyond the things that I can understand. 这在我能理解的事情的范围之外。</p>
+<p>甚至有些看似毫无道理的介词，往往也能用这种方式进行解释，即使介词的某些含义的确会和本源的空间含义差别较大：</p>
+<p>比如 in 这个介词还有以下用法：</p>
+<p>#+begin_example in the sun 在阳光下 dressed in white 穿白衣服 in English 用英语 #+end_example</p>
+<p>看上去似乎毫无道理，不过，这里的 in the sun 可以用 in the sunlight，即包裹在阳光里来解释，dressed in white 自然可以用 in white clothes 来理解，in Enligsh 可以理解为说的话写得字都在一堆英语话语或文字中。</p>
+<p>所以说，某些介词虽然看上去有着风马牛不相及的含义，但实际上往往都是从根源的，有着空间性的含义引申出来的。</p>
+<p>不过，每个介词的每个含义都硬要从空间含义去推导也不太现实，或者说往往很牵强。有时候这种“推导”更像是记忆技巧。</p>
+<p>以上说的是介词“多含义”这个难点。下面说“某些介词之间容易混淆”这个问题。 ** 介词相互之间容易混淆 它也可以用刚才这种追本溯源的方法来缓解。比如，in、on、at 都能前置于时间和空间，表达相关含义。但正因为这样，很多人老是记不住 hour、day、year、corner、street、city 到底哪个和哪个介词搭配。</p>
+<p>但是如果从这个三个介词的空间含义入手，in 一般是在一堆东西中间，或者说，上下左右前后都能移动，说明是在一个大范围内；on 一般是指在…之上，说明有一面确定了，只能在这个平面上移动，自然范围小一点；而 at 通常只在很明确的一点上。</p>
+<p>既然范围由大到小，就很好理解：</p>
+<p>at the corner，at the shop，因为角落、商店很明确，不会到处移动</p>
+<p>in the city，in the country，因为在城市和国家里可以大范围移动</p>
+<p>那么，the street 前到底是 at、on 还是 in？这取决于要表达什么含义。如果要表达很明确的某处，比如两条街的交接，那就可以说：</p>
+<p>Right now I’m <em>at</em> Carrot Street and Apple Street. 现在我在胡萝卜街和苹果街的交界处。</p>
+<p>如果要表达在街道的表面上，就可以说：</p>
+<p>There is some trash <em>on</em> the street. 街上有些垃圾。</p>
+<p>如果要表达在某条街道的范围内移动，就可以说：</p>
+<p>I’m walking <em>in</em> the street. 我在大街上走。</p>
+<p>相当于 I’m walking in the area of the street.</p>
+<p>这句话中其实 in the street 和 on the street 都能说得通，只有微妙的区别。更多美国人会说 on the street，而英国人往往会偏向于 in the street。</p>
+<hr />
+<p>相似地，把这个空间概念引申到时间上：</p>
+<p>一年很久，所以 in a year 表示在“大范围的”一年内。这样的大范围也包括月份、星期，所以 in the month，in the week。</p>
+<p>一天的话，就明确多了。如果把一天以上比作一个空间，那一天只是一个平面，所以 on that day，on Monday，on April 1st。</p>
+<p>而一条中的时刻就非常明确了，相当于一个点，所以是 at 8 o’clock，at the moment。</p>
+<p>但是千万不要生搬硬套，教条主义地认为，看见 hour 就一点要用 on。一定要想清楚，要表达的是一个范围，还是具体一个点。</p>
+<p>比如说一个小时里有六十分钟。那肯定是把小时和分钟比较，即分钟是在小时的范围里。这里的 hour 显然不是一个点。所以是：</p>
+<p>There are 60 minutes in an hour. 而不是 +There are 60 minutes on an hour.+</p>
+<p>这样的的范围是相对的，所以再往下还是：</p>
+<p>There are 60 seconds in a minute. 而不是 +There are 60 seconds on a minute.+</p>
+<p>另外，很多人都会奇怪，为什么是 in the morning？morning 比 day 还小啊？</p>
+<p>问题就出在，当我们使用 in the morning 这个短语时，通常是表达一个时间段的范围内，相当于刚才的：</p>
+<p>There are many hours and minutes in a morning.</p>
+<p>所以，当我说 I eat carrots in the morning 时，表达的意思是，我在早晨这个时间范围内吃胡萝卜。而如果你要表达的是一个相对明确的一个点，就要说 on the morning 了，比如说：</p>
+<p>I saw the wolf on the morning of April 1st.</p>
+<p>这里要表达的意思是，在四月一日早晨这个时间，和一天差不多的范围。所以既然是 on that day，那自然也有 on that morning。</p>
+<p>那为什么是 at noon？因为这里的时间点很明确。noon 之前的上午和之后的下午都是相对的大范围。但 noon 相对来说是一个点，所以才和 at 搭配。 * 常见英语介词用法 ** 表示空间的介词 in 表示“在…里面”，表示在一个空间的内部。</p>
+<hr />
+<p>on 表示“在一个物体的表面上”。</p>
+<p>其实 on 在古英语中里是 in 的另一个形式，所以往往和 in 的含义有交叉。只不过在现代英语中，on 做空间介词是有在某个面之上的含义。</p>
+<p>在此注意一下 on the tree 和 in the tree 的区别，安装刚才的理解，on 表示与物体有接触，所以可以引申为长在树上的，是树本身所有的。而 in 只是在树里，外来的事物进入树里。所以可以这样说：</p>
+<p>There are some apples on the tree. 树上结着一些苹果。</p>
+<p>There are some birds in the tree. 树上有一些鸟。</p>
+<hr />
+<p>at 在表示地点的时候，指一个确定的具体的“点”。</p>
+<hr />
+<p>over，当 over 做空间介词时，表示“在…上方”。这个“在…上方”，有可能接触，也可能不接触。如果表示物体与物体接触的话，一般表示“覆盖、全部遮住”的意思，比如：</p>
+<p>The mother put a blanket over the child. 妈妈把毯子盖在孩子身上。</p>
+<p>如果不与物体接触的话，表示“在…的正上方”，比如：</p>
+<p>#+begin_example the bridge over the river 在河上的桥 the lamp over the table 在桌上方的灯 #+end_example</p>
+<p>而更常见的表达上空这个含义的 over，是表示一个动态的“越过上空”，比如：</p>
+<p>#+begin_example The plane flew over the mountain. 飞机飞越过高山。 The rabbit climbed over the fence. 兔子爬过栅栏。 #+end_example</p>
+<hr />
+<p>above 表示“高于某个平面之上”。比如：</p>
+<p>the sky above us 在我们上方的天空</p>
+<p>这一含义和 over 的“静态含义”是很相似的。只不过 over 往往还特指正上方，而 above 一般只要“高出”就行。</p>
+<p>虽然 on，over，above 这几个词都有表示“在…上面”的含义，但是是有区别的：on 表示物体与物体接触；over 和 above 在表示（不与物体接触的）上方时，除了 over 往往更加“正上方”，最大的区别是 over 可以描述动态，而 above 不行。</p>
+<hr />
+<p>under 表示“在…下面”。与 over 相对。</p>
+<hr />
+<p>below 表示“在…下方”。与 above 相对。</p>
+<p>under 表示物体之间可以接触，也可以留有一定空间。指在某物的正下方，含垂直在下方的意思。</p>
+<p>below 表示低于某个平面，可以是正下方，也可以不是。</p>
+<hr />
+<p>near 表示“在…附近，在…周边”。</p>
+<p>by/beside 做空间介词时，两者都表示“在…旁边”，通常两者可以互换。</p>
+<p>next to，靠近、紧挨着。</p>
+<p>辨析：near、by、beside、next to 这几个介词都可以表示“在…旁边”。near 表示附近的，往往有些距离。by、beside 和 next to 都表示比较接近，往往可互换。其中 by 的词义最多，除了空间还有其他很多词义。beside 强调的是”在…边上“，可以引申为“非空间含义”的“和…比较”，如：My carrot looks bigger beside yours.（我的胡萝卜和你的一起看着更大。）；next to 强调的是“下一个、紧邻着”的“相邻”。</p>
+<hr />
+<p>across 一般指从表面穿过，与介词 on 那个”表面“相似，是在物体表面上发生的行为，所以会说：</p>
+<p>#+begin_example go across the river 穿过马路 swim across the river 游过河 #+end_example</p>
+<hr />
+<p>throught 一般指从内部穿过，与介词 in 那个”内部“相似，是从物体内部发生的动作，所以会用：</p>
+<p>#+begin_example go throught the tunnel 穿过隧道 walk throught the forest 穿过森林 look throught the window 透过窗户看 #+end_example</p>
+<hr />
+<p>past 表示”经过、路过“，比如：</p>
+<p>The rabbit walked past the wolf without saying any words. 兔子从狼身边经过，没说一句话。</p>
+<hr />
+<p>in front of，表示”在…前方“，比如：</p>
+<p>The rabbit is standing in front of the wolf. 兔子站在狼前面。</p>
+<p>before，虽然 before 和 in front of 一般都翻译成”在…之前“，但是 before 其实不太用作空间介词，除非是表达”在众人/观众前“，比如：</p>
+<p>She played the violin before the crowd. 她在众人前拉小提琴。</p>
+<hr />
+<p>behind，与 in front of 相对的是 behind，在…之后，比如：</p>
+<p>The wolf is standing behind the rabbit. 狼站在兔子后面。</p>
+<hr />
+<p>between，一般来说，between 侧重在两者之间，有时会与 and 一起用，构成 between…and…的结构。比如：</p>
+<p>The carrot is between the rabbit and the wolf. 胡萝卜在兔子和狼之间。</p>
+<p>但千万不要以为它不可用于多者之间，在三者及以上之间分别两两比较时也可以用 between，比如：</p>
+<p>You shouldn’t eat between meals. 你不应该在正餐之间吃东西。</p>
+<hr />
+<p>among 一般指在三者以更多人和物之间。</p>
+<p>The rabbit is standing among the carrots. 兔子站在胡萝卜之间。</p>
+<p>不过，在当代英语里，尤其是口语，往往很多母语人士也会用 between 来表示多数的”之间“（即取代 among）。</p>
+<hr />
+<p>round/around，表示”围绕、环绕“，二者作介词意思相近，可互换。</p>
+<p>#+begin_example trees round/around the field 环绕田地四周的树 around the world 全世界 #+end_example</p>
+<hr />
+<p>along，沿着、顺着，比如：walk along this road 沿着这条路一直走。</p>
+<hr />
+<p>to，向、朝…，比如：go to school 去上学。</p>
+<hr />
+<p>toward/towards，朝着…的方向，根 to 在此意上意思相近，比如：walk toward home 朝家走。</p>
+<hr />
+<p>onto，到…上面，比如：The rabbit jumped onto the table. 兔子跳到桌子上。</p>
+<hr />
+<p>into，到…里面、到…内部，比如：walk into the house 走进房子。</p>
+<hr />
+<p>out of，从里向外，从里面出来，比如：get out of the car 从车里出来。</p>
+<hr />
+<p>opposite，在…对面，比如：Our school is opposite my house. 我们的学校在我家对面。</p>
+<hr />
+<p>against，与…相反，比如：We were rowing against the current. 我们逆水行舟。</p>
+<p>还有一个常用的意思：倚、靠。比如：The rabbit was leaning against the tree. 兔子正倚着一棵树。</p>
+<hr />
+<p>以下几个词除了做副词，也可以做介词：</p>
+<p>up，沿…向上，比如：up the hill 上山、up the river 沿河流逆流而上。</p>
+<p>down，沿…向下，比如：walk down the road 沿着这条路走下去，roll down the hill 从山上滚下去。</p>
+<p>off，离…有一些距离，比如：New Zealand lies off the easten coast of Australia. 新西兰离澳大利亚东海岸有一些距离。 ** 表示时间的介词 不少表示时间的介词，和它们表示空间的”本源“用法是对应的。之前讲过 in、on、at 表示的时间范围是由大到小的。我们再看一下：</p>
+<p>in，本意是”在…里面”，在范围相对较大的时间内，比如：in 2030 在 2030 年，in winter 在冬季，in December 在 12 月。</p>
+<p>on 的本意是“在…之上”，范围相对就小一些，一般表示在具体的某一天，on Monday 在星期一，on Christmas Day 在圣诞节。</p>
+<p>at 因为空间范围很小，所以引导到时间上也类似，表示非常确定的时间点。一般说几点钟用 at，比如：at 6 o’clock 在六点。而下面这些时间也是明确的时间（点）：at noon 在中午，at sunset 在太阳落山时，at dawn 在黎明时分 ，at (the age of) 6 在 6 岁时。</p>
+<p>during 本意就是“持续”，表示持续一段时间。during the past 2 days，持续了过去的两天，就表示“在过去的两天里”。同样，during the past two weeks 在过去的两周里，during the past two years 在过去的 2 年里。</p>
+<p>for 在古英语里有“之前、由于”的意思，作“非时间介词”时一般和原因相关。这里用作时简介词，可以引申为“（因为…）持续”：I’ve been learning English for 2 years. 我持续学习英语两年时间。</p>
+<p>since，自从。since last week 自从上周以来。</p>
+<p>before 一般就是用于表示时间（以及次序）的“在…之前”：before Monday 星期一之前，before 2020 在 2020 年之前。注意 before 很少用于空间的“在…之前”。</p>
+<p>after，after 和 before 相对，一般表示时间（以及次序）上的“在…之后”。after two years 两年之后。</p>
+<hr />
+<p>after 和 in 作为时间介词往往容易混淆。这是因为，in 作时间介词时，除了泛指在某个时间范围之内，也可以表示在“从现在算起之后的”某个时间范围内，如：</p>
+<p>I’ll eat a carrot in 2 hours.</p>
+<p>这句话一般翻译成“2 小时之后我会吃根胡萝卜”，但是说话人的言下之意是，从现在算起的两小时”里“，我会吃根胡萝卜，也许过一小时我就吃了。也就是说，这是不确定信息。</p>
+<p>相比之下：</p>
+<p>I’ll eat a carrot after 2 hours.</p>
+<p>就明确表示，我只有在过了 2 小时之后才会吃，之前不会吃。另外，过去时间要使用 after，不能使用 in，因为已经是确定信息了：</p>
+<p>I returned after two hours. 我两小时之后回来了。</p>
+<hr />
+<p>from…to…，从…（时候）到…（时候）。from 9:00 to 10:00 从九点到十点。</p>
+<hr />
+<p>by 的本意表示”在…附近/旁边“，引申为时间上的”不超过…的边“，即”不迟于…/在…之前“。by 2 o’clock 在两点之前。by tomorrow 在明天之前。</p>
+<p>在表示时间点之前时，by 和 before 含义近似，但是 before 是泛指某个时间点之前，而 by 相当于限定了一条时间线，更侧重于”不超过、不迟于“这条时间线。所以：</p>
+<p>Please finish your homework before 8PM.</p>
+<p>Please finish your homework by 8PM.</p>
+<p>都表示希望你在 8 点前做完作业，但是后者更强调了 8 点是截至时间，不能再迟了。</p>
+<hr />
+<p>until，直到…为止。until 8 o’clock 直到 8 点为止。 ** 表示方式的介词 in 有”方式“的含义，比如 in 后根语言，就是”用某种语言（的方式）…“。比如：New</p>
+<p>Let’s talk in English. 让我们用英语对话。</p>
+<p>in 的本意是”在…里面“，in English 可以引申为”我们说的话、写的字，都是在其他一堆英语话语里“，也就成了”我们说英语“的意思。</p>
+<hr />
+<p>throught 可以表示通过某种方式，如：</p>
+<p>We succeed throught hard work. 我们通过努力工作而成功。</p>
+<p>throught 的本意是”从中间穿过“，引申为”通过“某种方式或经理，也就不奇怪了。</p>
+<hr />
+<p>by 的本意是”在…旁边“，引申出”相关、离不开、依靠…“的含义。</p>
+<p>We learn English by watching videos. 我们通过看视频学英语。</p>
+<p>我们学英语是依靠”看视频“的，也就是”通过视频学英语“。再比如：</p>
+<p>I go to work by car. 我开车去上班。</p>
+<p>意思就是我”依靠汽车这个交通方式“去上班。</p>
+<hr />
+<p>这里要再次特别指出，介词的本源空间含义一般是很具体的。当这种具体的含义去引申抽象的含义，自然不会对应得十分完美，往往还会有些牵强。这里希望作到的是从介词的本意联想到引申义，从而更好理解记忆介词的各种不同含义，而并不是做学术上的词源研究。</p>
+<hr />
+<p>with 后一般加具体的有形工具。这是因为 with 本意有”和、一起“的意思，比如：New</p>
+<p>We write with pens. 我们用笔写字。</p>
+<p>这其实不就是”我们和笔一起，完成写字这个行为“的意思。</p>
+<hr />
+<p>on 后接电子通讯设备比较多。</p>
+<p>We talk on the phone. 我们通过电话进行了交谈。</p>
+<p>on 的本意是”在…上面“。 ** 表示原因的介词 for 本来就有”因为、由于“的含义，比如：</p>
+<p>This rabbit is famous for being able to speak. 这只兔子因会说话出名。</p>
+<hr />
+<p>with 的本意是”和、一起“，这里引申为”…是和…分不开的原因“，如：</p>
+<p>The rabbit is shaking with cold. 兔子冷得发抖。</p>
+<p>这里的意思是说，”冷“和”发抖“对于兔子来说，是分不开的，也就是在阐述原因。”冷得发抖”其实就是在描述，“因为太冷了所以发抖”。</p>
+<hr />
+<p>because of，一提到 because of，一定会想起 because，因为二者都有“因为”的意思，because 做连词连接从句，because of 后接名词（或代词等）。</p>
+<p>The rabbit didn’t go out beacuse of the rain. 因为下雨，兔子没出去。</p>
+<p>另外 due to、owing to、on account of 都表示“由于、因为”之意，比如：</p>
+<p>The rabbit didn’t go out due to / owing to / on account of the rain. 因为下雨，兔子没出去。</p>
+<p>你可能注意到了，这几个都不是单独的一个介词，而是介词的所谓“固定搭配”。咱们之后还会提到。 ** 表示关于的介词 about，之前讲过 about 本意“在…外面”，关于某人或某事的一些情况，不就是“外围相关信息”吗？</p>
+<p>Could you tell me something about your school? 你能给我讲一些关于你到学校的事情吗？</p>
+<hr />
+<p>of 在古英语中的本义是“离开”。“离开了的”在这里引申为“此外的、附加的”，即“相关”的信息。这一点和 about 有些像：</p>
+<p>He thought of something import. 他想起来了一些重要的事情。</p>
+<p>只不过 think about 是想到了“关于…的一些事”，而 think of 仅仅是“想起了…”。</p>
+<hr />
+<p>on 的本义是“在…上面”。把一个具体的事儿当成平面，其上的讨论也是“关于”的意思，比如：New</p>
+<p>Would you like some advice on learning English? 你想要些学习英语的建议吗？</p>
+<p>这里是在学习英语这件事“上”寻求建议，也就是“关于”学习英语的建议。 ** 表示数值的介词 at 可以表示价格、比率等数值点，如：at a high price 在一个高的价格（点），at a fast rate 以一个很快的速率（点）。这个用法自然是从 at 表示空间的某个点引申而来，因为以上这些都是数值的点嘛。</p>
+<hr />
+<p>by，之后可以接某种度量标准，如：</p>
+<p>They get paid by hour. 他们按小时拿报酬。</p>
+<p>by 的空间本义是旁边，这里可以引申为“相关、某种属性”的意思，进一步引申为使用某种标准。所以“按小时计算”就可以理解为“与每小时相关、按小时的属性”。</p>
+<hr />
+<p>for 可以表示“以…的加前”，如：</p>
+<p>I bought these books for 100 Yuan. 我买这些书买了 100 元。</p>
+<p>其实虽然这里的 for 被分到了表示数值的介词这个类别，但还是能把它理解为之前讲的表原因的 for，也就是“因为付了…钱，所以得到了…”。所以 I gought these books for 100 Yuan. 可以理解为，因为我付了 100 元，所以得到了这些书。 ** 表示状态的介词 in 表示在某个状态中，in process 在进行（状态）中，in a dilemma 处于进退两难的境地。</p>
+<hr />
+<p>on，空间本义为“在…之上”，可以引申理解为“受到之下的…的支持（这种状态）”，如：on a diet 在节食（在节食支持的状态），on drugs 吃药（在药物支持的状态）</p>
+<hr />
+<p>at 本意是在某个地点，可以引申为在某个状态。at work 在工作，at dinner 在吃晚饭。这里都是表示明确的某个“状态点”。at work 表示工作的地点/状态，at dinner 表示在吃饭的地点/状态。</p>
+<hr />
+<p>under 本意表示“在…下面”，这里引申为在一个“框架、前提”之下，如：under construction 在施工中，under discussion 在讨论中。工地上的施工，不就是在脚手架、吊车之类的施工器具之下。而 under discussion 一般也是在某个前提或者说共识之“下“。 ** 表示排除的介词 beside 表示”除了…还…“，比如：</p>
+<p>I like many things besides carrots. 除了胡萝卜，我还喜欢很多东西。</p>
+<p>严格来说，这并非”排除“的含义，只是中文译作”除了“…</p>
+<hr />
+<p>except 表示”除了…“，这也是最直接的”排除“的含义。</p>
+<p>Everyone went to the party except the rabbit. 大家都去了聚会，除了兔子。</p>
+<hr />
+<p>except for 也翻译做”除了“，用法也和 expect 相似，但是往往用来对之前的内容进行反驳，如：</p>
+<p>The party is great except for the loud music. 聚会很棒，除了嘈杂的音乐。</p>
+<p>也就是说，except 通常表示从整体中剔除出去，所以之前那句表示兔子没去参加聚会。except for 这里是要给出与 the party is great 相反的原因，相当于”美中不足的是…“。 * 介词短语 介词后面也需要宾语，即介词宾语。介词宾语就和”通常“宾语一样，可以由多种词类充当，如：</p>
+<p>#+begin_example 名词：in the room 代词：in it 数词：the age of 20 形容词：in general 副词：from here #+end_example</p>
+<p>快速总结一下就是：介词就是”前置词“，而这个”前置“的对象，即承受者，就是之后的宾语。而介词和介词宾语合起来，就组成了介词短语，比如之前看到的：in the room，on the roof，under the table。</p>
+<p>这显然和之前说到的短语介词不同。因为短语介词相当于介词，意思不完整，而这里的介词短语已经完整。实际上，这样的介词短语可以充当各种句子成分：</p>
+<p>#+begin_example 主语：<em>Between 10 and 11</em> is a good time for me. 10点到11点间适合我。 主语补语（表语）：The meeting is <em>at 2 o’clock</em>. 会议在2点钟。 定语：This is the key <em>to the house</em>. 这是房子的钥匙。 宾语补语：I found the carrot <em>in good condition</em>. 我发那个胡萝卜保存完好。 #+end_example</p>
+<p>而介词短语最常见的是充当状语，来修饰动词，描述动作的时间、地点、方式等等。这一点也是和介词分类一致的：</p>
+<p>The rabbit ate a carrot <em>at noon</em>. 中午，兔子吃了一根胡萝卜。</p>
+<p>The rabbit is eating a carrot <em>in the kitchen</em>. 兔子正在厨房里吃一根胡萝卜。</p>
+<p>The rabbit likes traveling <em>by car</em>. 兔子喜欢乘车出游。 * 介词固定搭配 从介词的”空间含义“去推导”引申义”，并非百分之百适用。有些介词引申义很直接，很容易理解，有些则不然。所以说，也不必任何介词的任何含义，都去绞尽脑汁望空间含义上套。（不过用这种追本溯源的方法学习介词，一定能让你更好理解和记忆介词的多重含义）</p>
+<p>这也就是为什么会在介词这一块儿提到所谓“固定搭配”。比如：</p>
+<p>#+begin_example for example 比如 at ease 自在 in turn 依次 #+end_example</p>
+<p>虽然也有可能去用空间含义推导，但是这样的例子算作“固定搭配”也未尝不可。更进一步说，很多名词、动词、形容词都是“约定俗成”地和某些介词搭配使用。比如：</p>
+<p>#+begin_example the need for somethings 对…的需要 long for 渴望… ready for 准备… #+end_example</p>
+<p>不过这些所谓“固定搭配”不是绝对的，具体的语境往往还会决定到底用哪个介词最合适。而这也恰恰说明了，从介词本源的空间含义去理解引申义的重要性。</p>
+<p>但是，要特别指出，有一类“介词固定搭配”，即当动词和介词搭配在一起，往往会产生非常“神奇的变化”，营造出看似完全无关的含义。这就是所谓“短语动词”。开头提到的那些词组就属于这个范畴：</p>
+<p>#+begin_example check out 退房 make out 分辨 put out 熄灭 pass out 晕倒 work out 健身 look out 小心 knock out 打晕 #+end_example</p>
+<p>很多短语动词是需要去特别记忆，而不是很容易通过字面意思就能理解。短语动词是英语的一大难点。往往动词本身和之后的介词都明白什么意思，但凑到一起就是完全猜不到意思，相当于一个全新的单词。</p>]]></description>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[被动语态]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</guid>
@@ -31,7 +319,7 @@
 <p>当然，如果都知道是兔子给狼胡萝卜，可以把 by + 动作执行者这部分去掉。所以上面两个句子可以简写成：</p>
 <p>The wolf was given the carrot.</p>
 <p>The carrot was given <em>to</em> the wolf.</p>
-<p>如果这个句子主动形式写成“主语+谓语+间接宾语+直接宾语”的形式，那 to 就消失了。</p>
+<p>如果这个句子主动形式写成“一�语+谓语+间接宾语+直接宾语”的形式，那 to 就消失了。</p>
 <p>The rabbit gave <em>the wolf</em> <em>the carrot</em>.</p>
 <p>但在强调直接宾语 the carrot 变被动句时，可不能是：</p>
 <p>+The carrot was given the wolf (by the rabbit).+</p>
@@ -63,7 +351,7 @@
 <p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
 <p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
 </ul>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[独立主格]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
@@ -76,7 +364,7 @@
 <p>学过非谓语动词后，这个句子就可以改写成：</p>
 <p><em>Invited</em> by the wolf, the rabbit decided to go to the party. （本句不包含独立主格结构）</p>
 <p>invited 是过去分词，因为句子的主语是 the rabbit，它跟 invite 这个动作之间是一种被动的关系，所以使用过去分词 invited。</p>
-<p>相比较上一个句子，省略掉了 because he was 这一部分，却同样达到了表原因这一目的，从而使这个句子达到了简化的效果。再看：</p>
+<p>相比较上一个句孀�，省略掉了 because he was 这一部分，却同样达到了表原因这一目的，从而使这个句子达到了简化的效果。再看：</p>
 <p>Because the wolf invited him, the rabbit decided to go to the party. 因为狼邀请了兔子，所以兔子决定去参加聚会了。</p>
 <p>后面的主句中 the rabbit，前面的原因状语从句中他是 the wolf。那怎么简化呢？是直接去掉 because 及后面的部分吗？又因为 wolf 邀请 rabbit，所以 wolf 不能省略：</p>
 <p>The wolf invited him, the rabbit decided to go to the party.</p>
@@ -85,7 +373,7 @@
 <p>这就是独立主格结构的真面目。这个句子的主干是 the rabbit decided to go to the party，而前面 the wolf inviting him 中，invite 这个动作是由 the wolf 发出的，而不是真正的主语 the rabbit 发出的动作。所以语法上把 the wolf 称为动词 invite 的逻辑主语，而这就是“独立主格”中的“主格”。</p>
 <p>那独立又如何理解呢？因为 the wolf 是游离真正主语 the rabbit 之外的，在 the wolf inviting him 中“自立门户”，“独立”了出来。不过这个独立的主语还是不能跟真正的主语相提并论，要不怎么说是“独立主格”，而不是“独立主语”呢？ * 独立主格结构对从句的简化 If the weather permits, the rabbit will go out. 如果天气允许，兔子就会出门。</p>
 <p>这里是 if 引导的条件状语从句，因为从句中的 the weather 和主句中的 the rabbit 明显不同，那就使用独立主格来表达：</p>
-<p>The weather permitting, the rabbit will go out. 如果天气允许，兔子就会出门。</p>
+<p>The weather permitting, the rabbit will go out. 如果天气允许，兔子就会出门　�</p>
 <p>继续看：</p>
 <p>After the work was finished, the rabbit went home. 工作完成后，兔子回家了。</p>
 <p>after 引导的是时间状语从句，从句中的主语 the work，与主句中的主句 the rabbit 显然也不一样，看看独立主格是怎么表达的：</p>
@@ -113,10 +401,10 @@
 <p>你可能经常会见到”with + 宾语 + 宾语补语“这样的复合结构，其实这个 with 结构就是一个很重要的独立主格结构。</p>
 <p>The work finished, the rabbit went home.</p>
 <p>-&gt; <em>With</em> the work finished, the rabbit went home.</p>
-<p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
+<p>也就说，这个例子里，with 是可以省略掉的，兀�他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
 <p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
 <p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[倒装句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
@@ -130,7 +418,7 @@
 <p>吃胡萝卜了吗，你？</p>
 <p>强调的是“你”。</p>
 <p>汉语的倒装句多用于口语表达，而英语则常见于书面用语。</p>
-<p>英语的语序是主语谓语，主语在谓语动词的前面。所以，倒装，通常就要把谓语动词提前。 * 完全倒装（谓语动词完全在主语前） 完全倒装的结构是谓语部分完全放在主语之前。但不是什么句子都能“倒着说”。 ** 副词/介词短语在句首的倒装 - 地点副词在句首的倒装</p>
+<p>英语的语序是主语谓语，主语在谓语动词的前面。所以，倒装，通常就要把谓语动词提前。 * 完全倒装（谓语动词完全在主语前） 完全倒装的结构是谓语部分完全放在主语之前。佀�不是什么句子都能“倒着说”。 ** 副词/介词短语在句首的倒装 - 地点副词在句首的倒装</p>
 <p>以 here，there 为代表。</p>
 <p><em>There</em> goes the last bus. 末班公共汽车开走了。</p>
 <p>虽然正常语序是”The last bus goes.“。但是为了强调开走了，出现了地点副词 there，可以把地点副词置于句首。</p>
@@ -160,14 +448,14 @@
 <p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
 <p>这句话其实相当于：</p>
 <p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</guid>
     <description><![CDATA[<p>#+TITLE: 非谓语动词详解 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li>非谓语动词基础概念 ** 限定性动词 #+begin_example The rabbit <em>eats</em> a carrot. The rabbit <em>ate</em> a carrot. The rabbit <em>is eating</em> a carrot. The rabbit <em>has eaten</em> a carrot. #+end_example</li>
+<li>非谓语动词基础�概念 ** 限定性动词 #+begin_example The rabbit <em>eats</em> a carrot. The rabbit <em>ate</em> a carrot. The rabbit <em>is eating</em> a carrot. The rabbit <em>has eaten</em> a carrot. #+end_example</li>
 </ul>
 <p>这些句子中，谓语动词 eat 受到了主语限制，出现了时间、状态和语气的变化，实际上是一种被限定了的动词。 所以谓语动词有另一个名字：限定性动词。</p>
 <p>比如以上第一句中的 eats，已经被限定为之前的第三人称单数所用。 ** 非限定性动词 与之相对的，就是不受主语限制，不被限定的动词；而这样的动词也失去了表达时间和人称的本领。自然的，这样的动词就是“非限定性动词”。它的另一个名字，就是“非谓语动词”。</p>
@@ -180,16 +468,16 @@
 <p>I am a rabbit, so I eat carrots.</p>
 <p>要么把它变成为一个从句，一个主句：</p>
 <p>Because I am a rabbit, I eat carrots. * 动词不定式 首先来说非谓语动词中的“动词不定式”。</p>
-<p>通常，不定式的形式为：“to + 动词原形”。但有的时候 to 也会 shenglve，比如：</p>
+<p>通常＀�不定式的形式为：“to + 动词原形”。但有的时候 to 也会 shenglve，比如：</p>
 <p>完全不定式：To be or not to be, that is the question.</p>
 <p>裸不定式：You <em>helped</em> me (to) <em>cook</em> the carrot. 你帮我烧（做菜）了胡萝卜。</p>
 <p>有的语法体系里会称第一种咱们常见的不定式为“完全不定式”，full infinitive，而称后一种为“裸不定式”，bare infinitive。</p>
-<p><em>非谓语动词可以充当句子的主语、宾语、宾语补语、主语补语（表语）、定语、状语等。再进一步说，一个动词，作为谓语动词，只能在句中充当核心的谓语动词，而不能充当其他句子成分。如果想要充当其他句子成分，必须把这个动词转换为非谓语动词，也就是不定式、过去分词、现在分词、动名词其中之一。</em></p>
-<p>接下来具体看看不定式这个非谓语动词，怎么充当句子的，除谓语动词以外的其他成分。 ** 不定式作主语 <em>To eat</em> a carrot every day is good for the rabbit. 一天吃一根胡萝卜对兔子有好处。</p>
-<p>很明显，在这里 to eat 是动词不定式，在句子中充当主语。这个不定式表示的意思是“一天吃一根胡萝卜”这个行为。那么，是谁一天吃一根胡萝卜，具体在过去吃还是讲来吃？光看到 to eat，咱们还不确定，所以才是“不定式”。这个不定式，或者说行为，不受具体的人和时间限制，就是单纯在说”一天吃一根胡萝卜“这个概念。</p>
+<p><em>非谓语动词可以充当句子的主语、宾诀�、宾语补语、主语补语（表语）、定语、状语等。再进一步说，一个动词，作为谓语动词，只能在句中充当核心的谓语动词，而不能充当其他句子成分。如果想要充当其他句子成分，必须把这个动词转换为非谓语动词，也就是不定式、过去分词、现在分词、动名词其中之一。</em></p>
+<p>接下来具体看看不定式这个非谓语动词，怎么充当句子的，除谓语动词以外的其他成分。 ** 不定式作一�语 <em>To eat</em> a carrot every day is good for the rabbit. 一天吃一根胡萝卜对兔子有好处。</p>
+<p>很明显，在这里 to eat 是动词不定式，在句子中充当主语。这个不定式表示的意思是“一天吃一根胡萝卜”这个行为。那么，是谁一天吃一根胡萝卜，具体在过去吃还是讲来吃？光看到 to eat，咱们还不确定，所以才是“不定式”。这个不定式，或者说行为，不受具体的人和时间限制，就是单纯在说 �一天吃一根胡萝卜“这个概念。</p>
 <p>在英文表达中，常常借助 it 来替代主语，即所谓的形式注意，而把 to eat a carrot every day 放到谓语动词之后就是：</p>
 <p>It is good for the rabbit to eat a carrot every day.</p>
-<p>这种固定句型为 It is + 形容词 + for sb. + to do sth.，其实这个句型的核心是动词不定式，作主语时为避免”头重脚轻“的情况，借助 it 充当形式主语放在句首。这句话也相当于之前讲的带形式主语的主语从句：</p>
+<p>这种固定句型为 It is + 形容词 + for sb. + to do sth.，其实这个句型的核心是动词不定式，作主语时为避免”头重脚轻“的情况，借助 it 充当形式主语放在句首。这句话也相当于之前讲的带彀�式主语的主语从句：</p>
 <p><em>It</em> is good <em>that the rabbit eats a carrot every day</em>. ** 不定式作宾语 The rabbit likes to eat carrots. 兔子喜欢吃胡萝卜。</p>
 <p>to eat 在这里就做了谓语动词 like 的宾语。但是，有的动词后面是不能接不定式做宾语的。 *** it 做形式宾语 I consider the rabbit smart. 我觉得这兔子是聪明的。</p>
 <p>如果把这句话中的宾语改成形式宾语，就是：</p>
@@ -225,7 +513,7 @@
 <p>The rabbit will appear to have eaten a carrot. 这兔子之后会看起来像是吃过了一根胡萝卜。 * 动名词 下面来讲非谓语动词中的动名词。你应该已经注意到了”动名词“中的”名词“了吧？其实这个名称本身就诠释了自己。在动词原形后加 ing，就能把动词转换为名词来用。也就说动名词的本质相当于名词。 ** 动名词作主语 Carrots are healthy for the rabbit. 胡萝卜对兔子来说很健康。</p>
 <p>其中，carrots 是名词，做主语。如果用动名词（词组）来替换 carrots，可以这样说：</p>
 <p><em>Eating carrots</em> is healthy for the rabbit.</p>
-<p>Eating carrots 就是个动名词短语，成功地把动词 eat 转成了名词的性质，表达了吃胡萝卜这个行为，相当于名词在句中作主语。 ** 动名词作主语补语（表语） The rabbit’s hobby is growing carrot. 兔子的爱好是种胡萝卜。</p>
+<p>Eating carrots 尀�是个动名词短语，成功地把动词 eat 转成了名词的性质，表达了吃胡萝卜这个行为，相当于名词在句中作主语。 ** 动名词作主语补语（表语） The rabbit’s hobby is growing carrot. 兔子的爱好是种胡萝卜。</p>
 <p>很显然，这里 the rabbit’s hobby 是主语，is 是系动词，动名词短语 growing carrots 是主语补语（表语）。</p>
 <p>甚至有时候句中的主语和主语补语（表语）都可以是动名词，比如英语谚语：</p>
 <p><em>Seeing</em> is <em>believing</em>. 眼见为实。 ** 动名词作定语 a <em>sleeping</em> pill</p>
@@ -249,10 +537,10 @@
 <p>forget 后加动词不定式（即 forget to do）表示忘记去做……，表明事情还没有做。</p>
 <p>forget 后加动名词（即 forget doing）表示忘记做过……，表明事情已经做过了。 * 现在分词 现在进行时 = be + 现在分词</p>
 <p>由于现在分词一开始是在现在进行时中出现的，所以很多人有种误解，认为现在分词”顾名思义“就自带”现在时间“的属性。</p>
-<p>这是一个非常大的误区，不能因为这个语法术语中有“现在”就认为它自带时间。非谓语动词（非限定性动词）恰恰是没有时间变化的，比如：</p>
+<p>这是一个非常大的误区，不能因为这个语法术语中有“现在 �就认为它自带时间。非谓语动词（非限定性动词）恰恰是没有时间变化的，比如：</p>
 <p>a talking rabbit 一只说话的兔子</p>
 <p>我们基于 talking 只能判断出这只兔子是会说话的，但是这只兔子到底是过去在说话，还是将来在说话，则不得而知。所以说，现在分词不一定自带”现在“的属性。</p>
-<p>现在分词基本上相当于一个形容词。那么，形容词在句中可以充当的成分，现在分词当然也可以。a talking rabbit 中的 talking 就是定语。</p>
+<p>现在分词基本上相当于一个形容词。那么，形容词在句中可以充当的成分，现在分词当然也可什�。a talking rabbit 中的 talking 就是定语。</p>
 <p>但是有个问题，之前说动名词时说过，动名词也可以做定语。可以，现在分词和动名词长得一模一样，到底怎么判断谁是谁呢？比如，我们看到一个句话或者一个短语中出现 sleeping，它到底是之前说的动名词呢，还是现在分词？前面我们说过：</p>
 <p>a <em>sleeping</em> pill 一片安眠药</p>
 <p>这里的 sleeping 是动名词，用来说明药片的性能、功能和用途。相当于：</p>
@@ -267,7 +555,7 @@
 <p>#+begin_example The story is <em>interesting</em>. 故事是有趣的。 THe game is <em>exciting</em>. 游戏是刺激的。 The news is <em>encouraging</em>. 新闻是鼓舞人心的。 #+end_example</p>
 <p>我们平时都把 interesting 翻译成有趣的。但它实际上是从动词 interest 变过来的现在分词。现在分词相当于把动词转成了形容词。 ** 现在分词作宾语补语 The wolf saw the rabbit <em>eating</em> a carrot. 狼之前看到兔子正在吃一根胡萝卜。</p>
 <p>现在分词 eating 作了宾语 rabbit 的宾语补语，表示”兔子在吃胡萝卜“。</p>
-<p>之前讨论动词不定式的时候，提到过不定式作宾语补语的用法，如：</p>
+<p>之前讨论动词不定式的时候，提到迀�不定式作宾语补语的用法，如：</p>
 <p>The wolf saw the rabbit eat carrot. 狼之前看到兔子吃了根胡萝卜。</p>
 <p>那两者有什么区别呢？动词不定式作宾语补语时，表示一个动作自始至终的过程，强调动作已经发生了。现在分词作宾语补语时，表示动作正在进行中，强调动作进行的状态。 ** 现在分词作状语 现在分词还可以作状语，表示时间、原因、条件、结果、让步、目的、方式和伴随情况等。</p>
 <p><em>Hearing</em> the news, the rabbit became excited. 听到这个消息，兔子很激动。</p>
@@ -283,7 +571,7 @@
 <p>在 minced meat 和 minced carrot 中，minced 作定语，可以把这个过去分词看做形容词。</p>
 <p>通常的形容词，比如 big、small、smart 都是加在名词前的，单个的过去分词也是一样：</p>
 <p>#+begin_example a big carrot 一根大胡萝卜 a small room 一个小房间 a smart rabbit 一只总名的兔子</p>
-<p>a minced carrot 一根绞碎的胡萝卜 a painted room 一个漆过了的房间 an excited rabbit 一只激动的兔子 #+end_example</p>
+<p>a minced carrot 一根绞碎的胀�萝卜 a painted room 一个漆过了的房间 an excited rabbit 一只激动的兔子 #+end_example</p>
 <p>但是过去分词短语做定语，则要放到被修饰的名字之后，即很多语法书里说的”后置定语“，比如：</p>
 <p>The carrot cake <em>eaten</em> by the rabbit is delicious. 被兔子吃了的胡萝卜蛋糕很美味。 ** 过去分词作主语补语（表语） 和现在分词一样，过去分词也可以充当主语补语（表语）。</p>
 <p>The rabbit is <em>interested</em> in growing carrots. 兔子对种胡萝卜感兴趣。</p>
@@ -301,7 +589,7 @@
 <p>I am intersted 是被动，表示我被某人/某物引起了兴趣。而 I am interesting 是主动，表示我引起了某人的兴趣。 ** 过去分词作宾语补语 复杂及物动词后跟宾语和宾语补语，而这个宾语补语也可以由过去分词充当。比如：</p>
 <p>The rabbit found his carrot <em>stolen</em>. 兔子发现他的胡萝卜被偷了。 ** 过去分词作状语 过去分词也可以作状语，这点跟现在分词有几分相似。</p>
 <p>表地点： <em>Seen</em> from the hill, the <em>carrot field</em> looks beautiful. 从山上看，胡萝卜田看上去很美。</p>
-<p>主语 carrot filed 是 seen 的逻辑主语，它们之间是一种被动的关系，所以使用过去分词。</p>
+<p>主语 carrot filed 是 seen 的逻辑主语，它什�之间是一种被动的关系，所以使用过去分词。</p>
 <p>表原因： <em>Born</em> in a rabbit family, the rabbit’s only work is growing carrots. 由于出生在一个兔子家庭里，兔子的唯一工作就是种胡萝卜。</p>
 <p>表条件： <em>Given</em> another chance, the rabbit would go to the wolf’s party. 如果再给 兔子一次机会，他会去参加狼的聚会。</p>
 <p>以上这些用法也容易和现在分词混淆。其实要弄清到底是该用过去分词还是现在分词，还是看句子中到底是主动的含义，还是被动的含义。</p>
@@ -310,8 +598,8 @@
 <p>这里的胡萝卜田是被看，所以是 seen from the hill，从山上被看。</p>
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
-<p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+<p>这里是兔子主动看到了胡萀�卜田，所以才用 seeing。</p>]]></description>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Ebuild-defined Variables]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
@@ -406,7 +694,7 @@
 </tr>
 </tbody>
 </table>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -417,7 +705,7 @@
 </ul>
 <p>[[file:../../pics/English/从句.png]] ** 英语的三种句子 1. 简单句 Simple Sentences 不能再拆 2. 复合句 Compound Sentences 不分主次 3. 复杂句 Complex Sentences 主句 + 从句 * 英语从句的分类 一个从句可以充当句子成分，所以只要把所有句子成分列出来，咱们就知道有哪些从句了。一句话有可能有的句子成分为：主语、宾语、间接宾语、直接宾语、（宾语）补语、（主语）补语（表语）、定语、状语、同位语，除了其中最特殊的句子成分，谓语动词之外，每种句子成分祈使都可以由从句充当。</p>
 <p>** 句子成分/句型 #+begin_example 主语+动词 主语从句 主语+动词+宾语 宾语从句 主语+动词+间接宾语+直接宾语 主语+动词+宾语+（宾语）补语 宾语补语从句 主语+动词+（主语）+补语（表语） 主语补语（表语）从句 定语、状语、同位语 定语从句、状语从句、同位语从句 #+end_example ** 词类 #+begin_example 动词 数词 名词 副词 代词 介词 冠词 叹词 形容词 连词 #+end_example *** 名词从句 #+begin_example 主语从句 宾语从句 主语补语（表语）从句 宾语补语从句 同位语从句 #+end_example *** 形容词从句 #+begin_example 定语从句 #+end_example *** 副词从句 #+begin_example 状语从句 - 时间状语从句 - 地点状语从句 - 条件、原因、方式、比较……状语从句 #+end_example * 形容词从句 ** 形容词从句的思维方式 在中文里，无论定语是单个形容词也好，又或是一句话充当的，都是放在被修饰的名词/代词之前：</p>
-<p>#+begin_example <em>好吃的</em> 胡萝卜 <em>我买来的</em> 胡萝卜 <em>我昨天在菜市场向刚从地里回来的乌龟那儿买来的</em> 胡萝卜 #+end_example</p>
+<p>#+begin_example <em>好吃的</em> 胡萝卜 <em>我买来的</em> 胡萝卜 <em>我昨夀�在菜市场向刚从地里回来的乌龟那儿买来的</em> 胡萝卜 #+end_example</p>
 <p>中文构成定语基本上就是“ <em>形容词/句子 + 的</em> ”。</p>
 <p>但是，英语就不一样了。虽然单个形容词（或者多个形容词，或副词加形容词）作定语也是放在被修饰词之前，如：</p>
 <p><em>a tasty</em> carrot <em>一根好吃的</em> 胡萝卜</p>
@@ -452,7 +740,7 @@
 <p>The rabbit ate the carrot, <em>the carrot</em> was on the table.</p>
 <p>这样的从句没有限定作用，只不过是用了个代词”接着说话“而已。其实就是一前一后表达了两个信息：兔子吃胡萝卜和胡萝卜（再被吃之前）在桌上。言下之意是，完全可能只有一根胡萝卜，然后补充信息是，这根胡萝卜恰巧在桌上而已。 *** 限定性 vs. 非限定性 I have a head which is round.</p>
 <p>I have a head, which is round.</p>
-<p>第一句的言下之意是我有好几个头，其中一个是圆，其他的它头可能是方的扁的。第二句就比较清楚，我有一个头，而我这个头是圆的。 *** 非限定性形容词从句作插入语 正因为非限定性形容从句的这种”非限定性的“，”接着补充“（而非限定）的特性，所以往往用来做句子的插入语，比如：</p>
+<p>第一句的言下之意是我有好几个头，其中一个是圆，其他的它头可能是方的扁的。第二叀�就比较清楚，我有一个头，而我这个头是圆的。 *** 非限定性形容词从句作插入语 正因为非限定性形容从句的这种”非限定性的“，”接着补充“（而非限定）的特性，所以往往用来做句子的插入语，比如：</p>
 <p>My head, <em>which is big</em>, is useful when it rains. 我有大头，下雨不愁。</p>
 <p>The biggest carrot, <em>which the rabbit ate</em>, was on the table. 最大的那根胡萝卜曾在桌上，兔子吃了它。</p>
 <p>这两个做插入语的形容词从句，都可以直接去掉都不影响句意。而且正因为只是补充信息用，所以前面加 the biggest 这样，”确定唯一“的限定词一点问题都没有。 *** 非限定性形容词从句指代整句话 非限定性形容词从句不一定是补充某个先行词，而是可以指代整句话，比如：</p>
@@ -470,9 +758,9 @@
 <p>#+begin_example 兔子 <em>是否</em> 吃了胡萝卜 <em>是明显的</em> 兔子 <em>哪里</em> 吃的胡萝卜 <em>是明显的</em> 兔子 <em>什么时候</em> 吃的胡萝卜 <em>是明显的</em> 兔子 <em>怎样</em> 吃地胡萝卜 <em>是明显的</em> <em>谁</em> 吃了胡萝卜 <em>是明显的</em> 兔子吃的 <em>什么</em> <em>是明显的</em> #+end_example</p>
 <p>-&gt; 其对应英语为：</p>
 <p>#+begin_example <em>Whether</em> the rabbit ate the carrot <em>is obvious</em>. <em>Where</em> the rabbit ate the carrot <em>is obvious</em>. <em>When</em> the rabbit ate the carrot <em>is obvious</em>. <em>How</em> the rabbit ate the carrot <em>is obvious</em>. <em>Who</em> ate the carrot <em>is obvious</em>. <em>What</em> the rabbit ate <em>is obvious</em>. #+end_example</p>
-<p>这几句中英翻译的最大区别是，主语从句是要以引导词开头的——这些引导词都是像 what、where、when 这样的代词/副词——它们如果出现在问句中，被叫做”疑问代词/疑问副词“；这里用来引导从句，也就是作从句的”引导词“，属于”连接代词/连接副词“。而从句去除引导词，剩下的词序和中文基本是一致的。 *** 形式主语 <em>That the hungry rabbit had already eaten a carrot for dinner this evening</em> is obvious.</p>
+<p>这几句中英翻译的最大区别是，主语从句是要以引导词开头的——这些引导词都是像 what、where、when 这样的代词/副词——它们如果出现在问句中，被叫做”疑问代词/疑问副词“；这里用来引导从句，也就是作从句的”引导词“，局�于”连接代词/连接副词“。而从句去除引导词，剩下的词序和中文基本是一致的。 *** 形式主语 <em>That the hungry rabbit had already eaten a carrot for dinner this evening</em> is obvious.</p>
 <p>-&gt; <em>It</em> is obvious <em>that the hungry rabbit had already eaten a carrot for dinner this evening</em>.</p>
-<p>这里的 it 不是平时指代物体的代词”它“，而是指代后面的从句，本身没有实际意义，所以被成为”形式主语“——它代表的是之后的真正的主语，也就是之后的主语从句。也就是说，放在句子后面的从句才是真正的主语。</p>
+<p>这里的 it 不是平时指代物体的代词”它“，而是指代后面的从句，本身没有实际意义，所以被成为”形式主语“——它代血�的是之后的真正的主语，也就是之后的主语从句。也就是说，放在句子后面的从句才是真正的主语。</p>
 <p>这样的形式主语 it 开头的句子构成很简单，就是用 it 把整句话用之前的语序说完，然后紧接着加上从句就可以了。</p>
 <p>我们可以把几句话改写成带有形式主语的句子：</p>
 <p>#+begin_example <em>That the rabbit ate a carrot</em> is a secret. <em>That the rabbit ate a carrot</em> was discussed. <em>That the rabbit ate a carrot</em> happed. #+end_example</p>
@@ -487,7 +775,7 @@
 <p>这几个动词被动态也可以换成某些形容词，照样使用动词虚拟语气，比如：</p>
 <p>It is <em>important/essential/necessary</em> <em>that you (should) eat a carrot</em>. ** 宾语从句 宾语从句其实就是从句在整个复杂句中做宾语而已。这样的从句有可能包含确定信息，也可能包含不确定信息 *** 确定信息&amp;不确定信息 **** 确定信息作宾语从句 I saw <em>that the rabbit ate a carrot</em>. 我看见 <em>这兔子吃了根胡萝卜</em> **** 不确定信息作宾语从句 不确定的信息也可以作从句，充当句子的宾语，如：</p>
 <p>#+begin_example I saw <em>whether</em> the rabbit ate the carrot. I saw <em>who</em> ate the carrot. I saw <em>what</em> the rabbit ate. I saw <em>where</em> the rabbit ate the carrot. I saw <em>when</em> the rabbit ate the carrot. I saw <em>how</em> the rabbit ate the carrot. #+end_example</p>
-<p>有两点需要注意：1.除了某些介词参与的情况，从句的引导词基本都在从句的开头，而其他的词遵照正常的陈述语序，基本也和中文一致。2.千万不要看到 whether、where、when、how 这样的词就以为看到了包含疑问代词/疑问副词的问句， 于是在之后错误地加上了助动词。以下句子是错误的：</p>
+<p>有两点需要注意：1.除了某些介词参与的情况，从句的引导词基本都在从句的开头，而其他的词遵照正常的陈述语序，基本也和中文一致。2.千万不要看到 whether、where、when、how 这样的词就以为看到了包含疑问代词/疑问副词的问句， 于是圀�之后错误地加上了助动词。以下句子是错误的：</p>
 <p>#+begin_example You told me whether +does+ the rabbit eat the carrot. You told me where +does+ the rabbit eat the carrot. You told me when +does+ the rabbit eat the carrot. You told me how +does+ the rabbit eat the carrot. #+end_example *** 引导词 that 的省略 在口语或非正式书面语中，宾语从句的引导词 that 往往可以省略，比如：</p>
 <p>I know <em>(that)</em> the rabbit ate a carrot.</p>
 <p>也可以说 I konw the rabbit ate a carrot.</p>
@@ -501,7 +789,7 @@
 <p>-&gt; I know, just like you do, the rabbit ate the carrot.</p>
 <p>如果去掉 that，会让人一下子反应不过来后面是个从句，从而认为这句话有语病。 *** 某些词后的宾语从句的否定 表达某种意见时，经常会用到宾语从句，如：</p>
 <p>I think <em>(that) the rabbit is smart</em>. 我认为这兔子很聪明。</p>
-<p>在做否定时，否定往往是加在谓语动词前，而不是在从句里，也就是：</p>
+<p>在做否定时，否定往往是加在谓语动词前＀�而不是在从句里，也就是：</p>
 <p>I <em>don’t</em> think (that) the rabbit is smart.</p>
 <p>而不是：</p>
 <p>+I think (that) the rabbit <em>isn’t</em> smart.+ *** 主从时态一致 在大多数情况下，宾语从句和主句中的时态要保持一致，比如：</p>
@@ -526,7 +814,7 @@
 <p>表语从句（主语补语从句）往往就是把之前讲到的主语从句，移到系动词之后去而已，比如之前的：</p>
 <p>主语从句： <em>That the rabbit ate a carrot</em> is a <em>secret</em>.</p>
 <p>-&gt; 表语从句： <em>The </em>secret* is <em>that the rabbit ate a carrot</em>.</p>
-<p>这两句话意思大致相同，但是还是有些微妙区别的，主要体现在要强调的信息。 *** 系动词：非 be 动词 系动词不一定是 be 动词，也有可能是 feel、seem、look、taste……这样的系动词。所以也能看到这样的表语从句：</p>
+<p>这两句话意思大致相同，但是还是有些微妙区别的，主要体现在要强调的信息。 *** 系动词：非 be 动词 系动词不一定是 be 劀�词，也有可能是 feel、seem、look、taste……这样的系动词。所以也能看到这样的表语从句：</p>
 <p>It <em>seems</em> that the rabbit is hungry.</p>
 <p>It <em>feels</em> that you’re not telling the truth.</p>
 <p>这些句子中的 it 并不是某个物体“它”，而是个“形式主语”，没有实际意义。句子真正要表达的意思其实全部被涵盖在了后面的从句中。而后面的从句，在语法上来说，是的的确确的表语成分，所以是表语从句。 ** 同位语从句 所谓“同位语”，其实就是用不同的方式把一个概念再说一遍，用逗号隔开，比如：</p>
@@ -536,7 +824,7 @@
 <p>这句话中，Papa Rabbit 是宾语 teacher 的同位语。</p>
 <p>我们当然可以把同位语这个概念引申到从句，也就是， 当一个从句来充当同位语时，那么这个从句就是同位语从句。这样的从句常在句中修饰抽象的名词——因为抽象，所以才要“另一种方式来再说一遍”，比如：</p>
 <p>The <em>fact</em> <em>that the rabbit ate the carrot</em> did not surprise me. <em>兔子吃了胡萝卜</em> 这个 <em>事实</em> 并没有让我吃惊。</p>
-<p>这里的 The fact 和 that the rabbit ate the carrot 是同一个概念，一前一后用两种方式说出来而已——后者显然就是个由 that 这个引导词引导的同位语从句。注意这里因为有了引导词，很容易看出从句从哪里开始，所以也就不需要逗号隔开了。</p>
+<p>这里的 The fact 和 that the rabbit ate the carrot 是同一个概念，一前一后用两种方开�说出来而已——后者显然就是个由 that 这个引导词引导的同位语从句。注意这里因为有了引导词，很容易看出从句从哪里开始，所以也就不需要逗号隔开了。</p>
 <p>刚才的同位语从句包含了已知信息。同位语从句当然也可以包含未知信息，比如：</p>
 <p>The <em>question</em> <em>whether the rabbit will eat the carrot</em> is on all our minds. 兔子 <em>是否会吃胡萝卜</em> 这个问题萦绕在我们所有人心中。</p>
 <p>这里的 whether the rabbit will eat the carrot 也是个同位语从句，把主语 question 又说了一遍。</p>
@@ -549,7 +837,7 @@
 <p>My education made <em>me</em> <em>who I am today</em>. 我的教育造就了我今天是的（这个人）。（我的教育成就了今天的我。）</p>
 <p>其中 who I am today 也是一个宾语补语从句。</p>
 <p>另外，虽然把宾语补语从句放在“名词从句”里，但是宾语补语从句不见得一定有名词性质，也有可能是形容词的性质，但是如果把它放到形容词从句，也有点奇怪。 * 副词从句 副词从句在句中起到副词的作用，一般补充说明动词、形容词、副词等。从句子成分上说，它充当了句子的状语，所以副词从句也叫“状语从句”——两者是一回事。副词从句与之前两大类从句（即名词从句和形容词从句）相比，种类很多，因为“作状语”在句子中补充信息，有多种可能。</p>
-<p>可以根据用途/意义把副词从句分类：</p>
+<p>可以根据用途/意义技�副词从句分类：</p>
 <ol type="1">
 <li>表时间 （如：在…前）</li>
 <li>表地点 （如：在…地方）</li>
@@ -609,10 +897,10 @@
 <p>其中，than I am，than that one is，than Snow White is 实际上都是副词从句，用“比较”的方式对前面的主句进行补充说明。 *** 比较副词从句：“同样得…” 比较也不定非要“更”怎么样，也可能“同样得”怎样，如：</p>
 <p>#+begin_example He is as smart as I am. This carrot is as big as that one is. She is as beautiful as Snow WHite is. #+end_example</p>
 <p>以上也可以省略/口语化为：</p>
-<p>#+begin_example He is as smart as me. This carrot is as big as that one. She is as beautiful as Snow WHite. #+end_example *** 比较副词从句：“越…越…” 还有一种常见的比较副词从句是“the（比较极）, the（比较极）”的形式，比如：</p>
+<p>#+begin_example He is as smart as me. This carrot is as big as that one. She is as beautiful as Snow WHite. #+end_example *** 毀�较副词从句：“越…越…” 还有一种常见的比较副词从句是“the（比较极）, the（比较极）”的形式，比如：</p>
 <p><em>The more</em> you practice English, <em>the more fluent</em> you become. 你 <em>越多</em> 练习英语， 你就 <em>越流利</em> 。 ** 条件副词从句 条件副词从句其实就是通常说的“条件句”，如：</p>
 <p><em>If the rabbit sees a carrot</em>, he will eat it.</p>
-<p>这个条件只是单纯的假设，属于“真实条件句”。</p>
+<p>这个条件只是单纯的假设，属于“真实条件叀�”。</p>
 <p>而在虚拟语气中，有“虚拟条件句”，即和事实相反的假设，如：</p>
 <p>If I <em>saw</em> a carrot, I <em>would eat</em> it.</p>
 <p>If I <em>had seen</em> a carrot, I <em>would have eaten</em> it.</p>
@@ -631,7 +919,7 @@
 <p>If you like this video, you will give it a thumbs-up. 如果你喜欢这个视频，你会给它点赞。</p>
 <p>-&gt; Unless you like this video, you will not give it a thumbs-up. 除非你喜欢这个视频，否则你不会给它点赞。</p>
 <p>除了 if 和 unless 这两种最主要的，还有其他一些词/词组可以构成条件副词从句，比如 provided、as long as、in case：</p>
-<p><em>Provided</em> that my video is excellent, you will give it a thumbs-up. 如果我的视频很棒，你会给他点赞。</p>
+<p><em>Provided</em> that my video is excellent, you will give it a thumbs-up. 如果我的视频很棒＀�你会给他点赞。</p>
 <p><em>As long as</em> I make excellent videos, you will remain my follower. 只要我一致做高质量视频，你就会继续关注我。</p>
 <p><em>In case</em> you don’t understand, please comment below. 如果你不明白，请在下方评论。 ** 让步副词从句 和条件副词从句有些相通的地方，都是阐述某种情况或做出某种假设，但接下来会更近一步做出一个“相反/相对”的阐述，最常见的就是“即是…也…”，所以才有“让步”这一说。</p>
 <p>让步副词从句： <em>Event</em> if I see a carrot, I will not eat it. <em>即使</em> 我看到了一根胡萝卜，我也不会吃它。</p>
@@ -655,7 +943,7 @@
 <p>You spend (so much) money as if you were a millionaire.</p>
 <p>一上来就交代了你花（很多）钱，然后再说这种情况（你花钱的效果），就和一个虚拟的与事实相反的假设的情况下一样（就好像你是百万富翁，但你并不是）。</p>
 <p>If you were a millionaire, you would spend a lot of money.</p>
-<p>再比较这句虚拟语气。意思是，如果你是百万富翁（但你并不是），你会把很多钱。言下之意是，因为你有钱是假想，所以你并不会花很多钱。</p>
+<p>再比较这句虚拟语气。意思是，如果你是百万富翁（但你并不是），你会把很多钱。言下之意是，因为你有钱是假想，所以你并不会花很多钱　�</p>
 <p>刚才的方式是假想，接下来不用假想，比如：</p>
 <p>Eat the carrot as I do. <em>像我</em> 一样吃胡萝卜。</p>
 <p>Leave the carrot as it is. 别动这胡萝卜。 -&gt; <em>像这</em> 胡萝卜原本那样，别碰它。</p>
@@ -702,14 +990,14 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</guid>
     <description><![CDATA[<p>#+TITLE: 虚拟语气 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li>动词语气 Verb Moods 这里的“语气”是语法概念或语法术语，可不是”说话的语气“。</li>
+<li>动词语气 Verb Moods 这里的“语气”是语法概念或语法术语，可不是”诀�话的语气“。</li>
 </ul>
 <p>英语语气最主要有三种语气： - 陈述语气 - 祈使语气 - 虚拟语气 ** 陈述语气 陈述语气说白了就是描述现实，比如：</p>
 <p>The rabbit <em>ate</em> the carrot. 这兔子 <em>吃了</em> 这胡萝卜。 ** 祈使语气 祈使语气说白了就是命令/请求。</p>
@@ -721,7 +1009,7 @@
 <p>+You+ never give up! -&gt; Never give up! ** 虚拟语气 *** 英语思维：如何描述动作/时间 - 与现实相悖的想像，主观意愿：使用动词的虚拟语气 - 现实的描述，直接请求/命令：不用动词的虚拟语气，而且用陈述语气、祈使语气 *** 举例 张三被兔子咬了，进了医院，张三决心报复兔子。张三在出院的时候，夸下海口，说是要咬兔子。可是，时间慢慢过去了，来到了现在。兔子就是没有出现。因为兔子听到风声，躲起来了。</p>
 <p>**** 和现在事实相反 于是张三说：如果我现在 <em>看到</em> 那只兔子的话，我会 <em>咬</em> 它。</p>
 <p>If I <em>saw</em> the rabbit now, I <em>would</em> bite him.</p>
-<p>这里动词是过去式，但是并不表示过去时间，也就是说，这句话不是在描述过去发生的事实，而是在描述现在的，没发生，但是希望发生的事，是一个主观意愿或者说想象的假设。</p>
+<p>这里动词是过去式，但是并不表示过去时间，也就是说，这句话不是在描述过厀�发生的事实，而是在描述现在的，没发生，但是希望发生的事，是一个主观意愿或者说想象的假设。</p>
 <p>以上是虚拟语气的第一种用法，表示和 <em>现在</em> 事实相反。 **** 和将来事实相反（可能性很小） 然而，咬了张三的兔子，听到风声，昨晚就跑到月亮上了。张三知道，接下来一段时间里，他是多半找不到这兔子了。</p>
 <p>于是他只能说：万一我明天看见那只兔子，我要咬它。他这里说“万一”，其实就是表明可能性太小了。对应的那英文，一般也要用虚拟语气。用来表示，像这样的，将来时间里，可能性很小的动作。</p>
 <p>If I <em>should see</em> the rabbit tomorrow, I <em>would</em> bite him.</p>
@@ -742,9 +1030,9 @@
 <p><em>万一</em> 我们将来 <em>重逢</em> 了， 我又该如何 <em>面对</em> 你呢？</p>
 <p>注意，should 其实是 shall 的过去式，构成将来时态往往用 will 或 shall，这里其实就是用了 shall 的过去式，并没有”应该“这个含义。而 should 的另一个身份，做情态动词时，才有”应该“这个含义。顺便提一下相似的助动词的过去式变位：</p>
 <p>#+begin_example shall -&gt; should will -&gt; would can -&gt; could may -&gt; might #+end_example</p>
-<p>主句中的 would，也可以用 <em>should/could/might</em> 来替换，当然也要看具体语境。另外，条件句中的 should 也可以用 <em>were to</em> 来取代 ***** 与过去相反 条件句： <em>had + 动词过去分词</em> 主句： <em>would have + 动词过去分词</em></p>
+<p>主句中的 would，也可以用 <em>should/could/might</em> 来替换，当然也要看具体语境。另外，条件句中的 should 也可以用 <em>were to</em> 来取代 ***** 与过去相反 条件句： <em>had + 动词过去分词</em> 主句： <em>would have + 动词过去分诀�</em></p>
 <p>If I <em>had watched</em> this video before, I <em>would have aced</em> my test.</p>
-<p>我要是之间就 <em>看了</em> 这视频，那绝对能 <em>考个</em> 好成绩。言下之意：我没考出好成绩。 **** 虚拟语气表达愿望、请求、建议、命令等 虚拟语气表达愿望、请求、建议、命令等，说白了就是”希望某个动作/事件“发生。其实这也很好理解，因为这样的”希望“也是发生在我们脑中的，而非在现实中已经发生了的事。而这样的虚拟语气用法特征也很明显，因为这样的虚拟语气用法特征也很明显，因为这样的动词虚拟语气一般和一些”表达愿望的词“一起使用；最具代表性的就是 wish 这个词。</p>
+<p>我要是之间就 <em>看了</em> 这视频，那绝对能 <em>考个</em> 好成绩。言下之意：我没考出好成绩。 **** 虚拟语气表达愿望、请求、建议、命令等 虚拟语气表达愿望、请求、建议、命令等，说白了就是”希望某个动作/事件“发生。其实这也很好理解，因为这样的”希望“也是发生在我们脑中的，而非在现实中已绀�发生了的事。而这样的虚拟语气用法特征也很明显，因为这样的虚拟语气用法特征也很明显，因为这样的动词虚拟语气一般和一些”表达愿望的词“一起使用；最具代表性的就是 wish 这个词。</p>
 <p>wish 是希望可能性小的事发生，而 hope 比较中性。 ***** wish - 对现在的愿望</p>
 <p>构成： <em>wish + 动词过去式</em></p>
 <p>I wish (that) I <em>were</em> a rabbit. 我希望我是只兔子。</p>
@@ -760,7 +1048,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -789,11 +1077,11 @@
 <p>把后者信息赋予前者 ** 快速小结 英语中的所有句子，当拆到不能再拆后，都是在说： <em>什么</em> /怎么样/ 。”什么“是语法中的主语，”怎么样“是谓语，谓语都有一个核心动词，叫做谓语动词。</p>
 <p>*** 谓语动词 1. 无承受者</p>
 <p>主语 + <em>动词</em> 2. 一个承受者</p>
-<p>主语 + <em>动词</em> + /<em>宾语</em>/ 3. 两个承受者</p>
+<p>主语 + <em>动词</em> + /<em>宾语</em>/ 3. 两一�承受者</p>
 <p>主语 + <em>动词</em> +（间接） /<em>宾语</em>/ + （直接） /<em>宾语</em>/ 4. 一个承受者（不同于 2）</p>
 <p>主语 + <em>动词</em> + /<em>宾语</em>/ + （宾语） /补语/ 5. 赋予信息</p>
 <p>主语 + <em>动词</em> + （主语） /补语/ （表语）</p>
-<p>谓语和谓语动词是有区别的，句子主语后面的余下句子部分都是谓语，谓语动词只是谓语的一部分。与谓语动词相对的，还有 <em>非</em> 谓语动词。 ** 句子成分 1. 主语 Subject 2. 谓语动词（~谓语） Predicate Verb 3. 宾语 Object 4. 宾语补语 Object Complement 5. 主语补语（表语） Subject Complement 6. 定语 Attributive</p>
+<p>谓语和谓语动词是有区别的，句子主语后面的余下句子部分都是谓语，谓语动词只是谓语的一部分。与谓语动词相对的，还有 <em>非</em> 谓语动词。 ** 叀�子成分 1. 主语 Subject 2. 谓语动词（~谓语） Predicate Verb 3. 宾语 Object 4. 宾语补语 Object Complement 5. 主语补语（表语） Subject Complement 6. 定语 Attributive</p>
 <p>主要用来修饰主语或宾语</p>
 <p><em>The little white</em> rabbit ate <em>a large</em> carrot.</p>
 <p>“The little white”是”rabbit”的定语，“a large”是“carrot”的定语 7. 状语 Adverbial</p>
@@ -852,17 +1140,17 @@
 <p>为了协助它表示有可能吃，就要用到助动词： <em>might</em>, eg, might eat.</p>
 <p>为了协助它表示有义务吃，就要用到助动词： <em>must</em>, eg, must eat.</p>
 <p>为了协助它表示否定，不吃，就要用到助动词： <em>do</em>, eg, do not eat.</p>
-<p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
+<p>但是很多助动词特别喜欢伪装，宀�们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</guid>
     <description><![CDATA[<p>#+TITLE: 16种时态详解 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li>动词时间 过去、现在、将来、过去将来。其中“过去将来”和“现在”，没有必然关系。在下图中，我们默认过去的将来在现在的过去，但并不一定是这样，也有可能过去的将来在现在的将来。其实，过去将来时间在现实中也不常见，一般只出现在从句中。</li>
+<li>动词时间 过去、现在、将来、过去将来。其一�“过去将来”和“现在”，没有必然关系。在下图中，我们默认过去的将来在现在的过去，但并不一定是这样，也有可能过去的将来在现在的将来。其实，过去将来时间在现实中也不常见，一般只出现在从句中。</li>
 </ul>
 <p>[[file:../../pics/English/verbs_time.png]] * 动词状态 - <em>进行</em> 状态</p>
 <p>这兔子 <em>正在吃</em> 着胡萝卜。</p>
@@ -875,7 +1163,7 @@
 <p>用图例 <sub>====</sub> 表示动作完成了。注意，完成态的重点在动作完成了，而并没有指出动作具体发生的时间。</p></li>
 <li><p><em>完成进行</em> 状态</p></li>
 </ul>
-<p>这兔子 <em>从早上就开始</em> 吃胡萝卜，现在 /<em>还没停</em>/ 呢。</p>
+<p>这兔子 <em>从早上就开始</em> 吃胡萝卜，玀�在 /<em>还没停</em>/ 呢。</p>
 <p>不但有好多胡萝卜 <em>进了兔子肚子</em> ，这 /<em>还没完</em>/ 呢，这兔子还有一堆胡萝卜没吃呢。</p>
 <p>用图例 <sub>==——&gt;</sub> 表示动作的一部分完成了，但剩下的还在进行中。</p>
 <ul>
@@ -899,7 +1187,7 @@
 <p>张三上个月被一直兔子咬了，还进了医院。上个月张三出院的时候，说我要报仇，要咬那只兔子一口。</p>
 <ul>
 <li><p>过去将来进行时态：如果张三在上个月说，“下个月的某一天，你一定会看见我，正在咬那只兔子。”</p></li>
-<li><p>过去将来完成时态：如果张三在上个月说，“下个月的某一天，你一定会发现我已经咬了那只兔子。”</p></li>
+<li><p>过去将来完成时态：如果张三在上个月说＀�“下个月的某一天，你一定会发现我已经咬了那只兔子。”</p></li>
 <li><p>过去将来完成进行时态：如果张三在上个月说，“下个月的某一天，你一定会发现我不但咬了那只兔子，还会一直咬下去。”</p></li>
 <li><p>过去将来一般时态：如果张三在上个月说，“等着瞧，我一定咬那只兔子。”</p></li>
 <li><p>时态的四大难点</p></li>
@@ -967,7 +1255,7 @@
 <p>I/you/we/she/he/it/they <em>ate</em> a carrot yesterday. **** 过去式 通常：+ ed</p>
 <p>如：looked, smelled, tasted</p>
 <p>有些动词是“不规则变化”，如： | 动词原形 | 动词过去式 | 动词过去分词 | |———-+————+————–| | do | did | done | | go | went | gone | | take | took | taken |</p>
-<p>“不规则”过去式的“规律” | 动词原形 | 动词过去式 | 动词过去分词 | |———-+————+————–| | bring | brought | brought | | blow | blew | blown | | begin | began | begun | | speak | spoke | spoken | **** 一般过去时态 - 动作发生了 √ - 动作多久 ？ - 动作何时开始 ？ - 动作何时结束 ？</p>
+<p>“不规则”过去式的“规律” | 动词原形 | 动词过去式 | 动词过去分词 | |———-+————+————–| | bring | brought | brought | | blow | blew | blown | | begin | began | begun | | speak | spoke | spoken | **** 一般过去时态 - 动作发生了 √ - 动作多久 ？ - 动作何时开始 ？ - 动作何时结束 ＀�</p>
 <p>“一般”单纯地指出有个动作发生了而已，至于这个动作多久，什么时候开始，什么时候结束，如果没有上下文则不得而知。</p>
 <p>The rabbit <em>ate</em> a carrot. 兔子 <em>吃了</em> 胡萝卜。（只知道这兔子过去某个时刻在吃胡萝卜。）</p>
 <p>You <em>watched</em> my video. 你 <em>看了</em> 我的视频。（可能的言下之意，这是事实，别抵赖哦。）</p>
@@ -1011,11 +1299,11 @@
 <p>The rabbit <em>has</em> been eating a carrot. -&gt; The rabbit <em>had</em> been eating a carrot. （这兔子在过去某个时间点已经吃（某根）胡萝卜一段时间了，还要在过去那个时间点之后继续吃一段时间。）</p>
 <p>You <em>have</em> been watching my video. -&gt; You <em>had</em> been watching my video. （你在过去某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间。）</p>
 <p>I <em>have</em> been thinking of you. -&gt; I <em>had</em> been thinking of you. （我在过去某个时间点之前已经想你一段时间了，还要在那个时间点之后继续想一段时间。） ** 将来 将来时间的四种状态，其实就是把现在时间的四种状态，往后推一个时间段而已。</p>
-<p>将来时态需要 <em>助动词</em> 帮忙，放在主动词，也就是谓语动词之前。这个将来时态里用到的助动词就是：will。（有时也会用 shell，有些微妙区别。） *** 英语“表达”将来时态 - <em>一般现在时态</em> 可以表达将来的动作，如：The bus <em>leaves</em> at 8PM. - 助动词 <em>be 的变位 + going + to</em> +动词原型，如：I <em>am going to</em> eat a carrot. - 甚至上句的 going 也可以省略，变为助动词 <em>be 的变位 + to</em> + 动词原型，如：You <em>are to</em> eat carrot. - 又或者也可以用介词 about 取代 going，即：+ <em>about + to</em> + 动词原型，如：I <em>am about to</em> eat a carrot. *** 一般将来时态 构成： <em>will + 动词原形</em></p>
+<p>将来时态需要 <em>助动词</em> 帮忙，放在主动词，也就是谓语动词之前。这个将来时态里用到的助动词就是：will。＀�有时也会用 shell，有些微妙区别。） *** 英语“表达”将来时态 - <em>一般现在时态</em> 可以表达将来的动作，如：The bus <em>leaves</em> at 8PM. - 助动词 <em>be 的变位 + going + to</em> +动词原型，如：I <em>am going to</em> eat a carrot. - 甚至上句的 going 也可以省略，变为助动词 <em>be 的变位 + to</em> + 动词原型，如：You <em>are to</em> eat carrot. - 又或者也可以用介词 about 取代 going，即：+ <em>about + to</em> + 劀�词原型，如：I <em>am about to</em> eat a carrot. *** 一般将来时态 构成： <em>will + 动词原形</em></p>
 <p>eat -&gt; will eat</p>
 <p>I/you/she/he/it/they <em>will eat</em> a carrot.</p>
 <p>描述：将来某个时间点发生的动作（说话者 <em>十分确定</em> 会发生的事）</p>
-<p>如果 <em>不太确定</em> ，就不能用一般将来时态。（要借助动词的“语气”。） *** 将来进行时态 将来进行时态其实就是现在进行时态往后推一个时间段。</p>
+<p>如果 <em>不太确定</em> ，就不能用一般将来时态。（要借助动词的“语气”。） *** 将来进行时态 将来进行时态其实就是现在进行时态往后推一个时间殀�。</p>
 <p><em>现在</em> 进行时态： <em>助动词 be 的变位</em> + 动词的现在分词</p>
 <p><em>将来</em> 进行时态： will + <em>助动词 be 的变位</em> + 动词的现在分词 -&gt; will + <em>be</em> + 动词的现在分词</p>
 <p>描述：在将来某个时间，某个动作是在 <em>进行的过程中</em> 。</p>
@@ -1027,18 +1315,18 @@
 <p>将来完成时态主要是为了表达，将来某一个点（A）的过去（B和现在的前后不能确定）对将来那一点（A）的影响，比如：</p>
 <p>将来 —— B —— A</p>
 <p>I will have finished making the video by <em>4PM tomorrow</em>, so I can publish it <em>after that</em>.</p>
-<p>这里要表达的意思就是，对于 <em>明天下午 4 点钟</em> 那个时间点来说，我在那之前就会完成做视频的这个动作，所以对 4 点钟那时候是有影响的——什么影响呢， <em>4 点钟之后</em> 我就能够发视频啦。</p>
+<p>这里要表达的意思就是，对于 <em>明天下午 4 炀�钟</em> 那个时间点来说，我在那之前就会完成做视频的这个动作，所以对 4 点钟那时候是有影响的——什么影响呢， <em>4 点钟之后</em> 我就能够发视频啦。</p>
 <p>The rabbit <em>has</em> eaten a carrot. -&gt; The rabbit <em>will have</em> eaten a carrot. （这兔子在将来某个时间点已经吃了胡萝卜。）</p>
 <p>You <em>have</em> watched my video. -&gt; You <em>will have</em> watched my video. （你在将来某个时间点已经看过了我的视频。）</p>
 <p>I <em>have</em> thought of you. -&gt; I <em>will have</em> thought of you. （我在将来某个时间点已经想过你了。）</p>
 <p>这个时态甚至比刚才的将来进行时态更加笃定，说得都好像已经发生了似的，所以，如果想表达特别特别确定某事，就可以用这个将来完成时态。 *** 将来完成进行时态 将来完成进行时态其实就是现在完成进行时态往后推一个时间段。</p>
 <p><em>现在</em> 完成进行时态： <em>助动词 have 的变位</em> + been + 动词的现在分词</p>
 <p><em>将来</em> 完成进行时态： <em>will + 助动词 have 的变位</em> + been + 动词的现在分词 -&gt; <em>will + have</em> + been + 动词的现在分词</p>
-<p>现在完成进行时态描述，对于现在这个时间点，不但已经完成了一部分而且还要继续进行的动作；那么将来完成进行时态，自然是描述，对于将来某个点，不但已经完成了一部分而且还要继续进行的动作，比如：</p>
+<p>现在完成进行时态描述，对于现在这个时间点，不但已经完成了一部分而且还要继续进行的动作；那么将来完成进行时态，自然是描述，对于将来某个点，不但已经完成了一部分而且还要继续进行的动佀�，比如：</p>
 <p>将来 —— B —— A</p>
 <p>I will have been eating carrots <em>for 2 hours</em> by <em>3PM tomorrow</em>.</p>
 <p>这里表达的意思就是：我确定 <em>明天下午三点钟</em> 时， 我不但 <em>已经吃了俩钟头胡萝卜</em> （也就是从昨天下午 1 点开始吃）而且还要继续吃。</p>
-<p>You <em>have been</em> watching my video -&gt; You <em>will have been</em> watching my video. （你在将来某个时间点之前已经看了我视频一段时间了，还要在那个时间点之后继续看一段时间。）</p>
+<p>You <em>have been</em> watching my video -&gt; You <em>will have been</em> watching my video. （你在将来某个时间点之前已经看了我视频一段时间了＀�还要在那个时间点之后继续看一段时间。）</p>
 <p>I <em>have been</em> thinking of you. -&gt; I <em>will have been</em> thinking of you. （我在将来某个时间点之前已经想你一段时间了，还要在那个时间点之后继续想你一段时间。） ** 过去将来 过去将来时态常出现于从句。</p>
 <p>过去将来的四种时态，只不过事把讲来时间的四种时态，往前推一个时间段（推到现在的过去）而已。 *** 一般过去将来时态 一般 <em>将来</em> 时态： <em>will</em> + 动词原型</p>
 <p>一般 <em>过去将来</em> 时态： <em>would</em> + 动词原型</p>
@@ -1058,7 +1346,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -1082,7 +1370,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -1111,10 +1399,10 @@
 </ul>
 <p>dracut 必须将 device id 添加到内核参数中，并且添加参数 =rd.driver.pre=vfio_pci= 。</p>
 <p>最后重启电脑。开机后通过命令 =lspci -k= 确认上述 device id 对应的设备在使用 vfio-pci 驱动。如果有各别设备没有使用 vfio-pci 驱动，则可以通过手动 unbind 和 bind 驱动的方式加载 vfio-pci 驱动。比如如果 0000:01:00.2 仍在使用 xhci_hcd 驱动，则：</p>
-<p>#+begin_src sh # run as root echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/xhci_hcd/unbind echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/vfio-pci/bind #+end_src * 创建虚拟机 首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备，并且之后使用 RDP 连接虚拟机。</p>
+<p>#+begin_src sh # run as root echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/xhci_hcd/unbind echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/vfio-pci/bind #+end_src * 创建虚拟机 首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备＀�并且之后使用 RDP 连接虚拟机。</p>
 <p>首先下载[[https://msdn.itellyou.cn/][windows 10 LTSC 2019]]和 [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio windows驱动]]镜像。</p>
 <p>创建虚拟机： - =Overview= ：Firmware 选择 UEFI x86_64:/usr/share/edk2-ovmf/OVMF_CODE.fd - =CPUs= ：选择 Topology，Manually set CPU topology，Sockets 设为 1，Cores 按需要来，我设为 4，Threads 设置为 2。这样一共就分配了 4 核 8 线程的 CPU - =Memory= ：内存我设置为 32G - =SATA Disk= ：Disk Bus 选择 Virtio，可以最小化磁盘性能损耗 - =NIC= ：Device model 也选择 virtio - 之后再添加一个 =Stroage= ，选择 Select custom storage 并选中之前下载的 virtio windows 驱动镜像，然后 Device type 选择 CDROM device - 最后在 =Boot Options= 中选中需要启动的设备</p>
-<p>开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
+<p>开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会诀�环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
 <p>#+begin_src ➜ lspci -nnk | egrep -A3 “VGA|3D” 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) Subsystem: Lenovo TU106M [GeForce RTX 2060 Mobile] [17aa:3a43] Kernel driver in use: vfio-pci Kernel modules: nouveau – 06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c6) Subsystem: Lenovo Renoir [17aa:3a47] Kernel driver in use: amdgpu Kernel modules: amdgpu</p>
 <p>#+end_src</p>
 <p>其中 NVIDIA 独显的 Vendor ID 为 10de，Device ID 为 1f15。再用命令 ~grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent~ 查看 Sub Vendor ID 和 Sub Device ID。</p>
@@ -1127,9 +1415,9 @@
 <p>先开启 proxy_arp 和 ip_forward，修改配置文件 =/etc/sysctl.conf= ，添加下述配置：</p>
 <p>#+begin_src conf net.ipv4.ip_forward = 1 net.ipv4.conf.all.proxy_arp = 1 #+end_src</p>
 <p>再点击 libvirt 菜单栏上的 =Edit= -&gt; =Connection Details= ，假设 host 的 ip 为 192.168.3.12，无线网卡为 wlp4s0，新建一个 Network， =Name= 设置为 proxyArp， =Mode= 选择 Routed， =Forward to= 选择 Physical device， =Device= 设置为 wlp4s0， IPv4 的 =Network= 设置为 192.168.3.100/28，完成创建。</p>
-<p>然后修改 win10 虚拟机的 =NIC= 配置，将 =Network source= 改为 Virtual network ‘proxyArp’: Route to wlp4s0，最后重新启动虚拟机与物理机。 * 远程连接 重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的分辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。</p>
+<p>然后修改 win10 虚拟机的 =NIC= 配置，将 =Network source= 改为 Virtual network ‘proxyArp’: Route to wlp4s0，最后重新启动虚拟机与物理机。 * 远程连接 重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的刀�辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。</p>
 <p>远程连接方式一共有三种，分别可以适用于不同的情况。 ** RDP 简单使用方法： - 确保使用 FreeRDP 2.0 - 获取 windows 虚拟机 IP，比如 192.168.3.108 - xfreerdp /v:192.168.3.108:3389 /w:1600 /h:900 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag</p>
-<p>对于使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
+<p>对亀�使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
 <p>*** 安装 client 首先在 host 系统上安装 looking glass client，在 gentoo 上可以通过如下步骤直接安装我打包的 looking glass。</p>
 <p>#+begin_src sh sudo eselect repository enable gig sudo emerge –sync gig sudo emerge -avt looking-glass #+end_src *** 计算内存大小 通过以下公式，根据你期望的最大分辨率来计算内存大小。</p>
 <p>#+begin_src width x height x 4 x 2 = total bytes</p>
@@ -1143,7 +1431,7 @@
 <p>#+begin_src conf #Type Path Mode UID GID Age Argument f /dev/shm/looking-glass 0660 user kvm - #+end_src</p>
 <p>将其中的 user，改为你自己的用户名。最后使用命令 =systemd-tmpfiles –create /etc/tmpfiles.d/10-looking-glass.conf= 创建共享内存文件，无需等待下次重启。 *** 安装 host 首先需要在 windows 中安装 IVSHMEM 驱动，windows 不会自己安装 IVSHMEM 设备，相反它只会为该设备安装一个假驱动。先下载需要安装的驱动程序，https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/ ，注意必须下载 0.1.161 或更高的版本，最后将其解压。</p>
 <p>安装 IVSHMEM 驱动需要打开 =设备管理器= ，然后在 =系统设备= 下，找到 =PCI标准内存控制器= ，然后选择 =更新驱动程序= ，再选择手动更新，选择我们之前下载并解压好的驱动目录，然后安装驱动即可。</p>
-<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件查看其是否正常启动，log 在开始菜单里就有。</p>
+<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件柀�看其是否正常启动，log 在开始菜单里就有。</p>
 <p>最后再安装一下 spice guest tools， https://www.spice-space.org/download.html#windows-binaries ，以更好的支持鼠标与剪贴板共享。 *** 配置 client 我使用的配置如下，将配置文件放在 =~/.looking-glass-client.ini= 或 =/etc/looking-glass-client.ini= ：</p>
 <p>#+begin_src ini [app] renderer=egl shmFile=/dev/shm/looking-glass</p>
 <p>[win] borderless=yes fullScreen=yes size=1920x1080</p>
@@ -1163,14 +1451,14 @@
 <p>[Install] WantedBy=default.target #+end_src</p>
 <p>最后运行以下命令即可：</p>
 <p>#+begin_src sh systemctl start –user scream-ivshmem-pulse systemctl enable –user scream-ivshmem-pulse #+end_src</p>
-<p>这样就配置完成了，在 looing glass 里就可以听到声音了。 ** steam 远程畅玩（流式传输） 因为 RDP 的限制，像 steam 家庭串流或 Geforce Experience 的方式对游戏来说更为推荐。</p>
+<p>这样就配置完成了，在 looing glass 里就可以听到声音了。 ** steam 远程畅玩（流式传输） 因为 RDP 的限制，像 steam 家庭串浀�或 Geforce Experience 的方式对游戏来说更为推荐。</p>
 <p>如果不想每次串流游戏都输入密码解锁屏幕，则可以通过 RDP 以管理员权限运行 cmd，然后运行以下命令，也可以将其保存为脚本，方便以后使用。注意运行完该命令会立马断开 RDP。</p>
-<p>#+begin_src <span class="citation" data-cites="powershell">@powershell</span> -NoProfile -ExecutionPolicy unrestricted -Command “$sessionid=((quser $env:USERNAME | select -Skip 1) -split ‘+’)[2]; tscon $sessionid /dest:console” 2&gt; UnlockErrors.log #+end_src * benchmark 简单运行了一下 3dmark 的 Time Spy，做虚拟机的图形性能测试。测试了以下几种情况：</p>
+<p>#+begin_src <span class="citation" data-cites="powershell">@powershell</span> -NoProfile -ExecutionPolicy unrestricted -Command “$sessionid=((quser $env:USERNAME | select -Skip 1) -split ‘+ �)[2]; tscon $sessionid /dest:console” 2&gt; UnlockErrors.log #+end_src * benchmark 简单运行了一下 3dmark 的 Time Spy，做虚拟机的图形性能测试。测试了以下几种情况：</p>
 <ul>
 <li>win10 + 物理机直接运行，3dmark 得分 6900</li>
 <li>win10 + 虚拟机显卡直通 + 外接显示器，3dmark 得分 6000</li>
 <li>win10 + 虚拟机显卡直通 + steam 串流，3dmark 得分 5600</li>
-<li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的时候，画面延迟近 10 秒</li>
+<li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的旀�候，画面延迟近 10 秒</li>
 </ul>
 <p>由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。</p>
 <p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。 * 参考链接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
@@ -1247,22 +1535,22 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[软路由虚拟机]]></title>
     <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</guid>
     <description><![CDATA[<p>#+TITLE: 软路由虚拟机 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
 <ul>
-<li><p>准备环境 摸着石头过河，折腾了几天，终于装好了心心念念的虚拟机软路由。</p></li>
+<li><p>准备环境 摸着石头过河，折腾了几天，终亀�装好了心心念念的虚拟机软路由。</p></li>
 <li><p>硬件环境：3400G + deskmini A300（自带一个网口） + M2 转网口，物理机双网口</p></li>
 <li><p>物理机系统： Gentoo Linux</p></li>
 <li><p>网络拓扑，见下图。除了 host 以外的本地设备都是通过设置为 AP 模式的硬路由连接网络。</p></li>
 </ul>
-<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 项目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
-<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
+<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 顀�目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
+<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可宀�成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
 <p>#+begin_src sh # 创建网桥 nmcli connection add type bridge ifname br0 stp no # 将eth1添加倒网桥中 nmcli connection add type bridge-slave ifname eth1 master br0 # 关闭现有的连接（可以使用nmcli connection show –active命令查看） nmcli connection down <Connection> # 开启新创建的网桥 nmcli connection up bridge-br0 #+end_src</p>
-<p>注意以上操作会关闭正在使用的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
+<p>注意以上操作会关闭正在使甀�的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
 <p>这时如果 eth1 是连接在带 DHCP 的硬路由中，那么会自动为网桥 br0 分配 IP，同时 eth1 上的 ip 地址会消失，可以直接通过网桥 br0 的 ip 访问 eth1 网口。 * 创建虚拟机 使用 libvirt + qemu(kvm)创建虚拟机：</p>
 <ul>
 <li>CPU 2 核心</li>
@@ -1274,7 +1562,7 @@
 <p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
 <p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
 <p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Wed, 11 Aug 2021 22:44:12 +0800</pubDate>
+    <pubDate>Fri, 27 Aug 2021 20:09:47 +0800</pubDate>
     </item>
 </channel>
 </rss>
