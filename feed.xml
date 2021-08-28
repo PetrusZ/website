@@ -5,6 +5,78 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[主谓一致]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</guid>
+    <description><![CDATA[<p>#+TITLE: 主谓一致 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>主谓一致 主谓一致是中国人学英语的一大难点。</li>
+</ul>
+<p>#+begin_example 中文 -&gt; 英文 我是兔子。 I am a rabbit. 你是兔子。 You are a rabbit. 他是兔子。 He is a rabbit. 我们是兔子。 We are rabbits. #+end_example</p>
+<p>在中文中只有人称出现了变化，后面的谓语动词，“是”，并不会改变。中文谓语动词是“是”，对应英语的 be 动词，可是到了具体的句中，就成了“am、is、are”。</p>
+<p>其实这牵涉到语言的底层逻辑：中文属于所谓“孤立语”，对词序的要求非常高，而词形变化很少或没有变化，比如中文动词本身不存在语法上的“变位”，“是”永远是“是”，不管什么人称什么时间；而英文属于所谓“屈折语”，通过丰富的词形变化表达语法意义，比如谓语动词往往会进行“变位”，携带人称单复数和时态等信息，而语序则相对自由。</p>
+<p>正如之前的简单例子中，I am a rabbit 中，主语 I 和谓语动词 am 传递了“第一人称，一般/现在”这个信息；而 You were late 中，主语 you 和 were 传递了“第二人称，一般/过去”这个信息。也就是说，这里的主语和谓语动词传递的信息是一致的，即“主谓一致”。</p>
+<p>英语语法的“主谓一致”讲究三大原则：语法一致、意义一致、就近一致。 * 语法一致 语法一致就是让句子的谓语动词在形式上和主语的单复数保持一致。 ** 单数主语/复数主语 Time is money. 时间是金钱。</p>
+<p>Carrots are delicious. 胡萝卜好吃。</p>
+<p>这里，time 是个单数名词，所以谓语动词也要用单数 is；而 carrots 是复数名词，所以谓语动词也要用复数 are。</p>
+<p>有的名词是可数名词，比如 carrots，有的是不可数名词，比如 carrot juice，前者是复数时，接复数谓语动词，后者不存在“复数”，所以只能接单数谓语动词，不管之前有什么附加信息，比如：</p>
+<p>A number of carrots have been eaten. 一些胡萝卜被吃了。</p>
+<p>A lot of carrot juice has been sold. 很多胡萝卜汁被卖出了。</p>
+<hr />
+<p>除了很容易看出单复数的名词，非谓语动词做主语时，也相当于单数名词，比如：</p>
+<p>To eat a carrot every day is good for the rabbit. 一天吃一根胡萝卜对兔子有好处。</p>
+<p>Eating carrots is healthy. 吃胡萝卜很健康。</p>
+<p>以上两个句子中的主语就分别是不定式和动名词，后面接谓语动词单数形式。</p>
+<hr />
+<p>一般情况下，用 and 连接不同的名词做主语，都会接复数谓语动词，比如：</p>
+<p>The rabbit and the wolf are at the party. 兔子和狼都参见了聚会。</p>
+<p>这里的主语显然是复数，所以谓语动词自然是 are，而不是 is。但是别一看到 and 就自动认为一定要接复数动词。 ** ”假象主语“ 还有一些句子很有“欺骗性”，包含了一些特定的短语，如 as well as、expect、but…，使得主语看起来是复数，但其实是单数，反之亦然。这里给这样的主语起了个名字，叫“假象主语”。比如：</p>
+<p>The rabbit as well as other animals gets a carrot. 兔子还有其他动物都得到了一根胡萝卜。</p>
+<p>All the animals except the wolf get the carrots. 除了狼，所有的动物都得到了胡萝卜。</p>
+<p>这两句的主语看上去似乎有一堆动物，但是，第一句的 as well as other animals 其实可以视作对 the rabbit 的补充信息，而后一句 except the wolf 也可以视作对 all the animals 的补充信息。所以，第一句的真正的主语可以理解为 the rabbit；而第二句的主语可以理解为 all the animals，所以他们分别对应单数谓语动词 gets 和复数谓语动词 get。 ** 不定代词作主语 不定代词作主语时，谓语动词要和不定代词背后的概念保持一致，比如：</p>
+<p>Everyone gets a carrot. 每一位都得到了一根胡萝卜。</p>
+<p>Each of them gets a carrot. 他们中的每一个都得到了一根胡萝卜。</p>
+<p>很显然，这里主语表达的概念时“每一个”，是单数，所以要和单数谓语动词搭配。与此相对的：</p>
+<p>Both of them like carrots. 他俩都喜欢胡萝卜。</p>
+<p>Some of them are afraid of the wolf. 它们中有一些害怕狼。</p>
+<p>这里的不定代词显然代表的是复数概念，自然要用复数谓语动词。再看：</p>
+<p>None of them get/gets a carrot. 它们中谁都没得到胡萝卜。</p>
+<p>Neither of them is/are afraid of the wolf. 他们都不怕狼。</p>
+<p>以上的主语就相对有些抽象了，“没有”，单复数谓语动词都可以。 * 意义一致 意义一致，就是主语意义为单数，则谓语动词用单数；主语意义为复数，则谓语动词也需要用复数。 ** 同一个主语多种身份 The teacher and video creator is rabbit. 这位老师兼视频创作者是只兔子。</p>
+<p>在这里，主语其实就是这只兔子，只不过有双重身份：老师和视频创作者。也就说，主语的意义是个单数，所以对应单数谓语动词。这就是为什么之前说，不要一看到 and，就直接接复数谓语动词。当然，如果这句做个小改动：</p>
+<p>The teacherr and the video creator are rabbits. 这位老师和这位视频创作者是兔子。</p>
+<p>主语的意义就变成了两只兔子，是复数的意义，自然就要根复数谓语动词。 ** 复数名词的单数意义 有些主语形式上看起来是复数，但其实表达的意义是单数，比如：</p>
+<p>Ten years is a long time. 十年是一段很长的时间。</p>
+<p>这里把时年看成一个整体，表示“十年着一个时间段”，相当于 the duration of ten years。再看：</p>
+<p>A knife and fork is needed for eating the carrot. 一副刀叉是吃胡萝卜必需的。</p>
+<p>这里的主语虽然看上去是复数（用了 and），但其实表达的是一个整体概念，即一副刀叉，所以还是要和单数谓语动词搭配。</p>
+<p>Bread and butter is alse needed at dinner. 面包和黄油也是晚饭必须的。</p>
+<p>面包和黄油也是一个整体概念。 ** 不定代词的单复数意义 当不定代词做主语时，有的时候也要视具体语义来判断到底是复数主语还是单数主语，比如：</p>
+<p>All is quite. 一切都很安静。</p>
+<p>All are quite. 大家都很安静。</p>
+<p>第一句中的 all 是指抽象的“一切“，相当于 everything，不存在复数，所以后面接单数谓语动词；而第二句中，all 指的是大家，代表很多人，是复数的意义，所以后接复数谓语动词。 ** 名词的形和意 英语中的名词往往能通过形式看出单复数，但有的时候也不那么靠谱。 *** 形复意单（用单数谓语动词） 有些名词，看起来是复数，但是意义是单数，比如：</p>
+<p>Physics is my favorite subject. 物理是我最喜欢的学科。 *** 形单意复（用复数谓语动词） 相对的，还有少数名词，看起来是单数，但是意义是复数，比如：</p>
+<p>The cattle are on the hill. 牛群在山上。 *** 单复数同形名词（用单复数谓语动词都可） 像 sheep 这样的词，单复数同形，所以也要看主语代表的是单数还是复数意义，如：</p>
+<p>A sheep is eating grass. 一只绵羊在吃草。</p>
+<p>The sheep are eating grass. 一群绵羊在吃草。</p>
+<p>类似的名词还有 deer 鹿，means 方式，series 系列，species 物种等。 *** 集合名词（用单复数谓语动词都可） 有些名词既可以代表一个集合（单数意义），也可以代表集合中的全部成员（复数意义）。所以这样的名词做主语，也要视具体情况而论，比如：</p>
+<p>The rabbit’s family is huge. 这个兔子家庭很大。</p>
+<p>The rabbit’s family are all at home. 这个兔子家庭的所有成员都在家。</p>
+<p>第一个句子的 family 强调了整体概念，是单数，所以谓语动词也用单数；第二个句子的 family 强调了多个家庭成员，表示复数意义，所以谓语动词也用复数。类似的集合名词还有 army、audience、police、team 等。</p>
+<p>不过也有的集合名词，只能表示一个类别的事物，只能用单数谓语动词，如：</p>
+<p>All the furniture here is expensive. 所有这里的家具都很贵。</p>
+<hr />
+<p>还有一个常见的英语用法是 the + 形容词，作名词主语，也可以视作集合名词，可表单数意义，也可表复数意义，比如：</p>
+<p>The young are expected to learn from the old. 年轻人（们）应该向老人（们）学习。</p>
+<p>The new is going to replace the old. 新事物会取代旧事物。 * 就近一致 就近一致原则是较特殊的存在。它似乎不再遵循语法一致和意义一致。谓语动词的单复数由最近的主语决定。 ** or；either…or…等 由 or、either…or…、neither…nor…、not only…but alse 等连接两个名词或代词作主语时，谓语动词和离得最近的词一致，如：</p>
+<p>Either you or I am going to the party. 不是你就是我会去参加聚会。</p>
+<p>这里，谓语动词 am 与离它最近的主语 I 保持一致。</p>
+<p>Not only the rabbit but alse many other animals like carrots. 不只是兔子，还有其他很多动物也喜欢胡萝卜。</p>
+<p>谓语动词 like 与离它最近的 other animals 保持一致。 ** there be 同样的还有 there be 句型，如：</p>
+<p>There is a carrot and two apples on the table. 桌上有一根胡萝卜和两个苹果。</p>
+<p>谓语动词 is 与离它最近的 a carrot保持一致。</p>]]></description>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[省略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%9c%81%e7%95%a5.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e7%9c%81%e7%95%a5.html</guid>
@@ -60,7 +132,7 @@
 <p>I can eat more carrots than you (can eat carrots). 我能吃胡萝卜比你多。（比较状语从句的省略）</p>
 <p>You are smater than I (am smart.) 你比我聪明。（比较状语从句的省略） *** 主句 如果很明显主句的主语是“我”，即 I am，那 I am 也可以省略：</p>
 <p>(I am) sorry to hear that.</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[强调]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%bc%ba%e8%b0%83.html</link>
@@ -99,7 +171,7 @@
 <p>强调 lovely： I met a <em>really lovely</em> rabbit in the field this morning!</p>
 <p>强调 lovely： <em>What a lovely</em> rabbit I met in the field this morning!</p>
 <p>强调 lovely： <em>How lovely</em> the rabbit I met in the field this morning was! * 总结 ** “口气” *** 重读单词 *** 用叹词强调 *** 使用特定语音/语调/语气强调 ** 书面格式 *** 粗体 *** 斜体 *** 下划线 *** 全部大写 *** 标点符号 ** 词汇强调 *** 添加强调词 *** 重复单词 *** 使用助动词 *** 强调代词 ** 句式强调 *** 倒装 *** 感叹 *** it + be 动词 + that…</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[介词攻略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</link>
@@ -387,7 +459,7 @@
 <p>但是，要特别指出，有一类“介词固定搭配”，即当动词和介词搭配在一起，往往会产生非常“神奇的变化”，营造出看似完全无关的含义。这就是所谓“短语动词”。开头提到的那些词组就属于这个范畴：</p>
 <p>#+begin_example check out 退房 make out 分辨 put out 熄灭 pass out 晕倒 work out 健身 look out 小心 knock out 打晕 #+end_example</p>
 <p>很多短语动词是需要去特别记忆，而不是很容易通过字面意思就能理解。短语动词是英语的一大难点。往往动词本身和之后的介词都明白什么意思，但凑到一起就是完全猜不到意思，相当于一个全新的单词。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[被动语态]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
@@ -447,7 +519,7 @@
 <p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
 <p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
 </ul>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[独立主格]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
@@ -500,7 +572,7 @@
 <p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
 <p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
 <p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[倒装句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
@@ -544,7 +616,7 @@
 <p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
 <p>这句话其实相当于：</p>
 <p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
@@ -695,7 +767,7 @@
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
 <p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Ebuild-defined Variables]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
@@ -790,7 +862,7 @@
 </tr>
 </tbody>
 </table>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -1086,7 +1158,7 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
@@ -1144,7 +1216,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -1239,7 +1311,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -1442,7 +1514,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -1466,7 +1538,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -1631,34 +1703,7 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[软路由虚拟机]]></title>
-    <link>https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e8%bd%af%e8%b7%af%e7%94%b1%e8%99%9a%e6%8b%9f%e6%9c%ba.html</guid>
-    <description><![CDATA[<p>#+TITLE: 软路由虚拟机 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li><p>准备环境 摸着石头过河，折腾了几天，终于装好了心心念念的虚拟机软路由。</p></li>
-<li><p>硬件环境：3400G + deskmini A300（自带一个网口） + M2 转网口，物理机双网口</p></li>
-<li><p>物理机系统： Gentoo Linux</p></li>
-<li><p>网络拓扑，见下图。除了 host 以外的本地设备都是通过设置为 AP 模式的硬路由连接网络。</p></li>
-</ul>
-<p>[[file:../pics/Blog/router_topology.jpg]] * 固件选择 固件我们选择基于 openwrt 官方 21.02 代码定制的 garypang13 的固件，github 项目地址为 https://github.com/garypang13/OpenWrt_x86-r2s-r4s-Rpi ，固件下载地址为 https://op.supes.top/ 。</p>
-<p>其特点是原生固件非常纯净，只自带少量插件。而作者自建的 opkg 源又包含了 openwrt 的绝大部分主流插件，想要安装插件只需要在 luci 上搜索，然后点击安装即可，不再需要自己编译等复杂步骤。同时还自带了一键升级固件功能，作者基本上每周都会放出新的固件，如果想要升级，一键便可完成。 * 创建网桥 首先创建用于 eth1 网口和软路由虚拟机 lan 口连接的网桥。</p>
-<p>#+begin_src sh # 创建网桥 nmcli connection add type bridge ifname br0 stp no # 将eth1添加倒网桥中 nmcli connection add type bridge-slave ifname eth1 master br0 # 关闭现有的连接（可以使用nmcli connection show –active命令查看） nmcli connection down <Connection> # 开启新创建的网桥 nmcli connection up bridge-br0 #+end_src</p>
-<p>注意以上操作会关闭正在使用的网口，如果是远程连接到物理机且仅有单网口，请 <em>谨慎操作</em> ！</p>
-<p>这时如果 eth1 是连接在带 DHCP 的硬路由中，那么会自动为网桥 br0 分配 IP，同时 eth1 上的 ip 地址会消失，可以直接通过网桥 br0 的 ip 访问 eth1 网口。 * 创建虚拟机 使用 libvirt + qemu(kvm)创建虚拟机：</p>
-<ul>
-<li>CPU 2 核心</li>
-<li>内存 1G</li>
-<li>硬盘直接使用 openwrt 的 img 文件</li>
-</ul>
-<p>eth0 网卡直接设置为直通，另外添加一张网卡，[Network Source]设置为 Bridge device，[Device name]设置为 br0，[Device model]设置为 virtio。即创建桥接到 br0 的第二张网卡。</p>
-<p>其他配置默认，之后正常启动 openwrt 虚拟机即可。 * 配置 openwrt 通过 virt-manager 或 vnc 进入刚刚创建好的 openwrt 虚拟机，修改配置文件 =/etc/config/network= 。将其中的 =config interface ‘lan’= 中的 =option ipaddr= 地址设置为 192.168.3.2。之后重启 openwrt。</p>
-<p>这样就可以在网页上通过地址 192.168.3.2 登陆 openwrt 的管理页面 luci 了。再进入[网络-&gt;接口]页面，编辑 WAN 接口，选择 PPPoE 选择，填入用户名、密码连接互联网。</p>
-<p>这时将光猫的网线插到 eth0 网口中，再将路由器改为 AP 模式，再通过以下步骤为 br0 设置静态 ip，然后重启整个物理机。这样最基本的网络就应该已经配置完成了。</p>
-<p>#+begin_src sh nmcli connection modify bridge-br0 ipv4.addresses 192.168.3.10 nmcli connection modify bridge-br0 ipv4.gateway 192.168.3.2 nmcli connection modify bridge-br0 ipv4.dns 192.168.3.2 nmcli connection modify bridge-br0 ipv4.method manual nmcli connection up interface #+end_src * 插件安装 在 luci 的[系统-&gt;软件包]页面中，安装 openclash、passwall、ddns、wake on line、upnp、netdata、online user 等常用插件后，再对插件进行简单的配置，即可正常使用了，科学上网、路由监控等功能都已完备。 * 参考链接 1. Network_bridge wiki https://wiki.archlinux.org/title/Network_bridge 2. 软路由折腾记 https://github.com/fanchangyong/blog/issues/22 3. qemu-kvm 安装 koolshare LEDE-X64 固件 https://koolshare.cn/thread-68876-1-1.html 4. 将 ubuntu 设置为 NAS——10. 虚拟机 KVM 及软路由 LEDE 安装 https://post.smzdm.com/p/adwrn5gn/ 5. KVM 虚拟化网络优化技术总结 https://www.cnblogs.com/lsgxeva/p/8964363.html 6. OpenWrt 编译 LuCI -&gt; Applications 添加插件应用说明 https://www.right.com.cn/forum/thread-3682029-1-1.html</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 17:05:50 +0800</pubDate>
+    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
     </item>
 </channel>
 </rss>

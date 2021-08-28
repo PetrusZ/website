@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-28 Sat 22:44 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>主谓一致</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">主谓一致</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb1b3a3c">主谓一致</a></li>
+<li><a href="#orgb1932b3">语法一致</a>
+<ul>
+<li><a href="#org3873e03">单数主语/复数主语</a></li>
+<li><a href="#orgbace632">”假象主语“</a></li>
+<li><a href="#org74e546f">不定代词作主语</a></li>
+</ul>
+</li>
+<li><a href="#orge5c93c7">意义一致</a>
+<ul>
+<li><a href="#org0038efa">同一个主语多种身份</a></li>
+<li><a href="#org15ebeb6">复数名词的单数意义</a></li>
+<li><a href="#org768e8c5">不定代词的单复数意义</a></li>
+<li><a href="#org728f3da">名词的形和意</a>
+<ul>
+<li><a href="#org70c1f2a">形复意单（用单数谓语动词）</a></li>
+<li><a href="#org3549d8b">形单意复（用复数谓语动词）</a></li>
+<li><a href="#orgfd1764f">单复数同形名词（用单复数谓语动词都可）</a></li>
+<li><a href="#org1221f8d">集合名词（用单复数谓语动词都可）</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org80f6d8b">就近一致</a>
+<ul>
+<li><a href="#org2625b3e">or；either&#x2026;or&#x2026;等</a></li>
+<li><a href="#org586d7a3">there be</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb1b3a3c" class="outline-2">
+<h2 id="orgb1b3a3c">主谓一致</h2>
+<div class="outline-text-2" id="text-orgb1b3a3c">
+<p>
+主谓一致是中国人学英语的一大难点。
+</p>
+
+<pre class="example" id="orga767a86">
+中文        -&gt;  英文
+我是兔子。      I am a rabbit.
+你是兔子。      You are a rabbit.
+他是兔子。      He is a rabbit.
+我们是兔子。    We are rabbits.
+</pre>
+
+<p>
+在中文中只有人称出现了变化，后面的谓语动词，“是”，并不会改变。中文谓语动词是“是”，对应英语的 be 动词，可是到了具体的句中，就成了“am、is、are”。
+</p>
+
+<p>
+其实这牵涉到语言的底层逻辑：中文属于所谓“孤立语”，对词序的要求非常高，而词形变化很少或没有变化，比如中文动词本身不存在语法上的“变位”，“是”永远是“是”，不管什么人称什么时间；而英文属于所谓“屈折语”，通过丰富的词形变化表达语法意义，比如谓语动词往往会进行“变位”，携带人称单复数和时态等信息，而语序则相对自由。
+</p>
+
+<p>
+正如之前的简单例子中，I am a rabbit 中，主语 I 和谓语动词 am 传递了“第一人称，一般/现在”这个信息；而 You were late 中，主语 you 和 were 传递了“第二人称，一般/过去”这个信息。也就是说，这里的主语和谓语动词传递的信息是一致的，即“主谓一致”。
+</p>
+
+<p>
+英语语法的“主谓一致”讲究三大原则：语法一致、意义一致、就近一致。
+</p>
+</div>
+</div>
+<div id="outline-container-orgb1932b3" class="outline-2">
+<h2 id="orgb1932b3">语法一致</h2>
+<div class="outline-text-2" id="text-orgb1932b3">
+<p>
+语法一致就是让句子的谓语动词在形式上和主语的单复数保持一致。
+</p>
+</div>
+<div id="outline-container-org3873e03" class="outline-3">
+<h3 id="org3873e03">单数主语/复数主语</h3>
+<div class="outline-text-3" id="text-org3873e03">
+<p>
+Time is money. 时间是金钱。
+</p>
+
+<p>
+Carrots are delicious. 胡萝卜好吃。
+</p>
+
+<p>
+这里，time 是个单数名词，所以谓语动词也要用单数 is；而 carrots 是复数名词，所以谓语动词也要用复数 are。
+</p>
+
+<p>
+有的名词是可数名词，比如 carrots，有的是不可数名词，比如 carrot juice，前者是复数时，接复数谓语动词，后者不存在“复数”，所以只能接单数谓语动词，不管之前有什么附加信息，比如：
+</p>
+
+<p>
+A number of carrots have been eaten. 一些胡萝卜被吃了。
+</p>
+
+<p>
+A lot of carrot juice has been sold. 很多胡萝卜汁被卖出了。
+</p>
+
+<hr>
+
+<p>
+除了很容易看出单复数的名词，非谓语动词做主语时，也相当于单数名词，比如：
+</p>
+
+<p>
+To eat a carrot every day is good for the rabbit. 一天吃一根胡萝卜对兔子有好处。
+</p>
+
+<p>
+Eating carrots is healthy. 吃胡萝卜很健康。
+</p>
+
+<p>
+以上两个句子中的主语就分别是不定式和动名词，后面接谓语动词单数形式。
+</p>
+
+<hr>
+
+<p>
+一般情况下，用 and 连接不同的名词做主语，都会接复数谓语动词，比如：
+</p>
+
+<p>
+The rabbit and the wolf are at the party. 兔子和狼都参见了聚会。
+</p>
+
+<p>
+这里的主语显然是复数，所以谓语动词自然是 are，而不是 is。但是别一看到 and 就自动认为一定要接复数动词。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbace632" class="outline-3">
+<h3 id="orgbace632">”假象主语“</h3>
+<div class="outline-text-3" id="text-orgbace632">
+<p>
+还有一些句子很有“欺骗性”，包含了一些特定的短语，如 as well as、expect、but&#x2026;，使得主语看起来是复数，但其实是单数，反之亦然。这里给这样的主语起了个名字，叫“假象主语”。比如：
+</p>
+
+<p>
+The rabbit as well as other animals gets a carrot. 兔子还有其他动物都得到了一根胡萝卜。
+</p>
+
+<p>
+All the animals except the wolf get the carrots. 除了狼，所有的动物都得到了胡萝卜。
+</p>
+
+<p>
+这两句的主语看上去似乎有一堆动物，但是，第一句的 as well as other animals 其实可以视作对 the rabbit 的补充信息，而后一句 except the wolf 也可以视作对 all the animals 的补充信息。所以，第一句的真正的主语可以理解为 the rabbit；而第二句的主语可以理解为 all the animals，所以他们分别对应单数谓语动词 gets 和复数谓语动词 get。
+</p>
+</div>
+</div>
+<div id="outline-container-org74e546f" class="outline-3">
+<h3 id="org74e546f">不定代词作主语</h3>
+<div class="outline-text-3" id="text-org74e546f">
+<p>
+不定代词作主语时，谓语动词要和不定代词背后的概念保持一致，比如：
+</p>
+
+<p>
+Everyone gets a carrot. 每一位都得到了一根胡萝卜。
+</p>
+
+<p>
+Each of them gets a carrot. 他们中的每一个都得到了一根胡萝卜。
+</p>
+
+<p>
+很显然，这里主语表达的概念时“每一个”，是单数，所以要和单数谓语动词搭配。与此相对的：
+</p>
+
+<p>
+Both of them like carrots. 他俩都喜欢胡萝卜。
+</p>
+
+<p>
+Some of them are afraid of the wolf. 它们中有一些害怕狼。
+</p>
+
+<p>
+这里的不定代词显然代表的是复数概念，自然要用复数谓语动词。再看：
+</p>
+
+<p>
+None of them get/gets a carrot. 它们中谁都没得到胡萝卜。
+</p>
+
+<p>
+Neither of them is/are afraid of the wolf. 他们都不怕狼。
+</p>
+
+<p>
+以上的主语就相对有些抽象了，“没有”，单复数谓语动词都可以。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge5c93c7" class="outline-2">
+<h2 id="orge5c93c7">意义一致</h2>
+<div class="outline-text-2" id="text-orge5c93c7">
+<p>
+意义一致，就是主语意义为单数，则谓语动词用单数；主语意义为复数，则谓语动词也需要用复数。
+</p>
+</div>
+<div id="outline-container-org0038efa" class="outline-3">
+<h3 id="org0038efa">同一个主语多种身份</h3>
+<div class="outline-text-3" id="text-org0038efa">
+<p>
+The teacher and video creator is rabbit. 这位老师兼视频创作者是只兔子。
+</p>
+
+<p>
+在这里，主语其实就是这只兔子，只不过有双重身份：老师和视频创作者。也就说，主语的意义是个单数，所以对应单数谓语动词。这就是为什么之前说，不要一看到 and，就直接接复数谓语动词。当然，如果这句做个小改动：
+</p>
+
+<p>
+The teacherr and the video creator are rabbits. 这位老师和这位视频创作者是兔子。
+</p>
+
+<p>
+主语的意义就变成了两只兔子，是复数的意义，自然就要根复数谓语动词。
+</p>
+</div>
+</div>
+<div id="outline-container-org15ebeb6" class="outline-3">
+<h3 id="org15ebeb6">复数名词的单数意义</h3>
+<div class="outline-text-3" id="text-org15ebeb6">
+<p>
+有些主语形式上看起来是复数，但其实表达的意义是单数，比如：
+</p>
+
+<p>
+Ten years is a long time. 十年是一段很长的时间。
+</p>
+
+<p>
+这里把时年看成一个整体，表示“十年着一个时间段”，相当于 the duration of ten years。再看：
+</p>
+
+<p>
+A knife and fork is needed for eating the carrot. 一副刀叉是吃胡萝卜必需的。
+</p>
+
+<p>
+这里的主语虽然看上去是复数（用了 and），但其实表达的是一个整体概念，即一副刀叉，所以还是要和单数谓语动词搭配。
+</p>
+
+<p>
+Bread and butter is alse needed at dinner. 面包和黄油也是晚饭必须的。
+</p>
+
+<p>
+面包和黄油也是一个整体概念。
+</p>
+</div>
+</div>
+<div id="outline-container-org768e8c5" class="outline-3">
+<h3 id="org768e8c5">不定代词的单复数意义</h3>
+<div class="outline-text-3" id="text-org768e8c5">
+<p>
+当不定代词做主语时，有的时候也要视具体语义来判断到底是复数主语还是单数主语，比如：
+</p>
+
+<p>
+All is quite. 一切都很安静。
+</p>
+
+<p>
+All are quite. 大家都很安静。
+</p>
+
+<p>
+第一句中的 all 是指抽象的“一切“，相当于 everything，不存在复数，所以后面接单数谓语动词；而第二句中，all 指的是大家，代表很多人，是复数的意义，所以后接复数谓语动词。
+</p>
+</div>
+</div>
+<div id="outline-container-org728f3da" class="outline-3">
+<h3 id="org728f3da">名词的形和意</h3>
+<div class="outline-text-3" id="text-org728f3da">
+<p>
+英语中的名词往往能通过形式看出单复数，但有的时候也不那么靠谱。
+</p>
+</div>
+<div id="outline-container-org70c1f2a" class="outline-4">
+<h4 id="org70c1f2a">形复意单（用单数谓语动词）</h4>
+<div class="outline-text-4" id="text-org70c1f2a">
+<p>
+有些名词，看起来是复数，但是意义是单数，比如：
+</p>
+
+<p>
+Physics is my favorite subject. 物理是我最喜欢的学科。
+</p>
+</div>
+</div>
+<div id="outline-container-org3549d8b" class="outline-4">
+<h4 id="org3549d8b">形单意复（用复数谓语动词）</h4>
+<div class="outline-text-4" id="text-org3549d8b">
+<p>
+相对的，还有少数名词，看起来是单数，但是意义是复数，比如：
+</p>
+
+<p>
+The cattle are on the hill. 牛群在山上。
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd1764f" class="outline-4">
+<h4 id="orgfd1764f">单复数同形名词（用单复数谓语动词都可）</h4>
+<div class="outline-text-4" id="text-orgfd1764f">
+<p>
+像 sheep 这样的词，单复数同形，所以也要看主语代表的是单数还是复数意义，如：
+</p>
+
+<p>
+A sheep is eating grass. 一只绵羊在吃草。
+</p>
+
+<p>
+The sheep are eating grass. 一群绵羊在吃草。
+</p>
+
+<p>
+类似的名词还有 deer 鹿，means 方式，series 系列，species 物种等。
+</p>
+</div>
+</div>
+<div id="outline-container-org1221f8d" class="outline-4">
+<h4 id="org1221f8d">集合名词（用单复数谓语动词都可）</h4>
+<div class="outline-text-4" id="text-org1221f8d">
+<p>
+有些名词既可以代表一个集合（单数意义），也可以代表集合中的全部成员（复数意义）。所以这样的名词做主语，也要视具体情况而论，比如：
+</p>
+
+<p>
+The rabbit's family is huge. 这个兔子家庭很大。
+</p>
+
+<p>
+The rabbit's family are all at home. 这个兔子家庭的所有成员都在家。
+</p>
+
+<p>
+第一个句子的 family 强调了整体概念，是单数，所以谓语动词也用单数；第二个句子的 family 强调了多个家庭成员，表示复数意义，所以谓语动词也用复数。类似的集合名词还有 army、audience、police、team 等。
+</p>
+
+<p>
+不过也有的集合名词，只能表示一个类别的事物，只能用单数谓语动词，如：
+</p>
+
+<p>
+All the furniture here is expensive. 所有这里的家具都很贵。
+</p>
+
+<hr>
+
+<p>
+还有一个常见的英语用法是 the + 形容词，作名词主语，也可以视作集合名词，可表单数意义，也可表复数意义，比如：
+</p>
+
+<p>
+The young are expected to learn from the old. 年轻人（们）应该向老人（们）学习。
+</p>
+
+<p>
+The new is going to replace the old. 新事物会取代旧事物。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org80f6d8b" class="outline-2">
+<h2 id="org80f6d8b">就近一致</h2>
+<div class="outline-text-2" id="text-org80f6d8b">
+<p>
+就近一致原则是较特殊的存在。它似乎不再遵循语法一致和意义一致。谓语动词的单复数由最近的主语决定。
+</p>
+</div>
+<div id="outline-container-org2625b3e" class="outline-3">
+<h3 id="org2625b3e">or；either&#x2026;or&#x2026;等</h3>
+<div class="outline-text-3" id="text-org2625b3e">
+<p>
+由 or、either&#x2026;or&#x2026;、neither&#x2026;nor&#x2026;、not only&#x2026;but alse 等连接两个名词或代词作主语时，谓语动词和离得最近的词一致，如：
+</p>
+
+<p>
+Either you or I am going to the party. 不是你就是我会去参加聚会。
+</p>
+
+<p>
+这里，谓语动词 am 与离它最近的主语 I 保持一致。
+</p>
+
+<p>
+Not only the rabbit but alse many other animals like carrots. 不只是兔子，还有其他很多动物也喜欢胡萝卜。
+</p>
+
+<p>
+谓语动词 like 与离它最近的 other animals 保持一致。
+</p>
+</div>
+</div>
+<div id="outline-container-org586d7a3" class="outline-3">
+<h3 id="org586d7a3">there be</h3>
+<div class="outline-text-3" id="text-org586d7a3">
+<p>
+同样的还有 there be 句型，如：
+</p>
+
+<p>
+There is a carrot and two apples on the table. 桌上有一根胡萝卜和两个苹果。
+</p>
+
+<p>
+谓语动词 is 与离它最近的 a carrot保持一致。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-28 Sat 22:44</p>
+</div>
+</body>
+</html>
