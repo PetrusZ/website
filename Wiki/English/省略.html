@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-28 Sat 17:04 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>省略</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">省略</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgbe73172">词法省略</a>
+<ul>
+<li><a href="#org1c61fbe">省略冠词</a>
+<ul>
+<li><a href="#org7d8ecdc">独一无二</a></li>
+<li><a href="#orgafc649b">并列关系</a></li>
+<li><a href="#orgf1d2c56">某些独立主格结构</a></li>
+</ul>
+</li>
+<li><a href="#org6aa56de">省略介词</a>
+<ul>
+<li><a href="#org0a667a1">时间介词</a></li>
+<li><a href="#orge6d7a0e">“做某事儿”</a></li>
+</ul>
+</li>
+<li><a href="#orgd82bb67">省略动词不定式</a>
+<ul>
+<li><a href="#orgbebae5e">并列关系</a></li>
+<li><a href="#org5ae8c97">不定式中的 Bare Infinitive（裸不定式）</a></li>
+</ul>
+</li>
+<li><a href="#orgd1d441f">省略从句引导词</a></li>
+</ul>
+</li>
+<li><a href="#org8703c9a">句法省略</a>
+<ul>
+<li><a href="#org8183a1d">简单句的省略</a>
+<ul>
+<li><a href="#orgf40e102">祈使句</a></li>
+<li><a href="#org8d67a13">感叹句</a></li>
+<li><a href="#org3548f1a">口语表达</a></li>
+</ul>
+</li>
+<li><a href="#org64235f5">并列句的省略</a></li>
+<li><a href="#orgfd647f8">复杂句的省略</a>
+<ul>
+<li><a href="#org4c7e903">从句</a></li>
+<li><a href="#orge33edfe">主句</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbe73172" class="outline-2">
+<h2 id="orgbe73172">词法省略</h2>
+<div class="outline-text-2" id="text-orgbe73172">
+</div>
+<div id="outline-container-org1c61fbe" class="outline-3">
+<h3 id="org1c61fbe">省略冠词</h3>
+<div class="outline-text-3" id="text-org1c61fbe">
+</div>
+<div id="outline-container-org7d8ecdc" class="outline-4">
+<h4 id="org7d8ecdc">独一无二</h4>
+<div class="outline-text-4" id="text-org7d8ecdc">
+<p>
+在某个范围内，独一无二的称号/身份前的定冠词可以省略。比如 chairman、president、head，这样的职位往往就那么一个，所以可以省略之前的 the：
+</p>
+
+<pre class="example" id="org216ae3e">
+THe rabbit was appointed (the) chairman of the Carrotown Committe. 兔子被任命为胡萝城委员会主席。
+The wolf served as (the) head of our team. 狼是我们组的头儿。
+</pre>
+</div>
+</div>
+<div id="outline-container-orgafc649b" class="outline-4">
+<h4 id="orgafc649b">并列关系</h4>
+<div class="outline-text-4" id="text-orgafc649b">
+<p>
+Both <b>the</b> rabbit and <b>the</b> wolf will be invited to the party. 兔子和狼都会被邀请参加这个聚会。
+</p>
+
+<p>
+Is this bunny <b>a</b> boy or <b>a</b> girl? 这只小兔子是男孩还是女孩？
+</p>
+
+<p>
+这两句中，两个并列的名词前有相同的冠词。那么，在不引发歧义的情况下，第二个冠词可省略，也就是：
+</p>
+
+<p>
+Both the rabbit and (the) wolf will be invited to the party.
+</p>
+
+<p>
+Is this bunny a boy or (a) girl?
+</p>
+
+<p>
+但要特别注意，有时候，用 and 连接两个（表示性质身份的）名词时，有一种可能是：指代的是同一个人或事物。那么，有冠词和无冠词往往是不同的意思，不能随意省略：
+</p>
+
+<p>
+a teacher and video creator
+</p>
+
+<p>
+这里是指同一个，不但有老师的身份，同时也是一个视频制作者。但如果我们说：
+</p>
+
+<p>
+a teacher and a video creator
+</p>
+
+<p>
+那么，这里有两人，一个是老师，一个是视频制作者。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf1d2c56" class="outline-4">
+<h4 id="orgf1d2c56">某些独立主格结构</h4>
+<div class="outline-text-4" id="text-orgf1d2c56">
+<p>
+在某些独立主格结构中也存在冠词省略的情况：
+</p>
+
+<p>
+The rabbit came in, carrot in hand. 兔子进来了，手里拿着一根胡萝卜。
+</p>
+
+<p>
+这句话被省略之前是这样的：
+</p>
+
+<p>
+The rabbit came in, <b>with a</b> carrot in <b>his</b> hand.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6aa56de" class="outline-3">
+<h3 id="org6aa56de">省略介词</h3>
+<div class="outline-text-3" id="text-org6aa56de">
+</div>
+<div id="outline-container-org0a667a1" class="outline-4">
+<h4 id="org0a667a1">时间介词</h4>
+<div class="outline-text-4" id="text-org0a667a1">
+<p>
+最常见的省略介词的情况就是时间介词，如：
+</p>
+
+<p>
+I ate 10 carrots (on) that day. 我那天吃了 10 根胡萝卜。
+</p>
+
+<p>
+I worked (for) 60 hours (in) last week. 我上周工作了 60 小时。
+</p>
+
+<p>
+以上两句中，第一句是省略了 that day 前的时间介词 on；第二句省略了 60 hours 前的介词 for 和 last week 前的 in。
+</p>
+</div>
+</div>
+<div id="outline-container-orge6d7a0e" class="outline-4">
+<h4 id="orge6d7a0e">“做某事儿”</h4>
+<div class="outline-text-4" id="text-orge6d7a0e">
+<p>
+很多表达动作中的介词往往也可有可无，通常等于动名词转换成了现在分词，比如：
+</p>
+
+<p>
+I am busy (in) making videos. 我正忙着做视频。
+</p>
+
+<p>
+There's no use (in) crying over spilled milk. 覆水难收。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd82bb67" class="outline-3">
+<h3 id="orgd82bb67">省略动词不定式</h3>
+<div class="outline-text-3" id="text-orgd82bb67">
+</div>
+<div id="outline-container-orgbebae5e" class="outline-4">
+<h4 id="orgbebae5e">并列关系</h4>
+<div class="outline-text-4" id="text-orgbebae5e">
+<p>
+这和之前的省略并列关系中的冠词有点像：
+</p>
+
+<p>
+He wanted to stay here and (to) read. 他想待在这里读书。
+</p>
+</div>
+</div>
+<div id="outline-container-org5ae8c97" class="outline-4">
+<h4 id="org5ae8c97">不定式中的 Bare Infinitive（裸不定式）</h4>
+<div class="outline-text-4" id="text-org5ae8c97">
+<p>
+The wolf helped me (to) eat the carrot. 狼帮我吃胡萝卜。
+</p>
+
+<p>
+The wolf made me (to) watch the video. 狼让我看视频。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd1d441f" class="outline-3">
+<h3 id="orgd1d441f">省略从句引导词</h3>
+<div class="outline-text-3" id="text-orgd1d441f">
+<p>
+定语从句（形容词性从句）里，关系代词在从句中作宾语可以省略：
+</p>
+
+<p>
+This is the rabbit (that) we met yesterday. 这就是我们昨天见到那只兔子。
+</p>
+
+<p>
+以下这句宾语从句中的 that 也可以省略：
+</p>
+
+<p>
+The rabbit said (that) the carrots were tasty. 兔子说胡萝卜很美味。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8703c9a" class="outline-2">
+<h2 id="org8703c9a">句法省略</h2>
+<div class="outline-text-2" id="text-org8703c9a">
+</div>
+<div id="outline-container-org8183a1d" class="outline-3">
+<h3 id="org8183a1d">简单句的省略</h3>
+<div class="outline-text-3" id="text-org8183a1d">
+</div>
+<div id="outline-container-orgf40e102" class="outline-4">
+<h4 id="orgf40e102">祈使句</h4>
+<div class="outline-text-4" id="text-orgf40e102">
+<p>
+Open the door, please.
+</p>
+
+<p>
+这是祈使句，而省略主语 you 是祈使句的典型特征。
+</p>
+</div>
+</div>
+<div id="outline-container-org8d67a13" class="outline-4">
+<h4 id="org8d67a13">感叹句</h4>
+<div class="outline-text-4" id="text-org8d67a13">
+<p>
+除了祈使句，感叹句中的省略也很常见，比如：
+</p>
+
+<p>
+What a smart rabbit (he is)! 多聪明的一只兔子啊！
+</p>
+
+<p>
+省略了主语+谓语动词 he is。
+</p>
+
+<p>
+How (fast) time flies! 时间过得真快啊！
+</p>
+
+<p>
+省略了副词 fast。
+</p>
+</div>
+</div>
+<div id="outline-container-org3548f1a" class="outline-4">
+<h4 id="org3548f1a">口语表达</h4>
+<div class="outline-text-4" id="text-org3548f1a">
+<p>
+在一些口语表达中，力求简洁，可省略很多重复的部分。往往各种句子成分都可能被省略。比如：
+</p>
+
+<pre class="example" id="org1ff5857">
+- What did you eat?
+- A carrot. / (I ate) a carrot.
+这里省略了主语+谓语动词I ate
+
+- Who ate the carrot?
+- The rabbit. / The rabbit (ate the carrot).
+这里省略了谓语动词+宾语ate the carrot
+
+- Who is Papa Rabbit?
+- I am. / I am (Papa Rabbit).
+这里省略了主语补语（表语），Papa Rabbit
+
+- Would you like to eat a carrot?
+- Yes, I'd like to. / Yes, I'd like to (eat a carrot).
+这里省略了宾语不定式中的一部分，但是保留了to。
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org64235f5" class="outline-3">
+<h3 id="org64235f5">并列句的省略</h3>
+<div class="outline-text-3" id="text-org64235f5">
+<p>
+并列句的省略是最简单的，因为并列就是暗示“一样、相似”的意思。所以并列句中的 i 第二个或者后面几个成分中，重复的部分，就是可以省略，比如：
+</p>
+
+<p>
+The rabbit went home after work, and (the rabbit) ate a carrot. 兔子下班后回家，然后（他）吃了一根胡萝卜。
+</p>
+
+<p>
+The rabbit has eaten a carrot, but the wolf hasn't (eaten a carrot). 兔子吃了一根胡萝卜，但狼没（吃一根胡萝卜）。
+</p>
+
+<p>
+The story made the rabbit happy, but (the story made) the wolf sad. 这故事让兔子高兴，让狼悲伤。
+</p>
+
+<p>
+The rabbit likes carrots and the wolf (likes) apples. 兔子爱吃胡萝卜，狼（爱吃）苹果。
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd647f8" class="outline-3">
+<h3 id="orgfd647f8">复杂句的省略</h3>
+<div class="outline-text-3" id="text-orgfd647f8">
+<p>
+复杂句的请略可以发生在从句里，也可以发生在主句里：
+</p>
+</div>
+<div id="outline-container-org4c7e903" class="outline-4">
+<h4 id="org4c7e903">从句</h4>
+<div class="outline-text-4" id="text-org4c7e903">
+<p>
+The rabbit will eat the carrot, but I don't konw when (he will eat it). 兔子要吃这胡萝卜，但我不知道啥时候（他吃它）。
+</p>
+
+<p>
+这里省略了宾语从句中有疑问代词后面的整个部分，因为很容易看出来就是主句中的相同元素。再看状语从句中省略的例子：
+</p>
+
+<p>
+When (the rabbit was) young, the rabbit went to school every day. 当（他）小的时候，兔子每天上学。
+</p>
+
+<p>
+主句和从句中说的都是 the rabbit，但是光省略 the rabbit 显然不合适，所以在这种情况下，干脆连 be 动词都省去。这个是时间状语从句，其他类型的状语从句也可以省略，如：
+</p>
+
+<p>
+If (it is) possbile, I'll be there on time. 如果可能，我将按时到那。（条件状语从句的省略）
+</p>
+
+<p>
+I can eat more carrots than you (can eat carrots). 我能吃胡萝卜比你多。（比较状语从句的省略）
+</p>
+
+<p>
+You are smater than I (am smart.) 你比我聪明。（比较状语从句的省略）
+</p>
+</div>
+</div>
+<div id="outline-container-orge33edfe" class="outline-4">
+<h4 id="orge33edfe">主句</h4>
+<div class="outline-text-4" id="text-orge33edfe">
+<p>
+如果很明显主句的主语是“我”，即 I am，那 I am 也可以省略：
+</p>
+
+<p>
+(I am) sorry to hear that.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-28 Sat 17:04</p>
+</div>
+</body>
+</html>
