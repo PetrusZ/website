@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-29 Sun 15:48 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>冠词</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">冠词</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7e15cf8">不定冠词</a>
+<ul>
+<li><a href="#orgcd8a6d1">发音</a></li>
+<li><a href="#org9debd8d">用法</a>
+<ul>
+<li><a href="#orgfcf0425">泛指用法</a>
+<ul>
+<li><a href="#org1424d2a">泛指某一个人或物</a></li>
+<li><a href="#org1ed9f11">泛指某一类</a></li>
+</ul>
+</li>
+<li><a href="#org8ae1f06">表示数字”一“</a></li>
+<li><a href="#org6ff60f2">表示”每“</a></li>
+<li><a href="#org7d74380">“主谓一致”</a></li>
+<li><a href="#orgf210b90">固定表达</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgcb660d6">定冠词</a>
+<ul>
+<li><a href="#org26adb0a">发音</a></li>
+<li><a href="#org25e0464">用法</a>
+<ul>
+<li><a href="#org536eb36">特指</a>
+<ul>
+<li><a href="#org514ffd7">再次提到的人或物</a></li>
+<li><a href="#org0495595">用在序数词和形容词的最高级前</a></li>
+<li><a href="#org40b7d99">独一无二的名词前</a></li>
+</ul>
+</li>
+<li><a href="#org52723f3">泛指</a></li>
+<li><a href="#org8b0d1a0">在形容词前</a></li>
+<li><a href="#org758a284">固定表达</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgca64ca7">零冠词</a>
+<ul>
+<li><a href="#org7d88190">复数泛指</a></li>
+<li><a href="#orgd9cf0cf">泛指“概念”</a></li>
+<li><a href="#orgc61e9f1">专有名词</a></li>
+<li><a href="#org9618bd1">固定表达</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7e15cf8" class="outline-2">
+<h2 id="org7e15cf8">不定冠词</h2>
+<div class="outline-text-2" id="text-org7e15cf8">
+</div>
+<div id="outline-container-orgcd8a6d1" class="outline-3">
+<h3 id="orgcd8a6d1">发音</h3>
+<div class="outline-text-3" id="text-orgcd8a6d1">
+<p>
+到底是用 a 还是 an 的规则其实很简单，就是看后接单词的开头到底是元音还是辅音。特别注意，这里说的是发音（也就是音素），而不是字母。
+</p>
+
+<p>
+a 用于辅音音素前，an 用于元音音素前。
+</p>
+</div>
+</div>
+<div id="outline-container-org9debd8d" class="outline-3">
+<h3 id="org9debd8d">用法</h3>
+<div class="outline-text-3" id="text-org9debd8d">
+</div>
+<div id="outline-container-orgfcf0425" class="outline-4">
+<h4 id="orgfcf0425">泛指用法</h4>
+<div class="outline-text-4" id="text-orgfcf0425">
+<p>
+不定冠词最重要的用法是泛指某一个（类）人或物。
+</p>
+</div>
+<div id="outline-container-org1424d2a" class="outline-5">
+<h5 id="org1424d2a">泛指某一个人或物</h5>
+<div class="outline-text-5" id="text-org1424d2a">
+<p>
+I saw a rabbit. 我看到一只兔子。
+</p>
+
+<p>
+中文里因为没有英语不定冠词的用法，所以算是强行对应翻译成了“一只”，但这里的“一只”并不完全强调数量上的一只，而是泛指“某一只兔子”，是指兔子这一物种中的某一只。所以，还可以把这句话翻译成“我看到兔子了”。
+</p>
+
+<p>
+至于为什么不能按照中文的习惯说：I saw rabbit.，I是我，saw 是看到了，rabbit 是兔子。其实这就是一个说英语最常见的错误。不能这么说的原因是，rabbit 前啥冠词都不跟的话，就属于零冠词的范畴了，用法和意义又有所不同——后面会讲到。
+</p>
+
+<p>
+另外，如果第一次提到某事物，其实从某种 意义上来说，也可以算是泛指。毕竟，在第一次提到之前，说话者和听话着可能都不知道指的是具体的哪个人或物。
+</p>
+
+<p>
+比如：“我今天看到只兔子，这兔子跑得很快。“那么，这句中文的前半句第一次提到”某“只兔子，可以说是泛指的，那相应的，就要用不定冠词：I asw a rabbit.。接下来，后半句要用定冠词，这个还是之后再说。
+</p>
+</div>
+</div>
+<div id="outline-container-org1ed9f11" class="outline-5">
+<h5 id="org1ed9f11">泛指某一类</h5>
+<div class="outline-text-5" id="text-org1ed9f11">
+<p>
+再看泛指某一类人或物的情况。
+</p>
+
+<p>
+A rabbit is smarter than a wolf.
+</p>
+
+<p>
+这个时候要翻译成”一只兔子比一只狼聪明“就有点奇怪了，因为并没有明确指出是哪只兔子比哪只狼聪明。实际上，这里的 a rabbit 和 a wolf 是泛指”兔子“和”狼“这两类动物。一旦泛指某一类事物就不好用”一个“、”一只“来翻译了。所以，这句表达的意思就是”兔子比狼聪明“。
+</p>
+
+<p>
+不过，这句话实际上也是有歧义的。的确也能把它理解为：”（某）一只兔子比（某）一只狼聪明“。而相反的，这样的句子：
+</p>
+
+<p>
+A rabbit is eating a carrot.
+</p>
+
+<p>
+虽然句子结构和”a rabbit is smarter than a wolf“非常类似，很明显就不是泛指，而是说某一只兔子在吃一根胡萝卜。那么：
+</p>
+
+<p>
+A rabbit is smart.
+</p>
+
+<p>
+这句话到底是泛指兔子这类动物聪明，还是说某一只兔子聪明呢？那就得看具体语境，以及个人怎么理解了。所以，虽然用不定冠词作泛指，语法上没有错，但更好的方式是之后要说到的”零冠词“：
+</p>
+
+<p>
+Rabbits are smarter than wolves. 兔子比狼聪明。
+</p>
+
+<p>
+Rabbits are smart. 兔子聪明。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8ae1f06" class="outline-4">
+<h4 id="org8ae1f06">表示数字”一“</h4>
+<div class="outline-text-4" id="text-org8ae1f06">
+<p>
+不定冠词还有的时候就是用来表示数字”一“，比如：
+</p>
+
+<p>
+I gave you <b>a</b> hundred carrots. 我给了你一百根胡萝卜。
+</p>
+
+<p>
+这句话相当于：
+</p>
+
+<p>
+I gave you <b>one</b> hundred carrots. 我给了你一百根胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org6ff60f2" class="outline-4">
+<h4 id="org6ff60f2">表示”每“</h4>
+<div class="outline-text-4" id="text-org6ff60f2">
+<p>
+I eat 10 carrots <b>a</b> day. 我每天吃 10 根胡萝卜。
+</p>
+
+<p>
+这句话相当于：
+</p>
+
+<p>
+I eat 10 carrots <b>every</b> day. 我每天吃 10 根胡萝卜。
+</p>
+</div>
+</div>
+<div id="outline-container-org7d74380" class="outline-4">
+<h4 id="org7d74380">“主谓一致”</h4>
+<div class="outline-text-4" id="text-org7d74380">
+<p>
+不定冠词还能影响主语的单复数，从而影响句意，比如：
+</p>
+
+<p>
+a teacher and video creator 一位老师兼视频创作者
+</p>
+
+<p>
+a teacher and a video creator 一位老师和一位视频创作者
+</p>
+
+<p>
+前者指的是一个人，a泛指兼职老师和视频创作的一个人；后者是指两个人，a在这里泛指一个以老师为职业的人和一个以视频创作为职业的人。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf210b90" class="outline-4">
+<h4 id="orgf210b90">固定表达</h4>
+<div class="outline-text-4" id="text-orgf210b90">
+<p>
+还有一些固定表达中含不定冠词，比如：
+</p>
+
+<pre class="example" id="org6b4683f">
+have a good time 玩得开心
+as a result 因此；结果
+in a hurry 匆忙的
+all of a sudden 突然
+</pre>
+
+<p>
+这其中的 a 既不能改成定冠词 the，也不能省略成零冠词。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcb660d6" class="outline-2">
+<h2 id="orgcb660d6">定冠词</h2>
+<div class="outline-text-2" id="text-orgcb660d6">
+</div>
+<div id="outline-container-org26adb0a" class="outline-3">
+<h3 id="org26adb0a">发音</h3>
+<div class="outline-text-3" id="text-org26adb0a">
+<p>
+发音规则可以说和不定冠词如出一辙。就是看后接的音是原因还是辅音。
+</p>
+</div>
+</div>
+<div id="outline-container-org25e0464" class="outline-3">
+<h3 id="org25e0464">用法</h3>
+<div class="outline-text-3" id="text-org25e0464">
+</div>
+<div id="outline-container-org536eb36" class="outline-4">
+<h4 id="org536eb36">特指</h4>
+<div class="outline-text-4" id="text-org536eb36">
+<p>
+定冠词的主要功能就是特指，表示某个或某些特定的人或物。也就说，说话者和听话者都知道在讨论什么。
+</p>
+</div>
+<div id="outline-container-org514ffd7" class="outline-5">
+<h5 id="org514ffd7">再次提到的人或物</h5>
+<div class="outline-text-5" id="text-org514ffd7">
+<p>
+如果对话双方再次提及某人或某物，即双反都清楚说的是谁或者什么，就要用定冠词 the。
+</p>
+
+<p>
+之前说不定冠词时，说到一句中文例子：
+</p>
+
+<p>
+我今天看到只兔子，这兔子跑得很快。
+</p>
+
+<p>
+前半句时第一次提到某只兔子，所以说 a rabbit。那后半句，因为是再次提到，就要用 the rabbit。所以，整句话对应的英文是：
+</p>
+
+<p>
+I saw <b>a rabbit</b>. <b>The rabbit</b> ran fast.
+</p>
+
+<p>
+a rabbit 是泛指某只兔子，具体不知是哪只；the rabbit 是特指上句刚说的那只我看到的兔子。如果非要说成：
+</p>
+
+<p>
+I saw a rabbit. A rabbit ran fast.
+</p>
+
+<p>
+这样，英语母语人士会感到很迷惑，难道这里有两只兔子？再比如这句话：
+</p>
+
+<p>
+请给我胡萝卜。
+</p>
+
+<p>
+写成：
+</p>
+
+<p>
+Please give me a carrot.
+</p>
+
+<p>
+就是泛指某根胡萝卜——假如你这里有很多胡萝卜，我就想吃一根，你随便拿根给我。
+</p>
+
+<p>
+但如果写成：
+</p>
+
+<p>
+Please give me the carrot.
+</p>
+
+<p>
+那就是特指对话双方都知道的那根胡萝卜，是一根特指的胡萝卜，别的我可不要。
+</p>
+</div>
+</div>
+<div id="outline-container-org0495595" class="outline-5">
+<h5 id="org0495595">用在序数词和形容词的最高级前</h5>
+<div class="outline-text-5" id="text-org0495595">
+<p>
+序数词和最高级限定了范围，所以也是特指。
+</p>
+
+<p>
+如果说第一只兔子，应该表示为：the first rabbit，因为 first 已经特指序列排第一的兔子了，所以要用 the。同样，the biggest carot，biggest 已经限定了最大的，也是特指，没有其他可能，所以还是需要用 the。
+</p>
+</div>
+</div>
+<div id="outline-container-org40b7d99" class="outline-5">
+<h5 id="org40b7d99">独一无二的名词前</h5>
+<div class="outline-text-5" id="text-org40b7d99">
+<p>
+在太阳系中，太阳、地球、月亮就是独一无二的事物，所以显然还是特指。于是，一类事物前要用定冠词 the，即：
+</p>
+
+<pre class="example" id="orgb157664">
+the sun
+the moon
+the earth
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org52723f3" class="outline-4">
+<h4 id="org52723f3">泛指</h4>
+<div class="outline-text-4" id="text-org52723f3">
+<p>
+刚才谈到 the 的主要用法都体现特指，不过某些情况下也可以体现泛指，只是稍稍少见。比如西洋古典乐器：
+</p>
+
+<p>
+I like playing the piano. 我喜欢弹钢琴。
+</p>
+
+<p>
+play the piano 当然可以理解为特指，弹一架特定的钢琴。但从这个句子上下文看，我喜欢弹钢琴，是说弹钢琴这一行为，是在泛指弹钢琴这件事。又有，a也开始表示泛指，那 play a piano 其实也可以，但是这里的意义就会有所不同。a piano 是泛指——可能有很多钢琴，随意找了一架弹——也就是说，讨论的不再是”弹钢琴“这个音乐艺术行为或爱好，而是单纯在说弹钢琴这一动作。
+</p>
+
+<p>
+相似的还有：
+</p>
+
+<pre class="example" id="org05113b6">
+play the guitar 弹吉他
+play the violin 拉小提琴
+play the flute 吹笛子
+</pre>
+
+<p>
+再看一个例子：
+</p>
+
+<p>
+The computer has changed our way of life.
+</p>
+
+<p>
+这句话该怎么理解？难道是特指某一台电脑改变了大家的生活？其实这里也是泛指，意思是 computer 作为整体一类工具，改变了我们的生活。有些复杂、混乱？因为这样的句子就是很容易产生歧义，所以，如果要泛指，还是推荐用之后讲到的“零冠词复数”。
+</p>
+</div>
+</div>
+<div id="outline-container-org8b0d1a0" class="outline-4">
+<h4 id="org8b0d1a0">在形容词前</h4>
+<div class="outline-text-4" id="text-org8b0d1a0">
+<p>
+the 用在某些形容词前表示一类人，比如：
+</p>
+
+<pre class="example" id="org0c1c3a3">
+the rich 富人
+the poor 穷人
+</pre>
+
+<p>
+这里虽然也是泛指，但是这是一个很“厉害的用法”，因为它居然把形容词转成了名词。所以可以直接说：
+</p>
+
+<p>
+The rich should help the poor. 富人应该帮助穷人。
+</p>
+</div>
+</div>
+<div id="outline-container-org758a284" class="outline-4">
+<h4 id="org758a284">固定表达</h4>
+<div class="outline-text-4" id="text-org758a284">
+<p>
+有些固定表达中只能用 the，比如：·
+</p>
+
+<pre class="example" id="org3bb0596">
+all the time 一直；总是
+by the way 顺便
+out of the question 不可能；没门
+</pre>
+
+<p>
+其中的 the 非常关键，如果省略，往往会成为截然不同的意思，下文会提到。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgca64ca7" class="outline-2">
+<h2 id="orgca64ca7">零冠词</h2>
+<div class="outline-text-2" id="text-orgca64ca7">
+<p>
+零冠词是指名词前不用冠词的情况。它的主要作用是泛指。
+</p>
+</div>
+<div id="outline-container-org7d88190" class="outline-3">
+<h3 id="org7d88190">复数泛指</h3>
+<div class="outline-text-3" id="text-org7d88190">
+<p>
+在不定冠词的部分，提到过 a rabbit is smart 可以泛指（所有）兔子聪明。但是，这样的句子一不小心就会被误解，因为视具体语境，既可以泛指兔子这类动物聪明，也可能泛指某一只兔子聪明。所以，更好的方式是说：
+</p>
+
+<p>
+Rabbits are smart.·
+</p>
+
+<p>
+这就是零冠词复数泛指的用法。这里不是说复数的几只兔子聪明，而是泛指兔子这类动物很聪明。而在定冠词的部分，我们也提到过 the computer has changed our way of life，可以泛指（所有）电脑改变了我们的生活。但是还是很容易被误解。所以，更好的方式是说：
+</p>
+
+<p>
+Computers have changed our way of life. 计算机改变了我们的生活。
+</p>
+
+<p>
+相比之下，零冠词复数是非常准确有效的泛指，不容易引发歧义。
+</p>
+
+<p>
+那不可数名词没有复数怎么办？怎么泛指？很简单，把这些不可数名词理解成不能加 s 的复数形式就可以了，比如：
+</p>
+
+<p>
+<b>Water</b> is import.
+</p>
+
+<p>
+We breathe <b>air</b>.
+</p>
+
+<p>
+照样可以把这样的用法理解为零冠词复数泛指。
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9cf0cf" class="outline-3">
+<h3 id="orgd9cf0cf">泛指“概念”</h3>
+<div class="outline-text-3" id="text-orgd9cf0cf">
+<p>
+这里说的“概念”是脑中形成的观念，是一种抽象意义的表达。这种概念性的名词前多会使用零冠词。
+</p>
+
+<p>
+<b>Summber</b> is hot. <b>Winter</b> is cold. 夏天热，冬天冷。
+</p>
+
+<p>
+这里的 summber 和 winter 不是泛指某一个夏天或冬天，而应该理解为“夏季”、“冬季”表示季节这一概念。
+</p>
+
+<p>
+为什么说之前的“我看到兔子”不能说成：
+</p>
+
+<p>
+I saw rabbit.
+</p>
+
+<p>
+因为 rabbit 是很具象，一般说到兔子，要不就是泛指兔子这一类动物，要不就是特指一只兔子，很少用它表达抽象的概念。
+</p>
+
+<p>
+那要说泛指，summers are hot 也是可以的。所以，在表达泛指某一类人或事物时，最保险的，出现频率相对更高的是复数泛指。再看：
+</p>
+
+<p>
+I want to play football. 我想踢足球。
+</p>
+
+<p>
+这里的 play football 泛指足球运动这一抽象概念。而不是某一只具体的足球或者足球这一类运动器具，所以一般不说：
+</p>
+
+<p>
+I want to play a football.
+</p>
+
+<p>
+言下之意是，我想踢一只足球，具体哪只无所谓。
+</p>
+
+<p>
+I want to play the football.
+</p>
+
+<p>
+言下之意是，我想踢某只足球，咱们都知道说的是哪只，其他的不行。
+</p>
+
+<p>
+I want to play footballs.
+</p>
+
+<p>
+言下之意是，我只是单纯的喜欢踢足球这种运动器具。
+</p>
+
+<p>
+注意，在定冠词部分提到过，play the piano 也是泛指“弹钢琴”这一活动，其实 play piaon 也是可以的，这也是为什么说 play the piaon 这样的用法比较特殊，西洋古典乐器才这么用。
+</p>
+
+<p>
+再比如学科：
+</p>
+
+<p>
+I like geograhy. 我喜欢地理。
+</p>
+
+<p>
+这里的地理泛指地理学科这一概念，也是零冠词的用法。
+</p>
+
+<p>
+还有季节、星期、月份、节假日等：
+</p>
+
+<pre class="example" id="orgb4b4750">
+in spring 在春天
+in August 在八月
+on Monday 在周一
+on National Day 在国庆节
+</pre>
+</div>
+</div>
+<div id="outline-container-orgc61e9f1" class="outline-3">
+<h3 id="orgc61e9f1">专有名词</h3>
+<div class="outline-text-3" id="text-orgc61e9f1">
+<p>
+专有名词前一般都没有冠词（零冠词），如：
+</p>
+
+<p>
+Papa Rabbit。要是说 a Papa Rabbit，就好像有很多个 Papa Rabbit 似的，而要是说 the Papa Rabbit 岂不是多此一举。
+</p>
+</div>
+</div>
+<div id="outline-container-org9618bd1" class="outline-3">
+<h3 id="org9618bd1">固定表达</h3>
+<div class="outline-text-3" id="text-org9618bd1">
+<p>
+还有一些固定表达使用的也是零冠词，比如：
+</p>
+
+<pre class="example" id="org6e90a10">
+from time to time 不时地
+face to face 面对面地
+out of question 毫无疑问
+</pre>
+
+<p>
+特别注意最后这个 out of question。与之相似的 out of the question 是不可能，表否定；而去掉 the 变成零冠词居然就是相反的意义了！
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-29 Sun 15:48</p>
+</div>
+</body>
+</html>

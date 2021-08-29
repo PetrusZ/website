@@ -5,6 +5,98 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[冠词]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e5%86%a0%e8%af%8d.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e5%86%a0%e8%af%8d.html</guid>
+    <description><![CDATA[<p>#+TITLE: 冠词 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>不定冠词 ** 发音 到底是用 a 还是 an 的规则其实很简单，就是看后接单词的开头到底是元音还是辅音。特别注意，这里说的是发音（也就是音素），而不是字母。</li>
+</ul>
+<p>a 用于辅音音素前，an 用于元音音素前。 ** 用法 *** 泛指用法 不定冠词最重要的用法是泛指某一个（类）人或物。 **** 泛指某一个人或物 I saw a rabbit. 我看到一只兔子。</p>
+<p>中文里因为没有英语不定冠词的用法，所以算是强行对应翻译成了“一只”，但这里的“一只”并不完全强调数量上的一只，而是泛指“某一只兔子”，是指兔子这一物种中的某一只。所以，还可以把这句话翻译成“我看到兔子了”。</p>
+<p>至于为什么不能按照中文的习惯说：I saw rabbit.，I是我，saw 是看到了，rabbit 是兔子。其实这就是一个说英语最常见的错误。不能这么说的原因是，rabbit 前啥冠词都不跟的话，就属于零冠词的范畴了，用法和意义又有所不同——后面会讲到。</p>
+<p>另外，如果第一次提到某事物，其实从某种 意义上来说，也可以算是泛指。毕竟，在第一次提到之前，说话者和听话着可能都不知道指的是具体的哪个人或物。</p>
+<p>比如：“我今天看到只兔子，这兔子跑得很快。“那么，这句中文的前半句第一次提到”某“只兔子，可以说是泛指的，那相应的，就要用不定冠词：I asw a rabbit.。接下来，后半句要用定冠词，这个还是之后再说。 **** 泛指某一类 再看泛指某一类人或物的情况。</p>
+<p>A rabbit is smarter than a wolf.</p>
+<p>这个时候要翻译成”一只兔子比一只狼聪明“就有点奇怪了，因为并没有明确指出是哪只兔子比哪只狼聪明。实际上，这里的 a rabbit 和 a wolf 是泛指”兔子“和”狼“这两类动物。一旦泛指某一类事物就不好用”一个“、”一只“来翻译了。所以，这句表达的意思就是”兔子比狼聪明“。</p>
+<p>不过，这句话实际上也是有歧义的。的确也能把它理解为：”（某）一只兔子比（某）一只狼聪明“。而相反的，这样的句子：</p>
+<p>A rabbit is eating a carrot.</p>
+<p>虽然句子结构和”a rabbit is smarter than a wolf“非常类似，很明显就不是泛指，而是说某一只兔子在吃一根胡萝卜。那么：</p>
+<p>A rabbit is smart.</p>
+<p>这句话到底是泛指兔子这类动物聪明，还是说某一只兔子聪明呢？那就得看具体语境，以及个人怎么理解了。所以，虽然用不定冠词作泛指，语法上没有错，但更好的方式是之后要说到的”零冠词“：</p>
+<p>Rabbits are smarter than wolves. 兔子比狼聪明。</p>
+<p>Rabbits are smart. 兔子聪明。 *** 表示数字”一“ 不定冠词还有的时候就是用来表示数字”一“，比如：</p>
+<p>I gave you <em>a</em> hundred carrots. 我给了你一百根胡萝卜。</p>
+<p>这句话相当于：</p>
+<p>I gave you <em>one</em> hundred carrots. 我给了你一百根胡萝卜。 *** 表示”每“ I eat 10 carrots <em>a</em> day. 我每天吃 10 根胡萝卜。</p>
+<p>这句话相当于：</p>
+<p>I eat 10 carrots <em>every</em> day. 我每天吃 10 根胡萝卜。 *** “主谓一致” 不定冠词还能影响主语的单复数，从而影响句意，比如：</p>
+<p>a teacher and video creator 一位老师兼视频创作者</p>
+<p>a teacher and a video creator 一位老师和一位视频创作者</p>
+<p>前者指的是一个人，a泛指兼职老师和视频创作的一个人；后者是指两个人，a在这里泛指一个以老师为职业的人和一个以视频创作为职业的人。 *** 固定表达 还有一些固定表达中含不定冠词，比如：</p>
+<p>#+begin_example have a good time 玩得开心 as a result 因此；结果 in a hurry 匆忙的 all of a sudden 突然 #+end_example</p>
+<p>这其中的 a 既不能改成定冠词 the，也不能省略成零冠词。 * 定冠词 ** 发音 发音规则可以说和不定冠词如出一辙。就是看后接的音是原因还是辅音。 ** 用法 *** 特指 定冠词的主要功能就是特指，表示某个或某些特定的人或物。也就说，说话者和听话者都知道在讨论什么。 **** 再次提到的人或物 如果对话双方再次提及某人或某物，即双反都清楚说的是谁或者什么，就要用定冠词 the。</p>
+<p>之前说不定冠词时，说到一句中文例子：</p>
+<p>我今天看到只兔子，这兔子跑得很快。</p>
+<p>前半句时第一次提到某只兔子，所以说 a rabbit。那后半句，因为是再次提到，就要用 the rabbit。所以，整句话对应的英文是：</p>
+<p>I saw <em>a rabbit</em>. <em>The rabbit</em> ran fast.</p>
+<p>a rabbit 是泛指某只兔子，具体不知是哪只；the rabbit 是特指上句刚说的那只我看到的兔子。如果非要说成：</p>
+<p>I saw a rabbit. A rabbit ran fast.</p>
+<p>这样，英语母语人士会感到很迷惑，难道这里有两只兔子？再比如这句话：</p>
+<p>请给我胡萝卜。</p>
+<p>写成：</p>
+<p>Please give me a carrot.</p>
+<p>就是泛指某根胡萝卜——假如你这里有很多胡萝卜，我就想吃一根，你随便拿根给我。</p>
+<p>但如果写成：</p>
+<p>Please give me the carrot.</p>
+<p>那就是特指对话双方都知道的那根胡萝卜，是一根特指的胡萝卜，别的我可不要。 **** 用在序数词和形容词的最高级前 序数词和最高级限定了范围，所以也是特指。</p>
+<p>如果说第一只兔子，应该表示为：the first rabbit，因为 first 已经特指序列排第一的兔子了，所以要用 the。同样，the biggest carot，biggest 已经限定了最大的，也是特指，没有其他可能，所以还是需要用 the。 **** 独一无二的名词前 在太阳系中，太阳、地球、月亮就是独一无二的事物，所以显然还是特指。于是，一类事物前要用定冠词 the，即：</p>
+<p>#+begin_example the sun the moon the earth #+end_example *** 泛指 刚才谈到 the 的主要用法都体现特指，不过某些情况下也可以体现泛指，只是稍稍少见。比如西洋古典乐器：</p>
+<p>I like playing the piano. 我喜欢弹钢琴。</p>
+<p>play the piano 当然可以理解为特指，弹一架特定的钢琴。但从这个句子上下文看，我喜欢弹钢琴，是说弹钢琴这一行为，是在泛指弹钢琴这件事。又有，a也开始表示泛指，那 play a piano 其实也可以，但是这里的意义就会有所不同。a piano 是泛指——可能有很多钢琴，随意找了一架弹——也就是说，讨论的不再是”弹钢琴“这个音乐艺术行为或爱好，而是单纯在说弹钢琴这一动作。</p>
+<p>相似的还有：</p>
+<p>#+begin_example play the guitar 弹吉他 play the violin 拉小提琴 play the flute 吹笛子 #+end_example</p>
+<p>再看一个例子：</p>
+<p>The computer has changed our way of life.</p>
+<p>这句话该怎么理解？难道是特指某一台电脑改变了大家的生活？其实这里也是泛指，意思是 computer 作为整体一类工具，改变了我们的生活。有些复杂、混乱？因为这样的句子就是很容易产生歧义，所以，如果要泛指，还是推荐用之后讲到的“零冠词复数”。 *** 在形容词前 the 用在某些形容词前表示一类人，比如：</p>
+<p>#+begin_example the rich 富人 the poor 穷人 #+end_example</p>
+<p>这里虽然也是泛指，但是这是一个很“厉害的用法”，因为它居然把形容词转成了名词。所以可以直接说：</p>
+<p>The rich should help the poor. 富人应该帮助穷人。 *** 固定表达 有些固定表达中只能用 the，比如：·</p>
+<p>#+begin_example all the time 一直；总是 by the way 顺便 out of the question 不可能；没门 #+end_example</p>
+<p>其中的 the 非常关键，如果省略，往往会成为截然不同的意思，下文会提到。 * 零冠词 零冠词是指名词前不用冠词的情况。它的主要作用是泛指。 ** 复数泛指 在不定冠词的部分，提到过 a rabbit is smart 可以泛指（所有）兔子聪明。但是，这样的句子一不小心就会被误解，因为视具体语境，既可以泛指兔子这类动物聪明，也可能泛指某一只兔子聪明。所以，更好的方式是说：</p>
+<p>Rabbits are smart.·</p>
+<p>这就是零冠词复数泛指的用法。这里不是说复数的几只兔子聪明，而是泛指兔子这类动物很聪明。而在定冠词的部分，我们也提到过 the computer has changed our way of life，可以泛指（所有）电脑改变了我们的生活。但是还是很容易被误解。所以，更好的方式是说：</p>
+<p>Computers have changed our way of life. 计算机改变了我们的生活。</p>
+<p>相比之下，零冠词复数是非常准确有效的泛指，不容易引发歧义。</p>
+<p>那不可数名词没有复数怎么办？怎么泛指？很简单，把这些不可数名词理解成不能加 s 的复数形式就可以了，比如：</p>
+<p><em>Water</em> is import.</p>
+<p>We breathe <em>air</em>.</p>
+<p>照样可以把这样的用法理解为零冠词复数泛指。 ** 泛指“概念” 这里说的“概念”是脑中形成的观念，是一种抽象意义的表达。这种概念性的名词前多会使用零冠词。</p>
+<p><em>Summber</em> is hot. <em>Winter</em> is cold. 夏天热，冬天冷。</p>
+<p>这里的 summber 和 winter 不是泛指某一个夏天或冬天，而应该理解为“夏季”、“冬季”表示季节这一概念。</p>
+<p>为什么说之前的“我看到兔子”不能说成：</p>
+<p>I saw rabbit.</p>
+<p>因为 rabbit 是很具象，一般说到兔子，要不就是泛指兔子这一类动物，要不就是特指一只兔子，很少用它表达抽象的概念。</p>
+<p>那要说泛指，summers are hot 也是可以的。所以，在表达泛指某一类人或事物时，最保险的，出现频率相对更高的是复数泛指。再看：</p>
+<p>I want to play football. 我想踢足球。</p>
+<p>这里的 play football 泛指足球运动这一抽象概念。而不是某一只具体的足球或者足球这一类运动器具，所以一般不说：</p>
+<p>I want to play a football.</p>
+<p>言下之意是，我想踢一只足球，具体哪只无所谓。</p>
+<p>I want to play the football.</p>
+<p>言下之意是，我想踢某只足球，咱们都知道说的是哪只，其他的不行。</p>
+<p>I want to play footballs.</p>
+<p>言下之意是，我只是单纯的喜欢踢足球这种运动器具。</p>
+<p>注意，在定冠词部分提到过，play the piano 也是泛指“弹钢琴”这一活动，其实 play piaon 也是可以的，这也是为什么说 play the piaon 这样的用法比较特殊，西洋古典乐器才这么用。</p>
+<p>再比如学科：</p>
+<p>I like geograhy. 我喜欢地理。</p>
+<p>这里的地理泛指地理学科这一概念，也是零冠词的用法。</p>
+<p>还有季节、星期、月份、节假日等：</p>
+<p>#+begin_example in spring 在春天 in August 在八月 on Monday 在周一 on National Day 在国庆节 #+end_example ** 专有名词 专有名词前一般都没有冠词（零冠词），如：</p>
+<p>Papa Rabbit。要是说 a Papa Rabbit，就好像有很多个 Papa Rabbit 似的，而要是说 the Papa Rabbit 岂不是多此一举。 ** 固定表达 还有一些固定表达使用的也是零冠词，比如：</p>
+<p>#+begin_example from time to time 不时地 face to face 面对面地 out of question 毫无疑问 #+end_example</p>
+<p>特别注意最后这个 out of question。与之相似的 out of the question 是不可能，表否定；而去掉 the 变成零冠词居然就是相反的意义了！</p>]]></description>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[主谓一致]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</guid>
@@ -75,7 +167,7 @@
 <p>谓语动词 like 与离它最近的 other animals 保持一致。 ** there be 同样的还有 there be 句型，如：</p>
 <p>There is a carrot and two apples on the table. 桌上有一根胡萝卜和两个苹果。</p>
 <p>谓语动词 is 与离它最近的 a carrot保持一致。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[省略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%9c%81%e7%95%a5.html</link>
@@ -132,7 +224,7 @@
 <p>I can eat more carrots than you (can eat carrots). 我能吃胡萝卜比你多。（比较状语从句的省略）</p>
 <p>You are smater than I (am smart.) 你比我聪明。（比较状语从句的省略） *** 主句 如果很明显主句的主语是“我”，即 I am，那 I am 也可以省略：</p>
 <p>(I am) sorry to hear that.</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[强调]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%bc%ba%e8%b0%83.html</link>
@@ -171,7 +263,7 @@
 <p>强调 lovely： I met a <em>really lovely</em> rabbit in the field this morning!</p>
 <p>强调 lovely： <em>What a lovely</em> rabbit I met in the field this morning!</p>
 <p>强调 lovely： <em>How lovely</em> the rabbit I met in the field this morning was! * 总结 ** “口气” *** 重读单词 *** 用叹词强调 *** 使用特定语音/语调/语气强调 ** 书面格式 *** 粗体 *** 斜体 *** 下划线 *** 全部大写 *** 标点符号 ** 词汇强调 *** 添加强调词 *** 重复单词 *** 使用助动词 *** 强调代词 ** 句式强调 *** 倒装 *** 感叹 *** it + be 动词 + that…</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[介词攻略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</link>
@@ -459,7 +551,7 @@
 <p>但是，要特别指出，有一类“介词固定搭配”，即当动词和介词搭配在一起，往往会产生非常“神奇的变化”，营造出看似完全无关的含义。这就是所谓“短语动词”。开头提到的那些词组就属于这个范畴：</p>
 <p>#+begin_example check out 退房 make out 分辨 put out 熄灭 pass out 晕倒 work out 健身 look out 小心 knock out 打晕 #+end_example</p>
 <p>很多短语动词是需要去特别记忆，而不是很容易通过字面意思就能理解。短语动词是英语的一大难点。往往动词本身和之后的介词都明白什么意思，但凑到一起就是完全猜不到意思，相当于一个全新的单词。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[被动语态]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
@@ -519,7 +611,7 @@
 <p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
 <p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
 </ul>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[独立主格]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
@@ -572,7 +664,7 @@
 <p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
 <p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
 <p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[倒装句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
@@ -616,7 +708,7 @@
 <p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
 <p>这句话其实相当于：</p>
 <p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
@@ -767,7 +859,7 @@
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
 <p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Ebuild-defined Variables]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
@@ -862,7 +954,7 @@
 </tr>
 </tbody>
 </table>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -1158,7 +1250,7 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
@@ -1216,7 +1308,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -1311,7 +1403,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -1514,7 +1606,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -1538,7 +1630,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -1703,7 +1795,7 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Sat, 28 Aug 2021 22:46:21 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
     </item>
 </channel>
 </rss>
