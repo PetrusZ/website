@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-29 Sun 22:51 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>英语构词法</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">英语构词法</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgb6ea719">派生</a></li>
+<li><a href="#orgc7a382e">合成</a></li>
+<li><a href="#org314197a">混合</a></li>
+<li><a href="#org4aea5ea">截短</a></li>
+<li><a href="#org8bb9546">缩写</a></li>
+<li><a href="#org62e47d3">转化</a></li>
+<li><a href="#org2afe8a4">总结</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb6ea719" class="outline-2">
+<h2 id="orgb6ea719">派生</h2>
+<div class="outline-text-2" id="text-orgb6ea719">
+<p>
+“派生构词”是最主要的“构词法”，以至于有人认为“英语构词法”就是“派生构词”（这当然不对，或者不全面）。
+</p>
+
+<p>
+派生就是让固定的字母组合表示某种含义。这一点中国人其实应该很容易理解，因为汉语就有“偏旁部首”这个概念。比如，有“三点水”这个偏旁的字，往往表示和水有关：江、河、湖、海。虽然英语不像汉字是象形文字，没有偏旁部首，但是英语有固定的字母组合。比如 hydr 就可以表示和水有关：
+</p>
+
+<pre class="example" id="orgf42220f">
+hydrate 水合物
+hydrous 含水的
+</pre>
+
+<p>
+你可能要问，水不是 water 吗？怎么变成 hydr 了？这是因为英语词汇有多种来源。最早的，最基本的英语词汇是日耳曼词语，比如 water 就是。但是后来还有希腊语、拉丁语等等多种语言进入了英语词汇。刚才说的 hydr 就是来自希腊语。所以说，可以认为英语有“两大套”词汇：第一套，是本来的日耳曼词汇，比如 water 这样的词。日常用到很多词都属于日耳曼词汇：
+</p>
+
+<pre class="example" id="org695e0af">
+see 看见
+hear 听见
+eat 吃
+</pre>
+
+<p>
+另一套，是外来语词汇——通常是希腊语和拉丁语，因为希腊罗马以前是欧洲文明的中心。比如与刚才这几个词相对应的，是这几个：
+</p>
+
+<pre class="example" id="orgf602216">
+vis
+aud
+ed
+</pre>
+
+<p>
+不过，see、hear、eat 经常看到，可 vis、aud、ed 是什么？其实也经常看到它们，只不过它们一般作为单词的一部分出现，比如：
+</p>
+
+<pre class="example" id="org5e58231">
+visible 可以看见的
+audible 可以听见的
+edible 可以吃的
+</pre>
+
+<p>
+也就是说，这些“外来语词汇”经常作为构成单词的一部分。
+</p>
+
+<p>
+请注意：这样的往往“有实意”的”外来语词汇“成了一些英语单词的”核心“，同时能和其他字母组合，共同构建新的词。比如，你应该注意到了以上几个词都是以 ible 字母组合结尾的。这个 ible 拼写是英语从古法语中引进的，当然最早还是来自拉丁语，它表示”能被&#x2026;“的意思，属于形容词。所以：vis + ible = 能被 + 看见 + 的，aud + ible = 能被 + 听见 + 的，ed + ible = 能被 + 吃 + 的。
+</p>
+
+<p>
+这其中，表示核心意义的 vis、aud、ed 这样的拼写，就是派生构词法中所谓的”词根“，word root。词根往往代表或暗示单词的核心意义。而像 ible 这样的能够和词根一起表示意义以及属性的，具有修饰功能的拼写，就是派生构词法中所谓的”词缀“。以上几个例子出现在单词末尾，所以属于”词缀“中的”后缀“，suffix。不同的后缀跟着同样的词根，往往核心意思不变，但词形改变。比如刚才的 visble 意思是”能见的“，是形容词。而把后缀换成 ibility 就变成了名词，visibility，表示”能见度“。
+</p>
+
+<p>
+既然有”后缀“，那么也有”前缀“。比如，有些形容词前可以加 in 这个拼写表示否定，即”不&#x2026;“的意思。也就说，in 就是个表示否定意思的前缀，prefix。比如：
+</p>
+
+<pre class="example" id="org5785187">
+invisible 不能看见的
+inaudible 不能听见的
+inedible 不能吃的
+</pre>
+
+<p>
+前缀一般改变单词的词义，却不改变词性。（当然也有例外，比如 en 这个前缀往往表示”使得&#x2026;“，所以 enlarge 就是”使&#x2026;变大“，即把形容词 large 变成了动词 enlarge。）顺便，prefix 和 suffix 这两个词本身就是派生构词：pre 表示”前面的“，fix 表示”链接上、系上“，在前面链接上的不就是前缀吗？suf 相当于 sub，表示”&#x2026;之下“——在下面链接上，不就是后缀吗？
+</p>
+
+<hr>
+
+<p>
+快速总结一下，在英语词汇的发展史上，引进过许多外来词汇。这其中的一些外来词汇属于派生构词：有些固定字母拼写是单词的核心，通常有具体的含义，是单词的词根。有些固定字母拼写在单词开头，表示对意义进行补充修饰，是单词的前缀。也有些固定字母拼写在单词词尾修饰词义，是单词的后缀。
+</p>
+
+<p>
+这些听上去很简单，但是，前缀、后缀、词根以及它们之间的组合，有很多名堂。比如 count 可以作动词，表示”数数”。可是，能数（得清）的，不是 <del>countible</del> ，而是 countable。也就说这些里的后缀不是 ible，而是 able。再比如：
+</p>
+
+<pre class="example" id="org83d295a">
+work 工作           -&gt; workable 易加工的；可行的；可使用的
+accept 接受         -&gt; acceptable 可接受的
+remark 评论；注意   -&gt; remarkable 非凡的；值得注意的；显著的
+</pre>
+
+<p>
+这有什么规律呢？通常来说，如果词根自称单词（而这些单词往往来自法语），就可以直接加 able 这后缀。但是，如果词根本身不能成单词（比如希腊/拉丁词根），那么往往加 ible 这个后缀，比如：
+</p>
+
+<pre class="example" id="orga44d05a">
+creadible 可信的；可靠的
+terrible 可怕的
+possbile 可能的
+</pre>
+
+<p>
+上面说的是通常情况，但也有例外。比如 eff 是个拉丁词根，表示“说出来”，那么你也许会认为：effible 可以描述的，ineffible 不能描述的。但实际上，英文中只有：inffable 不能描述的，effible 和 effable 都是不存在的。
+</p>
+
+<p>
+表示相同或相似意义的前缀也很常见。比如，除了刚才提到的 in 这个前缀表示否定，还有 im、un、il、ir、mis、dis、de、non：
+</p>
+
+<pre class="example" id="org81f4635">
+im  -&gt; impossible 不可能的
+un  -&gt; uncountable 不可数的
+il  -&gt; illegal 非法的
+ir  -&gt; irregular 不会则的
+mis -&gt; mislead 误导
+dis -&gt; dislike 不喜欢
+de  -&gt; dehydrate 脱水
+non -&gt; nonlinear 非线性的
+</pre>
+
+<p>
+这些表示否定的前缀，有些是因为不同单词的不同拼写稍作调整（比如更好发音，字母 p 前用 im 而不是 in），有些是因为来源不同。甚至 同一个前缀也有不同的含义。就比如 in 这个前缀，它除了表示否定，有时还能表示“向里面&#x2026;”，比如：
+</p>
+
+<pre class="example" id="org68c699c">
+inward 向里面的
+inscribe 刻写
+</pre>
+
+<p>
+不要说前缀后缀，就是词根，也很多样。比如开头说 hydr 来自希腊语，表示“水”。而拉丁语中的水是“aqua”，于是英语中就有了：
+</p>
+
+<pre class="example" id="org22a0c77">
+aquatic 水中的；水生的
+aquarium 水族馆
+</pre>
+
+<hr>
+
+<p>
+还有，不要一看到某些字母拼写组合，就断定它一定有某种意义。比如 vsia（签证）和 viscous（粘性的），就和“看”没有任何关系。
+</p>
+
+<p>
+另外，千万不要以为所有的外来的派生词汇都是一个前缀+一个词根+一个后缀。词根词缀的组合方式是很多样的。
+</p>
+
+<ol class="org-ol">
+<li><p>
+当单词中仅有 1 个词根时
+</p>
+
+<p>
+前后都可能出现词缀，也可能都没有：
+</p>
+
+<ul class="org-ul">
+<li>前缀 + 词根：con 合并 + struct 堆起来 = construct 建造</li>
+<li>词根 + 后缀：struct 堆起来 + ure 表名词 = structure 建筑物</li>
+<li>前缀 + 词根 + 后缀：con 合并 + struct 堆起来 + ion 表名词 = construction 构建</li>
+</ul></li>
+
+<li>当单词中包含多个前缀/后缀时
+
+<ul class="org-ul">
+<li>前缀 + 前缀 + 词根：re 再次 + con 合并 + struct 堆起来 = recontruct 再次建造</li>
+<li>词根 + 后缀 + 后缀：struct 堆起来 + ur（e 杠掉）表名词 + al 表形容词 = structural 建筑结构的</li>
+<li>前缀 + 词根 + 后缀 + 后缀：con 合并 + struct 堆起来 + ion 表名词 + al 表形容词 = constructional 建筑的</li>
+<li>前缀 + 前缀 + 词根 + 后缀 + 后缀 + 后缀：re 再次 + con 合并 + struct 堆起来 + ion 表名词 + al 表形容词 + ly 表副词 = reconstructionally 再次建筑地</li>
+</ul></li>
+
+<li><p>
+当单词中包含 2 个词根时
+</p>
+
+<p>
+通常表示意义的叠加，比如：
+</p>
+
+<p>
+geo 地质 + struct 堆起来 + ure 表名词 = geostructure 地质构造
+</p>
+
+<p>
+当然也可以继续添加后缀，形成：
+</p>
+
+<p>
+geo 地质 + struct 堆起来 + ure 表名词 + al 表形容词 = geostructural 地质构造的
+</p>
+
+<p>
+geo 地质 + struct 堆起来 + ure 表名词 + al 表形容词 + ly 表副词 = geostructurally 地质构造地
+</p>
+
+<p>
+而这样的词就很难再加前缀，因为把 re 再次、con 合并放在前面，在现实中没有对应的意义。
+</p>
+
+<hr>
+
+<p>
+之前在讲 structural 这个词的构成时：本来拼写时 ure 的后缀在和之后的另一个后缀相连时，要省略字母 e。这是为了发音的需要，如果不省略读起来会更难懂。其实这样的一般省略元音字母的方式，只是派生构词拼写改变的一种。其他时候，还需要加字母，比如：pent 是”五“，gon 是”角“，那”五角形状”自然就是两者合起来。可是 pentgon 不太好发音。所以在中间加一个元音字母 a。于是就有了 pentagon，五角形。
+</p>
+
+<p>
+还有些时候，还会重复字母，这往往还是为了调整读音做出的需要。比如：read（红色）+ish（有些），要重复 red 的结尾 d，变成 reddish（有些红）。
+</p>
+
+<p>
+最后一种字母拼写都会改变，比如：
+</p>
+
+<p>
+maintain 保持 + ance 表名词 = maintenance 保持（的名词形式）
+</p>
+
+<p>
+describe 描述 + tion 表名词 = description 描述（的名词形式）
+</p>
+
+<p>
+不过这往往还是为了发音的需要。
+</p>
+
+<hr>
+
+<p>
+再快速总结一下，派生构词是英语构词法最重要的一种。根据派生构词的单词可能由不定数量的前缀、词根、后缀构成，而这些词根词缀往往来自希腊语和拉丁语。这些词根词缀数量众多，其中也有拼写不同但意思相似的。当它们之间互相组合时，往往会基于读音的考虑，省略字母、添加字母、重复字母或改变字母。
+</p></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc7a382e" class="outline-2">
+<h2 id="orgc7a382e">合成</h2>
+<div class="outline-text-2" id="text-orgc7a382e">
+<p>
+之前提到，hydr 和 aqua 是日耳曼词 water 的希腊罗马兄弟。虽然之前的例子都是希腊罗马词根构成，可这不代表日耳曼词就不能构成词。比如：
+</p>
+
+<pre class="example" id="orgdb74b2d">
+waterfall 瀑布
+waterproof 防水的
+underwater 水下的
+</pre>
+
+<p>
+这都是日耳曼词汇的构词法。但是这种构词法，往往就是两个通常是日耳曼词（但不绝对）的简单相连，并没有之前的词根词缀那一套。这样的把单词“合在一起”的构词方法，就叫作“合成构词”。
+</p>
+
+<p>
+合成构词的词形也是可以多种多样的。比如：
+</p>
+
+<pre class="example" id="org731e122">
+名词water + 名词fall = 名词waterfall
+名词water + 形容词proof = 形容词waterproof
+介词under + 名词water = 形容词underwater
+
+副词out + 动词break = 名词outbreak
+数词one + 名词way = 形容词one-way
+形容词high + 名词class = 形容词high-class
+介词before + 名词hand = 副词beforehand
+</pre>
+
+<p>
+顺便，有的意思既可以用之前的派生构词，也可以用这里的合成构成，比如：
+</p>
+
+<p>
+leg 来自拉丁语，表示读，所以 legible 是“可以读的”（此处“leg”作为拉丁词根，不单独出现；所以不和其“腿”的含义混淆）。但是基本同样的词义还可以用 readable 来表达。两者只有很微妙的区别：
+</p>
+
+<p>
+legible 往往表示字迹够清楚，不至于潦草看不懂；readable 往往表示语句通顺，不至于乱七八糟看不懂。可惜并非所有词义都有两套，比如“可以听见的”就只有 audible 而没有 hearable。
+</p>
+</div>
+</div>
+<div id="outline-container-org314197a" class="outline-2">
+<h2 id="org314197a">混合</h2>
+<div class="outline-text-2" id="text-org314197a">
+<p>
+接下来这种构词法，也可以称为”偷懒合成法”，也就是和刚刚说的“合成构词”很像，只不过可以说是合成得“更进一步”，把第一个单词的前一小截和第二个单词的后一小截拼在一起。比如很多人都知道的 brunch 早中餐，这个词就是 breakfast 的 br 和 lunch 的 unch。
+</p>
+
+<p>
+再看几个常见例子：
+</p>
+
+<pre class="example" id="org5b3a9db">
+smoke烟 + fog雾 = smog烟雾
+smoke烟 + haze薄雾 = smaze烟霭
+snow雪 + ice冰 = snice雪冰态
+website网站 + seminar会谈 = webinar网上会谈
+</pre>
+
+<p>
+著名乐队“披头士”，Beatles，也是个混合词，来此 beat 节拍 + beetles 甲壳虫。还有，著名游戏公司 Sega 世嘉，也是 service + game 的混合。
+</p>
+</div>
+</div>
+<div id="outline-container-org4aea5ea" class="outline-2">
+<h2 id="org4aea5ea">截短</h2>
+<div class="outline-text-2" id="text-org4aea5ea">
+<p>
+如果一个单词本来就很长，人们总是会偷懒的，往往真的就读一半或者一小半，这就是所谓的“截短法”构词。而且去头或者去尾都可以。比如：
+</p>
+
+<p>
+telephone 把头去掉就成了 phone，airplane 去头就是 plane，mathematics 去掉尾巴就是 math，平时考试那个 exam 就是 examination 的去尾。再比如平时常见的 app，其实就是 application 去掉尾巴。
+</p>
+
+<p>
+甚至还有既去头又去尾的，比如 flu 流行感冒，就是 influenza 的中间部分。还有家里的冰箱，fridge，原本可是 refridgerator。
+</p>
+</div>
+</div>
+<div id="outline-container-org8bb9546" class="outline-2">
+<h2 id="org8bb9546">缩写</h2>
+<div class="outline-text-2" id="text-org8bb9546">
+<p>
+VIP = very important person
+</p>
+
+<p>
+IELTS = International English language Testing System
+</p>
+
+<p>
+TOEFL = Test English a a Foregin Language
+</p>
+
+<p>
+以上的缩写都是取各个单词的首字母。另外也有一种缩写是取包含的单词的一部分，就是为了能够像一个单词一样读出来。比如 radar，其实也是个缩写，全称是：Radio Detection and Ranging。
+</p>
+</div>
+</div>
+<div id="outline-container-org62e47d3" class="outline-2">
+<h2 id="org62e47d3">转化</h2>
+<div class="outline-text-2" id="text-org62e47d3">
+<p>
+这种方法只能“勉强”称为构词法，因为它说白了就是一个单词有不同词性。比如之前说到的 waterfall 中的 fall，既可做动词又可以做名词。一个单词多词性的例子，不论是英语还是汉语中，都太多了。
+</p>
+
+<p>
+还有一种，也可以勉强称为转换构词，比如之前提到过，education 这个词是从拉丁语过来的，本来没有动词形式。那莎士比亚老师就稍微改了下拼写，于是就又了 educate 这个动词。有些分类也会把这类，改变拼写的转换词性构词单独分出去。
+</p>
+</div>
+</div>
+<div id="outline-container-org2afe8a4" class="outline-2">
+<h2 id="org2afe8a4">总结</h2>
+<div class="outline-text-2" id="text-org2afe8a4">
+<p>
+派生构词：用希腊语/拉丁语词根/前缀/后缀构词
+</p>
+
+<p>
+合成构词：用源自日耳曼语的单词合并构词
+</p>
+
+<p>
+混合构词：选一词头及另一词尾混合构词
+</p>
+
+<p>
+截短构词：截取单词一部分作为新词
+</p>
+
+<p>
+缩写构词：选取多个单词首字母/部分字母
+</p>
+
+<p>
+转化构词：使用同一单词的不同词性
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-29 Sun 22:51</p>
+</div>
+</body>
+</html>

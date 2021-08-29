@@ -5,6 +5,102 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[英语构词法]]></title>
+    <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e6%9e%84%e8%af%8d%e6%b3%95.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e6%9e%84%e8%af%8d%e6%b3%95.html</guid>
+    <description><![CDATA[<p>#+TITLE: 英语构词法 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>派生 “派生构词”是最主要的“构词法”，以至于有人认为“英语构词法”就是“派生构词”（这当然不对，或者不全面）。</li>
+</ul>
+<p>派生就是让固定的字母组合表示某种含义。这一点中国人其实应该很容易理解，因为汉语就有“偏旁部首”这个概念。比如，有“三点水”这个偏旁的字，往往表示和水有关：江、河、湖、海。虽然英语不像汉字是象形文字，没有偏旁部首，但是英语有固定的字母组合。比如 hydr 就可以表示和水有关：</p>
+<p>#+begin_example hydrate 水合物 hydrous 含水的 #+end_example</p>
+<p>你可能要问，水不是 water 吗？怎么变成 hydr 了？这是因为英语词汇有多种来源。最早的，最基本的英语词汇是日耳曼词语，比如 water 就是。但是后来还有希腊语、拉丁语等等多种语言进入了英语词汇。刚才说的 hydr 就是来自希腊语。所以说，可以认为英语有“两大套”词汇：第一套，是本来的日耳曼词汇，比如 water 这样的词。日常用到很多词都属于日耳曼词汇：</p>
+<p>#+begin_example see 看见 hear 听见 eat 吃 #+end_example</p>
+<p>另一套，是外来语词汇——通常是希腊语和拉丁语，因为希腊罗马以前是欧洲文明的中心。比如与刚才这几个词相对应的，是这几个：</p>
+<p>#+begin_example vis aud ed #+end_example</p>
+<p>不过，see、hear、eat 经常看到，可 vis、aud、ed 是什么？其实也经常看到它们，只不过它们一般作为单词的一部分出现，比如：</p>
+<p>#+begin_example visible 可以看见的 audible 可以听见的 edible 可以吃的 #+end_example</p>
+<p>也就是说，这些“外来语词汇”经常作为构成单词的一部分。</p>
+<p>请注意：这样的往往“有实意”的”外来语词汇“成了一些英语单词的”核心“，同时能和其他字母组合，共同构建新的词。比如，你应该注意到了以上几个词都是以 ible 字母组合结尾的。这个 ible 拼写是英语从古法语中引进的，当然最早还是来自拉丁语，它表示”能被…“的意思，属于形容词。所以：vis + ible = 能被 + 看见 + 的，aud + ible = 能被 + 听见 + 的，ed + ible = 能被 + 吃 + 的。</p>
+<p>这其中，表示核心意义的 vis、aud、ed 这样的拼写，就是派生构词法中所谓的”词根“，word root。词根往往代表或暗示单词的核心意义。而像 ible 这样的能够和词根一起表示意义以及属性的，具有修饰功能的拼写，就是派生构词法中所谓的”词缀“。以上几个例子出现在单词末尾，所以属于”词缀“中的”后缀“，suffix。不同的后缀跟着同样的词根，往往核心意思不变，但词形改变。比如刚才的 visble 意思是”能见的“，是形容词。而把后缀换成 ibility 就变成了名词，visibility，表示”能见度“。</p>
+<p>既然有”后缀“，那么也有”前缀“。比如，有些形容词前可以加 in 这个拼写表示否定，即”不…“的意思。也就说，in 就是个表示否定意思的前缀，prefix。比如：</p>
+<p>#+begin_example invisible 不能看见的 inaudible 不能听见的 inedible 不能吃的 #+end_example</p>
+<p>前缀一般改变单词的词义，却不改变词性。（当然也有例外，比如 en 这个前缀往往表示”使得…“，所以 enlarge 就是”使…变大“，即把形容词 large 变成了动词 enlarge。）顺便，prefix 和 suffix 这两个词本身就是派生构词：pre 表示”前面的“，fix 表示”链接上、系上“，在前面链接上的不就是前缀吗？suf 相当于 sub，表示”…之下“——在下面链接上，不就是后缀吗？</p>
+<hr />
+<p>快速总结一下，在英语词汇的发展史上，引进过许多外来词汇。这其中的一些外来词汇属于派生构词：有些固定字母拼写是单词的核心，通常有具体的含义，是单词的词根。有些固定字母拼写在单词开头，表示对意义进行补充修饰，是单词的前缀。也有些固定字母拼写在单词词尾修饰词义，是单词的后缀。</p>
+<p>这些听上去很简单，但是，前缀、后缀、词根以及它们之间的组合，有很多名堂。比如 count 可以作动词，表示”数数”。可是，能数（得清）的，不是 +countible+ ，而是 countable。也就说这些里的后缀不是 ible，而是 able。再比如：</p>
+<p>#+begin_example work 工作 -&gt; workable 易加工的；可行的；可使用的 accept 接受 -&gt; acceptable 可接受的 remark 评论；注意 -&gt; remarkable 非凡的；值得注意的；显著的 #+end_example</p>
+<p>这有什么规律呢？通常来说，如果词根自称单词（而这些单词往往来自法语），就可以直接加 able 这后缀。但是，如果词根本身不能成单词（比如希腊/拉丁词根），那么往往加 ible 这个后缀，比如：</p>
+<p>#+begin_example creadible 可信的；可靠的 terrible 可怕的 possbile 可能的 #+end_example</p>
+<p>上面说的是通常情况，但也有例外。比如 eff 是个拉丁词根，表示“说出来”，那么你也许会认为：effible 可以描述的，ineffible 不能描述的。但实际上，英文中只有：inffable 不能描述的，effible 和 effable 都是不存在的。</p>
+<p>表示相同或相似意义的前缀也很常见。比如，除了刚才提到的 in 这个前缀表示否定，还有 im、un、il、ir、mis、dis、de、non：</p>
+<p>#+begin_example im -&gt; impossible 不可能的 un -&gt; uncountable 不可数的 il -&gt; illegal 非法的 ir -&gt; irregular 不会则的 mis -&gt; mislead 误导 dis -&gt; dislike 不喜欢 de -&gt; dehydrate 脱水 non -&gt; nonlinear 非线性的 #+end_example</p>
+<p>这些表示否定的前缀，有些是因为不同单词的不同拼写稍作调整（比如更好发音，字母 p 前用 im 而不是 in），有些是因为来源不同。甚至 同一个前缀也有不同的含义。就比如 in 这个前缀，它除了表示否定，有时还能表示“向里面…”，比如：</p>
+<p>#+begin_example inward 向里面的 inscribe 刻写 #+end_example</p>
+<p>不要说前缀后缀，就是词根，也很多样。比如开头说 hydr 来自希腊语，表示“水”。而拉丁语中的水是“aqua”，于是英语中就有了：</p>
+<p>#+begin_example aquatic 水中的；水生的 aquarium 水族馆 #+end_example</p>
+<hr />
+<p>还有，不要一看到某些字母拼写组合，就断定它一定有某种意义。比如 vsia（签证）和 viscous（粘性的），就和“看”没有任何关系。</p>
+<p>另外，千万不要以为所有的外来的派生词汇都是一个前缀+一个词根+一个后缀。词根词缀的组合方式是很多样的。</p>
+<ol type="1">
+<li><p>当单词中仅有 1 个词根时</p>
+<p>前后都可能出现词缀，也可能都没有：</p>
+<ul>
+<li>前缀 + 词根：con 合并 + struct 堆起来 = construct 建造</li>
+<li>词根 + 后缀：struct 堆起来 + ure 表名词 = structure 建筑物</li>
+<li>前缀 + 词根 + 后缀：con 合并 + struct 堆起来 + ion 表名词 = construction 构建</li>
+</ul></li>
+<li><p>当单词中包含多个前缀/后缀时</p>
+<ul>
+<li>前缀 + 前缀 + 词根：re 再次 + con 合并 + struct 堆起来 = recontruct 再次建造</li>
+<li>词根 + 后缀 + 后缀：struct 堆起来 + ur（e 杠掉）表名词 + al 表形容词 = structural 建筑结构的</li>
+<li>前缀 + 词根 + 后缀 + 后缀：con 合并 + struct 堆起来 + ion 表名词 + al 表形容词 = constructional 建筑的</li>
+<li>前缀 + 前缀 + 词根 + 后缀 + 后缀 + 后缀：re 再次 + con 合并 + struct 堆起来 + ion 表名词 + al 表形容词 + ly 表副词 = reconstructionally 再次建筑地</li>
+</ul></li>
+<li><p>当单词中包含 2 个词根时</p>
+<p>通常表示意义的叠加，比如：</p>
+<p>geo 地质 + struct 堆起来 + ure 表名词 = geostructure 地质构造</p>
+<p>当然也可以继续添加后缀，形成：</p>
+<p>geo 地质 + struct 堆起来 + ure 表名词 + al 表形容词 = geostructural 地质构造的</p>
+<p>geo 地质 + struct 堆起来 + ure 表名词 + al 表形容词 + ly 表副词 = geostructurally 地质构造地</p>
+<p>而这样的词就很难再加前缀，因为把 re 再次、con 合并放在前面，在现实中没有对应的意义。</p>
+<hr />
+<p>之前在讲 structural 这个词的构成时：本来拼写时 ure 的后缀在和之后的另一个后缀相连时，要省略字母 e。这是为了发音的需要，如果不省略读起来会更难懂。其实这样的一般省略元音字母的方式，只是派生构词拼写改变的一种。其他时候，还需要加字母，比如：pent 是”五“，gon 是”角“，那”五角形状”自然就是两者合起来。可是 pentgon 不太好发音。所以在中间加一个元音字母 a。于是就有了 pentagon，五角形。</p>
+<p>还有些时候，还会重复字母，这往往还是为了调整读音做出的需要。比如：read（红色）+ish（有些），要重复 red 的结尾 d，变成 reddish（有些红）。</p>
+<p>最后一种字母拼写都会改变，比如：</p>
+<p>maintain 保持 + ance 表名词 = maintenance 保持（的名词形式）</p>
+<p>describe 描述 + tion 表名词 = description 描述（的名词形式）</p>
+<p>不过这往往还是为了发音的需要。</p>
+<hr />
+<p>再快速总结一下，派生构词是英语构词法最重要的一种。根据派生构词的单词可能由不定数量的前缀、词根、后缀构成，而这些词根词缀往往来自希腊语和拉丁语。这些词根词缀数量众多，其中也有拼写不同但意思相似的。当它们之间互相组合时，往往会基于读音的考虑，省略字母、添加字母、重复字母或改变字母。</p></li>
+</ol>
+<ul>
+<li>合成 之前提到，hydr 和 aqua 是日耳曼词 water 的希腊罗马兄弟。虽然之前的例子都是希腊罗马词根构成，可这不代表日耳曼词就不能构成词。比如：</li>
+</ul>
+<p>#+begin_example waterfall 瀑布 waterproof 防水的 underwater 水下的 #+end_example</p>
+<p>这都是日耳曼词汇的构词法。但是这种构词法，往往就是两个通常是日耳曼词（但不绝对）的简单相连，并没有之前的词根词缀那一套。这样的把单词“合在一起”的构词方法，就叫作“合成构词”。</p>
+<p>合成构词的词形也是可以多种多样的。比如：</p>
+<p>#+begin_example 名词water + 名词fall = 名词waterfall 名词water + 形容词proof = 形容词waterproof 介词under + 名词water = 形容词underwater</p>
+<p>副词out + 动词break = 名词outbreak 数词one + 名词way = 形容词one-way 形容词high + 名词class = 形容词high-class 介词before + 名词hand = 副词beforehand #+end_example</p>
+<p>顺便，有的意思既可以用之前的派生构词，也可以用这里的合成构成，比如：</p>
+<p>leg 来自拉丁语，表示读，所以 legible 是“可以读的”（此处“leg”作为拉丁词根，不单独出现；所以不和其“腿”的含义混淆）。但是基本同样的词义还可以用 readable 来表达。两者只有很微妙的区别：</p>
+<p>legible 往往表示字迹够清楚，不至于潦草看不懂；readable 往往表示语句通顺，不至于乱七八糟看不懂。可惜并非所有词义都有两套，比如“可以听见的”就只有 audible 而没有 hearable。 * 混合 接下来这种构词法，也可以称为”偷懒合成法”，也就是和刚刚说的“合成构词”很像，只不过可以说是合成得“更进一步”，把第一个单词的前一小截和第二个单词的后一小截拼在一起。比如很多人都知道的 brunch 早中餐，这个词就是 breakfast 的 br 和 lunch 的 unch。</p>
+<p>再看几个常见例子：</p>
+<p>#+begin_example smoke烟 + fog雾 = smog烟雾 smoke烟 + haze薄雾 = smaze烟霭 snow雪 + ice冰 = snice雪冰态 website网站 + seminar会谈 = webinar网上会谈 #+end_example</p>
+<p>著名乐队“披头士”，Beatles，也是个混合词，来此 beat 节拍 + beetles 甲壳虫。还有，著名游戏公司 Sega 世嘉，也是 service + game 的混合。 * 截短 如果一个单词本来就很长，人们总是会偷懒的，往往真的就读一半或者一小半，这就是所谓的“截短法”构词。而且去头或者去尾都可以。比如：</p>
+<p>telephone 把头去掉就成了 phone，airplane 去头就是 plane，mathematics 去掉尾巴就是 math，平时考试那个 exam 就是 examination 的去尾。再比如平时常见的 app，其实就是 application 去掉尾巴。</p>
+<p>甚至还有既去头又去尾的，比如 flu 流行感冒，就是 influenza 的中间部分。还有家里的冰箱，fridge，原本可是 refridgerator。 * 缩写 VIP = very important person</p>
+<p>IELTS = International English language Testing System</p>
+<p>TOEFL = Test English a a Foregin Language</p>
+<p>以上的缩写都是取各个单词的首字母。另外也有一种缩写是取包含的单词的一部分，就是为了能够像一个单词一样读出来。比如 radar，其实也是个缩写，全称是：Radio Detection and Ranging。 * 转化 这种方法只能“勉强”称为构词法，因为它说白了就是一个单词有不同词性。比如之前说到的 waterfall 中的 fall，既可做动词又可以做名词。一个单词多词性的例子，不论是英语还是汉语中，都太多了。</p>
+<p>还有一种，也可以勉强称为转换构词，比如之前提到过，education 这个词是从拉丁语过来的，本来没有动词形式。那莎士比亚老师就稍微改了下拼写，于是就又了 educate 这个动词。有些分类也会把这类，改变拼写的转换词性构词单独分出去。 * 总结 派生构词：用希腊语/拉丁语词根/前缀/后缀构词</p>
+<p>合成构词：用源自日耳曼语的单词合并构词</p>
+<p>混合构词：选一词头及另一词尾混合构词</p>
+<p>截短构词：截取单词一部分作为新词</p>
+<p>缩写构词：选取多个单词首字母/部分字母</p>
+<p>转化构词：使用同一单词的不同词性</p>]]></description>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[冠词]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%86%a0%e8%af%8d.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e5%86%a0%e8%af%8d.html</guid>
@@ -95,7 +191,7 @@
 <p>Papa Rabbit。要是说 a Papa Rabbit，就好像有很多个 Papa Rabbit 似的，而要是说 the Papa Rabbit 岂不是多此一举。 ** 固定表达 还有一些固定表达使用的也是零冠词，比如：</p>
 <p>#+begin_example from time to time 不时地 face to face 面对面地 out of question 毫无疑问 #+end_example</p>
 <p>特别注意最后这个 out of question。与之相似的 out of the question 是不可能，表否定；而去掉 the 变成零冠词居然就是相反的意义了！</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[主谓一致]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</link>
@@ -167,7 +263,7 @@
 <p>谓语动词 like 与离它最近的 other animals 保持一致。 ** there be 同样的还有 there be 句型，如：</p>
 <p>There is a carrot and two apples on the table. 桌上有一根胡萝卜和两个苹果。</p>
 <p>谓语动词 is 与离它最近的 a carrot保持一致。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[省略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%9c%81%e7%95%a5.html</link>
@@ -224,7 +320,7 @@
 <p>I can eat more carrots than you (can eat carrots). 我能吃胡萝卜比你多。（比较状语从句的省略）</p>
 <p>You are smater than I (am smart.) 你比我聪明。（比较状语从句的省略） *** 主句 如果很明显主句的主语是“我”，即 I am，那 I am 也可以省略：</p>
 <p>(I am) sorry to hear that.</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[强调]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%bc%ba%e8%b0%83.html</link>
@@ -263,7 +359,7 @@
 <p>强调 lovely： I met a <em>really lovely</em> rabbit in the field this morning!</p>
 <p>强调 lovely： <em>What a lovely</em> rabbit I met in the field this morning!</p>
 <p>强调 lovely： <em>How lovely</em> the rabbit I met in the field this morning was! * 总结 ** “口气” *** 重读单词 *** 用叹词强调 *** 使用特定语音/语调/语气强调 ** 书面格式 *** 粗体 *** 斜体 *** 下划线 *** 全部大写 *** 标点符号 ** 词汇强调 *** 添加强调词 *** 重复单词 *** 使用助动词 *** 强调代词 ** 句式强调 *** 倒装 *** 感叹 *** it + be 动词 + that…</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[介词攻略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</link>
@@ -551,7 +647,7 @@
 <p>但是，要特别指出，有一类“介词固定搭配”，即当动词和介词搭配在一起，往往会产生非常“神奇的变化”，营造出看似完全无关的含义。这就是所谓“短语动词”。开头提到的那些词组就属于这个范畴：</p>
 <p>#+begin_example check out 退房 make out 分辨 put out 熄灭 pass out 晕倒 work out 健身 look out 小心 knock out 打晕 #+end_example</p>
 <p>很多短语动词是需要去特别记忆，而不是很容易通过字面意思就能理解。短语动词是英语的一大难点。往往动词本身和之后的介词都明白什么意思，但凑到一起就是完全猜不到意思，相当于一个全新的单词。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[被动语态]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
@@ -611,7 +707,7 @@
 <p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
 <p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
 </ul>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[独立主格]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
@@ -664,7 +760,7 @@
 <p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
 <p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
 <p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[倒装句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
@@ -708,7 +804,7 @@
 <p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
 <p>这句话其实相当于：</p>
 <p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
@@ -859,7 +955,7 @@
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
 <p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Ebuild-defined Variables]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
@@ -954,7 +1050,7 @@
 </tr>
 </tbody>
 </table>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -1250,7 +1346,7 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
@@ -1308,7 +1404,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -1403,7 +1499,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -1606,7 +1702,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[配置zfs]]></title>
     <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
@@ -1630,7 +1726,7 @@
 <p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
 <p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
 <p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[双显卡笔记本独显直通]]></title>
     <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
@@ -1795,7 +1891,7 @@
 </shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
 <address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
 <p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 15:49:34 +0800</pubDate>
+    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
     </item>
 </channel>
 </rss>
