@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-08-31 Tue 18:44 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Other</title>
@@ -233,6 +233,7 @@
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#org9d9ef99">How to migrate system to new HDD</a></li>
+<li><a href="#org5aceba2">btrfs 新建 swapfile</a></li>
 <li><a href="#orge2f43fb">List of maintained packages</a></li>
 </ul>
 </div>
@@ -273,6 +274,22 @@
 </div>
 </div>
 </div>
+<div id="outline-container-org5aceba2" class="outline-2">
+<h2 id="org5aceba2">btrfs 新建 swapfile</h2>
+<div class="outline-text-2" id="text-org5aceba2">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #ECBE7B;">sudo</span> btrfs subvolume create /swap
+<span style="color: #ECBE7B;">sudo</span> truncate -s <span style="color: #da8548; font-weight: bold;">0</span> /swap/swapfile
+<span style="color: #ECBE7B;">sudo</span> chattr +C /swap/swapfile
+<span style="color: #ECBE7B;">sudo</span> btrfs property set /swap/swapfile compression none
+<span style="color: #ECBE7B;">sudo</span> dd <span style="color: #dcaeea;">if</span>=/dev/zero <span style="color: #dcaeea;">of</span>=/swap/swapfile <span style="color: #dcaeea;">bs</span>=1G <span style="color: #dcaeea;">count</span>=<span style="color: #da8548; font-weight: bold;">64</span> <span style="color: #dcaeea;">status</span>=progress
+<span style="color: #ECBE7B;">sudo</span> <span style="color: #ECBE7B;">chmod</span> <span style="color: #da8548; font-weight: bold;">600</span> /swap/swapfile
+<span style="color: #ECBE7B;">sudo</span> mkswap /swap/swapfile
+<span style="color: #ECBE7B;">sudo</span> swapon /swap/swapfile
+</pre>
+</div>
+</div>
+</div>
 
 <div id="outline-container-orge2f43fb" class="outline-2">
 <h2 id="orge2f43fb">List of maintained packages</h2>
@@ -284,7 +301,6 @@ in gig:
 <ul class="org-ul">
 <li>app-misc/tusk</li>
 <li>app-dicts/translator</li>
-<li>net-irc/ircclound-desktop</li>
 </ul>
 
 <p>
@@ -298,20 +314,12 @@ in guru:
 <li>x11-misc/i3lock-color</li>
 <li>x11-misc/betterlockscreen</li>
 </ul>
-
-<p>
-in local:
-</p>
-
-<ul class="org-ul">
-<li>dev-util/StarUML</li>
-</ul>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-08-31 Tue 18:44</p>
 </div>
 </body>
 </html>
