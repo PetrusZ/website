@@ -5,6 +5,78 @@
 <link>https://www.codeplayer.org</link>
 <description>codeplayer wiki</description>
     <item>
+    <title><![CDATA[加速你编程技能的关键]]></title>
+    <link>https://www.codeplayer.org/Blog/%e5%8a%a0%e9%80%9f%e4%bd%a0%e7%bc%96%e7%a8%8b%e6%8a%80%e8%83%bd%e7%9a%84%e5%85%b3%e9%94%ae.html</link>
+    <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e5%8a%a0%e9%80%9f%e4%bd%a0%e7%bc%96%e7%a8%8b%e6%8a%80%e8%83%bd%e7%9a%84%e5%85%b3%e9%94%ae.html</guid>
+    <description><![CDATA[<p>#+TITLE: 加速你编程技能的关键 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
+<ul>
+<li>加速你编程技能的关键 （注：本文为译文，原文链接在文章最后）</li>
+</ul>
+<p>当你学习编程时，有一个瞬间一切都开始改变。在 Firehose，我们喜欢把这个瞬间称为 /编程拐点/ 。在这个阶段之后，你作为开发者的运作方式将大为不同。建立拐点直到你不再需要任何手把手的指导是在编程中变得自给自足的过程，这可以是一个短沮丧的经历，但一但拐点在你身后，它就会令人难以置信的赋予力量。</p>
+<p>[[file:../pics/Blog/inflection_point.png]]</p>
+<p>在 Firehose，我们的目标不仅仅是教你 Ruby，如何构建 web 应用或如果写测试。尽管我们的确教授这些还其他更多技能， <em>我们的主要目标是加速学生通过拐点，让他们获得解决他们遇到的任何问题的能力</em> 。我们相信能够自己解决问题是一个无价的技能，并且教授这个方法将会比简单的学习如果构建一套 apps 带你走的更远。 ** 教程阶段（3-8 周的认真编程） 当你开始学习编程，有很多信息你暂且不知道。这些信息做叫 /特定领域知识/ 。例如包括：如果在 ruby 中写一个循环或如果使用 Ruby on Rails 从数据库中取出某些东西。特定领域知识包含特定编程环境中的特有的协议。</p>
+<p>成为自给自足的开发者的第一步是学习如何完成特定的任务。一但你掌握了这些特定任务，各个部分如何组合在一起的大轮廓将会变得明显。随着时间的推移，你会开始认识一些模式，并且最终那些起初看起来令人困惑和陌生的事物将成为第二天性。 ** 对刚开始学习的学生来说，最重要的要获取的技能注意细节 在浏览文档或教程等材料时，密切关注细节是非常重要的。即使是最轻微的错别字和拼写错误也会导致错误信息或 bug。在一开始看见错误信息是令人沮丧的经验，但是这是学习过程中的一个至关重要的步骤。在这个阶段处理错误信息和问题，会教你在安全环境中最重要的编程技能之一：注意细节。</p>
+<ul>
+<li>随着时间的推移，你会 <em>学习如何阅读错误信息</em> 并且快速提取问题的相关细节。你第一次看见一条错误信息时，你会花费一段时间才能解读它真正的含义。但是在你已经见过数百条错误信息（你会看到数百条！）后，你将能够快速定位问题的位置和解决问题所需的相关详细信息。</li>
+<li>你应该 <em>从你解决的每个错误信息中学习</em> 。不要只是修复错误并完成它；理解你正在修复的代码有什么问题。通过从你的每一个错误中学习，下次你犯同样的错误，你将能够更快地修复它。</li>
+<li>最初，你可能每次你看见的错误信息都会寻求帮助。随着时间的推移，你会学会通过仔细检查你的代码和进行智能的谷歌搜索，你将学会减少寻求帮助的频率。</li>
+</ul>
+<p>在教程阶段，你会按照说明进行操作。起初，你会发现按照说明操作很困难，并且错误信息会经常出现。随着时间的推移，你会培养调试错误的技能，并更好地关注小细节，你将能够更快地取得进步。当你结束教程阶段时，你会注意到你能够以更快的速度编写代码。</p>
+<p>这时，一些人感觉很自信——就像他们已经准备好了放弃训练轮并在没有结构化指导的情况下构建东西——并愉快地潜入深渊。其他学生会获得更多教程，尝试获得更多他特定领域的知识以寻求“完全理解”。不幸的是，教程仅能带你到这里，并且在教程或指南中找不到真正的自信。真正的自信来自于在不知道如何解决的问题中挣扎，并独自发现解决方案。</p>
+<p><em>编程的肮脏小秘密是……</em></p>
+<p>你永远不会知道解决问题所需的一切。踏上旅程，你可能预想你自己最终学会你需要学习的一切，并使自己准备就绪。 /然而这一刻永远不会发生。/</p>
+<p>编程是一种终身学习的经历。有经验的软件工程师寻求为他们尚未解决的问题找到解决方案，因为这让他们有机会学习更多。如果你发现你自己在等待，等待你最终感觉你自己了解了所有关于编程的知识的那一刻，请了解这一点：你等待的那一天永远不会到来。并且这是一件美妙的事情。</p>
+<p>[[file:../pics/Blog/learn-to-code-1.jpg]]</p>
+<p>在以下情况下，你已经准备好了跳到下一段旅程：</p>
+<ul>
+<li>你已经看到了足够的错误信息， <em>它们不再让你感到震惊</em> 。相反，你知道如何解读它们的含义以及代码中查找问题的位置。</li>
+<li><em>你是用谷歌搜索问题的专家。</em> 当你努力添加功能或看到令人困惑的信息时，你知道要搜索什么才能找到你所需要的信息。</li>
+<li>你能够 <em>引用你在你的其他程序中写的代码并遵循其中的模式</em> ，而不是总是寻求一步一步的说明。 ** 拐点（2-4 周，以正确的心态） 拐点阶段是学习编程时最令人沮丧的阶段之一，但在很多方面，这也是唯一重要的阶段。这是你逐步停止使用教程并开始解决没有人为你提供解决方案的问题的关键。</li>
+</ul>
+<p>在某些时候，你会觉得你还没有准备应对这个阶段，并且像是你想要回到根据明确的大纲构建东西的阶段。不要成为这种心态的牺牲品。你感到沮丧的原因是： ** 在拐点阶段，你会比在前个阶段编程速度慢 10-20 倍 你可能会开始质疑自己，并想自己是否真的有能力成为一名程序员。不安全感和怀疑感在这个阶段很常见。</p>
+<p>尽管你感觉到你正在以更慢的速率学习和完成事情的，但实际上，你正在实现最重要的事情。虽然你的特定领域知识正在快速发展，但你正在学习的一切都将与程序性知识有关。</p>
+<p>程序性知识是在学习过程中自学你不懂的东西的能力。当你需要实现一个新功能时，你应该使用哪种谷歌搜索？在这个时候，当涉及到许多你想要完成的事情时，你会觉得自己“在黑暗中”。学习如何自己找到光明至关重要，因为你永远不可能知道所有要知道的事情，所以你需要能够自学如何解决手头的问题。</p>
+<p><em>大多数人没有意识到为了学习编程，你需要同时学习特定领域和程序性知识。</em> ** 在你的余下的生活中，每一天都超越自己的极限 一些软件工程师一旦找到立足点，就会留在自己的舒适区。这些类型的程序员被称为维护程序员——不是你应该努力成为的。相反，你应该每天都努力超越自己的极限。程序员辞职最常见的原因是”因我已经解决了所有有趣的问题，所以不再具有挑战性。“</p>
+<p>与其试图将编程项目拉入你的舒适区，你应该寻找超出你当前技能范围的问题。这是建立和扩展你的技能的唯一方法。</p>
+<p>用 Firehose 的学生再通过他的拐点时的话来说：</p>
+<p>#+begin_quote 我仍然感觉我是在深渊中！我只是越来越舒服，知道那是我必去的地方！ #+end_quote ** 在 web 开发中，实际上有两个拐点会走到一起。 <em>web 开发的拐点</em> 是你能构建你想要的任何数据库驱动的应用程序的点。这意味着能够构建一个包含许多页面的 web 应用程序，这些页面通过一个简单的数据库存储和检索信息。Web 开发人员称之为：”掌握 CRUD。“在这个阶段，你应该能够简单的通过按照在 Github 或 blog 上提供的文档来集成第三方库（例如 ruby gem）。</p>
+<p><em>算法和数据结构拐点</em> 是一个更不不痛不痒的拐点，但实际上更重要。征服了这一点的人除了将掌握编程的基础知识并拥有解决复杂编程挑战的深度知识外，还将掌握他们正在使用的编程语言。</p>
+<p>征服了算法和数据结构拐点的人将能够：</p>
+<ul>
+<li>编写排序算法</li>
+<li>实现和反转链表</li>
+<li>理解并编写使用堆栈、队列和树的程序</li>
+<li>使用递归或迭代解决方案编写计算机程序</li>
+</ul>
+<p>简单来说，一但你通过了这个拐点，你将掌握数据操作并了解你的代码决策对性能的影响。传统的计算机科学学位只专注于让学校通过算法和数据结构的拐点。许多大学使用业界通常不使用的百年成语言来教授这一点，像 Scheme、Racket 或 LISP。</p>
+<p><em>在大多数技术面试中，面试官将会假设你已经通过了 web 开发拐点，因为这更容易做倒，并将他们的问题集中在评估你的算法和数据结构的技能上。</em> 这些问题一般会集中在我们上面提到的主题上：排序算法、反转链表以及使用堆栈、队列和树。 ** 一但开发者通过了 web 开发拐点以及算法和数据结构拐点，他们就掌握了通往王国的钥匙。 这些开发者将能够解决两者交叉的挑战：需要在高级 web 应用程序的上下文中构建的复杂算法。这是专业 web 开发者每天所做工作的核心。 ** 拐点的后果 当第一次听到时，拐点的最大后果听起来有点违反直觉。深吸一口气：</p>
+<p>#+begin_quote 在学习编程时，特定领域知识在大局中不重要。 #+end_quote</p>
+<p>没错。我没有开玩笑——这针的没有那么重要。一但你通过了拐点，这些概念将在一两周甚至几天的教程内流畅地翻译！</p>
+<p><em>最终真正重要的是：</em></p>
+<ul>
+<li>你对 <em>web 开发框架有扎实的掌握</em></li>
+<li>你对用任何编程语言 <em>编写的算法复杂的代码有扎实的掌握</em> ** 招聘经理希望开发者具有扎实的 web 开发和算法技能。 当我在 Paypal 工作时，我的团队聘请了一位没有 Rails 经验的高级 Rails 开发者——他对 Python、LISP 和 Perl 语言有许多开发经验。在几天之内，他就对团队已经产生了很大的冲击。并且在几周内：更是巨大的冲击。他很快升任技术团队领导，这是我参与过的最佳招聘决策之一。</li>
+</ul>
+<p><em>不要担心堆栈。</em> 许多人会说像是“AngularJS 最近很热门”、“JavaScript 在崛起”或“最新的流行是……”的事情，对此我的回复是：”所以呢？“当你正在学习如果编程时，你唯一的目标应该是找到拐点并消灭它。一旦你这样做了，学习这种最新的、性感的时尚根本不成问题。</p>
+<p><em>变得自力更生。</em> 拥有不依靠结构化的指导就能学会新的编程技能的能力，意味着你不再需要等待任何人来帮助你。这意味着对于你需要学习的大部分内容，你可以简单的搜索互联网并阅读你需要了解的各种资料。</p>
+<p>这不意味着你立即”知道“一切，而只是现在一切都是”可以弄清的“，因此本质上，你是不可阻挡的。 ** 你在拐点期间培养的技能 作为软件开发者，最好的参考资料是你已经编写的类似的代码。当你完全理解你编写的代码，你不需要将所有细节都提交到大脑中。这意味着 <em>在构建新功能时，你应该问自己的第一个问题是：”我之前构建过类似的东西吗？“</em> 如果答案时肯定的，重新访问并在脑海中逐行过一遍。向自己重新解释代码在做什么？并问自己”我现在可以使用相同的办法吗？“</p>
+<p><em>视频在解释特定领域的细节方面很糟糕</em> 因为它们需要太长的时间来个观看。比如你想集成 Goolge Maps API。一旦你有做过一次的经验，在 Github 中打开代码、复制代码并粘贴到新项目中可能不需要一分钟。另一方面，视频通常需要花费 10-30 分钟来重新观看。 ** 尽可能有效地通过拐点的策略 因为通过拐点时学习编程的最重要的一部分，你应该做好准备，让这个过程尽可能顺利。这意味着当你在教程阶段就应该开始准备，并在此期间保持正确的心态。</p>
+<p><em>在教程阶段，从结构化的资料中休息一下，并在次过程中给自己一些挑战问题。</em></p>
+<ul>
+<li>对于每一节课， <em>尝试做一些在你正在学习的教程范围之外的事情</em> 。如你果正在学习的教程提供了”挑战“或”自我指导“部分，将它们全部都完成。解决没有指导的挑战将会给你在没有结构化指导的情况下做事的重要经验。</li>
+<li><em>尽量少使用教程。</em> 在 Firehose，我们经常引导学生了解如果集成某些 gems 或使用提供的文档做事。而不是简单的让刚起步的人遵循教程中解释的说明，许多学生会遵循文档并将教程作为备份使用。 <em>注意文档将会把你当作已经通过了拐点的开发者来对待。</em> 越来越轻松的阅读和遵循 Github 上的文档将会使你在你一个人时比其他人更有优势。</li>
+<li>专注于要点并使用重复。学习如果做一些常见的事，像从头开始启动应用程序、将新的应用程序推送到个 Github 和 Heroku，以及尽早构建数据库迁移。</li>
+</ul>
+<p><em>突破拐点可能具有挑战性。这里有一些要点可以帮助你突破：</em></p>
+<ul>
+<li>了解 <em>这是一个困难的过程，并让你自己放松。</em> 此外，设定切合实际的期望。你无法将”超人“级别的学习教程的速度和”蜗牛“级别的自学速度进行比较。记住你学到了很多东西，但是在这个阶段，你正在学习一种全新的可以自己解决新事物的技能。</li>
+<li>如果你正在与自信心争斗，要指导你现在的感觉是完全正常的。继续努力。如果你还感觉挣扎，尝试和最近通过拐点的一些人交谈。他们能够与你所处的位置相关联，并向你保证你经历的只是暂时的。 <em>始终如一地工作，但是不要让自己过度劳累。</em> 在比赛的这个阶段，要知道你每天最多只能工作 6 小时左右。在精疲力尽的状态下工作只会延迟你建立拐点的时间。</li>
+</ul>
+<p>在这个阶段获取信心的最佳方法是客服你的任何疑虑。你的情绪可能会开始像过山车一样。有时，你会感觉自己着火了一样，但是在同一个问题上挣扎了 15 小时后，感觉截然相反是很常见的。</p>
+<p>无法知道某些事会占用你 5 分钟还是 5 小时可能会令人感到沮丧，但是每次你克服并成功实现了一个新功能，信心的快速增长将是你所需要的一切。在没有任何帮助的情况下解决了一些难题后，你会沉迷于在舒适区之外建造东西的感觉。 ** 如何知道你什么时候通过了拐点 拐点过程的最后阶段是可接受的。接受软件开发是一个不断学习的过程。接受那种你已经成功地学会了一切的感觉仅仅意味着你应该开始考虑解决更复杂的问题。</p>
+<p><em>你是否经历过拐点？分享这篇文章并开始和你的朋友对话——你会惊讶多少人已经到达并超越了这一刻。</em> * 原文链接 http://blog.thefirehoseproject.com/posts/learn-to-code-and-be-self-reliant/</p>]]></description>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
+    </item>    <item>
     <title><![CDATA[英语构词法]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e6%9e%84%e8%af%8d%e6%b3%95.html</link>
     <guid isPermaLink="false">https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e6%9e%84%e8%af%8d%e6%b3%95.html</guid>
@@ -99,7 +171,7 @@
 <p>截短构词：截取单词一部分作为新词</p>
 <p>缩写构词：选取多个单词首字母/部分字母</p>
 <p>转化构词：使用同一单词的不同词性</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[冠词]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%86%a0%e8%af%8d.html</link>
@@ -191,7 +263,7 @@
 <p>Papa Rabbit。要是说 a Papa Rabbit，就好像有很多个 Papa Rabbit 似的，而要是说 the Papa Rabbit 岂不是多此一举。 ** 固定表达 还有一些固定表达使用的也是零冠词，比如：</p>
 <p>#+begin_example from time to time 不时地 face to face 面对面地 out of question 毫无疑问 #+end_example</p>
 <p>特别注意最后这个 out of question。与之相似的 out of the question 是不可能，表否定；而去掉 the 变成零冠词居然就是相反的意义了！</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[主谓一致]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%b8%bb%e8%b0%93%e4%b8%80%e8%87%b4.html</link>
@@ -263,7 +335,7 @@
 <p>谓语动词 like 与离它最近的 other animals 保持一致。 ** there be 同样的还有 there be 句型，如：</p>
 <p>There is a carrot and two apples on the table. 桌上有一根胡萝卜和两个苹果。</p>
 <p>谓语动词 is 与离它最近的 a carrot保持一致。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[省略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%9c%81%e7%95%a5.html</link>
@@ -320,7 +392,7 @@
 <p>I can eat more carrots than you (can eat carrots). 我能吃胡萝卜比你多。（比较状语从句的省略）</p>
 <p>You are smater than I (am smart.) 你比我聪明。（比较状语从句的省略） *** 主句 如果很明显主句的主语是“我”，即 I am，那 I am 也可以省略：</p>
 <p>(I am) sorry to hear that.</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[强调]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%bc%ba%e8%b0%83.html</link>
@@ -359,7 +431,7 @@
 <p>强调 lovely： I met a <em>really lovely</em> rabbit in the field this morning!</p>
 <p>强调 lovely： <em>What a lovely</em> rabbit I met in the field this morning!</p>
 <p>强调 lovely： <em>How lovely</em> the rabbit I met in the field this morning was! * 总结 ** “口气” *** 重读单词 *** 用叹词强调 *** 使用特定语音/语调/语气强调 ** 书面格式 *** 粗体 *** 斜体 *** 下划线 *** 全部大写 *** 标点符号 ** 词汇强调 *** 添加强调词 *** 重复单词 *** 使用助动词 *** 强调代词 ** 句式强调 *** 倒装 *** 感叹 *** it + be 动词 + that…</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[介词攻略]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e4%bb%8b%e8%af%8d%e6%94%bb%e7%95%a5.html</link>
@@ -647,7 +719,7 @@
 <p>但是，要特别指出，有一类“介词固定搭配”，即当动词和介词搭配在一起，往往会产生非常“神奇的变化”，营造出看似完全无关的含义。这就是所谓“短语动词”。开头提到的那些词组就属于这个范畴：</p>
 <p>#+begin_example check out 退房 make out 分辨 put out 熄灭 pass out 晕倒 work out 健身 look out 小心 knock out 打晕 #+end_example</p>
 <p>很多短语动词是需要去特别记忆，而不是很容易通过字面意思就能理解。短语动词是英语的一大难点。往往动词本身和之后的介词都明白什么意思，但凑到一起就是完全猜不到意思，相当于一个全新的单词。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[被动语态]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%a2%ab%e5%8a%a8%e8%af%ad%e6%80%81.html</link>
@@ -707,7 +779,7 @@
 <p>-&gt; <em>Might</em> the carrot <em>be</em> eaten by the rabbit.</p>
 <p>归根结底，这些变位主要是针对构成被动语态所需的 be 动词的变位。</p></li>
 </ul>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[独立主格]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e7%8b%ac%e7%ab%8b%e4%b8%bb%e6%a0%bc.html</link>
@@ -760,7 +832,7 @@
 <p>也就说，这个例子里，with 是可以省略掉的，其他部分不变。但是通常英语独立主格省略 with 后，甚至也会进一步简化句子结构，比如：</p>
 <p>The rabbit came in, with <em>a</em> carrot in <em>his</em> hand. 兔子进来了，手里拿着一根胡萝卜。</p>
 <p>-&gt; The rabbit came in, carrot in hand.</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[倒装句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e5%80%92%e8%a3%85%e5%8f%a5.html</link>
@@ -804,7 +876,7 @@
 <p>The rabbit can’t ride a bicycle; neither/nor can the wolf. 兔子不会骑自行车，狼也不会。 * 形式倒装（谓语动词不提前） 仅将强调内容提至句首；谓语动词不提前。 ** 感叹句中的倒装 What a delicious carrot it is! 多么美味的一根胡萝卜！ ** 比较级句型种的倒装（如“the more…, the more…”） The more carrots you eat, the healthier you become. 吃胡萝卜越多，你就越健康。</p>
 <p>这句话其实相当于：</p>
 <p>If you eat more carrots, you will become healthier. 如果你多吃些胡萝卜，你就会更健康。 ** “however”;“whatever”…引导让步状语从句时的倒装 However long this video is, you should watch it till the end. 不论这个视频多场，你都应该看完。 ** “as”;“thought”…引导让步状语从句时的倒装 Much as he likes the carrots, he doesn’t want to eat it. 尽管他非常喜欢胡萝卜，但他不想吃它。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[非谓语动词详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e9%9d%9e%e8%b0%93%e8%af%ad%e5%8a%a8%e8%af%8d%e8%af%a6%e8%a7%a3.html</link>
@@ -955,7 +1027,7 @@
 <p>如果是一只兔子主动去看什么东西，那才说：</p>
 <p>Seeing the carrot field, the rabbit ran towards it. 看到胡萝卜田，兔子朝着它跑去。</p>
 <p>这里是兔子主动看到了胡萝卜田，所以才用 seeing。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Ebuild-defined Variables]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Ebuild-defined%20Variables.html</link>
@@ -1050,7 +1122,7 @@
 </tr>
 </tbody>
 </table>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[英语从句]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%8b%b1%e8%af%ad%e4%bb%8e%e5%8f%a5.html</link>
@@ -1346,7 +1418,7 @@
 <p>如果一定要用 so…that…，也不是不可以，但是要说：</p>
 <p>It was <em>so</em> /tasty/ a carrot <em>that</em> I ate it all at once.</p>
 <p>so 后面要接形容词，所以只能把 a carrot 放在形容词之后了。</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[虚拟语气]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%99%9a%e6%8b%9f%e8%af%ad%e6%b0%94.html</link>
@@ -1404,7 +1476,7 @@
 <p>I demand/suggest/insist/order that you <em>+should+ give</em> me a carrot. 我要求/建议/坚持/命令你给我一根胡萝卜。</p>
 <p>上面的 should 也可以省略。 * 英语动词语气总结 ** 陈述语气 描述现实 ** 祈使语气 命令，请求…… ** 虚拟语气 “脑中的”，“非现实的”…… *** 与事实相反的假设 **** 与现在相反 构成：if + 过去式；would + 原形 **** 与过去相反 构成：if + 过去完成式；would have + 过去分词 **** 与将来相反（可能性小） 构成：if + should + 原形；would + 原形 *** 表达愿望、请求、建议、命令等 **** wish ***** 与现在相反 构成：wish + 过去式 ***** 与过去相反 构成：wish + 过去完成式 ***** 与将来相反 构成：wish + would/should/could/might + 动词原形 **** demand, suggest, insist, would rather… +(should) + 动词原形</p>
 <p>虚拟语气可以存在于不同类型的从句中： - 主语从句 - 宾语从句 - 主语补语从句（表语从句） - 定语从句</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法框架]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95%e6%a1%86%e6%9e%b6.html</link>
@@ -1499,7 +1571,7 @@
 <p>但是很多助动词特别喜欢伪装，它们除了做助动词（没有实义，只是帮助谓语动词而已），还可以做实义动词，甚至其他词性。比如 can 还可以是易拉罐，might 可以是力量，must 可以是发霉，do 可以是做某事，have 可以是拥有，be 可以是存在。 * 非谓语动词 动词除了充当句子中的谓语动词，还有可能充当：主语、宾语、宾语补语、主语补语、定语、状语、同位语等。只不过需要把谓语动词修改一下，改成非谓语动词。不仅如此，非谓语动词几乎可以 <em>取代所有的从句</em> ，从而 <em>简化句子</em> 。只不过这样的动词就不再具有表示动作时间、状态、语态、语气的功能。</p>
 <p>它们是以不同的形式出现在句中，包括： - 动词不定式，e.g. to eat - 现在分词，e.g. eating - 动名词，e.g. eating - 过去分词，e.g. eaten * 总结 英语语法的核心就是 <em>动词</em> 。动词能够串起几乎所有语法概念。</p>
 <p>[[file:../../pics/English/verbs.png]] * 参考视频 https://www.youtube.com/watch?v=is7vn5URVcc</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[16种时态详解]]></title>
     <link>https://www.codeplayer.org/Wiki/English/16%e7%a7%8d%e6%97%b6%e6%80%81%e8%af%a6%e8%a7%a3.html</link>
@@ -1702,196 +1774,7 @@
 <p>I <em>said</em> I <em>would have eaten</em> a carrot by 1PM tomorrow/yesterday. 我 <em>（之前）说</em> 我明天/昨天下午 1 点 <em>会</em> 已经 <em>吃掉了</em> 根胡萝卜。（我之前说我明天/昨天下午一点会已经做完了吃胡萝卜这个动作。） *** 过去将来完成进行时态 <em>将来</em> 完成进行时态： <em>will</em> + have + been + 动词的完成分词</p>
 <p><em>过去将来</em> 完成进行时态： <em>would</em> + have + been + 动词的完成分词</p>
 <p>I <em>said</em> I <em>would have been eating</em> lunch for 2 hours by 1Pm tomorrow/yesterday. 我（之前）说我明天/昨天下午 1 点前会已经吃了两个钟头中饭。 （我 <em>之前说</em> 我 <em>会</em> 明天/昨天下午 1 点时在吃中饭这个过程中， <em>之前已经吃了 2 个钟头</em> ，之后还会 <em>继续吃</em> 。） * “不规则”动词的“规律” https://www.yingyutu.com/bgz * 参考视频 https://www.youtube.com/watch?v=P5FrIGgyNSc</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[配置zfs]]></title>
-    <link>https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e9%85%8d%e7%bd%aeZFS.html</guid>
-    <description><![CDATA[<p>#+TITLE: 配置zfs #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li><p>环境 ST2000LM003 是仅有的一款 2T 大小的 CMR 2.5 英寸硬盘，目前非常稀有，淘宝上卖的 ST2000LM003 散装硬盘大概率是清零盘。不过我从咸鱼买到了两块内芯是 ST2000LM003 的移动硬盘，拆解后将其中的 2.5 英寸硬盘放到 deskmini 中组成小型 NAS。</p></li>
-<li><p>系统：Gentoo Linux</p></li>
-<li><p>机器：deskmini A300</p></li>
-<li><p>硬盘：ST2000LM003 * 2</p></li>
-<li><p>安装 ZFS Gentoo 系统安装 zfs 还算简单，不过要注意开启一些方便使用的 USE。</p></li>
-</ul>
-<p>#+begin_src sh echo “sys-fs/zfs dist-kernel” &gt;&gt; /etc/portage/package.use echo “sys-fs/zfs-kmod dist-kernel” &gt;&gt; /etc/portage/package.use emerge -avt sys-fs/zfs #+end_src</p>
-<p>注意，每次更新内核后，都需要重新安装 zfs 模块。Gentoo 可以通过命令 =emerge -avt <span class="citation" data-cites="module-rebuild">@module-rebuild</span>= 完成。</p>
-<p>由于这里我并不使用 zfs 作为 root 的文件系统，所以省略了将 zfs 模块添加到 initramfs 中等步骤。 * 配置 ZFS ** 设置 ARC 内存大小 zfs 的 ARC 缓存默认最大使用系统的三分之二内存。如果想要内存占用少一点，就需要使用下面的方法加以限制，这里限制了最大使用 4GB 内存。</p>
-<p>#+begin_src sh echo “options zfs zfs_arc_max=4294967296” &gt;&gt; /etc/modprobe.d/zfs.conf #+end_src ** 开启 systemd 服务 开启以下服务后，zfs 才能正常使用。注意开启后需要重启，或者手动启动以下服务。</p>
-<p>#+begin_src sh systemctl enable zfs.target systemctl enable zfs-import-cache systemctl enable zfs-mount systemctl enable zfs-import.target #+end_src * 创建 zpool 与 dataset 现在我们就可以正式开始使用 zfs 了，我们先创建 zpool 与 dataset，并设置一些优化参数。这里我们将两块 ST2000LM003 组成 raid0。</p>
-<p>首先，使用命令查看硬盘的 id，通过 id 创建 zpool 是最佳的方法，可以避免因盘序或 UUID 变化带来的一些问题。</p>
-<p>#+begin_src sh ➜ ls -lh /dev/disk/by-id/ total 0 lrwxrwxrwx 1 root root 9 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 -&gt; ../../sdb lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part1 -&gt; ../../sdb1 lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9DG938918-part9 -&gt; ../../sdb9 lrwxrwxrwx 1 root root 9 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 -&gt; ../../sda lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part1 -&gt; ../../sda1 lrwxrwxrwx 1 root root 10 Jul 18 15:06 ata-ST2000LM003_HN-M201RAD_S362J9EG922993-part9 -&gt; ../../sda9 #+end_src</p>
-<p>这里，我们得到两块硬盘的 id 分别为 ata-ST2000LM003_HN-M201RAD_S362J9DG938918 和 ata-ST2000LM003_HN-M201RAD_S362J9EG922993。接下来，就通过这两个参数来创建 zpool。</p>
-<p>#+begin_src sh # 创建zpool，注意机械硬盘必须使用参数ashift=12，具有8K扇区的SSD应使用ashift=13。该参数在创建zpool完毕以后，就无法修改了。 zpool create -f -o ashift=12 storage ata-ST2000LM003_HN-M201RAD_S362J9DG938918 ata-ST2000LM003_HN-M201RAD_S362J9EG922993 # 创建dataset并设置挂载点 zfs create -o mountpoint=/srv/data storage/data zfs create -o mountpoint=/srv/data/nas storage/data/nas # 开启压缩并使用压缩算法lz4 zfs set compression=lz4 storage # 因为性能原因，最好设置xattr。详情见https://github.com/zfsonlinux/zfs/issues/170#issuecomment-27348094 zfs set acltype=posixacl storage zfs set xattr=sa storage zfs set aclinherit=passthrough storage # 仅在modified time或changed time 改变，或者acces time24小时内没有更新时，才更新access time zfs set atime=on storage zfs set relatime=on storage # SSD还需要开启autotrim zpool set autotrim=on storage #+end_src</p>
-<p>最后，我们还需要生成 hostid 和更新 cachefile。</p>
-<p>#+begin_src sh # 生成hostid，注意生成完hostid后需要更新initramfs zgenhostid # 更新cachefile zpool set cachefile=/etc/zfs/zpool.cache storage #+end_src * 参考链接 1. ZFS archwiki：https://wiki.archlinux.org/title/ZFS 2. ZFS Gentoo wiki：https://wiki.gentoo.org/wiki/ZFS 3. 在 Gentoo 上优雅的吃 ZFS：https://www.yafa.moe/post/gentoo-on-zfs/ 4. 在 Linux 上安装和使用 ZFS：https://www.escapelife.site/posts/caf259ea.html 5. ZFS dedup 属性：https://docs.oracle.com/cd/E26926_01/html/E25826/gazss.html#gjhav 6. Attaching and Detaching Devices in a Storage Pool：https://docs.oracle.com/cd/E19120-01/open.solaris/817-2271/gcfhe/index.html</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[双显卡笔记本独显直通]]></title>
-    <link>https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Blog/%e5%8f%8c%e6%98%be%e5%8d%a1%e7%ac%94%e8%ae%b0%e6%9c%ac%e7%8b%ac%e6%98%be%e7%9b%b4%e9%80%9a.html</guid>
-    <description><![CDATA[<p>#+TITLE: 双显卡笔记本独显直通 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup</p>
-<ul>
-<li>介绍 双显卡笔记本中直通独显（dGPU）到 win10 虚拟机。</li>
-</ul>
-<p>环境： - 联想 Legion R7000P 2020 笔记本 - RTX2060 笔记本显卡 - libvirt+qemu - Host: Gentoo Linux - Guest: Windows 10 LTSC 2019 * MUXed MUXed 结构的笔记本才容易实现独立显卡直通，Legion R7000P 应该就是 MUXed 的。关于什么是 MUXed 的，可以看下图的解释。</p>
-<p>[[file:../pics/Blog/muxed.jpg]]</p>
-<p>关于如何检测笔记本是否是 MUXed 的，目前没有什么好的办法。有一种说法是运行 lspci，查找有关 Intel HD Graphics/AMD GPU 和 NVIDIA 的设备：</p>
-<ul>
-<li>如果独显设备名以 3D Controller 开头，那你的电脑就是第二种 MUXless（核显直连显示器）。</li>
-<li>如果独显设备名以 VGA Controller 开头，并且有一个 HD Graphics/AMD GPU 核显，那你的电脑是第三种 MUXed（核显、独显切换）。</li>
-<li>启用 IOMMU 和 vfio 模块 ** IOMMU</li>
-<li>intel CPU：添加内核参数 =intel_iommu=on iommu=pt= ，BIOS 开启 VT-d</li>
-<li>amd CPU：添加内核参数 =iommu=pt= ，BIOS 开启 AMD-Vi ** vfio 添加模块 =vfio_pci vfio vfio_iommu_type1 vfio_virqfd= 到 initramfs 中。如果是像我一样使用 dracut 生成 initramfs，则在 =/etc/dracut.conf= 中添加配置 ~add_drivers+=" vfio_pci vfio vfio_iommu_type1 vfio_virqfd "~ ，之后重新生成 initramfs。</li>
-<li>隔离 GPU #+begin_src sh #!/bin/bash shopt -s nullglob for g in <code>find /sys/kernel/iommu_groups/* -maxdepth 0 -type d | sort -V</code>; do echo “IOMMU Group ${g##<em>/}:" for d in <span class="math inline">$g/devices/*; do  echo -e "\t$</span>(lspci -nns ${d##</em>/})” done; done; #+end_src</li>
-</ul>
-<p>运行上述脚本，查看显卡所在的 IOMMU Group，并得到显卡相关设备的 device id。</p>
-<p>#+begin_src IOMMU Group 10: 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) 01:00.1 Audio device [0403]: NVIDIA Corporation TU106 High Definition Audio Controller [10de:10f9] (rev a1) 01:00.2 USB controller [0c03]: NVIDIA Corporation TU106 USB 3.1 Host Controller [10de:1ada] (rev a1) 01:00.3 Serial bus controller [0c80]: NVIDIA Corporation TU106 USB Type-C UCSI Controller [10de:1adb] (rev a1) #+end_src</p>
-<p>如上所见，device id 分别为 <sub>10de:1f15</sub> 、 <sub>10de:10f9</sub> 、 <sub>10de:1ada</sub> 、 <sub>10de:1adb</sub> 。再将以上 deivce id 作为参数添加到内核参数或 =/etc/modprobe.d/vfio.conf= 中。</p>
-<ul>
-<li>内核参数：vfio-pci.ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
-<li>=/etc/modprobe.d/vfio.conf= ：options vfio-pci ids=10de:1f15,10de:10f9,10de:1ada,10de:1adb</li>
-</ul>
-<p>dracut 必须将 device id 添加到内核参数中，并且添加参数 =rd.driver.pre=vfio_pci= 。</p>
-<p>最后重启电脑。开机后通过命令 =lspci -k= 确认上述 device id 对应的设备在使用 vfio-pci 驱动。如果有各别设备没有使用 vfio-pci 驱动，则可以通过手动 unbind 和 bind 驱动的方式加载 vfio-pci 驱动。比如如果 0000:01:00.2 仍在使用 xhci_hcd 驱动，则：</p>
-<p>#+begin_src sh # run as root echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/xhci_hcd/unbind echo -n “0000:01:00.2” &gt; /sys/bus/pci/drivers/vfio-pci/bind #+end_src * 创建虚拟机 首先使用 libvirt 创建一个非显卡直通的虚拟机，如果你有多余的显示器和键鼠，也可以直接创建显卡直通的虚拟机。这里我们假设没有多余的设备，并且之后使用 RDP 连接虚拟机。</p>
-<p>首先下载[[https://msdn.itellyou.cn/][windows 10 LTSC 2019]]和 [[https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/stable-virtio/virtio-win.iso][virtio windows驱动]]镜像。</p>
-<p>创建虚拟机： - =Overview= ：Firmware 选择 UEFI x86_64:/usr/share/edk2-ovmf/OVMF_CODE.fd - =CPUs= ：选择 Topology，Manually set CPU topology，Sockets 设为 1，Cores 按需要来，我设为 4，Threads 设置为 2。这样一共就分配了 4 核 8 线程的 CPU - =Memory= ：内存我设置为 32G - =SATA Disk= ：Disk Bus 选择 Virtio，可以最小化磁盘性能损耗 - =NIC= ：Device model 也选择 virtio - 之后再添加一个 =Stroage= ，选择 Select custom storage 并选中之前下载的 virtio windows 驱动镜像，然后 Device type 选择 CDROM device - 最后在 =Boot Options= 中选中需要启动的设备</p>
-<p>开始安装，在 windows 安装进行到选择硬盘的时候，通过之前加载的 virtio win 驱动的 CDROM，安装 virtio 的磁盘和网络驱动。具体参考可见视频 https://www.bilibili.com/video/BV1dQ4y1o78R 的 29 分 35 秒。安装完毕进入 windows，开启远程桌面并记下 IP，之后通过 RDP 连接虚拟机。 * 配置和优化 RemoteFX ** 配置 RemoteFX 1. 通过 =Win+R= 运行 =gpedit.msc= 2. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= - 开启 =对 RemoteApp 使用高级 RemoteFX 图形= - （可选）开启 =配置 RemoteFX 自适应图形的图像质量= ，设置为高 - 开启 =为专门针对 Windows Server 2008 R2 SP1 设计的 RemoteFX 客户端启动 RemoteFX 编码= - 开启 =配置 RemoteFX 数据的压缩= ，并设置为不需使用 RDP 压缩算法 + 连接压缩会导致编码和解码时产生额外的延迟 3. 定位到 =计算机配置= -&gt; =管理模板= -&gt; =Windows组件= -&gt; =远程桌面服务= -&gt; =远程桌面会话主机= -&gt; =远程会话环境= -&gt; =RemoteFX for Windows Server 2008 R2= - 开启 =配置RemoteFX= - （可选）开启 =使用RemoteFX时优化视觉体验= ，并都设置为最高 ** 解除 30-ish fps 限制 1. 启动注册表编辑器 2. 定位并单击以下注册表子键： =HKEY_LOCAL_MACHINEServer= 3. 在 =编辑= 菜单中选择 =新建= ，然后再选择 =DWORD（32位）值= 4. 输入 =DWMFRAMEINTERVAL= 并回车 5. 右键 =DWMFRAMEINTERVAL= ，选择 =修改= 6. 选择十进制，并输入 15。该设置将最大帧率设置为每秒 60 帧 (FPS)。 * 显卡直通 先关闭虚拟机。首先我们需要确认 host 和 guest 中的 GPU 硬件 ID 一致的，然而 Legion R7000P 中两者不一致，准确的来说是其中的 Sub ID 部分不一致，所以需要手动修改一下。首先通过命令 =lspci -nnk | egrep -A3 “VGA|3D”= 查看显卡的 Vendor ID 和 Device ID。</p>
-<p>#+begin_src ➜ lspci -nnk | egrep -A3 “VGA|3D” 01:00.0 VGA compatible controller [0300]: NVIDIA Corporation TU106M [GeForce RTX 2060 Mobile] [10de:1f15] (rev a1) Subsystem: Lenovo TU106M [GeForce RTX 2060 Mobile] [17aa:3a43] Kernel driver in use: vfio-pci Kernel modules: nouveau – 06:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Renoir [1002:1636] (rev c6) Subsystem: Lenovo Renoir [17aa:3a47] Kernel driver in use: amdgpu Kernel modules: amdgpu</p>
-<p>#+end_src</p>
-<p>其中 NVIDIA 独显的 Vendor ID 为 10de，Device ID 为 1f15。再用命令 ~grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent~ 查看 Sub Vendor ID 和 Sub Device ID。</p>
-<p>#+begin_src ➜ grep “PCI_SUBSYS_ID=” /sys/bus/pci/devices/0000:01:00.0/uevent PCI_SUBSYS_ID=17AA:3A47 #+end_src</p>
-<p>其中 Sub Vendor ID 为 17AA，Sub Device ID 为 3A47。将 17AA 和 3A47 转换为十进制 6058 和 14919，并在虚拟机的 XML 中添加配置：</p>
-<p>#+begin_src xml <domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="kvm"> … <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>
-<p>注意 XML 的第一行一定要添加 <sub>xmlns:qemu=“http://libvirt.org/schemas/domain/qemu/1.0”</sub> ，否则后面的配置无法成功添加。</p>
-<p>在 libvirt 中添加硬件，选择 PCI Host Device，然后将 =0000:01:00.0 NVIDIA Corporation GeForce RTX 2060 Mobile= 和 =0000:01:00.1 NVIDIA Corporation High Definition Audio Controller= 等都添加进去。</p>
-<p>最后再在 libvirt 中删除虚拟机的 =Display Spice= 和 =Video QXL= ，在 =CPUs= 中取消 Copy host CPU configuration 并将 Model 选择为 host passthrough。如果你需要直通鼠标和键盘，也可以在这个时候添加。 * 创建网桥 有线网卡的网桥创建起来较为简单，这里就不详细介绍了，有需要的可以查看我上一篇[[file:软路由虚拟机.org][软路由虚拟机]]的 BLOG。因为是笔记本，所以这里主要介绍无线网卡的桥接方法。</p>
-<p>先开启 proxy_arp 和 ip_forward，修改配置文件 =/etc/sysctl.conf= ，添加下述配置：</p>
-<p>#+begin_src conf net.ipv4.ip_forward = 1 net.ipv4.conf.all.proxy_arp = 1 #+end_src</p>
-<p>再点击 libvirt 菜单栏上的 =Edit= -&gt; =Connection Details= ，假设 host 的 ip 为 192.168.3.12，无线网卡为 wlp4s0，新建一个 Network， =Name= 设置为 proxyArp， =Mode= 选择 Routed， =Forward to= 选择 Physical device， =Device= 设置为 wlp4s0， IPv4 的 =Network= 设置为 192.168.3.100/28，完成创建。</p>
-<p>然后修改 win10 虚拟机的 =NIC= 配置，将 =Network source= 改为 Virtual network ‘proxyArp’: Route to wlp4s0，最后重新启动虚拟机与物理机。 * 远程连接 重新启动虚拟机后，使用 RDP 连接到虚拟机中。到 nvidia 官网下载驱动，并进行安装。如果安装过程中并未出现问题，则至此显卡直通配置完成。另外如果不外接显示器的话，windows 的分辨率似乎会被限制在 640x480，不知道会不会对游戏有影响，所以有条件还是买一个 HDMI 欺骗器接到独显连接的显示接口上。</p>
-<p>远程连接方式一共有三种，分别可以适用于不同的情况。 ** RDP 简单使用方法： - 确保使用 FreeRDP 2.0 - 获取 windows 虚拟机 IP，比如 192.168.3.108 - xfreerdp /v:192.168.3.108:3389 /w:1600 /h:900 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag</p>
-<p>对于使用 xfreedp 的 RemoteFX 连接的一些问题： - 只有窗口化的游戏可以运行，全屏将会触发 d3d11 0x087A0001 不能设置分辨率等问题。媒体播放器不受其影响。 + 作为解决方案，使用无边框模式游戏，或其他等效方案 + windows 客户端似乎没有该问题 - 由于 RDSH/RDVH 连接不支持“相对”鼠标，鼠标会乱跑 + 重定向 XBOX 手柄或 USB 摇杆可能会解决这个问题？ + 使用 Synergy (v1) 并启用相对鼠标模式 + 通过 RDP RemoteFX 运行 3D 游戏鼠标不稳定 ** Looking glass Looking glass 的优点是低延迟，其并不是通过网络与虚拟机通信，而是直接使用一块共享内存。缺点是只能本地连接，而且似乎需要外接一个显示设备（或 HDMI 欺骗器）才能让键盘、鼠标正常工作，并且似乎不能使用 spice 套娃远程操作 looking glass。</p>
-<p>*** 安装 client 首先在 host 系统上安装 looking glass client，在 gentoo 上可以通过如下步骤直接安装我打包的 looking glass。</p>
-<p>#+begin_src sh sudo eselect repository enable gig sudo emerge –sync gig sudo emerge -avt looking-glass #+end_src *** 计算内存大小 通过以下公式，根据你期望的最大分辨率来计算内存大小。</p>
-<p>#+begin_src width x height x 4 x 2 = total bytes</p>
-<p>total bytes / 1024 / 1024 = total megabytes + 10 #+end_src</p>
-<p>比如，我想要最大使用 4K 分辨率（3840x2160）：</p>
-<p>#+begin_src 3840 x 2160 x 4 x 2 = 66355200 bytes</p>
-<p>66355200 / 1024 / 1024 = 63.28 MB + 10 = 73.28 #+end_src</p>
-<p>最后要注意内存的大小要上向取整到最接近的 2 的幂，在上面的例子中则应为 128。 *** 配置 libvirt #+begin_src xml … <devices> … <shmem name='looking-glass'> <model type='ivshmem-plain'/> <size unit='M'>128</size> </shmem> </devices> … #+end_src</p>
-<p>将以上内容添加到虚拟机的 XML 配置中，其中 128 即为上面计算出来的大小。</p>
-<p>如果想要通过 spice 实现键盘和鼠标输入与剪贴板共享，则必须添加 spice 设备。 - 在 libvirt 中，选择 =Add Hardware= ，然后再选择 =Graphics= ，使用默认的 spice 配置即可，最后完成添加 - 选择 =Video= 设备，然后在 =Model= 栏中输入 none，注意必须要完成这一步，否则可能会造成虚拟机不使用直通的显卡渲染 - 如果有 =tablet= 设备，则删除 - 如果没有 =Mouse= 设备，则添加一个 - 如果没有 =Keyboard= 设备，则添加一个 + 这里使用 Virtio 的键盘可以更好的提高性能，然而 PS/2 的键盘没办法删掉，不知道被哪个设备依赖了，所以就使用 PS/2 的键盘了 + 还有如果使用 Virtio 的键盘，则需要通过上面加载的 virtio windows 驱动 的 CDROM，以安装驱动 *** 创建共享内存文件 新建文件 =/etc/tmpfiles.d/10-looking-glass.conf= ，其内容为：</p>
-<p>#+begin_src conf #Type Path Mode UID GID Age Argument f /dev/shm/looking-glass 0660 user kvm - #+end_src</p>
-<p>将其中的 user，改为你自己的用户名。最后使用命令 =systemd-tmpfiles –create /etc/tmpfiles.d/10-looking-glass.conf= 创建共享内存文件，无需等待下次重启。 *** 安装 host 首先需要在 windows 中安装 IVSHMEM 驱动，windows 不会自己安装 IVSHMEM 设备，相反它只会为该设备安装一个假驱动。先下载需要安装的驱动程序，https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/ ，注意必须下载 0.1.161 或更高的版本，最后将其解压。</p>
-<p>安装 IVSHMEM 驱动需要打开 =设备管理器= ，然后在 =系统设备= 下，找到 =PCI标准内存控制器= ，然后选择 =更新驱动程序= ，再选择手动更新，选择我们之前下载并解压好的驱动目录，然后安装驱动即可。</p>
-<p>host 需要在 windows 虚拟机中安装，先下载与 client 版本对应的 host 安装文件：https://looking-glass.io/downloads 。下载完成后解压、安装即可，完成后重启虚拟机，然后通过 log 文件查看其是否正常启动，log 在开始菜单里就有。</p>
-<p>最后再安装一下 spice guest tools， https://www.spice-space.org/download.html#windows-binaries ，以更好的支持鼠标与剪贴板共享。 *** 配置 client 我使用的配置如下，将配置文件放在 =~/.looking-glass-client.ini= 或 =/etc/looking-glass-client.ini= ：</p>
-<p>#+begin_src ini [app] renderer=egl shmFile=/dev/shm/looking-glass</p>
-<p>[win] borderless=yes fullScreen=yes size=1920x1080</p>
-<p>[input] grabKeyboard=yes escapeKey=97</p>
-<p>[spice] captureOnStart=yes #+end_src</p>
-<p>由于我的笔记本没有 ScrLk 按键，所以将 escape 键设置为了 右 Ctrl 按键。</p>
-<p>至此 looking glass 配置完成，运行命令 looking-glass-client 连接到虚拟机。 *** 配置 Scream 由于 looking glass 不支持传递音频，所以我们还需要使用 Scream 将 VM 的音频传递给 host。</p>
-<p>首先，编辑 windows 虚拟机的 XML，添加以下部分：</p>
-<p>#+begin_src xml … <devices> … <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> </shmem> </devices> … #+end_src</p>
-<p>然后再如 looking glass 一样，添加配置文件 =/etc/tmpfiles.d/11-scream-ivshmem.conf= ，并运行命令 =systemd-tmpfiles –create /etc/tmpfiles.d/11-scream-ivshmem.conf= 。</p>
-<p>#+begin_src conf f /dev/shm/scream-ivshmem 0660 user kvm - #+end_src</p>
-<p>如果没有安装 IVSHMEM 驱动，则需要安装一下，跟上面一样。然后下载 scream 的 windows 驱动，地址： https://github.com/duncanthrax/scream/releases ，解压并进行安装。</p>
-<p>再以管理员权限在 CMD 中运行 =REG ADD HKLM/v UseIVSHMEM /t REG_DWORD /d 2= 。</p>
-<p>在 Linux 物理机中安装 scream，然后创建配置文件 =~/.config/systemd/user/scream-ivshmem-pulse.service= ：</p>
-<p>#+begin_src [Unit] Description=Scream IVSHMEM pulse receiver After=pulseaudio.service Wants=pulseaudio.service</p>
-<p>[Service] Type=simple ExecStartPre=/usr/bin/truncate -s 0 /dev/shm/scream-ivshmem ExecStartPre=/bin/dd if=/dev/zero of=/dev/shm/scream-ivshmem bs=1M count=2 ExecStart=/usr/bin/scream -m /dev/shm/scream-ivshmem</p>
-<p>[Install] WantedBy=default.target #+end_src</p>
-<p>最后运行以下命令即可：</p>
-<p>#+begin_src sh systemctl start –user scream-ivshmem-pulse systemctl enable –user scream-ivshmem-pulse #+end_src</p>
-<p>这样就配置完成了，在 looing glass 里就可以听到声音了。 ** steam 远程畅玩（流式传输） 因为 RDP 的限制，像 steam 家庭串流或 Geforce Experience 的方式对游戏来说更为推荐。</p>
-<p>如果不想每次串流游戏都输入密码解锁屏幕，则可以通过 RDP 以管理员权限运行 cmd，然后运行以下命令，也可以将其保存为脚本，方便以后使用。注意运行完该命令会立马断开 RDP。</p>
-<p>#+begin_src <span class="citation" data-cites="powershell">@powershell</span> -NoProfile -ExecutionPolicy unrestricted -Command “$sessionid=((quser $env:USERNAME | select -Skip 1) -split ‘+’)[2]; tscon $sessionid /dest:console” 2&gt; UnlockErrors.log #+end_src * benchmark 简单运行了一下 3dmark 的 Time Spy，做虚拟机的图形性能测试。测试了以下几种情况：</p>
-<ul>
-<li>win10 + 物理机直接运行，3dmark 得分 6900</li>
-<li>win10 + 虚拟机显卡直通 + 外接显示器，3dmark 得分 6000</li>
-<li>win10 + 虚拟机显卡直通 + steam 串流，3dmark 得分 5600</li>
-<li>win10 + 虚拟机显卡直通 + looking glass，3dmark 得分 5000，并且在加载的时候，画面延迟近 10 秒</li>
-</ul>
-<p>由此可见，想要玩游戏，还是最好外接显示器，或者起码使用 steam 串流吧，个人感觉 looking glass 的性能甚至可能没有 RDP 高，但 RDP 无法运行 3dmark，所以无法比较测试。另外这几种情况中，CPU 得分的差距更大，但一般游戏也不会占用过多 CPU 资源，所以这里并没有记录。</p>
-<p>PS：win10 + 虚拟机显卡直通 + looking glass + HDMI 欺骗器，3dmark 得分也是 5600，looking glass 的性能有待进一步测试。 * 参考链接 1. PCI passthrough via OVMF https://wiki.archlinux.org/title/PCI_passthrough_via_OVMF 2. [GUIDE] Optimus laptop dGPU passthrough https://gist.github.com/Misairu-G/616f7b2756c488148b7309addc940b28 3. Vendor ID &amp; Device ID https://github.com/marcosscriven/ovmf-with-vbios-patch/issues/2 4. 笔记本 Optimus MUXless 下的 Intel 和 NVIDIA 虚拟机显卡直通 https://lantian.pub/article/modify-computer/laptop-intel-nvidia-optimus-passthrough.lantian/ 5. ledis 的单显卡直通教程 https://github.com/ledisthebest/LEDs-single-gpu-passthrough/blob/main/README-cn.md 6. Looking glass Installation https://looking-glass.io/docs/676/install 7. Bridging Network Connections with Proxy ARP https://wiki.debian.org/BridgeNetworkConnectionsProxyArp 8. setup kvm on a wireless interface on a laptop machine https://unix.stackexchange.com/questions/159191/setup-kvm-on-a-wireless-interface-on-a-laptop-machine 9. 桥接无线网卡 https://blog.lilydjwg.me/2020/5/19/bridged-wireless-network.215330.html * 附录：XML 配置 最后附上我的虚拟机的 XML 配置。</p>
-#+begin_src xml <domain type='kvm' id='1' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'> <name>win10</name> <uuid>d5da831a-c1eb-4668-a864-0731557d80a0</uuid> <metadata> <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0"> <libosinfo:os id="http://microsoft.com/win/10"/> </libosinfo:libosinfo> </metadata> <memory unit='KiB'>33554432</memory> <currentMemory unit='KiB'>33554432</currentMemory> <vcpu placement='static'>8</vcpu> <resource> <partition>/machine</partition> </resource> <os> <type arch='x86_64' machine='pc-q35-6.0'>hvm</type> <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/OVMF_CODE.fd</loader> <nvram>/var/lib/libvirt/qemu/nvram/win10_VARS.fd</nvram> <bootmenu enable='no'/> </os> <features> <acpi/> <apic/> <hyperv> <relaxed state='on'/> <vapic state='on'/> <spinlocks state='on' retries='8191'/> </hyperv> <vmport state='off'/> </features> <cpu mode='host-passthrough' check='partial' migratable='on'> <topology sockets='1' dies='1' cores='4' threads='2'/> </cpu> <clock offset='localtime'> <timer name='rtc' tickpolicy='catchup'/> <timer name='pit' tickpolicy='delay'/> <timer name='hpet' present='no'/> <timer name='hypervclock' present='yes'/> </clock> <on_poweroff>destroy</on_poweroff> <on_reboot>restart</on_reboot> <on_crash>destroy</on_crash> <pm> <suspend-to-mem enabled='no'/> <suspend-to-disk enabled='no'/> </pm> <devices> <emulator>/usr/bin/qemu-system-x86_64</emulator> <disk type='file' device='disk'> <driver name='qemu' type='qcow2'/> <source file='/var/lib/libvirt/images/win10.qcow2' index='3'/> <backingStore/> <target dev='vda' bus='virtio'/> <boot order='1'/> <alias name='virtio-disk0'/>
-<address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
-</disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso' index='2'/> <backingStore/> <target dev='sdb' bus='sata'/> <readonly/> <boot order='2'/> <alias name='sata0-0-1'/>
-<address type='drive' controller='0' bus='0' target='0' unit='1'/>
-</disk> <disk type='file' device='cdrom'> <driver name='qemu' type='raw'/> <source file='/home/petrus/Downloads/iso/virtio-win-0.1.185.iso' index='1'/> <backingStore/> <target dev='sdc' bus='sata'/> <readonly/> <alias name='sata0-0-2'/>
-<address type='drive' controller='0' bus='0' target='0' unit='2'/>
-</disk> <controller type='usb' index='0' model='qemu-xhci' ports='15'> <alias name='usb'/>
-<address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
-</controller> <controller type='sata' index='0'> <alias name='ide'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
-</controller> <controller type='pci' index='0' model='pcie-root'> <alias name='pcie.0'/> </controller> <controller type='pci' index='1' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='1' port='0x10'/> <alias name='pci.1'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x0' multifunction='on'/>
-</controller> <controller type='pci' index='2' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='2' port='0x11'/> <alias name='pci.2'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x1'/>
-</controller> <controller type='pci' index='3' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='3' port='0x12'/> <alias name='pci.3'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x2'/>
-</controller> <controller type='pci' index='4' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='4' port='0x13'/> <alias name='pci.4'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x3'/>
-</controller> <controller type='pci' index='5' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='5' port='0x14'/> <alias name='pci.5'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x4'/>
-</controller> <controller type='pci' index='6' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='6' port='0x15'/> <alias name='pci.6'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x02' function='0x5'/>
-</controller> <controller type='pci' index='7' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='7' port='0x8'/> <alias name='pci.7'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x0' multifunction='on'/>
-</controller> <controller type='pci' index='8' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='8' port='0x9'/> <alias name='pci.8'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
-</controller> <controller type='pci' index='9' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='9' port='0xa'/> <alias name='pci.9'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
-</controller> <controller type='pci' index='10' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='10' port='0xb'/> <alias name='pci.10'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x3'/>
-</controller> <controller type='pci' index='11' model='pcie-to-pci-bridge'> <model name='pcie-pci-bridge'/> <alias name='pci.11'/>
-<address type='pci' domain='0x0000' bus='0x0a' slot='0x00' function='0x0'/>
-</controller> <controller type='pci' index='12' model='pcie-root-port'> <model name='pcie-root-port'/> <target chassis='12' port='0xc'/> <alias name='pci.12'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x4'/>
-</controller> <controller type='virtio-serial' index='0'> <alias name='virtio-serial0'/>
-<address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
-</controller> <interface type='network'> <mac address='52:54:00:9c:b1:61'/> <source network='proxyArp' portid='dea4d995-d8d9-408d-ac30-ac45bfd5627e' bridge='virbr1'/> <target dev='vnet0'/> <model type='virtio'/> <alias name='net0'/>
-<address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
-</interface> <serial type='pty'> <source path='/dev/pts/0'/> <target type='isa-serial' port='0'> <model name='isa-serial'/> </target> <alias name='serial0'/> </serial> <console type='pty' tty='/dev/pts/0'> <source path='/dev/pts/0'/> <target type='serial' port='0'/> <alias name='serial0'/> </console> <channel type='spicevmc'> <target type='virtio' name='com.redhat.spice.0' state='connected'/> <alias name='channel0'/>
-<address type='virtio-serial' controller='0' bus='0' port='1'/>
-</channel> <input type='mouse' bus='ps2'> <alias name='input0'/> </input> <input type='keyboard' bus='ps2'> <alias name='input1'/> </input> <graphics type='spice' port='5900' autoport='yes' listen='127.0.0.1'> <listen type='address' address='127.0.0.1'/> <image compression='off'/> <gl enable='no'/> </graphics> <sound model='ich9'> <alias name='sound0'/>
-<address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
-</sound> <audio id='1' type='spice'/> <video> <model type='none'/> <alias name='video0'/> </video> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
-<address domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
-</source>
-<alias name='hostdev0'/>
-<address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
-</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
-<address domain='0x0000' bus='0x01' slot='0x00' function='0x1'/>
-</source>
-<alias name='hostdev1'/>
-<address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
-</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
-<address domain='0x0000' bus='0x01' slot='0x00' function='0x2'/>
-</source>
-<alias name='hostdev2'/>
-<address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
-</hostdev> <hostdev mode='subsystem' type='pci' managed='yes'> <driver name='vfio'/> <source>
-<address domain='0x0000' bus='0x01' slot='0x00' function='0x3'/>
-</source>
-<alias name='hostdev3'/>
-<address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
-</hostdev> <redirdev bus='usb' type='spicevmc'> <alias name='redir0'/>
-<address type='usb' bus='0' port='2'/>
-</redirdev> <redirdev bus='usb' type='spicevmc'> <alias name='redir1'/>
-<address type='usb' bus='0' port='3'/>
-</redirdev> <memballoon model='virtio'> <alias name='balloon0'/>
-<address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
-</memballoon> <shmem name='looking-glass'> <model type='ivshmem-plain'/> <size unit='M'>128</size> <alias name='shmem0'/>
-<address type='pci' domain='0x0000' bus='0x0b' slot='0x01' function='0x0'/>
-</shmem> <shmem name='scream-ivshmem'> <model type='ivshmem-plain'/> <size unit='M'>2</size> <alias name='shmem1'/>
-<address type='pci' domain='0x0000' bus='0x0b' slot='0x02' function='0x0'/>
-<p></shmem> </devices> <seclabel type='dynamic' model='dac' relabel='yes'> <label>+77:+77</label> <imagelabel>+77:+77</imagelabel> </seclabel> <qemu:commandline> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-vendor-id=6058'/> <qemu:arg value='-set'/> <qemu:arg value='device.hostdev0.x-pci-sub-device-id=14919'/> </qemu:commandline> </domain> #+end_src</p>]]></description>
-    <pubDate>Sun, 29 Aug 2021 22:56:32 +0800</pubDate>
+    <pubDate>Tue, 31 Aug 2021 16:47:50 +0800</pubDate>
     </item>
 </channel>
 </rss>

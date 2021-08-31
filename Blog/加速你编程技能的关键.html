@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-08-31 Tue 16:45 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>加速你编程技能的关键</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">加速你编程技能的关键</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9ba1702">加速你编程技能的关键</a>
+<ul>
+<li><a href="#orga326c59">教程阶段（3-8 周的认真编程）</a></li>
+<li><a href="#orga5437fb">对刚开始学习的学生来说，最重要的要获取的技能注意细节</a></li>
+<li><a href="#org688e641">拐点（2-4 周，以正确的心态）</a></li>
+<li><a href="#org64639db">在拐点阶段，你会比在前个阶段编程速度慢 10-20 倍</a></li>
+<li><a href="#org9b92017">在你的余下的生活中，每一天都超越自己的极限</a></li>
+<li><a href="#orga769fd0">在 web 开发中，实际上有两个拐点会走到一起。</a></li>
+<li><a href="#orgbb2f0e2">一但开发者通过了 web 开发拐点以及算法和数据结构拐点，他们就掌握了通往王国的钥匙。</a></li>
+<li><a href="#orgc4b4ffc">拐点的后果</a></li>
+<li><a href="#org4a717ee">招聘经理希望开发者具有扎实的 web 开发和算法技能。</a></li>
+<li><a href="#org7014f4c">你在拐点期间培养的技能</a></li>
+<li><a href="#org2d20dbd">尽可能有效地通过拐点的策略</a></li>
+<li><a href="#org680c1a9">如何知道你什么时候通过了拐点</a></li>
+</ul>
+</li>
+<li><a href="#orgdab30e7">原文链接</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9ba1702" class="outline-2">
+<h2 id="org9ba1702">加速你编程技能的关键</h2>
+<div class="outline-text-2" id="text-org9ba1702">
+<p>
+（注：本文为译文，原文链接在文章最后）
+</p>
+
+<p>
+当你学习编程时，有一个瞬间一切都开始改变。在 Firehose，我们喜欢把这个瞬间称为 <i>编程拐点</i> 。在这个阶段之后，你作为开发者的运作方式将大为不同。建立拐点直到你不再需要任何手把手的指导是在编程中变得自给自足的过程，这可以是一个短沮丧的经历，但一但拐点在你身后，它就会令人难以置信的赋予力量。
+</p>
+
+
+<div id="org2a462ff" class="figure">
+<p><img src="../pics/Blog/inflection_point.png" alt="inflection_point.png">
+</p>
+</div>
+
+<p>
+在 Firehose，我们的目标不仅仅是教你 Ruby，如何构建 web 应用或如果写测试。尽管我们的确教授这些还其他更多技能， <b>我们的主要目标是加速学生通过拐点，让他们获得解决他们遇到的任何问题的能力</b> 。我们相信能够自己解决问题是一个无价的技能，并且教授这个方法将会比简单的学习如果构建一套 apps 带你走的更远。
+</p>
+</div>
+<div id="outline-container-orga326c59" class="outline-3">
+<h3 id="orga326c59">教程阶段（3-8 周的认真编程）</h3>
+<div class="outline-text-3" id="text-orga326c59">
+<p>
+当你开始学习编程，有很多信息你暂且不知道。这些信息做叫 <i>特定领域知识</i> 。例如包括：如果在 ruby 中写一个循环或如果使用 Ruby on Rails 从数据库中取出某些东西。特定领域知识包含特定编程环境中的特有的协议。
+</p>
+
+<p>
+成为自给自足的开发者的第一步是学习如何完成特定的任务。一但你掌握了这些特定任务，各个部分如何组合在一起的大轮廓将会变得明显。随着时间的推移，你会开始认识一些模式，并且最终那些起初看起来令人困惑和陌生的事物将成为第二天性。
+</p>
+</div>
+</div>
+<div id="outline-container-orga5437fb" class="outline-3">
+<h3 id="orga5437fb">对刚开始学习的学生来说，最重要的要获取的技能注意细节</h3>
+<div class="outline-text-3" id="text-orga5437fb">
+<p>
+在浏览文档或教程等材料时，密切关注细节是非常重要的。即使是最轻微的错别字和拼写错误也会导致错误信息或 bug。在一开始看见错误信息是令人沮丧的经验，但是这是学习过程中的一个至关重要的步骤。在这个阶段处理错误信息和问题，会教你在安全环境中最重要的编程技能之一：注意细节。
+</p>
+
+<ul class="org-ul">
+<li>随着时间的推移，你会 <b>学习如何阅读错误信息</b> 并且快速提取问题的相关细节。你第一次看见一条错误信息时，你会花费一段时间才能解读它真正的含义。但是在你已经见过数百条错误信息（你会看到数百条！）后，你将能够快速定位问题的位置和解决问题所需的相关详细信息。</li>
+<li>你应该 <b>从你解决的每个错误信息中学习</b> 。不要只是修复错误并完成它；理解你正在修复的代码有什么问题。通过从你的每一个错误中学习，下次你犯同样的错误，你将能够更快地修复它。</li>
+<li>最初，你可能每次你看见的错误信息都会寻求帮助。随着时间的推移，你会学会通过仔细检查你的代码和进行智能的谷歌搜索，你将学会减少寻求帮助的频率。</li>
+</ul>
+
+<p>
+在教程阶段，你会按照说明进行操作。起初，你会发现按照说明操作很困难，并且错误信息会经常出现。随着时间的推移，你会培养调试错误的技能，并更好地关注小细节，你将能够更快地取得进步。当你结束教程阶段时，你会注意到你能够以更快的速度编写代码。
+</p>
+
+<p>
+这时，一些人感觉很自信——就像他们已经准备好了放弃训练轮并在没有结构化指导的情况下构建东西——并愉快地潜入深渊。其他学生会获得更多教程，尝试获得更多他特定领域的知识以寻求“完全理解”。不幸的是，教程仅能带你到这里，并且在教程或指南中找不到真正的自信。真正的自信来自于在不知道如何解决的问题中挣扎，并独自发现解决方案。
+</p>
+
+<p>
+<b>编程的肮脏小秘密是……</b>
+</p>
+
+<p>
+你永远不会知道解决问题所需的一切。踏上旅程，你可能预想你自己最终学会你需要学习的一切，并使自己准备就绪。 <i>然而这一刻永远不会发生。</i>
+</p>
+
+<p>
+编程是一种终身学习的经历。有经验的软件工程师寻求为他们尚未解决的问题找到解决方案，因为这让他们有机会学习更多。如果你发现你自己在等待，等待你最终感觉你自己了解了所有关于编程的知识的那一刻，请了解这一点：你等待的那一天永远不会到来。并且这是一件美妙的事情。
+</p>
+
+
+<div id="orgec33f7b" class="figure">
+<p><img src="../pics/Blog/learn-to-code-1.jpg" alt="learn-to-code-1.jpg">
+</p>
+</div>
+
+<p>
+在以下情况下，你已经准备好了跳到下一段旅程：
+</p>
+
+<ul class="org-ul">
+<li>你已经看到了足够的错误信息， <b>它们不再让你感到震惊</b> 。相反，你知道如何解读它们的含义以及代码中查找问题的位置。</li>
+<li><b>你是用谷歌搜索问题的专家。</b> 当你努力添加功能或看到令人困惑的信息时，你知道要搜索什么才能找到你所需要的信息。</li>
+<li>你能够 <b>引用你在你的其他程序中写的代码并遵循其中的模式</b> ，而不是总是寻求一步一步的说明。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org688e641" class="outline-3">
+<h3 id="org688e641">拐点（2-4 周，以正确的心态）</h3>
+<div class="outline-text-3" id="text-org688e641">
+<p>
+拐点阶段是学习编程时最令人沮丧的阶段之一，但在很多方面，这也是唯一重要的阶段。这是你逐步停止使用教程并开始解决没有人为你提供解决方案的问题的关键。
+</p>
+
+<p>
+在某些时候，你会觉得你还没有准备应对这个阶段，并且像是你想要回到根据明确的大纲构建东西的阶段。不要成为这种心态的牺牲品。你感到沮丧的原因是：
+</p>
+</div>
+</div>
+<div id="outline-container-org64639db" class="outline-3">
+<h3 id="org64639db">在拐点阶段，你会比在前个阶段编程速度慢 10-20 倍</h3>
+<div class="outline-text-3" id="text-org64639db">
+<p>
+你可能会开始质疑自己，并想自己是否真的有能力成为一名程序员。不安全感和怀疑感在这个阶段很常见。
+</p>
+
+<p>
+尽管你感觉到你正在以更慢的速率学习和完成事情的，但实际上，你正在实现最重要的事情。虽然你的特定领域知识正在快速发展，但你正在学习的一切都将与程序性知识有关。
+</p>
+
+<p>
+程序性知识是在学习过程中自学你不懂的东西的能力。当你需要实现一个新功能时，你应该使用哪种谷歌搜索？在这个时候，当涉及到许多你想要完成的事情时，你会觉得自己“在黑暗中”。学习如何自己找到光明至关重要，因为你永远不可能知道所有要知道的事情，所以你需要能够自学如何解决手头的问题。
+</p>
+
+<p>
+<b>大多数人没有意识到为了学习编程，你需要同时学习特定领域和程序性知识。</b>
+</p>
+</div>
+</div>
+<div id="outline-container-org9b92017" class="outline-3">
+<h3 id="org9b92017">在你的余下的生活中，每一天都超越自己的极限</h3>
+<div class="outline-text-3" id="text-org9b92017">
+<p>
+一些软件工程师一旦找到立足点，就会留在自己的舒适区。这些类型的程序员被称为维护程序员——不是你应该努力成为的。相反，你应该每天都努力超越自己的极限。程序员辞职最常见的原因是”因我已经解决了所有有趣的问题，所以不再具有挑战性。“
+</p>
+
+<p>
+与其试图将编程项目拉入你的舒适区，你应该寻找超出你当前技能范围的问题。这是建立和扩展你的技能的唯一方法。
+</p>
+
+<p>
+用 Firehose 的学生再通过他的拐点时的话来说：
+</p>
+
+<blockquote>
+<p>
+我仍然感觉我是在深渊中！我只是越来越舒服，知道那是我必去的地方！
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orga769fd0" class="outline-3">
+<h3 id="orga769fd0">在 web 开发中，实际上有两个拐点会走到一起。</h3>
+<div class="outline-text-3" id="text-orga769fd0">
+<p>
+<b>web 开发的拐点</b> 是你能构建你想要的任何数据库驱动的应用程序的点。这意味着能够构建一个包含许多页面的 web 应用程序，这些页面通过一个简单的数据库存储和检索信息。Web 开发人员称之为：”掌握 CRUD。“在这个阶段，你应该能够简单的通过按照在 Github 或 blog 上提供的文档来集成第三方库（例如 ruby gem）。
+</p>
+
+<p>
+<b>算法和数据结构拐点</b> 是一个更不不痛不痒的拐点，但实际上更重要。征服了这一点的人除了将掌握编程的基础知识并拥有解决复杂编程挑战的深度知识外，还将掌握他们正在使用的编程语言。
+</p>
+
+<p>
+征服了算法和数据结构拐点的人将能够：
+</p>
+
+<ul class="org-ul">
+<li>编写排序算法</li>
+<li>实现和反转链表</li>
+<li>理解并编写使用堆栈、队列和树的程序</li>
+<li>使用递归或迭代解决方案编写计算机程序</li>
+</ul>
+
+<p>
+简单来说，一但你通过了这个拐点，你将掌握数据操作并了解你的代码决策对性能的影响。传统的计算机科学学位只专注于让学校通过算法和数据结构的拐点。许多大学使用业界通常不使用的百年成语言来教授这一点，像 Scheme、Racket 或 LISP。
+</p>
+
+<p>
+<b>在大多数技术面试中，面试官将会假设你已经通过了 web 开发拐点，因为这更容易做倒，并将他们的问题集中在评估你的算法和数据结构的技能上。</b> 这些问题一般会集中在我们上面提到的主题上：排序算法、反转链表以及使用堆栈、队列和树。
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb2f0e2" class="outline-3">
+<h3 id="orgbb2f0e2">一但开发者通过了 web 开发拐点以及算法和数据结构拐点，他们就掌握了通往王国的钥匙。</h3>
+<div class="outline-text-3" id="text-orgbb2f0e2">
+<p>
+这些开发者将能够解决两者交叉的挑战：需要在高级 web 应用程序的上下文中构建的复杂算法。这是专业 web 开发者每天所做工作的核心。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc4b4ffc" class="outline-3">
+<h3 id="orgc4b4ffc">拐点的后果</h3>
+<div class="outline-text-3" id="text-orgc4b4ffc">
+<p>
+当第一次听到时，拐点的最大后果听起来有点违反直觉。深吸一口气：
+</p>
+
+<blockquote>
+<p>
+在学习编程时，特定领域知识在大局中不重要。
+</p>
+</blockquote>
+
+<p>
+没错。我没有开玩笑——这针的没有那么重要。一但你通过了拐点，这些概念将在一两周甚至几天的教程内流畅地翻译！
+</p>
+
+<p>
+<b>最终真正重要的是：</b>
+</p>
+
+<ul class="org-ul">
+<li>你对 <b>web 开发框架有扎实的掌握</b></li>
+<li>你对用任何编程语言 <b>编写的算法复杂的代码有扎实的掌握</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4a717ee" class="outline-3">
+<h3 id="org4a717ee">招聘经理希望开发者具有扎实的 web 开发和算法技能。</h3>
+<div class="outline-text-3" id="text-org4a717ee">
+<p>
+当我在 Paypal 工作时，我的团队聘请了一位没有 Rails 经验的高级 Rails 开发者——他对 Python、LISP 和 Perl 语言有许多开发经验。在几天之内，他就对团队已经产生了很大的冲击。并且在几周内：更是巨大的冲击。他很快升任技术团队领导，这是我参与过的最佳招聘决策之一。
+</p>
+
+<p>
+<b>不要担心堆栈。</b> 许多人会说像是“AngularJS 最近很热门”、“JavaScript 在崛起”或“最新的流行是……”的事情，对此我的回复是：”所以呢？“当你正在学习如果编程时，你唯一的目标应该是找到拐点并消灭它。一旦你这样做了，学习这种最新的、性感的时尚根本不成问题。
+</p>
+
+<p>
+<b>变得自力更生。</b> 拥有不依靠结构化的指导就能学会新的编程技能的能力，意味着你不再需要等待任何人来帮助你。这意味着对于你需要学习的大部分内容，你可以简单的搜索互联网并阅读你需要了解的各种资料。
+</p>
+
+<p>
+这不意味着你立即”知道“一切，而只是现在一切都是”可以弄清的“，因此本质上，你是不可阻挡的。
+</p>
+</div>
+</div>
+<div id="outline-container-org7014f4c" class="outline-3">
+<h3 id="org7014f4c">你在拐点期间培养的技能</h3>
+<div class="outline-text-3" id="text-org7014f4c">
+<p>
+作为软件开发者，最好的参考资料是你已经编写的类似的代码。当你完全理解你编写的代码，你不需要将所有细节都提交到大脑中。这意味着 <b>在构建新功能时，你应该问自己的第一个问题是：”我之前构建过类似的东西吗？“</b> 如果答案时肯定的，重新访问并在脑海中逐行过一遍。向自己重新解释代码在做什么？并问自己”我现在可以使用相同的办法吗？“
+</p>
+
+<p>
+<b>视频在解释特定领域的细节方面很糟糕</b> 因为它们需要太长的时间来个观看。比如你想集成 Goolge Maps API。一旦你有做过一次的经验，在 Github 中打开代码、复制代码并粘贴到新项目中可能不需要一分钟。另一方面，视频通常需要花费 10-30 分钟来重新观看。
+</p>
+</div>
+</div>
+<div id="outline-container-org2d20dbd" class="outline-3">
+<h3 id="org2d20dbd">尽可能有效地通过拐点的策略</h3>
+<div class="outline-text-3" id="text-org2d20dbd">
+<p>
+因为通过拐点时学习编程的最重要的一部分，你应该做好准备，让这个过程尽可能顺利。这意味着当你在教程阶段就应该开始准备，并在此期间保持正确的心态。
+</p>
+
+<p>
+<b>在教程阶段，从结构化的资料中休息一下，并在次过程中给自己一些挑战问题。</b>
+</p>
+
+<ul class="org-ul">
+<li>对于每一节课， <b>尝试做一些在你正在学习的教程范围之外的事情</b> 。如你果正在学习的教程提供了”挑战“或”自我指导“部分，将它们全部都完成。解决没有指导的挑战将会给你在没有结构化指导的情况下做事的重要经验。</li>
+<li><b>尽量少使用教程。</b> 在 Firehose，我们经常引导学生了解如果集成某些 gems 或使用提供的文档做事。而不是简单的让刚起步的人遵循教程中解释的说明，许多学生会遵循文档并将教程作为备份使用。 <b>注意文档将会把你当作已经通过了拐点的开发者来对待。</b> 越来越轻松的阅读和遵循 Github 上的文档将会使你在你一个人时比其他人更有优势。</li>
+<li>专注于要点并使用重复。学习如果做一些常见的事，像从头开始启动应用程序、将新的应用程序推送到个 Github 和 Heroku，以及尽早构建数据库迁移。</li>
+</ul>
+
+<p>
+<b>突破拐点可能具有挑战性。这里有一些要点可以帮助你突破：</b>
+</p>
+
+<ul class="org-ul">
+<li>了解 <b>这是一个困难的过程，并让你自己放松。</b> 此外，设定切合实际的期望。你无法将”超人“级别的学习教程的速度和”蜗牛“级别的自学速度进行比较。记住你学到了很多东西，但是在这个阶段，你正在学习一种全新的可以自己解决新事物的技能。</li>
+<li>如果你正在与自信心争斗，要指导你现在的感觉是完全正常的。继续努力。如果你还感觉挣扎，尝试和最近通过拐点的一些人交谈。他们能够与你所处的位置相关联，并向你保证你经历的只是暂时的。 <b>始终如一地工作，但是不要让自己过度劳累。</b> 在比赛的这个阶段，要知道你每天最多只能工作 6 小时左右。在精疲力尽的状态下工作只会延迟你建立拐点的时间。</li>
+</ul>
+
+<p>
+在这个阶段获取信心的最佳方法是客服你的任何疑虑。你的情绪可能会开始像过山车一样。有时，你会感觉自己着火了一样，但是在同一个问题上挣扎了 15 小时后，感觉截然相反是很常见的。
+</p>
+
+<p>
+无法知道某些事会占用你 5 分钟还是 5 小时可能会令人感到沮丧，但是每次你克服并成功实现了一个新功能，信心的快速增长将是你所需要的一切。在没有任何帮助的情况下解决了一些难题后，你会沉迷于在舒适区之外建造东西的感觉。
+</p>
+</div>
+</div>
+<div id="outline-container-org680c1a9" class="outline-3">
+<h3 id="org680c1a9">如何知道你什么时候通过了拐点</h3>
+<div class="outline-text-3" id="text-org680c1a9">
+<p>
+拐点过程的最后阶段是可接受的。接受软件开发是一个不断学习的过程。接受那种你已经成功地学会了一切的感觉仅仅意味着你应该开始考虑解决更复杂的问题。
+</p>
+
+<p>
+<b>你是否经历过拐点？分享这篇文章并开始和你的朋友对话——你会惊讶多少人已经到达并超越了这一刻。</b>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdab30e7" class="outline-2">
+<h2 id="orgdab30e7">原文链接</h2>
+<div class="outline-text-2" id="text-orgdab30e7">
+<p>
+<a href="http://blog.thefirehoseproject.com/posts/learn-to-code-and-be-self-reliant/">http://blog.thefirehoseproject.com/posts/learn-to-code-and-be-self-reliant/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-08-31 Tue 16:45</p>
+</div>
+</body>
+</html>
