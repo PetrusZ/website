@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>target_中的public Private Interface</title>
@@ -278,7 +278,7 @@
 <div id="outline-container-orgfc09091" class="outline-3">
 <h3 id="orgfc09091">测试工程目录结构</h3>
 <div class="outline-text-3" id="text-orgfc09091">
-<pre class="example" id="org0ae77aa">
+<pre class="example" id="orgf45a499">
 cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 ├── CMakeLists.txt
 ├── hello-world             生成 libhello-world.so，调用 libhello.so 和 libworld.so
@@ -300,7 +300,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 <div id="outline-container-org30402a1" class="outline-3">
 <h3 id="org30402a1">调用关系</h3>
 <div class="outline-text-3" id="text-org30402a1">
-<pre class="example" id="org722a9bf">
+<pre class="example" id="org8fc6478">
                                  ├────libhello.so
 可执行文件────libhello-world.so
                                  ├────libworld.so
@@ -382,7 +382,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 那么整个工程的源文件在编译时 <b>都</b> 会增加：
 </p>
 
-<pre class="example" id="org6543d31">
+<pre class="example" id="orgf436f36">
 -I hello-world -I hello-world/hello -I hello-world/world ...
 </pre>
 
@@ -414,7 +414,7 @@ cmake-test/                 工程主目录，main.c 调用 libhello-world.so
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:39</p>
 </div>
 </body>
 </html>

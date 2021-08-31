@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ Primer 第 III部分 类设计者的工具</title>
@@ -191,6 +191,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
@@ -445,7 +451,7 @@
 </li>
 <li><a href="#org8d0a696">15.2.2 定义派生类</a>
 <ul>
-<li><a href="#org4eca926">派生类中的虚函数</a></li>
+<li><a href="#orge8508e9">派生类中的虚函数</a></li>
 <li><a href="#org604b73c">派生类对象及派生类向基类的类型转换</a></li>
 <li><a href="#orgf53dd25">派生类构造函数</a></li>
 <li><a href="#orgcd35308">继承与静态函数</a></li>
@@ -467,7 +473,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#orge8508e9">派生类中的虚函数</a></li>
+<li><a href="#orgdc5d6ca">派生类中的虚函数</a></li>
 <li><a href="#orgbfaad1a">final 和 override 说明符</a></li>
 <li><a href="#org56e8af6">虚函数与默认实参</a></li>
 <li><a href="#org3399cd9">回避虚函数的机制</a></li>
@@ -1756,7 +1762,7 @@ Note：
 </p>
 
 
-<div id="orgb36221b" class="figure">
+<div id="org5b5ae68" class="figure">
 <p><img src="../../../pics/C++/operator.png" alt="operator.png">
 </p>
 </div>
@@ -2855,9 +2861,9 @@ Note：
 派生类必须通过使用 <b>类派生列表</b> 明确指出它时从哪个（哪些）基类继承而来的。类派生列表的形式时：首先时一个冒号，后面紧跟以逗号分隔的基类列表，其中每个基类前面可以有以下三种访问说明符中的一个：public、protected 或者 private。
 </p>
 </div>
-<div id="outline-container-org4eca926" class="outline-5">
-<h5 id="org4eca926">派生类中的虚函数</h5>
-<div class="outline-text-5" id="text-org4eca926">
+<div id="outline-container-orge8508e9" class="outline-5">
+<h5 id="orge8508e9">派生类中的虚函数</h5>
+<div class="outline-text-5" id="text-orge8508e9">
 <p>
 派生类经常（但不总是）覆盖它继承的虚函数。如果派生类没有覆盖起基类中的某个虚函数，则虚函数的行为类似于其他的普通成员，派生类会直接继承其在基类中的版本。
 </p>
@@ -3075,9 +3081,9 @@ WARNING：
 如前所述，在 C++语言中，当我们使用基类的引用或指针调用一个虚成员函数时会执行动态绑定。因为我们直到运行时才能直到到底调用了哪个版本的虚函数，所以所有虚函数都必须有定义。通常情况下，如果我们不使用某个函数，则无须为该函数提供定义。但是我们必须为每一个虚函数都提供定义，而不管它是否用到了，这是因此连编译器也无法确定奥迪会使用哪个虚函数。
 </p>
 </div>
-<div id="outline-container-orge8508e9" class="outline-5">
-<h5 id="orge8508e9">派生类中的虚函数</h5>
-<div class="outline-text-5" id="text-orge8508e9">
+<div id="outline-container-orgdc5d6ca" class="outline-5">
+<h5 id="orgdc5d6ca">派生类中的虚函数</h5>
+<div class="outline-text-5" id="text-orgdc5d6ca">
 <p>
 当我们在派生类中覆盖了某个虚函数时，可以再一次使用 vitual 关键字指出该函数的性质。然而这么做并非必须，因此一旦某个函数被声明成虚函数，则在所有派生类中它都是虚函数。
 </p>
@@ -5382,7 +5388,7 @@ fi.Bar();            <span style="color: #5B6268;">// </span><span style="color:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

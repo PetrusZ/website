@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:33 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>docker compose模板文件</title>
@@ -191,6 +191,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
@@ -270,7 +276,7 @@
 默认的模板文件名称为 =docker-compose.yml=，格式为 YAML 格式。
 </p>
 
-<pre class="example" id="orge96d5c0">
+<pre class="example" id="org54b14c1">
     version: "3"
 
     services:
@@ -297,7 +303,7 @@
 指定 Dockerfile 所在文件夹的路径（可以是绝对路径，或者相对 docker-compose.yml 文件的路径）。 Compose 将会利用它自动构建这个镜像，然后使用这个镜像。
 </p>
 
-<pre class="example" id="orgb0a61e5">
+<pre class="example" id="org874736c">
     version: '3'
     services:
 
@@ -317,7 +323,7 @@
 使用 arg 指令指定构建镜像时的变量。
 </p>
 
-<pre class="example" id="orgd22921d">
+<pre class="example" id="org3aedaf8">
     version: '3'
     services:
 
@@ -333,7 +339,7 @@
 使用 <code>cache_from</code> 指定构建镜像的缓存
 </p>
 
-<pre class="example" id="org6bc3aa0">
+<pre class="example" id="org6d28e34">
     build:
       context: .
       cache_from:
@@ -354,7 +360,7 @@
 例如，让容器拥有所有能力可以指定为：
 </p>
 
-<pre class="example" id="org55e382b">
+<pre class="example" id="org4d18a76">
     cap_add:
       - ALL
 </pre>
@@ -363,7 +369,7 @@
 去掉 NET\_ADMIN 能力可以指定为：
 </p>
 
-<pre class="example" id="orgbb2316f">
+<pre class="example" id="org38fe972">
     cap_drop:
       - NET_ADMIN
 </pre>
@@ -445,7 +451,7 @@
 指定设备映射关系。
 </p>
 
-<pre class="example" id="org53f3f1e">
+<pre class="example" id="orga7f323c">
     devices:
       - "/dev/ttyUSB1:/dev/ttyUSB0"
 </pre>
@@ -459,7 +465,7 @@
 解决容器的依赖、启动先后的问题。以下例子中会先启动 redis db 再启动 web
 </p>
 
-<pre class="example" id="orge10de01">
+<pre class="example" id="org5f10136">
     version: '3'
 
     services:
@@ -491,7 +497,7 @@
 自定义 DNS 服务器。可以是一个值，也可以是一个列表。
 </p>
 
-<pre class="example" id="orgc13ac40">
+<pre class="example" id="org4eca58b">
     dns: 8.8.8.8
 
     dns:
@@ -504,7 +510,7 @@
 <div id="outline-container-org72d7bbb" class="outline-2">
 <h2 id="org72d7bbb">dns_search</h2>
 <div class="outline-text-2" id="text-org72d7bbb">
-<pre class="example" id="orgc275d03">
+<pre class="example" id="org93ed7a5">
     配置 DNS 搜索域。可以是一个值，也可以是一个列表。
 
     dns_search: example.com
@@ -523,7 +529,7 @@
 挂载一个 tmpfs 文件系统到容器。
 </p>
 
-<pre class="example" id="org2945be3">
+<pre class="example" id="org5af7b44">
     tmpfs: /run
     tmpfs:
       - /run
@@ -547,7 +553,7 @@
 如果有变量名称与 environment 指令冲突，则按照惯例，以后者为准。
 </p>
 
-<pre class="example" id="org2069628">
+<pre class="example" id="orga25142f">
     env_file: .env
 
     env_file:
@@ -560,7 +566,7 @@
 环境变量文件中每一行必须符合格式，支持 # 开头的注释行。
 </p>
 
-<pre class="example" id="org01d0bf3">
+<pre class="example" id="orgf8efc04">
     # common.env: Set development environment
     PROG_ENV=development
 </pre>
@@ -578,7 +584,7 @@
 只给定名称的变量会自动获取运行 Compose 主机上对应变量的值，可以用来防止泄露不必要的数据。
 </p>
 
-<pre class="example" id="org8c2b219">
+<pre class="example" id="orga3dd34e">
     environment:
       RACK_ENV: development
       SESSION_SECRET:
@@ -609,7 +615,7 @@
 仅可以指定内部端口为参数
 </p>
 
-<pre class="example" id="orgffd2ba0">
+<pre class="example" id="orgdf1f94c">
     expose:
      - "3000"
      - "8000"
@@ -630,7 +636,7 @@
 链接到 <code>docker-compose.yml</code> 外部的容器，甚至并非 Compose 管理的外部容器。
 </p>
 
-<pre class="example" id="orga870a28">
+<pre class="example" id="orgd1276e0">
     external_links:
      - redis_1
      - project_db_1:mysql
@@ -646,7 +652,7 @@
 类似 Docker 中的 <code>--add-host</code> 参数，指定额外的 host 名称映射信息。
 </p>
 
-<pre class="example" id="org82863a8">
+<pre class="example" id="org50629cf">
     extra_hosts:
      - "googledns:8.8.8.8"
      - "dockerhub:52.1.157.61"
@@ -656,7 +662,7 @@
 会在启动后的服务容器中 <code>/etc/hosts</code> 文件中添加如下两条条目。
 </p>
 
-<pre class="example" id="org82ec837">
+<pre class="example" id="orga863857">
     8.8.8.8 googledns
     52.1.157.61 dockerhub
 </pre>
@@ -670,7 +676,7 @@
 通过命令检查容器是否健康运行。
 </p>
 
-<pre class="example" id="org3275bc3">
+<pre class="example" id="org194885e">
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 1m30s
@@ -687,7 +693,7 @@
 指定为镜像名称或镜像 ID。如果镜像在本地不存在，Compose 将会尝试拉取这个镜像。
 </p>
 
-<pre class="example" id="org7094138">
+<pre class="example" id="org33fa956">
     image: ubuntu
     image: orchardup/postgresql
     image: a4bc65fd
@@ -702,7 +708,7 @@
 为容器添加 Docker 元数据（metadata）信息。例如可以为容器添加辅助说明信息。
 </p>
 
-<pre class="example" id="orgbd0f512">
+<pre class="example" id="org5e6faa0">
     labels:
       com.startupteam.description: "webapp for a startup team"
       com.startupteam.department: "devops department"
@@ -718,7 +724,7 @@
 配置日志选项。
 </p>
 
-<pre class="example" id="orgc3d8341">
+<pre class="example" id="org1ff4ed7">
     logging:
       driver: syslog
       options:
@@ -729,7 +735,7 @@
 目前支持三种日志驱动类型。
 </p>
 
-<pre class="example" id="org77c45b8">
+<pre class="example" id="orge7022c5">
     driver: "json-file"
     driver: "syslog"
     driver: "none"
@@ -739,7 +745,7 @@
 options 配置日志驱动的相关参数。
 </p>
 
-<pre class="example" id="org5a382cb">
+<pre class="example" id="orgcab891e">
     options:
       max-size: "200k"
       max-file: "10"
@@ -754,7 +760,7 @@ options 配置日志驱动的相关参数。
 设置网络模式。使用和 <code>docker run</code> 的 <code>--network</code> 参数一样的值。
 </p>
 
-<pre class="example" id="orgaf5ef28">
+<pre class="example" id="orgb6125cb">
     network_mode: "bridge"
     network_mode: "host"
     network_mode: "none"
@@ -771,7 +777,7 @@ options 配置日志驱动的相关参数。
 配置容器连接的网络。
 </p>
 
-<pre class="example" id="org0ff280c">
+<pre class="example" id="org11f4b30">
     version: "3"
     services:
       some-service:
@@ -810,7 +816,7 @@ options 配置日志驱动的相关参数。
 使用宿主端口：容器端口 (HOST:CONTAINER) 格式，或者仅仅指定容器的端口（宿主将会随机选择端口）都可以。
 </p>
 
-<pre class="example" id="org565b4ce">
+<pre class="example" id="org35c9070">
     ports:
      - "3000"
      - "8000:8000"
@@ -836,7 +842,7 @@ options 配置日志驱动的相关参数。
 存储敏感数据，例如 mysql 服务密码。
 </p>
 
-<pre class="example" id="org5e673e6">
+<pre class="example" id="orgbc30097">
     version: "3.1"
     services:
 
@@ -864,7 +870,7 @@ options 配置日志驱动的相关参数。
 指定容器模板标签（label）机制的默认属性（用户、角色、类型、级别等）。例如配置标签的用户名和角色名。
 </p>
 
-<pre class="example" id="orge3d7c1d">
+<pre class="example" id="org33f19cd">
     security_opt:
         - label:user:USER
         - label:role:ROLE
@@ -892,7 +898,7 @@ options 配置日志驱动的相关参数。
 配置容器内核参数。
 </p>
 
-<pre class="example" id="org1bf92a2">
+<pre class="example" id="orgc3f98be">
     sysctls:
       net.core.somaxconn: 1024
       net.ipv4.tcp_syncookies: 0
@@ -915,7 +921,7 @@ options 配置日志驱动的相关参数。
 例如，指定最大进程数为 65535，指定文件句柄数为 20000（软限制，应用可以随时修改，不能超过硬限制） 和 40000（系统硬限制，只能 root 用户提高）。
 </p>
 
-<pre class="example" id="orgefa2c45">
+<pre class="example" id="orgb935adb">
       ulimits:
         nproc: 65535
         nofile:
@@ -936,7 +942,7 @@ options 配置日志驱动的相关参数。
 该指令中路径支持相对路径。
 </p>
 
-<pre class="example" id="orgcf478ae">
+<pre class="example" id="orgdc13f94">
     volumes:
      - /var/lib/mysql
      - cache/:/tmp/cache
@@ -947,7 +953,7 @@ options 配置日志驱动的相关参数。
 如果路径为数据卷名称，必须在文件中配置数据卷。
 </p>
 
-<pre class="example" id="orgaf03595">
+<pre class="example" id="org6fa7e70">
     version: "3"
 
     services:
@@ -997,7 +1003,7 @@ options 配置日志驱动的相关参数。
 指定容器中搜索域名、主机名、mac 地址等。
 </p>
 
-<pre class="example" id="orgbbdc06e">
+<pre class="example" id="org35d11c4">
     domainname: your_website.com
     hostname: test
     mac_address: 08-00-27-00-0C-0A
@@ -1056,7 +1062,7 @@ Compose 模板文件支持动态读取主机的系统环境变量和当前目录
 例如，下面的 Compose 文件将从运行它的环境中读取变量 ${MONGO_VERSION} 的值，并写入执行的指令中。
 </p>
 
-<pre class="example" id="org640fe24">
+<pre class="example" id="orgba7006d">
     version: "3"
     services:
 
@@ -1076,7 +1082,7 @@ Compose 模板文件支持动态读取主机的系统环境变量和当前目录
 在当前目录新建 .env 文件并写入以下内容。
 </p>
 
-<pre class="example" id="org7a39cd0">
+<pre class="example" id="org05164a0">
     # 支持 # 号注释
     MONGO_VERSION=3.6
 </pre>
@@ -1089,7 +1095,7 @@ Compose 模板文件支持动态读取主机的系统环境变量和当前目录
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:33</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

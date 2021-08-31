@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:33 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>包管理工具apt的历史记录与日志分析</title>
@@ -252,7 +252,7 @@
 然而，其实 apt 也是有详细的日志的，日志文件位于/var/log/apt/history.log，其中详细的记录了每一条 apt 命令的开始时间、结束时间、输入的命令、安装和删除的软件包等等，尤其是输入的 apt 的命令和安装、删除的软件包这两条命令非常适合我们重现或者反操作之前输入的 apt 命令。其具体的日志格式是这样的：
 </p>
 
-<pre class="example" id="orgb58c7aa">
+<pre class="example" id="org24a9e1b">
     Start-Date: 2013-12-20  20:34:55
     Commandline: apt-get autoremove
     Remove: gir1.2-json-1.0:amd64 (0.15.2-0ubuntu1), gir1.2-coglpango-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-gdesktopenums-3.0:amd64 (3.6.1-0ubuntu1), libtracker-miner-0.14-0:amd64 (0.14.5-1ubuntu1), libtracker-sparql-0.14-0:amd64 (0.14.5-1ubuntu1), gir1.2-cogl-1.0:amd64 (1.14.0-0ubuntu1), gir1.2-clutter-1.0:amd64 (1.12.2-0ubuntu3.1)
@@ -315,7 +315,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:33</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

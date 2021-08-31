@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C++ Primer 第 IV 部分 高级主题</title>
@@ -191,6 +191,12 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <style> #content{max-width:1400px;}</style>
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
@@ -3001,7 +3007,7 @@ pf2 = alloc;   <span style="color: #5B6268;">// </span><span style="color: #5B62
 </p>
 
 
-<div id="orge1a3125" class="figure">
+<div id="org1cfbfcb" class="figure">
 <p><img src="../../../pics/C++/exception.png" alt="exception.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>标准 exception 类层次</p>
@@ -3568,7 +3574,7 @@ operator&gt;&gt;函数定义在标准库 string 中，string 又定义在命名�
 <h5 id="org84b14ac">多重继承的派生类从每个基类中继承状态</h5>
 <div class="outline-text-5" id="text-org84b14ac">
 
-<div id="orgb165231" class="figure">
+<div id="org8113ade" class="figure">
 <p><img src="pics/C++/panda.png" alt="panda.png">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>Panda 对象的概念结构</p>
@@ -3972,7 +3978,7 @@ WARNING：
 与 allocator 不同的是，对于 operator new 分配的内存空间来说我们无法使用 construct 函数构造对象。相反，我们应该使用 new 的 <b>定位 new</b> 形式（参见 12.1.2 节）构造对象。如我们所知，new 的这种形式为分配函数提供了额外的信息，我们可以使用定位 new 传递一个地址，此时定位 new 的形式如下所示：
 </p>
 
-<pre class="example" id="org1f99331">
+<pre class="example" id="orgbddd9a3">
 new (place_address) type
 new (place_address) type (initializers)
 new (place_address) type [size]
@@ -4047,7 +4053,7 @@ Note：
 <b>dynamic_cast 运算符</b> 的使用形式如下所示：
 </p>
 
-<pre class="example" id="orgc9bbc0b">
+<pre class="example" id="org39dd1e5">
 dynamic_cast&lt;type*&gt;(e)
 dynamic_cast&lt;type&amp;&gt;(e)
 dynamic_cast&lt;type&amp;&amp;&gt;(e)
@@ -5206,11 +5212,11 @@ int strcmp(const char*, const char*);
 <h5 id="org2619594">重载函数与链接指示</h5>
 <div class="outline-text-5" id="text-org2619594">
 <p>
-链接指示与重载函数的互相作用依赖于目标语言。如果目标语言支持重载函数，则为该语言实现链接指示的编译器很可能也支持重载这些C++的函数。
+链接指示与重载函数的互相作用依赖于目标语言。如果目标语言支持重载函数，则为该语言实现链接指示的编译器很可能也支持重载这些 C++的函数。
 </p>
 
 <p>
-C语言不支持函数重载，因此也就不难理解为什么一个C链接指示只能用于说明一组重载函数中的某一个了。
+C 语言不支持函数重载，因此也就不难理解为什么一个 C 链接指示只能用于说明一组重载函数中的某一个了。
 </p>
 </div>
 </div>
@@ -5220,7 +5226,7 @@ C语言不支持函数重载，因此也就不难理解为什么一个C链接指
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

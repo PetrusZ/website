@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>性能分析</title>
@@ -234,8 +234,8 @@
 <ul>
 <li><a href="#orgd63acce">google-perftools</a>
 <ul>
-<li><a href="#org01810e4">介绍</a></li>
-<li><a href="#org593168d">使用方法</a>
+<li><a href="#org03d2712">介绍</a></li>
+<li><a href="#orgc22727b">使用方法</a>
 <ul>
 <li><a href="#orgcded557">直接调用 API</a></li>
 <li><a href="#org573b3cc">链接静态库</a></li>
@@ -248,7 +248,7 @@
 </li>
 </ul>
 </li>
-<li><a href="#org672aec6">数据分析</a>
+<li><a href="#orga548aae">数据分析</a>
 <ul>
 <li><a href="#org4e2efb2">生成数据</a></li>
 <li><a href="#org376756e">数据含义</a></li>
@@ -258,9 +258,9 @@
 </li>
 <li><a href="#org66d8b9c">gprof</a>
 <ul>
-<li><a href="#org03d2712">介绍</a></li>
-<li><a href="#orgc22727b">使用方法</a></li>
-<li><a href="#orga548aae">数据分析</a>
+<li><a href="#orgcb63ead">介绍</a></li>
+<li><a href="#org7541e59">使用方法</a></li>
+<li><a href="#org2a48e84">数据分析</a>
 <ul>
 <li><a href="#org22195bb">Flat Profile 示例图</a></li>
 <li><a href="#orgdd27c6f">Call Graph 示例图</a></li>
@@ -276,9 +276,9 @@
 <h2 id="orgd63acce">google-perftools</h2>
 <div class="outline-text-2" id="text-orgd63acce">
 </div>
-<div id="outline-container-org01810e4" class="outline-3">
-<h3 id="org01810e4">介绍</h3>
-<div class="outline-text-3" id="text-org01810e4">
+<div id="outline-container-org03d2712" class="outline-3">
+<h3 id="org03d2712">介绍</h3>
+<div class="outline-text-3" id="text-org03d2712">
 <p>
 性能分析通过抽样方法完成，默认是 1 秒 100 个样本，一个样本是 10 毫秒，即时间单位是 10 毫秒；可以通过环境变量 CPUPROFILE_FREQUENCY 设置采样频率。
 </p>
@@ -288,9 +288,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </p>
 </div>
 </div>
-<div id="outline-container-org593168d" class="outline-3">
-<h3 id="org593168d">使用方法</h3>
-<div class="outline-text-3" id="text-org593168d">
+<div id="outline-container-orgc22727b" class="outline-3">
+<h3 id="orgc22727b">使用方法</h3>
+<div class="outline-text-3" id="text-orgc22727b">
 </div>
 <div id="outline-container-orgcded557" class="outline-4">
 <h4 id="orgcded557">直接调用 API</h4>
@@ -430,9 +430,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 </div>
 </div>
 </div>
-<div id="outline-container-org672aec6" class="outline-3">
-<h3 id="org672aec6">数据分析</h3>
-<div class="outline-text-3" id="text-org672aec6">
+<div id="outline-container-orga548aae" class="outline-3">
+<h3 id="orga548aae">数据分析</h3>
+<div class="outline-text-3" id="text-orga548aae">
 </div>
 <div id="outline-container-org4e2efb2" class="outline-4">
 <h4 id="org4e2efb2">生成数据</h4>
@@ -467,9 +467,9 @@ CPU profiler 是基于采样工作的。所以采样次数影响着性能报告�
 <h2 id="org66d8b9c">gprof</h2>
 <div class="outline-text-2" id="text-org66d8b9c">
 </div>
-<div id="outline-container-org03d2712" class="outline-3">
-<h3 id="org03d2712">介绍</h3>
-<div class="outline-text-3" id="text-org03d2712">
+<div id="outline-container-orgcb63ead" class="outline-3">
+<h3 id="orgcb63ead">介绍</h3>
+<div class="outline-text-3" id="text-orgcb63ead">
 <p>
 grof 可以获取 C 程序运行期间的统计数据，如每个函数的耗时，调用次数及各个函数的调用关系，（gprof 统计的是 CPU 占用时间，I/O 时间不计算在内。通常 gprof 的采样周期是 0.01s，统计项越接近这个值误差可能越大。若函数的运行时间低于 0.01S，统计值会显示为 0。
 </p>
@@ -487,9 +487,9 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </p>
 </div>
 </div>
-<div id="outline-container-orgc22727b" class="outline-3">
-<h3 id="orgc22727b">使用方法</h3>
-<div class="outline-text-3" id="text-orgc22727b">
+<div id="outline-container-org7541e59" class="outline-3">
+<h3 id="org7541e59">使用方法</h3>
+<div class="outline-text-3" id="text-org7541e59">
 <ol class="org-ol">
 <li>编译时添加选项 <code>-pg</code></li>
 <li>运行程序，生成 gmonf.out 文件</li>
@@ -497,9 +497,9 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </ol>
 </div>
 </div>
-<div id="outline-container-orga548aae" class="outline-3">
-<h3 id="orga548aae">数据分析</h3>
-<div class="outline-text-3" id="text-orga548aae">
+<div id="outline-container-org2a48e84" class="outline-3">
+<h3 id="org2a48e84">数据分析</h3>
+<div class="outline-text-3" id="text-org2a48e84">
 </div>
 <div id="outline-container-org22195bb" class="outline-4">
 <h4 id="org22195bb">Flat Profile 示例图</h4>
@@ -613,7 +613,7 @@ gprof 统计各个函数的运行时间是采用的抽样的方法，周期性�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:39</p>
 </div>
 </body>
 </html>

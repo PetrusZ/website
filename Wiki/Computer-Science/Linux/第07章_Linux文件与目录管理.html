@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:33 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>第07章_Linux文件与目录管理</title>
@@ -244,7 +244,7 @@
 rm(移除文件或目录）
 </p>
 
-<pre class="example" id="org2b9f10f">
+<pre class="example" id="orgde889f3">
      -i：互动模式
      -r：递归删除
      \rm：忽略默认参数（e.g.：root身份删除时默认加入参数-i）
@@ -254,7 +254,7 @@ rm(移除文件或目录）
 mv(移动文件与目录，改名）
 </p>
 
-<pre class="example" id="orge90e3ab">
+<pre class="example" id="orgb96eda4">
     -f：强制执行
     -i：互动模式
     -u：update
@@ -265,7 +265,7 @@ mv(移动文件与目录，改名）
 basename：只取得文件名；dirname：取得目录名 文件内容查阅
 </p>
 
-<pre class="example" id="org4adbbb3">
+<pre class="example" id="org70936d1">
     cat：由第一行开始显示
 
           -n：打印全部出行号；-b：空白行不打印行号
@@ -295,7 +295,7 @@ Warn:umask 的分数指的是“该默认值需要被减掉的权限”
 chattr(设置文件隐藏属性）
 </p>
 
-<pre class="example" id="org8ba9dd9">
+<pre class="example" id="org2c396b6">
     +，-，=：增加或删除或等于后面接的参数
     a：文件只能增加数据，不能删除也不能修改（only for root）
     i：使文件不能被删除、改名、设置连接、写入或添加数据（only for root）
@@ -305,7 +305,7 @@ chattr(设置文件隐藏属性）
 文件特殊权限：SUID，SGID，SBIT
 </p>
 
-<pre class="example" id="orgad894bd">
+<pre class="example" id="orgd18d213">
     SetUID（-s in owner）：
 
     SUID权限仅对二进制程序有效，不能够用在shell script上面
@@ -335,7 +335,7 @@ chattr(设置文件隐藏属性）
 SUID/SGID/SBIT 权限设置
 </p>
 
-<pre class="example" id="org1f6e4e2">
+<pre class="example" id="orgc1a04a7">
     4为SUID
     2为SGID
     1为SBIT
@@ -350,7 +350,7 @@ ps：updatedb 命令可以手动更新数据库 find（文件名的查找）基�
 file：列出比 file 还新的文件）
 </p>
 
-<pre class="example" id="org15e2117">
+<pre class="example" id="org4324c62">
     +4代表大于等于5天前的文件名：ex&gt;find /var -mtime +4
     -4代表小于等于4天内的文件名：ex&gt; find /var -mtime -4
     4则代表4~5那一天的文件名：ex &gt;find /var -mtime 4
@@ -360,7 +360,7 @@ file：列出比 file 还新的文件）
 基于用户或用户名参数查找
 </p>
 
-<pre class="example" id="orgde29fbe">
+<pre class="example" id="org697dab6">
     -uid n，-gid n
     -user name，-group name
     -nouser，-nogroup
@@ -370,7 +370,7 @@ file：列出比 file 还新的文件）
 基于文件权限、名称和大小参数的查找
 </p>
 
-<pre class="example" id="org6bc7716">
+<pre class="example" id="org6e622ad">
     -name filename
     -size [+-]SIZE
 </pre>
@@ -383,7 +383,7 @@ find 的特殊功能就是能够进行额外的动作(action)
 该范例中特殊的地方有 {} 以及 ; 还有 -exec 这个关键字，这些东西的意义为：
 </p>
 
-<pre class="example" id="org8d4c4ac">
+<pre class="example" id="orgf36a0bc">
     {} 代表的是『由 find 找到的内容』，如上图所示，find 的结果会被放置到 {} 位置中；
     -exec 一直到 \; 是关键字，代表 find 额外动作的开始 (-exec) 到结束 (\;) ，在这中间的就是 find 命令内的额外动作。 在本例中就是“ls -l {} ”
     因为“ ; ”在 bash 环境下是有特殊意义的，因此利用反斜线来跳脱。
@@ -393,7 +393,7 @@ find 的特殊功能就是能够进行额外的动作(action)
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:33</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

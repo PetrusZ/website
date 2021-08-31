@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-07-09 Fri 21:03 -->
+<!-- 2021-09-01 Wed 00:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Openwrt启用外网Web、SSH管理及Samba访问</title>
@@ -264,7 +264,7 @@
 1、启用外网 Web 管理
 </p>
 
-<pre class="example" id="org066f5a9">
+<pre class="example" id="org8bd13dc">
     uci show firewall
     uci add firewall rule
     uci set firewall.@rule[8].name=LuCI
@@ -279,7 +279,7 @@
 2、启用外网 SSH 管理
 </p>
 
-<pre class="example" id="org2416e1f">
+<pre class="example" id="orgd283a0e">
     uci show firewall
     uci add firewall rule
     uci set firewall.@rule[9].name=SSH
@@ -294,7 +294,7 @@
 3、启用外网 Samba 访问
 </p>
 
-<pre class="example" id="orgf222a9f">
+<pre class="example" id="orgaec63c3">
     uci show firewall
     uci add firewall rule
     uci set firewall.@rule[10].name=Samba
@@ -313,7 +313,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-07-09 Fri 21:03</p>
+<p class="date">Created: 2021-09-01 Wed 00:39</p>
 </div>
 </body>
 </html>

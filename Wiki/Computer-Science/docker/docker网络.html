@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:33 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>docker网络</title>
@@ -256,7 +256,7 @@
 </div>
 </div>
 
-<div id="org8e355b0" class="figure">
+<div id="orgef2c2d1" class="figure">
 <p><img src="../../../pics/Docker/docker_network.jpg" alt="docker_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>docker network</p>
@@ -287,7 +287,7 @@ Docker 容器默认使用 bridge 模式的网络。其特点如下：
 iptables 的 SNTA 规则，使得从容器离开去外界的网络包的源 IP 地址被转换为 Docker 主机的 IP 地址：
 </p>
 
-<pre class="example" id="org8985be3">
+<pre class="example" id="org438992e">
     Chain POSTROUTING (policy ACCEPT)
     target     prot opt source               destination
     MASQUERADE  all  --  172.17.0.0/16        0.0.0.0/0
@@ -299,7 +299,7 @@ iptables 的 SNTA 规则，使得从容器离开去外界的网络包的源 IP �
 </p>
 
 
-<div id="orga59d985" class="figure">
+<div id="org6258fd5" class="figure">
 <p><img src="../../../pics/Docker/bridge.jpg" alt="bridge.jpg">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>bridge</p>
@@ -310,7 +310,7 @@ iptables 的 SNTA 规则，使得从容器离开去外界的网络包的源 IP �
 </p>
 
 
-<div id="orgfb994e7" class="figure">
+<div id="orga106286" class="figure">
 <p><img src="../../../pics/Docker/bridge_network.jpg" alt="bridge_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;3&nbsp; </span>bridge_network</p>
@@ -337,7 +337,7 @@ Host 模式并没有为容器创建一个隔离的网络环境。 而之所以�
 </p>
 
 
-<div id="orgc5e5141" class="figure">
+<div id="org024240a" class="figure">
 <p><img src="../../../pics/Docker/host_network.jpg" alt="host_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;4&nbsp; </span>host_network</p>
@@ -363,7 +363,7 @@ Container 网络模式是 Docker 中一种较为特别的网络的模式。 处�
 </p>
 
 
-<div id="orgf74ee5d" class="figure">
+<div id="orge7d02af" class="figure">
 <p><img src="../../../pics/Docker/container_network.jpg" alt="container_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;5&nbsp; </span>container_network</p>
@@ -401,7 +401,7 @@ Docker 1.19 版本中增加了对 overlay 网络的原生支持。 Docker 支持
 </p>
 
 
-<div id="org2c8e17b" class="figure">
+<div id="orgb30eeb5" class="figure">
 <p><img src="../../../pics/Docker/overlay_network.jpg" alt="overlay_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;6&nbsp; </span>overlay_network</p>
@@ -521,7 +521,7 @@ Docker 1.19 版本中增加了对 overlay 网络的原生支持。 Docker 支持
 <h3 id="org05d753f">网络文章的对比数据</h3>
 <div class="outline-text-3" id="text-org05d753f">
 
-<div id="orgb176007" class="figure">
+<div id="org0abab7f" class="figure">
 <p><img src="../../../pics/Docker/perf_network.jpg" alt="perf_network.jpg">
 </p>
 <p><span class="figure-number">&#22270;7&nbsp; </span>perf_network</p>
@@ -544,7 +544,7 @@ Docker 1.19 版本中增加了对 overlay 网络的原生支持。 Docker 支持
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:33</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

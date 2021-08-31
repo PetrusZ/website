@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elisp Tutorial</title>
@@ -517,11 +517,11 @@ nil 和 t 在 elisp 里面分别代表着 false 和 true，用单个字母 <code
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">setq</span> <span style="color: #dcaeea;">auto-mode-alist</span>
   <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">append</span>
    <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name (within directory) starts with a dot.</span>
-   <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span><span style="color: #51afef;">(</span><span style="color: #98be65;">"/\\.[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">/]*\\'"</span> . fundamental-mode<span style="color: #51afef;">)</span>
+   <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span><span style="color: #a9a1e1;">(</span><span style="color: #98be65;">"/\\.[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">/]*\\'"</span> . fundamental-mode<span style="color: #a9a1e1;">)</span>
      <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name has no dot.</span>
-     <span style="color: #51afef;">(</span><span style="color: #98be65;">"/[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">\\./]*\\'"</span> . fundamental-mode<span style="color: #51afef;">)</span>
+     <span style="color: #a9a1e1;">(</span><span style="color: #98be65;">"/[</span><span style="color: #51afef; font-weight: bold;">^</span><span style="color: #98be65;">\\./]*\\'"</span> . fundamental-mode<span style="color: #a9a1e1;">)</span>
      <span style="color: #5B6268;">;; </span><span style="color: #5B6268;">File name ends in &#8216;</span><span style="color: #a9a1e1;">.C</span><span style="color: #5B6268;">&#8217;.</span>
-     <span style="color: #51afef;">(</span><span style="color: #98be65;">"\\.C\\'"</span> . c++-mode<span style="color: #51afef;">)</span><span style="color: #98be65;">)</span>
+     <span style="color: #a9a1e1;">(</span><span style="color: #98be65;">"\\.C\\'"</span> . c++-mode<span style="color: #a9a1e1;">)</span><span style="color: #98be65;">)</span>
    <span style="color: #dcaeea;">auto-mode-alist</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 </pre>
 </div>
@@ -681,7 +681,7 @@ backquote 的作用与 quote 相似, 同样不对后面的表达式求值, 但�
 <pre class="src src-emacs-lisp"><span style="color: #51afef;">(</span><span style="color: #51afef;">defmacro</span> <span style="color: #c678dd;">my-print-2</span> <span style="color: #c678dd;">(</span>number<span style="color: #c678dd;">)</span>
   <span style="color: #51afef;">`</span><span style="color: #c678dd;">(</span>message <span style="color: #98be65;">"This is a number: %d"</span> ,number<span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 
-<span style="color: #51afef;">(</span><span style="color: #c678dd;">pp</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">macroexpand</span> <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span>my-print-2 <span style="color: #51afef;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+<span style="color: #51afef;">(</span><span style="color: #c678dd;">pp</span> <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">macroexpand</span> <span style="color: #51afef;">'</span><span style="color: #98be65;">(</span>my-print-2 <span style="color: #a9a1e1;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #a9a1e1;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 <span style="color: #51afef;">(</span>my-print-2 <span style="color: #c678dd;">(</span><span style="color: #a9a1e1;">+</span> <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #da8548; font-weight: bold;">3</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 </pre>
 </div>
@@ -759,7 +759,7 @@ use-package 的更多信息参见以下地址: <a href="https://github.com/jwieg
      <span style="color: #98be65;">(</span><span style="color: #a9a1e1;">require</span> <span style="color: #51afef;">'</span><span style="color: #a9a1e1;">package-name</span> nil <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">t</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span>
     <span style="color: #c678dd;">(</span><span style="color: #c678dd;">ignore</span>
      <span style="color: #98be65;">(</span><span style="color: #a9a1e1;">message</span>
-      <span style="color: #51afef;">(</span><span style="color: #a9a1e1;">format</span> <span style="color: #98be65;">"Cannot load %s"</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">package-name</span><span style="color: #51afef;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
+      <span style="color: #a9a1e1;">(</span><span style="color: #a9a1e1;">format</span> <span style="color: #98be65;">"Cannot load %s"</span> <span style="color: #51afef;">'</span><span style="color: #ECBE7B;">package-name</span><span style="color: #a9a1e1;">)</span><span style="color: #98be65;">)</span><span style="color: #c678dd;">)</span><span style="color: #51afef;">)</span>
 </pre>
 </div>
 
@@ -882,7 +882,7 @@ org 是和 markdown 一样是一种格式标记文本形式，可以用来编写
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:38</p>
 </div>
 </body>
 </html>

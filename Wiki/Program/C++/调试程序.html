@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>调试程序</title>
@@ -317,7 +317,7 @@ qmake
 在这条命令中，/data/coredump 是你自己指定的存放 coredump 文件的路径，所有产生的 coredump 文件将会存放在这里，%e 表示程序的文件名，%p 表示进程的 ID（当然还有一些其他的参数可以设置，例：%t 显示创建的时间）,但是前提要把目录/data/coredump 创建好，不然无法生成文件
 </p>
 
-<pre class="example" id="orgceb3a1c">
+<pre class="example" id="org7bca5cb">
     %p - insert pid into filename 添加pid
     %u - insert current uid into filename 添加当前uid
     %g - insert current gid into filename 添加当前gid
@@ -352,7 +352,7 @@ qmake
 <li><p>
 在/etc/security/limits.conf 最后增加如下两行记录：
 </p>
-<pre class="example" id="org5091ca2">
+<pre class="example" id="org0f7ce8d">
       @root soft core unlimited
       @root hard core unlimited
 </pre></li>
@@ -374,7 +374,7 @@ qmake
 <li><p>
 gdb 命令
 </p>
-<pre class="example" id="org712ea15">
+<pre class="example" id="org0a91906">
    bt 查看堆栈
 
    info threads 查看所有线程正在运行的指令信息
@@ -389,7 +389,7 @@ gdb 命令
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:39</p>
 </div>
 </body>
 </html>

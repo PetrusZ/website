@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-09-01 Wed 00:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>贪心算法：赫夫曼编码</title>
@@ -302,7 +302,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 在下面的伪代码中，假定 C 是一个 n 个字符的集合，而其中每个字符 c ∈ C 都是一个对象，其属性 c.freq 表示字符出现的频率，算法自底向上构造出对应最优编码的二叉树。算法使用一个以 freq 为关键字的<a href="堆排序和优先队列.html">优先队列</a>Q，以识别两个最低频率的对象将其合并，从|C|个叶结点开始，执行|C|-1 个合并构造出最终的二叉树。
 </p>
 
-<pre class="example" id="orgdaca001">
+<pre class="example" id="org4633ba5">
     n = |C|
     Q = C
     for i = 1 to n - 1
@@ -364,7 +364,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-09-01 Wed 00:39</p>
 </div>
 </body>
 </html>
