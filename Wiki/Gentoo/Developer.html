@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-06-23 Wed 18:34 -->
+<!-- 2021-08-31 Tue 23:37 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Developer</title>
@@ -234,7 +234,9 @@
 <ul>
 <li><a href="#orgef3404f">GURU</a>
 <ul>
+<li><a href="#orgd47b1a2">GURU</a></li>
 <li><a href="#org7f087f3">The regulations</a></li>
+<li><a href="#org6f831f9">用户角色和责任</a></li>
 <li><a href="#orgde9e67e">Generating/Managing GLEP 63 based OpenPGP keys</a></li>
 <li><a href="#org9faad40">git setup</a></li>
 <li><a href="#org2e42165">Committing</a></li>
@@ -254,6 +256,14 @@
 </p>
 </div>
 
+<div id="outline-container-orgd47b1a2" class="outline-3">
+<h3 id="orgd47b1a2">GURU</h3>
+<div class="outline-text-3" id="text-orgd47b1a2">
+<p>
+GURU 项目的目的是创建一个由 Gentoo 用户合作维护的新 Gentoo 软件包的官方仓库。它遵循 Sunrise 项目的传统，但是旨在通过减少 Gentoo 开发者的参与并让有经验的贡献者来负责审核其他人的工作来提高其可维护性。
+</p>
+</div>
+</div>
 <div id="outline-container-org7f087f3" class="outline-3">
 <h3 id="org7f087f3">The regulations</h3>
 <div class="outline-text-3" id="text-org7f087f3">
@@ -265,11 +275,40 @@
 <li>GURU 项目的目的是维护一个可以被 Gentoo 用户合理使用的仓库。所有贡献者都有责任确保仓库可以安全使用并且没有恶意活严重漏洞的软件。</li>
 <li>GURU 是 Gentoo 的官方项目，因此受 Gentoo 官方政策的约束。特别是，<a href="https://www.gentoo.org/glep/glep-0076.html">Copyright Policy(GLEP 76)</a>对所有提交者都有约束力。</li>
 <li>虽然遵循 Gentoo ebuild 的政策和质量标准是推荐的，但不会严格的强制执行。鼓励更有经验的用户更高 GURU 中 ebuild 的质量，更里缺乏经验的用户从这些更正中学习。</li>
-<li>GURU 中的软件包应具有=~arch=关键字。不得使用 stable 关键字。</li>
+<li>GURU 中的软件包应具有 <code>~arch</code> 关键字。不得使用 stable 关键字。</li>
 <li>GURU 中的软件包由社区维护。虽然鼓励用户将自己列为维护着并对其软件包承担明确的责任，其他人也可以对这些软件包进行改进，而且提交软件包而无明确的维护着也是可以接受的。</li>
 <li>同时，用户被要求保持尊重和专业的行为，并尝试对 GURU 整体保持一个良好的质量。</li>
 <li>GURU 的主要目的是维护不在 Gentoo 仓库中的软件包。Forking(overrding)活跃维护的 Gentoo 软件包到 GURU 中是禁止的。如果软件包被移动到 Gentoo，那么它应该从 GURU 中删除。</li>
 </ol>
+</div>
+</div>
+<div id="outline-container-org6f831f9" class="outline-3">
+<h3 id="org6f831f9">用户角色和责任</h3>
+<div class="outline-text-3" id="text-org6f831f9">
+<p>
+GURU 将用户分为三类：
+</p>
+<ul class="org-ul">
+<li><i>常规用户</i> 允许提交到开发（dev）分支。</li>
+<li><i>信任用户</i> 获得附加的合并提交到已审核的（master）分支的权限。</li>
+<li><i>Gentoo 开发者</i> 负责处理新用户的接受、规定的执行和紧急情况的处理。</li>
+</ul>
+
+<p>
+新的贡献者通过<a href="https://bugs.gentoo.org/enter_bug.cgi?product=GURU&amp;component=Access+requests">在 GURU 产品中提交 bug</a> 并声明同意规定来请求访问。Gentoo 开发者授予访问仓库的权限。
+</p>
+
+<p>
+常规贡献者在开发分支执行他们的工作。这些工作之后被信任贡献者和/或 Gentoo 开发者审核。他们要么通知作者必要的修改，要么自己修复 ebuild。无论何时最终状态足够好，他们就会合并这些修改到已审核的（master）分支。
+</p>
+
+<p>
+信任贡献者状态由 Gentoo 开发者根据之前在 GURU 中所做的出色工作授予。信任用户通常被期望负责确保仓库免于恶意或其他危险的代码，并阻止它通过审核分支到达最终用户。
+</p>
+
+<p>
+Gentoo 开发者可以在闲暇时间加入项目。他们的主要角色是处理来自用户的技术请求，授予信任贡献者权限以及防止滥用。
+</p>
 </div>
 </div>
 
@@ -380,7 +419,7 @@ GURU guides:
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-06-23 Wed 18:34</p>
+<p class="date">Created: 2021-08-31 Tue 23:37</p>
 </div>
 </body>
 </html>
