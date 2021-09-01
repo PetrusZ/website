@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:38 -->
+<!-- 2021-09-01 Wed 13:39 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>General Concepts</title>
@@ -263,7 +263,7 @@
 <h2 id="org06ef4e6">Emerge and Ebuild Relationships</h2>
 <div class="outline-text-2" id="text-org06ef4e6">
 
-<div id="org78fe7ec" class="figure">
+<div id="org7bff837" class="figure">
 <p><img src="../../../pics/Gentoo/relationship-diagram.png" alt="relationship-diagram.png">
 </p>
 <p><span class="figure-number">&#22270;1&nbsp; </span>relationship-diagram</p>
@@ -312,8 +312,8 @@
 </tr>
 
 <tr>
-<td class="org-left"><code>sanbox</code></td>
-<td class="org-left">开启 sanbox</td>
+<td class="org-left"><code>sandbox</code></td>
+<td class="org-left">开启 sandbox</td>
 </tr>
 
 <tr>
@@ -353,7 +353,7 @@
 </p>
 
 <ul class="org-ul">
-<li>开发者 commit 到本地 git cloen 并且 push 到中央远程 git 仓库。commit 和 push 使用 git 基于 GPG 的机制签名。</li>
+<li>开发者 commit 到本地 git clone 并且 push 到中央远程 git 仓库。commit 和 push 使用 git 基于 GPG 的机制签名。</li>
 <li>staging box 从中央 git 仓库同步，生成元数据缓存，ChangLogs 并从 git 历史记录中签名 Manifests。</li>
 <li><code>rsync1</code> 从 staging box 同步</li>
 <li>公共 rsync 服务器从 <code>rysnc1</code> 同步</li>
@@ -361,7 +361,7 @@
 </ul>
 
 
-<div id="orge342cbd" class="figure">
+<div id="org0a513bc" class="figure">
 <p><img src="../../../pics/Gentoo/git-to-rsync.png" alt="git-to-rsync.png">
 </p>
 <p><span class="figure-number">&#22270;2&nbsp; </span>git-to-rsync</p>
@@ -587,7 +587,7 @@ Note:首次在库 ebuild 中使用 sub-slot 时必须小心处理。添加 sub-s
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:38</p>
+<p class="date">Created: 2021-09-01 Wed 13:39</p>
 </div>
 </body>
 </html>
