@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- 2021-09-14 Tue 16:00 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>设计模式</title>
+<meta name="author" content="Petrus.Z" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
+<style> #content{max-width:1400px;}</style>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="../index.html"> UP </a>
+ |
+ <a accesskey="H" href="/index.html"> HOME </a>
+</div><div id="content">
+<h1 class="title">设计模式</h1>
+<div id="table-of-contents">
+<h2>&#30446;&#24405;</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4ad910a">设计原则</a></li>
+<li><a href="#org2ab7c9c">设计模式</a>
+<ul>
+<li><a href="#orgb6a629d">工厂方法</a></li>
+<li><a href="#org4323c43">抽象工厂</a></li>
+<li><a href="#org36eb0b8">适配器</a></li>
+<li><a href="#org4226c8a">命令</a></li>
+<li><a href="#org4c56d0e">组合</a></li>
+<li><a href="#org06cdfa9">装饰者</a></li>
+<li><a href="#org59f9fba">外观</a></li>
+<li><a href="#orgb6f30ff">迭代器</a></li>
+<li><a href="#orgb981365">观察者</a></li>
+<li><a href="#org3bf3765">单件</a></li>
+<li><a href="#org385bc06">代理（保护）</a></li>
+<li><a href="#org7a89591">代理（远程）</a></li>
+<li><a href="#orgdc64d21">代理（虚拟）</a></li>
+<li><a href="#orgb0066f7">策略</a></li>
+<li><a href="#org1bd5427">状态</a></li>
+<li><a href="#orgfaaf032">模板方法</a></li>
+<li><a href="#orga3a9eef">MVC</a></li>
+<li><a href="#org416012c">简单工厂</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4ad910a" class="outline-2">
+<h2 id="org4ad910a">设计原则</h2>
+<div class="outline-text-2" id="text-org4ad910a">
+<ul class="org-ul">
+<li>找出应用中可能需要变化之处，把它们独立出来，不要和那些不需要变化的代码混在一起。</li>
+<li>针对接口编程，而不是针对实现编程。（Java 中的接口，在 C++也称为抽象类。如果类中至少有一个函数被声明为纯虚函数，则这个类就是抽象类。）</li>
+<li>多用组合，少用继承。</li>
+<li>为了交互对象之间的松耦合设计而努力。</li>
+<li>类应该对扩展开放，对修改关闭。</li>
+<li>要依赖抽象，不要依赖具体类。</li>
+<li>最少知识原则：只和你的密友谈话。</li>
+<li>别调用（打电话给）我们，我们会调用（打电话给）你。</li>
+<li>一个类应该只有一个引起变化的原因。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2ab7c9c" class="outline-2">
+<h2 id="org2ab7c9c">设计模式</h2>
+<div class="outline-text-2" id="text-org2ab7c9c">
+</div>
+<div id="outline-container-orgb6a629d" class="outline-3">
+<h3 id="orgb6a629d">工厂方法</h3>
+<div class="outline-text-3" id="text-orgb6a629d">
+<p>
+<b>工厂方法模式</b> 定义了一个创建对象的接口，但由子类决定实例化的类是哪一个。工厂方法让类把实例化推迟到子类。
+</p>
+
+
+<div id="orgc952bd8" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Factory-Method.png" alt="Factory-Method.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4323c43" class="outline-3">
+<h3 id="org4323c43">抽象工厂</h3>
+<div class="outline-text-3" id="text-org4323c43">
+<p>
+<b>抽象工厂模式</b> 提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。
+</p>
+
+
+<div id="org9232d99" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Abstract-Factory.png" alt="Abstract-Factory.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org36eb0b8" class="outline-3">
+<h3 id="org36eb0b8">适配器</h3>
+<div class="outline-text-3" id="text-org36eb0b8">
+<p>
+<b>适配器模式</b> 将一个类的接口，转换成客户期望的另一个接口。适配器让原本接口不兼容的类可以合作无间。
+</p>
+
+
+<div id="orgc4c3ab1" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Adapter.png" alt="Adapter.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4226c8a" class="outline-3">
+<h3 id="org4226c8a">命令</h3>
+<div class="outline-text-3" id="text-org4226c8a">
+<p>
+<b>命令模式</b> 将“请求”封装成对象，以便使用不同的请求、队列或日志来参数化其他对象。命令模式也支持可撤销的操作。
+</p>
+
+
+<div id="orgeb7d04b" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Command.png" alt="Command.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4c56d0e" class="outline-3">
+<h3 id="org4c56d0e">组合</h3>
+<div class="outline-text-3" id="text-org4c56d0e">
+<p>
+<b>组合模式</b> 允许你将对象组合成树形结构来表现“整体/部分”层次结构。组合能让客户以一致的方式处理个别对象及对象组合。
+</p>
+
+
+<div id="orgca92fa7" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Composite.png" alt="Composite.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org06cdfa9" class="outline-3">
+<h3 id="org06cdfa9">装饰者</h3>
+<div class="outline-text-3" id="text-org06cdfa9">
+<p>
+<b>装饰者模式</b> 动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更有弹性的替代方案。
+</p>
+
+
+<div id="orgd23b11e" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Decorator.png" alt="Decorator.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org59f9fba" class="outline-3">
+<h3 id="org59f9fba">外观</h3>
+<div class="outline-text-3" id="text-org59f9fba">
+<p>
+<b>外观模式</b> 提供了一个统一的接口，用来访问子系统中的一群接口。外观定义了一个高层接口，让子系统更容易使用。
+</p>
+
+
+<div id="orgbd741be" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Facade.png" alt="Facade.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb6f30ff" class="outline-3">
+<h3 id="orgb6f30ff">迭代器</h3>
+<div class="outline-text-3" id="text-orgb6f30ff">
+<p>
+<b>迭代器模式</b> 提供了一种方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示。
+</p>
+
+
+<div id="orgbac2ce9" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Iterator.png" alt="Iterator.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb981365" class="outline-3">
+<h3 id="orgb981365">观察者</h3>
+<div class="outline-text-3" id="text-orgb981365">
+<p>
+<b>观察者模式</b> 定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。
+</p>
+
+
+<div id="org456e9ef" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Observer.png" alt="Observer.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3bf3765" class="outline-3">
+<h3 id="org3bf3765">单件</h3>
+<div class="outline-text-3" id="text-org3bf3765">
+<p>
+<b>单件模式</b> 确保一个类只有一个实例，并提供一个全局访问点。
+</p>
+
+
+<div id="org1573e5f" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Singleton.png" alt="Singleton.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org385bc06" class="outline-3">
+<h3 id="org385bc06">代理（保护）</h3>
+<div class="outline-text-3" id="text-org385bc06">
+<p>
+<b>保护代理</b> 为另一个对象提供一个替身货占位符以访问这个对象。
+</p>
+
+
+<div id="org6b5022f" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Proxy-Protection.png" alt="Proxy-Protection.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7a89591" class="outline-3">
+<h3 id="org7a89591">代理（远程）</h3>
+<div class="outline-text-3" id="text-org7a89591">
+<p>
+<b>远程代理</b> 就好比远程对象的本地代表。
+</p>
+
+
+<div id="orgf97c13b" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Proxy-Remote.png" alt="Proxy-Remote.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc64d21" class="outline-3">
+<h3 id="orgdc64d21">代理（虚拟）</h3>
+<div class="outline-text-3" id="text-orgdc64d21">
+<p>
+<b>虚拟代理</b> 作为创建开销大的对象的代表。虚拟代理经常直到我们真正需要一个对象的时候才创建它。当对象在创建前和创建中时，由虚拟代理来扮演对象的替身。对象创建后，代理就会将请求直接委托给对象。
+</p>
+
+
+<div id="org485d0ea" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Proxy-Virtual.png" alt="Proxy-Virtual.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0066f7" class="outline-3">
+<h3 id="orgb0066f7">策略</h3>
+<div class="outline-text-3" id="text-orgb0066f7">
+<p>
+<b>策略模式</b> 定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化独立于使用算法的客户。
+</p>
+
+
+<div id="org77941f0" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Strategy.png" alt="Strategy.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1bd5427" class="outline-3">
+<h3 id="org1bd5427">状态</h3>
+<div class="outline-text-3" id="text-org1bd5427">
+<p>
+<b>状态模式</b> 允许对象在内部状态改变的时候改变它的行为，对象看起来好像修改了它的类。
+</p>
+
+
+<div id="org64d238b" class="figure">
+<p><img src="../../pics/Desgin-Patterns/State.png" alt="State.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfaaf032" class="outline-3">
+<h3 id="orgfaaf032">模板方法</h3>
+<div class="outline-text-3" id="text-orgfaaf032">
+<p>
+<b>模板方法模式</b> 在一个方法中定义一个算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以在不改变算法结构的情况下，重新定义算法中的某些步骤。
+</p>
+
+
+<div id="orgb92cd8b" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Template-Method.png" alt="Template-Method.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3a9eef" class="outline-3">
+<h3 id="orga3a9eef">MVC</h3>
+<div class="outline-text-3" id="text-orga3a9eef">
+<p>
+<b>一个复合模式</b> 模式-视图-控制器模式（MVC）把一个应用分成三个截然不同的组件：模型、视图和控制器。
+</p>
+
+
+<div id="org7741728" class="figure">
+<p><img src="../../pics/Desgin-Patterns/MVC.png" alt="MVC.png">
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org416012c" class="outline-3">
+<h3 id="org416012c">简单工厂</h3>
+<div class="outline-text-3" id="text-org416012c">
+<p>
+<b>不是一个真正的模式</b> 但是和抽象工厂和工厂方法模式一样，它经常被用于封装创建对象的代码。
+</p>
+
+
+<div id="org2ade20d" class="figure">
+<p><img src="../../pics/Desgin-Patterns/Simple-Factory.png" alt="Simple-Factory.png">
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: Petrus.Z</p>
+<p class="date">Created: 2021-09-14 Tue 16:00</p>
+</div>
+</body>
+</html>
