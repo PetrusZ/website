@@ -186,7 +186,7 @@ main(void)
 <img src="../../../pics/CLRS/4753885194212a420f0126c6896f0ad9.png" alt="T(n ) = Θ (f (n ) )" /><figcaption aria-hidden="true">T(n ) = Θ (f (n ) )</figcaption>
 </figure>
 <p>摘自维基百科：<a href="http://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%9A%E7%90%86">http://zh.wikipedia.org/wiki/%E4%B8%BB%E5%AE%9A%E7%90%86</a></p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Effective C++]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/Effective%20C++.html</link>
@@ -471,7 +471,7 @@ main(void)
 <li>Boost 是一个社群，也是一个网站。致力于免费、源码开放、同僚复审的 C++程序库开发。Boost 在 C++标准化过程中扮演深具影响力的角色。</li>
 <li>Boost提供许多TR1组件实现品，以及其他许多程序库。</li>
 </ul>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Common Mistakes]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/Common%20Mistakes.html</link>
@@ -590,7 +590,7 @@ main(void)
 <p><code class="verbatim">$ diff -u some-package-0.1.0.ebuild some-package-0.2.0.ebuild &gt; ~/some-package-0.2.0.diff</code></p>
 <h2 id="因版本-bump-提交未更改的-ebuild">因版本 bump 提交未更改的 ebuild</h2>
 <p>如果你提交一个新版本的软件包到 portage 中，确保存在的 ebuild 正常工作并且确保更改已合并到新的 build 中（例如添加文档）。如果对闲钱版本的 ebuild 不需要进行任何更改，那么请不要附加 ebuild。只要在 bug report 中说明你复制了 ebuild 并验证了该软件包可以正常安装和工作。</p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[设计模式]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f.html</link>
@@ -662,7 +662,7 @@ main(void)
 <h2 id="简单工厂">简单工厂</h2>
 <p><strong>不是一个真正的模式</strong> 但是和抽象工厂和工厂方法模式一样，它经常被用于封装创建对象的代码。</p>
 <p><img src="../../pics/Desgin-Patterns/Simple-Factory.png" /></p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[General Concepts]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/General%20Concepts.html</link>
@@ -805,7 +805,7 @@ main(void)
 <li><a href="https://devmanual.gentoo.org/general-concepts/tree/index.html">The Gentoo Repository</a></li>
 <li><a href="https://devmanual.gentoo.org/general-concepts/virtuals/index.html">Virtuals</a> NEED TO READ AGAIN.</li>
 </ol>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[语法]]></title>
     <link>https://www.codeplayer.org/Wiki/English/%e8%af%ad%e6%b3%95.html</link>
@@ -1255,7 +1255,7 @@ main(void)
 <p>People are aware of environmental problems.</p></li>
 </ol>
 <h1 id="非谓语动词不定式和动名词"><span class="todo TODO">TODO</span> 非谓语动词（不定式和动名词）</h1>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[策略路由及ip route,ip rule,iptables]]></title>
     <link>https://www.codeplayer.org/Wiki/Router/%e7%ad%96%e7%95%a5%e8%b7%af%e7%94%b1%e5%8f%8aip%20route,ip%20rule,iptables.html</link>
@@ -1645,7 +1645,7 @@ Unreachable丢弃该包， 并发送 NET UNREACHABLE的ICMP信息
 <div class="sourceCode" id="cb29" data-org-language="sh"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">rtmon</span> file /var/log/rtmon.log</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ip</span> monitor file /var/log/rtmon.log r</span></code></pre></div></li>
 </ol>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[nmcli examples]]></title>
     <link>https://www.codeplayer.org/Wiki/Router/nmcli%20examples.html</link>
@@ -1660,7 +1660,7 @@ Unreachable丢弃该包， 并发送 NET UNREACHABLE的ICMP信息
 <p>Get a list of UUIDs: <code class="verbatim">$ nmcli connection show</code></p>
 <p>See a list of network devices and their state: <code class="verbatim">$ nmcli device</code></p>
 <p>Turn off wifi: <code class="verbatim">$ nmcli radio wifi off</code></p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Linux ip命令详解]]></title>
     <link>https://www.codeplayer.org/Wiki/Router/Linux%20ip%e5%91%bd%e4%bb%a4%e8%af%a6%e8%a7%a3.html</link>
@@ -1801,7 +1801,7 @@ Unreachable丢弃该包， 并发送 NET UNREACHABLE的ICMP信息
                0        0       0       0       2
 </code></pre></li>
 </ul>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[Linksys WRT1200AC路由器Openwrt双分区切换固件]]></title>
     <link>https://www.codeplayer.org/Wiki/Router/Linksys%20WRT1200AC%e8%b7%af%e7%94%b1%e5%99%a8Openwrt%e5%8f%8c%e5%88%86%e5%8c%ba%e5%88%87%e6%8d%a2%e5%9b%ba%e4%bb%b6.html</link>
@@ -1819,7 +1819,7 @@ boot_part=1
 reboot
 </code></pre>
 <p>路由器重启。清空浏览器缓存，再次连接即可。</p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[<< & <<< & < <()]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/Shell/%3c%3c%20%26%20%3c%3c%3c%20%26%20%3c%20%3c.html</link>
@@ -1893,7 +1893,7 @@ reboot
 <ol>
 <li><a href="https://askubuntu.com/questions/678915/whats-the-difference-between-and-in-bash">https://askubuntu.com/questions/678915/whats-the-difference-between-and-in-bash</a></li>
 </ol>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[C++ Primer 第 IV 部分 高级主题]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/C++%20Primer%20Part%20IV.html</link>
@@ -4110,7 +4110,7 @@ extern &quot;C&quot; double calc(double dparm) { /* ... */ }
 <p>链接指示与重载函数的互相作用依赖于目标语言。如果目标语言支持重载函数，则为该语言实现链接指示的编译器很可能也支持重载这些 C++的函数。</p>
 <p>C 语言不支持函数重载，因此也就不难理解为什么一个 C 链接指示只能用于说明一组重载函数中的某一个了。</p></li>
 </ol>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[C/C++ Primer 第 I 部分 C++基础]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/C++%20Primer%20Part%20I.html</link>
@@ -6079,7 +6079,7 @@ private:
 </code></pre>
 <p>静态成员和普通成员的另一个区别是我们可以使用静态成员作为默认实参（参见 6.5.1 节）。</p>
 <p>非静态数据成员不能作为默认实参，因为它的值本身属于对象的一部分，这么做的结果是无法真正提供一个对象以便从中获取成员的值，最终将引发错误。</p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[C++ Primer 第 II 部分 C++标准库]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/C++%20Primer%20Part%20II.html</link>
@@ -8750,7 +8750,7 @@ up.release();  // 自动用delete[]销毁其指针
 </table>
 <p>传递给 uninitialized<sub>copy</sub> 的目的位置迭代器必须指向未构造的内存。与 copy 不同 uninitialized<sub>copy</sub> 在给定目的位置构造函数。</p>
 <p>类似 copy，uninitialized<sub>copy</sub> 返回（递增后）目的位置迭代器。因此，依次 uninitialized<sub>copy</sub> 调用会返回一个指针，指向最后一个构造的元素之后的位置。</p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[C++ Primer 第 III部分 类设计者的工具]]></title>
     <link>https://www.codeplayer.org/Wiki/Program/C++/C++%20Primer%20Part%20III.html</link>
@@ -10606,7 +10606,7 @@ Foo&lt;int&gt; fi;         // 实例化Foo&lt;int&gt;::Foo()
 fi.Bar();            // 使用我们特例化版本的Foo&lt;int&gt;::Bar()
 </code></pre>
 <p>当我们使用 int 之外的任何类型使用 Foo 时，其成员像往常一样进行实例化。当我们用 int 使用 Foo 时，Bar 之外的成员像往常一样进行实例化。如果我们使用 Foo&lt;int&gt;的成员 Bar，则会使用我们定义的特例化版本。</p>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>    <item>
     <title><![CDATA[USE Flags]]></title>
     <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/USE%20Flags.html</link>
@@ -10692,39 +10692,7 @@ fi.Bar();            // 使用我们特例化版本的Foo&lt;int&gt;::Bar()
 <blockquote>
 <p>Warning：架构变量与 <code class="verbatim">ACCEPT_KEYWORDS</code> 有某种联系是一个常见的误解。它们没有联系。例如，在 <code class="verbatim">sparc</code> 上接受 <code class="verbatim">x86</code> 关键字，并不会设置 <code class="verbatim">USE\"x86"</code> 。类似的，也没有 <code class="verbatim">~arch</code> USE flag，所以不要尝试 <code class="verbatim">if use ~x86</code> 。</p>
 </blockquote>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
-    </item>    <item>
-    <title><![CDATA[The Basics of Autotools]]></title>
-    <link>https://www.codeplayer.org/Wiki/Gentoo/Ebuild/The%20Basics%20of%20Autotools.html</link>
-    <guid isPermaLink="false">https://www.codeplayer.org/Wiki/Gentoo/Ebuild/The%20Basics%20of%20Autotools.html</guid>
-    <description><![CDATA[<h1 id="major-autotools-components">Major Autotools Components</h1>
-<p>Autotools 是相关软件包的集合，这些软件包一起使用时，可以消除创建可移植软件时遇到的许多困难。这些工具和一些相对简单的上游提供的输入文件以其，用于为软件包创建构建系统。</p>
-<figure>
-<img src="../../../pics/Gentoo/autotools_diagram.png" alt="A basic overview of how the main autotools components fit together." /><figcaption aria-hidden="true">A basic overview of how the main autotools components fit together.</figcaption>
-</figure>
-<p><em>A basic overview of how the main autotools components fit together.</em></p>
-<p>在一个简单的设置中：</p>
-<ul>
-<li><code class="verbatim">autoconf</code> 程序从 <code class="verbatim">configure.in</code> 或 <code class="verbatim">configure.ac</code> 中产生 <code class="verbatim">configure</code> 脚本（见下面的 NOTE）。</li>
-<li><code class="verbatim">automake</code> 程序从 <code class="verbatim">Makefile.am</code> 中产生 <code class="verbatim">Makefile.in</code> 。</li>
-<li><code class="verbatim">configure</code> 脚本从 <code class="verbatim">Makefile.in</code> 文件中产生一个或多个 <code class="verbatim">Makefile</code> 文件。</li>
-<li><code class="verbatim">make</code> 程序使用 <code class="verbatim">Makefile</code> 来编译程序。</li>
-</ul>
-<blockquote>
-<p>NOTE: <code class="verbatim">configure.in</code> 名字曾经是标准。然而，GNU 文档现在建议使用 <code class="verbatim">configure.ac</code> 因为当处理它时会更清楚该使用哪个程序。两个文件具有相同的用途并且具有相同的格式 —— 唯一的区别时名称。</p>
-</blockquote>
-<p>你可能会看到在各个阶段函数都使用了 autotools。src<sub>prepare</sub> 函数时在配置和编译之前处理源代码的最适合的位置。特别是，src<sub>prepare</sub> 在 src<sub>cofigure</sub> 之前调用，src<sub>cofigure</sub> 通常期望 <code class="verbatim">configure</code> 脚本存在。</p>
-<p><code class="verbatim">autoreconf</code> 工具据推测可以根据需要运行 <code class="verbatim">autoconf</code> （以及 <code class="verbatim">automake</code> 、 <code class="verbatim">autoheader</code> 、 <code class="verbatim">aclocal</code> 、 <code class="verbatim">autopoint</code> 和 <code class="verbatim">libtoolize</code> ）。有时运行起来没问题。一些软件包附带了一个名为 <code class="verbatim">autogen.sh</code> 的 shell 脚本，该脚本会执行相同的操作（与 <code class="verbatim">autogen</code> 无关）。autotools.eclass 包含了与它们名字对应的独立工具的 helper 函数，例如 <code class="verbatim">eautoconf</code> 和 <code class="verbatim">eautomake</code> 。</p>
-<blockquote>
-<p>Warning：你必须不能尝试修改在运行 <code class="verbatim">configure</code> 和 <code class="verbatim">make</code> 之间生成的任何文件。这可能会导致 autotools 尝试变得更加聪明并且重建文件，进而导致你的更改被删除。在一些情况下，这还会导致 <code class="verbatim">./configure</code> 参数被悄然删除，这可能会破坏依赖关键。最佳的的处理方法通常是改用 <code>.ac=/=.in</code> 文件。</p>
-</blockquote>
-<h2 id="the-configure.ac-file">The <code class="verbatim">configure.ac</code> File</h2>
-<p><code class="verbatim">configure.ac</code> 文件用来创建 <code class="verbatim">/.configure</code> 脚本。它包括一系列由 <code class="verbatim">autoconf</code> 处理和展开的宏。这些宏可以检查软件包和库，处理 <code class="verbatim">--enable</code> 和 <code class="verbatim">--with</code> 的切换，并且生成各种文件。</p>
-<h1 id="further-autotools-reading">Further Autotools Reading</h1>
-<ol>
-<li><a href="https://devmanual.gentoo.org/general-concepts/autotools/index.html">https://devmanual.gentoo.org/general-concepts/autotools/index.html</a></li>
-</ol>]]></description>
-    <pubDate>Sun, 26 Sep 2021 22:42:20 +0800</pubDate>
+    <pubDate>Mon, 27 Sep 2021 20:38:34 +0800</pubDate>
     </item>
 </channel>
 </rss>
