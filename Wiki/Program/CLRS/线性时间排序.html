@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-28 Tue 16:34 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>线型时间排序</title>
@@ -336,10 +336,11 @@
 </pre>
 </div>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2014-02-19-195910%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2014-02-19-195910%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org555203c" class="figure">
+<p><img src="../../../pics/CLRS/counting_sort.gif" alt="counting_sort.gif">
 </p>
+</div>
 
 <p>
 11～12 行的 for 循环遍历每一个输入元素。如果一个输入元素的值为 i，就将 C[i]值加 1。所以 12 行执行完后 C[i]中保存的就是等于 i 的元素的个数。第 14～15 行通过加总计算确定有多少个元素小于等于 i 的。最后，17～20 行把每个元素 A[j]放到它在输出数组 B 中的正确位置上。
@@ -352,8 +353,6 @@
 <p>
 另外技术排序还有一个重要的性质就是*稳定*的：具有相同值的元素在输出数组中的相对次序与它们在输入数组中的相对次序相同。
 </p>
-
-<hr>
 </div>
 </div>
 
@@ -364,9 +363,14 @@
 基数排序是一种用在卡片排序机上的算法，其主要思想是利用稳定的排序（如计数排序）按最低有效位到最高有效位的顺序一次进行排序。其时间复杂度为Θ(n)。
 </p>
 
+
+<div id="orgf412196" class="figure">
+<p><img src="../../../pics/CLRS/radixsort.jpg" alt="radixsort.jpg">
+</p>
+</div>
+
 <p>
-<img src="http://my.csdn.net/uploads/201204/10/1334071254_2630.JPG" alt="1334071254_2630.JPG">
-（图片丢失）最左边一列是输入数据，从左向右显示基数排序了由低位到高位进行排序的情况。
+最左边一列是输入数据，从左向右显示基数排序了由低位到高位进行排序的情况。
 </p>
 
 <p>
@@ -463,17 +467,17 @@
 <h2 id="orgb477f4c">3.桶排序</h2>
 <div class="outline-text-2" id="text-orgb477f4c">
 
-<div id="orgf924e87" class="figure">
+<div id="orga0fa909" class="figure">
 <p><img src="../../../pics/CLRS/桶排序.png" alt="桶排序.png">
 </p>
-<p><span class="figure-number">&#22270;1&nbsp; </span>桶排序</p>
+<p><span class="figure-number">&#22270;3&nbsp; </span>桶排序</p>
 </div>
 
 <p>
 伪代码：
 </p>
 
-<pre class="example" id="orgcd234d1">
+<pre class="example" id="orga481659">
     BUCKET-SORT（A）
     n = A.length
     let B[0..n-1] be a new array
@@ -490,7 +494,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-28 Tue 16:34</p>
 </div>
 </body>
 </html>
