@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>摊还分析：动态表</title>
@@ -241,8 +241,6 @@
 对某些应用程序，我们无法预先知道会将多少个元素存储在表中。我们为一个表分配一定的内存空间，随后可能会发现不够用。于是为其重新分配更大的空间，并将所有对象从原表中复制到新的空间中。类似地，如果从表中删除了很多元素，可能为其重新分配一个更小的内存空间是值得的。本文我们使用摊还分析来证明，虽然表在扩张和收缩时有较高的实际代价，但它们的摊还代价都是О(1)，且表中的空间空间与总空间的比例永远不会超过一个常量分数。为了方便分析，我们将一个非空表 T 的*装载因子*α(T)定义为表中存储的数据项的数量除以表的规模，一个规模为 0 的空表α(T) = 1。
 </p>
 
-<hr>
-
 <div id="outline-container-org3481cb3" class="outline-2">
 <h2 id="org3481cb3">表扩张</h2>
 <div class="outline-text-2" id="text-org3481cb3">
@@ -254,7 +252,7 @@
 令 T.table 保存指向表的存储空间的指针，T.num 保存表中的数据数量，T.size 保存表的规模，其伪代码如下：
 </p>
 
-<pre class="example" id="orgac4cd38">
+<pre class="example" id="orgc664bd3">
     if T.size == 0
         allocate T.table with 1 slot
         T.size = 1
@@ -276,19 +274,21 @@
 当然这不是一个紧确界，因为实际上仅当 i-1 恰好为 2 的幂时，第 i 个操作才会引起一次扩张，所以第 i 个操作的代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-095310%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-095310%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org09786d2" class="figure">
+<p><img src="../../../pics/CLRS/动态表1.png" alt="动态表1.png">
 </p>
+</div>
 
 <p>
 因此 n 个 TABLE-INSERT 操作的总代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-095404%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-095404%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="orgdfd4154" class="figure">
+<p><img src="../../../pics/CLRS/动态表2.png" alt="动态表2.png">
 </p>
+</div>
 
 <p>
 由于 n 个 TABLE-INSERT 操作的总代价以 3n 为上界，所以单一操作的摊还代价仅为 3。
@@ -310,30 +310,31 @@
 为了分析第 i 个 TABLE-INSERT 操作的摊还代价，我们另 numi 表示第 i 个操作后表中数据数量，sizei 表示第 i 个操作后的总规模，Φi 表示第 i 个操作后的势。则如果第 i 个操作没有触发扩张，size(i) = size(i-1)，则摊还代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-101920%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-101920%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org7806169" class="figure">
+<p><img src="../../../pics/CLRS/动态表3.png" alt="动态表3.png">
 </p>
+</div>
 
 <p>
 如果第 i 个操作触发了扩张，则 size(i) = 2/size(i-1)及 size(i-1) = num(i-1) = num(i)-1，也就是 size(i) = 2/(num(i) &#x2013; 1)。所以其摊还代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-102232%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-102232%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org8cf7fee" class="figure">
+<p><img src="../../../pics/CLRS/动态表4.png" alt="动态表4.png">
 </p>
+</div>
 
 <p>
 下图画出了 num(i)、size(i)和Φ(i)随 i 变化的情况。注意势是如何累积来支付表扩张代价的，另外在每次扩张之后，势变为 0，但会立即变为 2-&#x2013;&#x2014;引起扩张的那个数据被插入表中。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-102459%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-102459%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
-</p>
 
-<hr>
+<div id="org6e2a706" class="figure">
+<p><img src="../../../pics/CLRS/动态表5.png" alt="动态表5.png">
+</p>
+</div>
 </div>
 </div>
 
@@ -377,10 +378,11 @@
 可能我们直觉上认为装载因子为 1/2 比较理想，而表的势此时为 0。随着装载因此偏离 1/2，势应该增长，使得当扩张或收缩表时，表已经储存了足够的势来支付复制所有数据到新表的代价。因此，我们需要一个势函数，当装载因子增长为 1 或下降为 1/4 时，势函数值增长为 T.num。而表扩张或收缩之后，装载因子重新变为 1/2，而表的势降回 0。因此可以得到势函数如下：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-114807%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-114807%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org84ae97e" class="figure">
+<p><img src="../../../pics/CLRS/动态表6.png" alt="动态表6.png">
 </p>
+</div>
 
 <p>
 空表时势为 0，且势永远不可能为负，所以势函数定义的操作序列的总摊还代价是总实际代价的上界。
@@ -391,8 +393,8 @@
 </p>
 
 
-<div id="org4baec10" class="figure">
-<p><img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-115112%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
+<div id="org51d3e6c" class="figure">
+<p><img src="../../../pics/CLRS/动态表7.png" alt="动态表7.png">
 </p>
 </div>
 
@@ -400,19 +402,21 @@
 使用势能法首先分析第 i 个操作为 TABLE-INSERT 时的情况，若α(i-1) &gt;= 1/2，分析与前文相同，无论表是否扩张摊还代价最多为 3。若α(i-1) &lt; 1/2 且α(i) &lt; 1/2，第 i 个操作的摊还代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-132929%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-132929%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orga8f864d" class="figure">
+<p><img src="../../../pics/CLRS/动态表8.png" alt="动态表8.png">
 </p>
+</div>
 
 <p>
 若α(i-1) &lt; 1/2 但α(i) &gt;= 1/2，则
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-133037%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-133037%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgd8b474d" class="figure">
+<p><img src="../../../pics/CLRS/动态表9.png" alt="动态表9.png">
 </p>
+</div>
 
 <p>
 所以，一个 TABLE-INSERT 操作的摊还代价最多为 3.
@@ -422,33 +426,35 @@
 接着分析第 i 个操作为 TABLE-DELETE 的情况。如果α(i-1) &lt;1/2 且并未引起收缩，则摊还代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-135637%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-135637%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org471935a" class="figure">
+<p><img src="../../../pics/CLRS/动态表10.png" alt="动态表10.png">
 </p>
+</div>
 
 <p>
 如果α(i-1) &lt; 1/2 且第 i 个操作触发了收缩，我们有
 </p>
 
+
+<div id="org2c90e38" class="figure">
+<p><img src="../../../pics/CLRS/动态表11.png" alt="动态表11.png">
+</p>
+</div>
+
 <p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-02-135802%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-02-135802%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+当第 i 个操作为 TABLE-DELETE 且α(i-1)时，书中将这个分析留做练习，我的算出来的答案是摊还代价为-1。
 </p>
 
 <p>
-当第i个操作为TABLE-DELETE且α(i-1)时，书中将这个分析留做练习，我的算出来的答案是摊还代价为-1。
-</p>
-
-<p>
-总之，每个操作的摊还代价的上界是一个常数，在一个动态表上执行任意n个操作的实际运行时间是Ο(n)。
+总之，每个操作的摊还代价的上界是一个常数，在一个动态表上执行任意 n 个操作的实际运行时间是Ο(n)。
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>贪心算法：赫夫曼编码</title>
@@ -243,18 +243,21 @@
 </p>
 
 <p>
-假设有一个 10 万个字符的数据文件，它只有 6 个不同的字符，下图给出来额文件中所出现的字符和它们的出现频率。
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-30-204000%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-30-204000%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+假设有一个 10 万个字符的数据文件，它只有 6 个不同的字符，下图给出来了文件中所出现的字符和它们的出现频率。
+</p>
+
+
+<div id="org65a5d64" class="figure">
+<p><img src="../../../pics/CLRS/赫夫曼编码1.png" alt="赫夫曼编码1.png">
+</p>
+</div>
+
+<p>
+有很多方法可以表示这个文件的信息，在本文中，我们考虑用一种*二进制字符编码*的方法，每个字符用一个唯一的二进制串表示，称为 <b>码字</b> 。如果使用 <b>定长编码</b> (Fixed-length codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这种方法需要使用 300000 个二进制位才能编码文件。
 </p>
 
 <p>
-有很多方法可以表示这个文件的信息，在本文中，我们考虑用一种*二进制字符编码*的方法，每个字符用一个唯一的二进制串表示，称为*码字*。如果使用*定长编码*(Fixed-length
-codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这种方法需要使用 300000 个二进制位才能编码文件。
-</p>
-
-<p>
-而*变长编码*(variable-length code)可以达到更好的压缩率，其思想是赋予高频字符短码字，赋予低频字符长码字。具体如上图所示。这种编码方法需要
+而 <b>变长编码</b> (variable-length code)可以达到更好的压缩率，其思想是赋予高频字符短码字，赋予低频字符长码字。具体如上图所示。这种编码方法需要
 </p>
 
 <p>
@@ -264,8 +267,6 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 <p>
 与定长编码相比，节省了 25%的空间，而且实际上这也是此文件最优的编码方法。
 </p>
-
-<hr>
 
 <div id="outline-container-org855d6a9" class="outline-2">
 <h2 id="org855d6a9">前缀码</h2>
@@ -282,12 +283,11 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 解码过程需要前缀码的一种方便的表示形式，以便我们可以容易地截取开始码字。二叉树可以满足这种需求，其叶结点为给定的字符。一个字符的二进制码字用从根节点到叶结点的简单路径表示，其中 0 意味着转向左孩子，1意味着转向右孩子。如下图所示，a对应定长编码，b对应变长编码。文件的最优编码方案总是会对应一棵满二叉树。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-30-210244%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-30-210244%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
-</p>
 
-<hr>
+<div id="org6930a1b" class="figure">
+<p><img src="../../../pics/CLRS/赫夫曼编码2.png" alt="赫夫曼编码2.png">
+</p>
+</div>
 </div>
 </div>
 
@@ -295,14 +295,14 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 <h2 id="orgfdb5027">构造赫夫曼编码</h2>
 <div class="outline-text-2" id="text-orgfdb5027">
 <p>
-赫夫曼设计了一个贪心算法来构造最优前缀码，被成为*赫夫曼编码*。
+赫夫曼设计了一个贪心算法来构造最优前缀码，被成为 <b>赫夫曼编码</b> 。
 </p>
 
 <p>
 在下面的伪代码中，假定 C 是一个 n 个字符的集合，而其中每个字符 c ∈ C 都是一个对象，其属性 c.freq 表示字符出现的频率，算法自底向上构造出对应最优编码的二叉树。算法使用一个以 freq 为关键字的<a href="堆排序和优先队列.html">优先队列</a>Q，以识别两个最低频率的对象将其合并，从|C|个叶结点开始，执行|C|-1 个合并构造出最终的二叉树。
 </p>
 
-<pre class="example" id="org4633ba5">
+<pre class="example" id="orgd4484c9">
     n = |C|
     Q = C
     for i = 1 to n - 1
@@ -318,12 +318,11 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 第二行用 C 中的字符初始化优先队列 C，具体执行过程如下图所示：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-30-212423%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-30-212423%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
-</p>
 
-<hr>
+<div id="org1a1a5ec" class="figure">
+<p><img src="../../../pics/CLRS/赫夫曼编码3.png" alt="赫夫曼编码3.png">
+</p>
+</div>
 </div>
 </div>
 
@@ -364,7 +363,7 @@ codeword)，需要用 3 位来表示 6 个字符，具体如下图所示。这�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

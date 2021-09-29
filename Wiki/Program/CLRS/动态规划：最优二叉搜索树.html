@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>动态规划：最优二叉搜索树</title>
@@ -248,37 +248,41 @@
 下图显示了对一个 n=5 个关键字集合构造的两棵二叉搜索树，每个关键字的频率如下表所示。每个关键字 ki 是一个内部结点，而 di 是一个叶子结点。每次搜索要么成功，要么失败，所以有如下公式：<br>
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org9466d94" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树1.png" alt="最优二叉搜索树1.png">
 </p>
+</div>
 
 <p>
 二叉搜索树（左边的树期望搜索代价为 2.80，右边的为最优二叉搜索树 2.75）：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134542%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134542%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org36ca5d3" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树2.png" alt="最优二叉搜索树2.png">
 </p>
+</div>
 
 <p>
 关键字搜索概率：
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-134555%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-134555%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
 </p>
 
-<p>
-（图片丢失）
+
+<div id="org5a0ffa2" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树3.png" alt="最优二叉搜索树3.png">
 </p>
+</div>
 
 <p>
 由于我们知道每个关键字搜索概率，所以可以确定在一棵给定的二叉搜索树 T 中进行一次搜索的期望代价。假定一次搜索的代价等于访问的结点数，即此次搜索找到的结点在 T 中的深度再加 1。那么一次搜索的期望代价如下，第二个等式时由上文的公式推导而来：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-140019%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-140019%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org1e6e722" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树4.png" alt="最优二叉搜索树4.png">
 </p>
+</div>
 
 <p>
 对于一个给定的概率集合，构造一棵期望搜索代价最小的二叉搜索树，即为*最优二叉搜索树*。这个例子也显示了最优二叉搜索树不一定是高度最矮的，而且概率高的关键字也不一定为根节点。下面我们来求解最优二叉搜索树问题。
@@ -308,28 +312,31 @@
 定义 e[i, j]为在包含 ki, &#x2026;, kj 的最优二叉搜索树中进行一次搜索的期望代价。当 j = i &#x2013; 1 时，只关键字 di-1，所以 e[i, i-1] = qi-1。当 j &gt;= i 时，我们就需要从中选择一个根结点还构造二叉搜索树。当一棵子树成为一个结点的子树时，期望搜索代价应如何变化呢？由于每个结点的深度都增加了 1,所以根据公式 15.11,这棵子树的期望搜索代价的增加值应为所有概率之和：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143304%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143304%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org33a8a85" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树5.png" alt="最优二叉搜索树5.png">
 </p>
+</div>
 
 <p>
 而以 kr 为根的最优二叉搜索树的期望搜索代价就为：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143448%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143448%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgf5404de" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树6.png" alt="最优二叉搜索树6.png">
 </p>
+</div>
 
 <p>
 由上面两个公式，假定知道哪个结点 k 应该作为根结点，我们可以的到递归公式(15.14)：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-29-143601%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-29-143601%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orge470b33" class="figure">
+<p><img src="../../../pics/CLRS/最优二叉搜索树7.png" alt="最优二叉搜索树7.png">
 </p>
+</div>
 
 <hr>
 </div>
@@ -445,7 +452,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

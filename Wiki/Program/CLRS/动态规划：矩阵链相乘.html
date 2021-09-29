@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>动态规划：矩阵链相乘</title>
@@ -248,10 +248,11 @@
 *矩阵链乘法问题*可以描述为：给定 n 个矩阵的链，矩阵 Ai 的规模为 P(i-1) * p(i)， 求完全括号化方案，使得计算乘积 A1, A2 &#x2026; An 所需表量乘法次数最少。 *完全括号化*可以描述为：是一个单一的矩阵，或者是两个完全括号化的矩阵乘积链的积，且已外加括号。如下，矩阵链，一共有 5 种完全括号化方案。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-27-172035%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-27-172035%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgc30242b" class="figure">
+<p><img src="../../../pics/CLRS/矩阵链相乘1.png" alt="矩阵链相乘1.png">
 </p>
+</div>
 
 <p>
 对矩阵链加括号会对乘积运算的代价产生巨大的影响，加括号的顺序不同，造成结果可能会相差 10 倍。还要注意，只有两个矩阵相容的时候，即 A 的列数等于 B 的行数，才能够相乘。
@@ -260,7 +261,7 @@
 <hr>
 
 <p>
-用穷举法解矩阵链相乘的的渐进运行时间会与 n 呈指数关系，所以我们用上一篇<a href="动态规划：钢条切割.md">动态规划上</a>中介绍的 4 个步骤来解决问题。
+用穷举法解矩阵链相乘的的渐进运行时间会与 n 呈指数关系，所以我们用上一篇<a href="动态规划：钢条切割.html">动态规划上</a>中介绍的 4 个步骤来解决问题。
 </p>
 
 <p>
@@ -287,10 +288,11 @@ m[i][j] = m[i][k] + m[k+1][j] + p(i-1)p(k)p(j)
 上面的公式假设 k 是已知的，虽然实际上我们并不知道，但是可以遍历 k 的 j-i 种可能，就一定能得到最优分割点 k。因此递归公式变为：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-27-174931%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-27-174931%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org18d18a7" class="figure">
+<p><img src="../../../pics/CLRS/矩阵链相乘2.png" alt="矩阵链相乘2.png">
 </p>
+</div>
 
 <p>
 <b>步骤 3：计算最优代价</b>
@@ -406,7 +408,7 @@ m[i][j] = m[i][k] + m[k+1][j] + p(i-1)p(k)p(j)
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

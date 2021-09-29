@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>数据结构的扩张</title>
@@ -272,10 +272,11 @@
 x.size = x.left.size + y.right.size + 1
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-105917%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-105917%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="orge88fdcd" class="figure">
+<p><img src="../../../pics/CLRS/顺序统计树.png" alt="顺序统计树.png">
 </p>
+</div>
 </div>
 
 <div id="outline-container-org2389493" class="outline-3">
@@ -408,17 +409,14 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 </pre>
 </div>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-112334%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-112334%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org4e74c79" class="figure">
+<p><img src="../../../pics/CLRS/对树子规模的维护.png" alt="对树子规模的维护.png">
 </p>
+</div>
 
 <p>
 红黑树上的删除操作也包括两个阶段：第一阶段中，要么将结点 y 从树中删除，要么将它在树中上移。为了更新子树的规模，我们只需要遍历一条由结点 y（从它在书中的原始位置开始）到根的简单路径，并减少路径上每个结点的 size 属性值，使用的还是上面的 os\_fixwalk 过程。第二阶段最多做三次旋转，其他对结构没有影响。
-</p>
-
-<p>
- 
 </p>
 </div>
 </div>
@@ -485,10 +483,11 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 <li>i 在 i'的右边</li>
 </ul>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-142508%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-142508%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgf6b7553" class="figure">
+<p><img src="../../../pics/CLRS/区间树1.png" alt="区间树1.png">
 </p>
+</div>
 
 <p>
 (a)i 和 j 重叠的四种情况。(b)i 在 i'的左边。(c)i 在 i‘的右边。
@@ -498,10 +497,11 @@ x 的秩是中序遍历次序排在 x 之前的结点数再加上 1。如果 x �
 区间树是一种对动态集合维护的红黑树，其中每个元素 x 都包含一个区间 x.int。我们将按照第 2 节中的 4 个步骤，来分析区间树以及区间树上各种操作的设计。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-21-142801%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-21-142801%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org08edc16" class="figure">
+<p><img src="../../../pics/CLRS/区间树2.png" alt="区间树2.png">
 </p>
+</div>
 
 <p>
 (a)10 个区间的集合，按低端点自底向上顺序。(b)表示它们的区间树。其中序遍历列出按低端点顺序排列的结点。
@@ -579,7 +579,7 @@ interval_search 用来找出树 T 中与区间 i 重叠的那个结点。
 </div>
 
 <p>
-该过程的基本思想是在任意结点x上，如果x.int不与i重叠，则查找总是沿着一个安全的方向进行。
+该过程的基本思想是在任意结点 x 上，如果 x.int 不与 i 重叠，则查找总是沿着一个安全的方向进行。
 </p>
 </div>
 </div>
@@ -587,7 +587,7 @@ interval_search 用来找出树 T 中与区间 i 重叠的那个结点。
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

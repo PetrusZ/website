@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>动态规划：钢铁切割</title>
@@ -272,10 +272,11 @@
 *切割钢铁问题*是这样的，给定一段长度为 n 的钢铁和一个价格表 p，求切割钢铁方案，使得收益 r 最大。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-161307%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-161307%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="orgcba69b9" class="figure">
+<p><img src="../../../pics/CLRS/钢条切割.png" alt="钢条切割.png">
 </p>
+</div>
 
 <p>
 长度为 n 的钢铁有 2\^(n-1)种不同的切割方案。一般而言，对于最大收益 rn，我们可以如下公式来描述：
@@ -356,10 +357,11 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 递归算法效率这么查的原因在于它反复地用相同的参数对自身进行调用。下图显示了 n 为 4 时的调用过程。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-164151%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-164151%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org57c7e7c" class="figure">
+<p><img src="../../../pics/CLRS/钢条切割2.png" alt="钢条切割2.png">
 </p>
+</div>
 
 <hr>
 </div>
@@ -504,10 +506,11 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 问题的 <b>子问题图</b> 准备地表达了这些信息。下图显示了 n=4 时钢条切割问题的子问题图。它是一个有向图，每个顶点唯一地对应一个子问题。若求子问题 x 的最优解时需要直接用到子问题 y 的最优解，那么在子问题图中就会有一条从 x 到 y 的有向边。我们可以把子问题图看作自顶向下递归树的简化版，因为树中所有相同的子问题结点都合并为了图中的单一顶点。<br>
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-210904%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-210904%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgb94b5f9" class="figure">
+<p><img src="../../../pics/CLRS/钢条切割3.png" alt="钢条切割3.png">
 </p>
+</div>
 
 <p>
 子问题图的规模还可以帮助我们确定动态规划算法的运行时间。由于每个子问题只求解一次，因此算法的运行时间等于每个子问题求解时间之和。通常，一个子问题的求解时间与子问题图中对应顶点的度成正比。
@@ -564,16 +567,17 @@ pn 对应不切割，直接出售长度为 n 的钢条。另外你 n-1 个参数
 对于前面给出的钢条切割实例，extended_bottom_up_cut_rod 会返回下面的数组：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-26-211951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-26-211951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org1c0d6c9" class="figure">
+<p><img src="../../../pics/CLRS/钢条切割4.png" alt="钢条切割4.png">
 </p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

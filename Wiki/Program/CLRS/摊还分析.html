@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>摊还分析</title>
@@ -234,14 +234,14 @@
 <ul>
 <li><a href="#org7e8e40c">聚合分析</a>
 <ul>
-<li><a href="#org8d3f5a6">栈操作</a></li>
-<li><a href="#orgb379626">二进制计数器递增</a></li>
+<li><a href="#org132bb40">栈操作</a></li>
+<li><a href="#org3065132">二进制计数器递增</a></li>
 </ul>
 </li>
 <li><a href="#orgece3a4c">核算法</a>
 <ul>
-<li><a href="#org132bb40">栈操作</a></li>
-<li><a href="#org3065132">二进制计数器递增</a></li>
+<li><a href="#org6304fab">栈操作</a></li>
+<li><a href="#orgd37a586">二进制计数器递增</a></li>
 </ul>
 </li>
 <li><a href="#orgd6bd7cb">势能法</a></li>
@@ -256,8 +256,6 @@
 在学习摊还分析的时候要注意，在摊还分析中赋予对象的费用仅仅是用来分析而已，不需要也不应该出现在程序中。通过做瘫痪分析，通常可以获得对某种特定数据结构的认识，这种认识有助于优化设计。
 </p>
 
-<hr>
-
 <div id="outline-container-org7e8e40c" class="outline-2">
 <h2 id="org7e8e40c">聚合分析</h2>
 <div class="outline-text-2" id="text-org7e8e40c">
@@ -266,9 +264,9 @@
 </p>
 </div>
 
-<div id="outline-container-org8d3f5a6" class="outline-3">
-<h3 id="org8d3f5a6">栈操作</h3>
-<div class="outline-text-3" id="text-org8d3f5a6">
+<div id="outline-container-org132bb40" class="outline-3">
+<h3 id="org132bb40">栈操作</h3>
+<div class="outline-text-3" id="text-org132bb40">
 <p>
 经典的栈操作，这里不过多叙述，它支持三种操作：
 </p>
@@ -294,15 +292,15 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 </div>
 </div>
 
-<div id="outline-container-orgb379626" class="outline-3">
-<h3 id="orgb379626">二进制计数器递增</h3>
-<div class="outline-text-3" id="text-orgb379626">
+<div id="outline-container-org3065132" class="outline-3">
+<h3 id="org3065132">二进制计数器递增</h3>
+<div class="outline-text-3" id="text-org3065132">
 <p>
 一个 k 位二进制计数器递增的问题的例子。简单来说就是使用二进制来计数，并将这个二进制数放到一个数组中，可以使用一个 INCREMENT 的操作来对这个二进制数增加 1。A.length
 = k，将最低位保存在 A[0]中，最高位保存在 A[k-1]中。INCREMENT 的伪代码如下：
 </p>
 
-<pre class="example" id="org42db43a">
+<pre class="example" id="org8e0fd00">
     i = 0
     while i &lt; A.length and A[i] == 1
         A[i] = 0
@@ -315,13 +313,14 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 如下图所示，在 2～4 行 while 循环时，我们希望将 1 加在第 i 位上。如果 A[i]=1，那么加 1 操作会将第 i 位翻转为 0，并产生一个进位-&#x2013;&#x2014;在一次循环中将 1 加到 i+1 位上。否则循环结束，此时若 i
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-01-165524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-01-165524%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgcd78b05" class="figure">
+<p><img src="../../../pics/CLRS/摊还分析1.png" alt="摊还分析1.png">
 </p>
+</div>
 
 <p>
-与上一个例子类似，粗略的分析会的到一个正确但是不紧的界。最坏情况下翻转数组上所有的位，INCREMENT 执行一次花费Θ(k)时间，因此 n 个 INCREMENT 的最坏时间为О(nk)。但是通过摊还分析，我们可以得到最坏运行时间О(n)，因为不可能每次 INCREMENT 都翻转所有的位。实际上，对一个初值为 0 的计数器，执行 n 个 INCREMENT 的过车给你中，A[i]会翻转 n/(2\^i)次。所以我们可以得到的执行翻转操作的总数为：<br>
+与上一个例子类似，粗略的分析会的到一个正确但是不紧的界。最坏情况下翻转数组上所有的位，INCREMENT 执行一次花费Θ(k)时间，因此 n 个 INCREMENT 的最坏时间为О(nk)。但是通过摊还分析，我们可以得到最坏运行时间О(n)，因为不可能每次 INCREMENT 都翻转所有的位。实际上，对一个初值为 0 的计数器，执行 n 个 INCREMENT 的过车给你中，A[i]会翻转 n/(2\^i)次。所以我们可以得到的执行翻转操作的总数为：
 </p>
 
 <p>
@@ -332,8 +331,6 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 <p>
 所以可以得到 n 个 INCREMENT 操作序列的最坏情况时间为О(n)，摊还代价为О(n)/n = О(1)。
 </p>
-
-<hr>
 </div>
 </div>
 </div>
@@ -350,14 +347,14 @@ k)，弹出 k 个对象，如果栈中对象的数量少于 k，则将所有对�
 </p>
 </div>
 
-<div id="outline-container-org132bb40" class="outline-3">
-<h3 id="org132bb40">栈操作</h3>
-<div class="outline-text-3" id="text-org132bb40">
+<div id="outline-container-org6304fab" class="outline-3">
+<h3 id="org6304fab">栈操作</h3>
+<div class="outline-text-3" id="text-org6304fab">
 <p>
 为了说明摊还分析的核算法，再次使用栈的例子。我们赋予 PUSH、POP、MULTIPOP 如下的摊还代价：
 </p>
 
-<pre class="example" id="org03ece35">
+<pre class="example" id="orgffdf1d5">
     PUSH 2
     POP 0
     MULTIPOP 0
@@ -369,9 +366,9 @@ PUSH 时我们将 1 元的代价支付 PUSH 操作的实际代价，将剩余的
 </div>
 </div>
 
-<div id="outline-container-org3065132" class="outline-3">
-<h3 id="org3065132">二进制计数器递增</h3>
-<div class="outline-text-3" id="text-org3065132">
+<div id="outline-container-orgd37a586" class="outline-3">
+<h3 id="orgd37a586">二进制计数器递增</h3>
+<div class="outline-text-3" id="text-orgd37a586">
 <p>
 在这个例子中，对一次置位操作，我们设其摊还代价为 2 元，用 1 元支付实际代价，1元存为信用，用来支付将来复位操作的代价。在任何时刻，计数器中任何为 1 的位都存有 1 元信用，这样在复位的时候，我们就不需要支付任何费用了。
 </p>
@@ -396,19 +393,21 @@ INCREMENT 过程一次最多置位一次，因此摊还代价最多为 2 美元�
 工作方式如下。对一个初始数据结构 D0 执行 n 个操作，对每个 i=1,2,&#x2026;,n，令 ci 为第 i 个操作的实际代价，令 Di 为数据结构 Di-1 执行第 i 个操作得到的结果数据结构。*势函数*Φ将每个数据结构 Di 映射到一个实数Φ(Di)，此值即为关联到数据结构 Di 的\_势\_。第 i 个操作的 <b>摊还代价</b> \^ci 用势函数Φ定义为：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-01-201800%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-01-201800%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org27ada31" class="figure">
+<p><img src="../../../pics/CLRS/摊还分析2.png" alt="摊还分析2.png">
 </p>
+</div>
 
 <p>
 所以每个操作的摊还代价等于其实际代价加上此操作引起的势能变化。则 n 个操作的总摊还代价为
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/12/2013-12-01-201808%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-12-01-201808%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org61ab72a" class="figure">
+<p><img src="../../../pics/CLRS/摊还分析3.png" alt="摊还分析3.png">
 </p>
+</div>
 
 <p>
 不同的势函数会产生不同的摊还代价，但摊还代价仍未实际代价的上界。在选择势函数时，我们常常发现可以做出一定的权衡，是否使用最佳势函数依赖于对时间界的要求。
@@ -419,14 +418,14 @@ INCREMENT 过程一次最多置位一次，因此摊还代价最多为 2 美元�
 </p>
 
 <p>
-势能法具体的例子可以看<a href="摊还分析：动态表.html">下一篇摊还分析动态表的文章</a>，虽然表面上看起来扩张与收缩会有О(n)的代价，但是实际上在表满时将表扩张一倍、装载因子为1/4时将表收缩一半的摊还代价仅为О(1)。
+势能法具体的例子可以看<a href="摊还分析：动态表.html">下一篇摊还分析动态表的文章</a>，虽然表面上看起来扩张与收缩会有О(n)的代价，但是实际上在表满时将表扩张一倍、装载因子为 1/4 时将表收缩一半的摊还代价仅为О(1)。
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>

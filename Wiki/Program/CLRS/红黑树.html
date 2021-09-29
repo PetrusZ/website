@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:39 -->
+<!-- 2021-09-29 Wed 16:38 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>红黑树</title>
@@ -253,7 +253,7 @@
 </div>
 </div>
 <p>
-花了两天时间用 C 语言实现了红黑树，顺便做一下读书笔记，写完之后才发现居然写了 3000 字。略微有点长了&#x2026;&#x2026;不过红黑树的确不怎么好理解。完整的 C 语言红黑树实现在<a href="红黑树的C语言实现.md">另一篇红黑树博文</a>中，太长不方便放到同一篇中。
+花了两天时间用 C 语言实现了红黑树，顺便做一下读书笔记，写完之后才发现居然写了 3000 字。略微有点长了&#x2026;&#x2026;不过红黑树的确不怎么好理解。完整的 C 语言红黑树实现在<a href="红黑树的C语言实现.html">另一篇红黑树博文</a>中，太长不方便放到同一篇中。
 </p>
 
 <hr>
@@ -289,10 +289,11 @@
 为了便于处理红黑树代码中的边界条件，使用一个哨兵来代表 NIL。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-171737%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-171737%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgf26c065" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree1.png" alt="rb_tree1.png">
 </p>
+</div>
 </div>
 </div>
 
@@ -307,10 +308,11 @@ rbtree_insert 和 rbtree_delete 这两个操作对树做了修改，结果可能
 指针结构的修改是通过旋转(ratation)来完成的，这是一种能够保持二叉搜索性质的搜索树局部操作。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-175439%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-175439%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgb4bf029" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree2.png" alt="rb_tree2.png">
 </p>
+</div>
 
 <p>
 在 left_rotate 的伪代码中，假设 x.right != T.nil 且根节点的父节点为 T.nil。
@@ -340,13 +342,14 @@ rbtree_insert 和 rbtree_delete 这两个操作对树做了修改，结果可能
 </div>
 
 <p>
-left\_rotate 和 right\_rotate 操作的代码是对称的。其运行时间为Ο(1)，旋转过程中只有指针改变，其他所有属性不变。
+left_rotate 和 right_rotate 操作的代码是对称的。其运行时间为Ο(1)，旋转过程中只有指针改变，其他所有属性不变。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-175951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-175951%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="org56a9897" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree3.png" alt="rb_tree3.png">
 </p>
+</div>
 
 <p>
 修改前和修改后的树进行中序遍历，产生相同的关键字
@@ -358,7 +361,7 @@ left\_rotate 和 right\_rotate 操作的代码是对称的。其运行时间为�
 <h2 id="orga065926">3.插入</h2>
 <div class="outline-text-2" id="text-orga065926">
 <p>
-我们可以在Ο(lgn)时间内完成向一颗树含 n 个结点的红黑树中插入一个新结点。将二叉搜索树的 tree\_insert 略做修改来把结点 z 插入到红黑树中，就像红黑树是一颗普通的二叉搜索树，然后将 z 着为红色，并且调用一个辅助函数 rbinsert\_fixup 来对结点重新着色并旋转，以保证不新插入的结点不会违反红黑性质。
+我们可以在Ο(lgn)时间内完成向一颗树含 n 个结点的红黑树中插入一个新结点。将二叉搜索树的 tree_insert 略做修改来把结点 z 插入到红黑树中，就像红黑树是一颗普通的二叉搜索树，然后将 z 着为红色，并且调用一个辅助函数 rbinsert_fixup 来对结点重新着色并旋转，以保证不新插入的结点不会违反红黑性质。
 </p>
 
 <div class="org-src-container">
@@ -434,10 +437,11 @@ while 循环在每次迭代的开头都保持下列 3 个部分的不变：
 rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行分析：
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-222536%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-222536%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgca3828e" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree4.png" alt="rb_tree4.png">
 </p>
+</div>
 
 <p>
 情况 1 和情况 2、3 的区别在于父亲的兄弟结点（叔结点）的颜色不同。使 y=z.parent.parent.right，然后测试 y 的颜色。如果 y 是红色的，那么执行情况 1。否则，进入情况 2、3。在所有三种情况中，z.parent.parent 的颜色都是黑色的，因为 z.parent 的颜色是红色的，所以性质 4 只在 z 和 z.parent 之间被破坏了。
@@ -451,10 +455,11 @@ rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行�
 这种情况在 z.parent 和 y 都是红色时发生。因为 z.parent.parent 是黑色的，所以将 z.parent 和 y 都着为黑色，来解决 z 和 z.parent 都是红色的问题，将 z.parent.parent 着为红色以保持性质 5。然后，把 z.parent.parent 作为新结点 z 来重复 while 循环。指针 z 在树中上移两层。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-224345%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-224345%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgbc67ba7" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree5.png" alt="rb_tree5.png">
 </p>
+</div>
 </div>
 </div>
 
@@ -469,10 +474,11 @@ rbinsert_fixup 操作一共可以分为三种情况，下面我们逐一进行�
 在情况 2、3 中 z 的叔结点 y 是黑色的。通过 z 是 z.parent 的右孩子还是左孩子来区分这两种情况。在情况 2 中，可以使用一个左旋来将此情况变为情况 3，结点 z 变为左孩子。因为 z 和 z.parent 都是红色的，所以这次旋转对黑高和性质 5 都没有影响。在旋转前先将 z 上移一层，然后旋转又将 z 下移了一层，z.parent.parent 的身份保持不变。在情况 3 中，改变某些节点的颜色并做一次右旋，以保持性质 5。这样，由于在一行中不再有两个红色结点，所有的处理到此完毕。另外因为此时 z.parent 是黑色的，所以无需再执行一次 while 循环。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-17-230416%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-17-230416%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-（图片丢失）
+
+<div id="orgb1b2966" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree6.png" alt="rb_tree6.png">
 </p>
+</div>
 </div>
 </div>
 </div>
@@ -607,10 +613,11 @@ while 循环的目标是将额外的黑色沿树上移，直到：
 rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵字数α，β，&#x2026;&#x2026;，ζ之间的黑结点个数（包括 x 的额外黑色）并不改变。
 </p>
 
-<p>
-<img src="http://codeplayer.org/wp-content/uploads/2013/11/2013-11-18-141454%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png" alt="2013-11-18-141454%E7%9A%84%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png">
-(图片丢失)
+
+<div id="org73f5dd8" class="figure">
+<p><img src="../../../pics/CLRS/rb_tree7.png" alt="rb_tree7.png">
 </p>
+</div>
 
 <p>
 加黑的结点颜色为 BLACK，深阴影的结点颜色为 RED，浅阴影的结点颜色用 c 和 c'表示，既可以为红色也可以为黑色。
@@ -664,7 +671,7 @@ rb_delete_fixup 的关键思想是在每种情况中，从子树的根到每棵�
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:39</p>
+<p class="date">Created: 2021-09-29 Wed 16:38</p>
 </div>
 </body>
 </html>
