@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:38 -->
+<!-- 2021-10-16 Sat 14:05 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ebuild_Manpage</title>
@@ -322,7 +322,7 @@ ebuld 程序接受一个 ebuild 脚本作为参数。该脚本包含变量和指
 Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catpkg"。
 </p>
 
-<pre class="example" id="org5d627be">
+<pre class="example" id="org15bf6fb">
     sys-apps/sed
     sys-libs/zlib
     net-misc/dhcp
@@ -337,7 +337,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 更具体一点，使用包含特定版本的 atom 也是可以接受的。版本必须和前缀一起使用，所以可以将版本号作为后缀添加到 base 上。
 </p>
 
-<pre class="example" id="orgfea0897">
+<pre class="example" id="org90f5f3b">
     sys-apps/sed-4.0.5
     sys-libs/zlib-1.1.4-r1
     net-misc/dhcp-3.0_p2
@@ -356,7 +356,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 有时你可能希望依赖于一个大致的版本，而不是一直指定特定的版本。所以，这里还提供了标准的布尔运算符：
 </p>
 
-<pre class="example" id="org36cba60">
+<pre class="example" id="org27a7a6d">
     &gt;media-libs/libgd-1.6
     &gt;=media-libs/libgd-1.6
     =media-libs/libgd-1.6
@@ -420,7 +420,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 匹配基于指定的基础版本的任意版本软件包。=*=之前必须是有效的版本号。例如，=2=是有效的版本号，=2.=则不是，所以=2*=是被允许的，=2.*=则不被允许。
 </p>
 
-<pre class="example" id="org53dc4bd">
+<pre class="example" id="orgda0a4f3">
        =dev-libs/glib-2*
        !=net-fs/samba-2*
 </pre></li>
@@ -435,7 +435,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 从 EAPI 1 开始，可以限制 atom 匹配特定的 SLOT。这通过在冒号后面加上一个 SLOT 来实现
 </p>
 
-<pre class="example" id="org4ad541a">
+<pre class="example" id="orga79ac73">
     x11-libs/qt:3
     ~x11-libs/qt-3.3.8:3
     &gt;=x11-libs/qt-3.3.8:3
@@ -451,7 +451,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 从 EAPI 5 开始，一个 slot 依赖可能包含一个可选的 sub-slot，该部分位于常规 slot 之后，并且以=/=字符分隔。
 </p>
 
-<pre class="example" id="orge13d11a">
+<pre class="example" id="org9bdfef4">
     dev-libs/icu:0/0
     dev-libs/icu:0/49
     dev-lang/perl:0/5.12
@@ -476,7 +476,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示任何 slot 值都是可以接受的。另外，对于运行时依赖，如果卸载了指定版本的软件包并且在其他的 slot 中将其替换为了另一个匹配的软件包，则该软件包不会损坏。
 </p>
 
-<pre class="example" id="org57a283e">
+<pre class="example" id="orge8f15b7">
        dev-libs/icu:*
        dev-lang/perl:*
        dev-libs/glib:*
@@ -490,7 +490,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示任何 slot 值都是可以接受的。另外，对于运行时依赖，除非安装了 slot 和 sub-slot 等于该软件包在可安装时的最佳安装版本的 slot 和 sub-slot 的匹配软件包，否则该软件包会损坏。
 </p>
 
-<pre class="example" id="org7cca003">
+<pre class="example" id="org6a00518">
        dev-libs/icu:=
        dev-lang/perl:=
        dev-libs/glib:=
@@ -504,7 +504,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 表示只能接受特定的 slot 值，否则其行为与普通 slot 操作符相同。
 </p>
 
-<pre class="example" id="org0919421">
+<pre class="example" id="org4928b4b">
        dev-libs/icu:0=
        dev-lang/perl:0=
        dev-libs/glib:2=
@@ -515,7 +515,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 为了实现等号 slot 操作符，包管理软件需要存储匹配软件包的最佳已安装版本的 slot/sub-slot 对。该语法仅供包管理软件使用且一定不能在 ebuild 中使用。包管理软件可以通过在保存软件包依赖时在分号和等好之间插入适当的 slot/sub-slot 对来实现次目的。sub-slot 部分在这里必须不能省略（当 SLOT 变量省略 sub-slot 部分时，该软件包被认为是具有一个等于常规 slot 的隐式 sub-slot）。
 </p>
 
-<pre class="example" id="org434f7bb">
+<pre class="example" id="org2ac7571">
     dev-libs/icu:0/0=
     dev-libs/icu:0/49=
     dev-lang/perl:0/5.12=
@@ -607,7 +607,7 @@ Atom base 只是完整的 <code>category/packagename</code> ，又常叫做"catp
 USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 flag 值为默认假设。这种默认值被通过在 flag 后紧接(<del>)或(-)指定。使用(</del>)表现为好像一个缺少的 flag 存在并且被启用，或(-)表现为好像 flag 存在并且被禁用。
 </p>
 
-<pre class="example" id="org63e85f7">
+<pre class="example" id="orgb7a59f5">
     media-video/ffmpeg[threads(+)]
     media-video/ffmpeg[-threads(-)]
 </pre>
@@ -673,7 +673,7 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 当一个软件包可以使用几个不同的软件包但不适合使用虚包时，这个语法可以被轻松使用。
 </p>
 
-<pre class="example" id="orge819032">
+<pre class="example" id="orgcd2195d">
     || (
             app-games/unreal-tournament
             app-games/unreal-tournament-goty
@@ -688,7 +688,7 @@ USE 依赖可以指定有关匹配包的 IUSE 中可能或可能不存在的 fla
 另一个好的例子是当软件包可以使用多个视频接口构建，但仅能使用其中一个接口。
 </p>
 
-<pre class="example" id="org58d3b76">
+<pre class="example" id="orgcbdc4ae">
     || (
             sdl? ( media-libs/libsdl )
             svga? ( media-libs/svgalib )
@@ -788,7 +788,7 @@ PVR
 包含版本号和修订号（如果不是 0）
 </p>
 
-<pre class="example" id="orgb6afa97">
+<pre class="example" id="org81c9ed3">
       x11-base/xorg-server-1.20.5 --&gt; '1.20.5'
       x11-base/xorg-server-1.20.5-r2 --&gt; '1.20.5-r2
 </pre></li>
@@ -801,7 +801,7 @@ PF
 包含完整包名 PN-PVR
 </p>
 
-<pre class="example" id="orgc1d9ab6">
+<pre class="example" id="orge94fff2">
       x11-base/xorg-server-1.20.5 --&gt; 'xorg-server-1.20.5'
       x11-base/xorg-server-1.20.5-r2 --&gt; 'xorg-server-1.20.5-r2'
 </pre></li>
@@ -1307,7 +1307,7 @@ test
 </p>
 
 <p>
-即用用户设置的 FEATURES=test 也不要运行 src_test
+即使用户设置的 FEATURES=test 也不要运行 src_test
 </p></li>
 
 <li><p>
@@ -2339,7 +2339,7 @@ docinto [path]
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:38</p>
+<p class="date">Created: 2021-10-16 Sat 14:05</p>
 </div>
 </body>
 </html>
