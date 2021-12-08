@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<!-- 2021-09-01 Wed 00:38 -->
+<!-- 2021-12-08 Wed 23:40 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Other</title>
@@ -234,6 +234,7 @@
 <ul>
 <li><a href="#org9d9ef99">How to migrate system to new HDD</a></li>
 <li><a href="#org5aceba2">btrfs 新建 swapfile</a></li>
+<li><a href="#org2651f12">acme.sh</a></li>
 <li><a href="#orge2f43fb">List of maintained packages</a></li>
 </ul>
 </div>
@@ -291,16 +292,29 @@
 </div>
 </div>
 
+<div id="outline-container-org2651f12" class="outline-2">
+<h2 id="org2651f12">acme.sh</h2>
+<div class="outline-text-2" id="text-org2651f12">
+<div class="org-src-container">
+<pre class="src src-sh">acme.sh   --issue   --dns dns_cf   -d *.codeplayer.org
+acme.sh --install-cert -d <span style="color: #98be65;">'*.codeplayer.org'</span> --key-file /etc/nginx/key.pem --fullchain-file /etc/nginx/fullchain.pem --reloadcmd <span style="color: #98be65;">"systemctl reload nginx"</span>
+acme.sh --install-cronjob
+</pre>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orge2f43fb" class="outline-2">
 <h2 id="orge2f43fb">List of maintained packages</h2>
 <div class="outline-text-2" id="text-orge2f43fb">
 <p>
-in gig:
+in gentoo:
 </p>
 
 <ul class="org-ul">
-<li>app-misc/tusk</li>
-<li>app-dicts/translator</li>
+<li>app-i18n/man-pages-zh_CN</li>
+<li>x11-misc/rofi</li>
+<li>sys-boot/woeusb</li>
 </ul>
 
 <p>
@@ -308,18 +322,26 @@ in guru:
 </p>
 
 <ul class="org-ul">
-<li>app-misc/tealdeer</li>
-<li>dev-vcs/git-extras</li>
-<li>sys-kernel/xow</li>
-<li>x11-misc/i3lock-color</li>
 <li>x11-misc/betterlockscreen</li>
+<li>x11-misc/i3lock-color</li>
+<li>app-misc/tealdeer</li>
+<li>media-video/uxplay</li>
+<li>sys-kernel/xow</li>
 </ul>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #5B6268;"># </span><span style="color: #5B6268;">How to search?</span>
+<span style="color: #5B6268;"># </span><span style="color: #5B6268;">https://repology.org/</span>
+portageq --maintainer-email <span style="color: #98be65;">'petrus.zy.07@gmail.com'</span>
+pquery --maintainer <span style="color: #98be65;">'petrus.zy.07@gmail.com'</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">&#20316;&#32773;: Petrus.Z</p>
-<p class="date">Created: 2021-09-01 Wed 00:38</p>
+<p class="date">Created: 2021-12-08 Wed 23:40</p>
 </div>
 </body>
 </html>
